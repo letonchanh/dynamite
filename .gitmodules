@@ -1,0 +1,3 @@
+[submodule "deps/dig"]
+	path = deps/dig
+	url = git@gitlab.com:nguyenthanhvuh/dig.git
