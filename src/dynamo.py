@@ -10,7 +10,7 @@ sys.path.insert(0, dig_path)
 
 import helpers.vcommon as dig_common_helpers
 
-def run(inp, seed, maxdeg, do_rmtmp):
+def run_dig(inp, seed, maxdeg, do_rmtmp):
     import alg as dig_alg
     
     mlog.info("{}".format("get invs from DIG"))
@@ -77,4 +77,4 @@ if __name__ == "__main__":
     inp = os.path.realpath(os.path.expanduser(args.inp))
     seed = round(time.time(), 2) if args.dig_seed is None else float(args.dig_seed)
 
-    run(inp, seed, maxdeg=1, do_rmtmp=True)
+    run_dig(inp, seed, maxdeg=1, do_rmtmp=True)
