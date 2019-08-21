@@ -1,13 +1,20 @@
 import os
 import sys
 import time
+import datetime
 
 dynamo_path = os.path.realpath(os.path.dirname(__file__))
 dig_path = os.path.realpath(os.path.join(dynamo_path, '../deps/dig/src'))
 sys.path.insert(0, dig_path)
 
+import helpers.vcommon as dig_common_helpers
+
 def run(inp, seed, maxdeg, do_rmtmp):
     import alg as dig_alg
+    
+    mlog = dig_common_helpers.getLogger(__name__, dig_settings.logger_level)
+    mlog.info("{}".format("get invs from DIG"))
+
     if inp.endswith(".java") or inp.endswith(".class"):
         dig = dig_alg.DigSymStates(inp)
     else:
@@ -44,10 +51,13 @@ if __name__ == "__main__":
 
     dig_settings.DO_MP = not args.dig_nomp
 
-    import helpers.vcommon as dig_common_helpers
     if 0 <= args.dig_log_level <= 4 and args.dig_log_level != dig_settings.logger_level:
         dig_settings.logger_level = args.dig_log_level
     dig_settings.logger_level = dig_common_helpers.getLogLevel(dig_settings.logger_level)
+
+    mlog = dig_common_helpers.getLogger(__name__, dig_settings.logger_level)
+
+    mlog.info("{}: {}".format(datetime.datetime.now(), ' '.join(sys.argv)))
 
     inp = os.path.realpath(os.path.expanduser(args.inp))
     seed = round(time.time(), 2) if args.dig_seed is None else float(args.dig_seed)
