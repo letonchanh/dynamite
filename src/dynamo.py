@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import os
 import sys
 import time
@@ -12,7 +13,6 @@ import helpers.vcommon as dig_common_helpers
 def run(inp, seed, maxdeg, do_rmtmp):
     import alg as dig_alg
     
-    mlog = dig_common_helpers.getLogger(__name__, dig_settings.logger_level)
     mlog.info("{}".format("get invs from DIG"))
 
     if inp.endswith(".java") or inp.endswith(".class"):
@@ -30,11 +30,21 @@ def run(inp, seed, maxdeg, do_rmtmp):
 
 if __name__ == "__main__":
     import settings as dig_settings
+    from utils import settings
     import argparse
 
     aparser = argparse.ArgumentParser("Dynamo")
     ag = aparser.add_argument
     ag("inp", help="inp")
+
+    # Dynamo settings
+    ag("--log_level", "-log_level",
+       type=int,
+       choices=range(5),
+       default=3,
+       help="set logger info")
+
+    # DIG settings
     ag("--dig_log_level", "-dig_log_level",
        type=int,
        choices=range(5),
@@ -51,11 +61,16 @@ if __name__ == "__main__":
 
     dig_settings.DO_MP = not args.dig_nomp
 
+    # Set DIG's log level
     if 0 <= args.dig_log_level <= 4 and args.dig_log_level != dig_settings.logger_level:
         dig_settings.logger_level = args.dig_log_level
     dig_settings.logger_level = dig_common_helpers.getLogLevel(dig_settings.logger_level)
 
-    mlog = dig_common_helpers.getLogger(__name__, dig_settings.logger_level)
+    if 0 <= args.log_level <= 4 and args.log_level != settings.logger_level:
+        settings.logger_level = args.log_level
+    settings.logger_level = dig_common_helpers.getLogLevel(settings.logger_level)
+
+    mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
 
     mlog.info("{}: {}".format(datetime.datetime.now(), ' '.join(sys.argv)))
 
