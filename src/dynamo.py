@@ -77,4 +77,4 @@ if __name__ == "__main__":
     inp = os.path.realpath(os.path.expanduser(args.inp))
     seed = round(time.time(), 2) if args.dig_seed is None else float(args.dig_seed)
 
-    run_dig(inp, seed, maxdeg=1, do_rmtmp=True)
+    run_dig(inp, seed, maxdeg=2, do_rmtmp=True)

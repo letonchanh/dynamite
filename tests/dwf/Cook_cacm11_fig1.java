@@ -10,7 +10,7 @@ public class Cook_cacm11_fig1 {
     }
 
     public static void vtrace1(int x, int y) {
-        System.out.println(x + ", " + y);
+        System.out.println("vtrace1: " + x + ", " + y);
     }
 
     public static void main (String[] args) {
