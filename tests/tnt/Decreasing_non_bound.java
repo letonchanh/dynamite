@@ -3,6 +3,10 @@ public class Decreasing_non_bound {
         System.out.println("vtrace1: " + x);
     }
 
+    public static void vtrace2(int x) {
+        System.out.println("vtrace2: " + x);
+    }
+
     public static void main (String[] args) {
         int x = Nondet.getInt();
         mainQ(x);
@@ -13,5 +17,6 @@ public class Decreasing_non_bound {
             vtrace1(x);
             x = x - 1;
         }
+        vtrace2(x);
     }
 }

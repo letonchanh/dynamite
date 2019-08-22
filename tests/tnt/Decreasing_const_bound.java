@@ -1,6 +1,10 @@
-public class Decreasing_with_bound {
+public class Decreasing_with_const_bound {
     public static void vtrace1(int x) {
         System.out.println("vtrace1: " + x);
+    }
+
+    public static void vtrace2(int x) {
+        System.out.println("vtrace2: " + x);
     }
 
     public static void main (String[] args) {
@@ -9,9 +13,10 @@ public class Decreasing_with_bound {
     }
 
     public static void mainQ(int x) {
-        while (x >= -7) {
+        while (x >= 0) {
             vtrace1(x);
             x = x - 1;
         }
+        vtrace2(x);
     }
 }
