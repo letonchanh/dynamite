@@ -1,4 +1,4 @@
-public class Decreasing_with_const_bound {
+public class Decreasing_const_bound {
     public static void vtrace1(int x) {
         System.out.println("vtrace1: " + x);
     }

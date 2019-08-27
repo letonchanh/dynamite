@@ -4,10 +4,11 @@ TEST=$1
 TRACE=$2
 BND=$3
 NUM=$4
+VARS=$5
 
 javac $TEST.java
 
-> ${TEST}_${TRACE}.tcs
+echo "$TRACE: $VARS" > ${TEST}_${TRACE}.tcs
 for i in `seq $NUM 1`;
 do
     java $TEST > $TEST.out &
