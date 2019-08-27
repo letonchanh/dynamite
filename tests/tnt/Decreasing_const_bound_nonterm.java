@@ -14,14 +14,15 @@ public class Decreasing_const_bound_nonterm {
     }
 
     public static void mainQ(int bnd, int x) {
+        int counter = 0;
         while (x >= 0) {
-            if (bnd <= 0) break;
+            if (counter > bnd) break;
             else
-                bnd = bnd - 1;
+                counter++;
             vtrace1(x);
             x = x + 1;
         }
-        if (bnd > 0)
+        if (counter <= bnd)
             vtrace2(x);
     }
 }
