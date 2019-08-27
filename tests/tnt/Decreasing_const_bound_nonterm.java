@@ -1,4 +1,8 @@
 public class Decreasing_const_bound_nonterm {
+    public static void vtrace0(int x) {
+        System.out.println("vtrace0: " + x);
+    }
+
     public static void vtrace1(int x) {
         System.out.println("vtrace1: " + x);
     }
@@ -14,6 +18,7 @@ public class Decreasing_const_bound_nonterm {
     }
 
     public static void mainQ(int bnd, int x) {
+        vtrace0(x);
         int counter = 0;
         while (x >= 0) {
             if (counter > bnd) break;
