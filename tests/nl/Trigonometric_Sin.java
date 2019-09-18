@@ -5,8 +5,8 @@ public class Trigonometric_Sin {
         System.out.println("vtrace0: " + a + ", " + x + ", " + y);
     }
 
-    public static void vtrace1(int a, int x, double y) {
-        System.out.println("vtrace1: " + a + ", " + x + ", " + y);
+    public static void vtrace1(int a, double b, int x, double y) {
+        System.out.println("vtrace1: " + a + ", " + b + ", " + x + ", " + y);
     }
 
     public static void vtrace2(int a, int x, double y) {
@@ -28,8 +28,9 @@ public class Trigonometric_Sin {
             if (counter > bnd) break;
             else
                 counter++;
-            vtrace1(a, x, y);
-            y = a * Math.sin(x);
+            double b = Math.sin(x);
+            vtrace1(a, b, x, y);
+            y = a * b;
             x = x + 1;
             a = a + 1;
         }
