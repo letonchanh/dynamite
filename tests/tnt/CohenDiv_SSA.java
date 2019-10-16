@@ -98,7 +98,7 @@ public class CohenDiv_SSA {
             x1 = x;
             y1 = y;
 
-            vtrace5(r0, r1);
+            //vtrace5(r0, r1);
 
             //vtrace4(q0,r0,a0,b0,x0,y0,q1,r1,a1,b1,x1,y1);
             // 1. a1 + q0 - q1 == 0
