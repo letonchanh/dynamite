@@ -44,6 +44,10 @@ if __name__ == "__main__":
        default=3,
        help="set logger info")
 
+    ag("--run_dig", "-run_dig",
+        action="store_true",
+        help="run DIG on the input")
+
     # DIG settings
     ag("--dig_log_level", "-dig_log_level",
        type=int,
@@ -58,6 +62,8 @@ if __name__ == "__main__":
        help="DIG: don't use multiprocessing")
 
     args = aparser.parse_args()
+
+    settings.run_dig = args.run_dig
 
     dig_settings.DO_MP = not args.dig_nomp
 
@@ -77,4 +83,5 @@ if __name__ == "__main__":
     inp = os.path.realpath(os.path.expanduser(args.inp))
     seed = round(time.time(), 2) if args.dig_seed is None else float(args.dig_seed)
 
-    run_dig(inp, seed, maxdeg=2, do_rmtmp=True)
+    if settings.run_dig:
+        run_dig(inp, seed, maxdeg=2, do_rmtmp=True)
