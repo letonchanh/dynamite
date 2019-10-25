@@ -1,7 +1,35 @@
 
 \section{Introduction}
 
-Currently termination tools are limited to theories that have good verification support (eg. linear arithmetic).
+Termination continues to be an important theoretical property that is
+of practical interest. 
+In recent years there has been a proliferation of termination
+verification tools, including
+{\sc Terminator},
+Ultimate,
+APrOVE,
+and many others
+(see SV-COMP)
+
+Unfortunately, current termination tools are limited in two ways.
+First, proving termination is {\bf slow}...
+point to SVComp results here.
+Second, termination tools have limited expressivity 
+and are unable to capture termination arguments for 
+loops that involve more elaborate mathematical functions
+such as trigonometric functions, exponentials, square root, etc.
+
+These kinds of functions are important parts of many applications.
+Here is an example, taken from a machine learning algorithm...
+
+
+Meanwhile, recent advances in learning have lead to classifiers
+that are capable of quickly recognizing patterns such as
+
+
+The main idea of this paper is to accelerate and to expand the expressivity of termination and non-termination proof  techniques, by
+incorporating dynamic classification...
+
 
 
 \section{Motivating examples}
