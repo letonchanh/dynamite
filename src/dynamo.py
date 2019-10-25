@@ -91,11 +91,8 @@ if __name__ == "__main__":
         assert(inp.endswith(".java") or inp.endswith(".class"))
         import tempfile
         tmpdir = tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_")
-        print tmpdir
         (inp_decls, inv_decls, clsname, mainQ_name, jpfdir, jpffile, 
          tracedir, traceFile) = dig_src_java.parse(inp, tmpdir)
-        print traceFile
-        print inp_decls
         exe_cmd = dig_settings.JAVA_RUN(tracedir=tracedir, clsname=clsname)
         prog = dig_miscs.Prog(exe_cmd, inp_decls, inv_decls)
         from data.traces import Inps
@@ -103,9 +100,6 @@ if __name__ == "__main__":
         rInps = prog.gen_rand_inps(500)
         mlog.debug("gen {} random inps".format(len(rInps)))
         rInps = inps.merge(rInps, inp_decls.names)
-        print prog
-        print inps
         traces = prog.get_traces(rInps)
-        print traces
         
         
