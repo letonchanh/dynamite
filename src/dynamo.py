@@ -9,9 +9,9 @@ dig_path = os.path.realpath(os.path.join(dynamo_path, '../deps/dig/src'))
 sys.path.insert(0, dig_path)
 
 import helpers.vcommon as dig_common_helpers
+import alg as dig_alg
 
 def run_dig(inp, seed, maxdeg, do_rmtmp):
-    import alg as dig_alg
     
     mlog.info("{}".format("get invs from DIG"))
 
@@ -30,6 +30,8 @@ def run_dig(inp, seed, maxdeg, do_rmtmp):
 
 if __name__ == "__main__":
     import settings as dig_settings
+    from helpers import src_java as dig_src_java
+    from data import miscs as dig_miscs
     from utils import settings
     import argparse
 
@@ -84,4 +86,26 @@ if __name__ == "__main__":
     seed = round(time.time(), 2) if args.dig_seed is None else float(args.dig_seed)
 
     if settings.run_dig:
-        run_dig(inp, seed, maxdeg=2, do_rmtmp=True)
+        run_dig(inp, seed, maxdeg=2, do_rmtmp=False)
+    else:
+        assert(inp.endswith(".java") or inp.endswith(".class"))
+        import tempfile
+        tmpdir = tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_")
+        print tmpdir
+        (inp_decls, inv_decls, clsname, mainQ_name, jpfdir, jpffile, 
+         tracedir, traceFile) = dig_src_java.parse(inp, tmpdir)
+        print traceFile
+        print inp_decls
+        exe_cmd = dig_settings.JAVA_RUN(tracedir=tracedir, clsname=clsname)
+        prog = dig_miscs.Prog(exe_cmd, inp_decls, inv_decls)
+        from data.traces import Inps
+        inps = Inps()
+        rInps = prog.gen_rand_inps(500)
+        mlog.debug("gen {} random inps".format(len(rInps)))
+        rInps = inps.merge(rInps, inp_decls.names)
+        print prog
+        print inps
+        traces = prog.get_traces(rInps)
+        print traces
+        
+        
