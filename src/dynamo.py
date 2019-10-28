@@ -3,6 +3,7 @@ import os
 import sys
 import time
 import datetime
+import itertools
 
 dynamo_path = os.path.realpath(os.path.dirname(__file__))
 dig_path = os.path.realpath(os.path.join(dynamo_path, '../deps/dig/src'))
@@ -100,11 +101,28 @@ if __name__ == "__main__":
          tracedir, traceFile) = dig_src_java.parse(inp, tmpdir)
         exe_cmd = dig_settings.JAVA_RUN(tracedir=tracedir, clsname=clsname)
         prog = dig_miscs.Prog(exe_cmd, inp_decls, inv_decls)
-        from data.traces import Inps
+        from data.traces import Inps, Trace, DTraces
         inps = Inps()
         rInps = prog.gen_rand_inps(500)
         mlog.debug("gen {} random inps".format(len(rInps)))
         rInps = inps.merge(rInps, inp_decls.names)
         traces = prog._get_traces_mp(rInps)
-        print traces
+        for inp, lines in traces.items():
+            print inp
+            print lines
+            dtraces = DTraces()
+            for l in lines:
+                # vtrace1: 8460 16 0 1 16 8460
+                parts = l.split(':')
+                assert len(parts) == 2, parts
+                loc, tracevals = parts[0], parts[1]
+                loc = loc.strip()  # vtrace1
+                ss = inv_decls[loc].names
+                vs = tracevals.strip().split()
+                mytrace = Trace.parse(ss, vs)
+                dtraces.add(loc, mytrace)
+                print mytrace
+            print dtraces.__str__(printDetails=True)
+
+        # traces = prog.get_traces(rInps)
         # print traces.__str__(printDetails=True)
