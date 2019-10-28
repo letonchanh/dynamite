@@ -88,8 +88,7 @@ if __name__ == "__main__":
     mlog.info("{}: {}".format(datetime.datetime.now(), ' '.join(sys.argv)))
 
     inp = os.path.realpath(os.path.expanduser(args.inp))
-    seed = round(time.time(), 2) if args.dig_seed is None else float(
-        args.dig_seed)
+    seed = round(time.time(), 2) if args.dig_seed is None else float(args.dig_seed)
 
     if settings.run_dig:
         run_dig(inp, seed, maxdeg=2, do_rmtmp=False)
@@ -109,8 +108,8 @@ if __name__ == "__main__":
         traces = prog._get_traces_mp(rInps)
         itraces = {}
         for inp, lines in traces.items():
-            print inp
-            print lines
+            # print inp
+            # print lines
             dtraces = {}
             for l in lines:
                 # vtrace1: 8460 16 0 1 16 8460
@@ -129,8 +128,28 @@ if __name__ == "__main__":
             # print dtraces.__str__(printDetails=True)
             itraces[inp] = dtraces
         # print itraces
+        base_term_input = []
+        term_input = []
+        mayloop_input = []
         for inp, dtraces in itraces.items():
             print "{}: {}".format(inp, dtraces.keys())
+            chains = dtraces.keys()
+            if 'vtrace3' in chains:
+                if 'vtrace2' in chains:
+                    term_input.append(inp)
+                else:
+                    base_term_input.append(inp)
+            else:
+                mayloop_input.append(inp)
+        # print "base_term: {}".format(base_term_input)
+        # print "term: {}".format(term_input)
+        # print "mayloop: {}".format(mayloop_input)
+
+        base_vtrace1 = []
+        for inp in base_term_input:
+            base_vtrace1.append(itraces[inp]['vtrace1'])
+        print "base_vtrace1: {}".format(base_vtrace1)
+
 
         # traces = prog.get_traces(rInps)
         # print traces.__str__(printDetails=True)
