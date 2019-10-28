@@ -107,10 +107,11 @@ if __name__ == "__main__":
         mlog.debug("gen {} random inps".format(len(rInps)))
         rInps = inps.merge(rInps, inp_decls.names)
         traces = prog._get_traces_mp(rInps)
+        itraces = {}
         for inp, lines in traces.items():
             print inp
             print lines
-            dtraces = DTraces()
+            dtraces = {}
             for l in lines:
                 # vtrace1: 8460 16 0 1 16 8460
                 parts = l.split(':')
@@ -120,9 +121,16 @@ if __name__ == "__main__":
                 ss = inv_decls[loc].names
                 vs = tracevals.strip().split()
                 mytrace = Trace.parse(ss, vs)
-                dtraces.add(loc, mytrace)
-                print mytrace
-            print dtraces.__str__(printDetails=True)
+                # print mytrace
+                if loc not in dtraces:
+                    dtraces[loc] = [mytrace]
+                else:
+                    dtraces[loc].append(mytrace)
+            # print dtraces.__str__(printDetails=True)
+            itraces[inp] = dtraces
+        # print itraces
+        for inp, dtraces in itraces.items():
+            print "{}: {}".format(inp, dtraces.keys())
 
         # traces = prog.get_traces(rInps)
         # print traces.__str__(printDetails=True)
