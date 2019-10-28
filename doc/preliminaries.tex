@@ -1,0 +1,60 @@
+\newcommand\aut{\mathcal{A}}
+\newcommand\sem[1]{[\![ #1 ]\!]}
+
+\newcommand\cfarightarrow[1]{\xrightarrow{#1}}
+\newcommand\vln{\theta}
+\newcommand\Vlns{\Theta}
+\newcommand\op{\red{op}}
+\newcommand\Ops{\red{Ops}}
+\newcommand\states{S}
+\newcommand\labels{L}
+\newcommand\trans{R}
+\newcommand\exect{\textsf{exec}}
+\newcommand\rvs{Y}%\overline{r}}
+\newcommand\exec[2]{\exect(\vln_{#1},m,\vln_{#2},\rvs)}
+\newcommand\execVVM[3]{\exect(\vln_{#1},#3,\vln_{#2},\rvs)}
+\newcommand\qv[1]{\langle q_{#1}, \vln_{#1} \rangle}
+\newcommand\qtv[1]{\langle q_{#1}, `\vln_{#1} \rangle}
+
+\section{Preliminaries}
+
+\red{cfas or asts?}
+
+\begin{definition}[Control-flow automaton~\cite{Henzinger2002}]
+A (deterministic) \emph{control flow automaton} denoted $\aut$, is a
+tuple $\aut = \langle Q, q_0, X, s, \cfarightarrow{\,} \rangle$ where $Q$ is a
+finite set of control locations and $q_0$ is the initial control location, $X$
+is a finite sets of typed variables, $s$ is the statement language (as defined
+earlier) and $\cfarightarrow{\,}\subseteq Q \times s \times Q$ is a finite set
+of labeled edges.
+\end{definition}
+
+\newcommand\run{r}
+
+\paragraph{Valuations and semantics.}
+We define a \emph{valuation} of variables 
+$\vln : X \rightarrow \mathit{Val}$ to be a mapping from
+variable names to values. Let $\Vlns$ be the set of all valuations.
+%
+The notation $\vln' \in \sem{s}\vln$ means that executing statement $s$, using
+the values given in $\vln$, leads to a new
+valuation $\vln'$, mapping variables $X$ to new values. Notations $\sem{e}\vln$ and $\sem{b}\vln$ represent side-effect free numeric and boolean valuations, respectively.
+%
+We assume that for every $\vln,s$, that $\sem{s}\vln$ is computed in finite time.
+%
+The automaton edges, along with $\sem{s}$, give rise to possible transitions, denoted
+$(q,\vln) \cfarightarrow{s} (q',\vln')$ (we omit these rules for lack of space.
+
+A \emph{run} of a CFA is an alternation of automaton states and
+valuations: $\run=q_0,\vln_0,q_1,\vln_1,q_2,\dots$
+such that $\forall i \geq0.\ (q_i,\vln_i) \cfarightarrow{s} (q_{i+1},\vln_{i+1})$.
+%\paragraph{Safety and termination.}
+%
+We say that CFA $\aut$ can \emph{reach} automaton state $q$ (\emph{safety}) provided that
+there exists a run $\run= q_0,\vln_0,q_1,\vln_1,...$ such that there is
+some $i \geq 0 $ such that  $q_i=q$.
+%
+%We say that CFA $\aut$ \emph{terminates} provided that there
+%are no infinite runs.
+%$\forall q_0,\vln_0,q_1,\vln_1,...\in\Pi(\aut)$ such that there is
+%some $i \geq 0 $ such that  $q_i=q$.
