@@ -20,7 +20,7 @@ def run_dig(inp, seed, maxdeg, do_rmtmp):
     if inp.endswith(".java") or inp.endswith(".class"):
         dig = dig_alg.DigSymStates(inp)
     else:
-        dig = dig_alg.DigTraces(inp)
+        dig = dig_alg.DigTraces.from_tracefiles(inp)
     invs, traces, tmpdir = dig.start(seed, maxdeg)
 
     if do_rmtmp:
@@ -145,10 +145,13 @@ if __name__ == "__main__":
         # print "term: {}".format(term_input)
         # print "mayloop: {}".format(mayloop_input)
 
-        base_vtrace1 = []
+        base_vtrace1 = DTraces()
         for inp in base_term_input:
-            base_vtrace1.append(itraces[inp]['vtrace1'])
-        print "base_vtrace1: {}".format(base_vtrace1)
+            for t in itraces[inp]['vtrace1']:
+                base_vtrace1.add('vtrace1', t)
+        print "base_vtrace1: {}".format(base_vtrace1.__str__(printDetails=True))
+        dig = dig_alg.DigTraces.from_dtraces(inv_decls, base_vtrace1)
+        invs, traces, tmpdir = dig.start(seed, maxdeg=2)
 
 
         # traces = prog.get_traces(rInps)
