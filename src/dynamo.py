@@ -102,7 +102,7 @@ if __name__ == "__main__":
         prog = dig_miscs.Prog(exe_cmd, inp_decls, inv_decls)
         from data.traces import Inps, Trace, DTraces
         inps = Inps()
-        rInps = prog.gen_rand_inps(500)
+        rInps = prog.gen_rand_inps(100)
         mlog.debug("gen {} random inps".format(len(rInps)))
         rInps = inps.merge(rInps, inp_decls.names)
         traces = prog._get_traces_mp(rInps)
@@ -145,13 +145,27 @@ if __name__ == "__main__":
         # print "term: {}".format(term_input)
         # print "mayloop: {}".format(mayloop_input)
 
-        base_vtrace1 = DTraces()
-        for inp in base_term_input:
-            for t in itraces[inp]['vtrace1']:
-                base_vtrace1.add('vtrace1', t)
-        print "base_vtrace1: {}".format(base_vtrace1.__str__(printDetails=True))
-        dig = dig_alg.DigTraces.from_dtraces(inv_decls, base_vtrace1)
-        invs, traces, tmpdir = dig.start(seed, maxdeg=2)
+        def infer (tracename, inps, inv_decls):
+            dtraces = DTraces()
+            for inp in inps:
+                for trace in itraces[inp][tracename]:
+                    dtraces.add(tracename, trace)
+            # print "dtraces: {}".format(dtraces.__str__(printDetails=True))
+            dig = dig_alg.DigTraces.from_dtraces(inv_decls, dtraces)
+            invs, traces, tmpdir = dig.start(seed, maxdeg=2)
+
+
+        # BASE/LOOP CONDITION
+        infer('vtrace1', base_term_input, inv_decls)
+        infer('vtrace1', term_input + mayloop_input, inv_decls)
+        infer('vtrace2', term_input + mayloop_input, inv_decls)
+        infer('vtrace3', term_input, inv_decls)
+        
+        # infer('vtrace1', mayloop_input, inv_decls)
+
+        # infer('vtrace1', term_input, inv_decls)
+        # infer('vtrace1', mayloop_input, inv_decls)
+        # infer('vtrace2', mayloop_input, inv_decls)
 
 
         # traces = prog.get_traces(rInps)

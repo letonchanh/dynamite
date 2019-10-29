@@ -5,9 +5,10 @@ public class Ex1 {
 
     public static void main (String[] args) {}
 
-    public static void mainQ(int x, int y, int bnd) {
-        assert (bnd > 0);
+    public static void mainQ(int x, int y) {
+        // assert (bnd > 0);
         vtrace1(x, y);
+        int bnd = 1000;
         int counter = 0;
         while (x >= 0) {
             if (counter >= bnd)
