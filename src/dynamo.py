@@ -12,6 +12,9 @@ sys.path.insert(0, dig_path)
 import helpers.vcommon as dig_common_helpers
 import alg as dig_alg
 from core import Execution, Classification, Inference
+from utils import settings
+
+mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
 
 def run_dig(inp, seed, maxdeg, do_rmtmp):
 
@@ -35,7 +38,6 @@ if __name__ == "__main__":
     import settings as dig_settings
     from helpers import src_java as dig_src_java
     from data import miscs as dig_miscs
-    from utils import settings
     import argparse
 
     aparser = argparse.ArgumentParser("Dynamo")
@@ -83,8 +85,6 @@ if __name__ == "__main__":
     settings.logger_level = dig_common_helpers.getLogLevel(
         settings.logger_level)
 
-    mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
-
     mlog.info("{}: {}".format(datetime.datetime.now(), ' '.join(sys.argv)))
 
     inp = os.path.realpath(os.path.expanduser(args.inp))
@@ -102,11 +102,17 @@ if __name__ == "__main__":
         prog = dig_miscs.Prog(exe_cmd, inp_decls, inv_decls)
         exe = Execution(prog)
         itraces = exe.get_rand_traces() # itraces: input to dtraces
-        cl = Classification('vtrace1', 'vtrace2', 'vtrace3')
+        preloop = 'vtrace1'
+        inloop = 'vtrace2'
+        postloop = 'vtrace3'
+        cl = Classification(preloop, inloop, postloop)
         base_term_inps, term_inps, mayloop_inps = cl.classify_inps(itraces)
 
+        inference = Inference(inv_decls, seed)
         # BASE/LOOP CONDITION
-        Inference.infer_from_traces(seed, 'vtrace1', base_term_inps, itraces, inv_decls)
-        # infer('vtrace1', term_itraces + mayloop_itraces, inv_decls)
-        # infer('vtrace2', term_itraces + mayloop_itraces, inv_decls)
-        # infer('vtrace3', term_itraces_input, inv_decls)
+        # inference.infer_from_traces(preloop, base_term_inps, itraces)
+        mayloop_cond = inference.infer_from_traces(preloop, mayloop_inps, itraces)
+        mayloop_invs = inference.infer_from_traces(inloop, mayloop_inps, itraces)
+        mlog.debug("mayloop_cond: {}".format(mayloop_cond))
+        mlog.debug("mayloop_invs: {}".format(mayloop_invs))
+

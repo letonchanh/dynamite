@@ -61,14 +61,24 @@ class Classification(object):
         return base_term_inps, term_inps, mayloop_inps
 
 class Inference(object):
-    @classmethod
-    def infer_from_traces(cls, seed, traceid, inps, itraces, inv_decls):
+    def __init__(self, inv_decls, seed, maxdeg=2):
+        self.seed = seed
+        self.maxdeg = maxdeg
+        self.inv_decls = inv_decls
+
+    def infer_from_traces(self, traceid, inps, itraces):
         dtraces = DTraces()
         for inp in inps:
-            for trace in itraces[inp][traceid]:
-                dtraces.add(traceid, trace)
-        mlog.debug("dtraces: {}".format(dtraces.__str__(printDetails=True)))
+            traces = itraces[inp]
+            if not traceid in traces:
+                return None
+            else:
+                for trace in traces[traceid]:
+                    dtraces.add(traceid, trace)
+        mlog.debug("dtraces: {}".format(dtraces.__str__(printDetails=False)))
         import alg as dig_alg
-        dig = dig_alg.DigTraces.from_dtraces(inv_decls, dtraces)
-        invs, traces, tmpdir = dig.start(seed, maxdeg=2)
+        dig = dig_alg.DigTraces.from_dtraces(self.inv_decls, dtraces)
+        dtraces.vwrite(self.inv_decls, traceid + '.tcs')
+        invs, traces, tmpdir = dig.start(self.seed, self.maxdeg)
+        mlog.debug("invs: {}".format(invs)) # <class 'data.inv.invs.DInvs'>
         return invs
