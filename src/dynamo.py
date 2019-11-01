@@ -105,19 +105,30 @@ if __name__ == "__main__":
         preloop = 'vtrace1'
         inloop = 'vtrace2'
         postloop = 'vtrace3'
+        transrel = 'vtrace4'
         cl = Classification(preloop, inloop, postloop)
         base_term_inps, term_inps, mayloop_inps = cl.classify_inps(itraces)
 
         inference = Inference(inv_decls, seed)
         # BASE/LOOP CONDITION
-        term_pre = inference.infer_from_traces(preloop, term_inps, itraces)
-        term_invs = inference.infer_from_traces(inloop, term_inps, itraces)
+        term_pre = inference.infer_from_traces(itraces, preloop, term_inps)
+        term_invs = inference.infer_from_traces(itraces, inloop, term_inps)
         
-        mayloop_pre = inference.infer_from_traces(preloop, mayloop_inps, itraces)
-        mayloop_invs = inference.infer_from_traces(inloop, mayloop_inps, itraces)
+        mayloop_pre = inference.infer_from_traces(itraces, preloop, mayloop_inps)
+        mayloop_invs = inference.infer_from_traces(itraces, inloop, mayloop_inps)
         
         mlog.debug("term_pre: {}".format(term_pre))
         mlog.debug("term_invs: {}".format(term_invs))
         mlog.debug("mayloop_pre: {}".format(mayloop_pre))
-        mlog.debug("mayloop_invs: {}".format(type(mayloop_invs)))
+        mlog.debug("mayloop_invs: {}".format(mayloop_invs))
+
+        def infer_transrel():
+            old_do_ieqs = dig_settings.DO_IEQS
+            dig_settings.DO_IEQS = False
+            transrel_invs = inference.infer_from_traces(itraces, transrel)
+            dig_settings.DO_IEQS = old_do_ieqs
+            return transrel_invs
+
+        transrel_invs = infer_transrel()
+        mlog.debug("transrel_invs: {}".format(transrel_invs))
 
