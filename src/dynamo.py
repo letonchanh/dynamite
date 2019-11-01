@@ -110,9 +110,14 @@ if __name__ == "__main__":
 
         inference = Inference(inv_decls, seed)
         # BASE/LOOP CONDITION
-        # inference.infer_from_traces(preloop, base_term_inps, itraces)
-        mayloop_cond = inference.infer_from_traces(preloop, mayloop_inps, itraces)
+        term_pre = inference.infer_from_traces(preloop, term_inps, itraces)
+        term_invs = inference.infer_from_traces(inloop, term_inps, itraces)
+        
+        mayloop_pre = inference.infer_from_traces(preloop, mayloop_inps, itraces)
         mayloop_invs = inference.infer_from_traces(inloop, mayloop_inps, itraces)
-        mlog.debug("mayloop_cond: {}".format(mayloop_cond))
+        
+        mlog.debug("term_pre: {}".format(term_pre))
+        mlog.debug("term_invs: {}".format(term_invs))
+        mlog.debug("mayloop_pre: {}".format(mayloop_pre))
         mlog.debug("mayloop_invs: {}".format(mayloop_invs))
 

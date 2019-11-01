@@ -1,5 +1,6 @@
 import helpers.vcommon as CM
 from data.traces import Inps, Trace, DTraces
+from data.inv.invs import Invs
 from utils import settings
 
 mlog = CM.getLogger(__name__, settings.logger_level)
@@ -67,18 +68,18 @@ class Inference(object):
         self.inv_decls = inv_decls
 
     def infer_from_traces(self, traceid, inps, itraces):
-        dtraces = DTraces()
-        for inp in inps:
-            traces = itraces[inp]
-            if not traceid in traces:
-                return None
-            else:
+        try:
+            dtraces = DTraces()
+            for inp in inps:
+                traces = itraces[inp]
                 for trace in traces[traceid]:
                     dtraces.add(traceid, trace)
-        mlog.debug("dtraces: {}".format(dtraces.__str__(printDetails=False)))
-        import alg as dig_alg
-        dig = dig_alg.DigTraces.from_dtraces(self.inv_decls, dtraces)
-        dtraces.vwrite(self.inv_decls, traceid + '.tcs')
-        invs, traces, tmpdir = dig.start(self.seed, self.maxdeg)
-        mlog.debug("invs: {}".format(invs)) # <class 'data.inv.invs.DInvs'>
-        return invs
+            mlog.debug("dtraces: {}".format(dtraces.__str__(printDetails=False)))
+            import alg as dig_alg
+            dig = dig_alg.DigTraces.from_dtraces(self.inv_decls, dtraces)
+            dtraces.vwrite(self.inv_decls, traceid + '.tcs')
+            invs, traces, tmpdir = dig.start(self.seed, self.maxdeg)
+            mlog.debug("invs: {}".format(invs)) # <class 'data.inv.invs.DInvs'>
+            return invs[traceid]
+        except:
+            return Invs()
