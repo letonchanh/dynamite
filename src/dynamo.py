@@ -119,5 +119,5 @@ if __name__ == "__main__":
         mlog.debug("term_pre: {}".format(term_pre))
         mlog.debug("term_invs: {}".format(term_invs))
         mlog.debug("mayloop_pre: {}".format(mayloop_pre))
-        mlog.debug("mayloop_invs: {}".format(mayloop_invs))
+        mlog.debug("mayloop_invs: {}".format(type(mayloop_invs)))
 
