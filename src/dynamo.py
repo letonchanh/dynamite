@@ -4,6 +4,8 @@ import sys
 import time
 import datetime
 import itertools
+import functools
+import z3
 
 dynamo_path = os.path.realpath(os.path.dirname(__file__))
 dig_path = os.path.realpath(os.path.join(dynamo_path, '../deps/dig/src'))
@@ -129,6 +131,22 @@ if __name__ == "__main__":
             dig_settings.DO_IEQS = old_do_ieqs
             return transrel_invs
 
-        transrel_invs = infer_transrel()
+        def gen_transrel_sst(transrel_inv_decls, inloop_inv_decls):
+            assert len(transrel_inv_decls) % 2 == 0
+            assert len(inloop_inv_decls) * 2 == len(transrel_inv_decls)
+
+            transrel_pre_inv_decls = transrel_inv_decls[:len(transrel_inv_decls)//2]
+            transrel_post_inv_decls = transrel_inv_decls[len(transrel_inv_decls)//2:]
+            return zip(inloop_inv_decls, transrel_pre_inv_decls), \
+                   zip(inloop_inv_decls, transrel_post_inv_decls)
+
+        transrel_inv_decls = inv_decls[transrel].exprs(settings.use_reals)
+        inloop_inv_decls = inv_decls[inloop].exprs(settings.use_reals)
+        transrel_pre_sst, transrel_post_sst = gen_transrel_sst(transrel_inv_decls, inloop_inv_decls)
+        mlog.debug("transrel_pre_sst: {}".format(transrel_pre_sst))
+        mlog.debug("transrel_post_sst: {}".format(transrel_post_sst))
+
+        transrel_invs = functools.reduce(z3.And, [inv.expr(settings.use_reals) for inv in infer_transrel()])
+            
         mlog.debug("transrel_invs: {}".format(transrel_invs))
 

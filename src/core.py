@@ -68,7 +68,7 @@ class Inference(object):
         self.inv_decls = inv_decls
 
     def infer_from_traces(self, itraces, traceid, inps={}):
-        # try:
+        try:
             dtraces = DTraces()
             if not inps:
                 inps = itraces.keys()
@@ -84,5 +84,5 @@ class Inference(object):
             invs, traces, tmpdir = dig.start(self.seed, self.maxdeg)
             mlog.debug("invs: {}".format(invs)) # <class 'data.inv.invs.DInvs'>
             return invs[traceid]
-        # except:
-        #     return Invs()
+        except AssertionError:
+            return Invs()
