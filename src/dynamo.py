@@ -12,6 +12,7 @@ dig_path = os.path.realpath(os.path.join(dynamo_path, '../deps/dig/src'))
 sys.path.insert(0, dig_path)
 
 import helpers.vcommon as dig_common_helpers
+from helpers.miscs import Z3
 import alg as dig_alg
 from core import Execution, Classification, Inference
 from utils import settings
@@ -113,15 +114,15 @@ if __name__ == "__main__":
 
         inference = Inference(inv_decls, seed)
         # BASE/LOOP CONDITION
-        term_pre = inference.infer_from_traces(itraces, preloop, term_inps)
-        term_invs = inference.infer_from_traces(itraces, inloop, term_inps)
+        # term_pre = inference.infer_from_traces(itraces, preloop, term_inps)
+        # term_invs = inference.infer_from_traces(itraces, inloop, term_inps)
         
-        mayloop_pre = inference.infer_from_traces(itraces, preloop, mayloop_inps)
+        # mayloop_pre = inference.infer_from_traces(itraces, preloop, mayloop_inps)
         mayloop_invs = inference.infer_from_traces(itraces, inloop, mayloop_inps)
-        
-        mlog.debug("term_pre: {}".format(term_pre))
-        mlog.debug("term_invs: {}".format(term_invs))
-        mlog.debug("mayloop_pre: {}".format(mayloop_pre))
+
+        # mlog.debug("term_pre: {}".format(term_pre))
+        # mlog.debug("term_invs: {}".format(term_invs))
+        # mlog.debug("mayloop_pre: {}".format(mayloop_pre))
         mlog.debug("mayloop_invs: {}".format(mayloop_invs))
 
         def infer_transrel():
@@ -147,6 +148,17 @@ if __name__ == "__main__":
         mlog.debug("transrel_post_sst: {}".format(transrel_post_sst))
 
         transrel_invs = functools.reduce(z3.And, [inv.expr(settings.use_reals) for inv in infer_transrel()])
-            
         mlog.debug("transrel_invs: {}".format(transrel_invs))
+
+        candidate_recurrent_set = map(lambda inv: inv.expr(settings.use_reals), mayloop_invs)
+        mlog.debug("candidate_recurrent_set: {}".format(candidate_recurrent_set))
+
+        rs = z3.substitute(functools.reduce(z3.And, candidate_recurrent_set), transrel_pre_sst)
+        mlog.debug("rs: {}".format(rs))
+        for r in candidate_recurrent_set:
+            print r
+            f = z3.Not(z3.Implies(z3.And(rs, transrel_invs), z3.substitute(r, transrel_post_sst)))
+            models, stat = Z3.get_models(f, 100)
+            print models
+
 
