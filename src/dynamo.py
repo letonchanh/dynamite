@@ -158,7 +158,7 @@ if __name__ == "__main__":
         for r in candidate_recurrent_set:
             print r
             f = z3.Not(z3.Implies(z3.And(rs, transrel_invs), z3.substitute(r, transrel_post_sst)))
-            models, stat = Z3.get_models(f, 100)
+            models, stat = Z3.get_models(f, 1000)
             print models
 
 
