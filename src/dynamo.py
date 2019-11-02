@@ -12,7 +12,7 @@ dig_path = os.path.realpath(os.path.join(dynamo_path, '../deps/dig/src'))
 sys.path.insert(0, dig_path)
 
 import helpers.vcommon as dig_common_helpers
-from helpers.miscs import Z3
+from helpers.miscs import Z3, Miscs
 import alg as dig_alg
 from core import Execution, Classification, Inference
 from utils import settings
@@ -104,7 +104,9 @@ if __name__ == "__main__":
         exe_cmd = dig_settings.JAVA_RUN(tracedir=tracedir, clsname=clsname)
         prog = dig_miscs.Prog(exe_cmd, inp_decls, inv_decls)
         exe = Execution(prog)
-        itraces = exe.get_rand_traces() # itraces: input to dtraces
+        nInps = 500
+        inps = exe.gen_rand_inps(nInps)
+        itraces = exe.get_traces(inps) # itraces: input to dtraces
         preloop = 'vtrace1'
         inloop = 'vtrace2'
         postloop = 'vtrace3'
@@ -138,12 +140,14 @@ if __name__ == "__main__":
 
             transrel_pre_inv_decls = transrel_inv_decls[:len(transrel_inv_decls)//2]
             transrel_post_inv_decls = transrel_inv_decls[len(transrel_inv_decls)//2:]
-            return zip(inloop_inv_decls, transrel_pre_inv_decls), \
+            return transrel_pre_inv_decls, \
+                   zip(inloop_inv_decls, transrel_pre_inv_decls), \
                    zip(inloop_inv_decls, transrel_post_inv_decls)
 
         transrel_inv_decls = inv_decls[transrel].exprs(settings.use_reals)
         inloop_inv_decls = inv_decls[inloop].exprs(settings.use_reals)
-        transrel_pre_sst, transrel_post_sst = gen_transrel_sst(transrel_inv_decls, inloop_inv_decls)
+        transrel_pre_inv_decls, transrel_pre_sst, transrel_post_sst = gen_transrel_sst(transrel_inv_decls, inloop_inv_decls)
+        mlog.debug("transrel_pre_inv_decls: {}".format(transrel_pre_inv_decls))
         mlog.debug("transrel_pre_sst: {}".format(transrel_pre_sst))
         mlog.debug("transrel_post_sst: {}".format(transrel_post_sst))
 
@@ -155,10 +159,35 @@ if __name__ == "__main__":
 
         rs = z3.substitute(functools.reduce(z3.And, candidate_recurrent_set), transrel_pre_sst)
         mlog.debug("rs: {}".format(rs))
+
+        def get_cexs(r):
+            f = z3.Not(z3.Implies(z3.And(rs, transrel_invs), z3.substitute(r, transrel_post_sst)))
+            models, stat = Z3.get_models(f, 2*nInps)
+            cexs, isSucc = Z3.extract(models)
+            sCexs = set()
+            for cex in cexs:
+                sCexs.add(tuple([cex[v.__str__()] for v in transrel_pre_inv_decls]))
+            return sCexs
+
+        # def f(tasks):
+        #     return [(rstr, get_cexs(r)) for rstr, r in tasks]
+        # tasks = [(r.__str__(), r) for r in candidate_recurrent_set]
+        # wrs = Miscs.run_mp('get_cexs', tasks, f)
+        # print wrs
+
+        from data.traces import Inps
         for r in candidate_recurrent_set:
             print r
-            f = z3.Not(z3.Implies(z3.And(rs, transrel_invs), z3.substitute(r, transrel_post_sst)))
-            models, stat = Z3.get_models(f, 1000)
-            print models
+            cexs = get_cexs(r)
+            if cexs:
+                inps = Inps()
+                print inp_decls
+                inps = inps.merge(cexs, inp_decls)
+                itraces = exe.get_traces(inps)
+                base_term_inps, term_inps, mayloop_inps = cl.classify_inps(itraces)
+                term_pre = inference.infer_from_traces(itraces, preloop, term_inps)
+                print term_pre
+                mayloop_pre = inference.infer_from_traces(itraces, preloop, mayloop_inps)
+                print mayloop_pre
 
 

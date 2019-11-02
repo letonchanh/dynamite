@@ -10,13 +10,18 @@ class Execution(object):
     def __init__(self, prog):
         self.prog = prog
 
-    def get_rand_traces(self):
+    def gen_rand_inps(self, nInps):
         inps = Inps()
-        rInps = self.prog.gen_rand_inps(100)
+        inp_decls = self.prog.inp_decls
+        rInps = self.prog.gen_rand_inps(nInps)
+        mlog.debug("gen {} random inps".format(len(rInps)))
+        mlog.debug("gen inps: {}".format(rInps))
+        rInps = inps.merge(rInps, inp_decls.names)
+        return rInps
+
+    def get_traces(self, rInps):
         inp_decls = self.prog.inp_decls
         inv_decls = self.prog.inv_decls
-        mlog.debug("gen {} random inps".format(len(rInps)))
-        rInps = inps.merge(rInps, inp_decls.names)
         raw_traces = self.prog._get_traces_mp(rInps)
         itraces = {}
         for inp, lines in raw_traces.items():
