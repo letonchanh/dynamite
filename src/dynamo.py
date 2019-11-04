@@ -117,13 +117,13 @@ if __name__ == "__main__":
         inference = Inference(inv_decls, seed)
         # BASE/LOOP CONDITION
         # term_pre = inference.infer_from_traces(itraces, preloop, term_inps)
-        # term_invs = inference.infer_from_traces(itraces, inloop, term_inps)
+        term_invs = inference.infer_from_traces(itraces, inloop, term_inps)
         
         # mayloop_pre = inference.infer_from_traces(itraces, preloop, mayloop_inps)
         mayloop_invs = inference.infer_from_traces(itraces, inloop, mayloop_inps)
 
         # mlog.debug("term_pre: {}".format(term_pre))
-        # mlog.debug("term_invs: {}".format(term_invs))
+        mlog.debug("term_invs: {}".format(term_invs))
         # mlog.debug("mayloop_pre: {}".format(mayloop_pre))
         mlog.debug("mayloop_invs: {}".format(mayloop_invs))
 
@@ -162,7 +162,7 @@ if __name__ == "__main__":
 
         def get_cexs(r):
             f = z3.Not(z3.Implies(z3.And(rs, transrel_invs), z3.substitute(r, transrel_post_sst)))
-            models, stat = Z3.get_models(f, 2*nInps)
+            models, stat = Z3.get_models(f, nInps)
             cexs, isSucc = Z3.extract(models)
             sCexs = set()
             for cex in cexs:
@@ -186,8 +186,7 @@ if __name__ == "__main__":
                 itraces = exe.get_traces(inps)
                 base_term_inps, term_inps, mayloop_inps = cl.classify_inps(itraces)
                 term_pre = inference.infer_from_traces(itraces, preloop, term_inps)
-                print term_pre
+                mlog.debug("term_pre: {}".format(term_pre))
                 mayloop_pre = inference.infer_from_traces(itraces, preloop, mayloop_inps)
-                print mayloop_pre
-
+                mlog.debug("mayloop_pre: {}".format(mayloop_pre))
 
