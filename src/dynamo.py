@@ -16,6 +16,7 @@ from helpers.miscs import Z3, Miscs
 import alg as dig_alg
 from core import Execution, Classification, Inference
 from utils import settings
+from data.traces import Inps
 
 mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
 
@@ -98,39 +99,29 @@ if __name__ == "__main__":
     else:
         assert(inp.endswith(".java") or inp.endswith(".class"))
         import tempfile
+        nInps = 500
+        preloop_loc = 'vtrace1'
+        inloop_loc = 'vtrace2'
+        postloop_loc = 'vtrace3'
+        transrel_loc = 'vtrace4'
+        refinement_depth = 3
+
         tmpdir = tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_")
         (inp_decls, inv_decls, clsname, mainQ_name, jpfdir, jpffile,
          tracedir, traceFile) = dig_src_java.parse(inp, tmpdir)
         exe_cmd = dig_settings.JAVA_RUN(tracedir=tracedir, clsname=clsname)
         prog = dig_miscs.Prog(exe_cmd, inp_decls, inv_decls)
         exe = Execution(prog)
-        nInps = 500
-        inps = exe.gen_rand_inps(nInps)
-        itraces = exe.get_traces(inps) # itraces: input to dtraces
-        preloop = 'vtrace1'
-        inloop = 'vtrace2'
-        postloop = 'vtrace3'
-        transrel = 'vtrace4'
-        cl = Classification(preloop, inloop, postloop)
-        base_term_inps, term_inps, mayloop_inps = cl.classify_inps(itraces)
-
         inference = Inference(inv_decls, seed)
-        # BASE/LOOP CONDITION
-        # term_pre = inference.infer_from_traces(itraces, preloop, term_inps)
-        term_invs = inference.infer_from_traces(itraces, inloop, term_inps)
-        
-        # mayloop_pre = inference.infer_from_traces(itraces, preloop, mayloop_inps)
-        mayloop_invs = inference.infer_from_traces(itraces, inloop, mayloop_inps)
+        cl = Classification(preloop_loc, inloop_loc, postloop_loc)
 
-        # mlog.debug("term_pre: {}".format(term_pre))
-        mlog.debug("term_invs: {}".format(term_invs))
-        # mlog.debug("mayloop_pre: {}".format(mayloop_pre))
-        mlog.debug("mayloop_invs: {}".format(mayloop_invs))
+        rand_inps = exe.gen_rand_inps(nInps)
+        rand_itraces = exe.get_traces(rand_inps) # itraces: input to dtraces
 
         def infer_transrel():
             old_do_ieqs = dig_settings.DO_IEQS
             dig_settings.DO_IEQS = False
-            transrel_invs = inference.infer_from_traces(itraces, transrel)
+            transrel_invs = inference.infer_from_traces(rand_itraces, transrel_loc)
             dig_settings.DO_IEQS = old_do_ieqs
             return transrel_invs
 
@@ -144,49 +135,73 @@ if __name__ == "__main__":
                    zip(inloop_inv_decls, transrel_pre_inv_decls), \
                    zip(inloop_inv_decls, transrel_post_inv_decls)
 
-        transrel_inv_decls = inv_decls[transrel].exprs(settings.use_reals)
-        inloop_inv_decls = inv_decls[inloop].exprs(settings.use_reals)
-        transrel_pre_inv_decls, transrel_pre_sst, transrel_post_sst = gen_transrel_sst(transrel_inv_decls, inloop_inv_decls)
+        transrel_inv_decls = inv_decls[transrel_loc].exprs(settings.use_reals)
+        inloop_inv_decls = inv_decls[inloop_loc].exprs(settings.use_reals)
+        transrel_pre_inv_decls, transrel_pre_sst, transrel_post_sst = \
+            gen_transrel_sst(transrel_inv_decls, inloop_inv_decls)
         mlog.debug("transrel_pre_inv_decls: {}".format(transrel_pre_inv_decls))
         mlog.debug("transrel_pre_sst: {}".format(transrel_pre_sst))
         mlog.debug("transrel_post_sst: {}".format(transrel_post_sst))
 
-        transrel_invs = functools.reduce(z3.And, [inv.expr(settings.use_reals) for inv in infer_transrel()])
+        transrel_invs = functools.reduce(z3.And, [inv.expr(settings.use_reals) \
+                                                 for inv in infer_transrel()])
         mlog.debug("transrel_invs: {}".format(transrel_invs))
 
-        candidate_recurrent_set = map(lambda inv: inv.expr(settings.use_reals), mayloop_invs)
-        mlog.debug("candidate_recurrent_set: {}".format(candidate_recurrent_set))
+        def verify(rcs):
+            assert rcs is None or isinstance(rcs, Invs), rcs
+            if rcs is None:
+                sCexs = []
+                sCexs.append(rand_inps)
+                return False, sCexs
+            else:
+                zrcs = [rc.expr(settings.use_reals) for rc in rcs]
+                frcs = z3.substitute(functools.reduce(z3.And, zrcs), transrel_pre_sst)
+                def _check(zrc):
+                    f = z3.Not(z3.Implies(z3.And(frcs, transrel_invs), \
+                                          z3.substitute(zrc, transrel_post_sst)))
+                    return Z3.get_models(f, nInps)
+                chks = [_check(zrc) for zrc in zrcs]
+                if all(stat == z3.unsat for models, stat in chks):
+                    return True, None # valid
+                else:
+                    sCexs = []
+                    for models, stat in chks:
+                        if stat == z3.unknown:
+                            return False, None # unknown
+                        else:
+                            cexs, isSucc = Z3.extract(models)
+                            icexs = []
+                            for cex in cexs:
+                                icexs.append(tuple([cex[v.__str__()] for v in transrel_pre_inv_decls]))
+                            inps = Inps()
+                            inps = inps.merge(cexs, inp_decls)
+                            sCexs.append(inps)
+                    return False, sCexs # invalid with a set of new Inps
 
-        rs = z3.substitute(functools.reduce(z3.And, candidate_recurrent_set), transrel_pre_sst)
-        mlog.debug("rs: {}".format(rs))
-
-        def get_cexs(r):
-            f = z3.Not(z3.Implies(z3.And(rs, transrel_invs), z3.substitute(r, transrel_post_sst)))
-            models, stat = Z3.get_models(f, nInps)
-            cexs, isSucc = Z3.extract(models)
-            sCexs = set()
-            for cex in cexs:
-                sCexs.add(tuple([cex[v.__str__()] for v in transrel_pre_inv_decls]))
-            return sCexs
-
-        # def f(tasks):
-        #     return [(rstr, get_cexs(r)) for rstr, r in tasks]
-        # tasks = [(r.__str__(), r) for r in candidate_recurrent_set]
-        # wrs = Miscs.run_mp('get_cexs', tasks, f)
-        # print wrs
-
-        from data.traces import Inps
-        for r in candidate_recurrent_set:
-            print r
-            cexs = get_cexs(r)
-            if cexs:
-                inps = Inps()
-                print inp_decls
-                inps = inps.merge(cexs, inp_decls)
+        def strengthen(rcs, inps):
+            assert isinstance(inps, Inps), inps
+            if rcs is None:
+                itraces = rand_itraces
+            else:
                 itraces = exe.get_traces(inps)
-                base_term_inps, term_inps, mayloop_inps = cl.classify_inps(itraces)
-                term_pre = inference.infer_from_traces(itraces, preloop, term_inps)
-                mlog.debug("term_pre: {}".format(term_pre))
-                mayloop_pre = inference.infer_from_traces(itraces, preloop, mayloop_inps)
-                mlog.debug("mayloop_pre: {}".format(mayloop_pre))
+            base_term_inps, term_inps, mayloop_inps = cl.classify_inps(itraces)
+            base_term_pre = inference.infer_from_traces(itraces, preloop_loc, base_term_inps)
+            base_term_invs = inference.infer_from_traces(itraces, inloop_loc, base_term_inps)
+            return None
 
+        def prove_NonTerm():
+            candidateRCS = [(None, 0)]
+            validRCS = []
+            while candidateRCS:
+                rcs, depth = candidateRCS.pop()
+                if depth < refinement_depth:
+                    chk, sCexs = verify(rcs)
+                    if chk:
+                        validRCS.append(rcs)
+                    elif sCexs is not None:
+                        for cexs in sCexs:
+                            nrcs = strengthen(rcs, cexs)
+                            candidateRCS.append((nrcs, depth+1))
+            return validRCS
+
+        prove_NonTerm()
