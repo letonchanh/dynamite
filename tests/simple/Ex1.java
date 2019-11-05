@@ -32,3 +32,14 @@ public class Ex1 {
             vtrace3(x, y);
     }
 }
+
+/*
+  ZInvs([
+
+  Not(Or(And(And(x*-1 + y*-1 <= -6, x + y <= 8), y <= -2), And(And(x*-1 <= 0, x + y <= 7), y <= -2))),
+  x*-1 + y*-1 <= -6,
+  x*-1 <= -5,
+  Not(Or(And(y <= -5, x*-1 + y*-1 <= -9), And(x*-1 <= 0, y <= -1))),
+  Not(Or(And(y <= -3, x*-1 + y*-1 <= -9), And(x*-1 <= 0, y <= -1)))
+  ])
+ */

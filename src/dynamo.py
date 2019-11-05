@@ -106,7 +106,7 @@ if __name__ == "__main__":
         inloop_loc = 'vtrace2'
         postloop_loc = 'vtrace3'
         transrel_loc = 'vtrace4'
-        refinement_depth = 3
+        refinement_depth = 5
 
         tmpdir = tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_")
         (inp_decls, inv_decls, clsname, mainQ_name, jpfdir, jpffile,
@@ -145,23 +145,29 @@ if __name__ == "__main__":
         mlog.debug("transrel_pre_sst: {}".format(transrel_pre_sst))
         mlog.debug("transrel_post_sst: {}".format(transrel_post_sst))
 
-        transrel_invs = LInvs.expr(infer_transrel())
+        transrel_invs = ZInvs(infer_transrel())
         mlog.debug("transrel_invs: {}".format(transrel_invs))
 
         def verify(rcs):
-            assert rcs is None or isinstance(rcs, Invs), rcs
+            assert rcs is None or isinstance(rcs, ZInvs), rcs
             if rcs is None:
                 sCexs = []
                 sCexs.append(rand_inps)
                 return False, sCexs
             else:
-                zrcs = [rc.expr(settings.use_reals) for rc in rcs]
-                frcs = z3.substitute(functools.reduce(z3.And, zrcs), transrel_pre_sst)
-                def _check(zrc):
-                    f = z3.Not(z3.Implies(z3.And(frcs, transrel_invs), \
-                                          z3.substitute(zrc, transrel_post_sst)))
-                    return Z3.get_models(f, nInps)
-                chks = [_check(zrc) for zrc in zrcs]
+                assert rcs, rcs
+                transrel_expr = transrel_invs.expr()
+                rcs_l = z3.substitute(rcs.expr(), transrel_pre_sst)
+                mlog.debug("rcs_l: {}".format(rcs_l))
+                mlog.debug("transrel_expr: {}".format(transrel_expr))
+                def _check(rc):
+                    rc_r = z3.substitute(rc, transrel_post_sst)
+                    f = z3.Not(z3.Implies(z3.And(rcs_l, transrel_expr), rc_r))
+                    mlog.debug("_check: f = {}".format(f))
+                    models, stat = Z3.get_models(f, nInps)
+                    mlog.debug("stat: {}".format(stat))
+                    return models, stat
+                chks = [_check(rc) for rc in rcs]
                 if all(stat == z3.unsat for models, stat in chks):
                     return True, None # valid
                 else:
@@ -169,7 +175,7 @@ if __name__ == "__main__":
                     for models, stat in chks:
                         if stat == z3.unknown:
                             return False, None # unknown
-                        else:
+                        elif stat == z3.sat:
                             cexs, isSucc = Z3.extract(models)
                             icexs = set()
                             for cex in cexs:
@@ -181,6 +187,7 @@ if __name__ == "__main__":
 
         def strengthen(rcs, inps):
             assert isinstance(inps, Inps), inps
+            assert len(inps) > 0
             if rcs is None:
                 itraces = rand_itraces
             else:
@@ -190,24 +197,20 @@ if __name__ == "__main__":
             mlog.debug("term_inps: {}".format(len(term_inps)))
             mlog.debug("mayloop_inps: {}".format(len(mayloop_inps)))
             
-            # base_term_pre = inference.infer_from_traces(itraces, preloop_loc, base_term_inps)
-            # base_term_invs = inference.infer_from_traces(itraces, inloop_loc, base_term_inps)
-
-            # term_pre = inference.infer_from_traces(itraces, preloop_loc, term_inps)
-            # term_invs = inference.infer_from_traces(itraces, inloop_loc, term_inps)
-
-            # mayloop_pre = inference.infer_from_traces(itraces, preloop_loc, mayloop_inps)
-            mayloop_invs = inference.infer_from_traces(itraces, inloop_loc, mayloop_inps)
+            mayloop_invs = ZInvs(inference.infer_from_traces(itraces, inloop_loc, mayloop_inps))
             if rcs is None:
                 return mayloop_invs
-            elif mayloop_invs and LInvs.implies(mayloop_invs, rcs):
+            elif mayloop_invs and mayloop_invs.implies(rcs):
                 return mayloop_invs
             else:
-                base_term_pre = inference.infer_from_traces(itraces, preloop_loc, base_term_inps)
-                term_invs = inference.infer_from_traces(itraces, inloop_loc, term_inps)
+                base_term_pre = ZInvs(inference.infer_from_traces(itraces, preloop_loc, base_term_inps))
+                term_invs = ZInvs(inference.infer_from_traces(itraces, inloop_loc, term_inps))
                 mlog.debug("base_term_pre: {}".format(base_term_pre))
                 mlog.debug("term_invs: {}".format(term_invs))
-                return None
+                term_cond = z3.Or(base_term_pre.expr(), term_invs.expr())
+                mlog.debug("term_cond: {}".format(z3.simplify(term_cond)))
+                rcs.add(z3.Not(term_cond))
+                return rcs
 
         def prove_NonTerm():
             candidateRCS = [(None, 0)]
@@ -223,7 +226,9 @@ if __name__ == "__main__":
                     elif sCexs is not None:
                         for cexs in sCexs:
                             nrcs = strengthen(rcs, cexs)
-                            candidateRCS.append((nrcs, depth+1))
+                            assert nrcs is not None, nrcs
+                            if not nrcs.is_unsat():
+                                candidateRCS.append((nrcs, depth+1))
             return validRCS
 
         validRCS = prove_NonTerm()
