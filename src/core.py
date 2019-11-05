@@ -89,5 +89,5 @@ class Inference(object):
             invs, traces, tmpdir = dig.start(self.seed, self.maxdeg)
             mlog.debug("invs: {}".format(invs)) # <class 'data.inv.invs.DInvs'>
             return invs[traceid]
-        except KeyError:
+        except KeyError, AssertionError:
             return Invs()

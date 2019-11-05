@@ -17,6 +17,8 @@ import alg as dig_alg
 from core import Execution, Classification, Inference
 from utils import settings
 from data.traces import Inps
+from data.inv.invs import Invs
+from utils.logic import *
 
 mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
 
@@ -143,8 +145,7 @@ if __name__ == "__main__":
         mlog.debug("transrel_pre_sst: {}".format(transrel_pre_sst))
         mlog.debug("transrel_post_sst: {}".format(transrel_post_sst))
 
-        transrel_invs = functools.reduce(z3.And, [inv.expr(settings.use_reals) \
-                                                 for inv in infer_transrel()])
+        transrel_invs = LInvs.expr(infer_transrel())
         mlog.debug("transrel_invs: {}".format(transrel_invs))
 
         def verify(rcs):
@@ -170,11 +171,11 @@ if __name__ == "__main__":
                             return False, None # unknown
                         else:
                             cexs, isSucc = Z3.extract(models)
-                            icexs = []
+                            icexs = set()
                             for cex in cexs:
-                                icexs.append(tuple([cex[v.__str__()] for v in transrel_pre_inv_decls]))
+                                icexs.add(tuple([cex[v.__str__()] for v in transrel_pre_inv_decls]))
                             inps = Inps()
-                            inps = inps.merge(cexs, inp_decls)
+                            inps = inps.merge(icexs, inp_decls)
                             sCexs.append(inps)
                     return False, sCexs # invalid with a set of new Inps
 
@@ -185,15 +186,36 @@ if __name__ == "__main__":
             else:
                 itraces = exe.get_traces(inps)
             base_term_inps, term_inps, mayloop_inps = cl.classify_inps(itraces)
-            base_term_pre = inference.infer_from_traces(itraces, preloop_loc, base_term_inps)
-            base_term_invs = inference.infer_from_traces(itraces, inloop_loc, base_term_inps)
-            return None
+            mlog.debug("base_term_inps: {}".format(len(base_term_inps)))
+            mlog.debug("term_inps: {}".format(len(term_inps)))
+            mlog.debug("mayloop_inps: {}".format(len(mayloop_inps)))
+            
+            # base_term_pre = inference.infer_from_traces(itraces, preloop_loc, base_term_inps)
+            # base_term_invs = inference.infer_from_traces(itraces, inloop_loc, base_term_inps)
+
+            # term_pre = inference.infer_from_traces(itraces, preloop_loc, term_inps)
+            # term_invs = inference.infer_from_traces(itraces, inloop_loc, term_inps)
+
+            # mayloop_pre = inference.infer_from_traces(itraces, preloop_loc, mayloop_inps)
+            mayloop_invs = inference.infer_from_traces(itraces, inloop_loc, mayloop_inps)
+            if rcs is None:
+                return mayloop_invs
+            elif mayloop_invs and LInvs.implies(mayloop_invs, rcs):
+                return mayloop_invs
+            else:
+                base_term_pre = inference.infer_from_traces(itraces, preloop_loc, base_term_inps)
+                term_invs = inference.infer_from_traces(itraces, inloop_loc, term_inps)
+                mlog.debug("base_term_pre: {}".format(base_term_pre))
+                mlog.debug("term_invs: {}".format(term_invs))
+                return None
 
         def prove_NonTerm():
             candidateRCS = [(None, 0)]
             validRCS = []
             while candidateRCS:
+                mlog.debug("candidateRCS: {}".format(candidateRCS))
                 rcs, depth = candidateRCS.pop()
+                mlog.debug("PROVE_NT DEPTH {}: {}".format(depth, rcs))
                 if depth < refinement_depth:
                     chk, sCexs = verify(rcs)
                     if chk:
@@ -204,4 +226,5 @@ if __name__ == "__main__":
                             candidateRCS.append((nrcs, depth+1))
             return validRCS
 
-        prove_NonTerm()
+        validRCS = prove_NonTerm()
+        mlog.debug("validRCS: {}".format(validRCS))
