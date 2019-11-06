@@ -181,7 +181,7 @@ if __name__ == "__main__":
                     for rs in chks:
                         if rs is None:
                             return False, None # unknown
-                        elif is_instance(rs, list) and rs:
+                        elif isinstance(rs, list) and rs:
                             models = rs
                             cexs, isSucc = Z3.extract(models)
                             icexs = set()
@@ -215,7 +215,7 @@ if __name__ == "__main__":
                 mlog.debug("base_term_pre: {}".format(base_term_pre))
                 mlog.debug("term_invs: {}".format(term_invs))
                 term_cond = z3.Or(base_term_pre.expr(), term_invs.expr())
-                mlog.debug("term_cond: {}".format(z3.simplify(term_cond)))
+                mlog.debug("term_cond: {}".format(Z3.simplify(term_cond)))
                 rcs.add(z3.Not(term_cond))
                 return rcs
 
