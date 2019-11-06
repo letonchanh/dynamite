@@ -215,8 +215,11 @@ if __name__ == "__main__":
                 mlog.debug("base_term_pre: {}".format(base_term_pre))
                 mlog.debug("term_invs: {}".format(term_invs))
                 term_cond = z3.Or(base_term_pre.expr(), term_invs.expr())
-                mlog.debug("term_cond: {}".format(Z3.simplify(term_cond)))
-                rcs.add(z3.Not(term_cond))
+                simplified_term_cond = Z3.simplify(term_cond)
+                cnf_term_cond = Z3.to_cnf(simplified_term_cond)
+                mlog.debug("simplified_term_cond: {}".format(simplified_term_cond))
+                mlog.debug("cnf_term_cond: {}".format(cnf_term_cond))
+                rcs.add(z3.Not(simplified_term_cond))
                 return rcs
 
         def prove_NonTerm():
@@ -238,4 +241,5 @@ if __name__ == "__main__":
             return validRCS
 
         validRCS = prove_NonTerm()
-        mlog.debug("validRCS: {}".format(validRCS))
+        for rcs in validRCS:
+            mlog.debug("rcs: {}".format(rcs.simplify()))
