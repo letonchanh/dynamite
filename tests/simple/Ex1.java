@@ -34,12 +34,24 @@ public class Ex1 {
 }
 
 /*
+  [
   ZInvs([
+  x*-1 <= -2,
 
-  Not(Or(And(And(x*-1 + y*-1 <= -6, x + y <= 8), y <= -2), And(And(x*-1 <= 0, x + y <= 7), y <= -2))),
-  x*-1 + y*-1 <= -6,
-  x*-1 <= -5,
-  Not(Or(And(y <= -5, x*-1 + y*-1 <= -9), And(x*-1 <= 0, y <= -1))),
-  Not(Or(And(y <= -3, x*-1 + y*-1 <= -9), And(x*-1 <= 0, y <= -1)))
-  ])
+  Not(Or(And(x*-1 + y*-1 <= -5, y <= -3), And(x*-1 <= 0, y <= -1))),
+  //Not(And(x >= 0, y <= -1))
+
+  Not(Or(And(And(y <= -5, x + y <= 6), x*-1 + y*-1 <= -5), And(And(And(x*-1 <= 0, x + y <= 6), x*-1 + y <= -4), y <= -3))),
+  //Not(And(x >= 0, x + y <= 6, x*-1 + y <= -4, y <= -3))
+
+  Not(Or(And(And(y <= -2, x + y <= 4), x*-1 + y*-1 <= -2), And(And(x*-1 <= 0, x + y <= 4), y <= -2))),
+  //Not(And(x >= 0, x + y <= 4, y <= -2))
+
+  x*-1 + y*-1 <= -2]),
+
+  ZInvs([x*-1 <= -2, Not(Or(And(x*-1 + y*-1 <= -5, y <= -3),
+  And(x*-1 <= 0, y <= -1))), Not(Or(And(And(y <= -5, x + y <= 6), x*-1 + y*-1 <= -5),
+  And(And(And(x*-1 <= 0, x + y <= 6), x*-1 + y <= -4),
+  y <= -3))), Not(Or(And(And(y <= -2, x + y <= 4), x*-1 + y*-1 <= -2),
+  And(And(x*-1 <= 0, x + y <= 4), y <= -2))), x*-1 + y*-1 <= -2])]
  */
