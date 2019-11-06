@@ -162,20 +162,27 @@ if __name__ == "__main__":
                 mlog.debug("transrel_expr: {}".format(transrel_expr))
                 def _check(rc):
                     rc_r = z3.substitute(rc, transrel_post_sst)
-                    f = z3.Not(z3.Implies(z3.And(rcs_l, transrel_expr), rc_r))
+                    # f = z3.Not(z3.Implies(z3.And(rcs_l, transrel_expr), rc_r))
+                    f = z3.And(z3.And(rcs_l, transrel_expr), z3.Not(rc_r))
                     mlog.debug("_check: f = {}".format(f))
-                    models, stat = Z3.get_models(f, nInps)
-                    mlog.debug("stat: {}".format(stat))
-                    return models, stat
+                    rs, _ = Z3.get_models(f, nInps)
+                    if rs is None:
+                        mlog.debug("rs: unknown")
+                    elif rs is False:
+                        mlog.debug("rs: unsat")
+                    else:
+                        mlog.debug("rs: sat ({})".format(len(rs)))
+                    return rs
                 chks = [_check(rc) for rc in rcs]
-                if all(stat == z3.unsat for models, stat in chks):
+                if all(rs is False for rs in chks):
                     return True, None # valid
                 else:
                     sCexs = []
-                    for models, stat in chks:
-                        if stat == z3.unknown:
+                    for rs in chks:
+                        if rs is None:
                             return False, None # unknown
-                        elif stat == z3.sat:
+                        elif is_instance(rs, list) and rs:
+                            models = rs
                             cexs, isSucc = Z3.extract(models)
                             icexs = set()
                             for cex in cexs:
@@ -221,14 +228,13 @@ if __name__ == "__main__":
                 mlog.debug("PROVE_NT DEPTH {}: {}".format(depth, rcs))
                 if depth < refinement_depth:
                     chk, sCexs = verify(rcs)
-                    if chk:
+                    if chk and not rcs.is_unsat():
                         validRCS.append(rcs)
                     elif sCexs is not None:
                         for cexs in sCexs:
                             nrcs = strengthen(rcs, cexs)
                             assert nrcs is not None, nrcs
-                            if not nrcs.is_unsat():
-                                candidateRCS.append((nrcs, depth+1))
+                            candidateRCS.append((nrcs, depth+1))
             return validRCS
 
         validRCS = prove_NonTerm()
