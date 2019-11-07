@@ -169,13 +169,13 @@ if __name__ == "__main__":
                     # f = z3.Not(z3.Implies(z3.And(rcs_l, transrel_expr), rc_r))
                     f = z3.And(z3.And(rcs_l, transrel_expr), z3.Not(rc_r))
                     mlog.debug("_check: f = {}".format(f))
-                    rs, _ = Z3.get_models(f, nInps)
+                    rs, _ = Z3.get_models(f, nInps, True) # using_random_seed = True
                     if rs is None:
                         mlog.debug("rs: unknown")
                     elif rs is False:
                         mlog.debug("rs: unsat")
                     else:
-                        mlog.debug("rs: sat ({})".format(len(rs)))
+                        mlog.debug("rs: sat ({} models)".format(len(rs)))
                     return rs
                 chks = [_check(rc) for rc in rcs]
                 if all(rs is False for rs in chks):
