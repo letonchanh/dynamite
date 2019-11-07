@@ -6,6 +6,7 @@ import datetime
 import itertools
 import functools
 import z3
+import random
 
 dynamo_path = os.path.realpath(os.path.dirname(__file__))
 dig_path = os.path.realpath(os.path.join(dynamo_path, '../deps/dig/src'))
@@ -21,7 +22,6 @@ from data.inv.invs import Invs
 from utils.logic import *
 
 mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
-
 
 def run_dig(inp, seed, maxdeg, do_rmtmp):
 
@@ -154,72 +154,74 @@ if __name__ == "__main__":
 
         # dig_settings.DO_EQTS = False
 
-        # def check_sat_and_get_model(solver, using_random_seed=False):
-        #     if not using_random_seed:
-        #         chk = solver.check()
-        #         if chk == z3.sat:
-        #             model = solver.model()
-        #         else:
-        #             model = None
-        #         return chk, model
-        #     else:
-        #         myseed = random.randint(0, 1000000)
-        #         smt2_str = [
-        #             '(set-option :smt.arith.random_initial_value true)',
-        #             solver.to_smt2().replace('(check-sat)', ''),
-        #             '(check-sat-using (using-params smt :random-seed {}))'.format(myseed),
-        #             '(get-model)']
-        #         smt2_str = '\n'.join(smt2_str)
-        #         mlog.debug("smt2_str: {}".format(smt2_str))
-        #         filename = settings.tmpdir + 't.smt2'
-        #         CM.vwrite(filename, smt2_str)
-        #         cmd = 'z3 {}'.format(filename)
-        #         rmsg, errmsg = CM.vcmd(cmd)
-        #         assert not errmsg, "'{}': {}".format(cmd, errmsg)
-        #         print rmsg  # contain the model value
-        #         from parser import Z3OutputParser
-        #         parser = Z3OutputParser()
-        #         z3_output_ast = parser.z3_output_parser.parse(rmsg)
-        #         print(z3_output_ast.pretty())
-        #         return z3.unknown, None
+        from parsers import Z3OutputHandler
+        z3_output_handler = Z3OutputHandler()
 
-        # def get_models(f, k, using_random_seed=False):
-        #     if not using_random_seed:
-        #         return Z3.get_models(f, k)
+        def check_sat_and_get_model(solver, using_random_seed=False):
+            if not using_random_seed:
+                chk = solver.check()
+                if chk == z3.sat:
+                    model = solver.model()
+                else:
+                    model = None
+                return chk, model
+            else:
+                myseed = random.randint(0, 1000000)
+                smt2_str = [
+                    '(set-option :smt.arith.random_initial_value true)',
+                    solver.to_smt2().replace('(check-sat)', ''),
+                    '(check-sat-using (using-params smt :random-seed {}))'.format(myseed),
+                    '(get-model)']
+                smt2_str = '\n'.join(smt2_str)
+                # mlog.debug("smt2_str: {}".format(smt2_str))
+                filename = tmpdir + 't.smt2'
+                dig_common_helpers.vwrite(filename, smt2_str)
+                cmd = 'z3 {}'.format(filename)
+                rmsg, errmsg = dig_common_helpers.vcmd(cmd)
+                assert not errmsg, "'{}': {}".format(cmd, errmsg)
+                z3_output_ast = z3_output_handler.parser.parse(rmsg)
+                chk, model = z3_output_handler.transform(z3_output_ast)
+                mlog.debug("model {}: {}".format(myseed, model))
+                return chk, model
 
-        #     assert z3.is_expr(f), f
-        #     assert k >= 1, k
+        def get_models(f, k, using_random_seed=False):
+            if not using_random_seed:
+                return Z3.get_models(f, k)
 
-        #     solver = Z3.create_solver()
-        #     solver.add(f)
+            assert z3.is_expr(f), f
+            assert k >= 1, k
 
-        #     models = []
-        #     i = 0
-        #     # while solver.check() == z3.sat and i < k:
-        #     while i < k:
-        #         chk, m = check_sat_and_get_model(solver, using_random_seed)
-        #         if chk != z3.sat:
-        #             break
-        #         i = i + 1
-        #         # m = solver.model()
-        #         if not m:  # if m == []
-        #             break
-        #         models.append(m)
-        #         # create new constraint to block the current model
-        #         block = z3.Not(z3.And([v() == m[v] for v in m]))
-        #         solver.add(block)
+            solver = Z3.create_solver()
+            solver.add(f)
 
-        #     stat = solver.check()
+            models = []
+            i = 0
+            # while solver.check() == z3.sat and i < k:
+            while i < k:
+                chk, m = check_sat_and_get_model(solver, using_random_seed)
+                if chk != z3.sat:
+                    break
+                i = i + 1
+                # m = solver.model()
+                if not m:  # if m == []
+                    break
+                models.append(m)
+                if not using_random_seed:
+                    # create new constraint to block the current model
+                    block = z3.Not(z3.And([v() == m[v] for v in m]))
+                    solver.add(block)
 
-        #     if stat == z3.unknown:
-        #         rs = None
-        #     elif stat == z3.unsat and i == 0:
-        #         rs = False
-        #     else:
-        #         rs = models
+            stat = solver.check()
 
-        #     assert not (isinstance(rs, list) and not rs), rs
-        #     return rs, stat
+            if stat == z3.unknown:
+                rs = None
+            elif stat == z3.unsat and i == 0:
+                rs = False
+            else:
+                rs = models
+
+            assert not (isinstance(rs, list) and not rs), rs
+            return rs, stat
 
         def verify(rcs):
             assert rcs is None or isinstance(rcs, ZInvs), rcs
@@ -239,7 +241,7 @@ if __name__ == "__main__":
                     f = z3.And(z3.And(rcs_l, transrel_expr), z3.Not(rc_r))
                     mlog.debug("_check: f = {}".format(f))
                     # using_random_seed = True
-                    rs, _ = Z3.get_models(f, nInps)
+                    rs, _ = get_models(f, nInps, True)
                     if rs is None:
                         mlog.debug("rs: unknown")
                     elif rs is False:
