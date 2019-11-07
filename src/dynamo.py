@@ -101,6 +101,7 @@ if __name__ == "__main__":
     else:
         assert(inp.endswith(".java") or inp.endswith(".class"))
         import tempfile
+        
         nInps = 500
         preloop_loc = 'vtrace1'
         inloop_loc = 'vtrace2'
@@ -146,7 +147,11 @@ if __name__ == "__main__":
         mlog.debug("transrel_post_sst: {}".format(transrel_post_sst))
 
         transrel_invs = ZInvs(infer_transrel())
+        assert not transrel_invs.is_unsat(), transrel_invs
         mlog.debug("transrel_invs: {}".format(transrel_invs))
+        transrel_expr = transrel_invs.expr()
+
+        # dig_settings.DO_EQTS = False
 
         def verify(rcs):
             assert rcs is None or isinstance(rcs, ZInvs), rcs
@@ -156,7 +161,6 @@ if __name__ == "__main__":
                 return False, sCexs
             else:
                 assert rcs, rcs
-                transrel_expr = transrel_invs.expr()
                 rcs_l = z3.substitute(rcs.expr(), transrel_pre_sst)
                 mlog.debug("rcs_l: {}".format(rcs_l))
                 mlog.debug("transrel_expr: {}".format(transrel_expr))
@@ -219,7 +223,9 @@ if __name__ == "__main__":
                 cnf_term_cond = Z3.to_cnf(simplified_term_cond)
                 mlog.debug("simplified_term_cond: {}".format(simplified_term_cond))
                 mlog.debug("cnf_term_cond: {}".format(cnf_term_cond))
-                rcs.add(z3.Not(simplified_term_cond))
+                dnf_neg_term_cond = Z3.to_nnf(z3.Not(cnf_term_cond))
+                mlog.debug("dnf_neg_term_cond: {}".format(dnf_neg_term_cond))
+                rcs.add(dnf_neg_term_cond)
                 return rcs
 
         def prove_NonTerm():

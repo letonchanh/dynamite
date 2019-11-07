@@ -9,7 +9,7 @@ public class Ex1 {
     public static void mainQ(int x, int y) {
         // assert (bnd > 0);
         vtrace1(x, y);
-        int bnd = 1000;
+        int bnd = 500;
         int counter = 0;
         while (x >= 0) {
             if (counter >= bnd)
@@ -67,4 +67,5 @@ public class Ex1 {
   y*-1 <= 9,
   Not(Or(And(And(x*-1 + y*-1 <= -8, y*-1 <= 9), y <= -2), And(And(And(y <= -1, x*-1 <= 0), y*-1 <= 9), x*-1 + y*-1 <= 7)))
   ])
+  Repeat(Then(OrElse('split-clause', 'nnf'), 'propagate-ineqs', 'ctx-solver-simplify'))
  */
