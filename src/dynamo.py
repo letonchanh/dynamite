@@ -22,6 +22,7 @@ from utils.logic import *
 
 mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
 
+
 def run_dig(inp, seed, maxdeg, do_rmtmp):
 
     mlog.info("{}".format("get invs from DIG"))
@@ -101,7 +102,7 @@ if __name__ == "__main__":
     else:
         assert(inp.endswith(".java") or inp.endswith(".class"))
         import tempfile
-        
+
         nInps = 500
         preloop_loc = 'vtrace1'
         inloop_loc = 'vtrace2'
@@ -119,7 +120,7 @@ if __name__ == "__main__":
         cl = Classification(preloop_loc, inloop_loc, postloop_loc)
 
         rand_inps = exe.gen_rand_inps(nInps)
-        rand_itraces = exe.get_traces(rand_inps) # itraces: input to dtraces
+        rand_itraces = exe.get_traces(rand_inps)  # itraces: input to dtraces
 
         def infer_transrel():
             old_do_ieqs = dig_settings.DO_IEQS
@@ -153,6 +154,73 @@ if __name__ == "__main__":
 
         # dig_settings.DO_EQTS = False
 
+        # def check_sat_and_get_model(solver, using_random_seed=False):
+        #     if not using_random_seed:
+        #         chk = solver.check()
+        #         if chk == z3.sat:
+        #             model = solver.model()
+        #         else:
+        #             model = None
+        #         return chk, model
+        #     else:
+        #         myseed = random.randint(0, 1000000)
+        #         smt2_str = [
+        #             '(set-option :smt.arith.random_initial_value true)',
+        #             solver.to_smt2().replace('(check-sat)', ''),
+        #             '(check-sat-using (using-params smt :random-seed {}))'.format(myseed),
+        #             '(get-model)']
+        #         smt2_str = '\n'.join(smt2_str)
+        #         mlog.debug("smt2_str: {}".format(smt2_str))
+        #         filename = settings.tmpdir + 't.smt2'
+        #         CM.vwrite(filename, smt2_str)
+        #         cmd = 'z3 {}'.format(filename)
+        #         rmsg, errmsg = CM.vcmd(cmd)
+        #         assert not errmsg, "'{}': {}".format(cmd, errmsg)
+        #         print rmsg  # contain the model value
+        #         from parser import Z3OutputParser
+        #         parser = Z3OutputParser()
+        #         z3_output_ast = parser.z3_output_parser.parse(rmsg)
+        #         print(z3_output_ast.pretty())
+        #         return z3.unknown, None
+
+        # def get_models(f, k, using_random_seed=False):
+        #     if not using_random_seed:
+        #         return Z3.get_models(f, k)
+
+        #     assert z3.is_expr(f), f
+        #     assert k >= 1, k
+
+        #     solver = Z3.create_solver()
+        #     solver.add(f)
+
+        #     models = []
+        #     i = 0
+        #     # while solver.check() == z3.sat and i < k:
+        #     while i < k:
+        #         chk, m = check_sat_and_get_model(solver, using_random_seed)
+        #         if chk != z3.sat:
+        #             break
+        #         i = i + 1
+        #         # m = solver.model()
+        #         if not m:  # if m == []
+        #             break
+        #         models.append(m)
+        #         # create new constraint to block the current model
+        #         block = z3.Not(z3.And([v() == m[v] for v in m]))
+        #         solver.add(block)
+
+        #     stat = solver.check()
+
+        #     if stat == z3.unknown:
+        #         rs = None
+        #     elif stat == z3.unsat and i == 0:
+        #         rs = False
+        #     else:
+        #         rs = models
+
+        #     assert not (isinstance(rs, list) and not rs), rs
+        #     return rs, stat
+
         def verify(rcs):
             assert rcs is None or isinstance(rcs, ZInvs), rcs
             if rcs is None:
@@ -164,12 +232,14 @@ if __name__ == "__main__":
                 rcs_l = z3.substitute(rcs.expr(), transrel_pre_sst)
                 mlog.debug("rcs_l: {}".format(rcs_l))
                 mlog.debug("transrel_expr: {}".format(transrel_expr))
+
                 def _check(rc):
                     rc_r = z3.substitute(rc, transrel_post_sst)
                     # f = z3.Not(z3.Implies(z3.And(rcs_l, transrel_expr), rc_r))
                     f = z3.And(z3.And(rcs_l, transrel_expr), z3.Not(rc_r))
                     mlog.debug("_check: f = {}".format(f))
-                    rs, _ = Z3.get_models(f, nInps, True) # using_random_seed = True
+                    # using_random_seed = True
+                    rs, _ = Z3.get_models(f, nInps)
                     if rs is None:
                         mlog.debug("rs: unknown")
                     elif rs is False:
@@ -179,22 +249,24 @@ if __name__ == "__main__":
                     return rs
                 chks = [_check(rc) for rc in rcs]
                 if all(rs is False for rs in chks):
-                    return True, None # valid
+                    return True, None  # valid
                 else:
                     sCexs = []
                     for rs in chks:
                         if rs is None:
-                            return False, None # unknown
-                        elif isinstance(rs, list) and rs:
+                            return False, None  # unknown
+                        elif isinstance(rs, list) and rs:  # sat
                             models = rs
-                            cexs, isSucc = Z3.extract(models)
+                            if all(isinstance(m, z3.ModelRef) for m in models):
+                                cexs, isSucc = Z3.extract(models)
                             icexs = set()
                             for cex in cexs:
-                                icexs.add(tuple([cex[v.__str__()] for v in transrel_pre_inv_decls]))
+                                icexs.add(tuple([cex[v.__str__()]
+                                                 for v in transrel_pre_inv_decls]))
                             inps = Inps()
                             inps = inps.merge(icexs, inp_decls)
                             sCexs.append(inps)
-                    return False, sCexs # invalid with a set of new Inps
+                    return False, sCexs  # invalid with a set of new Inps
 
         def strengthen(rcs, inps):
             assert isinstance(inps, Inps), inps
@@ -207,15 +279,18 @@ if __name__ == "__main__":
             mlog.debug("base_term_inps: {}".format(len(base_term_inps)))
             mlog.debug("term_inps: {}".format(len(term_inps)))
             mlog.debug("mayloop_inps: {}".format(len(mayloop_inps)))
-            
-            mayloop_invs = ZInvs(inference.infer_from_traces(itraces, inloop_loc, mayloop_inps))
+
+            mayloop_invs = ZInvs(inference.infer_from_traces(
+                itraces, inloop_loc, mayloop_inps))
             if rcs is None:
                 return mayloop_invs
             elif mayloop_invs and mayloop_invs.implies(rcs):
                 return mayloop_invs
             else:
-                base_term_pre = ZInvs(inference.infer_from_traces(itraces, preloop_loc, base_term_inps))
-                term_invs = ZInvs(inference.infer_from_traces(itraces, inloop_loc, term_inps))
+                base_term_pre = ZInvs(inference.infer_from_traces(
+                    itraces, preloop_loc, base_term_inps))
+                term_invs = ZInvs(inference.infer_from_traces(
+                    itraces, inloop_loc, term_inps))
                 mlog.debug("base_term_pre: {}".format(base_term_pre))
                 mlog.debug("term_invs: {}".format(term_invs))
                 term_cond = z3.Or(base_term_pre.expr(), term_invs.expr())
