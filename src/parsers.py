@@ -8,6 +8,8 @@ except NameError:
 
 class Z3OutputHandler(Transformer):
     z3_output_grammar = r"""
+        ?output_lst: (output)+ -> mk_lst
+
         ?output: result (err_message)? -> mk_res
         
         ?result: SAT model -> mk_sat
@@ -18,7 +20,7 @@ class Z3OutputHandler(Transformer):
 
         ?model: OPAREN MODEL sols CPAREN -> mk_model
 
-        ?sols: (sol)+ -> mk_sols
+        ?sols: (sol)+ -> mk_lst
 
         ?sol: OPAREN DEFFUN ID OPAREN CPAREN sort value CPAREN -> mk_sol
 
@@ -72,7 +74,7 @@ class Z3OutputHandler(Transformer):
     def mk_model(self, (oparen, model, sols, cparen)):
         return sols
 
-    def mk_sols(self, lst):
+    def mk_lst(self, lst):
         return lst
 
     def mk_sol(self, (oparen1, deffun, id, oparen2, cparen2, sort, value, cparen1)):
