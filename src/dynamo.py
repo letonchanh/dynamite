@@ -63,6 +63,10 @@ if __name__ == "__main__":
         action="store_true",
         help="run DIG on the input")
 
+    ag("--no_random_seed", "-no_random_seed",
+        action="store_true",
+        help="generate models without random_seed")
+
     # DIG settings
     ag("--dig_log_level", "-dig_log_level",
        type=int,
@@ -79,6 +83,9 @@ if __name__ == "__main__":
     args = aparser.parse_args()
 
     settings.run_dig = args.run_dig
+    settings.use_random_seed = not args.no_random_seed
+
+    mlog.debug("use_random_seed: {}".format(settings.use_random_seed))
 
     dig_settings.DO_MP = not args.dig_nomp
 
@@ -233,7 +240,7 @@ if __name__ == "__main__":
                     f = z3.And(z3.And(rcs_l, transrel_expr), z3.Not(rc_r))
                     mlog.debug("_check: f = {}".format(f))
                     # using_random_seed = True
-                    rs, _ = get_models(f, nInps, True)
+                    rs, _ = get_models(f, nInps, settings.use_random_seed)
                     if rs is None:
                         mlog.debug("rs: unknown")
                     elif rs is False:
@@ -319,4 +326,5 @@ if __name__ == "__main__":
 
         validRCS = prove_NonTerm()
         for rcs in validRCS:
-            mlog.debug("rcs: {}".format(rcs.simplify()))
+            f = Z3.to_dnf(rcs.simplify())
+            mlog.debug("rcs: {}".format(f))
