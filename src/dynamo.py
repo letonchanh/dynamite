@@ -8,6 +8,7 @@ import functools
 import z3
 import random
 import sage.all
+import copy
 
 dynamo_path = os.path.realpath(os.path.dirname(__file__))
 dig_path = os.path.realpath(os.path.join(dynamo_path, '../deps/dig/src'))
@@ -85,20 +86,18 @@ if __name__ == "__main__":
     settings.run_dig = args.run_dig
     settings.use_random_seed = not args.no_random_seed
 
-    mlog.debug("use_random_seed: {}".format(settings.use_random_seed))
-
     dig_settings.DO_MP = not args.dig_nomp
 
     # Set DIG's log level
     if 0 <= args.dig_log_level <= 4 and args.dig_log_level != dig_settings.logger_level:
         dig_settings.logger_level = args.dig_log_level
-    dig_settings.logger_level = dig_common_helpers.getLogLevel(
-        dig_settings.logger_level)
+    dig_settings.logger_level = dig_common_helpers.getLogLevel(dig_settings.logger_level)
 
     if 0 <= args.log_level <= 4 and args.log_level != settings.logger_level:
         settings.logger_level = args.log_level
-    settings.logger_level = dig_common_helpers.getLogLevel(
-        settings.logger_level)
+    settings.logger_level = dig_common_helpers.getLogLevel(settings.logger_level)
+
+    # mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
 
     mlog.info("{}: {}".format(datetime.datetime.now(), ' '.join(sys.argv)))
 
@@ -111,7 +110,7 @@ if __name__ == "__main__":
         assert(inp.endswith(".java") or inp.endswith(".class"))
         import tempfile
 
-        nInps = 500
+        nInps = 50
         preloop_loc = 'vtrace1'
         inloop_loc = 'vtrace2'
         postloop_loc = 'vtrace3'
@@ -132,7 +131,7 @@ if __name__ == "__main__":
 
         def infer_transrel():
             old_do_ieqs = dig_settings.DO_IEQS
-            dig_settings.DO_IEQS = False
+            # dig_settings.DO_IEQS = False
             transrel_invs = inference.infer_from_traces(rand_itraces, transrel_loc)
             dig_settings.DO_IEQS = old_do_ieqs
             return transrel_invs
@@ -307,24 +306,32 @@ if __name__ == "__main__":
                 return rcs
 
         def prove_NonTerm():
-            candidateRCS = [(None, 0)]
+            candidateRCS = [(None, 0, [])]
             validRCS = []
             while candidateRCS:
                 mlog.debug("candidateRCS: {}".format(candidateRCS))
-                rcs, depth = candidateRCS.pop()
+                rcs, depth, ancestors = candidateRCS.pop()
                 mlog.debug("PROVE_NT DEPTH {}: {}".format(depth, rcs))
                 if depth < refinement_depth:
                     chk, sCexs = verify(rcs)
                     if chk and not rcs.is_unsat():
-                        validRCS.append(rcs)
+                        validRCS.append((copy.deepcopy(rcs), ancestors))
                     elif sCexs is not None:
                         for cexs in sCexs:
                             nrcs = strengthen(rcs, cexs)
                             assert nrcs is not None, nrcs
-                            candidateRCS.append((nrcs, depth+1))
+                            nancestors = copy.deepcopy(ancestors)
+                            nancestors.append((depth, copy.deepcopy(rcs)))
+                            candidateRCS.append((copy.deepcopy(nrcs), depth+1, nancestors))
             return validRCS
 
         validRCS = prove_NonTerm()
-        for rcs in validRCS:
+        for rcs, ancestors in validRCS:
             f = Z3.to_dnf(rcs.simplify())
             mlog.debug("rcs: {}".format(f))
+            for depth, ancestor in ancestors:
+                if ancestor is None:
+                    ancestor_ = None
+                else:
+                    ancestor_ = Z3.to_dnf(ancestor.simplify())
+                mlog.debug("ancestor {}: {}".format(depth, ancestor_))

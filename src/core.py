@@ -5,7 +5,6 @@ from utils import settings
 
 mlog = CM.getLogger(__name__, settings.logger_level)
 
-
 class Execution(object):
     def __init__(self, prog):
         self.prog = prog

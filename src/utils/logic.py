@@ -1,4 +1,5 @@
 from data.inv.invs import Invs
+from data.inv.base import Inv
 from utils import settings
 from helpers.miscs import Z3
 import z3
@@ -8,8 +9,9 @@ import functools
 
 class ZInvs(set):
     def __init__(self, invs):
-        assert isinstance(invs, Invs), invs
-        super(ZInvs, self).__init__(map(lambda inv: inv.expr(settings.use_reals), invs))
+        super(ZInvs, self).__init__(map(lambda inv:
+                                        inv.expr(settings.use_reals) if isinstance(inv, Inv) else inv, 
+                                        invs))
 
     def expr(self):
         if self:
