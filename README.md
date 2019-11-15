@@ -8,6 +8,7 @@
     ```
 1. `conda activate sage`
 1. Install Java 8 from conda: `conda install -c anaconda openjdk`
+1. `pip install lark-parser`
 
 ## Note
 
