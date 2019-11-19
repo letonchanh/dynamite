@@ -40,6 +40,10 @@
     export JPF_HOME=/jpf
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$JPF_HOME/jpf-symbc/lib
     ```
+1. LLDB
+    ```
+    conda install -c conda-forge lldb
+    ```
 
 ## Note
 
