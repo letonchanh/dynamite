@@ -12,9 +12,8 @@
     apt-get install -qq libboost-program-options-dev && \
     apt-get install python2.7 python2.7-dev -y && \
     apt-get install -y libboost1.55-all-dev && \
-    apt-get install --yes libgmp-dev && \
-    apt-get install --yes python-pip && \
-    apt-get install -y libncurses5-dev libboost-all-dev
+    apt-get install -y libgmp-dev libncurses5-dev libboost-all-dev libz-dev && \
+    apt-get install -y python-pip
     ```
 4. `git clone https://github.com/seahorn/seahorn`
 5. `cd seahorn/`
