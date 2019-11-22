@@ -110,7 +110,7 @@ if __name__ == "__main__":
         assert(inp.endswith(".java") or inp.endswith(".class"))
         import tempfile
 
-        nInps = 50
+        nInps = 100
         preloop_loc = 'vtrace1'
         inloop_loc = 'vtrace2'
         postloop_loc = 'vtrace3'
@@ -302,8 +302,9 @@ if __name__ == "__main__":
                 mlog.debug("cnf_term_cond: {}".format(cnf_term_cond))
                 dnf_neg_term_cond = Z3.to_nnf(z3.Not(cnf_term_cond))
                 mlog.debug("dnf_neg_term_cond: {}".format(dnf_neg_term_cond))
-                rcs.add(dnf_neg_term_cond)
-                return rcs
+                nrcs = copy.deepcopy(rcs)
+                nrcs.add(dnf_neg_term_cond)
+                return nrcs
 
         def prove_NonTerm():
             candidateRCS = [(None, 0, [])]
@@ -315,14 +316,14 @@ if __name__ == "__main__":
                 if depth < refinement_depth:
                     chk, sCexs = verify(rcs)
                     if chk and not rcs.is_unsat():
-                        validRCS.append((copy.deepcopy(rcs), ancestors))
+                        validRCS.append((rcs, ancestors))
                     elif sCexs is not None:
                         for cexs in sCexs:
                             nrcs = strengthen(rcs, cexs)
                             assert nrcs is not None, nrcs
                             nancestors = copy.deepcopy(ancestors)
-                            nancestors.append((depth, copy.deepcopy(rcs)))
-                            candidateRCS.append((copy.deepcopy(nrcs), depth+1, nancestors))
+                            nancestors.append((depth, rcs))
+                            candidateRCS.append((nrcs, depth+1, nancestors))
             return validRCS
 
         validRCS = prove_NonTerm()
