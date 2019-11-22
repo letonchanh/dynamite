@@ -11,7 +11,7 @@
     apt-get install -qq curl git ninja-build man subversion vim wget cmake && \
     apt-get install -qq libboost-program-options-dev && \
     apt-get install -y python2.7 python2.7-dev && \
-    apt-get install -y libboost1.55-all-dev && \
+    apt-get install -y libboost-all-dev && \
     apt-get install -y libgmp-dev libncurses5-dev libboost-all-dev libz-dev && \
     apt-get install -y python-pip
     ```
