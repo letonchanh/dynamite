@@ -1,5 +1,6 @@
 # Seahorn (Ubuntu 16.04 with LLVM 3.6.0)
 
+0. `docker run -v ~/tools/sv-benchmarks/:/sv-benchmarks -it ubuntu:16.04 bash`
 1. `apt-get update`
 2. `apt-get upgrade`
 3. 
