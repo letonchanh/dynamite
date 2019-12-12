@@ -233,6 +233,21 @@ if __name__ == "__main__":
                 mlog.debug("rcs_l: {}".format(rcs_l))
                 mlog.debug("transrel_expr: {}".format(transrel_expr))
 
+                def _mk_cex_inps(models):
+                    assert isinstance(models, list) and models, models
+                    if all(isinstance(m, z3.ModelRef) for m in models):
+                        cexs, _ = Z3.extract(models)
+                    else:
+                        cexs = [{x: sage.all.sage_eval(str(v)) for (x, v) in model}
+                                for model in models]
+                    icexs = set()
+                    for cex in cexs:
+                        icexs.add(tuple([cex[v.__str__()]
+                                         for v in transrel_pre_inv_decls]))
+                    inps = Inps()
+                    inps = inps.merge(icexs, inp_decls)
+                    return inps
+
                 def _check(rc):
                     rc_r = z3.substitute(rc, transrel_post_sst)
                     # f = z3.Not(z3.Implies(z3.And(rcs_l, transrel_expr), rc_r))
@@ -246,7 +261,10 @@ if __name__ == "__main__":
                         mlog.debug("rs: unsat")
                     else:
                         mlog.debug("rs: sat ({} models)".format(len(rs)))
+                        if isinstance(rs, list) and rs:
+                            rs = _mk_cex_inps(rs)
                     return rs
+
                 chks = [_check(rc) for rc in rcs]
                 if all(rs is False for rs in chks):
                     return True, None  # valid
@@ -255,19 +273,8 @@ if __name__ == "__main__":
                     for rs in chks:
                         if rs is None:
                             return False, None  # unknown
-                        elif isinstance(rs, list) and rs:  # sat
-                            models = rs
-                            if all(isinstance(m, z3.ModelRef) for m in models):
-                                cexs, _ = Z3.extract(models)
-                            else:
-                                cexs = [{x: sage.all.sage_eval(str(v)) for (x, v) in model} for model in models]
-                            icexs = set()
-                            for cex in cexs:
-                                icexs.add(tuple([cex[v.__str__()]
-                                                 for v in transrel_pre_inv_decls]))
-                            inps = Inps()
-                            inps = inps.merge(icexs, inp_decls)
-                            sCexs.append(inps)
+                        elif rs:  # sat
+                            sCexs.append(rs)
                     return False, sCexs  # invalid with a set of new Inps
 
         def strengthen(rcs, inps):
