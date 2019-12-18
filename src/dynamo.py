@@ -107,240 +107,242 @@ if __name__ == "__main__":
     if settings.run_dig:
         run_dig(inp, seed, maxdeg=2, do_rmtmp=False)
     else:
-        import analysis
-        assert(inp.endswith(".java") or inp.endswith(".class"))
-        import tempfile
+        from analysis import Init, NonTerm
+        # assert(inp.endswith(".java") or inp.endswith(".class"))
+        # import tempfile
 
-        nInps = 100
-        preloop_loc = 'vtrace1'
-        inloop_loc = 'vtrace2'
-        postloop_loc = 'vtrace3'
-        transrel_loc = 'vtrace4'
-        refinement_depth = 5
+        # nInps = 100
+        # preloop_loc = 'vtrace1'
+        # inloop_loc = 'vtrace2'
+        # postloop_loc = 'vtrace3'
+        # transrel_loc = 'vtrace4'
+        # refinement_depth = 5
 
-        tmpdir = tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_")
-        (inp_decls, inv_decls, clsname, mainQ_name, jpfdir, jpffile,
-         tracedir, traceFile) = dig_src_java.parse(inp, tmpdir)
-        exe_cmd = dig_settings.JAVA_RUN(tracedir=tracedir, clsname=clsname)
-        prog = dig_miscs.Prog(exe_cmd, inp_decls, inv_decls)
-        exe = Execution(prog)
-        dig = Inference(inv_decls, seed)
-        cl = Classification(preloop_loc, inloop_loc, postloop_loc)
+        # tmpdir = tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_")
+        # (inp_decls, inv_decls, clsname, mainQ_name, jpfdir, jpffile,
+        #  tracedir, traceFile) = dig_src_java.parse(inp, tmpdir)
+        # exe_cmd = dig_settings.JAVA_RUN(tracedir=tracedir, clsname=clsname)
+        # prog = dig_miscs.Prog(exe_cmd, inp_decls, inv_decls)
+        # exe = Execution(prog)
+        # dig = Inference(inv_decls, seed)
+        # cl = Classification(preloop_loc, inloop_loc, postloop_loc)
 
-        rand_inps = exe.gen_rand_inps(nInps)
-        rand_itraces = exe.get_traces(rand_inps)  # itraces: input to dtraces
+        # rand_inps = exe.gen_rand_inps(nInps)
+        # rand_itraces = exe.get_traces(rand_inps)  # itraces: input to dtraces
 
-        def infer_transrel():
-            old_do_ieqs = dig_settings.DO_IEQS
-            # dig_settings.DO_IEQS = False
-            transrel_invs = dig.infer_from_traces(rand_itraces, transrel_loc)
-            dig_settings.DO_IEQS = old_do_ieqs
-            return transrel_invs
+        # def infer_transrel():
+        #     old_do_ieqs = dig_settings.DO_IEQS
+        #     # dig_settings.DO_IEQS = False
+        #     transrel_invs = dig.infer_from_traces(rand_itraces, transrel_loc)
+        #     dig_settings.DO_IEQS = old_do_ieqs
+        #     return transrel_invs
 
-        def gen_transrel_sst(transrel_inv_decls, inloop_inv_decls):
-            assert len(transrel_inv_decls) % 2 == 0
-            assert len(inloop_inv_decls) * 2 == len(transrel_inv_decls)
+        # def gen_transrel_sst(transrel_inv_decls, inloop_inv_decls):
+        #     assert len(transrel_inv_decls) % 2 == 0
+        #     assert len(inloop_inv_decls) * 2 == len(transrel_inv_decls)
 
-            transrel_pre_inv_decls = transrel_inv_decls[:len(transrel_inv_decls)//2]
-            transrel_post_inv_decls = transrel_inv_decls[len(transrel_inv_decls)//2:]
-            return transrel_pre_inv_decls, \
-                   zip(inloop_inv_decls, transrel_pre_inv_decls), \
-                   zip(inloop_inv_decls, transrel_post_inv_decls)
+        #     transrel_pre_inv_decls = transrel_inv_decls[:len(transrel_inv_decls)//2]
+        #     transrel_post_inv_decls = transrel_inv_decls[len(transrel_inv_decls)//2:]
+        #     return transrel_pre_inv_decls, \
+        #            zip(inloop_inv_decls, transrel_pre_inv_decls), \
+        #            zip(inloop_inv_decls, transrel_post_inv_decls)
 
-        transrel_inv_decls = inv_decls[transrel_loc].exprs(settings.use_reals)
-        inloop_inv_decls = inv_decls[inloop_loc].exprs(settings.use_reals)
-        transrel_pre_inv_decls, transrel_pre_sst, transrel_post_sst = \
-            gen_transrel_sst(transrel_inv_decls, inloop_inv_decls)
-        mlog.debug("transrel_pre_inv_decls: {}".format(transrel_pre_inv_decls))
-        mlog.debug("transrel_pre_sst: {}".format(transrel_pre_sst))
-        mlog.debug("transrel_post_sst: {}".format(transrel_post_sst))
+        init = Init(seed, inp)
 
-        transrel_invs = ZInvs(infer_transrel())
-        assert not transrel_invs.is_unsat(), transrel_invs
-        mlog.debug("transrel_invs: {}".format(transrel_invs))
-        transrel_expr = transrel_invs.expr()
+        # transrel_inv_decls = inv_decls[transrel_loc].exprs(settings.use_reals)
+        # inloop_inv_decls = inv_decls[inloop_loc].exprs(settings.use_reals)
+        # transrel_pre_inv_decls, transrel_pre_sst, transrel_post_sst = \
+        #     gen_transrel_sst(transrel_inv_decls, inloop_inv_decls)
+        # mlog.debug("transrel_pre_inv_decls: {}".format(transrel_pre_inv_decls))
+        # mlog.debug("transrel_pre_sst: {}".format(transrel_pre_sst))
+        # mlog.debug("transrel_post_sst: {}".format(transrel_post_sst))
 
-        # dig_settings.DO_EQTS = False
+        # transrel_invs = ZInvs(infer_transrel())
+        # assert not transrel_invs.is_unsat(), transrel_invs
+        # mlog.debug("transrel_invs: {}".format(transrel_invs))
+        # transrel_expr = transrel_invs.expr()
 
-        from parsers import Z3OutputHandler
-        z3_output_handler = Z3OutputHandler()
+        # # dig_settings.DO_EQTS = False
 
-        def check_sat_and_get_rand_model(solver):
-            myseed = random.randint(0, 1000000)
-            smt2_str = [
-                '(set-option :smt.arith.random_initial_value true)',
-                solver.to_smt2().replace('(check-sat)', ''),
-                '(check-sat-using (using-params qflra :random-seed {}))'.format(myseed),
-                '(get-model)']
-            smt2_str = '\n'.join(smt2_str)
-            # mlog.debug("smt2_str: {}".format(smt2_str))
-            filename = tmpdir + 't.smt2'
-            dig_common_helpers.vwrite(filename, smt2_str)
-            cmd = 'z3 {}'.format(filename)
-            rmsg, errmsg = dig_common_helpers.vcmd(cmd)
-            assert not errmsg, "'{}': {}".format(cmd, errmsg)
-            z3_output_ast = z3_output_handler.parser.parse(rmsg)
-            chk, model = z3_output_handler.transform(z3_output_ast)
-            # mlog.debug("model: {}".format(model))
-            return chk, model
+        # from parsers import Z3OutputHandler
+        # z3_output_handler = Z3OutputHandler()
 
-        def get_models(f, k, using_random_seed=False):
-            if not using_random_seed:
-                return Z3.get_models(f, k)
+        # def check_sat_and_get_rand_model(solver):
+        #     myseed = random.randint(0, 1000000)
+        #     smt2_str = [
+        #         '(set-option :smt.arith.random_initial_value true)',
+        #         solver.to_smt2().replace('(check-sat)', ''),
+        #         '(check-sat-using (using-params qflra :random-seed {}))'.format(myseed),
+        #         '(get-model)']
+        #     smt2_str = '\n'.join(smt2_str)
+        #     # mlog.debug("smt2_str: {}".format(smt2_str))
+        #     filename = tmpdir + 't.smt2'
+        #     dig_common_helpers.vwrite(filename, smt2_str)
+        #     cmd = 'z3 {}'.format(filename)
+        #     rmsg, errmsg = dig_common_helpers.vcmd(cmd)
+        #     assert not errmsg, "'{}': {}".format(cmd, errmsg)
+        #     z3_output_ast = z3_output_handler.parser.parse(rmsg)
+        #     chk, model = z3_output_handler.transform(z3_output_ast)
+        #     # mlog.debug("model: {}".format(model))
+        #     return chk, model
 
-            assert z3.is_expr(f), f
-            assert k >= 1, k
+        # def get_models(f, k, using_random_seed=False):
+        #     if not using_random_seed:
+        #         return Z3.get_models(f, k)
 
-            solver = Z3.create_solver()
-            solver.add(f)
+        #     assert z3.is_expr(f), f
+        #     assert k >= 1, k
 
-            models = []
-            i = 0
-            # while solver.check() == z3.sat and i < k:
-            while i < k:
-                chk, m = check_sat_and_get_rand_model(solver)
-                if chk != z3.sat:
-                    break
-                i = i + 1
-                if not m:  # if m == []
-                    break
-                models.append(m)
-                mlog.debug("model {}: {}".format(i, m))
-                # create new constraint to block the current model
-                block = z3.Not(z3.And([z3.Int(x) == v for (x, v) in m]))
-                solver.add(block)
+        #     solver = Z3.create_solver()
+        #     solver.add(f)
 
-            stat = solver.check()
+        #     models = []
+        #     i = 0
+        #     # while solver.check() == z3.sat and i < k:
+        #     while i < k:
+        #         chk, m = check_sat_and_get_rand_model(solver)
+        #         if chk != z3.sat:
+        #             break
+        #         i = i + 1
+        #         if not m:  # if m == []
+        #             break
+        #         models.append(m)
+        #         mlog.debug("model {}: {}".format(i, m))
+        #         # create new constraint to block the current model
+        #         block = z3.Not(z3.And([z3.Int(x) == v for (x, v) in m]))
+        #         solver.add(block)
 
-            if stat == z3.unknown:
-                rs = None
-            elif stat == z3.unsat and i == 0:
-                rs = False
-            else:
-                rs = models
+        #     stat = solver.check()
 
-            assert not (isinstance(rs, list) and not rs), rs
-            return rs, stat
+        #     if stat == z3.unknown:
+        #         rs = None
+        #     elif stat == z3.unsat and i == 0:
+        #         rs = False
+        #     else:
+        #         rs = models
 
-        def verify(rcs):
-            assert rcs is None or isinstance(rcs, ZInvs), rcs
-            if rcs is None:
-                sCexs = []
-                sCexs.append(rand_inps)
-                return False, sCexs
-            else:
-                assert rcs, rcs
-                rcs_l = z3.substitute(rcs.expr(), transrel_pre_sst)
-                mlog.debug("rcs_l: {}".format(rcs_l))
-                mlog.debug("transrel_expr: {}".format(transrel_expr))
+        #     assert not (isinstance(rs, list) and not rs), rs
+        #     return rs, stat
 
-                def _mk_cex_inps(models):
-                    assert isinstance(models, list) and models, models
-                    if all(isinstance(m, z3.ModelRef) for m in models):
-                        cexs, _ = Z3.extract(models)
-                    else:
-                        cexs = [{x: sage.all.sage_eval(str(v)) for (x, v) in model}
-                                for model in models]
-                    icexs = set()
-                    for cex in cexs:
-                        icexs.add(tuple([cex[v.__str__()]
-                                         for v in transrel_pre_inv_decls]))
-                    inps = Inps()
-                    inps = inps.merge(icexs, inp_decls)
-                    return inps
+        # def verify(rcs):
+        #     assert rcs is None or isinstance(rcs, ZInvs), rcs
+        #     if rcs is None:
+        #         sCexs = []
+        #         sCexs.append(rand_inps)
+        #         return False, sCexs
+        #     else:
+        #         assert rcs, rcs
+        #         rcs_l = z3.substitute(rcs.expr(), transrel_pre_sst)
+        #         mlog.debug("rcs_l: {}".format(rcs_l))
+        #         mlog.debug("transrel_expr: {}".format(transrel_expr))
 
-                def _check(rc):
-                    rc_r = z3.substitute(rc, transrel_post_sst)
-                    # f = z3.Not(z3.Implies(z3.And(rcs_l, transrel_expr), rc_r))
-                    f = z3.And(z3.And(rcs_l, transrel_expr), z3.Not(rc_r))
-                    mlog.debug("_check: f = {}".format(f))
-                    # using_random_seed = True
-                    rs, _ = get_models(f, nInps, settings.use_random_seed)
-                    if rs is None:
-                        mlog.debug("rs: unknown")
-                    elif rs is False:
-                        mlog.debug("rs: unsat")
-                    else:
-                        mlog.debug("rs: sat ({} models)".format(len(rs)))
-                        if isinstance(rs, list) and rs:
-                            rs = _mk_cex_inps(rs)
-                    return rs
+        #         def _mk_cex_inps(models):
+        #             assert isinstance(models, list) and models, models
+        #             if all(isinstance(m, z3.ModelRef) for m in models):
+        #                 cexs, _ = Z3.extract(models)
+        #             else:
+        #                 cexs = [{x: sage.all.sage_eval(str(v)) for (x, v) in model}
+        #                         for model in models]
+        #             icexs = set()
+        #             for cex in cexs:
+        #                 icexs.add(tuple([cex[v.__str__()]
+        #                                  for v in transrel_pre_inv_decls]))
+        #             inps = Inps()
+        #             inps = inps.merge(icexs, inp_decls)
+        #             return inps
 
-                chks = [_check(rc) for rc in rcs]
-                if all(rs is False for rs in chks):
-                    return True, None  # valid
-                else:
-                    sCexs = []
-                    for rs in chks:
-                        if rs is None:
-                            return False, None  # unknown
-                        elif rs:  # sat
-                            sCexs.append(rs)
-                    return False, sCexs  # invalid with a set of new Inps
+        #         def _check(rc):
+        #             rc_r = z3.substitute(rc, transrel_post_sst)
+        #             # f = z3.Not(z3.Implies(z3.And(rcs_l, transrel_expr), rc_r))
+        #             f = z3.And(z3.And(rcs_l, transrel_expr), z3.Not(rc_r))
+        #             mlog.debug("_check: f = {}".format(f))
+        #             # using_random_seed = True
+        #             rs, _ = get_models(f, nInps, settings.use_random_seed)
+        #             if rs is None:
+        #                 mlog.debug("rs: unknown")
+        #             elif rs is False:
+        #                 mlog.debug("rs: unsat")
+        #             else:
+        #                 mlog.debug("rs: sat ({} models)".format(len(rs)))
+        #                 if isinstance(rs, list) and rs:
+        #                     rs = _mk_cex_inps(rs)
+        #             return rs
 
-        def strengthen(rcs, inps):
-            assert isinstance(inps, Inps), inps
-            assert len(inps) > 0
-            if rcs is None:
-                itraces = rand_itraces
-            else:
-                itraces = exe.get_traces(inps)
-            base_term_inps, term_inps, mayloop_inps = cl.classify_inps(itraces)
-            mlog.debug("base_term_inps: {}".format(len(base_term_inps)))
-            mlog.debug("term_inps: {}".format(len(term_inps)))
-            mlog.debug("mayloop_inps: {}".format(len(mayloop_inps)))
+        #         chks = [_check(rc) for rc in rcs]
+        #         if all(rs is False for rs in chks):
+        #             return True, None  # valid
+        #         else:
+        #             sCexs = []
+        #             for rs in chks:
+        #                 if rs is None:
+        #                     return False, None  # unknown
+        #                 elif rs:  # sat
+        #                     sCexs.append(rs)
+        #             return False, sCexs  # invalid with a set of new Inps
 
-            mayloop_invs = ZInvs(dig.infer_from_traces(
-                itraces, inloop_loc, mayloop_inps))
-            if rcs is None:
-                return mayloop_invs
-            elif mayloop_invs and mayloop_invs.implies(rcs):
-                return mayloop_invs
-            else:
-                base_term_pre = ZInvs(dig.infer_from_traces(
-                    itraces, preloop_loc, base_term_inps))
-                term_invs = ZInvs(dig.infer_from_traces(
-                    itraces, inloop_loc, term_inps))
-                mlog.debug("base_term_pre: {}".format(base_term_pre))
-                mlog.debug("term_invs: {}".format(term_invs))
-                term_cond = z3.Or(base_term_pre.expr(), term_invs.expr())
-                simplified_term_cond = Z3.simplify(term_cond)
-                cnf_term_cond = Z3.to_cnf(simplified_term_cond)
-                mlog.debug("simplified_term_cond: {}".format(simplified_term_cond))
-                mlog.debug("cnf_term_cond: {}".format(cnf_term_cond))
-                dnf_neg_term_cond = Z3.to_nnf(z3.Not(cnf_term_cond))
-                mlog.debug("dnf_neg_term_cond: {}".format(dnf_neg_term_cond))
-                nrcs = copy.deepcopy(rcs)
-                nrcs.add(dnf_neg_term_cond)
-                return nrcs
+        # def strengthen(rcs, inps):
+        #     assert isinstance(inps, Inps), inps
+        #     assert len(inps) > 0
+        #     if rcs is None:
+        #         itraces = rand_itraces
+        #     else:
+        #         itraces = exe.get_traces(inps)
+        #     base_term_inps, term_inps, mayloop_inps = cl.classify_inps(itraces)
+        #     mlog.debug("base_term_inps: {}".format(len(base_term_inps)))
+        #     mlog.debug("term_inps: {}".format(len(term_inps)))
+        #     mlog.debug("mayloop_inps: {}".format(len(mayloop_inps)))
 
-        def prove_NonTerm():
-            candidateRCS = [(None, 0, [])]
-            validRCS = []
-            while candidateRCS:
-                mlog.debug("candidateRCS: {}".format(candidateRCS))
-                rcs, depth, ancestors = candidateRCS.pop()
-                mlog.debug("PROVE_NT DEPTH {}: {}".format(depth, rcs))
-                if depth < refinement_depth:
-                    chk, sCexs = verify(rcs)
-                    if chk and not rcs.is_unsat():
-                        validRCS.append((rcs, ancestors))
-                    elif sCexs is not None:
-                        for cexs in sCexs:
-                            nrcs = strengthen(rcs, cexs)
-                            assert nrcs is not None, nrcs
-                            nancestors = copy.deepcopy(ancestors)
-                            nancestors.append((depth, rcs))
-                            candidateRCS.append((nrcs, depth+1, nancestors))
-            return validRCS
+        #     mayloop_invs = ZInvs(dig.infer_from_traces(
+        #         itraces, inloop_loc, mayloop_inps))
+        #     if rcs is None:
+        #         return mayloop_invs
+        #     elif mayloop_invs and mayloop_invs.implies(rcs):
+        #         return mayloop_invs
+        #     else:
+        #         base_term_pre = ZInvs(dig.infer_from_traces(
+        #             itraces, preloop_loc, base_term_inps))
+        #         term_invs = ZInvs(dig.infer_from_traces(
+        #             itraces, inloop_loc, term_inps))
+        #         mlog.debug("base_term_pre: {}".format(base_term_pre))
+        #         mlog.debug("term_invs: {}".format(term_invs))
+        #         term_cond = z3.Or(base_term_pre.expr(), term_invs.expr())
+        #         simplified_term_cond = Z3.simplify(term_cond)
+        #         cnf_term_cond = Z3.to_cnf(simplified_term_cond)
+        #         mlog.debug("simplified_term_cond: {}".format(simplified_term_cond))
+        #         mlog.debug("cnf_term_cond: {}".format(cnf_term_cond))
+        #         dnf_neg_term_cond = Z3.to_nnf(z3.Not(cnf_term_cond))
+        #         mlog.debug("dnf_neg_term_cond: {}".format(dnf_neg_term_cond))
+        #         nrcs = copy.deepcopy(rcs)
+        #         nrcs.add(dnf_neg_term_cond)
+        #         return nrcs
 
-        validRCS = prove_NonTerm()
-        for rcs, ancestors in validRCS:
-            f = Z3.to_dnf(rcs.simplify())
-            mlog.debug("rcs: {}".format(f))
-            for depth, ancestor in ancestors:
-                if ancestor is None:
-                    ancestor_ = None
-                else:
-                    ancestor_ = Z3.to_dnf(ancestor.simplify())
-                mlog.debug("ancestor {}: {}".format(depth, ancestor_))
+        # def prove_NonTerm():
+        #     candidateRCS = [(None, 0, [])]
+        #     validRCS = []
+        #     while candidateRCS:
+        #         mlog.debug("candidateRCS: {}".format(candidateRCS))
+        #         rcs, depth, ancestors = candidateRCS.pop()
+        #         mlog.debug("PROVE_NT DEPTH {}: {}".format(depth, rcs))
+        #         if depth < refinement_depth:
+        #             chk, sCexs = verify(rcs)
+        #             if chk and not rcs.is_unsat():
+        #                 validRCS.append((rcs, ancestors))
+        #             elif sCexs is not None:
+        #                 for cexs in sCexs:
+        #                     nrcs = strengthen(rcs, cexs)
+        #                     assert nrcs is not None, nrcs
+        #                     nancestors = copy.deepcopy(ancestors)
+        #                     nancestors.append((depth, rcs))
+        #                     candidateRCS.append((nrcs, depth+1, nancestors))
+        #     return validRCS
+
+        # validRCS = prove_NonTerm()
+        # for rcs, ancestors in validRCS:
+        #     f = Z3.to_dnf(rcs.simplify())
+        #     mlog.debug("rcs: {}".format(f))
+        #     for depth, ancestor in ancestors:
+        #         if ancestor is None:
+        #             ancestor_ = None
+        #         else:
+        #             ancestor_ = Z3.to_dnf(ancestor.simplify())
+        #         mlog.debug("ancestor {}: {}".format(depth, ancestor_))
