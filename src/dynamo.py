@@ -123,7 +123,7 @@ if __name__ == "__main__":
         exe_cmd = dig_settings.JAVA_RUN(tracedir=tracedir, clsname=clsname)
         prog = dig_miscs.Prog(exe_cmd, inp_decls, inv_decls)
         exe = Execution(prog)
-        inference = Inference(inv_decls, seed)
+        dig = Inference(inv_decls, seed)
         cl = Classification(preloop_loc, inloop_loc, postloop_loc)
 
         rand_inps = exe.gen_rand_inps(nInps)
@@ -132,7 +132,7 @@ if __name__ == "__main__":
         def infer_transrel():
             old_do_ieqs = dig_settings.DO_IEQS
             # dig_settings.DO_IEQS = False
-            transrel_invs = inference.infer_from_traces(rand_itraces, transrel_loc)
+            transrel_invs = dig.infer_from_traces(rand_itraces, transrel_loc)
             dig_settings.DO_IEQS = old_do_ieqs
             return transrel_invs
 
@@ -289,16 +289,16 @@ if __name__ == "__main__":
             mlog.debug("term_inps: {}".format(len(term_inps)))
             mlog.debug("mayloop_inps: {}".format(len(mayloop_inps)))
 
-            mayloop_invs = ZInvs(inference.infer_from_traces(
+            mayloop_invs = ZInvs(dig.infer_from_traces(
                 itraces, inloop_loc, mayloop_inps))
             if rcs is None:
                 return mayloop_invs
             elif mayloop_invs and mayloop_invs.implies(rcs):
                 return mayloop_invs
             else:
-                base_term_pre = ZInvs(inference.infer_from_traces(
+                base_term_pre = ZInvs(dig.infer_from_traces(
                     itraces, preloop_loc, base_term_inps))
-                term_invs = ZInvs(inference.infer_from_traces(
+                term_invs = ZInvs(dig.infer_from_traces(
                     itraces, inloop_loc, term_inps))
                 mlog.debug("base_term_pre: {}".format(base_term_pre))
                 mlog.debug("term_invs: {}".format(term_invs))
