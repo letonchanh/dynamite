@@ -107,6 +107,7 @@ if __name__ == "__main__":
     if settings.run_dig:
         run_dig(inp, seed, maxdeg=2, do_rmtmp=False)
     else:
+        import analysis
         assert(inp.endswith(".java") or inp.endswith(".class"))
         import tempfile
 
