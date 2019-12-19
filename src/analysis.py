@@ -1,5 +1,6 @@
 import tempfile
 from utils import settings
+from utils.logic import *
 from core import *
 
 import settings as dig_settings
@@ -40,7 +41,7 @@ class Init(object):
         dig_settings.DO_IEQS = old_do_ieqs
         return transrel_invs
 
-    def gen_transrel_sst():
+    def gen_transrel_sst(self):
         transrel_inv_decls = self.inv_decls[self.transrel_loc].exprs(settings.use_reals)
         inloop_inv_decls = self.inv_decls[self.inloop_loc].exprs(settings.use_reals)
         assert len(transrel_inv_decls) % 2 == 0
@@ -56,20 +57,22 @@ class NonTerm(object):
     def __init__(self, init):
         self.transrel_pre_inv_decls, self.transrel_pre_sst, self.transrel_post_sst = \
             init.gen_transrel_sst()
-        mlog.debug("transrel_pre_inv_decls: {}".format(transrel_pre_inv_decls))
-        mlog.debug("transrel_pre_sst: {}".format(transrel_pre_sst))
-        mlog.debug("transrel_post_sst: {}".format(transrel_post_sst))
+        mlog.debug("transrel_pre_inv_decls: {}".format(self.transrel_pre_inv_decls))
+        mlog.debug("transrel_pre_sst: {}".format(self.transrel_pre_sst))
+        mlog.debug("transrel_post_sst: {}".format(self.transrel_post_sst))
 
         transrel_invs = ZInvs(init.infer_transrel())
         assert not transrel_invs.is_unsat(), transrel_invs
         mlog.debug("transrel_invs: {}".format(transrel_invs))
         self.transrel_expr = transrel_invs.expr()
+        self.refinement_depth = init.refinement_depth
+        self.rand_itraces = init.rand_itraces
 
     def verify(self, rcs):
         assert rcs is None or isinstance(rcs, ZInvs), rcs
         if rcs is None:
             sCexs = []
-            sCexs.append(rand_inps)
+            # sCexs.append(rand_inps)
             return False, sCexs
         else:
             assert rcs, rcs
@@ -122,11 +125,11 @@ class NonTerm(object):
                 return False, sCexs  # invalid with a set of new Inps
 
     def strengthen(rcs, inps):
-        assert isinstance(inps, Inps), inps
-        assert len(inps) > 0
         if rcs is None:
-            itraces = rand_itraces
+            itraces = self.rand_itraces
         else:
+            assert isinstance(inps, Inps), inps
+            assert len(inps) > 0
             itraces = exe.get_traces(inps)
         base_term_inps, term_inps, mayloop_inps = cl.classify_inps(itraces)
         mlog.debug("base_term_inps: {}".format(len(base_term_inps)))
@@ -157,20 +160,21 @@ class NonTerm(object):
             nrcs.add(dnf_neg_term_cond)
             return nrcs
 
-    def prove():
+    def prove(self):
+        mlog.debug("refinement_depth: {}".format(self.refinement_depth))
         candidateRCS = [(None, 0, [])]
         validRCS = []
         while candidateRCS:
             mlog.debug("candidateRCS: {}".format(candidateRCS))
             rcs, depth, ancestors = candidateRCS.pop()
             mlog.debug("PROVE_NT DEPTH {}: {}".format(depth, rcs))
-            if depth < refinement_depth:
-                chk, sCexs = verify(rcs)
+            if depth < self.refinement_depth:
+                chk, sCexs = self.verify(rcs)
                 if chk and not rcs.is_unsat():
                     validRCS.append((rcs, ancestors))
                 elif sCexs is not None:
                     for cexs in sCexs:
-                        nrcs = strengthen(rcs, cexs)
+                        nrcs = self.strengthen(rcs, cexs)
                         assert nrcs is not None, nrcs
                         nancestors = copy.deepcopy(ancestors)
                         nancestors.append((depth, rcs))

@@ -42,7 +42,6 @@ def run_dig(inp, seed, maxdeg, do_rmtmp):
     else:
         print("tmpdir: {}".format(tmpdir))
 
-
 if __name__ == "__main__":
     import settings as dig_settings
     from helpers import src_java as dig_src_java
@@ -57,7 +56,7 @@ if __name__ == "__main__":
     ag("--log_level", "-log_level",
        type=int,
        choices=range(5),
-       default=3,
+       default=2,
        help="set logger info")
 
     ag("--run_dig", "-run_dig",
@@ -95,9 +94,9 @@ if __name__ == "__main__":
 
     if 0 <= args.log_level <= 4 and args.log_level != settings.logger_level:
         settings.logger_level = args.log_level
-    settings.logger_level = dig_common_helpers.getLogLevel(settings.logger_level)
-
-    # mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
+    mlog.debug("settings.logger_level: {}".format(settings.logger_level))
+    # settings.logger_level = dig_common_helpers.getLogLevel(settings.logger_level)
+    # mlog.debug("settings.logger_level: {}".format(settings.logger_level))
 
     mlog.info("{}: {}".format(datetime.datetime.now(), ' '.join(sys.argv)))
 
@@ -148,6 +147,7 @@ if __name__ == "__main__":
         #            zip(inloop_inv_decls, transrel_post_inv_decls)
 
         init = Init(seed, inp)
+        nt_prover = NonTerm(init)
 
         # transrel_inv_decls = inv_decls[transrel_loc].exprs(settings.use_reals)
         # inloop_inv_decls = inv_decls[inloop_loc].exprs(settings.use_reals)
@@ -337,12 +337,15 @@ if __name__ == "__main__":
         #     return validRCS
 
         # validRCS = prove_NonTerm()
-        # for rcs, ancestors in validRCS:
-        #     f = Z3.to_dnf(rcs.simplify())
-        #     mlog.debug("rcs: {}".format(f))
-        #     for depth, ancestor in ancestors:
-        #         if ancestor is None:
-        #             ancestor_ = None
-        #         else:
-        #             ancestor_ = Z3.to_dnf(ancestor.simplify())
-        #         mlog.debug("ancestor {}: {}".format(depth, ancestor_))
+        
+        validRCS = nt_prover.prove()
+        mlog.debug("validRCS: {}".format(validRCS))
+        for rcs, ancestors in validRCS:
+            f = Z3.to_dnf(rcs.simplify())
+            mlog.debug("rcs: {}".format(f))
+            for depth, ancestor in ancestors:
+                if ancestor is None:
+                    ancestor_ = None
+                else:
+                    ancestor_ = Z3.to_dnf(ancestor.simplify())
+                mlog.debug("ancestor {}: {}".format(depth, ancestor_))
