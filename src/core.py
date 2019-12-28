@@ -1,9 +1,13 @@
 import helpers.vcommon as CM
 import z3
+import random
+import sage.all
 from data.traces import Inps, Trace, DTraces
 from data.inv.invs import Invs
 from utils import settings
 from parsers import Z3OutputHandler
+from helpers.miscs import Z3, Miscs
+import helpers.vcommon as dig_common_helpers
 
 mlog = CM.getLogger(__name__, settings.logger_level)
 
@@ -95,9 +99,11 @@ class Inference(object):
 
 class Solver(object):
     def __init__(self):
-        self.z3_output_handler = Z3OutputHandler()
+        pass
 
-    def check_sat_and_get_rand_model(solver):
+    @classmethod
+    def check_sat_and_get_rand_model(cls, tmpdir, solver):
+        z3_output_handler = Z3OutputHandler()
         myseed = random.randint(0, 1000000)
         smt2_str = [
             '(set-option :smt.arith.random_initial_value true)',
@@ -116,7 +122,8 @@ class Solver(object):
         # mlog.debug("model: {}".format(model))
         return chk, model
 
-    def get_models(f, k, using_random_seed=False):
+    @classmethod
+    def get_models(cls, f, k, tmpdir, using_random_seed=False):
         if not using_random_seed:
             return Z3.get_models(f, k)
 
@@ -130,7 +137,7 @@ class Solver(object):
         i = 0
         # while solver.check() == z3.sat and i < k:
         while i < k:
-            chk, m = check_sat_and_get_rand_model(solver)
+            chk, m = cls.check_sat_and_get_rand_model(tmpdir, solver)
             if chk != z3.sat:
                 break
             i = i + 1
