@@ -86,7 +86,7 @@ class NonTerm(object):
         assert rcs is None or isinstance(rcs, ZInvs), rcs
         if rcs is None:
             sCexs = []
-            sCexs.append(self.rand_itraces)
+            sCexs.append((None, self.rand_itraces))
             return False, sCexs
         else:
             assert rcs, rcs
@@ -104,7 +104,7 @@ class NonTerm(object):
                 icexs = set()
                 for cex in cexs:
                     icexs.add(tuple([cex[v.__str__()]
-                                        for v in self.transrel_pre_inv_decls]))
+                                     for v in self.transrel_pre_inv_decls]))
                 inps = Inps()
                 inps = inps.merge(icexs, self.inp_decls)
                 return inps
@@ -126,22 +126,23 @@ class NonTerm(object):
                         rs = _mk_cex_inps(rs)
                 return rs
 
-            chks = [_check(rc) for rc in rcs]
-            if all(rs is False for rs in chks):
+            chks = [(rc, _check(rc)) for rc in rcs]
+            if all(rs is False for _, rs in chks):
                 return True, None  # valid
             else:
                 sCexs = []
-                for rs in chks:
+                for rc, rs in chks:
                     if rs is None:
                         return False, None  # unknown
                     elif rs:  # sat
                         assert isinstance(rs, Inps), rs
                         assert len(rs) > 0
                         itraces = self.exe.get_traces(rs)
-                        sCexs.append(itraces)
+                        # rcs.remove(rc)
+                        sCexs.append((rc, itraces))
                 return False, sCexs  # invalid with a set of new Inps
 
-    def strengthen(self, rcs, itraces):
+    def strengthen(self, rcs, invalid_rc, itraces):
         base_term_inps, term_inps, mayloop_inps = self.cl.classify_inps(itraces)
         mlog.debug("base_term_inps: {}".format(len(base_term_inps)))
         mlog.debug("term_inps: {}".format(len(term_inps)))
@@ -168,6 +169,11 @@ class NonTerm(object):
             dnf_neg_term_cond = Z3.to_nnf(z3.Not(cnf_term_cond))
             mlog.debug("dnf_neg_term_cond: {}".format(dnf_neg_term_cond))
             nrcs = copy.deepcopy(rcs)
+            if invalid_rc is not None:
+                nrcs.remove(invalid_rc)
+            mlog.debug("rcs: {}".format(rcs))
+            mlog.debug("invalid_rc: {}".format(invalid_rc))
+            mlog.debug("nrcs: {}".format(nrcs))
             nrcs.add(dnf_neg_term_cond)
             return nrcs
 
@@ -185,8 +191,8 @@ class NonTerm(object):
                 if chk and not rcs.is_unsat():
                     validRCS.append((rcs, ancestors))
                 elif sCexs is not None:
-                    for cexs in sCexs:
-                        nrcs = self.strengthen(rcs, cexs)
+                    for invalid_rc, cexs in sCexs:
+                        nrcs = self.strengthen(rcs, invalid_rc, cexs)
                         assert nrcs is not None, nrcs
                         nancestors = copy.deepcopy(ancestors)
                         nancestors.append((depth, rcs))
