@@ -58,35 +58,24 @@ class Init(object):
 
 class NonTerm(object):
     def __init__(self, init):
+        self._init = init
         self.transrel_pre_inv_decls, self.transrel_pre_sst, self.transrel_post_sst = \
             init.gen_transrel_sst()
         mlog.debug("transrel_pre_inv_decls: {}".format(self.transrel_pre_inv_decls))
         mlog.debug("transrel_pre_sst: {}".format(self.transrel_pre_sst))
         mlog.debug("transrel_post_sst: {}".format(self.transrel_post_sst))
 
-        self.cl = init.cl
-        self.exe = init.exe
-        self.dig = init.dig
-        self.tmpdir = init.tmpdir
-        self.inp_decls = init.inp_decls
-        self.nInps = init.nInps
-        self.preloop_loc = init.preloop_loc
-        self.inloop_loc = init.inloop_loc
-        self.postloop_loc = init.postloop_loc
-        self.transrel_loc = init.transrel_loc
-
         transrel_invs = ZInvs(init.infer_transrel())
         assert not transrel_invs.is_unsat(), transrel_invs
         mlog.debug("transrel_invs: {}".format(transrel_invs))
         self.transrel_expr = transrel_invs.expr()
-        self.refinement_depth = init.refinement_depth
-        self.rand_itraces = init.rand_itraces
 
     def verify(self, rcs):
         assert rcs is None or isinstance(rcs, ZInvs), rcs
+        _init = self._init
         if rcs is None:
             sCexs = []
-            sCexs.append((None, self.rand_itraces))
+            sCexs.append((None, _init.rand_itraces))
             return False, sCexs
         else:
             assert rcs, rcs
@@ -106,7 +95,7 @@ class NonTerm(object):
                     icexs.add(tuple([cex[v.__str__()]
                                      for v in self.transrel_pre_inv_decls]))
                 inps = Inps()
-                inps = inps.merge(icexs, self.inp_decls)
+                inps = inps.merge(icexs, _init.inp_decls)
                 return inps
 
             def _check(rc):
@@ -115,7 +104,7 @@ class NonTerm(object):
                 f = z3.And(z3.And(rcs_l, self.transrel_expr), z3.Not(rc_r))
                 mlog.debug("_check: f = {}".format(f))
                 # using_random_seed = True
-                rs, _ = Solver.get_models(f, self.nInps, self.tmpdir, settings.use_random_seed)
+                rs, _ = Solver.get_models(f, _init.nInps, _init.tmpdir, settings.use_random_seed)
                 if rs is None:
                     mlog.debug("rs: unknown")
                 elif rs is False:
@@ -137,28 +126,29 @@ class NonTerm(object):
                     elif rs:  # sat
                         assert isinstance(rs, Inps), rs
                         assert len(rs) > 0
-                        itraces = self.exe.get_traces(rs)
+                        itraces = _init.exe.get_traces(rs)
                         # rcs.remove(rc)
                         sCexs.append((rc, itraces))
                 return False, sCexs  # invalid with a set of new Inps
 
     def strengthen(self, rcs, invalid_rc, itraces):
-        base_term_inps, term_inps, mayloop_inps = self.cl.classify_inps(itraces)
+        _init = self._init
+        base_term_inps, term_inps, mayloop_inps = _init.cl.classify_inps(itraces)
         mlog.debug("base_term_inps: {}".format(len(base_term_inps)))
         mlog.debug("term_inps: {}".format(len(term_inps)))
         mlog.debug("mayloop_inps: {}".format(len(mayloop_inps)))
 
-        mayloop_invs = ZInvs(self.dig.infer_from_traces(
-            itraces, self.inloop_loc, mayloop_inps))
+        mayloop_invs = ZInvs(_init.dig.infer_from_traces(
+            itraces, _init.inloop_loc, mayloop_inps))
         if rcs is None:
             return mayloop_invs
         elif mayloop_invs and mayloop_invs.implies(rcs):
             return mayloop_invs
         else:
-            base_term_pre = ZInvs(self.dig.infer_from_traces(
-                itraces, self.preloop_loc, base_term_inps))
-            term_invs = ZInvs(self.dig.infer_from_traces(
-                itraces, self.inloop_loc, term_inps))
+            base_term_pre = ZInvs(_init.dig.infer_from_traces(
+                itraces, _init.preloop_loc, base_term_inps))
+            term_invs = ZInvs(_init.dig.infer_from_traces(
+                itraces, _init.inloop_loc, term_inps))
             mlog.debug("base_term_pre: {}".format(base_term_pre))
             mlog.debug("term_invs: {}".format(term_invs))
             term_cond = z3.Or(base_term_pre.expr(), term_invs.expr())
@@ -178,14 +168,15 @@ class NonTerm(object):
             return nrcs
 
     def prove(self):
-        mlog.debug("refinement_depth: {}".format(self.refinement_depth))
+        _init = self._init
+        mlog.debug("refinement_depth: {}".format(_init.refinement_depth))
         candidateRCS = [(None, 0, [])]
         validRCS = []
         while candidateRCS:
             mlog.debug("candidateRCS: {}".format(candidateRCS))
             rcs, depth, ancestors = candidateRCS.pop()
             mlog.debug("PROVE_NT DEPTH {}: {}".format(depth, rcs))
-            if depth < self.refinement_depth:
+            if depth < _init.refinement_depth:
                 chk, sCexs = self.verify(rcs)
                 mlog.debug("sCexs: {}".format(sCexs))
                 if chk and not rcs.is_unsat():
