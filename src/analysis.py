@@ -152,7 +152,10 @@ class NonTerm(object):
                 itraces, _init.inloop_loc, term_inps))
             mlog.debug("base_term_pre: {}".format(base_term_pre))
             mlog.debug("term_invs: {}".format(term_invs))
-            self.tCexs.append((term_invs, term_inps))
+            term_traces = []
+            for term_inp in term_inps:
+                term_traces.append(itraces[term_inp])
+            self.tCexs.append((term_invs, term_traces))
             term_cond = z3.Or(base_term_pre.expr(), term_invs.expr())
             simplified_term_cond = Z3.simplify(term_cond)
             cnf_term_cond = Z3.to_cnf(simplified_term_cond)
