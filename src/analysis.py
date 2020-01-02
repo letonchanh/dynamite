@@ -69,6 +69,7 @@ class NonTerm(object):
         assert not transrel_invs.is_unsat(), transrel_invs
         mlog.debug("transrel_invs: {}".format(transrel_invs))
         self.transrel_expr = transrel_invs.expr()
+        self.tCexs = []
 
     def verify(self, rcs):
         assert rcs is None or isinstance(rcs, ZInvs), rcs
@@ -142,7 +143,7 @@ class NonTerm(object):
             itraces, _init.inloop_loc, mayloop_inps))
         if rcs is None:
             return mayloop_invs
-        elif mayloop_invs and mayloop_invs.implies(rcs):
+        elif mayloop_invs and rcs.implies(mayloop_invs):
             return mayloop_invs
         else:
             base_term_pre = ZInvs(_init.dig.infer_from_traces(
@@ -151,6 +152,7 @@ class NonTerm(object):
                 itraces, _init.inloop_loc, term_inps))
             mlog.debug("base_term_pre: {}".format(base_term_pre))
             mlog.debug("term_invs: {}".format(term_invs))
+            self.tCexs.append((term_invs, term_inps))
             term_cond = z3.Or(base_term_pre.expr(), term_invs.expr())
             simplified_term_cond = Z3.simplify(term_cond)
             cnf_term_cond = Z3.to_cnf(simplified_term_cond)
@@ -188,4 +190,6 @@ class NonTerm(object):
                         nancestors = copy.deepcopy(ancestors)
                         nancestors.append((depth, rcs))
                         candidateRCS.append((nrcs, depth+1, nancestors))
+        for tCex in self.tCexs:
+            mlog.debug("tCex: {}".format(tCex))
         return validRCS
