@@ -58,14 +58,19 @@
     expr -i 0 -- mainQ(1, 2)
     frame variable
     ```
-    https://www.nesono.com/sites/default/files/lldb%20cheat%20sheet.pdf
-    https://opensource.apple.com/source/lldb/lldb-159/www/python-reference.html
-    https://lldb.llvm.org/use/python-reference.html#
-    https://developer.apple.com/library/archive/documentation/IDEs/Conceptual/gdb_to_lldb_transition_guide/document/lldb-terminal-workflow-tutorial.html
+    - https://www.nesono.com/sites/default/files/lldb%20cheat%20sheet.pdf
+    - https://opensource.apple.com/source/lldb/lldb-159/www/python-reference.html
+    - https://lldb.llvm.org/use/python-reference.html#
+    - https://developer.apple.com/library/archive/documentation/IDEs/Conceptual/gdb_to_lldb_transition_guide/document/lldb-terminal-workflow-tutorial.html
     
     ```
     opt = lldb.SBExpressionOptions()
     opt.SetIgnoreBreakpoints(False)
     v = target.EvaluateExpression('mainQ(1, 2)', opt)
     ```
-    https://stackoverflow.com/questions/49532342/lldb-python-callback-on-breakpoint-with-sbtarget-evaluateexpression
+    - https://stackoverflow.com/questions/49532342/lldb-python-callback-on-breakpoint-with-sbtarget-evaluateexpression
+    - To use `lldb` in docker:
+    ```
+    docker run --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --security-opt apparmor=unconfined --name dynamo-dev -it letonchanh/dynamo-dev bash
+    ```
+    
