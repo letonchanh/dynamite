@@ -53,7 +53,7 @@
 1. LLDB
     ```
     breakpoint set --name main
-    breakpoint set --func-regex vtrace*
+    breakpoint set --func-regex vtrace* # BreakpointCreateByRegex('vtrace*', None)
     run
     expr -i 0 -- mainQ(1, 2)
     frame variable
