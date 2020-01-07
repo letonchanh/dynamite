@@ -33,8 +33,13 @@ if target:
     print main_bp
     print vtrace_bps
     for vtrace_bp in vtrace_bps:
-        print vtrace_bp.GetAddress().GetFunction().GetType()
-
+        vtrace_func = vtrace_bp.GetAddress().GetFunction()
+        print vtrace_func.GetName()
+        func_type = vtrace_func.GetType()
+        assert(func_type.IsFunctionType())
+        arg_types = func_type.GetFunctionArgumentTypes()
+        for i in range(0, arg_types.GetSize()):
+            print "{}: {}".format(vtrace_func.GetArgumentName(i), arg_types.GetTypeAtIndex(i))
 
     # Launch the process. Since we specified synchronous mode, we won't return
     # from this function until we hit the breakpoint at main
