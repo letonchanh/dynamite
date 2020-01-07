@@ -19,7 +19,7 @@ debugger = lldb.SBDebugger.Create()
 debugger.SetAsync (False)
 
 # Create a target from a file and arch
-print "Creating a target for '%s'" % exe
+print "Creating a target for {}".format(exe)
 
 # target = debugger.CreateTargetWithFileAndArch (exe, lldb.LLDB_ARCH_DEFAULT)
 target = debugger.CreateTarget (exe)
@@ -32,6 +32,9 @@ if target:
 
     print main_bp
     print vtrace_bps
+    for vtrace_bp in vtrace_bps:
+        print vtrace_bp.GetAddress().GetFunction().GetType()
+
 
     # Launch the process. Since we specified synchronous mode, we won't return
     # from this function until we hit the breakpoint at main
@@ -57,4 +60,7 @@ if target:
                 if frame:
                     function = frame.GetFunction()
                     print function
+                    vars = frame.GetVariables(True, True, True, True)
+                    for v in vars:
+                        print("{}: {}".format(v.GetName(), v.GetValue()))
                 process.Continue()

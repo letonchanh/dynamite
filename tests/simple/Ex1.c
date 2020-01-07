@@ -1,14 +1,23 @@
+#include<stdio.h>
 
-void vtrace1( int x, int y) {}
-void vtrace2(int x, int y) {}
-void vtrace3(int x, int y) {}
-void vtrace4(int x0, int y0, int x1, int y1) {}
+void vtrace1( int x, int y) {
+}
+
+void vtrace2(int x, int y) {
+}
+
+void vtrace3(int x, int y) {
+}
+
+void vtrace4(int x0, int y0, int x1, int y1) {
+}
 
 void mainQ(int x, int y) {
   // assert (bnd > 0);
   vtrace1(x, y);
   int bnd = 5;
   int counter = 0;
+
   while (x >= 0) {
     if (counter >= bnd)
       break;
@@ -31,6 +40,7 @@ void mainQ(int x, int y) {
 }
 
 int main() {
+  //mainQ(1, 2);
   return 0;
 }
 
