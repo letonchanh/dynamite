@@ -15,14 +15,14 @@ void vtrace4(int x0, int y0, int x1, int y1) {
 void mainQ(int x, int y) {
   // assert (bnd > 0);
   vtrace1(x, y);
-  int bnd = 5;
-  int counter = 0;
+  // int bnd = 500;
+  // int counter = 0;
 
   while (x >= 0) {
-    if (counter >= bnd)
-      break;
-    else
-      counter++;
+    // if (counter >= bnd)
+    //   break;
+    // else
+    //   counter++;
     vtrace2(x, y);
 
     int x0 = x;
@@ -35,8 +35,8 @@ void mainQ(int x, int y) {
     int y1 = y;
     vtrace4(x0, y0, x1, y1);
   }
-  if (counter < bnd)
-    vtrace3(x, y);
+  // if (counter < bnd)
+  vtrace3(x, y);
 }
 
 int main() {

@@ -58,13 +58,17 @@ if target:
         # Print some simple thread info
         print thread
         if thread:
-            while thread.GetStopReason() == lldb.eStopReasonBreakpoint:
+            cnt = 0
+            bnd = 100
+            while thread.GetStopReason() == lldb.eStopReasonBreakpoint and cnt < bnd:
                 frame = thread.GetFrameAtIndex(0)
                 # Print some simple frame info
                 print frame
                 if frame:
                     function = frame.GetFunction()
                     print function
+                    if function.GetName() == 'vtrace2':
+                        cnt = cnt + 1
                     vars = frame.GetVariables(True, True, True, True)
                     for v in vars:
                         print("{}: {}".format(v.GetName(), v.GetValue()))
