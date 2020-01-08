@@ -73,4 +73,5 @@
     ```
     docker run --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --security-opt apparmor=unconfined --name dynamo-dev -it letonchanh/dynamo-dev bash
     ```
+    - LLVM-9 (http://releases.llvm.org/9.0.0/clang+llvm-9.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz) and SageMath are incompatible on the Python `six` package.
     
