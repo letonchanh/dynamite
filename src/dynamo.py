@@ -7,7 +7,7 @@ import itertools
 import functools
 import z3
 import random
-import sage.all
+#import sage.all
 import copy
 
 dynamo_path = os.path.realpath(os.path.dirname(__file__))
@@ -108,8 +108,8 @@ if __name__ == "__main__":
     else:
         from analysis import Init, NonTerm
  
-        init = Init(seed, inp)
-        nt_prover = NonTerm(init)       
+        config = Init(seed, inp)
+        nt_prover = NonTerm(config)       
         validRCS = nt_prover.prove()
         mlog.debug("validRCS: {}".format(validRCS))
         for rcs, ancestors in validRCS:
