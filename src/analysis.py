@@ -10,6 +10,7 @@ import helpers.vcommon as dig_common_helpers
 import helpers.src_java as dig_src_java
 import data.miscs as dig_miscs
 from helpers.miscs import Z3, Miscs
+from bin import Bin
 
 mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
 
@@ -34,7 +35,11 @@ class Setup(object):
             exe_cmd = dig_settings.JAVA_RUN(tracedir=tracedir, clsname=clsname)
             prog = dig_miscs.Prog(exe_cmd, inp_decls, inv_decls)
         elif is_binary_file:
-            (inp_decls, inv_decls, mainQ_name) = bin.parse(inp)
+            prog = Bin(inp)
+            (inp_decls, inv_decls, mainQ_name) = prog.parse()
+            mlog.debug("inv_decls: {}".format(prog.inv_decls))
+            mlog.debug("inp_decls: {}".format(prog.inp_decls))
+
         
         mlog.debug("inp_decls ({}): {}".format(type(inp_decls), inp_decls))
         mlog.debug("inv_decls: {}".format(inv_decls))
