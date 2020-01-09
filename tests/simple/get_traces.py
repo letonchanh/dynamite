@@ -2,6 +2,7 @@
 
 import lldb
 import os
+import sage.all
 
 def disassemble_instructions(insts):
     for i in insts:

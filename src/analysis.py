@@ -12,22 +12,27 @@ from helpers.miscs import Z3, Miscs
 
 mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
 
-class Init(object):
+class Setup(object):
     def __init__(self, seed, inp):
-        assert(inp.endswith(".java") or inp.endswith(".class"))
+        assert(inp.endswith(".java") or inp.endswith(".class") or self.is_binary(inp))
 
         self.nInps = 100
-        self.preloop_loc = 'vtrace1'
-        self.inloop_loc = 'vtrace2'
-        self.postloop_loc = 'vtrace3'
-        self.transrel_loc = 'vtrace4'
+        self.preloop_loc = dig_settings.TRACE_INDICATOR + '1' # vtrace1
+        self.inloop_loc = dig_settings.TRACE_INDICATOR + '2' # vtrace2
+        self.postloop_loc = dig_settings.TRACE_INDICATOR + '3' # vtrace3
+        self.transrel_loc = dig_settings.TRACE_INDICATOR + '4' # vtrace4
         self.refinement_depth = 5
-
         self.tmpdir = tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_")
-        (inp_decls, inv_decls, clsname, mainQ_name, jpfdir, jpffile,
-         tracedir, traceFile) = dig_src_java.parse(inp, self.tmpdir)
+        
+
+        (inp_decls, inv_decls, clsname, 
+        # mainQ_name, jpfdir, jpffile, tracedir, traceFile) = dig_src_java.parse(inp, self.tmpdir)
+          _, _, _, tracedir, _) = dig_src_java.parse(inp, self.tmpdir)
         exe_cmd = dig_settings.JAVA_RUN(tracedir=tracedir, clsname=clsname)
         prog = dig_miscs.Prog(exe_cmd, inp_decls, inv_decls)
+        
+        mlog.debug("inp_decls ({}): {}".format(type(inp_decls), inp_decls))
+        mlog.debug("inv_decls: {}".format(inv_decls))
         self.inp_decls = inp_decls
         self.inv_decls = inv_decls
         self.exe = Execution(prog)
@@ -55,6 +60,11 @@ class Init(object):
         return transrel_pre_inv_decls, \
                zip(inloop_inv_decls, transrel_pre_inv_decls), \
                zip(inloop_inv_decls, transrel_post_inv_decls)
+
+    def is_binary(self, fn):
+        import subprocess
+        mime = subprocess.Popen(["file", "--mime", fn], stdout=subprocess.PIPE).communicate()[0]
+        return "application/x-executable" in mime
 
 class NonTerm(object):
     def __init__(self, config):

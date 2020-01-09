@@ -7,7 +7,6 @@ import itertools
 import functools
 import z3
 import random
-#import sage.all
 import copy
 
 dynamo_path = os.path.realpath(os.path.dirname(__file__))
@@ -106,9 +105,9 @@ if __name__ == "__main__":
     if settings.run_dig:
         run_dig(inp, seed, maxdeg=2, do_rmtmp=False)
     else:
-        from analysis import Init, NonTerm
+        from analysis import Setup, NonTerm
  
-        config = Init(seed, inp)
+        config = Setup(seed, inp)
         nt_prover = NonTerm(config)       
         validRCS = nt_prover.prove()
         mlog.debug("validRCS: {}".format(validRCS))
