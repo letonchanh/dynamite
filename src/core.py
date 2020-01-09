@@ -20,7 +20,7 @@ class Execution(object):
         inp_decls = self.prog.inp_decls
         rInps = self.prog.gen_rand_inps(nInps)
         mlog.debug("gen {} random inps".format(len(rInps)))
-        mlog.debug("gen inps: {}".format(rInps))
+        # mlog.debug("gen inps: {}".format(rInps))
         rInps = inps.merge(rInps, inp_decls.names)
         return rInps
 
@@ -30,21 +30,21 @@ class Execution(object):
         raw_traces = self.prog._get_traces_mp(rInps)
         itraces = {}
         for inp, lines in raw_traces.items():
-            # dtraces = {}
-            # for l in lines:
-            #     # vtrace1: 8460 16 0 1 16 8460
-            #     parts = l.split(':')
-            #     assert len(parts) == 2, parts
-            #     loc, tracevals = parts[0], parts[1]
-            #     loc = loc.strip()  # vtrace1
-            #     ss = inv_decls[loc].names
-            #     vs = tracevals.strip().split()
-            #     trace = Trace.parse(ss, vs)
-            #     if loc not in dtraces:
-            #         dtraces[loc] = [trace]
-            #     else:
-            #         dtraces[loc].append(trace)
-            dtraces = DTraces.parse(lines, inv_decls)
+            dtraces = {}
+            for l in lines:
+                # vtrace1: 8460 16 0 1 16 8460
+                parts = l.split(':')
+                assert len(parts) == 2, parts
+                loc, tracevals = parts[0], parts[1]
+                loc = loc.strip()  # vtrace1
+                ss = inv_decls[loc].names
+                vs = tracevals.strip().split()
+                trace = Trace.parse(ss, vs)
+                if loc not in dtraces:
+                    dtraces[loc] = [trace]
+                else:
+                    dtraces[loc].append(trace)
+            # dtraces = DTraces.parse(lines, inv_decls) # Using set, do not preserve order of traces
             # print dtraces.__str__(printDetails=True)
             itraces[inp] = dtraces
         return itraces
