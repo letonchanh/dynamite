@@ -29,7 +29,8 @@ if target:
     # If the target is valid set a breakpoint at main
     exe = target.GetExecutable().GetFilename()
     main_bp = target.BreakpointCreateByName ("main", exe)
-    vtrace_bps = target.BreakpointCreateByRegex("vtrace*", exe)
+    vtrace_bps = target.BreakpointCreateByRegex("^vtrace", exe)
+    mainQ_bps = target.BreakpointCreateByRegex("^mainQ", exe)
 
     print main_bp
     print vtrace_bps
@@ -53,14 +54,13 @@ if target:
         state = process.GetState ()
         opt = lldb.SBExpressionOptions()
         opt.SetIgnoreBreakpoints(False)
-        v = target.EvaluateExpression('mainQ(1, 2)', opt)
-
+        v = target.EvaluateExpression('mainQ_loop(1, 2)', opt)
         thread = process.GetThreadAtIndex (0)
         # Print some simple thread info
         print thread
         if thread:
             cnt = 0
-            bnd = 100
+            bnd = 5
             while thread.GetStopReason() == lldb.eStopReasonBreakpoint and cnt < bnd:
                 frame = thread.GetFrameAtIndex(0)
                 # Print some simple frame info
