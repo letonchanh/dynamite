@@ -27,13 +27,14 @@ def create_lldb_target(exe):
     return target
 
 class Bin(Prog):
-    def __init__(self, exe):
+    def __init__(self, inloop_loc, exe):
         assert os.path.isfile(exe), exe
         self.target = create_lldb_target(exe)
 
         self.inp_decls = DSymbs([])
         self.inv_decls = DSymbs([])
         self.mainQ_name = ""
+        self.inloop_loc = inloop_loc
         self._cache = {}  # inp -> traces (str)
 
     def parse(self):
@@ -123,7 +124,7 @@ class Bin(Prog):
             function = frame.GetFunction()
             # mlog.debug("function: {}".format(function))
             func_name = function.GetName()
-            if func_name == 'vtrace2':
+            if func_name == self.inloop_loc:
                 cnt = cnt + 1
             if func_name in self.inv_decls:
                 inv_decl = self.inv_decls[func_name]

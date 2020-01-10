@@ -18,7 +18,7 @@ class Setup(object):
     def __init__(self, seed, inp):
         is_java_inp = inp.endswith(".java") or inp.endswith(".class")
         is_binary_inp = self.is_binary(inp)
-        assert(is_java_inp or is_binary_inp)
+        assert (is_java_inp or is_binary_inp), inp
 
         self.nInps = 100
         self.preloop_loc = dig_settings.TRACE_INDICATOR + '1' # vtrace1
@@ -35,13 +35,11 @@ class Setup(object):
             exe_cmd = dig_settings.JAVA_RUN(tracedir=tracedir, clsname=clsname)
             prog = dig_miscs.Prog(exe_cmd, inp_decls, inv_decls)
         elif is_binary_inp:
-            prog = Bin(inp)
+            prog = Bin(self.inloop_loc, inp)
             (inp_decls, inv_decls, mainQ_name) = prog.parse()
-            mlog.debug("inv_decls: {}".format(prog.inv_decls))
-            mlog.debug("inp_decls: {}".format(prog.inp_decls))
 
         mlog.debug("inp_decls ({}): {}".format(type(inp_decls), inp_decls))
-        mlog.debug("inv_decls: {}".format(inv_decls))
+        mlog.debug("inv_decls ({}): {}".format(type(inv_decls), inv_decls))
         self.inp_decls = inp_decls
         self.inv_decls = inv_decls
         self.mainQ_name = mainQ_name
