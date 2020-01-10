@@ -76,15 +76,16 @@ class Bin(Prog):
         # mlog.debug("inp_decls: {}".format(inp_decls))
         
         mainQ_name, inp_decls = next(inp_decls.iteritems())
-        mlog.debug("mainQ_name: {}".format(mainQ_name))
+        # mlog.debug("mainQ_name: {}".format(mainQ_name))
 
         self.inp_decls = inp_decls
         self.inv_decls = inv_decls
-        self.mainQ_name = ""
+        self.mainQ_name = mainQ_name
 
         return (inp_decls, inv_decls, mainQ_name)
 
     def _get_traces(self, inp):
+        # mlog.debug("inp: {}".format(inp))
         target = self.target
         # If the target is valid set a breakpoint at main
         # exe = target.GetExecutable().GetFilename()
@@ -99,36 +100,38 @@ class Bin(Prog):
         mlog.debug("process: {}".format(process))
 
         # Make sure the launch went ok
-        if process:
-            state = process.GetState()
-            opt = lldb.SBExpressionOptions()
-            opt.SetIgnoreBreakpoints(False)
-            v = target.EvaluateExpression('mainQ_loop(1, 2)', opt)
-            thread = process.GetThreadAtIndex(0)
-            # Print some simple thread info
-            mlog.debug("thread: {}".format(thread))
-            if thread:
-                cnt = 0
-                bnd = 5
-                while thread.GetStopReason() == lldb.eStopReasonBreakpoint and cnt < bnd:
-                    frame = thread.GetFrameAtIndex(0)
-                    # Print some simple frame info
-                    mlog.debug("frame: {}".format(frame))
-                    if frame:
-                        function = frame.GetFunction()
-                        mlog.debug("function: {}".format(function))
-                        if function.GetName() == 'vtrace2':
-                            cnt = cnt + 1
-                        vars = frame.GetVariables(True, True, True, True)
-                        for v in vars:
-                            mlog.debug("{}: {}".format(v.GetName(), v.GetValue()))
-                    process.Continue()
-
-    # def _get_traces_mp(self, inps):
-    #     assert isinstance(inps, Inps), inps
-
-    #     for inp in inps:
-    #         self._get_traces(inp)
-    #         break
-
-    #     return {}
+        assert process, process
+        state = process.GetState()
+        opt = lldb.SBExpressionOptions()
+        opt.SetIgnoreBreakpoints(False)
+        inp_d = dict(zip([s.name if isinstance(s, Symb) else s for s in inp.ss], inp.vs))
+        # mlog.debug("inp_d: {}".format(inp_d))
+        inp_ = ', '.join(map(str, [inp_d[s.name] for s in self.inp_decls]))
+        v = target.EvaluateExpression(self.mainQ_name + '(' + inp_ + ')', opt)
+        thread = process.GetThreadAtIndex(0)
+        # Print some simple thread info
+        # mlog.debug("thread: {}".format(thread))
+        assert thread, thread
+        cnt = 0
+        bnd = 500
+        traces = []
+        while thread.GetStopReason() == lldb.eStopReasonBreakpoint and cnt < bnd:
+            frame = thread.GetFrameAtIndex(0)
+            # Print some simple frame info
+            # mlog.debug("frame: {}".format(frame))
+            assert frame, frame
+            function = frame.GetFunction()
+            # mlog.debug("function: {}".format(function))
+            func_name = function.GetName()
+            if func_name == 'vtrace2':
+                cnt = cnt + 1
+            if func_name in self.inv_decls:
+                inv_decl = self.inv_decls[func_name]
+                vars = frame.GetVariables(True, True, True, True)
+                dv = dict([(v.GetName(), v.GetValue()) for v in vars])
+                trace = func_name + ': ' + (' '.join(map(str, [dv[s.name] for s in inv_decl])))
+                # mlog.debug("trace: {}".format(trace))
+                traces.append(trace)
+            process.Continue()
+        process.Kill()
+        return traces
