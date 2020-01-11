@@ -9,6 +9,7 @@ import settings as dig_settings
 import helpers.vcommon as dig_common_helpers
 import helpers.src_java as dig_src_java
 import data.miscs as dig_miscs
+from data.miscs import Symb, Symbs
 from helpers.miscs import Z3, Miscs
 from bin import Bin
 
@@ -40,6 +41,12 @@ class Setup(object):
 
         mlog.debug("inp_decls ({}): {}".format(type(inp_decls), inp_decls))
         mlog.debug("inv_decls ({}): {}".format(type(inv_decls), inv_decls))
+
+        inloop_inv_decls = inv_decls[self.inloop_loc]
+        transrel_inv_decls = Symbs([Symb(s.name + '0', s.typ) for s in inloop_inv_decls] +
+                                   [Symb(s.name + '1', s.typ) for s in inloop_inv_decls])
+        inv_decls[self.transrel_loc] = transrel_inv_decls
+
         self.inp_decls = inp_decls
         self.inv_decls = inv_decls
         self.mainQ_name = mainQ_name
@@ -53,21 +60,44 @@ class Setup(object):
     def infer_transrel(self):
         old_do_ieqs = dig_settings.DO_IEQS
         # dig_settings.DO_IEQS = False
-        transrel_invs = self.dig.infer_from_traces(self.rand_itraces, self.transrel_loc)
+        transrel_itraces = {}
+        inloop_loc = self.inloop_loc
+        postloop_loc = self.postloop_loc
+        for inp, dtraces in self.rand_itraces.items():
+            if inloop_loc in dtraces:
+                inloop_traces = dtraces[inloop_loc]
+                transrel_traces = []
+                if len(inloop_traces) >= 1:
+                    if postloop_loc in dtraces:
+                        inloop_zip_traces = zip(inloop_traces, inloop_traces[1:] + [dtraces[postloop_loc][0]])
+                    else:
+                        inloop_zip_traces = zip(inloop_traces[:-1], inloop_traces[1:])
+                else:
+                    inloop_zip_traces = []
+                for transrel_pre, transrel_post in inloop_zip_traces:
+                    ss = tuple(map(lambda s: s + '0', transrel_pre.ss) + 
+                               map(lambda s: s + '1', transrel_post.ss))
+                    vs = transrel_pre.vs + transrel_post.vs
+                    transrel_traces.append(Trace.parse(ss, vs))
+                transrel_itraces[inp] = {self.transrel_loc: transrel_traces}
+        mlog.debug("transrel_itraces: {}".format(transrel_itraces))
+        transrel_invs = self.dig.infer_from_traces(transrel_itraces, self.transrel_loc)
+        # transrel_invs = self.dig.infer_from_traces(self.rand_itraces, self.transrel_loc)
+        mlog.debug("transrel_invs: {}".format(transrel_invs))
         dig_settings.DO_IEQS = old_do_ieqs
         return transrel_invs
 
     def gen_transrel_sst(self):
-        transrel_inv_decls = self.inv_decls[self.transrel_loc].exprs(settings.use_reals)
-        inloop_inv_decls = self.inv_decls[self.inloop_loc].exprs(settings.use_reals)
-        assert len(transrel_inv_decls) % 2 == 0
-        assert len(inloop_inv_decls) * 2 == len(transrel_inv_decls)
+        inloop_inv_decls = self.inv_decls[self.inloop_loc]
+        inloop_inv_exprs = inloop_inv_decls.exprs(settings.use_reals)
+        transrel_pre_inv_decls = Symbs([Symb(s.name + '0', s.typ) for s in inloop_inv_decls])
+        transrel_pre_inv_exprs = transrel_pre_inv_decls.exprs(settings.use_reals)
+        transrel_post_inv_decls = Symbs([Symb(s.name + '1', s.typ) for s in inloop_inv_decls])
+        transrel_post_inv_exprs = transrel_post_inv_decls.exprs(settings.use_reals)
 
-        transrel_pre_inv_decls = transrel_inv_decls[:len(transrel_inv_decls)//2]
-        transrel_post_inv_decls = transrel_inv_decls[len(transrel_inv_decls)//2:]
-        return transrel_pre_inv_decls, \
-               zip(inloop_inv_decls, transrel_pre_inv_decls), \
-               zip(inloop_inv_decls, transrel_post_inv_decls)
+        return transrel_pre_inv_exprs, \
+               zip(inloop_inv_exprs, transrel_pre_inv_exprs), \
+               zip(inloop_inv_exprs, transrel_post_inv_exprs)
 
     def is_binary(self, fn):
         import subprocess
@@ -201,7 +231,7 @@ class NonTerm(object):
             mlog.debug("PROVE_NT DEPTH {}: {}".format(depth, rcs))
             if depth < _config.refinement_depth:
                 chk, sCexs = self.verify(rcs)
-                mlog.debug("sCexs: {}".format(sCexs))
+                # mlog.debug("sCexs: {}".format(sCexs))
                 if chk and not rcs.is_unsat():
                     validRCS.append((rcs, ancestors))
                 elif sCexs is not None:

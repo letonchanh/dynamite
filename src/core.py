@@ -79,7 +79,7 @@ class Inference(object):
         self.inv_decls = inv_decls
 
     def infer_from_traces(self, itraces, traceid, inps={}):
-        try:
+        # try:
             dtraces = DTraces()
             if not inps:
                 inps = itraces.keys()
@@ -95,8 +95,8 @@ class Inference(object):
             invs, traces, tmpdir = dig.start(self.seed, self.maxdeg)
             mlog.debug("invs: {}".format(invs)) # <class 'data.inv.invs.DInvs'>
             return invs[traceid]
-        except KeyError, AssertionError:
-            return Invs()
+        # except KeyError, AssertionError:
+        #     return Invs()
 
 class Solver(object):
     def __init__(self):
@@ -145,7 +145,7 @@ class Solver(object):
             if not m:  # if m == []
                 break
             models.append(m)
-            mlog.debug("model {}: {}".format(i, m))
+            # mlog.debug("model {}: {}".format(i, m))
             # create new constraint to block the current model
             block = z3.Not(z3.And([z3.Int(x) == v for (x, v) in m]))
             solver.add(block)

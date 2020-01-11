@@ -2,7 +2,6 @@ public class Ex1 {
     public static void vtrace1( int x, int y) {}
     public static void vtrace2(int x, int y) {}
     public static void vtrace3(int x, int y) {}
-    public static void vtrace4(int x0, int y0, int x1, int y1) {}
 
     public static void main (String[] args) {}
 
@@ -26,7 +25,6 @@ public class Ex1 {
 
             int x1 = x;
             int y1 = y;
-            vtrace4(x0, y0, x1, y1);
         }
         if (counter < bnd)
             vtrace3(x, y);
