@@ -3,7 +3,7 @@ import copy
 import bin
 from utils import settings
 from utils.logic import *
-from core import *
+from lib import *
 
 import settings as dig_settings
 import helpers.vcommon as dig_common_helpers

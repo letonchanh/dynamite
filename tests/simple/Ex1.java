@@ -17,14 +17,8 @@ public class Ex1 {
                 counter++;
             vtrace2(x, y);
 
-            int x0 = x;
-            int y0 = y;
-
             x = x + y;
             y = y + 1;
-
-            int x1 = x;
-            int y1 = y;
         }
         if (counter < bnd)
             vtrace3(x, y);

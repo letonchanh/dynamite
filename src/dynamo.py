@@ -16,7 +16,6 @@ sys.path.insert(0, dig_path)
 import helpers.vcommon as dig_common_helpers
 from helpers.miscs import Z3, Miscs
 import alg as dig_alg
-from core import Execution, Classification, Inference
 from utils import settings
 from data.traces import Inps
 from data.inv.invs import Invs
