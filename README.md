@@ -74,4 +74,15 @@
     docker run --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --security-opt apparmor=unconfined --name dynamo-dev -it letonchanh/dynamo-dev bash
     ```
     - LLVM-9 (http://releases.llvm.org/9.0.0/clang+llvm-9.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz) and SageMath are incompatible on the Python `six` package.
+    - Build LLVM
+    ```
+    apt-get install cmake ninja-build build-essential subversion swig libedit-dev libncurses5-dev
+    unset PYTHONPATH
+    git clone https://github.com/llvm/llvm-project.git
+    cd llvm-project
+    mkdir build
+    cd build
+    cmake -G Ninja -DLLVM_ENABLE_PROJECTS="clang;lldb" -DPYTHON_EXECUTABLE="/tools/SageMath/local/bin/python3" -DCMAKE_INSTALL_PREFIX=/tools/llvm -DCMAKE_BUILD_TYPE=Release ../llvm
+    ninja lldb
+    ```
     
