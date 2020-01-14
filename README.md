@@ -85,4 +85,5 @@
     cmake -G Ninja -DLLVM_ENABLE_PROJECTS="clang;lldb" -DPYTHON_EXECUTABLE="/tools/SageMath/local/bin/python3" -DCMAKE_INSTALL_PREFIX=/tools/llvm -DCMAKE_BUILD_TYPE=Release ../llvm
     ninja lldb
     ```
-    
+1. angr
+    - https://breaking-bits.gitbook.io/breaking-bits/vulnerability-discovery/automated-exploit-development/analyzing-functions
