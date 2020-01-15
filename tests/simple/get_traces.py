@@ -6,7 +6,7 @@ import sage.all
 
 def disassemble_instructions(insts):
     for i in insts:
-        print i
+        print(i)
 
 # Set the path to the executable to debug
 exe = "./a.out"
@@ -20,7 +20,7 @@ debugger = lldb.SBDebugger.Create()
 debugger.SetAsync (False)
 
 # Create a target from a file and arch
-print "Creating a target for {}".format(exe)
+print("Creating a target for {}".format(exe))
 
 # target = debugger.CreateTargetWithFileAndArch (exe, lldb.LLDB_ARCH_DEFAULT)
 target = debugger.CreateTarget (exe)
@@ -28,26 +28,26 @@ target = debugger.CreateTarget (exe)
 if target:
     # If the target is valid set a breakpoint at main
     exe = target.GetExecutable().GetFilename()
-    main_bp = target.BreakpointCreateByName ("main", exe)
+    main_bp = target.BreakpointCreateByName("main", exe)
     vtrace_bps = target.BreakpointCreateByRegex("^vtrace", exe)
     mainQ_bps = target.BreakpointCreateByRegex("^mainQ", exe)
 
-    print main_bp
-    print vtrace_bps
+    print(main_bp)
+    print(vtrace_bps)
     for vtrace_bp in vtrace_bps:
         vtrace_func = vtrace_bp.GetAddress().GetFunction()
-        print vtrace_func.GetName()
+        print(vtrace_func.GetName())
         func_type = vtrace_func.GetType()
         assert(func_type.IsFunctionType())
         arg_types = func_type.GetFunctionArgumentTypes()
         for i in range(0, arg_types.GetSize()):
-            print "{}: {}".format(vtrace_func.GetArgumentName(i), arg_types.GetTypeAtIndex(i))
+            print("{}: {}".format(vtrace_func.GetArgumentName(i), arg_types.GetTypeAtIndex(i)))
 
     # Launch the process. Since we specified synchronous mode, we won't return
     # from this function until we hit the breakpoint at main
     process = target.LaunchSimple (None, None, os.getcwd())
     # Print some simple process info
-    print process
+    print(process)
 
     # Make sure the launch went ok
     if process:
@@ -57,17 +57,17 @@ if target:
         v = target.EvaluateExpression('mainQ_loop(1, 2)', opt)
         thread = process.GetThreadAtIndex (0)
         # Print some simple thread info
-        print thread
+        print(thread)
         if thread:
             cnt = 0
             bnd = 5
             while thread.GetStopReason() == lldb.eStopReasonBreakpoint and cnt < bnd:
                 frame = thread.GetFrameAtIndex(0)
                 # Print some simple frame info
-                print frame
+                print(frame)
                 if frame:
                     function = frame.GetFunction()
-                    print function
+                    print(function)
                     if function.GetName() == 'vtrace2':
                         cnt = cnt + 1
                     vars = frame.GetVariables(True, True, True, True)

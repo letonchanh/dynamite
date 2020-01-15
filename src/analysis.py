@@ -58,6 +58,8 @@ class Setup(object):
         self.rand_itraces = self.exe.get_traces(rand_inps)  # itraces: input to dtraces
 
     def infer_transrel(self):
+        pre = self.dig.infer_from_traces(self.rand_itraces, self.preloop_loc)
+        mlog.debug("pre: {}".format(pre))
         old_do_ieqs = dig_settings.DO_IEQS
         # dig_settings.DO_IEQS = False
         transrel_itraces = {}

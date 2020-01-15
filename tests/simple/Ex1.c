@@ -12,8 +12,8 @@ void vtrace3(int x, int y) {
 // void vtrace4(int x0, int y0, int x1, int y1) {
 // }
 
-void loop(int x, int y) {
-  
+void vloop(int x, int y) {
+  // Analyze loop under pre-conditions inferred from random inputs
   vtrace1(x, y);
 
   while (x >= 0) {
@@ -33,7 +33,9 @@ void loop(int x, int y) {
 }
 
 void mainQ(int x, int y) {
-  loop(x, y);
+  // Run mainQ with random inputs to get pre-conditions of vloop
+  if (y >= 0)
+    vloop(x, y);
 }
 
 int main() {
