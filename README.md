@@ -82,8 +82,9 @@
     cd llvm-project
     mkdir build
     cd build
-    cmake -G Ninja -DLLVM_ENABLE_PROJECTS="clang;lldb" -DPYTHON_EXECUTABLE="/tools/SageMath/local/bin/python3" -DCMAKE_INSTALL_PREFIX=/tools/llvm -DCMAKE_BUILD_TYPE=Release ../llvm
+    cmake -G Ninja -DLLVM_ENABLE_PROJECTS="clang;lldb" -DPYTHON_EXECUTABLE="/tools/SageMath/local/bin/python3" -DLLDB_CAN_USE_LLDB_SERVER=True -DCMAKE_INSTALL_PREFIX=/tools/llvm -DCMAKE_BUILD_TYPE=Release ../llvm
     ninja lldb
+    ninja lldb-server
     ```
 1. angr
     - https://breaking-bits.gitbook.io/breaking-bits/vulnerability-discovery/automated-exploit-development/analyzing-functions
