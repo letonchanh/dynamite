@@ -19,8 +19,9 @@ mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
 class Setup(object):
     def __init__(self, seed, inp):
         is_java_inp = inp.endswith(".java") or inp.endswith(".class")
+        is_c_inp = inp.endswith(".c")
         is_binary_inp = self.is_binary(inp)
-        assert (is_java_inp or is_binary_inp), inp
+        assert (is_java_inp or is_c_inp or is_binary_inp), inp
 
         self.nInps = 100
         self.preloop_loc = dig_settings.TRACE_INDICATOR + '1' # vtrace1
@@ -30,15 +31,20 @@ class Setup(object):
         self.refinement_depth = 5
         self.tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
         
-        if is_java_inp:
-            from helpers.src import Java as java_src
-            src = java_src(Path(inp), self.tmpdir)
-            exe_cmd = dig_settings.Java.JAVA_RUN(tracedir=src.tracedir, funname=src.funname)
-            inp_decls, inv_decls, mainQ_name = src.inp_decls, src.inv_decls, src.mainQ_name
-            prog = dig_prog.Prog(exe_cmd, inp_decls, inv_decls)
-        elif is_binary_inp:
+        if is_binary_inp:
             prog = Bin(self.inloop_loc, inp)
             inp_decls, inv_decls, mainQ_name = prog.parse()
+        else:
+            if is_java_inp:
+                from helpers.src import Java as java_src
+                src = java_src(Path(inp), self.tmpdir)
+                exe_cmd = dig_settings.Java.JAVA_RUN(tracedir=src.tracedir, funname=src.funname)
+            else:
+                from helpers.src import C as c_src
+                src = c_src(Path(inp), self.tmpdir)
+                exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
+            inp_decls, inv_decls, mainQ_name = src.inp_decls, src.inv_decls, src.mainQ_name
+            prog = dig_prog.Prog(exe_cmd, inp_decls, inv_decls)
 
         mlog.debug("inp_decls ({}): {}".format(type(inp_decls), inp_decls))
         mlog.debug("inv_decls ({}): {}".format(type(inv_decls), inv_decls))

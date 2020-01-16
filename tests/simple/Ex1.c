@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include <stdlib.h>
 
 void vtrace1( int x, int y) {
 }
@@ -15,8 +16,14 @@ void vtrace3(int x, int y) {
 void vloop(int x, int y) {
   // Analyze loop under pre-conditions inferred from random inputs
   vtrace1(x, y);
+  // int bnd = 500;
+  // int counter = 0;
 
   while (x >= 0) {
+    // if (counter >= bnd)
+    //   break;
+    // else
+    //   counter++;
     vtrace2(x, y);
 
     // int x0 = x;
@@ -29,7 +36,8 @@ void vloop(int x, int y) {
     // int y1 = y;
     // vtrace4(x0, y0, x1, y1);
   }
-  vtrace3(x, y);
+  // if (counter < bnd)
+    vtrace3(x, y);
 }
 
 void mainQ(int x, int y) {
@@ -38,9 +46,8 @@ void mainQ(int x, int y) {
     vloop(x, y);
 }
 
-int main() {
-  //mainQ(1, 2);
-  return 0;
+void main(int argc, char **argv){
+    mainQ(atoi(argv[1]), atoi(argv[2]));
 }
 
 /*
