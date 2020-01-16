@@ -4,6 +4,7 @@ import bin
 from utils import settings
 from utils.logic import *
 from lib import *
+from pathlib import Path
 
 import settings as dig_settings
 import helpers.vcommon as dig_common_helpers
@@ -27,17 +28,17 @@ class Setup(object):
         self.postloop_loc = dig_settings.TRACE_INDICATOR + '3' # vtrace3
         self.transrel_loc = dig_settings.TRACE_INDICATOR + '4' # vtrace4
         self.refinement_depth = 5
-        self.tmpdir = tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_")
+        self.tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
         
         if is_java_inp:
-            (inp_decls, inv_decls, clsname, 
-            # mainQ_name, jpfdir, jpffile, tracedir, traceFile) = dig_src_java.parse(inp, self.tmpdir)
-            mainQ_name, _, _, tracedir, _) = dig_src_java.parse(inp, self.tmpdir)
-            exe_cmd = dig_settings.JAVA_RUN(tracedir=tracedir, clsname=clsname)
-            prog = dig_miscs.Prog(exe_cmd, inp_decls, inv_decls)
+            from helpers.src import Java as java_src
+            src = java_src(Path(inp), self.tmpdir)
+            exe_cmd = dig_settings.Java.JAVA_RUN(tracedir=src.tracedir, funname=src.funname)
+            inp_decls, inv_decls, mainQ_name = src.inp_decls, src.inv_decls, src.mainQ_name
+            prog = dig_prog.Prog(exe_cmd, inp_decls, inv_decls)
         elif is_binary_inp:
             prog = Bin(self.inloop_loc, inp)
-            (inp_decls, inv_decls, mainQ_name) = prog.parse()
+            inp_decls, inv_decls, mainQ_name = prog.parse()
 
         mlog.debug("inp_decls ({}): {}".format(type(inp_decls), inp_decls))
         mlog.debug("inv_decls ({}): {}".format(type(inv_decls), inv_decls))
@@ -58,8 +59,8 @@ class Setup(object):
         self.rand_itraces = self.exe.get_traces(rand_inps)  # itraces: input to dtraces
 
     def infer_transrel(self):
-        pre = self.dig.infer_from_traces(self.rand_itraces, self.preloop_loc)
-        mlog.debug("pre: {}".format(pre))
+        # pre = self.dig.infer_from_traces(self.rand_itraces, self.preloop_loc)
+        # mlog.debug("pre: {}".format(pre))
         old_do_ieqs = dig_settings.DO_IEQS
         # dig_settings.DO_IEQS = False
         transrel_itraces = {}

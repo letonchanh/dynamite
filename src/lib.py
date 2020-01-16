@@ -114,7 +114,7 @@ class Solver(object):
             '(get-model)']
         smt2_str = '\n'.join(smt2_str)
         # mlog.debug("smt2_str: {}".format(smt2_str))
-        filename = tmpdir + 't.smt2'
+        filename = tmpdir / 't.smt2'
         dig_common_helpers.vwrite(filename, smt2_str)
         cmd = 'z3 {}'.format(filename)
         rmsg, errmsg = dig_common_helpers.vcmd(cmd)
