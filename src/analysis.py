@@ -7,9 +7,9 @@ from lib import *
 
 import settings as dig_settings
 import helpers.vcommon as dig_common_helpers
-import helpers.src_java as dig_src_java
-import data.miscs as dig_miscs
-from data.miscs import Symb, Symbs
+import helpers.src as dig_src
+import data.prog as dig_prog
+from data.prog import Symb, Symbs
 from helpers.miscs import Z3, Miscs
 from bin import Bin
 
@@ -77,8 +77,8 @@ class Setup(object):
                 else:
                     inloop_zip_traces = []
                 for transrel_pre, transrel_post in inloop_zip_traces:
-                    ss = tuple(map(lambda s: s + '0', transrel_pre.ss) + 
-                               map(lambda s: s + '1', transrel_post.ss))
+                    ss = tuple(list(map(lambda s: s + '0', transrel_pre.ss)) + 
+                               list(map(lambda s: s + '1', transrel_post.ss)))
                     vs = transrel_pre.vs + transrel_post.vs
                     transrel_traces.append(Trace.parse(ss, vs))
                 transrel_itraces[inp] = {self.transrel_loc: transrel_traces}
@@ -98,13 +98,13 @@ class Setup(object):
         transrel_post_inv_exprs = transrel_post_inv_decls.exprs(settings.use_reals)
 
         return transrel_pre_inv_exprs, \
-               zip(inloop_inv_exprs, transrel_pre_inv_exprs), \
-               zip(inloop_inv_exprs, transrel_post_inv_exprs)
+               list(zip(inloop_inv_exprs, transrel_pre_inv_exprs)), \
+               list(zip(inloop_inv_exprs, transrel_post_inv_exprs))
 
     def is_binary(self, fn):
         import subprocess
         mime = subprocess.Popen(["file", "--mime", fn], stdout=subprocess.PIPE).communicate()[0]
-        return "application/x-executable" in mime
+        return b"application/x-executable" in mime
 
 class NonTerm(object):
     def __init__(self, config):

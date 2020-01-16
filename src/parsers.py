@@ -64,35 +64,43 @@ class Z3OutputHandler(Transformer):
     # def pr_err_message(self, (oparen, err, msg, cparen)):
     #     print msg
 
-    def mk_sat(self, (sat, model)):
+    def mk_sat(self, tokens):
+        (sat, model) = tokens
         return (z3.sat, model)
 
     mk_unsat = lambda self, _: (z3.unsat, None)
 
     mk_unknown = lambda self, _: (z3.unknown, None)
 
-    def mk_model(self, (oparen, model, sols, cparen)):
+    def mk_model(self, tokens):
+        (oparen, model, sols, cparen) = tokens
         return sols
 
     def mk_lst(self, lst):
         return lst
 
-    def mk_sol(self, (oparen1, deffun, id, oparen2, cparen2, sort, value, cparen1)):
+    def mk_sol(self, tokens):
+        (oparen1, deffun, id, oparen2, cparen2, sort, value, cparen1) = tokens
         return (str(id) , value)
 
-    def mk_paren(self, (oparen, e, cparen)):
+    def mk_paren(self, tokens):
+        (oparen, e, cparen) = tokens
         return e
 
-    def mk_prim_val(self, (e,)):
+    def mk_prim_val(self, tokens):
+        (e,) = tokens
         return e
 
-    def mk_toint_prim_val(self, (toint, e)):
+    def mk_toint_prim_val(self, tokens):
+        (toint, e) = tokens
         return e
 
-    def mk_int_val(self, (i,)):
+    def mk_int_val(self, tokens):
+        (i,) = tokens
         return int(i)
 
-    def mk_neg(self, (minus, e)):
+    def mk_neg(self, tokens):
+        (minus, e) = tokens
         return -e
 
     parser = Lark(z3_output_grammar, start='output', lexer='dynamic_complete')

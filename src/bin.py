@@ -4,7 +4,7 @@ import os
 from utils import settings
 import settings as dig_settings
 import helpers.vcommon as dig_common_helpers
-from data.miscs import Symb, Symbs, DSymbs, Prog
+from data.prog import Symb, Symbs, DSymbs, Prog
 from data.traces import Inp, Inps, DTraces
 
 mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
@@ -76,7 +76,7 @@ class Bin(Prog):
         inp_decls = DSymbs([parse_bp(mainQ_bp) for mainQ_bp in mainQ_bps])
         # mlog.debug("inp_decls: {}".format(inp_decls))
         
-        mainQ_name, inp_decls = next(inp_decls.iteritems())
+        mainQ_name, inp_decls = next(iter(inp_decls.items()))
         # mlog.debug("mainQ_name: {}".format(mainQ_name))
 
         self.inp_decls = inp_decls

@@ -2,6 +2,7 @@ import helpers.vcommon as CM
 import z3
 import random
 import sage.all
+from pathlib import Path
 from data.traces import Inps, Trace, DTraces
 from data.inv.invs import Invs
 from utils import settings
@@ -91,8 +92,8 @@ class Inference(object):
             mlog.debug("dtraces: {}".format(dtraces.__str__(printDetails=False)))
             import alg as dig_alg
             dig = dig_alg.DigTraces.from_dtraces(self.inv_decls, dtraces)
-            dtraces.vwrite(self.inv_decls, traceid + '.tcs')
-            invs, traces, tmpdir = dig.start(self.seed, self.maxdeg)
+            dtraces.vwrite(self.inv_decls, Path(traceid + '.tcs'))
+            invs, traces = dig.start(self.seed, self.maxdeg)
             mlog.debug("invs: {}".format(invs)) # <class 'data.inv.invs.DInvs'>
             return invs[traceid]
         # except KeyError, AssertionError:

@@ -23,7 +23,7 @@ from utils.logic import *
 
 mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
 
-def run_dig(inp, seed, maxdeg, do_rmtmp):
+def run_dig(inp, seed, maxdeg):
 
     mlog.info("{}".format("get invs from DIG"))
 
@@ -31,19 +31,12 @@ def run_dig(inp, seed, maxdeg, do_rmtmp):
         dig = dig_alg.DigSymStates(inp)
     else:
         dig = dig_alg.DigTraces.from_tracefiles(inp)
-    invs, traces, tmpdir = dig.start(seed, maxdeg)
-
-    if do_rmtmp:
-        import shutil
-        print("clean up: rm -rf {}".format(tmpdir))
-        shutil.rmtree(tmpdir)
-    else:
-        print("tmpdir: {}".format(tmpdir))
+    invs, traces = dig.start(seed, maxdeg)
 
 if __name__ == "__main__":
     import settings as dig_settings
-    from helpers import src_java as dig_src_java
-    from data import miscs as dig_miscs
+    from helpers import src as dig_src
+    from helpers import miscs as dig_miscs
     import argparse
 
     aparser = argparse.ArgumentParser("Dynamo")
@@ -102,7 +95,7 @@ if __name__ == "__main__":
     seed = round(time.time(), 2) if args.dig_seed is None else float(args.dig_seed)
 
     if settings.run_dig:
-        run_dig(inp, seed, maxdeg=2, do_rmtmp=False)
+        run_dig(inp, seed, maxdeg=2)
     else:
         from analysis import Setup, NonTerm
  
