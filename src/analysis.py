@@ -45,7 +45,12 @@ class Setup(object):
                 exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
                 import alg
                 dig = alg.DigSymStatesC(inp)
-                mlog.debug("SymStates: {}".format(dig.symstates.ss))
+                ss = dig.symstates.ss
+                mlog.debug("SymStates ({}): {}".format(type(ss), ss))
+                for loc, ds in ss.items():
+                    for depth, states in ds.items():
+                        for s in states:
+                            mlog.debug("SymState ({}): {}".format(type(s), s.__str__()))
             inp_decls, inv_decls, mainQ_name = src.inp_decls, src.inv_decls, src.mainQ_name
             prog = dig_prog.Prog(exe_cmd, inp_decls, inv_decls)
 
