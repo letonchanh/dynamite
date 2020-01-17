@@ -44,6 +44,9 @@ void mainQ(int x, int y) {
   // Run mainQ with random inputs to get pre-conditions of vloop
   if (y >= 0)
     vloop(x, y);
+  else {
+    ...
+  }
 }
 
 void main(int argc, char **argv){
@@ -52,9 +55,11 @@ void main(int argc, char **argv){
 
 /*
   // The original code
-  while (x >= 0) {
-    x = x + y;
-    y = y + 1;
+  if (y >= 0) {
+    while (x >= 0) {
+      x = x + y;
+      y = y + 1;
+    }
   }
  */
 

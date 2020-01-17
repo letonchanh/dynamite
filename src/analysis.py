@@ -43,6 +43,9 @@ class Setup(object):
                 from helpers.src import C as c_src
                 src = c_src(Path(inp), self.tmpdir)
                 exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
+                import alg
+                dig = alg.DigSymStatesC(inp)
+                mlog.debug("SymStates: {}".format(dig.symstates.ss))
             inp_decls, inv_decls, mainQ_name = src.inp_decls, src.inv_decls, src.mainQ_name
             prog = dig_prog.Prog(exe_cmd, inp_decls, inv_decls)
 
@@ -89,7 +92,7 @@ class Setup(object):
                     vs = transrel_pre.vs + transrel_post.vs
                     transrel_traces.append(Trace.parse(ss, vs))
                 transrel_itraces[inp] = {self.transrel_loc: transrel_traces}
-        mlog.debug("transrel_itraces: {}".format(transrel_itraces))
+        # mlog.debug("transrel_itraces: {}".format(transrel_itraces))
         transrel_invs = self.dig.infer_from_traces(transrel_itraces, self.transrel_loc)
         # transrel_invs = self.dig.infer_from_traces(self.rand_itraces, self.transrel_loc)
         mlog.debug("transrel_invs: {}".format(transrel_invs))
