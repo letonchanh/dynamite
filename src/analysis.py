@@ -47,10 +47,10 @@ class Setup(object):
                 dig = alg.DigSymStatesC(inp)
                 ss = dig.symstates.ss
                 mlog.debug("SymStates ({}): {}".format(type(ss), ss))
-                for loc, ds in ss.items():
-                    for depth, states in ds.items():
+                for loc, depthss in ss.items():
+                    for depth, states in depthss.items():
                         for s in states:
-                            mlog.debug("SymState ({}): {}".format(type(s), s.__str__()))
+                            mlog.debug("SymState ({}): {}".format(type(s), s.expr))
             inp_decls, inv_decls, mainQ_name = src.inp_decls, src.inv_decls, src.mainQ_name
             prog = dig_prog.Prog(exe_cmd, inp_decls, inv_decls)
 
