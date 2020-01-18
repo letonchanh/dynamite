@@ -78,6 +78,8 @@ if __name__ == "__main__":
 
     dig_settings.DO_MP = not args.dig_nomp
 
+    dig_settings.DO_RMTMP = False
+
     # Set DIG's log level
     if 0 <= args.dig_log_level <= 4 and args.dig_log_level != dig_settings.logger_level:
         dig_settings.logger_level = args.dig_log_level
