@@ -31,7 +31,8 @@ class Execution(object):
         raw_traces = self.prog._get_traces_mp(rInps)
         itraces = {}
         for inp, lines in raw_traces.items():
-            dtraces = {}
+            # dtraces = {}
+            itraces.setdefault(inp, {})
             for l in lines:
                 # vtrace1: 8460 16 0 1 16 8460
                 parts = l.split(':')
@@ -41,13 +42,15 @@ class Execution(object):
                 ss = inv_decls[loc].names
                 vs = tracevals.strip().split()
                 trace = Trace.parse(ss, vs)
-                if loc not in dtraces:
-                    dtraces[loc] = [trace]
-                else:
-                    dtraces[loc].append(trace)
+                # if loc not in dtraces:
+                #     dtraces[loc] = [trace]
+                # else:
+                #     dtraces[loc].append(trace)
+                # dtraces.setdefault(loc, []).append(trace)
+                itraces[inp].setdefault(loc, []).append(trace)
             # dtraces = DTraces.parse(lines, inv_decls) # Using set, do not preserve order of traces
             # print dtraces.__str__(printDetails=True)
-            itraces[inp] = dtraces
+            # itraces[inp] = dtraces
         return itraces
 
 

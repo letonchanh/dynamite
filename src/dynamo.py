@@ -70,6 +70,9 @@ if __name__ == "__main__":
     ag("--dig_nomp", "-dig_nomp",
        action="store_true",
        help="DIG: don't use multiprocessing")
+    ag("--dig_normtmp", "--dig_normtmp",
+       action="store_true",
+       help="DIG: don't remove tmp folder")
 
     args = aparser.parse_args()
 
@@ -78,7 +81,7 @@ if __name__ == "__main__":
 
     dig_settings.DO_MP = not args.dig_nomp
 
-    dig_settings.DO_RMTMP = False
+    dig_settings.DO_RMTMP = not args.dig_normtmp
 
     # Set DIG's log level
     if 0 <= args.dig_log_level <= 4 and args.dig_log_level != dig_settings.logger_level:
