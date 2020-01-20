@@ -50,7 +50,7 @@ class Setup(object):
                 for loc, depthss in ss.items():
                     for depth, states in depthss.items():
                         for s in states.lst:
-                            mlog.debug("SymState ({}):\n{}\n{}".format(type(s), s, s.expr))
+                            mlog.debug("SymState ({}, {}):\n{}\n{}".format(type(s), s in states, s, s.expr))
             inp_decls, inv_decls, mainQ_name = src.inp_decls, src.inv_decls, src.mainQ_name
             prog = dig_prog.Prog(exe_cmd, inp_decls, inv_decls)
 
