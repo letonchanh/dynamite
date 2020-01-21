@@ -75,7 +75,13 @@ class Setup(object):
         rand_inps = self.exe.gen_rand_inps(self.nInps)
         self.rand_itraces = self.exe.get_traces(rand_inps)  # itraces: input to dtraces
 
-    def infer_transrel(self, transrel_pre_sst, transrel_post_sst):
+        self.transrel_pre_inv_decls, self.transrel_pre_sst, self.transrel_post_sst = \
+            self.gen_transrel_sst()
+        mlog.debug("transrel_pre_inv_decls: {}".format(self.transrel_pre_inv_decls))
+        mlog.debug("transrel_pre_sst: {}".format(self.transrel_pre_sst))
+        mlog.debug("transrel_post_sst: {}".format(self.transrel_post_sst))
+
+    def infer_transrel(self):
         # pre = self.dig.infer_from_traces(self.rand_itraces, self.preloop_loc)
         # mlog.debug("pre: {}".format(pre))
         old_do_ieqs = dig_settings.DO_IEQS
@@ -106,6 +112,10 @@ class Setup(object):
         mlog.debug("transrel_invs: {}".format(transrel_invs))
         dig_settings.DO_IEQS = old_do_ieqs
 
+        transrel_invs = ZInvs(transrel_invs)
+        assert not transrel_invs.is_unsat(), transrel_invs
+        transrel_expr = transrel_invs.expr()
+
         if self.symstates:
             ss = self.symstates
             inloop_symstates = ss[self.inloop_loc]
@@ -122,14 +132,15 @@ class Setup(object):
                 inloop_inv_vars = self.inv_decls[self.inloop_loc].exprs(settings.use_reals)
                 inloop_ex_vars = inloop_vars.difference(inloop_inv_vars)
                 mlog.debug("inloop_ex_vars: {}".format(inloop_ex_vars))
-                inloop_fst_symstate = z3.substitute(inloop_fst_symstate.slocal, transrel_pre_sst)
-                inloop_snd_symstate = z3.substitute(inloop_snd_symstate.slocal, transrel_post_sst)
+                inloop_fst_symstate = z3.substitute(inloop_fst_symstate.slocal, self.transrel_pre_sst)
+                inloop_snd_symstate = z3.substitute(inloop_snd_symstate.slocal, self.transrel_post_sst)
                 mlog.debug("inloop_fst_symstate: {}".format(inloop_fst_symstate))
                 mlog.debug("inloop_snd_symstate: {}".format(inloop_snd_symstate))
                 inloop_trans_f = z3.Exists(list(inloop_ex_vars), z3.And(inloop_fst_symstate, inloop_snd_symstate))
-                mlog.debug("inloop_trans_f: {}".format(Z3.qe(inloop_trans_f)))
+                transrel_expr = Z3.qe(inloop_trans_f)
+                mlog.debug("inloop_trans_f: {}".format(transrel_expr))
 
-        return transrel_invs
+        return transrel_expr
 
     def gen_transrel_sst(self):
         inloop_inv_decls = self.inv_decls[self.inloop_loc]
@@ -151,16 +162,8 @@ class Setup(object):
 class NonTerm(object):
     def __init__(self, config):
         self._config = config
-        self.transrel_pre_inv_decls, self.transrel_pre_sst, self.transrel_post_sst = \
-            config.gen_transrel_sst()
-        mlog.debug("transrel_pre_inv_decls: {}".format(self.transrel_pre_inv_decls))
-        mlog.debug("transrel_pre_sst: {}".format(self.transrel_pre_sst))
-        mlog.debug("transrel_post_sst: {}".format(self.transrel_post_sst))
 
-        transrel_invs = ZInvs(config.infer_transrel(self.transrel_pre_sst, self.transrel_post_sst))
-        assert not transrel_invs.is_unsat(), transrel_invs
-        mlog.debug("transrel_invs: {}".format(transrel_invs))
-        self.transrel_expr = transrel_invs.expr()
+        self.transrel_expr = config.infer_transrel()
         self.tCexs = []
 
     def verify(self, rcs):
@@ -172,7 +175,7 @@ class NonTerm(object):
             return False, sCexs
         else:
             assert rcs, rcs
-            rcs_l = z3.substitute(rcs.expr(), self.transrel_pre_sst)
+            rcs_l = z3.substitute(rcs.expr(), _config.transrel_pre_sst)
             mlog.debug("rcs_l: {}".format(rcs_l))
             mlog.debug("transrel_expr: {}".format(self.transrel_expr))
 
@@ -192,7 +195,7 @@ class NonTerm(object):
                 return inps
 
             def _check(rc):
-                rc_r = z3.substitute(rc, self.transrel_post_sst)
+                rc_r = z3.substitute(rc, _config.transrel_post_sst)
                 # f = z3.Not(z3.Implies(z3.And(rcs_l, transrel_expr), rc_r))
                 f = z3.And(z3.And(rcs_l, self.transrel_expr), z3.Not(rc_r))
                 mlog.debug("_check: f = {}".format(f))
