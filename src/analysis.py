@@ -30,6 +30,7 @@ class Setup(object):
         self.transrel_loc = dig_settings.TRACE_INDICATOR + '4' # vtrace4
         self.refinement_depth = 5
         self.tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
+        self.symstates = None
         
         if is_binary_inp:
             prog = Bin(self.inloop_loc, inp)
@@ -51,6 +52,8 @@ class Setup(object):
                     for depth, states in depthss.items():
                         for s in states.lst:
                             mlog.debug("SymState ({}, {}):\n{}\n{}".format(type(s), s in states, s, s.expr))
+                self.symstates = ss
+
             inp_decls, inv_decls, mainQ_name = src.inp_decls, src.inv_decls, src.mainQ_name
             prog = dig_prog.Prog(exe_cmd, inp_decls, inv_decls)
 
@@ -72,7 +75,7 @@ class Setup(object):
         rand_inps = self.exe.gen_rand_inps(self.nInps)
         self.rand_itraces = self.exe.get_traces(rand_inps)  # itraces: input to dtraces
 
-    def infer_transrel(self):
+    def infer_transrel(self, transrel_pre_sst, transrel_post_sst):
         # pre = self.dig.infer_from_traces(self.rand_itraces, self.preloop_loc)
         # mlog.debug("pre: {}".format(pre))
         old_do_ieqs = dig_settings.DO_IEQS
@@ -102,6 +105,30 @@ class Setup(object):
         # transrel_invs = self.dig.infer_from_traces(self.rand_itraces, self.transrel_loc)
         mlog.debug("transrel_invs: {}".format(transrel_invs))
         dig_settings.DO_IEQS = old_do_ieqs
+
+        if self.symstates:
+            ss = self.symstates
+            inloop_symstates = ss[self.inloop_loc]
+            inloop_ss_depths = sorted(inloop_symstates.keys())
+            inloop_fst_symstate = None
+            inloop_snd_symstate = None
+            for depth in inloop_ss_depths:
+                symstates = inloop_symstates[depth].lst
+                if len(symstates) >= 2:
+                    inloop_fst_symstate = symstates[0]
+                    inloop_snd_symstate = symstates[1]
+            if inloop_fst_symstate and inloop_snd_symstate:
+                inloop_vars = Z3.get_vars(inloop_fst_symstate.slocal).union(Z3.get_vars(inloop_snd_symstate.slocal))
+                inloop_inv_vars = self.inv_decls[self.inloop_loc].exprs(settings.use_reals)
+                inloop_ex_vars = inloop_vars.difference(inloop_inv_vars)
+                mlog.debug("inloop_ex_vars: {}".format(inloop_ex_vars))
+                inloop_fst_symstate = z3.substitute(inloop_fst_symstate.slocal, transrel_pre_sst)
+                inloop_snd_symstate = z3.substitute(inloop_snd_symstate.slocal, transrel_post_sst)
+                mlog.debug("inloop_fst_symstate: {}".format(inloop_fst_symstate))
+                mlog.debug("inloop_snd_symstate: {}".format(inloop_snd_symstate))
+                inloop_trans_f = z3.Exists(list(inloop_ex_vars), z3.And(inloop_fst_symstate, inloop_snd_symstate))
+                mlog.debug("inloop_trans_f: {}".format(Z3.qe(inloop_trans_f)))
+
         return transrel_invs
 
     def gen_transrel_sst(self):
@@ -130,7 +157,7 @@ class NonTerm(object):
         mlog.debug("transrel_pre_sst: {}".format(self.transrel_pre_sst))
         mlog.debug("transrel_post_sst: {}".format(self.transrel_post_sst))
 
-        transrel_invs = ZInvs(config.infer_transrel())
+        transrel_invs = ZInvs(config.infer_transrel(self.transrel_pre_sst, self.transrel_post_sst))
         assert not transrel_invs.is_unsat(), transrel_invs
         mlog.debug("transrel_invs: {}".format(transrel_invs))
         self.transrel_expr = transrel_invs.expr()
