@@ -105,8 +105,9 @@ if __name__ == "__main__":
         from analysis import Setup, NonTerm
  
         config = Setup(seed, inp)
-        nt_prover = NonTerm(config)       
-        validRCS = nt_prover.prove()
+        precond = config.infer_precond()
+        nt_prover = NonTerm(config) 
+        validRCS = nt_prover.prove(precond)
         mlog.debug("validRCS: {}".format(validRCS))
         for rcs, ancestors in validRCS:
             f = Z3.to_dnf(rcs.simplify())

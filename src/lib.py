@@ -65,7 +65,7 @@ class Classification(object):
         term_inps = []
         mayloop_inps = []
         for inp, dtraces in itraces.items():
-            mlog.debug("{}: {}".format(inp, dtraces.keys()))
+            # mlog.debug("{}: {}".format(inp, dtraces.keys()))
             chains = dtraces.keys()
             if self.postloop in chains:
                 if self.inloop in chains:
@@ -98,7 +98,10 @@ class Inference(object):
             dtraces.vwrite(self.inv_decls, Path(traceid + '.tcs'))
             invs, traces = dig.start(self.seed, self.maxdeg)
             mlog.debug("invs: {}".format(invs)) # <class 'data.inv.invs.DInvs'>
-            return invs[traceid]
+            if traceid in invs:
+                return invs[traceid]
+            else:
+                return Invs()
         # except KeyError, AssertionError:
         #     return Invs()
 

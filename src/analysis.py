@@ -81,9 +81,33 @@ class Setup(object):
         mlog.debug("transrel_pre_sst: {}".format(self.transrel_pre_sst))
         mlog.debug("transrel_post_sst: {}".format(self.transrel_post_sst))
 
-    def infer_transrel(self):
-        # pre = self.dig.infer_from_traces(self.rand_itraces, self.preloop_loc)
-        # mlog.debug("pre: {}".format(pre))
+    def _infer_transrel_symstates(self):
+        ss = self.symstates
+        inloop_symstates = ss[self.inloop_loc]
+        inloop_ss_depths = sorted(inloop_symstates.keys())
+        inloop_fst_symstate = None
+        inloop_snd_symstate = None
+        for depth in inloop_ss_depths:
+            symstates = inloop_symstates[depth].lst
+            if len(symstates) >= 2:
+                inloop_fst_symstate = symstates[0]
+                inloop_snd_symstate = symstates[1]
+        if inloop_fst_symstate and inloop_snd_symstate:
+            inloop_vars = Z3.get_vars(inloop_fst_symstate.slocal).union(Z3.get_vars(inloop_snd_symstate.slocal))
+            inloop_inv_vars = self.inv_decls[self.inloop_loc].exprs(settings.use_reals)
+            inloop_ex_vars = inloop_vars.difference(inloop_inv_vars)
+            mlog.debug("inloop_ex_vars: {}".format(inloop_ex_vars))
+            inloop_fst_symstate = z3.substitute(inloop_fst_symstate.slocal, self.transrel_pre_sst)
+            inloop_snd_symstate = z3.substitute(inloop_snd_symstate.slocal, self.transrel_post_sst)
+            mlog.debug("inloop_fst_symstate: {}".format(inloop_fst_symstate))
+            mlog.debug("inloop_snd_symstate: {}".format(inloop_snd_symstate))
+            inloop_trans_f = z3.Exists(list(inloop_ex_vars), z3.And(inloop_fst_symstate, inloop_snd_symstate))
+            transrel_expr = Z3.qe(inloop_trans_f)
+            mlog.debug("inloop_trans_f: {}".format(transrel_expr))
+            return transrel_expr
+        return None
+
+    def _infer_transrel_traces(self):
         old_do_ieqs = dig_settings.DO_IEQS
         # dig_settings.DO_IEQS = False
         transrel_itraces = {}
@@ -115,32 +139,27 @@ class Setup(object):
         transrel_invs = ZInvs(transrel_invs)
         assert not transrel_invs.is_unsat(), transrel_invs
         transrel_expr = transrel_invs.expr()
-
-        if self.symstates:
-            ss = self.symstates
-            inloop_symstates = ss[self.inloop_loc]
-            inloop_ss_depths = sorted(inloop_symstates.keys())
-            inloop_fst_symstate = None
-            inloop_snd_symstate = None
-            for depth in inloop_ss_depths:
-                symstates = inloop_symstates[depth].lst
-                if len(symstates) >= 2:
-                    inloop_fst_symstate = symstates[0]
-                    inloop_snd_symstate = symstates[1]
-            if inloop_fst_symstate and inloop_snd_symstate:
-                inloop_vars = Z3.get_vars(inloop_fst_symstate.slocal).union(Z3.get_vars(inloop_snd_symstate.slocal))
-                inloop_inv_vars = self.inv_decls[self.inloop_loc].exprs(settings.use_reals)
-                inloop_ex_vars = inloop_vars.difference(inloop_inv_vars)
-                mlog.debug("inloop_ex_vars: {}".format(inloop_ex_vars))
-                inloop_fst_symstate = z3.substitute(inloop_fst_symstate.slocal, self.transrel_pre_sst)
-                inloop_snd_symstate = z3.substitute(inloop_snd_symstate.slocal, self.transrel_post_sst)
-                mlog.debug("inloop_fst_symstate: {}".format(inloop_fst_symstate))
-                mlog.debug("inloop_snd_symstate: {}".format(inloop_snd_symstate))
-                inloop_trans_f = z3.Exists(list(inloop_ex_vars), z3.And(inloop_fst_symstate, inloop_snd_symstate))
-                transrel_expr = Z3.qe(inloop_trans_f)
-                mlog.debug("inloop_trans_f: {}".format(transrel_expr))
-
         return transrel_expr
+
+    def infer_transrel(self):
+        if self.symstates:
+            transrel_expr = self._infer_transrel_symstates()
+            if transrel_expr is None:
+                transrel_expr = self._infer_transrel_traces()
+        else:
+            transrel_expr = self._infer_transrel_traces()
+        return transrel_expr
+
+    def infer_precond(self):
+        if not self.symstates:
+            return None
+        else:
+            ss = self.symstates
+            preloop_symstates = ss[self.preloop_loc]
+            preloop_ss_depths = sorted(preloop_symstates.keys())
+            for depth in preloop_ss_depths:
+                symstates = preloop_symstates[depth]
+                return symstates.myexpr
 
     def gen_transrel_sst(self):
         inloop_inv_decls = self.inv_decls[self.inloop_loc]
@@ -166,12 +185,41 @@ class NonTerm(object):
         self.transrel_expr = config.infer_transrel()
         self.tCexs = []
 
-    def verify(self, rcs):
+    def verify(self, rcs, precond):
         assert rcs is None or isinstance(rcs, ZInvs), rcs
         _config = self._config
+
+        def _mk_cex_inps(models, inv_decls):
+            assert isinstance(models, list) and models, models
+            if all(isinstance(m, z3.ModelRef) for m in models):
+                cexs, _ = Z3.extract(models)
+            else:
+                cexs = [{x: sage.all.sage_eval(str(v)) for (x, v) in model}
+                        for model in models]
+            icexs = set()
+            for cex in cexs:
+                # mlog.debug("cex: {}".format(cex))
+                icexs.add(tuple([cex[v.__str__()] for v in inv_decls]))
+            inps = Inps()
+            inps = inps.merge(icexs, _config.inp_decls)
+            return inps
+
         if rcs is None:
             sCexs = []
-            sCexs.append((None, _config.rand_itraces))
+            if precond is None:
+                mlog.debug("verify: Using random inps")
+                rand_itraces = _config.rand_itraces
+            else:
+                rs, _ = Solver.get_models(precond, _config.nInps, _config.tmpdir, 
+                                          settings.use_random_seed)
+                if isinstance(rs, list) and rs:
+                    mlog.debug("verify: Using random inps from precond")
+                    rs = _mk_cex_inps(rs, _config.inv_decls[_config.preloop_loc].exprs((settings.use_reals)))
+                    rand_itraces = _config.exe.get_traces(rs)
+                else:
+                    mlog.debug("verify: Using random inps")
+                    rand_itraces = _config.rand_itraces
+            sCexs.append((None, rand_itraces)) # invalid_rc, cexs
             return False, sCexs
         else:
             assert rcs, rcs
@@ -179,28 +227,14 @@ class NonTerm(object):
             mlog.debug("rcs_l: {}".format(rcs_l))
             mlog.debug("transrel_expr: {}".format(self.transrel_expr))
 
-            def _mk_cex_inps(models):
-                assert isinstance(models, list) and models, models
-                if all(isinstance(m, z3.ModelRef) for m in models):
-                    cexs, _ = Z3.extract(models)
-                else:
-                    cexs = [{x: sage.all.sage_eval(str(v)) for (x, v) in model}
-                            for model in models]
-                icexs = set()
-                for cex in cexs:
-                    icexs.add(tuple([cex[v.__str__()]
-                                     for v in self.transrel_pre_inv_decls]))
-                inps = Inps()
-                inps = inps.merge(icexs, _config.inp_decls)
-                return inps
-
             def _check(rc):
                 rc_r = z3.substitute(rc, _config.transrel_post_sst)
                 # f = z3.Not(z3.Implies(z3.And(rcs_l, transrel_expr), rc_r))
                 f = z3.And(z3.And(rcs_l, self.transrel_expr), z3.Not(rc_r))
                 mlog.debug("_check: f = {}".format(f))
                 # using_random_seed = True
-                rs, _ = Solver.get_models(f, _config.nInps, _config.tmpdir, settings.use_random_seed)
+                rs, _ = Solver.get_models(f, _config.nInps, _config.tmpdir, 
+                                          settings.use_random_seed)
                 if rs is None:
                     mlog.debug("rs: unknown")
                 elif rs is False:
@@ -208,7 +242,7 @@ class NonTerm(object):
                 else:
                     mlog.debug("rs: sat ({} models)".format(len(rs)))
                     if isinstance(rs, list) and rs:
-                        rs = _mk_cex_inps(rs)
+                        rs = _mk_cex_inps(rs, _config.transrel_pre_inv_decls)
                 return rs
 
             chks = [(rc, _check(rc)) for rc in rcs]
@@ -267,17 +301,18 @@ class NonTerm(object):
             nrcs.add(dnf_neg_term_cond)
             return nrcs
 
-    def prove(self):
+    def prove(self, precond):
         _config = self._config
         mlog.debug("refinement_depth: {}".format(_config.refinement_depth))
         candidateRCS = [(None, 0, [])]
         validRCS = []
+        mlog.debug("precond: {}".format(precond))
         while candidateRCS:
             mlog.debug("candidateRCS: {}".format(candidateRCS))
             rcs, depth, ancestors = candidateRCS.pop()
             mlog.debug("PROVE_NT DEPTH {}: {}".format(depth, rcs))
             if depth < _config.refinement_depth:
-                chk, sCexs = self.verify(rcs)
+                chk, sCexs = self.verify(rcs, precond)
                 # mlog.debug("sCexs: {}".format(sCexs))
                 if chk and not rcs.is_unsat():
                     validRCS.append((rcs, ancestors))
