@@ -73,7 +73,6 @@ if __name__ == "__main__":
     ag("--dig_normtmp", "--dig_normtmp",
        action="store_true",
        help="DIG: don't remove tmp folder")
-
     args = aparser.parse_args()
 
     settings.run_dig = args.run_dig

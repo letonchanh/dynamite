@@ -223,8 +223,10 @@ class NonTerm(object):
                     rand_itraces = _config.rand_itraces
             sCexs.append((None, rand_itraces)) # invalid_rc, cexs
             return False, sCexs
+        elif not rcs:
+            return True, None 
         else:
-            assert rcs, rcs
+            # assert rcs, rcs
             rcs_l = z3.substitute(rcs.expr(), _config.transrel_pre_sst)
             mlog.debug("rcs_l: {}".format(rcs_l))
             mlog.debug("transrel_expr: {}".format(self.transrel_expr))
