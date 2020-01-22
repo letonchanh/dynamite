@@ -83,28 +83,29 @@ class Setup(object):
 
     def _infer_transrel_symstates(self):
         ss = self.symstates
-        inloop_symstates = ss[self.inloop_loc]
-        inloop_ss_depths = sorted(inloop_symstates.keys())
-        inloop_fst_symstate = None
-        inloop_snd_symstate = None
-        for depth in inloop_ss_depths:
-            symstates = inloop_symstates[depth].lst
-            if len(symstates) >= 2:
-                inloop_fst_symstate = symstates[0]
-                inloop_snd_symstate = symstates[1]
-        if inloop_fst_symstate and inloop_snd_symstate:
-            inloop_vars = Z3.get_vars(inloop_fst_symstate.slocal).union(Z3.get_vars(inloop_snd_symstate.slocal))
-            inloop_inv_vars = self.inv_decls[self.inloop_loc].exprs(settings.use_reals)
-            inloop_ex_vars = inloop_vars.difference(inloop_inv_vars)
-            mlog.debug("inloop_ex_vars: {}".format(inloop_ex_vars))
-            inloop_fst_symstate = z3.substitute(inloop_fst_symstate.slocal, self.transrel_pre_sst)
-            inloop_snd_symstate = z3.substitute(inloop_snd_symstate.slocal, self.transrel_post_sst)
-            mlog.debug("inloop_fst_symstate: {}".format(inloop_fst_symstate))
-            mlog.debug("inloop_snd_symstate: {}".format(inloop_snd_symstate))
-            inloop_trans_f = z3.Exists(list(inloop_ex_vars), z3.And(inloop_fst_symstate, inloop_snd_symstate))
-            transrel_expr = Z3.qe(inloop_trans_f)
-            mlog.debug("inloop_trans_f: {}".format(transrel_expr))
-            return transrel_expr
+        if self.inloop_loc in ss:
+            inloop_symstates = ss[self.inloop_loc]
+            inloop_ss_depths = sorted(inloop_symstates.keys())
+            inloop_fst_symstate = None
+            inloop_snd_symstate = None
+            for depth in inloop_ss_depths:
+                symstates = inloop_symstates[depth].lst
+                if len(symstates) >= 2:
+                    inloop_fst_symstate = symstates[0]
+                    inloop_snd_symstate = symstates[1]
+            if inloop_fst_symstate and inloop_snd_symstate:
+                inloop_vars = Z3.get_vars(inloop_fst_symstate.slocal).union(Z3.get_vars(inloop_snd_symstate.slocal))
+                inloop_inv_vars = self.inv_decls[self.inloop_loc].exprs(settings.use_reals)
+                inloop_ex_vars = inloop_vars.difference(inloop_inv_vars)
+                mlog.debug("inloop_ex_vars: {}".format(inloop_ex_vars))
+                inloop_fst_symstate = z3.substitute(inloop_fst_symstate.slocal, self.transrel_pre_sst)
+                inloop_snd_symstate = z3.substitute(inloop_snd_symstate.slocal, self.transrel_post_sst)
+                mlog.debug("inloop_fst_symstate: {}".format(inloop_fst_symstate))
+                mlog.debug("inloop_snd_symstate: {}".format(inloop_snd_symstate))
+                inloop_trans_f = z3.Exists(list(inloop_ex_vars), z3.And(inloop_fst_symstate, inloop_snd_symstate))
+                transrel_expr = Z3.qe(inloop_trans_f)
+                mlog.debug("inloop_trans_f: {}".format(transrel_expr))
+                return transrel_expr
         return None
 
     def _infer_transrel_traces(self):
@@ -137,7 +138,8 @@ class Setup(object):
         dig_settings.DO_IEQS = old_do_ieqs
 
         transrel_invs = ZInvs(transrel_invs)
-        assert not transrel_invs.is_unsat(), transrel_invs
+        if transrel_invs.is_unsat():
+            return None
         transrel_expr = transrel_invs.expr()
         return transrel_expr
 
@@ -307,22 +309,26 @@ class NonTerm(object):
         candidateRCS = [(None, 0, [])]
         validRCS = []
         mlog.debug("precond: {}".format(precond))
-        while candidateRCS:
-            mlog.debug("candidateRCS: {}".format(candidateRCS))
-            rcs, depth, ancestors = candidateRCS.pop()
-            mlog.debug("PROVE_NT DEPTH {}: {}".format(depth, rcs))
-            if depth < _config.refinement_depth:
-                chk, sCexs = self.verify(rcs, precond)
-                # mlog.debug("sCexs: {}".format(sCexs))
-                if chk and not rcs.is_unsat():
-                    validRCS.append((rcs, ancestors))
-                elif sCexs is not None:
-                    for invalid_rc, cexs in sCexs:
-                        nrcs = self.strengthen(rcs, invalid_rc, cexs)
-                        assert nrcs is not None, nrcs
-                        nancestors = copy.deepcopy(ancestors)
-                        nancestors.append((depth, rcs))
-                        candidateRCS.append((nrcs, depth+1, nancestors))
-        for tCex in self.tCexs:
-            mlog.debug("tCex: {}".format(tCex))
-        return validRCS
+
+        if self.transrel_expr is None:
+            return validRCS
+        else:
+            while candidateRCS:
+                mlog.debug("candidateRCS: {}".format(candidateRCS))
+                rcs, depth, ancestors = candidateRCS.pop()
+                mlog.debug("PROVE_NT DEPTH {}: {}".format(depth, rcs))
+                if depth < _config.refinement_depth:
+                    chk, sCexs = self.verify(rcs, precond)
+                    # mlog.debug("sCexs: {}".format(sCexs))
+                    if chk and not rcs.is_unsat():
+                        validRCS.append((rcs, ancestors))
+                    elif sCexs is not None:
+                        for invalid_rc, cexs in sCexs:
+                            nrcs = self.strengthen(rcs, invalid_rc, cexs)
+                            assert nrcs is not None, nrcs
+                            nancestors = copy.deepcopy(ancestors)
+                            nancestors.append((depth, rcs))
+                            candidateRCS.append((nrcs, depth+1, nancestors))
+            for tCex in self.tCexs:
+                mlog.debug("tCex: {}".format(tCex))
+            return validRCS
