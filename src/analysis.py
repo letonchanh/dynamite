@@ -47,11 +47,11 @@ class Setup(object):
                 import alg
                 dig = alg.DigSymStatesC(inp)
                 ss = dig.symstates.ss
-                mlog.debug("SymStates ({}): {}".format(type(ss), ss))
-                for loc, depthss in ss.items():
-                    for depth, states in depthss.items():
-                        for s in states.lst:
-                            mlog.debug("SymState ({}, {}):\n{}\n{}".format(type(s), s in states, s, s.expr))
+                # mlog.debug("SymStates ({}): {}".format(type(ss), ss))
+                # for loc, depthss in ss.items():
+                #     for depth, states in depthss.items():
+                #         for s in states.lst:
+                #             mlog.debug("SymState ({}, {}):\n{}\n{}".format(type(s), s in states, s, s.expr))
                 self.symstates = ss
 
             inp_decls, inv_decls, mainQ_name = src.inp_decls, src.inv_decls, src.mainQ_name
