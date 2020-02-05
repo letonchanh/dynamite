@@ -105,12 +105,13 @@ if __name__ == "__main__":
  
         config = Setup(seed, inp)
         precond = config.infer_precond()
+        mlog.debug("precond: {}".format(precond))
         nt_prover = NonTerm(config) 
-        validRCS = nt_prover.prove(precond)
+        validRCS = nt_prover.prove(None)
         mlog.debug("validRCS: {}".format(validRCS))
         for rcs, ancestors in validRCS:
             f = Z3.to_dnf(rcs.simplify())
-            mlog.debug("rcs: {}".format(f))
+            mlog.debug("(simplified) rcs: {}".format(f))
             for depth, ancestor in ancestors:
                 if ancestor is None:
                     ancestor_ = None

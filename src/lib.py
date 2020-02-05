@@ -83,7 +83,7 @@ class Inference(object):
         self.inv_decls = inv_decls
 
     def infer_from_traces(self, itraces, traceid, inps={}):
-        # try:
+        try:
             dtraces = DTraces()
             if not inps:
                 inps = itraces.keys()
@@ -96,14 +96,15 @@ class Inference(object):
             import alg as dig_alg
             dig = dig_alg.DigTraces.from_dtraces(self.inv_decls, dtraces)
             dtraces.vwrite(self.inv_decls, Path(traceid + '.tcs'))
+            
             invs, traces = dig.start(self.seed, self.maxdeg)
             mlog.debug("invs: {}".format(invs)) # <class 'data.inv.invs.DInvs'>
             if traceid in invs:
                 return invs[traceid]
             else:
                 return Invs()
-        # except KeyError, AssertionError:
-        #     return Invs()
+        except:
+            return Invs()
 
 class Solver(object):
     def __init__(self):
