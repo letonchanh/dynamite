@@ -41,10 +41,12 @@ class Bin(Prog):
         target = self.target
         exe = target.GetExecutable().GetFilename()
         main_bp = target.BreakpointCreateByName("main", exe)
+        vassume_bp = target.BreakpointCreateByName(dig_settings.ASSUME_INDICATOR, exe)
         vtrace_bps = target.BreakpointCreateByRegex("^" + dig_settings.TRACE_INDICATOR, exe)
         mainQ_bps = target.BreakpointCreateByRegex("^" + dig_settings.MAINQ_FUN, exe)
 
         mlog.debug("main_bp: {}".format(main_bp))
+        mlog.debug("vassume_bp: {}".format(vassume_bp))
         mlog.debug("vtrace_bps: {}".format(vtrace_bps))
         mlog.debug("mainQ_bps: {}".format(mainQ_bps))
 
@@ -124,14 +126,24 @@ class Bin(Prog):
             function = frame.GetFunction()
             # mlog.debug("function: {}".format(function))
             func_name = function.GetName()
+            if func_name == dig_settings.ASSUME_INDICATOR:
+                assume_cond = frame.GetVariables(True, True, True, True)
+                mlog.debug("assume_cond: {}".format(assume_cond))
+                assert len(assume_cond) == 1
+                if assume_cond[0].GetValue() == '0':
+                    break
+                else:
+                    process.Continue()
+            
             if func_name == self.inloop_loc:
                 cnt = cnt + 1
             if func_name in self.inv_decls:
                 inv_decl = self.inv_decls[func_name]
+                mlog.debug("inv_decl: {}".format(inv_decl))
                 vars = frame.GetVariables(True, True, True, True)
                 dv = dict([(v.GetName(), v.GetValue()) for v in vars])
                 trace = func_name + ': ' + (' '.join(map(str, [dv[s.name] for s in inv_decl])))
-                # mlog.debug("trace: {}".format(trace))
+                mlog.debug("trace: {}".format(trace))
                 traces.append(trace)
             process.Continue()
         process.Kill()
