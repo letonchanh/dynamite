@@ -15,8 +15,8 @@ public class Trigonometric_Sin {
 
     public static void main (String[] args) {
         int bnd = Integer.parseInt(args[0]);
-        int a = Nondet.getInt();
-        int x = Nondet.getInt();
+        int a = 0; //Nondet.getInt();
+        int x = 0; //Nondet.getInt();
         double y = Nondet.getDouble();
         mainQ(bnd, a, x, y);
     }
