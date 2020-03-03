@@ -6,7 +6,6 @@
 - Install Java JDK 8
     ```
     sudo apt install openjdk-8-jdk
-    echo "export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64" >> ~/.bashrc
     ```
     
 - NOTE: Every following step is started at `~/tools` folder
@@ -17,10 +16,6 @@
     tar xvf sage-9.0-Ubuntu_18.04-x86_64.tar.bz2
     cd SageMath
     ./sage
-    echo "export SAGE_ROOT=~/tools/SageMath" >> ~/.bashrc
-    echo "export PATH=$PATH:$SAGE_ROOT/local/bin" >> ~/.bashrc
-    echo "export PYTHONPATH=$PYTHONPATH:$SAGE_ROOT/local/lib/python3.7/site-packages" >> ~/.bashrc
-    echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$SAGE_ROOT/local/lib" >> ~/.bashrc
     ```
     
 - Clone Dig
@@ -45,8 +40,6 @@
     ant
     cd ../jpf-symbc/
     ant
-    echo "export JPF_HOME=~/tools/jpf" >> ~/.bashrc
-    echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$JPF_HOME/jpf-symbc/lib" >> ~/.bashrc
     ```
     
 - Install Z3 with Python3 from source
@@ -54,4 +47,35 @@
     git clone https://github.com/Z3Prover/z3.git
     git checkout z3-4.8.3
     python scripts/mk_make.py --python
+    sudo make install
+    ```
+    
+- Install CIVL
+    ```
+    wget http://vsl.cis.udel.edu:8080/lib/sw/civl/1.20/r5259/release/CIVL-1.20_5259.tgz
+    tar xvf CIVL-1.20_5259.tgz
+    ```
+    
+- Install LLDB
+    ```
+    sudo apt-get install cmake ninja-build build-essential subversion swig libedit-dev libncurses5-dev
+    cd llvm-project
+    mkdir build
+    cd build
+    cmake -G Ninja -DLLVM_ENABLE_PROJECTS="clang;lldb" -DPYTHON_EXECUTABLE="~/tools/SageMath/local/bin/python3" -DLLDB_CAN_USE_LLDB_SERVER=True -DCMAKE_INSTALL_PREFIX=~/tools/llvm -DCMAKE_BUILD_TYPE=Release ../llvm
+    ninja lldb
+    ninja lldb-server
+    ```
+    
+- Config in `bashrc`
+    ```
+    export SAGE_ROOT=~/tools/SageMath
+    export Z3=~/tools/z3
+    export LLVM=~/tools/llvm-project/build
+    export JPF_HOME=~/tools/jpf
+    export CIVL_HOME=/tools/civl
+    export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+    export PATH=$SAGE_ROOT/local/bin:$LLVM/bin:$Z3/build:$PATH
+    export PYTHONPATH=$SAGE_ROOT/local/lib/python3.7/site-packages:$LLVM/lib/python3.7/site-packages:$Z3/build/python:$PYTHONPATH
+    export LD_LIBRARY_PATH=$SAGE_ROOT/local/lib:$JPF_HOME/jpf-symbc/lib:$Z3/build:$LD_LIBRARY_PATH
     ```
