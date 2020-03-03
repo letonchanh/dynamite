@@ -9,7 +9,14 @@
     ```
     
 - NOTE: Every following step is started at `~/tools` folder
-
+    
+- Clone Dig
+    ```
+    git clone https://gitlab.com/nguyenthanhvuh/dig.git
+    cd dig/
+    git checkout dev
+    ```
+    
 - Install SageMath
     ```
     wget http://mirrors.mit.edu/sage/linux/64bit/sage-9.0-Ubuntu_18.04-x86_64.tar.bz2
@@ -18,11 +25,12 @@
     ./sage
     ```
     
-- Clone Dig
+- Install Z3 with Python3 from source
     ```
-    git clone https://gitlab.com/nguyenthanhvuh/dig.git
-    cd dig/
-    git checkout dev
+    git clone https://github.com/Z3Prover/z3.git
+    git checkout z3-4.8.3
+    python scripts/mk_make.py --python
+    sudo make install
     ```
     
 - Install JavaPathFinder
@@ -40,14 +48,6 @@
     ant
     cd ../jpf-symbc/
     ant
-    ```
-    
-- Install Z3 with Python3 from source
-    ```
-    git clone https://github.com/Z3Prover/z3.git
-    git checkout z3-4.8.3
-    python scripts/mk_make.py --python
-    sudo make install
     ```
     
 - Install CIVL
@@ -78,4 +78,11 @@
     export PATH=$SAGE_ROOT/local/bin:$LLVM/bin:$Z3/build:$PATH
     export PYTHONPATH=$SAGE_ROOT/local/lib/python3.7/site-packages:$LLVM/lib/python3.7/site-packages:$Z3/build/python:$PYTHONPATH
     export LD_LIBRARY_PATH=$SAGE_ROOT/local/lib:$JPF_HOME/jpf-symbc/lib:$Z3/build:$LD_LIBRARY_PATH
+    ```
+    
+- Run Dynamo
+    ```
+    git clone --recurse-submodules https://github.com/letonchanh/dynamo.git
+    cd dynamo/src
+    python3 dynamo.py path_to_C_Java_or_Binary_example
     ```
