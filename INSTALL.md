@@ -17,6 +17,11 @@
     git checkout dev
     ```
     
+- Clone Dynamo
+    ```
+    git clone --recurse-submodules https://github.com/letonchanh/dynamo.git
+    ```
+    
 - Install SageMath
     ```
     wget http://mirrors.mit.edu/sage/linux/64bit/sage-9.0-Ubuntu_18.04-x86_64.tar.bz2
@@ -73,6 +78,7 @@
     opam init
     opam switch create 4.05.0
     opam install oasis cil camlp4
+    cd dynamo/deps/dig/src/ocaml
     oasis setup
     make
     mv instr.native instr.exe
@@ -93,7 +99,6 @@
     
 - Run Dynamo
     ```
-    git clone --recurse-submodules https://github.com/letonchanh/dynamo.git
     cd dynamo/src
     python3 dynamo.py path_to_C_Java_or_Binary_example
     ```
