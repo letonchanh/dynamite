@@ -38,7 +38,7 @@
     sudo make install
     ```
     
-- Install JavaPathFinder
+- Install JavaPathFinder (optional)
     ```
     mkdir jpf; cd jpf
     git clone https://github.com/javapathfinder/jpf-core
@@ -55,13 +55,13 @@
     ant
     ```
     
-- Install CIVL
+- Install CIVL (optional)
     ```
     wget http://vsl.cis.udel.edu:8080/lib/sw/civl/1.20/r5259/release/CIVL-1.20_5259.tgz
     tar xvf CIVL-1.20_5259.tgz
     ```
     
-- Install LLDB
+- Install LLDB (optional)
     ```
     sudo apt-get install cmake ninja-build build-essential subversion swig libedit-dev libncurses5-dev
     cd llvm-project
