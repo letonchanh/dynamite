@@ -1,6 +1,6 @@
 - Install Ubuntu packages
     ```
-    sudo apt-get install python ant binutils make
+    sudo apt-get install python ant binutils make unzip bubblewrap m4
     ```
     
 - Install Java JDK 8
@@ -65,6 +65,17 @@
     cmake -G Ninja -DLLVM_ENABLE_PROJECTS="clang;lldb" -DPYTHON_EXECUTABLE="~/tools/SageMath/local/bin/python3" -DLLDB_CAN_USE_LLDB_SERVER=True -DCMAKE_INSTALL_PREFIX=~/tools/llvm -DCMAKE_BUILD_TYPE=Release ../llvm
     ninja lldb
     ninja lldb-server
+    ```
+    
+- Install OCaml
+    ```
+    sh <(curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)
+    opam init
+    opam switch create 4.05.0
+    opam install oasis cil camlp4
+    oasis setup
+    make
+    mv instr.native instr.exe
     ```
     
 - Config in `bashrc`
