@@ -1,6 +1,6 @@
 import tempfile
 import copy
-import bin
+# import bin
 from utils import settings
 from utils.logic import *
 from lib import *
@@ -12,7 +12,7 @@ import helpers.src as dig_src
 import data.prog as dig_prog
 from data.prog import Symb, Symbs
 from helpers.miscs import Z3, Miscs
-from bin import Bin
+# from bin import Bin
 
 mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
 
@@ -33,6 +33,7 @@ class Setup(object):
         self.symstates = None
         
         if is_binary_inp:
+            from bin import Bin
             prog = Bin(self.inloop_loc, inp)
             inp_decls, inv_decls, mainQ_name = prog.parse()
         else:
