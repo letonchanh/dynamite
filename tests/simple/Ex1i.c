@@ -47,7 +47,7 @@ void mainQ(int x, int y) {
 }
 
 void main(int argc, char **argv){
-    vloop(atoi(argv[1]), atoi(argv[2]));
+    mainQ(atoi(argv[1]), atoi(argv[2]));
 }
 
 /*
