@@ -17,6 +17,11 @@
     git checkout dev
     ```
     
+- Clone Dynamo
+    ```
+    git clone --recurse-submodules https://github.com/letonchanh/dynamo.git
+    ```
+    
 - Install SageMath
     ```
     wget http://mirrors.mit.edu/sage/linux/64bit/sage-9.0-Ubuntu_18.04-x86_64.tar.bz2
@@ -33,7 +38,7 @@
     sudo make install
     ```
     
-- Install JavaPathFinder
+- Install JavaPathFinder (optional)
     ```
     mkdir jpf; cd jpf
     git clone https://github.com/javapathfinder/jpf-core
@@ -50,13 +55,13 @@
     ant
     ```
     
-- Install CIVL
+- Install CIVL (optional)
     ```
     wget http://vsl.cis.udel.edu:8080/lib/sw/civl/1.20/r5259/release/CIVL-1.20_5259.tgz
     tar xvf CIVL-1.20_5259.tgz
     ```
     
-- Install LLDB
+- Install LLDB (optional)
     ```
     sudo apt-get install cmake ninja-build build-essential subversion swig libedit-dev libncurses5-dev
     cd llvm-project
@@ -73,6 +78,7 @@
     opam init
     opam switch create 4.05.0
     opam install oasis cil camlp4
+    cd dynamo/deps/dig/src/ocaml
     oasis setup
     make
     mv instr.native instr.exe
@@ -93,7 +99,6 @@
     
 - Run Dynamo
     ```
-    git clone --recurse-submodules https://github.com/letonchanh/dynamo.git
     cd dynamo/src
     python3 dynamo.py path_to_C_Java_or_Binary_example
     ```
