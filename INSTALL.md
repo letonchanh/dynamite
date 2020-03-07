@@ -64,6 +64,8 @@
 - Install LLDB (optional)
     ```
     sudo apt-get install cmake ninja-build build-essential subversion swig libedit-dev libncurses5-dev
+    git clone https://github.com/llvm/llvm-project.git
+    git checkout llvmorg-9.0.1
     cd llvm-project
     mkdir build
     cd build
