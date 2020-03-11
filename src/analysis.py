@@ -18,10 +18,12 @@ mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
 
 class Setup(object):
     def __init__(self, seed, inp):
-        is_java_inp = inp.endswith(".java") or inp.endswith(".class")
-        is_c_inp = inp.endswith(".c")
-        is_binary_inp = self.is_binary(inp)
-        assert (is_java_inp or is_c_inp or is_binary_inp), inp
+        self.inp = inp
+        self.seed = seed
+        self.is_java_inp = inp.endswith(".java") or inp.endswith(".class")
+        self.is_c_inp = inp.endswith(".c")
+        self.is_binary_inp = self.is_binary(inp)
+        assert (self.is_java_inp or self.is_c_inp or self.is_binary_inp), inp
 
         self.nInps = 100
         self.preloop_loc = dig_settings.TRACE_INDICATOR + '1' # vtrace1
@@ -32,20 +34,20 @@ class Setup(object):
         self.tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
         self.symstates = None
         
-        if is_binary_inp:
+        if self.is_binary_inp:
             from bin import Bin
             prog = Bin(self.inloop_loc, inp)
             inp_decls, inv_decls, mainQ_name = prog.parse()
         else:
-            if is_java_inp:
+            if self.is_java_inp:
                 from helpers.src import Java as java_src
                 src = java_src(Path(inp), self.tmpdir)
                 exe_cmd = dig_settings.Java.JAVA_RUN(tracedir=src.tracedir, funname=src.funname)
             else:
                 from helpers.src import C as c_src
-                src = c_src(Path(inp), self.tmpdir, mainQ="vloop")
-                exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
                 import alg
+                src = c_src(Path(inp), self.tmpdir)
+                exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
                 dig = alg.DigSymStatesC(inp)
                 ss = dig.symstates.ss
                 # mlog.debug("SymStates ({}): {}".format(type(ss), ss))
@@ -70,7 +72,7 @@ class Setup(object):
         self.inv_decls = inv_decls
         self.mainQ_name = mainQ_name
         self.exe = Execution(prog)
-        self.dig = Inference(self.inv_decls, seed)
+        self.dig = Inference(self.inv_decls, self.seed)
         self.cl = Classification(self.preloop_loc, self.inloop_loc, self.postloop_loc)
 
         rand_inps = self.exe.gen_rand_inps(self.nInps)
@@ -165,8 +167,21 @@ class Setup(object):
                 return symstates.myexpr
 
     def get_loop_info(self):
-        postloop_invs = self.dig.infer_from_traces(self.rand_itraces, self.postloop_loc)
-        mlog.debug("postloop_invs: {}".format(postloop_invs))
+        if self.is_c_inp:
+            from helpers.src import C as c_src
+            tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
+            src = c_src(Path(self.inp), tmpdir, mainQ="vloop")
+            exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
+            inp_decls, inv_decls, mainQ_name = src.inp_decls, src.inv_decls, src.mainQ_name
+            prog = dig_prog.Prog(exe_cmd, inp_decls, inv_decls)
+            exe = Execution(prog)
+            dig = Inference(inv_decls, self.seed)
+            rand_inps = exe.gen_rand_inps(self.nInps)
+            rand_itraces = exe.get_traces(rand_inps)
+            postloop_invs = dig.infer_from_traces(rand_itraces, self.postloop_loc)
+            inloop_invs = dig.infer_from_traces(rand_itraces, self.inloop_loc)
+            mlog.debug("postloop_invs: {}".format(postloop_invs))
+            mlog.debug("inloop_invs: {}".format(inloop_invs))
 
     def gen_transrel_sst(self):
         inloop_inv_decls = self.inv_decls[self.inloop_loc]
