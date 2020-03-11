@@ -46,16 +46,17 @@ class Setup(object):
             else:
                 from helpers.src import C as c_src
                 import alg
+                mlog.debug("Create C source for mainQ")
                 src = c_src(Path(inp), self.tmpdir)
                 exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
-                dig = alg.DigSymStatesC(inp)
-                ss = dig.symstates.ss
+                # dig = alg.DigSymStatesC(inp)
+                # ss = dig.symstates.ss
                 # mlog.debug("SymStates ({}): {}".format(type(ss), ss))
                 # for loc, depthss in ss.items():
                 #     for depth, states in depthss.items():
                 #         for s in states.lst:
                 #             mlog.debug("SymState ({}, {}):\n{}\n{}".format(type(s), s in states, s, s.expr))
-                self.symstates = ss
+                # self.symstates = ss
 
             inp_decls, inv_decls, mainQ_name = src.inp_decls, src.inv_decls, src.mainQ_name
             prog = dig_prog.Prog(exe_cmd, inp_decls, inv_decls)
@@ -170,6 +171,7 @@ class Setup(object):
         if self.is_c_inp:
             from helpers.src import C as c_src
             tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
+            mlog.debug("Create C source for vloop")
             src = c_src(Path(self.inp), tmpdir, mainQ="vloop")
             exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
             inp_decls, inv_decls, mainQ_name = src.inp_decls, src.inv_decls, src.mainQ_name
@@ -178,8 +180,9 @@ class Setup(object):
             dig = Inference(inv_decls, self.seed)
             rand_inps = exe.gen_rand_inps(self.nInps)
             rand_itraces = exe.get_traces(rand_inps)
-            postloop_invs = dig.infer_from_traces(rand_itraces, self.postloop_loc)
-            inloop_invs = dig.infer_from_traces(rand_itraces, self.inloop_loc)
+            postloop_invs = ZInvs(dig.infer_from_traces(rand_itraces, self.postloop_loc))
+            inloop_invs = ZInvs(dig.infer_from_traces(rand_itraces, self.inloop_loc))
+            f_coverage = z3.Or(postloop_invs.expr(), inloop_invs.expr())
             mlog.debug("postloop_invs: {}".format(postloop_invs))
             mlog.debug("inloop_invs: {}".format(inloop_invs))
 
