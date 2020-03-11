@@ -104,8 +104,9 @@ if __name__ == "__main__":
         from analysis import Setup, NonTerm
  
         config = Setup(seed, inp)
-        precond = config.infer_precond()
-        mlog.debug("precond: {}".format(precond))
+        # precond = config.infer_precond()
+        # mlog.debug("precond: {}".format(precond))
+        config.get_loop_info()
         nt_prover = NonTerm(config) 
         validRCS = nt_prover.prove(None)
         mlog.debug("validRCS: {}".format(validRCS))

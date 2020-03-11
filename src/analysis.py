@@ -43,7 +43,7 @@ class Setup(object):
                 exe_cmd = dig_settings.Java.JAVA_RUN(tracedir=src.tracedir, funname=src.funname)
             else:
                 from helpers.src import C as c_src
-                src = c_src(Path(inp), self.tmpdir)
+                src = c_src(Path(inp), self.tmpdir, mainQ="vloop")
                 exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
                 import alg
                 dig = alg.DigSymStatesC(inp)
@@ -163,6 +163,10 @@ class Setup(object):
             for depth in preloop_ss_depths:
                 symstates = preloop_symstates[depth]
                 return symstates.myexpr
+
+    def get_loop_info(self):
+        postloop_invs = self.dig.infer_from_traces(self.rand_itraces, self.postloop_loc)
+        mlog.debug("postloop_invs: {}".format(postloop_invs))
 
     def gen_transrel_sst(self):
         inloop_inv_decls = self.inv_decls[self.inloop_loc]
