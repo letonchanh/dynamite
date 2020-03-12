@@ -182,13 +182,10 @@ class Solver(object):
         rand_inps = exe.gen_rand_inps(len(ms))
         for m in ms:
             rand_inp = rand_inps.pop()
-            mlog.debug("rand_inp ({}): {}".format(type(rand_inp), rand_inp))
             d = dict(zip(rand_inp.ss, rand_inp.vs))
-            inp = [m[v.__str__()] if v.__str__() in m 
+            inp = [m[str(v)] if str(v) in m 
                    else sage.all.sage_eval(str(d[str(v)]))
                    for v in inp_decls]
-            for i in inp:
-                mlog.debug("inp {}: {}".format(type(i), i))
             s.add(tuple(inp))
         inps = Inps()
         inps = inps.merge(s, tuple(inp_decls))

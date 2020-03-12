@@ -180,23 +180,31 @@ class Setup(object):
             dig = Inference(inv_decls, self.seed)
             rand_inps = exe.gen_rand_inps(self.nInps)
             rand_itraces = exe.get_traces(rand_inps)
-            postloop_invs = ZInvs(dig.infer_from_traces(rand_itraces, self.postloop_loc))
-            inloop_invs = ZInvs(dig.infer_from_traces(rand_itraces, self.inloop_loc))
-            mlog.debug("postloop_invs: {}".format(postloop_invs))
-            mlog.debug("inloop_invs: {}".format(inloop_invs))
-            covered_f = z3.Or(postloop_invs.expr(), inloop_invs.expr())
-            uncovered_f = z3.Not(covered_f)
-            rs, _ = Solver.get_models(uncovered_f, 
-                                      self.nInps, self.tmpdir, 
-                                      settings.use_random_seed)
-            mlog.debug("uncovered inps: {}".format(rs))
-            if isinstance(rs, list) and rs:
-                mlog.debug("verify: Using random inps from precond")
-                rs = Solver.mk_inps_from_models(rs, self.inp_decls.exprs((settings.use_reals)), exe)
-                rand_itraces = exe.get_traces(rs)
-                mlog.debug("uncovered rand_itraces: {}".format(rand_itraces))
-            else:
-                return inloop_invs
+            loop_cond = None
+
+            while loop_cond is None:
+                postloop_invs = ZInvs(dig.infer_from_traces(rand_itraces, self.postloop_loc))
+                inloop_invs = ZInvs(dig.infer_from_traces(rand_itraces, self.inloop_loc))
+                mlog.debug("postloop_invs: {}".format(postloop_invs))
+                mlog.debug("inloop_invs: {}".format(inloop_invs))
+                covered_f = z3.Or(postloop_invs.expr(), inloop_invs.expr())
+                uncovered_f = z3.Not(covered_f)
+                models, _ = Solver.get_models(uncovered_f, 
+                                              self.nInps, self.tmpdir, 
+                                              settings.use_random_seed)
+                if isinstance(models, list) and models:
+                    ninps = Solver.mk_inps_from_models(models, self.inp_decls.exprs((settings.use_reals)), exe)
+                    mlog.debug("uncovered inps: {}".format(ninps))
+                    mlog.debug("Starting get_traces")
+                    nitraces = exe.get_traces(ninps)
+                    mlog.debug("get_traces stopped")
+                    # mlog.debug("uncovered rand_itraces: {}".format(nitraces))
+                    rand_itraces.update(nitraces)
+                else:
+                    loop_cond = inloop_invs
+            
+            mlog.debug("loop_cond: {}".format(loop_cond))
+            return loop_cond
 
 
     def gen_transrel_sst(self):
@@ -237,7 +245,7 @@ class NonTerm(object):
                                           settings.use_random_seed)
                 if isinstance(rs, list) and rs:
                     mlog.debug("verify: Using random inps from precond")
-                    rs = Solver.mk_inps_from_models(rs, _config.inp_decls.exprs((settings.use_reals)))
+                    rs = Solver.mk_inps_from_models(rs, _config.inp_decls.exprs((settings.use_reals)), _config.exe)
                     rand_itraces = _config.exe.get_traces(rs)
                 else:
                     mlog.debug("verify: Using random inps")
@@ -267,7 +275,7 @@ class NonTerm(object):
                 else:
                     mlog.debug("rs: sat ({} models)".format(len(rs)))
                     if isinstance(rs, list) and rs:
-                        rs = mk_inps_from_models(rs, _config.transrel_pre_inv_decls)
+                        rs = Solver.mk_inps_from_models(rs, _config.transrel_pre_inv_decls, _config.exe)
                 return rs
 
             chks = [(rc, _check(rc)) for rc in rcs]
