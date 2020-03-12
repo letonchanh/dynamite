@@ -182,9 +182,15 @@ class Setup(object):
             rand_itraces = exe.get_traces(rand_inps)
             postloop_invs = ZInvs(dig.infer_from_traces(rand_itraces, self.postloop_loc))
             inloop_invs = ZInvs(dig.infer_from_traces(rand_itraces, self.inloop_loc))
-            f_coverage = z3.Or(postloop_invs.expr(), inloop_invs.expr())
             mlog.debug("postloop_invs: {}".format(postloop_invs))
             mlog.debug("inloop_invs: {}".format(inloop_invs))
+            covered_f = z3.Or(postloop_invs.expr(), inloop_invs.expr())
+            uncovered_f = z3.Not(covered_f)
+            rs, _ = Solver.get_models(uncovered_f, 
+                                      self.nInps, self.tmpdir, 
+                                      settings.use_random_seed)
+            mlog.debug("uncovered inps: {}".format(rs))
+
 
     def gen_transrel_sst(self):
         inloop_inv_decls = self.inv_decls[self.inloop_loc]
