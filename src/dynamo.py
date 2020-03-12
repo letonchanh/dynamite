@@ -100,12 +100,7 @@ if __name__ == "__main__":
         maxdeg = 2
         invs, traces = dig.start(seed, maxdeg)
     else:
-        from helpers.miscs import Z3, Miscs
-        from helpers import src as dig_src
-        from helpers import miscs as dig_miscs
-        from data.traces import Inps
-        from data.inv.invs import Invs
-        from utils.logic import *
+        from helpers.miscs import Z3
         from analysis import Setup, NonTerm
  
         config = Setup(seed, inp)

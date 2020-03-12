@@ -1,9 +1,5 @@
 import tempfile
 import copy
-# import bin
-from utils import settings
-from utils.logic import *
-from lib import *
 from pathlib import Path
 
 import settings as dig_settings
@@ -13,6 +9,10 @@ import data.prog as dig_prog
 from data.prog import Symb, Symbs
 from helpers.miscs import Z3, Miscs
 # from bin import Bin
+
+from utils import settings
+from utils.logic import *
+from lib import *
 
 mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
 
