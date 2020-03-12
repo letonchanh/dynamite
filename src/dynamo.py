@@ -25,7 +25,7 @@ if __name__ == "__main__":
     ag("--log_level", "-log_level",
        type=int,
        choices=range(5),
-       default=2,
+       default=4,
        help="set logger info")
 
     ag("--run_dig", "-run_dig",

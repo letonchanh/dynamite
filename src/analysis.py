@@ -190,6 +190,13 @@ class Setup(object):
                                       self.nInps, self.tmpdir, 
                                       settings.use_random_seed)
             mlog.debug("uncovered inps: {}".format(rs))
+            if isinstance(rs, list) and rs:
+                mlog.debug("verify: Using random inps from precond")
+                rs = Solver.mk_inps_from_models(rs, self.inp_decls.exprs((settings.use_reals)), exe)
+                rand_itraces = exe.get_traces(rs)
+                mlog.debug("uncovered rand_itraces: {}".format(rand_itraces))
+            else:
+                return inloop_invs
 
 
     def gen_transrel_sst(self):
@@ -220,21 +227,6 @@ class NonTerm(object):
         assert rcs is None or isinstance(rcs, ZInvs), rcs
         _config = self._config
 
-        def _mk_cex_inps(models, inv_decls):
-            assert isinstance(models, list) and models, models
-            if all(isinstance(m, z3.ModelRef) for m in models):
-                cexs, _ = Z3.extract(models)
-            else:
-                cexs = [{x: sage.all.sage_eval(str(v)) for (x, v) in model}
-                        for model in models]
-            icexs = set()
-            for cex in cexs:
-                # mlog.debug("cex: {}".format(cex))
-                icexs.add(tuple([cex[v.__str__()] for v in inv_decls]))
-            inps = Inps()
-            inps = inps.merge(icexs, _config.inp_decls)
-            return inps
-
         if rcs is None:
             sCexs = []
             if precond is None:
@@ -245,7 +237,7 @@ class NonTerm(object):
                                           settings.use_random_seed)
                 if isinstance(rs, list) and rs:
                     mlog.debug("verify: Using random inps from precond")
-                    rs = _mk_cex_inps(rs, _config.inv_decls[_config.preloop_loc].exprs((settings.use_reals)))
+                    rs = Solver.mk_inps_from_models(rs, _config.inp_decls.exprs((settings.use_reals)))
                     rand_itraces = _config.exe.get_traces(rs)
                 else:
                     mlog.debug("verify: Using random inps")
@@ -275,7 +267,7 @@ class NonTerm(object):
                 else:
                     mlog.debug("rs: sat ({} models)".format(len(rs)))
                     if isinstance(rs, list) and rs:
-                        rs = _mk_cex_inps(rs, _config.transrel_pre_inv_decls)
+                        rs = mk_inps_from_models(rs, _config.transrel_pre_inv_decls)
                 return rs
 
             chks = [(rc, _check(rc)) for rc in rcs]

@@ -19,7 +19,7 @@ class Execution(object):
     def gen_rand_inps(self, nInps):
         inps = Inps()
         inp_decls = self.prog.inp_decls
-        rInps = self.prog.gen_rand_inps(nInps)
+        rInps = self.prog.gen_rand_inps(n_needed=nInps)
         mlog.debug("gen {} random inps".format(len(rInps)))
         # mlog.debug("gen inps: {}".format(rInps))
         rInps = inps.merge(rInps, inp_decls.names)
@@ -169,3 +169,27 @@ class Solver(object):
 
         assert not (isinstance(rs, list) and not rs), rs
         return rs, stat
+
+    @classmethod
+    def mk_inps_from_models(cls, models, inp_decls, exe):
+        assert isinstance(models, list) and models, models
+        if all(isinstance(m, z3.ModelRef) for m in models):
+            ms, _ = Z3.extract(models)
+        else:
+            ms = [{x: sage.all.sage_eval(str(v)) for (x, v) in model}
+                    for model in models]
+        s = set()
+        rand_inps = exe.gen_rand_inps(len(ms))
+        for m in ms:
+            rand_inp = rand_inps.pop()
+            mlog.debug("rand_inp ({}): {}".format(type(rand_inp), rand_inp))
+            d = dict(zip(rand_inp.ss, rand_inp.vs))
+            inp = [m[v.__str__()] if v.__str__() in m 
+                   else sage.all.sage_eval(str(d[str(v)]))
+                   for v in inp_decls]
+            for i in inp:
+                mlog.debug("inp {}: {}".format(type(i), i))
+            s.add(tuple(inp))
+        inps = Inps()
+        inps = inps.merge(s, tuple(inp_decls))
+        return inps
