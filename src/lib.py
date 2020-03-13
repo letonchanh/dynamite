@@ -180,12 +180,17 @@ class Solver(object):
                     for model in models]
         s = set()
         rand_inps = exe.gen_rand_inps(len(ms))
+        mlog.debug("rand_inps: {} - {}\n{}".format(len(ms), len(rand_inps), rand_inps))
         for m in ms:
-            rand_inp = rand_inps.pop()
-            d = dict(zip(rand_inp.ss, rand_inp.vs))
-            inp = [m[str(v)] if str(v) in m 
-                   else sage.all.sage_eval(str(d[str(v)]))
-                   for v in inp_decls]
+            inp = []
+            for v in inp_decls:
+                sv = str(v)
+                if sv in m:
+                    inp.append(m[sv])
+                else:
+                    rand_inp = rand_inps.pop()
+                    d = dict(zip(rand_inp.ss, rand_inp.vs))
+                    inp.append(sage.all.sage_eval(str(d[sv])))
             s.add(tuple(inp))
         inps = Inps()
         inps = inps.merge(s, tuple(inp_decls))
