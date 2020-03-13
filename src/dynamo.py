@@ -106,7 +106,7 @@ if __name__ == "__main__":
         config = Setup(seed, inp)
         # precond = config.infer_precond()
         # mlog.debug("precond: {}".format(precond))
-        config.get_loop_info()
+        config.infer_loop_cond()
         nt_prover = NonTerm(config) 
         validRCS = nt_prover.prove(None)
         mlog.debug("validRCS: {}".format(validRCS))

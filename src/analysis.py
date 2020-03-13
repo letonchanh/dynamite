@@ -167,9 +167,10 @@ class Setup(object):
                 symstates = preloop_symstates[depth]
                 return symstates.myexpr
 
-    def get_loop_info(self):
+    def infer_loop_cond(self):
         if self.is_c_inp:
             from helpers.src import C as c_src
+            import alg
             tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
             mlog.debug("Create C source for vloop")
             src = c_src(Path(self.inp), tmpdir, mainQ="vloop")
@@ -178,6 +179,15 @@ class Setup(object):
             prog = dig_prog.Prog(exe_cmd, inp_decls, inv_decls)
             exe = Execution(prog)
             dig = Inference(inv_decls, self.seed)
+
+            dss = alg.DigSymStatesC(self.inp)
+            ss = dss.symstates.ss
+            mlog.debug("SymStates ({}): {}".format(type(ss), ss))
+            for loc, depthss in ss.items():
+                for depth, states in depthss.items():
+                    for s in states.lst:
+                        mlog.debug("SymState ({}, {}):\n{}\n{}".format(type(s), s in states, s, s.expr))
+
             rand_inps = exe.gen_rand_inps(self.nInps)
             rand_itraces = exe.get_traces(rand_inps)
             loop_cond = None
