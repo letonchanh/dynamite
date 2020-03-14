@@ -224,7 +224,6 @@ class Setup(object):
             mlog.debug("loop_cond: {}".format(loop_cond))
             return loop_cond
 
-
     def gen_transrel_sst(self):
         inloop_inv_decls = self.inv_decls[self.inloop_loc]
         inloop_inv_exprs = inloop_inv_decls.exprs(settings.use_reals)
