@@ -19,21 +19,14 @@ void vloop(int x) {
   int bnd = 10;
   int counter = 0;
 
-  while (x>=0 && x < 15) {
+  while (x>=0 && x < 10) {
     if (counter >= bnd)
       break;
     else
       counter++;
     vtrace2(x);
 
-    // int x0 = x;
-    // int y0 = y;
-
-    x = x + 1;
-
-    // int x1 = x;
-    // int y1 = y;
-    // vtrace4(x0, y0, x1, y1);
+    x = x +  1;
   }
   if (counter < bnd)
     vtrace3(x);

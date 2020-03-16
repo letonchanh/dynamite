@@ -200,7 +200,7 @@ class Setup(object):
                 mlog.debug("postloop_invs: {}".format(postloop_invs))
                 mlog.debug("inloop_invs: {}".format(inloop_invs))
                 if not inloop_invs and no_inloop_invs:
-                    loop_cond = postloop_invs # NOT
+                    loop_cond = postloop_invs.negate()
                 else:
                     if not inloop_invs:
                         no_inloop_invs = True

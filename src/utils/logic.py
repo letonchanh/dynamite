@@ -21,7 +21,15 @@ class ZFormula(set):
             fs = map(lambda f: f.expr() if isinstance(f, ZFormula) else f, self)
             return self.reduce_op(list(fs))
         else:
-            return z3.BoolVal(self.empty_interp())
+            return z3.BoolVal(self.empty_interp)
+
+    def negate(self):
+        if self:
+            fs = map(lambda f: f.expr() if isinstance(f, ZFormula) else f, self)
+            nfs = map(lambda f: z3.Not(f), fs)
+            return self.negate_cls(list(nfs))
+        else:
+            return z3.BoolVal(not self.empty_interp)
 
     def implies(self, conseq):
         fante = self.expr()
@@ -49,6 +57,10 @@ class ZConj(ZFormula):
     def empty_interp(self):
         return False
 
+    @property
+    def negate_cls(self):
+        return partial(ZDisj)
+
 class ZDisj(ZFormula):
     def __init__(self, fs):
         super().__init__(fs)
@@ -60,6 +72,10 @@ class ZDisj(ZFormula):
     @property
     def empty_interp(self):
         return True
+
+    @property
+    def negate_cls(self):
+        return partial(ZConj)
 
     
 
