@@ -141,7 +141,7 @@ class Setup(object):
         mlog.debug("transrel_invs: {}".format(transrel_invs))
         dig_settings.DO_IEQS = old_do_ieqs
 
-        transrel_invs = ZInvs(transrel_invs)
+        transrel_invs = ZConj(transrel_invs)
         if transrel_invs.is_unsat():
             return None
         transrel_expr = transrel_invs.expr()
@@ -195,8 +195,8 @@ class Setup(object):
             no_postloop_invs = False
 
             while loop_cond is None:
-                postloop_invs = ZInvs(dig.infer_from_traces(rand_itraces, self.postloop_loc))
-                inloop_invs = ZInvs(dig.infer_from_traces(rand_itraces, self.inloop_loc))
+                postloop_invs = ZConj(dig.infer_from_traces(rand_itraces, self.postloop_loc))
+                inloop_invs = ZConj(dig.infer_from_traces(rand_itraces, self.inloop_loc))
                 mlog.debug("postloop_invs: {}".format(postloop_invs))
                 mlog.debug("inloop_invs: {}".format(inloop_invs))
                 if not inloop_invs and no_inloop_invs:
@@ -249,7 +249,7 @@ class NonTerm(object):
         self.tCexs = []
 
     def verify(self, rcs, precond):
-        assert rcs is None or isinstance(rcs, ZInvs), rcs
+        assert rcs is None or isinstance(rcs, ZFormula), rcs
         _config = self._config
 
         if rcs is None:
@@ -318,16 +318,16 @@ class NonTerm(object):
         mlog.debug("term_inps: {}".format(len(term_inps)))
         mlog.debug("mayloop_inps: {}".format(len(mayloop_inps)))
 
-        mayloop_invs = ZInvs(_config.dig.infer_from_traces(
+        mayloop_invs = ZConj(_config.dig.infer_from_traces(
             itraces, _config.inloop_loc, mayloop_inps))
         if rcs is None:
             return mayloop_invs
         elif mayloop_invs and rcs.implies(mayloop_invs):
             return mayloop_invs
         else:
-            base_term_pre = ZInvs(_config.dig.infer_from_traces(
+            base_term_pre = ZConj(_config.dig.infer_from_traces(
                 itraces, _config.preloop_loc, base_term_inps))
-            term_invs = ZInvs(_config.dig.infer_from_traces(
+            term_invs = ZConj(_config.dig.infer_from_traces(
                 itraces, _config.inloop_loc, term_inps))
             mlog.debug("base_term_pre: {}".format(base_term_pre))
             mlog.debug("term_invs: {}".format(term_invs))
