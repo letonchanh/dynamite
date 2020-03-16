@@ -170,6 +170,7 @@ class Setup(object):
     def infer_loop_cond(self):
         if self.is_c_inp:
             from helpers.src import C as c_src
+            from data.symstates import SymStatesC
             import alg
             tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
             mlog.debug("Create C source for vloop")
@@ -180,49 +181,52 @@ class Setup(object):
             exe = Execution(prog)
             dig = Inference(inv_decls, self.seed)
 
-            dss = alg.DigSymStatesC(self.inp)
-            ss = dss.symstates.ss
+            symstates = SymStatesC(inp_decls, inv_decls)
+            symstates.compute(
+                src.symexefile, src.mainQ_name,
+                src.funname, src.symexedir)
+            ss = symstates.ss
             mlog.debug("SymStates ({}): {}".format(type(ss), ss))
             for loc, depthss in ss.items():
                 for depth, states in depthss.items():
                     for s in states.lst:
                         mlog.debug("SymState ({}, {}):\n{}\n{}".format(type(s), s in states, s, s.expr))
 
-            rand_inps = exe.gen_rand_inps(self.nInps)
-            rand_itraces = exe.get_traces(rand_inps)
-            loop_cond = None
-            no_inloop_invs = False
-            no_postloop_invs = False
+            # rand_inps = exe.gen_rand_inps(self.nInps)
+            # rand_itraces = exe.get_traces(rand_inps)
+            # loop_cond = None
+            # no_inloop_invs = False
+            # no_postloop_invs = False
 
-            while loop_cond is None:
-                postloop_invs = ZConj(dig.infer_from_traces(rand_itraces, self.postloop_loc))
-                inloop_invs = ZConj(dig.infer_from_traces(rand_itraces, self.inloop_loc))
-                mlog.debug("postloop_invs: {}".format(postloop_invs))
-                mlog.debug("inloop_invs: {}".format(inloop_invs))
-                if not inloop_invs and no_inloop_invs:
-                    loop_cond = postloop_invs.negate()
-                else:
-                    if not inloop_invs:
-                        no_inloop_invs = True
-                    covered_f = z3.Or(postloop_invs.expr(), inloop_invs.expr())
-                    uncovered_f = z3.Not(covered_f)
-                    models, _ = Solver.get_models(uncovered_f, 
-                                                  self.nInps, self.tmpdir, 
-                                                  settings.use_random_seed)
-                    mlog.debug("uncovered models: {}".format(models))
-                    if isinstance(models, list) and models:
-                        ninps = Solver.mk_inps_from_models(models, self.inp_decls.exprs((settings.use_reals)), exe)
-                        mlog.debug("uncovered inps: {}".format(ninps))
-                        mlog.debug("Starting get_traces")
-                        nitraces = exe.get_traces(ninps)
-                        mlog.debug("get_traces stopped")
-                        # mlog.debug("uncovered rand_itraces: {}".format(nitraces))
-                        rand_itraces.update(nitraces)
-                    else:
-                        loop_cond = inloop_invs
+            # while loop_cond is None:
+            #     postloop_invs = ZConj(dig.infer_from_traces(rand_itraces, self.postloop_loc))
+            #     inloop_invs = ZConj(dig.infer_from_traces(rand_itraces, self.inloop_loc))
+            #     mlog.debug("postloop_invs: {}".format(postloop_invs))
+            #     mlog.debug("inloop_invs: {}".format(inloop_invs))
+            #     if not inloop_invs and no_inloop_invs:
+            #         loop_cond = postloop_invs.negate()
+            #     else:
+            #         if not inloop_invs:
+            #             no_inloop_invs = True
+            #         covered_f = z3.Or(postloop_invs.expr(), inloop_invs.expr())
+            #         uncovered_f = z3.Not(covered_f)
+            #         models, _ = Solver.get_models(uncovered_f, 
+            #                                       self.nInps, self.tmpdir, 
+            #                                       settings.use_random_seed)
+            #         mlog.debug("uncovered models: {}".format(models))
+            #         if isinstance(models, list) and models:
+            #             ninps = Solver.mk_inps_from_models(models, self.inp_decls.exprs((settings.use_reals)), exe)
+            #             mlog.debug("uncovered inps: {}".format(ninps))
+            #             mlog.debug("Starting get_traces")
+            #             nitraces = exe.get_traces(ninps)
+            #             mlog.debug("get_traces stopped")
+            #             # mlog.debug("uncovered rand_itraces: {}".format(nitraces))
+            #             rand_itraces.update(nitraces)
+            #         else:
+            #             loop_cond = inloop_invs
             
-            mlog.debug("loop_cond: {}".format(loop_cond))
-            return loop_cond
+            # mlog.debug("loop_cond: {}".format(loop_cond))
+            # return loop_cond
 
     def gen_transrel_sst(self):
         inloop_inv_decls = self.inv_decls[self.inloop_loc]
