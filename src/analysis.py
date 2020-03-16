@@ -49,14 +49,14 @@ class Setup(object):
                 mlog.debug("Create C source for mainQ")
                 src = c_src(Path(inp), self.tmpdir)
                 exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
-                # dig = alg.DigSymStatesC(inp)
-                # ss = dig.symstates.ss
+                dig = alg.DigSymStatesC(inp)
+                ss = dig.symstates.ss
                 # mlog.debug("SymStates ({}): {}".format(type(ss), ss))
                 # for loc, depthss in ss.items():
                 #     for depth, states in depthss.items():
                 #         for s in states.lst:
                 #             mlog.debug("SymState ({}, {}):\n{}\n{}".format(type(s), s in states, s, s.expr))
-                # self.symstates = ss
+                self.symstates = ss
 
             inp_decls, inv_decls, mainQ_name = src.inp_decls, src.inv_decls, src.mainQ_name
             prog = dig_prog.Prog(exe_cmd, inp_decls, inv_decls)
@@ -92,11 +92,19 @@ class Setup(object):
             inloop_ss_depths = sorted(inloop_symstates.keys())
             inloop_fst_symstate = None
             inloop_snd_symstate = None
-            for depth in inloop_ss_depths:
-                symstates = inloop_symstates[depth].lst
-                if len(symstates) >= 2:
-                    inloop_fst_symstate = symstates[0]
-                    inloop_snd_symstate = symstates[1]
+            while (inloop_fst_symstate is None or inloop_snd_symstate is None) and inloop_ss_depths:
+                depth = inloop_ss_depths.pop()
+                symstates = inloop_symstates[depth]
+                mlog.debug("DEPTH {}".format(depth))
+                mlog.debug("inloop_fst_symstate: {}".format(inloop_fst_symstate))
+                mlog.debug("inloop_snd_symstate: {}".format(inloop_snd_symstate))
+                mlog.debug("symstates ({}):\n{}".format(len(symstates.lst), symstates))
+                if len(symstates.lst) >= 2:
+                    inloop_fst_symstate = symstates.lst[0]
+                    inloop_snd_symstate = symstates.lst[1]
+                mlog.debug("inloop_fst_symstate: {}".format(inloop_fst_symstate))
+                mlog.debug("inloop_snd_symstate: {}".format(inloop_snd_symstate))
+            
             if inloop_fst_symstate and inloop_snd_symstate:
                 inloop_vars = Z3.get_vars(inloop_fst_symstate.slocal).union(Z3.get_vars(inloop_snd_symstate.slocal))
                 inloop_inv_vars = self.inv_decls[self.inloop_loc].exprs(settings.use_reals)
@@ -186,11 +194,11 @@ class Setup(object):
                 src.symexefile, src.mainQ_name,
                 src.funname, src.symexedir)
             ss = symstates.ss
-            mlog.debug("SymStates ({}): {}".format(type(ss), ss))
-            for loc, depthss in ss.items():
-                for depth, states in depthss.items():
-                    for s in states.lst:
-                        mlog.debug("SymState ({}, {}):\n{}\n{}".format(type(s), s in states, s, s.expr))
+            # mlog.debug("SymStates ({}): {}".format(type(ss), ss))
+            # for loc, depthss in ss.items():
+            #     for depth, states in depthss.items():
+            #         for s in states.lst:
+            #             mlog.debug("SymState ({}, {}):\n{}\n{}".format(type(s), s in states, s, s.expr))
 
             # rand_inps = exe.gen_rand_inps(self.nInps)
             # rand_itraces = exe.get_traces(rand_inps)
