@@ -12,6 +12,7 @@ from helpers.miscs import Z3, Miscs
 
 from utils import settings
 from utils.logic import *
+from utils.loop import *
 from lib import *
 
 mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
@@ -49,14 +50,14 @@ class Setup(object):
                 mlog.debug("Create C source for mainQ")
                 src = c_src(Path(inp), self.tmpdir)
                 exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
-                dig = alg.DigSymStatesC(inp)
-                ss = dig.symstates.ss
+                # dig = alg.DigSymStatesC(inp)
+                # ss = dig.symstates.ss
                 # mlog.debug("SymStates ({}): {}".format(type(ss), ss))
                 # for loc, depthss in ss.items():
                 #     for depth, states in depthss.items():
                 #         for s in states.lst:
                 #             mlog.debug("SymState ({}, {}):\n{}\n{}".format(type(s), s in states, s, s.expr))
-                self.symstates = ss
+                # self.symstates = ss
 
             inp_decls, inv_decls, mainQ_name = src.inp_decls, src.inv_decls, src.mainQ_name
             prog = dig_prog.Prog(exe_cmd, inp_decls, inv_decls)
@@ -85,8 +86,28 @@ class Setup(object):
         mlog.debug("transrel_pre_sst: {}".format(self.transrel_pre_sst))
         mlog.debug("transrel_post_sst: {}".format(self.transrel_post_sst))
 
-    def _infer_transrel_symstates(self):
-        ss = self.symstates
+    def _get_c_symstates_vloop(self):
+        from helpers.src import C as c_src
+        from data.symstates import SymStatesC
+        import alg
+        
+        tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
+        mlog.debug("Create C source for vloop")
+        src = c_src(Path(self.inp), tmpdir, mainQ="vloop")
+        exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
+        inp_decls, inv_decls, mainQ_name = src.inp_decls, src.inv_decls, src.mainQ_name
+
+        symstates = SymStatesC(inp_decls, inv_decls)
+        symstates.compute(src.symexefile, src.mainQ_name,
+                          src.funname, src.symexedir)
+        return symstates.ss
+
+    def _get_loopinfo_symstates(self):
+        if self.is_c_inp:
+            ss = self._get_c_symstates_vloop()
+        else:
+            raise NotImplementedError
+
         if self.inloop_loc in ss:
             inloop_symstates = ss[self.inloop_loc]
             inloop_ss_depths = sorted(inloop_symstates.keys())
@@ -95,15 +116,11 @@ class Setup(object):
             while (inloop_fst_symstate is None or inloop_snd_symstate is None) and inloop_ss_depths:
                 depth = inloop_ss_depths.pop()
                 symstates = inloop_symstates[depth]
-                mlog.debug("DEPTH {}".format(depth))
-                mlog.debug("inloop_fst_symstate: {}".format(inloop_fst_symstate))
-                mlog.debug("inloop_snd_symstate: {}".format(inloop_snd_symstate))
-                mlog.debug("symstates ({}):\n{}".format(len(symstates.lst), symstates))
+                # mlog.debug("DEPTH {}".format(depth))
+                # mlog.debug("symstates ({}):\n{}".format(len(symstates.lst), symstates))
                 if len(symstates.lst) >= 2:
                     inloop_fst_symstate = symstates.lst[0]
                     inloop_snd_symstate = symstates.lst[1]
-                mlog.debug("inloop_fst_symstate: {}".format(inloop_fst_symstate))
-                mlog.debug("inloop_snd_symstate: {}".format(inloop_snd_symstate))
             
             if inloop_fst_symstate and inloop_snd_symstate:
                 inloop_vars = Z3.get_vars(inloop_fst_symstate.slocal).union(Z3.get_vars(inloop_snd_symstate.slocal))
@@ -122,10 +139,11 @@ class Setup(object):
                                                   z3.And(inloop_fst_symstate.pc, inloop_fst_symstate.slocal)))
                 mlog.debug("inloop_fst_cond: {}".format(inloop_fst_cond))
 
-                return transrel_expr
+                return LoopInfo(inloop_fst_cond, transrel_expr)
         return None
 
-    def _infer_transrel_traces(self):
+    def _get_loopinfo_traces(self):
+        raise NotImplementedError
         old_do_ieqs = dig_settings.DO_IEQS
         # dig_settings.DO_IEQS = False
         transrel_itraces = {}
@@ -160,14 +178,11 @@ class Setup(object):
         transrel_expr = transrel_invs.expr()
         return transrel_expr
 
-    def infer_transrel(self):
-        if self.symstates:
-            transrel_expr = self._infer_transrel_symstates()
-            if transrel_expr is None:
-                transrel_expr = self._infer_transrel_traces()
-        else:
-            transrel_expr = self._infer_transrel_traces()
-        return transrel_expr
+    def get_loopinfo(self):
+        loopinfo = self._get_loopinfo_symstates()
+        if loopinfo is None:
+            loopinfo = self._get_loopinfo_traces()
+        return loopinfo
 
     def infer_precond(self):
         if not self.symstates:
@@ -262,7 +277,9 @@ class NonTerm(object):
     def __init__(self, config):
         self._config = config
 
-        self.transrel_expr = config.infer_transrel()
+        loopinfo = config.get_loopinfo()
+        self.transrel_expr = loopinfo.transrel
+        self.loop_cond = loopinfo.loop_cond
         self.tCexs = []
 
     def verify(self, rcs, precond):
