@@ -45,16 +45,20 @@ print "Benchmarks: ";
 opendir(my $dh, $benchdir) || die "Can't open $benchdir: $!";
 while (readdir $dh) {
   my $fn = $_;
-  next unless $fn =~ m/^u-.*\.c/;
+  next unless $fn =~ m/^.*-ult\.c/;
   print "$benchdir/$fn  ";
   push @benches, "$fn";
 }
 closedir $dh;
+print "\n";
+
+my $arg1 = shift(@ARGV);
+exit if ($arg1 eq '-l');
 
 chdir $benchdir;
 my $t = File::Temp->newdir( "out-XXXXXXX", CLEANUP => 0 );
 my $outdir = $t->dirname;
-print "\nSaving Ultimate logs to: $benchdir/$outdir\n";
+print "Saving Ultimate logs to: $benchdir/$outdir\n";
 #mkdir "$benchdir/$outdir" or die $!;
 
 foreach my $b (@benches) {
