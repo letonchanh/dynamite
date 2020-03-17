@@ -14,6 +14,8 @@ DBG = pdb.set_trace
 
 TIMEOUT = 900  # seconds
 EXE = Path("/path/to/dynamo").resolve()
+TRANSFORM_EXE = ""
+TRANSFORM_CMD = TRANSFORM_EXE + " {filename}"
 CMD = "timeout {} python3 {}".format(TIMEOUT, EXE)
 CMD = CMD + " {filename}"
 BENCHDIR = Path("../benchmarks").resolve()
@@ -32,11 +34,17 @@ def run(benchdir, ntimes):
 
     for i, f in enumerate(fs):
         for j in range(ntimes):
-            i_run_cmd = CMD.format(filename=f)
-            print("## {}/{}, run {}/{}. {}: {}".format(
+            print("## {}/{}, run {}/{}. {}".format(
                 i+1, len(fs), j+1, ntimes,
-                time.strftime("%c"), i_run_cmd), flush=True)
-            os.system(i_run_cmd)
+                time.strftime("%c")), flush=True)
+
+            transform_cmd = TRANSFORM_CMD.format(filename=f)
+            print("{}".format(transform_cmd), flush=True)
+            os.system(transform_cmd)
+
+            run_cmd = CMD.format(filename=f)
+            print("{}".format(run_cmd), flush=True)
+            os.system(run_cmd)
 
 
 run(BENCHDIR.resolve(), NTIMES)
