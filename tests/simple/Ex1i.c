@@ -40,10 +40,10 @@ void vloop(int x, int y) {
     vtrace3(x, y);
 }
 
-void mainQ(int x, int y) {
+void mainQ(int xx, int yy) {
   // Run mainQ with random inputs to get pre-conditions of vloop
-  if (y >= 0)
-    vloop(x, y);
+  if (yy >= 1)
+    vloop(xx, yy - 1);
 }
 
 void main(int argc, char **argv){
