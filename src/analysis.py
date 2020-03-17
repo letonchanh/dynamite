@@ -110,13 +110,18 @@ class Setup(object):
                 inloop_inv_vars = self.inv_decls[self.inloop_loc].exprs(settings.use_reals)
                 inloop_ex_vars = inloop_vars.difference(inloop_inv_vars)
                 mlog.debug("inloop_ex_vars: {}".format(inloop_ex_vars))
-                inloop_fst_symstate = z3.substitute(inloop_fst_symstate.slocal, self.transrel_pre_sst)
-                inloop_snd_symstate = z3.substitute(inloop_snd_symstate.slocal, self.transrel_post_sst)
-                mlog.debug("inloop_fst_symstate: {}".format(inloop_fst_symstate))
-                mlog.debug("inloop_snd_symstate: {}".format(inloop_snd_symstate))
-                inloop_trans_f = z3.Exists(list(inloop_ex_vars), z3.And(inloop_fst_symstate, inloop_snd_symstate))
+                inloop_fst_slocal = z3.substitute(inloop_fst_symstate.slocal, self.transrel_pre_sst)
+                inloop_snd_slocal = z3.substitute(inloop_snd_symstate.slocal, self.transrel_post_sst)
+                mlog.debug("inloop_fst_slocal: {}".format(inloop_fst_slocal))
+                mlog.debug("inloop_snd_slocal: {}".format(inloop_snd_slocal))
+                inloop_trans_f = z3.Exists(list(inloop_ex_vars), z3.And(inloop_fst_slocal, inloop_snd_slocal))
                 transrel_expr = Z3.qe(inloop_trans_f)
                 mlog.debug("inloop_trans_f: {}".format(transrel_expr))
+
+                inloop_fst_cond = Z3.qe(z3.Exists(list(inloop_ex_vars), 
+                                                  z3.And(inloop_fst_symstate.pc, inloop_fst_symstate.slocal)))
+                mlog.debug("inloop_fst_cond: {}".format(inloop_fst_cond))
+
                 return transrel_expr
         return None
 
