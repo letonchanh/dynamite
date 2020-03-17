@@ -19,8 +19,8 @@ mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
 
 class Setup(object):
     def __init__(self, seed, inp):
-        self.inp = inp
         self.seed = seed
+        self.inp = inp
         self.is_java_inp = inp.endswith(".java") or inp.endswith(".class")
         self.is_c_inp = inp.endswith(".c")
         self.is_binary_inp = self.is_binary(inp)
@@ -46,19 +46,17 @@ class Setup(object):
                 exe_cmd = dig_settings.Java.JAVA_RUN(tracedir=src.tracedir, funname=src.funname)
             else:
                 from helpers.src import C as c_src
-                import alg
-                mlog.debug("Create C source for mainQ")
+                # import alg
+                mlog.debug("Create C source for mainQ: {}".format(self.tmpdir))
                 src = c_src(Path(inp), self.tmpdir)
                 exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
-                # dig = alg.DigSymStatesC(inp)
-                # ss = dig.symstates.ss
-                # mlog.debug("SymStates ({}): {}".format(type(ss), ss))
-                # for loc, depthss in ss.items():
-                #     for depth, states in depthss.items():
-                #         for s in states.lst:
-                #             mlog.debug("SymState ({}, {}):\n{}\n{}".format(type(s), s in states, s, s.expr))
-                # self.symstates = ss
-
+                self.symstates = self._get_c_symstates_from_src(src)
+                for loc in self.symstates:
+                    for depth in self.symstates[loc]:
+                        pcs = self.symstates[loc][depth]
+                        mlog.debug("DEPTH {}".format(depth))
+                        mlog.debug("pcs ({}):\n{}".format(len(pcs.lst), pcs))
+                
             inp_decls, inv_decls, mainQ_name = src.inp_decls, src.inv_decls, src.mainQ_name
             prog = dig_prog.Prog(exe_cmd, inp_decls, inv_decls)
 
@@ -86,14 +84,9 @@ class Setup(object):
         mlog.debug("transrel_pre_sst: {}".format(self.transrel_pre_sst))
         mlog.debug("transrel_post_sst: {}".format(self.transrel_post_sst))
 
-    def _get_c_symstates_vloop(self):
-        from helpers.src import C as c_src
+    def _get_c_symstates_from_src(self, src):
         from data.symstates import SymStatesC
-        import alg
         
-        tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
-        mlog.debug("Create C source for vloop: {}".format(tmpdir))
-        src = c_src(Path(self.inp), tmpdir, mainQ="vloop")
         exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
         inp_decls, inv_decls, mainQ_name = src.inp_decls, src.inv_decls, src.mainQ_name
 
@@ -103,11 +96,45 @@ class Setup(object):
         return symstates.ss
 
     def _get_loopinfo_symstates(self):
+        stem = self._get_stem_symstates()
+        loop = self._get_loop_symstates()
+        return LoopInfo(stem, loop)
+
+    def _get_stem_symstates(self):
+        if self.symstates is None:
+            raise NotImplementedError
+
+        ss = self.symstates
+        if self.preloop_loc in ss:
+            preloop_symstates = ss[self.preloop_loc]
+            preloop_ss_depths = sorted(preloop_symstates.keys())
+            preloop_fst_symstate = None
+            while preloop_fst_symstate is None and preloop_ss_depths:
+                depth = preloop_ss_depths.pop()
+                symstates = preloop_symstates[depth]
+                if symstates.lst:
+                    preloop_fst_symstate = symstates.lst[0]
+            mlog.debug("preloop_fst_symstate: {}".format(preloop_fst_symstate))
+
+            if preloop_fst_symstate:
+                return None
+        return None
+
+    def _get_loop_symstates(self):
         if self.is_c_inp:
-            ss = self._get_c_symstates_vloop()
+            from helpers.src import C as c_src
+        
+            tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
+            mlog.debug("Create C source for vloop: {}".format(tmpdir))
+            src = c_src(Path(self.inp), tmpdir, mainQ="vloop")
+            ss = self._get_c_symstates_from_src(src)
         else:
             raise NotImplementedError
 
+        inp_decls, inv_decls = src.inp_decls, src.inv_decls
+        mlog.debug("vloop inp_decls: {}".format(inp_decls))
+        mlog.debug("vloop inv_decls: {}".format(inv_decls))
+        
         if self.inloop_loc in ss:
             inloop_symstates = ss[self.inloop_loc]
             inloop_ss_depths = sorted(inloop_symstates.keys())
@@ -116,15 +143,16 @@ class Setup(object):
             while (inloop_fst_symstate is None or inloop_snd_symstate is None) and inloop_ss_depths:
                 depth = inloop_ss_depths.pop()
                 symstates = inloop_symstates[depth]
-                mlog.debug("DEPTH {}".format(depth))
-                mlog.debug("symstates ({}):\n{}".format(len(symstates.lst), symstates))
+                # mlog.debug("DEPTH {}".format(depth))
+                # mlog.debug("symstates ({}):\n{}".format(len(symstates.lst), symstates))
                 if len(symstates.lst) >= 2:
                     inloop_fst_symstate = symstates.lst[0]
                     inloop_snd_symstate = symstates.lst[1]
             
             if inloop_fst_symstate and inloop_snd_symstate:
+                # Get loop's condition and transition relation
                 inloop_vars = Z3.get_vars(inloop_fst_symstate.slocal).union(Z3.get_vars(inloop_snd_symstate.slocal))
-                inloop_inv_vars = self.inv_decls[self.inloop_loc].exprs(settings.use_reals)
+                inloop_inv_vars = inv_decls[self.inloop_loc].exprs(settings.use_reals)
                 inloop_ex_vars = inloop_vars.difference(inloop_inv_vars)
                 mlog.debug("inloop_ex_vars: {}".format(inloop_ex_vars))
                 inloop_fst_slocal = z3.substitute(inloop_fst_symstate.slocal, self.transrel_pre_sst)
@@ -139,44 +167,44 @@ class Setup(object):
                                                   z3.And(inloop_fst_symstate.pc, inloop_fst_symstate.slocal)))
                 mlog.debug("inloop_fst_cond: {}".format(inloop_fst_cond))
 
-                return LoopInfo(inloop_fst_cond, transrel_expr)
+                return Loop(inp_decls, inloop_fst_cond, transrel_expr)
         return None
 
     def _get_loopinfo_traces(self):
         raise NotImplementedError
-        old_do_ieqs = dig_settings.DO_IEQS
-        # dig_settings.DO_IEQS = False
-        transrel_itraces = {}
-        inloop_loc = self.inloop_loc
-        postloop_loc = self.postloop_loc
-        for inp, dtraces in self.rand_itraces.items():
-            if inloop_loc in dtraces:
-                inloop_traces = dtraces[inloop_loc]
-                transrel_traces = []
-                if len(inloop_traces) >= 1:
-                    if postloop_loc in dtraces:
-                        inloop_zip_traces = zip(inloop_traces, inloop_traces[1:] + [dtraces[postloop_loc][0]])
-                    else:
-                        inloop_zip_traces = zip(inloop_traces[:-1], inloop_traces[1:])
-                else:
-                    inloop_zip_traces = []
-                for transrel_pre, transrel_post in inloop_zip_traces:
-                    ss = tuple(list(map(lambda s: s + '0', transrel_pre.ss)) + 
-                               list(map(lambda s: s + '1', transrel_post.ss)))
-                    vs = transrel_pre.vs + transrel_post.vs
-                    transrel_traces.append(Trace.parse(ss, vs))
-                transrel_itraces[inp] = {self.transrel_loc: transrel_traces}
-        # mlog.debug("transrel_itraces: {}".format(transrel_itraces))
-        transrel_invs = self.dig.infer_from_traces(transrel_itraces, self.transrel_loc)
-        # transrel_invs = self.dig.infer_from_traces(self.rand_itraces, self.transrel_loc)
-        mlog.debug("transrel_invs: {}".format(transrel_invs))
-        dig_settings.DO_IEQS = old_do_ieqs
+        # old_do_ieqs = dig_settings.DO_IEQS
+        # # dig_settings.DO_IEQS = False
+        # transrel_itraces = {}
+        # inloop_loc = self.inloop_loc
+        # postloop_loc = self.postloop_loc
+        # for inp, dtraces in self.rand_itraces.items():
+        #     if inloop_loc in dtraces:
+        #         inloop_traces = dtraces[inloop_loc]
+        #         transrel_traces = []
+        #         if len(inloop_traces) >= 1:
+        #             if postloop_loc in dtraces:
+        #                 inloop_zip_traces = zip(inloop_traces, inloop_traces[1:] + [dtraces[postloop_loc][0]])
+        #             else:
+        #                 inloop_zip_traces = zip(inloop_traces[:-1], inloop_traces[1:])
+        #         else:
+        #             inloop_zip_traces = []
+        #         for transrel_pre, transrel_post in inloop_zip_traces:
+        #             ss = tuple(list(map(lambda s: s + '0', transrel_pre.ss)) + 
+        #                        list(map(lambda s: s + '1', transrel_post.ss)))
+        #             vs = transrel_pre.vs + transrel_post.vs
+        #             transrel_traces.append(Trace.parse(ss, vs))
+        #         transrel_itraces[inp] = {self.transrel_loc: transrel_traces}
+        # # mlog.debug("transrel_itraces: {}".format(transrel_itraces))
+        # transrel_invs = self.dig.infer_from_traces(transrel_itraces, self.transrel_loc)
+        # # transrel_invs = self.dig.infer_from_traces(self.rand_itraces, self.transrel_loc)
+        # mlog.debug("transrel_invs: {}".format(transrel_invs))
+        # dig_settings.DO_IEQS = old_do_ieqs
 
-        transrel_invs = ZConj(transrel_invs)
-        if transrel_invs.is_unsat():
-            return None
-        transrel_expr = transrel_invs.expr()
-        return transrel_expr
+        # transrel_invs = ZConj(transrel_invs)
+        # if transrel_invs.is_unsat():
+        #     return None
+        # transrel_expr = transrel_invs.expr()
+        # return transrel_expr
 
     def get_loopinfo(self):
         loopinfo = self._get_loopinfo_symstates()
@@ -278,7 +306,7 @@ class NonTerm(object):
         self._config = config
 
         loopinfo = config.get_loopinfo()
-        self.transrel_expr = loopinfo.transrel
+        self.transrel = loopinfo.transrel
         self.loop_cond = loopinfo.loop_cond
         self.tCexs = []
 
@@ -309,12 +337,12 @@ class NonTerm(object):
             # assert rcs, rcs
             rcs_l = z3.substitute(rcs.expr(), _config.transrel_pre_sst)
             mlog.debug("rcs_l: {}".format(rcs_l))
-            mlog.debug("transrel_expr: {}".format(self.transrel_expr))
+            mlog.debug("transrel_expr: {}".format(self.transrel))
 
             def _check(rc):
                 rc_r = z3.substitute(rc, _config.transrel_post_sst)
                 # f = z3.Not(z3.Implies(z3.And(rcs_l, transrel_expr), rc_r))
-                f = z3.And(z3.And(rcs_l, self.transrel_expr), z3.Not(rc_r))
+                f = z3.And(z3.And(rcs_l, self.transrel), z3.Not(rc_r))
                 mlog.debug("_check: f = {}".format(f))
                 # using_random_seed = True
                 rs, _ = Solver.get_models(f, _config.nInps, _config.tmpdir, 
@@ -387,14 +415,12 @@ class NonTerm(object):
 
     def prove(self, precond):
         _config = self._config
-        mlog.debug("refinement_depth: {}".format(_config.refinement_depth))
-        candidateRCS = [(None, 0, [])]
         validRCS = []
-        mlog.debug("precond: {}".format(precond))
 
-        if self.transrel_expr is None:
+        if self.transrel is None or self.loop_cond is None:
             return validRCS
         else:
+            candidateRCS = [(ZConj([self.loop_cond]), 0, [])]
             while candidateRCS:
                 mlog.debug("candidateRCS: {}".format(candidateRCS))
                 rcs, depth, ancestors = candidateRCS.pop()
