@@ -1,0 +1,67 @@
+#!/usr/bin/perl
+
+use strict;
+use File::Temp qw/ tempfile tempdir /;
+
+my $ULTDIR = qq{/tools/ultimate/releaseScripts/default/UAutomizer-linux};
+my $SPECFILE = qq{/tools/termination.prp};
+
+sub runc { my ($cmd) = @_; print "+ $cmd\n"; my $r = qx{$cmd}; print $r; }
+
+sub parse_ult {
+  my ($logfn) = @_;
+  open(F,"$logfn") or warn "file $logfn - $!";
+  my ($time,$result) = ('UNKNOWN','UNKNOWN');
+  while (<F>) {
+    if (/RESULT: Ultimate proved your program to be correct/) {
+      $result = 'TRUE';
+    }
+    if (/RESULT: Ultimate proved your program to be incorrect/) {
+      $result = 'FALSE';
+    }
+    if (/OverallTime: (\d+\.\d+)s,/) {
+      $time = $1;
+    }
+    if (/out of memory/) {
+      $result = 'MEMOUT';
+    }
+    if (/Cannot allocate memory/) {
+      $result = 'MEMOUT';
+    }
+  }
+  close F;
+  print "$logfn - Time:$time - Result:$result\n";
+  return ($time,$result);
+}
+
+use File::Basename;
+my $scriptfn = Cwd::abs_path($0);
+my $benchdir = dirname($scriptfn);
+
+my @benches;
+print "Directory: $benchdir\n";
+
+print "Benchmarks: ";
+opendir(my $dh, $benchdir) || die "Can't open $benchdir: $!";
+while (readdir $dh) {
+  my $fn = $_;
+  next unless $fn =~ m/^u-.*\.c/;
+  print "$benchdir/$fn  ";
+  push @benches, "$fn";
+}
+closedir $dh;
+
+chdir $benchdir;
+my $t = File::Temp->newdir( "out-XXXXXXX", CLEANUP => 0 );
+my $outdir = $t->dirname;
+print "\nSaving Ultimate logs to: $benchdir/$outdir\n";
+#mkdir "$benchdir/$outdir" or die $!;
+
+foreach my $b (@benches) {
+  print "---\nNow running on: $b\n";
+  chdir $ULTDIR or die "can't CHDIR to $ULTDIR: $!";
+  runc(qq{./Ultimate.py --file $benchdir/$b  --spec $SPECFILE --architecture 32bit});
+  my $logfn = "$benchdir/$outdir/$b.log";
+  runc(qq{cp Ultimate.log $logfn});
+  my ($time,$result) = parse_ult($logfn);
+}
