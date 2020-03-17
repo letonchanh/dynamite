@@ -14,6 +14,7 @@ void __VERIFIER_assert(int cond) {
     }
     return;
 }
+
 int main() {
     int z, k;
     int x, y, c;
