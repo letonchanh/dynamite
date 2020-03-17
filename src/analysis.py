@@ -92,7 +92,7 @@ class Setup(object):
         import alg
         
         tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
-        mlog.debug("Create C source for vloop")
+        mlog.debug("Create C source for vloop: {}".format(tmpdir))
         src = c_src(Path(self.inp), tmpdir, mainQ="vloop")
         exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
         inp_decls, inv_decls, mainQ_name = src.inp_decls, src.inv_decls, src.mainQ_name
@@ -116,8 +116,8 @@ class Setup(object):
             while (inloop_fst_symstate is None or inloop_snd_symstate is None) and inloop_ss_depths:
                 depth = inloop_ss_depths.pop()
                 symstates = inloop_symstates[depth]
-                # mlog.debug("DEPTH {}".format(depth))
-                # mlog.debug("symstates ({}):\n{}".format(len(symstates.lst), symstates))
+                mlog.debug("DEPTH {}".format(depth))
+                mlog.debug("symstates ({}):\n{}".format(len(symstates.lst), symstates))
                 if len(symstates.lst) >= 2:
                     inloop_fst_symstate = symstates.lst[0]
                     inloop_snd_symstate = symstates.lst[1]

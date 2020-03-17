@@ -3,9 +3,20 @@ Geometric Series
 computes x=(z-1)* sum(z^k)[k=0..k-1] , y = z^k
 returns 1+x-y == 0
 */
+#include<stdio.h>
+#include <stdlib.h>
 
-int vloop(int x, int y, int z, int k, int c) {
-    vtrace1(x,y, z, k, c);
+void vtrace1(int x, int y, int z, int k, int c) {
+}
+
+void vtrace2(int x, int y, int z, int k, int c) {
+}
+
+void vtrace3(int x, int y, int z, int k, int c) {
+}
+
+void vloop(int x, int y, int z, int k, int c) {
+    vtrace1(x, y, z, k, c);
     int bnd = 500;
     int counter = 0;
 

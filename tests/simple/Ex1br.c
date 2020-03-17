@@ -30,6 +30,7 @@ void vloop(int x, int y) {
     vtrace2(x, y);
 
     if (x < 0) break;
+    // vtrace2(x, y);
 
     // int x0 = x;
     // int y0 = y;
