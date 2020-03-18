@@ -107,11 +107,10 @@ class Inference(object):
             return Invs()
 
 class Solver(object):
-    def __init__(self):
-        pass
+    def __init__(self, tmpdir):
+        self.tmpdir = tmpdir
 
-    @classmethod
-    def check_sat_and_get_rand_model(cls, tmpdir, solver):
+    def check_sat_and_get_rand_model(self, solver):
         z3_output_handler = Z3OutputHandler()
         myseed = random.randint(0, 1000000)
         smt2_str = [
@@ -121,7 +120,7 @@ class Solver(object):
             '(get-model)']
         smt2_str = '\n'.join(smt2_str)
         # mlog.debug("smt2_str: {}".format(smt2_str))
-        filename = tmpdir / 't.smt2'
+        filename = self.tmpdir / 't.smt2'
         dig_common_helpers.vwrite(filename, smt2_str)
         cmd = 'z3 {}'.format(filename)
         rmsg, errmsg = dig_common_helpers.vcmd(cmd)
@@ -131,8 +130,7 @@ class Solver(object):
         # mlog.debug("model: {}".format(model))
         return chk, model
 
-    @classmethod
-    def get_models(cls, f, k, tmpdir, using_random_seed=False):
+    def get_models(self, f, k, using_random_seed=False):
         if not using_random_seed:
             return Z3.get_models(f, k)
 
@@ -146,7 +144,7 @@ class Solver(object):
         i = 0
         # while solver.check() == z3.sat and i < k:
         while i < k:
-            chk, m = cls.check_sat_and_get_rand_model(tmpdir, solver)
+            chk, m = self.check_sat_and_get_rand_model(solver)
             if chk != z3.sat:
                 break
             i = i + 1
@@ -170,8 +168,7 @@ class Solver(object):
         assert not (isinstance(rs, list) and not rs), rs
         return rs, stat
 
-    @classmethod
-    def mk_inps_from_models(cls, models, inp_decls, exe):
+    def mk_inps_from_models(self, models, inp_decls, exe):
         assert isinstance(models, list) and models, models
         if all(isinstance(m, z3.ModelRef) for m in models):
             ms, _ = Z3.extract(models)

@@ -34,6 +34,7 @@ class Setup(object):
         self.refinement_depth = 5
         self.tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
         self.symstates = None
+        self.solver = Solver(self.tmpdir)
         
         if self.is_binary_inp:
             from bin import Bin
@@ -122,10 +123,10 @@ class Setup(object):
                 stem_transrel = preloop_fst_symstate.slocal
                 mlog.debug("stem_cond ({}): {}".format(type(stem_cond), stem_cond))
                 mlog.debug("stem_transrel ({}): {}".format(type(stem_transrel), stem_transrel))
-                stem = Stem(self.symstates.init_symvars, stem_cond, stem_transrel)
+                stem = Stem(self.inp_decls, stem_cond, stem_transrel)
                 from data.traces import Inp
-                inp = Inp(('x', 'y'), (1, 2))
-                stem.get_initial_inp(inp, self.inv_decls[self.preloop_loc])
+                inp = Inp(('x', 'y'), (1, -2))
+                stem.get_initial_inp(inp, self)
                 return stem
         return None
 
@@ -330,11 +331,11 @@ class NonTerm(object):
                 mlog.debug("verify: Using random inps")
                 rand_itraces = _config.rand_itraces
             else:
-                rs, _ = Solver.get_models(precond, _config.nInps, _config.tmpdir, 
-                                          settings.use_random_seed)
+                rs, _ = _config.solver.get_models(precond, _config.nInps, settings.use_random_seed)
                 if isinstance(rs, list) and rs:
                     mlog.debug("verify: Using random inps from precond")
-                    rs = Solver.mk_inps_from_models(rs, _config.inp_decls.exprs((settings.use_reals)), _config.exe)
+                    rs = _config.solver.mk_inps_from_models(
+                                    rs, _config.inp_decls.exprs((settings.use_reals)), _config.exe)
                     rand_itraces = _config.exe.get_traces(rs)
                 else:
                     mlog.debug("verify: Using random inps")
@@ -355,8 +356,7 @@ class NonTerm(object):
                 f = z3.And(z3.And(rcs_l, self.transrel), z3.Not(rc_r))
                 mlog.debug("_check: f = {}".format(f))
                 # using_random_seed = True
-                rs, _ = Solver.get_models(f, _config.nInps, _config.tmpdir, 
-                                          settings.use_random_seed)
+                rs, _ = _config.solver.get_models(f, _config.nInps, settings.use_random_seed)
                 if rs is None:
                     mlog.debug("rs: unknown")
                 elif rs is False:
@@ -364,7 +364,8 @@ class NonTerm(object):
                 else:
                     mlog.debug("rs: sat ({} models)".format(len(rs)))
                     if isinstance(rs, list) and rs:
-                        rs = Solver.mk_inps_from_models(rs, _config.transrel_pre_inv_decls, _config.exe)
+                        rs = _config.solver.mk_inps_from_models(
+                                            rs, _config.transrel_pre_inv_decls, _config.exe)
                 return rs
 
             chks = [(rc, _check(rc)) for rc in rcs]
