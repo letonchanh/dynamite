@@ -49,7 +49,7 @@ print "Benchmarks: ";
 opendir(my $dh, $benchdir) || die "Can't open $benchdir: $!";
 while (readdir $dh) {
   my $fn = $_;
-  next unless $fn =~ m/^.*-ult\.c/;
+  next unless $fn =~ m/^.*-ult(-|\.)/;
   print "$benchdir/$fn  ";
   push @benches, "$fn";
 }
