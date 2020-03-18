@@ -22,10 +22,8 @@ int main() {
     y = 0;
     x = 0;
 
-    while (1) {
+    while (x <= X) {
       //__VERIFIER_assert(2*Y*x - 2*X*y - X + 2*Y - v == 0);
-        if (!(x <= X))
-            break;
         // out[x] = y
 
         if (v < 0) {
