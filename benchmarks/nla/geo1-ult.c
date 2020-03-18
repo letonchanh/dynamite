@@ -25,12 +25,8 @@ int main() {
     y = z;
     c = 1;
 
-    while (1) {
+    while (c < k) {
         //__VERIFIER_assert(x*z - x - y + 1 == 0);
-
-        if (!(c < k)) 
-            break;
-
         c = c + 1;
         x = x * z + 1;
         y = y * z;
