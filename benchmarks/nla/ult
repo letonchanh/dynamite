@@ -6,6 +6,8 @@ use File::Temp qw/ tempfile tempdir /;
 my $ULTDIR = qq{/tools/ultimate/releaseScripts/default/UAutomizer-linux};
 my $SPECFILE = qq{/tools/termination.prp};
 
+my $arg1 = shift(@ARGV); # list or run or harvest
+
 sub runc { my ($cmd) = @_; print "+ $cmd\n"; my $r = qx{$cmd}; print $r; }
 
 sub parse_ult {
@@ -28,10 +30,12 @@ sub parse_ult {
     if (/Cannot allocate memory/) {
       $result = 'MEMOUT';
     }
+    if (/BüchiAutomizer plugin needed (\d+\.\d+)s/) {
+        $time = $1;
+    }
   }
   close F;
-  print "$logfn - Time:$time - Result:$result\n";
-  return ($time,$result);
+  return { time => $time, result => $result };
 }
 
 use File::Basename;
@@ -45,27 +49,42 @@ print "Benchmarks: ";
 opendir(my $dh, $benchdir) || die "Can't open $benchdir: $!";
 while (readdir $dh) {
   my $fn = $_;
-  next unless $fn =~ m/^.*-ult\.c/;
+  next unless $fn =~ m/^.*-ult(-|\.)/;
   print "$benchdir/$fn  ";
   push @benches, "$fn";
 }
 closedir $dh;
 print "\n";
 
-my $arg1 = shift(@ARGV);
-exit if ($arg1 eq '-l');
+exit if ($arg1 eq 'list');
 
 chdir $benchdir;
-my $t = File::Temp->newdir( "out-XXXXXXX", CLEANUP => 0 );
-my $outdir = $t->dirname;
-print "Saving Ultimate logs to: $benchdir/$outdir\n";
-#mkdir "$benchdir/$outdir" or die $!;
 
-foreach my $b (@benches) {
-  print "---\nNow running on: $b\n";
-  chdir $ULTDIR or die "can't CHDIR to $ULTDIR: $!";
-  runc(qq{./Ultimate.py --file $benchdir/$b  --spec $SPECFILE --architecture 32bit});
-  my $logfn = "$benchdir/$outdir/$b.log";
-  runc(qq{cp Ultimate.log $logfn});
-  my ($time,$result) = parse_ult($logfn);
+################### Running the benchmarks
+if ($arg1 eq 'run') {
+    my $t = File::Temp->newdir( "out-XXXXXXX", CLEANUP => 0 );
+    my $outdir = $t->dirname;
+    print "Saving Ultimate logs to: $benchdir/$outdir\n";
+    my %b2res;
+    foreach my $b (@benches) {
+        print "---\nNow running on: $b\n";
+        chdir $ULTDIR or die "can't CHDIR to $ULTDIR: $!";
+        runc(qq{./Ultimate.py --file $benchdir/$b  --spec $SPECFILE --architecture 32bit});
+        my $logfn = "$benchdir/$outdir/$b.log";
+        runc(qq{cp Ultimate.log $logfn});
+        $b2res{$b} = parse_ult($logfn);
+        print "$logfn - Time:$b2res{$b}->{time} - Result:$b2res{$b}->{result}\n";
+    }
+    print "you may now harvest the results:\n ./ult harvest $benchdir/$outdir\n";
+}
+
+################### Harvesting the results
+if ($arg1 eq 'harvest') {
+    my %b2res;
+    my $outdir = shift @ARGV or die "usage: ./ult harvest <tmpdir>\n";
+    foreach my $b (@benches) {
+        my $logfn = "$benchdir/$outdir/$b.log";
+        $b2res{$b} = parse_ult($logfn);
+        printf "%-20s & %-5.2f & %-10s\n", $b, $b2res{$b}->{time}, $b2res{$b}->{result};
+    }
 }
