@@ -117,7 +117,16 @@ class Setup(object):
             mlog.debug("preloop_fst_symstate: {}".format(preloop_fst_symstate))
 
             if preloop_fst_symstate:
-                mlog.debug("mainQ inp_decls: {}".format(self.inp_decls))
+                mlog.debug("mainQ init_symvars: {}".format(self.symstates.init_symvars))
+                stem_cond = preloop_fst_symstate.pc
+                stem_transrel = preloop_fst_symstate.slocal
+                mlog.debug("stem_cond ({}): {}".format(type(stem_cond), stem_cond))
+                mlog.debug("stem_transrel ({}): {}".format(type(stem_transrel), stem_transrel))
+                stem = Stem(self.symstates.init_symvars, stem_cond, stem_transrel)
+                from data.traces import Inp
+                inp = Inp(('x', 'y'), (1, 2))
+                stem.get_initial_inp(inp, self.inv_decls[self.preloop_loc])
+                return stem
         return None
 
     def _get_loop_symstates(self):
