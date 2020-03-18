@@ -51,9 +51,10 @@ class Setup(object):
                 src = c_src(Path(inp), self.tmpdir)
                 exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
                 self.symstates = self._get_c_symstates_from_src(src)
-                for loc in self.symstates:
-                    for depth in self.symstates[loc]:
-                        pcs = self.symstates[loc][depth]
+                ss = self.symstates.ss
+                for loc in ss:
+                    for depth in ss[loc]:
+                        pcs = ss[loc][depth]
                         mlog.debug("DEPTH {}".format(depth))
                         mlog.debug("pcs ({}):\n{}".format(len(pcs.lst), pcs))
                 
@@ -93,7 +94,7 @@ class Setup(object):
         symstates = SymStatesC(inp_decls, inv_decls)
         symstates.compute(src.symexefile, src.mainQ_name,
                           src.funname, src.symexedir)
-        return symstates.ss
+        return symstates
 
     def _get_loopinfo_symstates(self):
         stem = self._get_stem_symstates()
@@ -101,10 +102,9 @@ class Setup(object):
         return LoopInfo(stem, loop)
 
     def _get_stem_symstates(self):
-        if self.symstates is None:
-            raise NotImplementedError
+        assert self.symstates, self.symstates
 
-        ss = self.symstates
+        ss = self.symstates.ss
         if self.preloop_loc in ss:
             preloop_symstates = ss[self.preloop_loc]
             preloop_ss_depths = sorted(preloop_symstates.keys())
@@ -117,7 +117,16 @@ class Setup(object):
             mlog.debug("preloop_fst_symstate: {}".format(preloop_fst_symstate))
 
             if preloop_fst_symstate:
-                return None
+                mlog.debug("mainQ init_symvars: {}".format(self.symstates.init_symvars))
+                stem_cond = preloop_fst_symstate.pc
+                stem_transrel = preloop_fst_symstate.slocal
+                mlog.debug("stem_cond ({}): {}".format(type(stem_cond), stem_cond))
+                mlog.debug("stem_transrel ({}): {}".format(type(stem_transrel), stem_transrel))
+                stem = Stem(self.symstates.init_symvars, stem_cond, stem_transrel)
+                from data.traces import Inp
+                inp = Inp(('x', 'y'), (1, 2))
+                stem.get_initial_inp(inp, self.inv_decls[self.preloop_loc])
+                return stem
         return None
 
     def _get_loop_symstates(self):
@@ -127,7 +136,8 @@ class Setup(object):
             tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
             mlog.debug("Create C source for vloop: {}".format(tmpdir))
             src = c_src(Path(self.inp), tmpdir, mainQ="vloop")
-            ss = self._get_c_symstates_from_src(src)
+            symstates = self._get_c_symstates_from_src(src)
+            ss = symstates.ss
         else:
             raise NotImplementedError
 
@@ -160,14 +170,14 @@ class Setup(object):
                 mlog.debug("inloop_fst_slocal: {}".format(inloop_fst_slocal))
                 mlog.debug("inloop_snd_slocal: {}".format(inloop_snd_slocal))
                 inloop_trans_f = z3.Exists(list(inloop_ex_vars), z3.And(inloop_fst_slocal, inloop_snd_slocal))
-                transrel_expr = Z3.qe(inloop_trans_f)
-                mlog.debug("inloop_trans_f: {}".format(transrel_expr))
+                loop_transrel = Z3.qe(inloop_trans_f)
+                mlog.debug("loop_transrel: {}".format(loop_transrel))
 
-                inloop_fst_cond = Z3.qe(z3.Exists(list(inloop_ex_vars), 
+                loop_cond = Z3.qe(z3.Exists(list(inloop_ex_vars), 
                                                   z3.And(inloop_fst_symstate.pc, inloop_fst_symstate.slocal)))
-                mlog.debug("inloop_fst_cond: {}".format(inloop_fst_cond))
+                mlog.debug("loop_cond: {}".format(loop_cond))
 
-                return Loop(inp_decls, inloop_fst_cond, transrel_expr)
+                return Loop(inp_decls, loop_cond, loop_transrel)
         return None
 
     def _get_loopinfo_traces(self):
@@ -306,8 +316,8 @@ class NonTerm(object):
         self._config = config
 
         loopinfo = config.get_loopinfo()
-        self.transrel = loopinfo.transrel
-        self.loop_cond = loopinfo.loop_cond
+        self.transrel = loopinfo.loop.transrel
+        self.loop_cond = loopinfo.loop.cond
         self.tCexs = []
 
     def verify(self, rcs, precond):
