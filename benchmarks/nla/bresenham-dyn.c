@@ -49,8 +49,6 @@ void mainQ(int X, int Y) {
     x = 0;
 
     vloop(X, Y, v, x, y);
-
-    return 0;
 }
 
 void main(int argc, char **argv){
