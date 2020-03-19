@@ -5,13 +5,13 @@
 #include<stdio.h>
 #include <stdlib.h>
 
-void vtrace1(int x, int y, int z, int k, int c) {
+void vtrace1(int n, int p, int q, int r, int h) {
 }
 
-void vtrace2(int x, int y, int z, int k, int c) {
+void vtrace2(int n, int p, int q, int r, int h) {
 }
 
-void vtrace3(int x, int y, int z, int k, int c) {
+void vtrace3(int n, int p, int q, int r, int h) {
 }
 
 void vloop(int n, int p, int q, int r, int h) {

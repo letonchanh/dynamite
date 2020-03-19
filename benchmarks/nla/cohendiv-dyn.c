@@ -8,13 +8,13 @@
 
 //WIP: nested loops
 
-void vtrace1(int x, int y, int z, int k, int c) {
+void vtrace1(int x, int y, int q, int r, int a, int b) {
 }
 
-void vtrace2(int x, int y, int z, int k, int c) {
+void vtrace2(int x, int y, int q, int r, int a, int b) {
 }
 
-void vtrace3(int x, int y, int z, int k, int c) {
+void vtrace3(int x, int y, int q, int r, int a, int b) {
 }
 
 void vloop1(int x, int y, int q, int r, int a, int b) {

@@ -3,13 +3,13 @@
 #include<stdio.h>
 #include <stdlib.h>
 
-void vtrace1(int x, int y, int z, int k, int c) {
+void vtrace1(int x, int y, int a, int b, int p, int q, int r, int s) {
 }
 
-void vtrace2(int x, int y, int z, int k, int c) {
+void vtrace2(int x, int y, int a, int b, int p, int q, int r, int s) {
 }
 
-void vtrace3(int x, int y, int z, int k, int c) {
+void vtrace3(int x, int y, int a, int b, int p, int q, int r, int s) {
 }
 
 void vloop(int x, int y, int a, int b, int p, int q, int r, int s) {

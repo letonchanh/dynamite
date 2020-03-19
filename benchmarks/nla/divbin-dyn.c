@@ -9,13 +9,13 @@
 #include<stdio.h>
 #include <stdlib.h>
 
-void vtrace1(int x, int y, int z, int k, int c) {
+void vtrace1(int A, int B, int q, int r, int b) {
 }
 
-void vtrace2(int x, int y, int z, int k, int c) {
+void vtrace2(int A, int B, int q, int r, int b) {
 }
 
-void vtrace3(int x, int y, int z, int k, int c) {
+void vtrace3(int A, int B, int q, int r, int b) {
 }
 
 
