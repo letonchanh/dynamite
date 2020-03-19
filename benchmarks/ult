@@ -89,13 +89,13 @@ if ($arg1 eq 'run') {
 
 ################### Harvesting the results
 if ($arg1 eq 'harvest') {
-    print "% Benchmark          Time    Result\n";
-    print "% =================================\n";
+    print "% Benchmark                     Time    Result\n";
+    print "% ============================================\n";
     my %b2res;
     my $outdir = shift @ARGV or die "usage: ./ult harvest <tmpdir>\n";
     foreach my $b (@benches) {
         my $logfn = "$benchdir/$outdir/$b.log";
         $b2res{$b} = parse_ult($logfn);
-        printf "%-20s & %8.2f & %-10s\n", $b, $b2res{$b}->{time}, $b2res{$b}->{result};
+        printf "%-40s & %8.2f & %-10s\n", "$bdir/$b", $b2res{$b}->{time}, $b2res{$b}->{result};
     }
 }
