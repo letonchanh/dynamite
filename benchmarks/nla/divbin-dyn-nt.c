@@ -26,6 +26,10 @@ void vloop(int A, int B, int q, int r, int b) {
 
     while (A == q*b+r) {
         //__VERIFIER_assert(A == q * b + r);
+	if (counter >= bnd)
+            break;
+        else
+            counter++;
         vtrace2(A,B,q,r,b);
 
         q = 2 * q;

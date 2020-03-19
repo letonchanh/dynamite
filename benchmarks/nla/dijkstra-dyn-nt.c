@@ -20,6 +20,10 @@ void vloop(int n, int p, int q, int r, int h) {
     int counter = 0;
 
     while (p * p - n * q + q * r == 0) {
+	if (counter >= bnd)
+            break;
+        else
+            counter++;
         vtrace2(n,p,q,r,h);
         q = q / 4;
         h = p + q;

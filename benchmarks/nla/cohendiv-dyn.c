@@ -17,8 +17,17 @@ void vtrace2(int x, int y, int z, int k, int c) {
 void vtrace3(int x, int y, int z, int k, int c) {
 }
 
-void vloop1() {
+void vloop1(int x, int y, int q, int r, int a, int b) {
+    vtrace1(a,y,q,r,a,b);
+    int bnd = 500;
+    int counter = 0;
+
     while (r>=y) {
+	if (counter >= bnd)
+            break;
+        else
+            counter++;
+        vtrace2(a,y,q,r,a,b);
 	a = 1;
 	b = y;
 
@@ -29,6 +38,9 @@ void vloop1() {
 	}
 	r = r - b;
 	q = q + a;
+    }
+    if (counter < bnd) {
+        vtrace3(a,y,q,r,a,b);
     }
 }
 
@@ -48,8 +60,6 @@ void main(int x, int y) {
         
 	vloop1(x,y,q,r,a,b);
     }
-
-
 }
 
 void main(int argc, char **argv){
