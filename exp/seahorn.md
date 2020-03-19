@@ -15,11 +15,12 @@
     apt-get install -y libgmp-dev libncurses5-dev libboost-all-dev libz-dev && \
     apt-get install -y python-pip
     ```
+3. `sudo apt install g++-5 gcc-5` for a newer version of Ubuntu
 4. `git clone https://github.com/seahorn/seahorn`
 5. `cd seahorn/`
 6. `git checkout d48cfe8`
 7. `mkdir build && cd build`
-8. `/usr/bin/cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_PROGRAM_PATH=/usr/bin  -DCMAKE_INSTALL_PREFIX=run ../`
+8. `/usr/bin/cmake -D CMAKE_C_COMPILER=/usr/bin/gcc-5 -D CMAKE_CXX_COMPILER=/usr/bin/g++-5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_PROGRAM_PATH=/usr/bin  -DCMAKE_INSTALL_PREFIX=run ../`
 9. `/usr/bin/cmake --build . --target extra`
 10. `cmake --build .`
 10. `cmake --build .  && cmake /home/chanhle/repo/seahorn`
