@@ -125,7 +125,7 @@ class Setup(object):
                 mlog.debug("stem_transrel ({}): {}".format(type(stem_transrel), stem_transrel))
                 stem = Stem(self.inp_decls, stem_cond, stem_transrel)
                 from data.traces import Inp
-                inp = Inp(('x', 'y'), (1, -2))
+                inp = Inp(('x', 'y'), (1, 2))
                 stem.get_initial_inp(inp, self)
                 return stem
         return None
