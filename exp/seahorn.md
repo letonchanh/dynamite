@@ -21,12 +21,18 @@
     git clone https://github.com/llvm/llvm-project.git
     cd llvm-project/
     git checkout llvmorg-3.6.2
-    cp -r clang llvm/tools
+    
+    (cp -r clang llvm/tools)
+    
     mkdir build
     cd build/
-    ../llvm/configure --disable-bindings --prefix=/tools/llvm
-    make
-    sudo make install
+    
+    (../llvm/configure --disable-bindings --prefix=/tools/llvm)
+    (make)
+    (sudo make install)
+    
+    cmake -G Ninja -DLLVM_TARGETS_TO_BUILD:STRING=X86 -DWITH_POLLY:BOOL=OFF -DLLVM_ENABLE_PEDANTIC=OFF -DLLVM_ENABLE_PIC=ON -DLLVM_REQUIRES_RTTI:BOOL=TRUE -DLLVM_EXTERNAL_CLANG_SOURCE_DIR:PATH=/home/chanhle/repo/llvm-project/clang ../llvm
+    ninja
     
     sudo update-alternatives --install /usr/bin/clang++ clang++ /tools/llvm/bin/clang++ 100
     sudo update-alternatives --install /usr/bin/clang clang /tools/llvm/bin/clang 100
