@@ -21,11 +21,15 @@
     git clone https://github.com/llvm/llvm-project.git
     cd llvm-project/
     git checkout llvmorg-3.6.2
+    cp -r clang llvm/tools
     mkdir build
     cd build/
-    ../llvm/configure --disable-bindings
+    ../llvm/configure --disable-bindings --prefix=/tools/llvm
     make
     sudo make install
+    
+    sudo update-alternatives --install /usr/bin/clang++ clang++ /tools/llvm/bin/clang++ 100
+    sudo update-alternatives --install /usr/bin/clang clang /tools/llvm/bin/clang 100
     ```
 4. `git clone https://github.com/seahorn/seahorn`
 5. `cd seahorn/`
