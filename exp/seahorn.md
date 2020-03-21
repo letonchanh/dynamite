@@ -16,7 +16,7 @@
     apt-get install -y python-pip
     ```
 3. `sudo apt install g++-5 gcc-5` for a newer version of Ubuntu
-3. Build LLVM-3.6
+3. Build LLVM-3.6 (optional, it will be built together with seahorn)
     ```
     git clone https://github.com/llvm/llvm-project.git
     cd llvm-project/
