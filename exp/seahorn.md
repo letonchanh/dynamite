@@ -43,8 +43,8 @@
 7. `mkdir build && cd build`
 8. `/usr/bin/cmake -DCMAKE_C_COMPILER=/usr/bin/gcc-5 -DCMAKE_CXX_COMPILER=/usr/bin/g++-5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_PROGRAM_PATH=/usr/bin  -DCMAKE_INSTALL_PREFIX=run ../`
 9. `/usr/bin/cmake --build . --target extra`
-10. `cmake --build .`
 10. `cmake --build .  && cmake /home/chanhle/repo/seahorn`
+10. `cmake --build .`
 11. `/usr/bin/cmake --build . --target install`
 12. `/seahorn/build/run/bin/sea_svcomp --cex=error-witness.graphml -m64 --spec=/sv-benchmarks/c/termination-restricted-15/ALL.prp /sv-benchmarks/c/termination-restricted-15/c.01-no-inv_true-termination.c`
 
