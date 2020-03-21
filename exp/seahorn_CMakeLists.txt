@@ -119,11 +119,23 @@ else()
   install (PROGRAMS ${Z3_EXECUTABLE} DESTINATION bin)
 endif()
 
+set (LLVM_TAG "llvmorg-3.6.2" CACHE STRING "LLVM tag")
+
+add_custom_target (llvm-src
+    # HACK: remove all sources so that git-clone does not fail
+    # HACK: a proper solution is to work arround this as in ExternalProject
+    ${CMAKE_COMMAND} -E remove_directory ${CMAKE_SOURCE_DIR}/ext/llvm-project
+    COMMAND
+    ${GIT_EXECUTABLE} clone --depth=1 --branch=${LLVM_TAG}
+    https://github.com/llvm/llvm-project.git ${CMAKE_SOURCE_DIR}/ext/llvm-project)
+
 ExternalProject_Add (llvm
   # SVN_REPOSITORY http://llvm.org/svn/llvm-project/llvm/tags/RELEASE_360/final/
   # SOURCE_DIR ${CMAKE_SOURCE_DIR}/ext/llvm
-  GIT_REPOSITORY https://github.com/llvm/llvm-project.git
-  GIT_TAG llvmorg-3.6.2
+  # GIT_REPOSITORY https://github.com/llvm/llvm-project.git
+  # GIT_TAG llvmorg-3.6.2
+  DEPENDS llvm-src
+  DOWNLOAD_COMMAND ""
   SOURCE_DIR ${CMAKE_SOURCE_DIR}/ext/llvm-project/llvm
   INSTALL_DIR ${CMAKE_BINARY_DIR}/run
   CMAKE_ARGS
