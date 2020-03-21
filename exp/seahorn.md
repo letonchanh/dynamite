@@ -16,6 +16,17 @@
     apt-get install -y python-pip
     ```
 3. `sudo apt install g++-5 gcc-5` for a newer version of Ubuntu
+3. Build LLVM-3.6
+    ```
+    git clone https://github.com/llvm/llvm-project.git
+    cd llvm-project/
+    git checkout llvmorg-3.6.2
+    mkdir build
+    cd build/
+    ../llvm/configure --disable-bindings
+    make
+    sudo make install
+    ```
 4. `git clone https://github.com/seahorn/seahorn`
 5. `cd seahorn/`
 6. `git checkout d48cfe8`
