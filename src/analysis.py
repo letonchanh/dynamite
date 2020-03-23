@@ -124,9 +124,6 @@ class Setup(object):
                 mlog.debug("stem_cond ({}): {}".format(type(stem_cond), stem_cond))
                 mlog.debug("stem_transrel ({}): {}".format(type(stem_transrel), stem_transrel))
                 stem = Stem(self.inp_decls, stem_cond, stem_transrel)
-                from data.traces import Inp
-                inp = Inp(('x', 'y'), (1, 2))
-                stem.get_initial_inp(inp, self)
                 return stem
         return None
 
@@ -315,10 +312,9 @@ class Setup(object):
 class NonTerm(object):
     def __init__(self, config):
         self._config = config
-
         loopinfo = config.get_loopinfo()
-        self.transrel = loopinfo.loop.transrel
-        self.loop_cond = loopinfo.loop.cond
+        self.stem = loopinfo.stem
+        self.loop = loopinfo.loop
         self.tCexs = []
 
     def verify(self, rcs, precond):
@@ -347,25 +343,37 @@ class NonTerm(object):
         else:
             # assert rcs, rcs
             rcs_l = z3.substitute(rcs.expr(), _config.transrel_pre_sst)
+            loop_transrel = self.loop.transrel
+            rcs_transrel = z3.And(rcs_l, loop_transrel)
             mlog.debug("rcs_l: {}".format(rcs_l))
-            mlog.debug("transrel_expr: {}".format(self.transrel))
+            mlog.debug("loop_transrel: {}".format(loop_transrel))
+
+            if _config.is_c_inp:
+                init_symvars_prefix = dig_settings.C.CIVL_INIT_SYMVARS_PREFIX
 
             def _check(rc):
                 rc_r = z3.substitute(rc, _config.transrel_post_sst)
                 # f = z3.Not(z3.Implies(z3.And(rcs_l, transrel_expr), rc_r))
-                f = z3.And(z3.And(rcs_l, self.transrel), z3.Not(rc_r))
-                mlog.debug("_check: f = {}".format(f))
+                f = z3.And(rcs_transrel, z3.Not(rc_r)) # (x0, y0) -> (x1, y1)
+                f = z3.substitute(f, [(x0, x) for (x, x0) in _config.transrel_pre_sst]) # (x, y) -> (x1, y1)
+                init_f = self.stem.get_initial_cond(f, _config) # stem: (X_xx, X_yy) -> (x, y)
+                mlog.debug("f: {}".format(f))
+                mlog.debug("init_f: {}".format(init_f))
                 # using_random_seed = True
-                rs, _ = _config.solver.get_models(f, _config.nInps, settings.use_random_seed)
+                rs, _ = _config.solver.get_models(init_f, _config.nInps, settings.use_random_seed)
                 if rs is None:
                     mlog.debug("rs: unknown")
                 elif rs is False:
                     mlog.debug("rs: unsat")
                 else:
-                    mlog.debug("rs: sat ({} models)".format(len(rs)))
                     if isinstance(rs, list) and rs:
+                        rs = [[(x[len(init_symvars_prefix):], v) 
+                                if x.startswith(init_symvars_prefix) 
+                                else (x, v)
+                               for (x, v) in r] for r in rs]
+                        mlog.debug("rs: sat ({} models)\n{}".format(len(rs), rs))
                         rs = _config.solver.mk_inps_from_models(
-                                            rs, _config.transrel_pre_inv_decls, _config.exe)
+                                    rs, _config.inp_decls.exprs(settings.use_reals), _config.exe)
                 return rs
 
             chks = [(rc, _check(rc)) for rc in rcs]
@@ -428,10 +436,11 @@ class NonTerm(object):
         _config = self._config
         validRCS = []
 
-        if self.transrel is None or self.loop_cond is None:
-            return validRCS
+        if self.stem is None or self.loop is None:
+            return []
         else:
-            candidateRCS = [(ZConj([self.loop_cond]), 0, [])]
+            # candidate rcs, depth, ancestors
+            candidateRCS = [(None, 0, [])]
             while candidateRCS:
                 mlog.debug("candidateRCS: {}".format(candidateRCS))
                 rcs, depth, ancestors = candidateRCS.pop()
