@@ -353,12 +353,13 @@ class NonTerm(object):
 
             def _check(rc):
                 rc_r = z3.substitute(rc, _config.transrel_post_sst)
+                mlog.debug("rc: {}".format(rc))
                 # f = z3.Not(z3.Implies(z3.And(rcs_l, transrel_expr), rc_r))
                 f = z3.And(rcs_transrel, z3.Not(rc_r)) # (x0, y0) -> (x1, y1)
                 f = z3.substitute(f, [(x0, x) for (x, x0) in _config.transrel_pre_sst]) # (x, y) -> (x1, y1)
                 init_f = self.stem.get_initial_cond(f, _config) # stem: (X_xx, X_yy) -> (x, y)
-                mlog.debug("f: {}".format(f))
-                mlog.debug("init_f: {}".format(init_f))
+                # mlog.debug("f: {}".format(f))
+                # mlog.debug("init_f: {}".format(init_f))
                 # using_random_seed = True
                 rs, _ = _config.solver.get_models(init_f, _config.nInps, settings.use_random_seed)
                 if rs is None:
@@ -406,12 +407,13 @@ class NonTerm(object):
         elif mayloop_invs and rcs.implies(mayloop_invs):
             return mayloop_invs
         else:
-            base_term_pre = ZConj(_config.dig.infer_from_traces(
-                itraces, _config.preloop_loc, base_term_inps))
+            # base_term_pre = ZConj(_config.dig.infer_from_traces(
+            #     itraces, _config.preloop_loc, base_term_inps))
             term_invs = ZConj(_config.dig.infer_from_traces(
                 itraces, _config.inloop_loc, term_inps))
-            mlog.debug("base_term_pre: {}".format(base_term_pre))
+            # mlog.debug("base_term_pre: {}".format(base_term_pre))
             mlog.debug("term_invs: {}".format(term_invs))
+            mlog.debug("mayloop_invs: {}".format(mayloop_invs))
             term_traces = []
             for term_inp in term_inps:
                 term_traces.append(itraces[term_inp])
@@ -458,6 +460,6 @@ class NonTerm(object):
                             nancestors = copy.deepcopy(ancestors)
                             nancestors.append((depth, rcs))
                             candidateRCS.append((nrcs, depth+1, nancestors))
-            for tCex in self.tCexs:
-                mlog.debug("tCex: {}".format(tCex))
+            for (tInvs, tTraces) in self.tCexs:
+                mlog.debug("tCex: {}".format(tInvs))
             return validRCS

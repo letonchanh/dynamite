@@ -141,6 +141,7 @@ class Solver(object):
         solver.add(f)
 
         models = []
+        model_stat = {}
         i = 0
         # while solver.check() == z3.sat and i < k:
         while i < k:
@@ -151,11 +152,21 @@ class Solver(object):
             if not m:  # if m == []
                 break
             models.append(m)
+            for (x, v) in m:
+                model_stat.setdefault(x, {})
+                c = model_stat[x].setdefault(v, 0)
+                model_stat[x][v] = c + 1
             # mlog.debug("model {}: {}".format(i, m))
             # create new constraint to block the current model
-            block = z3.Not(z3.And([z3.Int(x) == v for (x, v) in m]))
-            solver.add(block)
+            block_m = z3.Not(z3.And([z3.Int(x) == v for (x, v) in m]))
+            solver.add(block_m)
+            for (x, v) in m:
+                if model_stat[x][v] / k > 0.1:
+                    block_x = z3.Int(x) != v
+                    mlog.debug("block_x: {}".format(block_x))
+                    solver.add(block_x)
 
+        mlog.debug("model_stat: {}".format(model_stat))
         stat = solver.check()
 
         if stat == z3.unknown:
