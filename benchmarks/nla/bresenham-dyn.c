@@ -6,13 +6,13 @@
 #include<stdio.h>
 #include <stdlib.h>
 
-void vtrace1(int x, int y, int z, int k, int c) {
+void vtrace1(int X, int Y, int v, int x, int y) {
 }
 
-void vtrace2(int x, int y, int z, int k, int c) {
+void vtrace2(int X, int Y, int v, int x, int y) {
 }
 
-void vtrace3(int x, int y, int z, int k, int c) {
+void vtrace3(int X, int Y, int v, int x, int y) {
 }
 
 void vloop(int X, int Y, int v, int x, int y) {
@@ -49,8 +49,6 @@ void mainQ(int X, int Y) {
     x = 0;
 
     vloop(X, Y, v, x, y);
-
-    return 0;
 }
 
 void main(int argc, char **argv){

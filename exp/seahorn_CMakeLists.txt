@@ -93,7 +93,7 @@ else()
 endif()
 
 ExternalProject_Add(z3
-  GIT_REPOSITORY  ${Z3_REPO}
+  GIT_REPOSITORY ${Z3_REPO}
   GIT_TAG ${Z3_TAG}
   BUILD_IN_SOURCE 1
   INSTALL_DIR ${CMAKE_BINARY_DIR}/run
@@ -119,17 +119,33 @@ else()
   install (PROGRAMS ${Z3_EXECUTABLE} DESTINATION bin)
 endif()
 
+set (LLVM_TAG "llvmorg-3.6.2" CACHE STRING "LLVM tag")
+
+add_custom_target (llvm-src
+    # HACK: remove all sources so that git-clone does not fail
+    # HACK: a proper solution is to work arround this as in ExternalProject
+    ${CMAKE_COMMAND} -E remove_directory ${CMAKE_SOURCE_DIR}/ext/llvm-project
+    COMMAND
+    ${GIT_EXECUTABLE} clone --depth=1 --branch=${LLVM_TAG}
+    https://github.com/llvm/llvm-project.git ${CMAKE_SOURCE_DIR}/ext/llvm-project)
+
 ExternalProject_Add (llvm
-  SVN_REPOSITORY http://llvm.org/svn/llvm-project/llvm/tags/RELEASE_360/final/
-  SOURCE_DIR ${CMAKE_SOURCE_DIR}/ext/llvm
+  # SVN_REPOSITORY http://llvm.org/svn/llvm-project/llvm/tags/RELEASE_360/final/
+  # SOURCE_DIR ${CMAKE_SOURCE_DIR}/ext/llvm
+  # GIT_REPOSITORY https://github.com/llvm/llvm-project.git
+  # GIT_TAG llvmorg-3.6.2
+  DEPENDS llvm-src
+  DOWNLOAD_COMMAND ""
+  SOURCE_DIR ${CMAKE_SOURCE_DIR}/ext/llvm-project/llvm
   INSTALL_DIR ${CMAKE_BINARY_DIR}/run
   CMAKE_ARGS
   -DCMAKE_C_COMPILER=${CMAKE_C_COMPILER} -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}
   -DCMAKE_BUILD_TYPE:STRING=${CMAKE_BUILD_TYPE}
   -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
-  -DLLVM_TARGETS_TO_BUILD:STRING=X86 -DWITH_POLY:BOOL=OFF
+  -DLLVM_TARGETS_TO_BUILD:STRING=X86 -DWITH_POLLY:BOOL=OFF
   -DLLVM_ENABLE_PEDANTIC=OFF
   -DLLVM_ENABLE_PIC=ON -DLLVM_REQUIRES_RTTI:BOOL=TRUE
+  -DLLVM_EXTERNAL_CLANG_SOURCE_DIR:PATH=${CMAKE_SOURCE_DIR}/ext/llvm-project/clang
   TEST_AFTER_INSTALL 1
   TEST_COMMAND ${CMAKE_COMMAND} -E touch ${CMAKE_CURRENT_LIST_FILE}
   LOG_CONFIGURE 1

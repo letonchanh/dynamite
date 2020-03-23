@@ -1,0 +1,67 @@
+#!/usr/bin/perl
+
+use Time::HiRes;
+use strict;
+
+######################################################################
+
+my $FUNCTION_DIR = "/home/ubuntu/function";
+my $BENCHES_DIR  = "/home/ejk/dynamo/benchmarks/svcomp-nla-digbench";
+my $r;
+my $BENCHES = {
+    'sqrt1-fn-t' => '-domain octagons',
+    #'sqrt1-fn-t' => '',
+    #'sqrt1-fn-t' => '-ordinals 25 -joinbwd 25',
+    #'sqrt1-fn-t' => '-joinbwd 3 -ordinals 3',
+        #'sqrt1-fn-t' => '',
+        #'sqrt1-fn-t' => '',
+
+        # cacm2009b => '-ordinals 1 -joinbwd 3',
+    # https://github.com/caterinaurban/function/blob/master/tests/cav2006.c
+    #sas2010 => '',
+    #sorting4 => '-domain octagons', # (or polyhedra)
+    #tacas2013a => '',
+    #tacas2013b => '-domain octagons',
+    #tacas2013c => '-joinbwd 3 -ordinals 3',
+    #tacas2013d => '-joinbwd 3 -ordinals 2',
+    #vmcai2004a => '-joinbwd 5'
+};
+
+######################################################################
+
+foreach my $b (keys %{$BENCHES}) {
+
+    # extract the C code and RF type
+    # open IN, "$BENCHES_DIR/$b.clp" or die "$! -- $BENCHES_DIR/$b.clp";
+    # open OUT, ">$BENCHES_DIR/$b.c" or die $!;
+    # my $begin = 0;
+    # my $kind = $BENCHES->{$b};
+    # while(<IN>) {
+	  #    #if (m/requires lexicog/) { $kind = '-ordinals 50'; }
+	  #    if ($begin == 1 && m/\*\)/) { last; }
+    #    elsif ($begin == 0 && m/\(\*/) { $begin = 1; }
+	  #    else { print OUT $_; }
+    # }
+    # close IN;
+    # close OUT;
+    # print "did $b - type is $kind.\n";
+
+    # run the benchmark
+    my $kind = $BENCHES->{$b};
+    my $start = Time::HiRes::gettimeofday();
+    my $res = qx{$FUNCTION_DIR/Main.native $BENCHES_DIR/$b.c -termination $kind};
+    my $end = Time::HiRes::gettimeofday();
+    print $res;
+    printf("TIME: %.3f s\n", $end-$start);
+    my $output = 'unparsed';
+    if ($res =~ /Analysis Result: ([A-Z]+)/) { $output = $1; }
+    $r->{$b}->{time}   = $end-$start;
+    $r->{$b}->{output} = $output;
+    $r->{$b}->{kind}   = $kind;
+}
+use Data::Dumper;
+print Dumper($r);
+
+foreach my $b (keys %{$BENCHES}) {
+    printf("%-12s & %-15s & %-10s & %0.3f \\\\\n", $b, $r->{$b}->{kind}, $r->{$b}->{output}, $r->{$b}->{time});
+}

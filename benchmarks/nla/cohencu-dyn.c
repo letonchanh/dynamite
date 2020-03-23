@@ -5,13 +5,13 @@ http://www.cs.upc.edu/~erodri/webpage/polynomial_invariants/cohencu.htm
 #include<stdio.h>
 #include <stdlib.h>
 
-void vtrace1(int x, int y, int z, int k, int c) {
+void vtrace1(int a, int n, int x, int y, int z) {
 }
 
-void vtrace2(int x, int y, int z, int k, int c) {
+void vtrace2(int a, int n, int x, int y, int z) {
 }
 
-void vtrace3(int x, int y, int z, int k, int c) {
+void vtrace3(int a, int n, int x, int y, int z) {
 }
 
 void vloop(int a, int n, int x, int y, int z) {

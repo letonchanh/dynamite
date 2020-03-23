@@ -6,8 +6,13 @@ use File::Temp qw/ tempfile tempdir /;
 my $ULTDIR = qq{/tools/ultimate/releaseScripts/default/UAutomizer-linux};
 my $SPECFILE = qq{/tools/termination.prp};
 
+#### Arguments parsing
+die "usage: ./ult <subdir> (list|run|harvest)\n" unless $#ARGV >= 1;
+
+my $bdir = shift(@ARGV); # subdirectory to use like 'nla'
 my $arg1 = shift(@ARGV); # list or run or harvest
 
+#### Utilities
 sub runc { my ($cmd) = @_; print "+ $cmd\n"; my $r = qx{$cmd}; print $r; }
 
 sub parse_ult {
@@ -15,6 +20,9 @@ sub parse_ult {
   open(F,"$logfn") or warn "file $logfn - $!";
   my ($time,$result) = ('UNKNOWN','UNKNOWN');
   while (<F>) {
+    if (/TerminationAnalysisResult: Unable to decide termination/) {
+	$result = '"Unable to decide termination"';
+    }
     if (/RESULT: Ultimate proved your program to be correct/) {
       $result = 'TRUE';
     }
@@ -40,7 +48,7 @@ sub parse_ult {
 
 use File::Basename;
 my $scriptfn = Cwd::abs_path($0);
-my $benchdir = dirname($scriptfn);
+my $benchdir = dirname($scriptfn)."/".$bdir;
 
 my @benches;
 print "Directory: $benchdir\n";
@@ -50,6 +58,7 @@ opendir(my $dh, $benchdir) || die "Can't open $benchdir: $!";
 while (readdir $dh) {
   my $fn = $_;
   next unless $fn =~ m/^.*-ult(-|\.)/;
+  next if $fn =~ /~$/;
   print "$benchdir/$fn  ";
   push @benches, "$fn";
 }
@@ -75,16 +84,18 @@ if ($arg1 eq 'run') {
         $b2res{$b} = parse_ult($logfn);
         print "$logfn - Time:$b2res{$b}->{time} - Result:$b2res{$b}->{result}\n";
     }
-    print "you may now harvest the results:\n ./ult harvest $benchdir/$outdir\n";
+    print "you may now harvest the results:\n ./ult $bdir harvest $outdir\n";
 }
 
 ################### Harvesting the results
 if ($arg1 eq 'harvest') {
+    print "% Benchmark                     Time    Result\n";
+    print "% ============================================\n";
     my %b2res;
     my $outdir = shift @ARGV or die "usage: ./ult harvest <tmpdir>\n";
     foreach my $b (@benches) {
         my $logfn = "$benchdir/$outdir/$b.log";
         $b2res{$b} = parse_ult($logfn);
-        printf "%-20s & %-5.2f & %-10s\n", $b, $b2res{$b}->{time}, $b2res{$b}->{result};
+        printf "%-40s & %8.2f & %-10s\n", "$bdir/$b", $b2res{$b}->{time}, $b2res{$b}->{result};
     }
 }
