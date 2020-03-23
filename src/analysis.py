@@ -53,11 +53,11 @@ class Setup(object):
                 exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
                 self.symstates = self._get_c_symstates_from_src(src)
                 ss = self.symstates.ss
-                for loc in ss:
-                    for depth in ss[loc]:
-                        pcs = ss[loc][depth]
-                        mlog.debug("DEPTH {}".format(depth))
-                        mlog.debug("pcs ({}):\n{}".format(len(pcs.lst), pcs))
+                # for loc in ss:
+                    # for depth in ss[loc]:
+                        # pcs = ss[loc][depth]
+                        # mlog.debug("DEPTH {}".format(depth))
+                        # mlog.debug("pcs ({}):\n{}".format(len(pcs.lst), pcs))
                 
             inp_decls, inv_decls, mainQ_name = src.inp_decls, src.inv_decls, src.mainQ_name
             prog = dig_prog.Prog(exe_cmd, inp_decls, inv_decls)
@@ -416,7 +416,8 @@ class NonTerm(object):
             for term_inp in term_inps:
                 term_traces.append(itraces[term_inp])
             self.tCexs.append((term_invs, term_traces))
-            term_cond = z3.Or(base_term_pre.expr(), term_invs.expr())
+            # term_cond = z3.Or(base_term_pre.expr(), term_invs.expr())
+            term_cond = term_invs.expr()
             simplified_term_cond = Z3.simplify(term_cond)
             cnf_term_cond = Z3.to_cnf(simplified_term_cond)
             mlog.debug("simplified_term_cond: {}".format(simplified_term_cond))
