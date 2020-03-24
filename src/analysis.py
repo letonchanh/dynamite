@@ -74,7 +74,7 @@ class Setup(object):
         self.inv_decls = inv_decls
         self.mainQ_name = mainQ_name
         self.exe = Execution(prog)
-        self.dig = Inference(self.inv_decls, self.seed)
+        self.dig = Inference(self.inv_decls, self.seed, self.tmpdir)
         self.cl = Classification(self.preloop_loc, self.inloop_loc, self.postloop_loc)
 
         rand_inps = self.exe.gen_rand_inps(self.nInps)
@@ -402,6 +402,7 @@ class NonTerm(object):
 
         mayloop_invs = ZConj(_config.dig.infer_from_traces(
             itraces, _config.inloop_loc, mayloop_inps))
+        mlog.debug("mayloop_invs: {}".format(mayloop_invs))
         if rcs is None:
             return mayloop_invs
         elif mayloop_invs and rcs.implies(mayloop_invs):
@@ -413,7 +414,6 @@ class NonTerm(object):
                 itraces, _config.inloop_loc, term_inps))
             # mlog.debug("base_term_pre: {}".format(base_term_pre))
             mlog.debug("term_invs: {}".format(term_invs))
-            mlog.debug("mayloop_invs: {}".format(mayloop_invs))
             term_traces = []
             for term_inp in term_inps:
                 term_traces.append(itraces[term_inp])
