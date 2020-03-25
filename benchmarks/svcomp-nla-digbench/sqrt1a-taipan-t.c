@@ -2,6 +2,7 @@
 /* Compute the floor of the square root of a natural number */
 
 #define f1(aa, nn) (nn - (aa+1)*(aa+1))
+#define f2(ss, nn) (nn - ss)
 
 extern void abort(void); 
 void reach_error(){}
@@ -22,7 +23,7 @@ void __VERIFIER_assert(int cond) {
 int main() {
     int n, a, s, t;
 
-    int ta, tn;
+    int ta, ts, tn;
     int dup = 0;
 
     n = __VERIFIER_nondet_int();
@@ -33,18 +34,18 @@ int main() {
     while ((a + 1) * (a + 1) <= n) {
     // while (s <= n) {
       //__VERIFIER_assert(t == 2*a + 1);
-      //__VERIFIER_assert(s == (a + 1) * (a + 1));
+      __VERIFIER_assume(s == (a + 1) * (a + 1));
       //__VERIFIER_assert(t*t - 4*s + 2*t + 1 == 0);
         // the above 2 should be equiv to 
       //if (!(s <= n))break;
 
         if(dup) {
-            if ( !(f1(ta, tn) > f1(a, n) &&  f1(ta, tn)  >= 0 )) {
+            if ( !(f2(ts, tn) > f2(s, n) &&  f2(ts, tn)  >= 0 )) {
                 __VERIFIER_error();
             }
         }
         if(!dup && __VERIFIER_nondet_int()) { 
-          ta = a; tn = n; dup = 1; }
+          ta = a; ts = s; tn = n; dup = 1; }
 
         a = a + 1;
         t = t + 2;
