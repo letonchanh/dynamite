@@ -18,7 +18,6 @@ void vloop(int a, int t, int s, int n) {
     int counter = 0;
 
     while ((a + 1) * (a + 1) <= n) {
-    // while ()
         if (counter >= bnd)
             break;
         else
