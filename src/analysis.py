@@ -26,7 +26,7 @@ class Setup(object):
         self.is_binary_inp = self.is_binary(inp)
         assert (self.is_java_inp or self.is_c_inp or self.is_binary_inp), inp
 
-        self.nInps = 100
+        self.nInps = 10
         self.preloop_loc = dig_settings.TRACE_INDICATOR + '1' # vtrace1
         self.inloop_loc = dig_settings.TRACE_INDICATOR + '2' # vtrace2
         self.postloop_loc = dig_settings.TRACE_INDICATOR + '3' # vtrace3
@@ -473,10 +473,14 @@ class Term(object):
         _config = self._config
         itraces = _config.rand_itraces
         base_term_inps, term_inps, mayloop_inps = _config.cl.classify_inps(itraces)
-        inloop_invs = ZConj(_config.dig.infer_from_traces(
-                            itraces, _config.inloop_loc, term_inps + mayloop_inps,
+        preloop_term_invs = ZConj(_config.dig.infer_from_traces(
+                            itraces, _config.preloop_loc, term_inps,
                             maxdeg=2))
-        mlog.debug("inloop_invs: {}".format(inloop_invs))
+        inloop_term_invs = ZConj(_config.dig.infer_from_traces(
+                            itraces, _config.inloop_loc, term_inps,
+                            maxdeg=2))
+        mlog.debug("preloop_term_invs: {}".format(preloop_term_invs))
+        mlog.debug("inloop_term_invs: {}".format(inloop_term_invs))
         term_traces = []
         for term_inp in term_inps:
             term_trace = itraces[term_inp]
