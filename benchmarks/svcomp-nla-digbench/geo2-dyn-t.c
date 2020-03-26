@@ -16,7 +16,7 @@ void vtrace3(int z, int k, int x, int y, int c) {
 }
 
 void vloop(int z, int k, int x, int y, int c) {
-    vtrace2(z,k,x,y,c);
+    vtrace1(z,k,x,y,c);
     int bnd = 500;
     int counter = 0;
 
@@ -48,19 +48,6 @@ void mainQ(int z, int k) {
     c = 1;
 
     vloop(z,k,x,y,c)
-
-    while (1) {
-        __VERIFIER_assert(1 + x*z - x - z*y == 0);
-
-        if (!(c < k))
-            break;
-
-        c = c + 1;
-        x = x * z + 1;
-        y = y * z;
-    }
-    __VERIFIER_assert(1 + x*z - x - z*y == 0);
-    return 0;
 }
 
 void main(int argc, char **argv){
