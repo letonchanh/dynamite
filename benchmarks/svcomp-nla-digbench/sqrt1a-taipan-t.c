@@ -5,16 +5,18 @@
 #define f2(ss, nn) (nn - ss)
 
 extern void abort(void); 
-void reach_error(){}
+//void reach_error(){}
 extern int __VERIFIER_nondet_int(void);
-extern void abort(void); 
-void assume_abort_if_not(int cond) { 
-  if(!cond) {abort();}
-}
+//extern int __VERIFIER_assert(int);
+//extern void abort(void); 
+//void assume_abort_if_not(int cond) { 
+//  if(!cond) {abort();}
+//}
+
 void __VERIFIER_assert(int cond) {
     if (!(cond)) {
     ERROR:
-        {reach_error();abort();}
+        { __VERIFIER_error(); abort(); }
     }
     return;
 }
@@ -33,9 +35,9 @@ int main() {
 
     while ((a + 1) * (a + 1) <= n) {
     // while (s <= n) {
-      //__VERIFIER_assert(t == 2*a + 1);
-      __VERIFIER_assume(s == (a + 1) * (a + 1));
-      //__VERIFIER_assert(t*t - 4*s + 2*t + 1 == 0);
+      __VERIFIER_assert(t == 2*a + 1);
+      __VERIFIER_assert(s == (a + 1) * (a + 1));
+      __VERIFIER_assert(t*t - 4*s + 2*t + 1 == 0);
         // the above 2 should be equiv to 
       //if (!(s <= n))break;
 
