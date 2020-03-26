@@ -36,6 +36,14 @@ if __name__ == "__main__":
         action="store_true",
         help="generate models without random_seed")
 
+    ag("--term", "-t",
+        action="store_true",
+        help="run termination analysis")
+    
+    ag("--nonterm", "-nt",
+        action="store_true",
+        help="run non-termination analysis")
+
     # DIG settings
     ag("--dig_log_level", "-dig_log_level",
        type=int,
@@ -63,6 +71,8 @@ if __name__ == "__main__":
 
     settings.run_dig = args.run_dig
     settings.use_random_seed = not args.no_random_seed
+    settings.prove_term = args.term
+    settings.prove_nonterm = args.nonterm
 
     dig_settings.DO_MP = not args.dig_nomp
 
@@ -101,23 +111,28 @@ if __name__ == "__main__":
         invs, traces = dig.start(seed, maxdeg)
     else:
         from helpers.miscs import Z3
-        from analysis import Setup, NonTerm
- 
-        config = Setup(seed, inp)
-        # precond = config.infer_precond()
-        # mlog.debug("precond: {}".format(precond))
-        nt_prover = NonTerm(config) 
-        validRCS = nt_prover.prove(None)
-        mlog.debug("validRCS: {}".format(validRCS))
-        for rcs, ancestors in validRCS:
-            f = Z3.to_dnf(rcs.simplify())
-            mlog.debug("(simplified) rcs: {}".format(f))
-            for depth, ancestor in ancestors:
-                if ancestor is None:
-                    ancestor_ = None
-                else:
-                    ancestor_ = Z3.to_dnf(ancestor.simplify())
-                mlog.debug("ancestor {}: {}".format(depth, ancestor_))
+        from analysis import Setup, NonTerm, Term
+    
+        if settings.prove_term or settings.prove_nonterm:
+            config = Setup(seed, inp)
+        
+        if settings.prove_nonterm:
+            nt_prover = NonTerm(config) 
+            validRCS = nt_prover.prove(None)
+            mlog.debug("validRCS: {}".format(validRCS))
+            for rcs, ancestors in validRCS:
+                f = Z3.to_dnf(rcs.simplify())
+                mlog.debug("(simplified) rcs: {}".format(f))
+                for depth, ancestor in ancestors:
+                    if ancestor is None:
+                        ancestor_ = None
+                    else:
+                        ancestor_ = Z3.to_dnf(ancestor.simplify())
+                    mlog.debug("ancestor {}: {}".format(depth, ancestor_))
+
+        if settings.prove_term:
+            t_prover = Term(config)
+            t_prover.prove()
 
 
     

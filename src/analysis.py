@@ -411,7 +411,7 @@ class NonTerm(object):
             # base_term_pre = ZConj(_config.dig.infer_from_traces(
             #     itraces, _config.preloop_loc, base_term_inps))
             term_invs = ZConj(_config.dig.infer_from_traces(
-                itraces, _config.inloop_loc, term_inps))
+                                itraces, _config.inloop_loc, term_inps))
             # mlog.debug("base_term_pre: {}".format(base_term_pre))
             mlog.debug("term_invs: {}".format(term_invs))
             term_traces = []
@@ -463,3 +463,23 @@ class NonTerm(object):
             for (tInvs, tTraces) in self.tCexs:
                 mlog.debug("tCex: {}".format(tInvs))
             return validRCS
+
+class Term(object):
+    def __init__(self, config):
+        self._config = config
+        self.ntCexs = []
+
+    def prove(self):
+        _config = self._config
+        itraces = _config.rand_itraces
+        base_term_inps, term_inps, mayloop_inps = _config.cl.classify_inps(itraces)
+        inloop_invs = ZConj(_config.dig.infer_from_traces(
+                            itraces, _config.inloop_loc, term_inps + mayloop_inps,
+                            maxdeg=2))
+        mlog.debug("inloop_invs: {}".format(inloop_invs))
+        term_traces = []
+        for term_inp in term_inps:
+            term_trace = itraces[term_inp]
+            mlog.debug("term_trace: {}".format(term_trace))
+            term_traces.append(term_trace)
+        
