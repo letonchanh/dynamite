@@ -31,7 +31,7 @@ void vloop1(int x, int y, int q, int r, int a, int b) {
 	a = 1;
 	b = y;
 
-	while (r >= 2*b) {            
+	while (r >= 2*b) {
 
 	    a = 2 * a;
 	    b = 2 * b;
@@ -44,20 +44,17 @@ void vloop1(int x, int y, int q, int r, int a, int b) {
     }
 }
 
-void main(int x, int y) {
+void mainQ(int x, int y) {
     int q, r, a, b;
 
-    x = __VERIFIER_nondet_int();
-    y = __VERIFIER_nondet_int();
-
-    __VERIFIER_assume(y >= 1);
+    //__VERIFIER_assume(y >= 1);
 
     if (y >= 1){
         q = 0;
         r = x;
         a = 0;
         b = 0;
-        
+
 	vloop1(x,y,q,r,a,b);
     }
 }
