@@ -1,0 +1,68 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use File::Temp qw/ tempfile tempdir /;
+
+my $SPECFILE = qq{/tools/termination.prp};
+#my $NT_SPECFILE = qq{/tools/nontermination.prp};
+
+###############################################################
+use lib '.';
+use Parsers qw{ult};
+my $CFG = {
+    ultimate => {
+        DIR    => qq{/tools/ultimate/releaseScripts/default/UAutomizer-linux},
+        CMD    => sub { return qq(./Ultimate.py --file $_[0]  --spec $SPECFILE --architecture 32bit); },
+        FETCH  => sub { return qq(cp Ultimate.log $_[0]); },
+        PARSE  => sub { return Parsers::ult($_[0]); },
+    },
+    aprove => {
+        DIR    => qq{/tools/aprove},
+        CMD    => sub { return qq(./AProVE.sh $_[0] > aprove.log); },
+        FETCH  => sub { return qq(cp aprove.log $_[0]); },
+        PARSE  => sub { return Parsers::aprove($_[0]); }
+    }
+};
+
+###############################################################
+#### Utilities
+sub runc { my ($cmd) = @_; print "+ $cmd\n"; my $r = qx{$cmd}; print $r; }
+
+###############################################################
+#### Arguments parsing
+die "usage: ./ult <subdir> (list|run) [ultimate,aprove]\n" unless $#ARGV >= 1;
+my $bdir = shift(@ARGV); # subdirectory to use like 'nla'
+my $arg1 = shift(@ARGV); # list or run or harvest
+my $ts   = shift(@ARGV);
+my @tools = split ',', $ts;
+print "--- Configuration ---\n";
+print "Tools: $ts\n";
+
+use Parsers qw/find_benchmarks/;
+my ($benchdir,@benches) = Parsers::find_benchmarks($bdir);
+exit if ($arg1 eq 'list');
+
+chdir $benchdir;
+
+################### Running the benchmarks
+if ($arg1 eq 'run') {
+    my $t = File::Temp->newdir( "out-XXXXXXX", CLEANUP => 0 );
+    my $outdir = $t->dirname;
+    print "Saving logs to: $benchdir/$outdir\n";
+    foreach my $tool (@tools) {
+        my %b2res;
+        foreach my $b (@benches) {
+            print "---\nNow running on: $b\n";
+            chdir $CFG->{$tool}->{DIR} or die "can't CHDIR to $CFG->{$tool}->{DIR}: $!";
+            #my $SPECFILE = ($b =~ m/-nt\./ ? $NT_SPECFILE : $T_SPECFILE);
+            runc( $CFG->{$tool}->{CMD}->("$benchdir/$b") );
+            my $logfn = "$benchdir/$outdir/$tool-$b.log";
+            runc( $CFG->{$tool}->{FETCH}->($logfn) );
+            $b2res{$b} = $CFG->{$tool}->{PARSE}->($logfn);
+            print "$logfn - Time:$b2res{$b}->{time} - Result:$b2res{$b}->{result}\n";
+        }
+    }
+    print "you may now harvest the results:\n ./harvest $bdir $outdir\n";
+}
+
