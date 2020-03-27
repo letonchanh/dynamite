@@ -26,7 +26,7 @@ class Setup(object):
         self.is_binary_inp = self.is_binary(inp)
         assert (self.is_java_inp or self.is_c_inp or self.is_binary_inp), inp
 
-        self.nInps = 10
+        self.nInps = 20
         self.preloop_loc = dig_settings.TRACE_INDICATOR + '1' # vtrace1
         self.inloop_loc = dig_settings.TRACE_INDICATOR + '2' # vtrace2
         self.postloop_loc = dig_settings.TRACE_INDICATOR + '3' # vtrace3
@@ -482,7 +482,7 @@ class Term(object):
             preloop_term_invs = _config.dig.infer_from_traces(
                                     itraces, _config.preloop_loc, term_inps, maxdeg=2)
             if preloop_term_invs is None:
-                rand_inps = _config.exe.gen_rand_inps(2 * _config.nInps)
+                rand_inps = _config.exe.gen_rand_inps(_config.nInps)
                 rand_itraces = _config.exe.get_traces(rand_inps)
                 old_itraces_len = len(itraces)
                 old_itraces_keys = set(itraces.keys())
@@ -494,6 +494,8 @@ class Term(object):
                     break
                     
         mlog.debug("preloop_term_invs: {}".format(preloop_term_invs))
+        mlog.debug("itraces: {}".format(len(itraces)))
+        mlog.debug("term_inps: {}".format(len(term_inps)))
         inloop_term_invs = ZConj(_config.dig.infer_from_traces(
                             itraces, _config.inloop_loc, term_inps,
                             maxdeg=2))
