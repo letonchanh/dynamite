@@ -506,4 +506,11 @@ class Term(object):
             term_trace = itraces[term_inp]
             mlog.debug("term_trace: {}".format(term_trace))
             term_traces.append(term_trace)
+
+        # Generate ranking function template
+        vs = _config.inv_decls[_config.inloop_loc].names
+        terms = Miscs.get_terms([sage.all.var(v) for v in vs], 1)
+        template, uks = Miscs.mk_template(terms, None, retCoefVars=True)
+        mlog.debug("template: {}".format(template))
+        mlog.debug("uks: {}".format(uks))
         
