@@ -86,7 +86,7 @@ class Inference(object):
         self.inv_decls = inv_decls
         self.tmpdir = tmpdir
 
-    def infer_from_traces(self, itraces, traceid, inps=None, maxdeg=1, config=None):
+    def infer_from_traces(self, itraces, traceid, inps=None, maxdeg=1):
         try:
             dtraces = DTraces()
             if inps is None:
@@ -108,19 +108,7 @@ class Inference(object):
             else:
                 return Invs()
         except:
-            if config is None:
-                return Invs()
-            else:
-                rand_inps = config.exe.gen_rand_inps(config.nInps)
-                rand_itraces = config.exe.get_traces(rand_inps)
-                old_itraces_len = len(itraces)
-                itraces.update(rand_itraces)
-                new_itraces_len = len(itraces)
-                if new_itraces_len > old_itraces_len:
-                    invs = self.infer_from_traces(itraces, traceid, inps, maxdeg, config)
-                    return invs
-                else:
-                    return None
+            return None
 
 class Solver(object):
     def __init__(self, tmpdir):
