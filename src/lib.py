@@ -19,11 +19,15 @@ class Execution(object):
     def gen_rand_inps(self, nInps):
         inps = Inps()
         inp_decls = self.prog.inp_decls
-        rInps = self.prog.gen_rand_inps(n_needed=nInps)
-        mlog.debug("gen {} random inps".format(len(rInps)))
-        # mlog.debug("gen inps: {}".format(rInps))
-        rInps = inps.merge(rInps, inp_decls.names)
-        return rInps
+        while len(inps) < nInps:
+            rInps = self.prog.gen_rand_inps(n_needed=nInps-len(inps))
+            if rInps:
+                inps = inps.merge(rInps, inp_decls.names)
+            else:
+                break
+        mlog.debug("gen {}/{} random inps".format(len(inps), nInps))
+        mlog.debug("inps: {}".format(inps))
+        return inps
 
     def get_traces(self, rInps):
         inp_decls = self.prog.inp_decls
@@ -104,7 +108,7 @@ class Inference(object):
             else:
                 return Invs()
         except:
-            return Invs()
+            return None
 
 class Solver(object):
     def __init__(self, tmpdir):
