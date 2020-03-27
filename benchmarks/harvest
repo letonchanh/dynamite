@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 use lib '.';
-my @tools = qw/ultimate aprove/;
+my @tools = qw/ultimate aprove seahorn/;
 use Parsers qw{parse find_benchmarks};
 
 my $bdir = shift @ARGV or die "usage: ./harvest <benchdir> <tmpdir>\n";
@@ -18,6 +18,7 @@ my %b2res;
 foreach my $tool (@tools) {
   foreach my $b (@benches) {
     my $logfn = "$benchdir/$outdir/$tool-$b.log";
+    if (not (-e $logfn)) { warn "skipping $logfn. does not exist.\n"; next; }
     $b2res{$b} = Parsers::parse($tool,$logfn);
     printf "%-10s & %-40s & %8.2f & %-10s\n", $tool, "$bdir/$b", $b2res{$b}->{time}, $b2res{$b}->{result};
   }

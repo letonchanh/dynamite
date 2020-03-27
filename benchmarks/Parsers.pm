@@ -5,15 +5,15 @@ use File::Basename;
 use Cwd qw/abs_path/;
 #use File::Temp qw/ tempfile tempdir /;
 
-our @EXPORT_OK = qw{ult find_benchmarks parse};
+our @EXPORT_OK = qw{ult find_benchmarks parse seahorn aprove};
 
 sub find_benchmarks {
     my ($bdir) = @_;
     my $scriptfn = Cwd::abs_path($0);
     my $benchdir = dirname($scriptfn)."/".$bdir;
     my @benches;
-    print "Directory: $benchdir\n";
-    print "Benchmarks: ";
+    print "| Directory: $benchdir\n";
+    print "| Benchmarks: ";
     opendir(my $dh, $benchdir) || die "Can't open $benchdir: $!";
     while (readdir $dh) {
         my $fn = $_;
@@ -25,6 +25,18 @@ sub find_benchmarks {
     closedir $dh;
     print "\n";
     return ($benchdir,@benches);
+}
+
+sub seahorn {
+    my ($logfn) = @_;
+    open(F,"$logfn") or warn "file $logfn - $!";
+    my ($time,$result) = (9999,'TODO');
+    while(<F>) {
+        chomp;
+        $result = $_ if m/BRUNCH_STAT Result/;
+        $time   = $1 if m/BRUNCH_STAT Termination (.*)$/;
+    }
+    return { time => $time, result => $result };
 }
 
 sub ult {
@@ -61,14 +73,18 @@ sub ult {
 sub aprove {
     my ($logfn) = @_;
     open(F,"$logfn") or warn "file $logfn - $!";
-    my $line1 = <F>;
+    my $res = <F>;
+    while (<F>) {
+        $res = '"could not be shown"' if /Termination of the given C Problem could not be shown/;
+    }
     close F;
-    return { time => '99999', result => $line1 };
+    return { time => '99999', result => $res };
 }
 sub parse {
     my ($tool,$logfn) = @_;
-    return ult($logfn) if $tool eq 'ultimate';
-    return aprove($logfn) if $tool eq 'aprove';
+    return ult($logfn)     if $tool eq 'ultimate';
+    return aprove($logfn)  if $tool eq 'aprove';
+    return seahorn($logfn) if $tool eq 'seahorn';
     die "parse: unknown tool: $tool\n";
 }
 
