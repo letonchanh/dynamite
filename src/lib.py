@@ -86,21 +86,25 @@ class Inference(object):
         self.inv_decls = inv_decls
         self.tmpdir = tmpdir
 
+    def get_traces(self, itraces, traceid, inps=None):
+        dtraces = DTraces()
+        if inps is None:
+            inps = itraces.keys()
+        for inp in inps:
+            traces = itraces[inp]
+            if traceid in traces:
+                for trace in traces[traceid]:
+                    dtraces.add(traceid, trace)
+        mlog.debug("dtraces: {}".format(dtraces.__str__(printDetails=False)))
+        dtraces.vwrite(self.inv_decls, self.tmpdir / (traceid + '.tcs'))
+        return dtraces
+
     def infer_from_traces(self, itraces, traceid, inps=None, maxdeg=1):
         try:
-            dtraces = DTraces()
-            if inps is None:
-                inps = itraces.keys()
-            for inp in inps:
-                traces = itraces[inp]
-                if traceid in traces:
-                    for trace in traces[traceid]:
-                        dtraces.add(traceid, trace)
-            mlog.debug("dtraces: {}".format(dtraces.__str__(printDetails=False)))
-            import alg as dig_alg
-            dig = dig_alg.DigTraces.from_dtraces(self.inv_decls, dtraces)
-            dtraces.vwrite(self.inv_decls, self.tmpdir / (traceid + '.tcs'))
+            dtraces = self.get_traces(itraces, traceid, inps)
             
+            import alg as dig_alg
+            dig = dig_alg.DigTraces.from_dtraces(self.inv_decls, dtraces)    
             invs, traces = dig.start(self.seed, maxdeg)
             mlog.debug("invs: {}".format(invs)) # <class 'data.inv.invs.DInvs'>
             if traceid in invs:

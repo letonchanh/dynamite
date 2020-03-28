@@ -7,6 +7,7 @@ import helpers.vcommon as dig_common_helpers
 import helpers.src as dig_src
 import data.prog as dig_prog
 from data.prog import Symb, Symbs
+from data.traces import Traces
 from helpers.miscs import Z3, Miscs
 # from bin import Bin
 
@@ -501,16 +502,26 @@ class Term(object):
                             maxdeg=2))
         
         mlog.debug("inloop_term_invs: {}".format(inloop_term_invs))
-        term_traces = []
-        for term_inp in term_inps:
-            term_trace = itraces[term_inp]
-            mlog.debug("term_trace: {}".format(term_trace))
-            term_traces.append(term_trace)
 
         # Generate ranking function template
         vs = _config.inv_decls[_config.inloop_loc].names
         terms = Miscs.get_terms([sage.all.var(v) for v in vs], 1)
-        template, uks = Miscs.mk_template(terms, None, retCoefVars=True)
-        mlog.debug("template: {}".format(template))
+        rnk_template, uks = Miscs.mk_template(terms, None, retCoefVars=True)
+        mlog.debug("rnk_template: {}".format(rnk_template))
         mlog.debug("uks: {}".format(uks))
+
+        for term_inp in term_inps:
+            mlog.debug("term_inp: {}".format(term_inp))
+            term_traces = itraces[term_inp]
+            inloop_term_traces = term_traces[_config.inloop_loc]
+            postloop_term_traces = term_traces[_config.postloop_loc]
+            inloop_rnk_terms = [rnk_template.subs(t.mydict) for t in inloop_term_traces]
+            postloop_rnk_terms = [rnk_template.subs(t.mydict) for t in postloop_term_traces]
+            rnk_trans = zip(inloop_rnk_terms, inloop_rnk_terms[1:] + postloop_rnk_terms[:1])
+            for (r1, r2) in rnk_trans:
+                desc_cond = sage.all.operator.gt(r1, r2)
+                bnd_cond = sage.all.operator.ge(r1, 0)
+                # mlog.debug("desc_cond: {}".format(desc_cond))
+                # mlog.debug("bnd_cond: {}".format(bnd_cond))
+
         
