@@ -470,6 +470,61 @@ class Term(object):
         self._config = config
         self.ntCexs = []
 
+    def infer_ranking_function(self, vs, term_itraces):
+        _config = self._config
+        terms = Miscs.get_terms([sage.all.var(v) for v in vs.names], 1)
+        rnk_template, uks = Miscs.mk_template(terms, None, retCoefVars=True)
+        mlog.debug("rnk_template: {}".format(rnk_template))
+        mlog.debug("uks: {}".format(uks))
+
+        zuks = []
+        for uk in uks:
+            suk = str(uk)
+            zuk = z3.Int(suk)
+            locals()[suk] = zuk
+            zuks.append(zuk)
+
+        def zabs(x):
+            return z3.If(x >= 0, x, -x)
+
+        opt = z3.Optimize()
+        for zuk in zuks:
+            opt.minimize(zabs(zuk))
+        
+
+        for (term_inp, term_traces) in term_itraces.items():
+            mlog.debug("term_inp: {}".format(term_inp))
+            inloop_term_traces = term_traces[_config.inloop_loc]
+            postloop_term_traces = term_traces[_config.postloop_loc]
+
+            assert inloop_term_traces, inloop_term_traces
+            assert postloop_term_traces, postloop_term_traces
+
+            inloop_rnk_terms = [rnk_template.subs(t.mydict) for t in inloop_term_traces]
+            postloop_rnk_terms = [rnk_template.subs(t.mydict) for t in postloop_term_traces]
+            rnk_trans = zip(inloop_rnk_terms, inloop_rnk_terms[1:] + postloop_rnk_terms[:1])
+            
+            (e1, e2) = list(rnk_trans)[-1]
+            desc_scond = str(sage.all.operator.gt(e1, e2))
+            bnd_scond = str(sage.all.operator.ge(e1, 0))
+            desc_zcond = eval(desc_scond)
+            bnd_zcond = eval(bnd_scond)
+            # desc_zcond = Z3.parse(desc_scond, False)
+            # bnd_zcond = Z3.parse(bnd_scond, False)
+            # mlog.debug("desc_zcond ({}): {}".format(type(desc_zcond), desc_zcond))
+            # mlog.debug("bnd_zcond ({}): {}".format(type(bnd_zcond), bnd_zcond))
+            opt.add(desc_zcond)
+            opt.add(bnd_zcond)
+
+        if opt.check() == z3.sat:
+            model = opt.model()
+            mlog.debug("model: {}".format(model))
+
+
+        
+
+
+
     def prove(self):
         _config = self._config
         itraces = _config.rand_itraces
@@ -504,24 +559,6 @@ class Term(object):
         mlog.debug("inloop_term_invs: {}".format(inloop_term_invs))
 
         # Generate ranking function template
-        vs = _config.inv_decls[_config.inloop_loc].names
-        terms = Miscs.get_terms([sage.all.var(v) for v in vs], 1)
-        rnk_template, uks = Miscs.mk_template(terms, None, retCoefVars=True)
-        mlog.debug("rnk_template: {}".format(rnk_template))
-        mlog.debug("uks: {}".format(uks))
-
-        for term_inp in term_inps:
-            mlog.debug("term_inp: {}".format(term_inp))
-            term_traces = itraces[term_inp]
-            inloop_term_traces = term_traces[_config.inloop_loc]
-            postloop_term_traces = term_traces[_config.postloop_loc]
-            inloop_rnk_terms = [rnk_template.subs(t.mydict) for t in inloop_term_traces]
-            postloop_rnk_terms = [rnk_template.subs(t.mydict) for t in postloop_term_traces]
-            rnk_trans = zip(inloop_rnk_terms, inloop_rnk_terms[1:] + postloop_rnk_terms[:1])
-            for (r1, r2) in rnk_trans:
-                desc_cond = sage.all.operator.gt(r1, r2)
-                bnd_cond = sage.all.operator.ge(r1, 0)
-                # mlog.debug("desc_cond: {}".format(desc_cond))
-                # mlog.debug("bnd_cond: {}".format(bnd_cond))
-
-        
+        vs = _config.inv_decls[_config.inloop_loc]
+        term_itraces = dict((term_inp, itraces[term_inp]) for term_inp in term_inps)
+        self.infer_ranking_function(vs, term_itraces)
