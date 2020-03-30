@@ -27,7 +27,7 @@ class Setup(object):
         self.is_binary_inp = self.is_binary(inp)
         assert (self.is_java_inp or self.is_c_inp or self.is_binary_inp), inp
 
-        self.nInps = 50
+        self.nInps = 20
         self.preloop_loc = dig_settings.TRACE_INDICATOR + '1' # vtrace1
         self.inloop_loc = dig_settings.TRACE_INDICATOR + '2' # vtrace2
         self.postloop_loc = dig_settings.TRACE_INDICATOR + '3' # vtrace3
@@ -52,8 +52,11 @@ class Setup(object):
                 mlog.debug("Create C source for mainQ: {}".format(self.tmpdir))
                 src = c_src(Path(inp), self.tmpdir)
                 exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
-                self.symstates = self._get_c_symstates_from_src(src)
-                ss = self.symstates.ss
+                try:
+                    self.symstates = self._get_c_symstates_from_src(src)
+                except:
+                    pass
+                # ss = self.symstates.ss
                 # for loc in ss:
                     # for depth in ss[loc]:
                         # pcs = ss[loc][depth]
@@ -78,7 +81,9 @@ class Setup(object):
         self.dig = Inference(self.inv_decls, self.seed, self.tmpdir)
         self.cl = Classification(self.preloop_loc, self.inloop_loc, self.postloop_loc)
 
+        mlog.debug("generate random inputs")
         rand_inps = self.exe.gen_rand_inps(self.nInps)
+        mlog.debug("get traces from random inputs")
         self.rand_itraces = self.exe.get_traces(rand_inps)  # itraces: input to dtraces
 
         self.transrel_pre_inv_decls, self.transrel_pre_sst, self.transrel_post_sst = \
@@ -496,24 +501,29 @@ class Term(object):
             inloop_term_traces = term_traces[_config.inloop_loc]
             postloop_term_traces = term_traces[_config.postloop_loc]
 
+            mlog.debug("inloop_term_traces: {}".format(inloop_term_traces))
+            mlog.debug("postloop_term_traces: {}".format(postloop_term_traces))
+
             assert inloop_term_traces, inloop_term_traces
             assert postloop_term_traces, postloop_term_traces
 
             inloop_rnk_terms = [rnk_template.subs(t.mydict) for t in inloop_term_traces]
             postloop_rnk_terms = [rnk_template.subs(t.mydict) for t in postloop_term_traces]
+
             rnk_trans = zip(inloop_rnk_terms, inloop_rnk_terms[1:] + postloop_rnk_terms[:1])
             
-            (e1, e2) = list(rnk_trans)[-1]
-            desc_scond = str(sage.all.operator.gt(e1, e2))
-            bnd_scond = str(sage.all.operator.ge(e1, 0))
-            # desc_zcond = eval(desc_scond)
-            # bnd_zcond = eval(bnd_scond)
-            desc_zcond = Z3.parse(desc_scond, False)
-            bnd_zcond = Z3.parse(bnd_scond, False)
-            # mlog.debug("desc_zcond ({}): {}".format(type(desc_zcond), desc_zcond))
-            # mlog.debug("bnd_zcond ({}): {}".format(type(bnd_zcond), bnd_zcond))
-            opt.add(desc_zcond)
-            opt.add(bnd_zcond)
+            # (e1, e2) = list(rnk_trans)[-1]
+            for (e1, e2) in rnk_trans:
+                desc_scond = str(sage.all.operator.gt(e1, e2))
+                bnd_scond = str(sage.all.operator.ge(e1, 0))
+                # desc_zcond = eval(desc_scond)
+                # bnd_zcond = eval(bnd_scond)
+                desc_zcond = Z3.parse(desc_scond, False)
+                bnd_zcond = Z3.parse(bnd_scond, False)
+                # mlog.debug("desc_zcond ({}): {}".format(type(desc_zcond), desc_zcond))
+                # mlog.debug("bnd_zcond ({}): {}".format(type(bnd_zcond), bnd_zcond))
+                opt.add(desc_zcond)
+                opt.add(bnd_zcond)
 
         if opt.check() == z3.sat:
             model = opt.model()

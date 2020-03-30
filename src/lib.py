@@ -19,12 +19,13 @@ class Execution(object):
     def gen_rand_inps(self, nInps):
         inps = Inps()
         inp_decls = self.prog.inp_decls
-        while len(inps) < nInps:
-            rInps = self.prog.gen_rand_inps(n_needed=nInps-len(inps))
-            if rInps:
-                inps = inps.merge(rInps, inp_decls.names)
-            else:
-                break
+        prev_len_inps = -1
+        while prev_len_inps < len(inps) and len(inps) < nInps:
+            mlog.debug("inps ({}): {}".format(len(inps), inps))
+            prev_len_inps = len(inps)
+            new_inps = self.prog.gen_rand_inps(n_needed=nInps-len(inps))
+            inps.merge(new_inps, inp_decls.names)
+
         mlog.debug("gen {}/{} random inps".format(len(inps), nInps))
         mlog.debug("inps: {}".format(inps))
         return inps
@@ -214,5 +215,5 @@ class Solver(object):
                         inp.append(sage.all.sage_eval(str(d[sv])))
                 s.add(tuple(inp))
             inps = Inps()
-            inps = inps.merge(s, tuple(inp_decls))
+            inps.merge(s, tuple(inp_decls))
             return inps
