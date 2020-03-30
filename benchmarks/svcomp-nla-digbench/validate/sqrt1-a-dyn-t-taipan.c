@@ -36,7 +36,7 @@ int main() {
     while ((a + 1) * (a + 1) <= n) {
     // while (s <= n) {
       __VERIFIER_assert(t == 2*a + 1);
-      __VERIFIER_assert(s == (a + 1) * (a + 1));
+      //__VERIFIER_assert(s == (a + 1) * (a + 1));
       __VERIFIER_assert(t*t - 4*s + 2*t + 1 == 0);
         // the above 2 should be equiv to 
       //if (!(s <= n))break;
