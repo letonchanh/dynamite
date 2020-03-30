@@ -2,7 +2,9 @@
 #include<stdlib.h>
 
 int __VERIFIER_nondet_int() {
-   return rand() % 5 - 6;
+   return rand() % 11 - 5;
+   //int i;
+   //return i;
 }
 
 void vtrace1(int x, int y) {

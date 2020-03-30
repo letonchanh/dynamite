@@ -1,5 +1,8 @@
 import tempfile
 import copy
+import random
+import itertools
+import math
 from pathlib import Path
 
 import settings as dig_settings
@@ -486,7 +489,7 @@ class Term(object):
         for uk in uks:
             suk = str(uk)
             zuk = z3.Int(suk)
-            locals()[suk] = zuk
+            globals()[suk] = zuk
             zuks.append(zuk)
 
         def zabs(x):
@@ -495,39 +498,74 @@ class Term(object):
         opt = z3.Optimize()
         for zuk in zuks:
             opt.minimize(zabs(zuk))
-        
-        for (term_inp, term_traces) in term_itraces.items():
-            mlog.debug("term_inp: {}".format(term_inp))
+
+        train_rand_trans = []
+        test_rand_trans = []
+        for term_inp in term_itraces:
+            term_traces = term_itraces[term_inp]
             inloop_term_traces = term_traces[_config.inloop_loc]
             postloop_term_traces = term_traces[_config.postloop_loc]
-
-            mlog.debug("inloop_term_traces: {}".format(inloop_term_traces))
-            mlog.debug("postloop_term_traces: {}".format(postloop_term_traces))
 
             assert inloop_term_traces, inloop_term_traces
             assert postloop_term_traces, postloop_term_traces
 
-            inloop_rnk_terms = [rnk_template.subs(t.mydict) for t in inloop_term_traces]
-            postloop_rnk_terms = [rnk_template.subs(t.mydict) for t in postloop_term_traces]
+            inloop_rnk_terms = [eval(str(rnk_template.subs(t.mydict))) for t in inloop_term_traces]
+            postloop_rnk_terms = [eval(str(rnk_template.subs(t.mydict))) for t in postloop_term_traces]
 
-            rnk_trans = zip(inloop_rnk_terms, inloop_rnk_terms[1:] + postloop_rnk_terms[:1])
-            
-            # (e1, e2) = list(rnk_trans)[-1]
-            for (e1, e2) in rnk_trans:
-                desc_scond = str(sage.all.operator.gt(e1, e2))
-                bnd_scond = str(sage.all.operator.ge(e1, 0))
-                # desc_zcond = eval(desc_scond)
-                # bnd_zcond = eval(bnd_scond)
-                desc_zcond = Z3.parse(desc_scond, False)
-                bnd_zcond = Z3.parse(bnd_scond, False)
-                # mlog.debug("desc_zcond ({}): {}".format(type(desc_zcond), desc_zcond))
-                # mlog.debug("bnd_zcond ({}): {}".format(type(bnd_zcond), bnd_zcond))
-                opt.add(desc_zcond)
-                opt.add(bnd_zcond)
+            rnk_terms = inloop_rnk_terms + postloop_rnk_terms[:1]
 
+            rnk_trans_idx = list(itertools.combinations(range(len(rnk_terms)), 2))
+            random.shuffle(rnk_trans_idx)
+            rnk_trans_idx_len = len(rnk_trans_idx)
+            splitter_idx = math.floor(0.0025 * rnk_trans_idx_len)
+            for (i1, i2) in rnk_trans_idx[:splitter_idx]:
+                assert i1 < i2, (i1, i2)
+                rand_trans = (rnk_terms[i1], rnk_terms[i2])
+                # mlog.debug("rand_trans: {} -> {}: {}".format(i1, i2, rand_trans))
+                train_rand_trans.append(rand_trans)
+
+        mlog.debug("train_rand_trans: {}".format(len(train_rand_trans)))
+
+        while train_rand_trans:
+            (t1, t2) = train_rand_trans.pop()
+            model = self._infer_ranking_function_trans(t1, t2, opt)
+            mlog.debug("model: {}".format(model))
+            if model:
+                train_rand_trans = [(t1, t2) for (t1, t2) in train_rand_trans 
+                                    if not (self._check_ranking_function_trans(t1, t2, model))]
+            mlog.debug("train_rand_trans: {}".format(len(train_rand_trans)))
+
+
+    def _check_ranking_function_trans(self, t1, t2, model):
+        s = z3.Solver()
+        s.add(t1 > t2)
+        s.add(t1 >= 0)
+        for d in model.decls():
+            zuk = globals()[d.name()]
+            s.add(zuk == model[d])
+        if s.check() == z3.sat:
+            return True
+        else:
+            return False
+
+    def _infer_ranking_function_trans(self, t1, t2, opt):
+        opt.push()
+        # desc_scond = str(sage.all.operator.gt(t1, t2))
+        # bnd_scond = str(sage.all.operator.ge(t1, 0))
+        # desc_zcond = eval(desc_scond)
+        # bnd_zcond = eval(bnd_scond)
+        # desc_zcond = Z3.parse(desc_scond, False)
+        # bnd_zcond = Z3.parse(bnd_scond, False)
+        opt.add(t1 > t2)
+        opt.add(t1 >= 0)
+
+        model = None
         if opt.check() == z3.sat:
             model = opt.model()
-            mlog.debug("model: {}".format(model))
+            # mlog.debug("model: {}".format(model))
+        opt.pop()
+        return model
+
 
     def prove(self):
         _config = self._config
