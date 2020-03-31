@@ -523,7 +523,7 @@ class Term(object):
             rnk_trans_idx = list(itertools.combinations(range(len(rnk_terms)), 2))
             random.shuffle(rnk_trans_idx)
             rnk_trans_idx_len = len(rnk_trans_idx)
-            splitter_idx = math.floor(0.005 * rnk_trans_idx_len)
+            splitter_idx = math.floor(0.01 * rnk_trans_idx_len)
             for (i1, i2) in rnk_trans_idx[:splitter_idx]:
                 assert i1 < i2, (i1, i2)
                 rand_trans = (rnk_terms[i1], rnk_terms[i2])
@@ -545,16 +545,28 @@ class Term(object):
 
 
     def _check_ranking_function_trans(self, t1, t2, model):
-        s = z3.Solver()
-        s.add(t1 > t2)
-        s.add(t1 >= 0)
+        # s = z3.Solver()
+        # s.add(t1 > t2)
+        # s.add(t1 >= 0)
+        # for d in model.decls():
+        #     zuk = globals()[d.name()]
+        #     s.add(zuk == model[d])
+        # if s.check() == z3.sat:
+        #     return True
+        # else:
+        #     return False
+        st1 = str(t1)
+        st2 = str(t2)
         for d in model.decls():
-            zuk = globals()[d.name()]
-            s.add(zuk == model[d])
-        if s.check() == z3.sat:
-            return True
-        else:
-            return False
+            v = model[d]
+            sv = str(v)
+            dn = d.name()
+            st1 = st1.replace(dn, sv)
+            st2 = st2.replace(dn, sv)
+        vt1 = eval(st1)
+        vt2 = eval(st2)
+        return (vt1 > vt2) and (vt1 >= 0)
+
 
     def _infer_ranking_function_trans(self, t1, t2, opt):
         opt.push()
