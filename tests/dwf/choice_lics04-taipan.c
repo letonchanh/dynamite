@@ -1,9 +1,9 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-#define f1(xx, yy) (xx + yy)
-//#define f2(xx, yy) (xx)
-//#define f3(xx, yy) (yy)
+//#define f1(xx, yy) (xx + yy)
+#define f2(xx, yy) (xx)
+#define f3(xx, yy) (yy)
 
 //int __VERIFIER_nondet_int() {
 //   return rand() % 5 - 6;
@@ -36,11 +36,11 @@ void vloop(int x, int y) {
         //vtrace2(x, y);
 
         if(dup) {
-            if ( !(f1(tx, ty) > f1(x, y) &&  f1(tx, ty)  >= 0 )) {
-            //if ( !(f2(tx, ty) > f2(x, y) &&  f2(tx, ty)  >= 0 )) {
-            //if ( !(f3(tx, ty) > f3(x, y) &&  f3(tx, ty)  >= 0 )) {
+            //if ( !(f1(tx, ty) > f1(x, y) &&  f1(tx, ty)  >= 0 )) {
+            if ( !(f2(tx, ty) > f2(x, y) &&  f2(tx, ty)  >= 0 )) {
+            if ( !(f3(tx, ty) > f3(x, y) &&  f3(tx, ty)  >= 0 )) {
                 __VERIFIER_error();
-            }//}}
+            }}//}
         }
         if(!dup && __VERIFIER_nondet_int()) { 
             tx = x; ty = y; dup = 1; }
