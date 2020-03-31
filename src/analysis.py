@@ -57,6 +57,7 @@ class Setup(object):
                 exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
                 if not settings.prove_nonterm:
                     try:
+                        mlog.debug("Get symstates for proving NonTerm")
                         self.symstates = self._get_c_symstates_from_src(src)
                     except:
                         pass
@@ -497,6 +498,8 @@ class Term(object):
             return z3.If(x >= 0, x, -x)
 
         opt = z3.Optimize()
+        zabs_sum = functools.reduce(lambda u, v: u + v, [zabs(u) for u in zuks])
+        opt.minimize(zabs_sum)
         for zuk in zuks:
             opt.minimize(zabs(zuk))
 
