@@ -523,7 +523,8 @@ class Term(object):
             rnk_trans_idx = list(itertools.combinations(range(len(rnk_terms)), 2))
             random.shuffle(rnk_trans_idx)
             rnk_trans_idx_len = len(rnk_trans_idx)
-            splitter_idx = min(1000, math.floor(0.005 * rnk_trans_idx_len))
+            splitter_idx = min(50, rnk_trans_idx_len)
+            # mlog.debug("splitter_idx: {}".format(splitter_idx))
             for (i1, i2) in rnk_trans_idx[:splitter_idx]:
                 assert i1 < i2, (i1, i2)
                 rand_trans = (rnk_terms[i1], rnk_terms[i2])
@@ -531,6 +532,7 @@ class Term(object):
                 train_rand_trans.append(rand_trans)
 
         mlog.debug("train_rand_trans: {}".format(len(train_rand_trans)))
+        # random.shuffle(train_rand_trans)
 
         while train_rand_trans:
             (t1, t2) = train_rand_trans.pop()
