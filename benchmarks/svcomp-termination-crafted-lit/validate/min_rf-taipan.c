@@ -6,9 +6,10 @@
  *
  */
 
-#define f1(x, y, z) (z - y)
+#define f1(x, y, z) (x)
 #define f2(x, y, z) (y)
-#define f3(x, y, z) (y - z)
+//#define f3(x, y, z) (y - z)
+//#define f4(x, y, z) (x)
 
 typedef enum {false, true} bool;
 
@@ -29,9 +30,10 @@ int main()
       if(dup) {
             if ( !(f1(tx, ty, tz) > f1(x, y, z) &&  f1(tx, ty, tz)  >= 0 )) {
             if ( !(f2(tx, ty, tz) > f2(x, y, z) &&  f2(tx, ty, tz)  >= 0 )) {
-            if ( !(f3(tx, ty, tz) > f3(x, y, z) &&  f3(tx, ty, tz)  >= 0 )) {
+            //if ( !(f3(tx, ty, tz) > f3(x, y, z) &&  f3(tx, ty, tz)  >= 0 )) {
+            //if ( !(f4(tx, ty, tz) > f3(x, y, z) &&  f4(tx, ty, tz)  >= 0 )) {
                 __VERIFIER_error();
-            }}}
+            }}//}}
       }
       if(!dup && __VERIFIER_nondet_int()) { 
             tx = x; ty = y; tz = z; dup = 1; }
