@@ -523,7 +523,7 @@ class Term(object):
             rnk_trans_idx = list(itertools.combinations(range(len(rnk_terms)), 2))
             random.shuffle(rnk_trans_idx)
             rnk_trans_idx_len = len(rnk_trans_idx)
-            splitter_idx = math.floor(0.005 * rnk_trans_idx_len)
+            splitter_idx = min(1000, math.floor(0.005 * rnk_trans_idx_len))
             for (i1, i2) in rnk_trans_idx[:splitter_idx]:
                 assert i1 < i2, (i1, i2)
                 rand_trans = (rnk_terms[i1], rnk_terms[i2])
