@@ -515,8 +515,8 @@ class Term(object):
             assert inloop_term_traces, inloop_term_traces
             assert postloop_term_traces, postloop_term_traces
 
-            inloop_rnk_terms = [eval(str(rnk_template.subs(t.mydict))) for t in inloop_term_traces]
-            postloop_rnk_terms = [eval(str(rnk_template.subs(t.mydict))) for t in postloop_term_traces]
+            inloop_rnk_terms = [self._to_Z3(rnk_template.subs(t.mydict)) for t in inloop_term_traces]
+            postloop_rnk_terms = [self._to_Z3(rnk_template.subs(t.mydict)) for t in postloop_term_traces]
 
             rnk_terms = inloop_rnk_terms + postloop_rnk_terms[:1]
 
@@ -525,6 +525,7 @@ class Term(object):
             rnk_trans_idx_len = len(rnk_trans_idx)
             splitter_idx = min(50, rnk_trans_idx_len)
             # mlog.debug("splitter_idx: {}".format(splitter_idx))
+            # splitter_idx = rnk_trans_idx_len
             for (i1, i2) in rnk_trans_idx[:splitter_idx]:
                 assert i1 < i2, (i1, i2)
                 rand_trans = (rnk_terms[i1], rnk_terms[i2])
@@ -544,7 +545,6 @@ class Term(object):
                 train_rand_trans = [(t1, t2) for (t1, t2) in train_rand_trans 
                                     if not (self._check_ranking_function_trans(t1, t2, model))]
             mlog.debug("train_rand_trans: {}".format(len(train_rand_trans)))
-
 
     def _check_ranking_function_trans(self, t1, t2, model):
         # s = z3.Solver()
@@ -587,6 +587,8 @@ class Term(object):
         opt.pop()
         return model
 
+    def _to_Z3(self, f):
+        return Z3.parse(str(f), False)
 
     def prove(self):
         _config = self._config
