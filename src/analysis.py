@@ -517,7 +517,7 @@ class Term(object):
             rnk_trans_idx = list(itertools.combinations(range(len(rnk_terms)), 2))
             random.shuffle(rnk_trans_idx)
             rnk_trans_idx_len = len(rnk_trans_idx)
-            splitter_idx = math.floor(0.0025 * rnk_trans_idx_len)
+            splitter_idx = math.floor(0.005 * rnk_trans_idx_len)
             for (i1, i2) in rnk_trans_idx[:splitter_idx]:
                 assert i1 < i2, (i1, i2)
                 rand_trans = (rnk_terms[i1], rnk_terms[i2])
@@ -531,6 +531,8 @@ class Term(object):
             model = self._infer_ranking_function_trans(t1, t2, opt)
             mlog.debug("model: {}".format(model))
             if model:
+                mlog.debug("t1: {}".format(t1))
+                mlog.debug("t2: {}".format(t2))
                 train_rand_trans = [(t1, t2) for (t1, t2) in train_rand_trans 
                                     if not (self._check_ranking_function_trans(t1, t2, model))]
             mlog.debug("train_rand_trans: {}".format(len(train_rand_trans)))
