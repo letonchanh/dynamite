@@ -55,10 +55,11 @@ class Setup(object):
                 mlog.debug("Create C source for mainQ: {}".format(self.tmpdir))
                 src = c_src(Path(inp), self.tmpdir)
                 exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
-                try:
-                    self.symstates = self._get_c_symstates_from_src(src)
-                except:
-                    pass
+                if not settings.prove_nonterm:
+                    try:
+                        self.symstates = self._get_c_symstates_from_src(src)
+                    except:
+                        pass
                 # ss = self.symstates.ss
                 # for loc in ss:
                     # for depth in ss[loc]:
