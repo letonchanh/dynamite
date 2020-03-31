@@ -55,18 +55,20 @@ class Setup(object):
                 mlog.debug("Create C source for mainQ: {}".format(self.tmpdir))
                 src = c_src(Path(inp), self.tmpdir)
                 exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
-                if not settings.prove_nonterm:
+                if settings.prove_nonterm:
                     try:
-                        mlog.debug("Get symstates for proving NonTerm")
+                        mlog.debug("Get symstates for proving NonTerm (prove_nonterm={})".format(settings.prove_nonterm))
                         self.symstates = self._get_c_symstates_from_src(src)
                     except:
                         pass
-                # ss = self.symstates.ss
-                # for loc in ss:
-                    # for depth in ss[loc]:
-                        # pcs = ss[loc][depth]
-                        # mlog.debug("DEPTH {}".format(depth))
-                        # mlog.debug("pcs ({}):\n{}".format(len(pcs.lst), pcs))
+                    # ss = self.symstates.ss
+                    # for loc in ss:
+                        # for depth in ss[loc]:
+                            # pcs = ss[loc][depth]
+                            # mlog.debug("DEPTH {}".format(depth))
+                            # mlog.debug("pcs ({}):\n{}".format(len(pcs.lst), pcs))
+                else:
+                    pass
                 
             inp_decls, inv_decls, mainQ_name = src.inp_decls, src.inv_decls, src.mainQ_name
             prog = dig_prog.Prog(exe_cmd, inp_decls, inv_decls)
