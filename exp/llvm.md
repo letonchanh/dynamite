@@ -17,6 +17,7 @@
     
 2. Compile from source:
     ```
-    build$ cmake -G Ninja ../llvm
+    build$ cmake -G Ninja -DLLVM_ENABLE_PROJECTS="clang" -DCMAKE_INSTALL_PREFIX=~/repo/llvm/llvm-6.0.0 -DCMAKE_BUILD_TYPE=Release ../llvm
     build$ ninja
+    build$ ninja install
     ```
