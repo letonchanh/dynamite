@@ -6,4 +6,5 @@
     apt install libboost1.68-dev
     perl -MCPAN -e install Getopt::Std
     ```
-2. `scripts/veriabs --property-file /tools/loops/reach.prp /tools/loops/while_infinite_loop_1.c`
+2. https://gitlab.com/sosy-lab/sv-comp/archives-2020/-/raw/svcomp20/2020/veriabs.zip
+3. `scripts/veriabs --property-file /tools/loops/reach.prp /tools/loops/while_infinite_loop_1.c`
