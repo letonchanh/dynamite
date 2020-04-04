@@ -542,8 +542,11 @@ class Term(object):
             if model:
                 mlog.debug("t1: {}".format(t1))
                 mlog.debug("t2: {}".format(t2))
-                train_rand_trans = [(t1, t2) for (t1, t2) in train_rand_trans 
-                                    if not (self._check_ranking_function_trans(t1, t2, model))]
+                # train_rand_trans = [(t1, t2) for (t1, t2) in train_rand_trans 
+                #                     if not (self._check_ranking_function_trans(t1, t2, model))]
+                train_rand_trans = itertools.filterfalse(lambda t: (self._check_ranking_function_trans(*t, model)),
+                                                         train_rand_trans)
+                train_rand_trans = list(train_rand_trans)
             mlog.debug("train_rand_trans: {}".format(len(train_rand_trans)))
 
     def _check_ranking_function_trans(self, t1, t2, model):

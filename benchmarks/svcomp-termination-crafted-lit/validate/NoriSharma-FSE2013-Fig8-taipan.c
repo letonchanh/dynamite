@@ -7,6 +7,8 @@
  *
  */
 
+ /* [-b, b, a, a + b] */
+
 #define f1(x, y, z) (x - y)
 #define f2(x, y, z) (z)
 
