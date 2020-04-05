@@ -523,7 +523,7 @@ class Term(object):
             rnk_trans_idx = list(itertools.combinations(range(len(rnk_terms)), 2))
             random.shuffle(rnk_trans_idx)
             rnk_trans_idx_len = len(rnk_trans_idx)
-            splitter_idx = min(50, rnk_trans_idx_len)
+            splitter_idx = min(10000, rnk_trans_idx_len)
             # mlog.debug("splitter_idx: {}".format(splitter_idx))
             # splitter_idx = rnk_trans_idx_len
             for (i1, i2) in rnk_trans_idx[:splitter_idx]:
@@ -535,6 +535,25 @@ class Term(object):
         mlog.debug("train_rand_trans: {}".format(len(train_rand_trans)))
         # random.shuffle(train_rand_trans)
 
+        import timeit
+
+        # import numpy as np
+        # arr_train_rand_trans = np.asarray(train_rand_trans)
+        # mlog.debug("arr_train_rand_trans: {}".format(arr_train_rand_trans.size))
+        # while arr_train_rand_trans.size != 0:
+        #     (t1, t2) = arr_train_rand_trans[0]
+        #     model = self._infer_ranking_function_trans(t1, t2, opt)
+        #     mlog.debug("model: {}".format(model))
+        #     if model:
+        #         mlog.debug("t1: {}".format(t1))
+        #         mlog.debug("t2: {}".format(t2))
+        #         f_check = lambda t: not (self._check_ranking_function_trans(*t, model))
+        #         bool_index = np.apply_along_axis(f_check, 1, arr_train_rand_trans)
+        #         arr_train_rand_trans = arr_train_rand_trans[bool_index]
+        #     else:
+        #         arr_train_rand_trans = np.delete(arr_train_rand_trans, [0])
+        #     mlog.debug("arr_train_rand_trans: {}".format(arr_train_rand_trans.size))
+            
         while train_rand_trans:
             (t1, t2) = train_rand_trans.pop()
             model = self._infer_ranking_function_trans(t1, t2, opt)
@@ -542,11 +561,20 @@ class Term(object):
             if model:
                 mlog.debug("t1: {}".format(t1))
                 mlog.debug("t2: {}".format(t2))
-                # train_rand_trans = [(t1, t2) for (t1, t2) in train_rand_trans 
-                #                     if not (self._check_ranking_function_trans(t1, t2, model))]
-                train_rand_trans = itertools.filterfalse(lambda t: (self._check_ranking_function_trans(*t, model)),
-                                                         train_rand_trans)
-                train_rand_trans = list(train_rand_trans)
+
+                start_time = timeit.default_timer()
+                l_train_rand_trans = [(t1, t2) for (t1, t2) in train_rand_trans 
+                                              if not (self._check_ranking_function_trans(t1, t2, model))]
+                elapsed = timeit.default_timer() - start_time
+                mlog.debug("l_train_rand_trans: {}".format(elapsed * 1000000))
+                
+                start_time = timeit.default_timer()
+                i_train_rand_trans = itertools.filterfalse(lambda t: (self._check_ranking_function_trans(*t, model)),
+                                                                   train_rand_trans)
+                elapsed = timeit.default_timer() - start_time
+                mlog.debug("i_train_rand_trans: {}".format(elapsed * 1000000))
+
+                train_rand_trans = list(i_train_rand_trans)
             mlog.debug("train_rand_trans: {}".format(len(train_rand_trans)))
 
     def _check_ranking_function_trans(self, t1, t2, model):
