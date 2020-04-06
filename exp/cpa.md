@@ -9,7 +9,7 @@
         /home/chanhle/repo/dynamo/benchmarks/svcomp-termination-crafted-lit/validate/Masse-VMCAI2014-Fig1a-taipan.c
     ```
     
-2. Validation
+2. Validation (https://github.com/sosy-lab/sv-witnesses)
   - CPAchecker
     ```
     JAVA=/usr/lib/jvm/java-11-openjdk-amd64/bin/java \
