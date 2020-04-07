@@ -4,6 +4,8 @@ import random
 import itertools
 import math
 from pathlib import Path
+# from numba import njit 
+# import numpy as np
 
 import settings as dig_settings
 import helpers.vcommon as dig_common_helpers
@@ -535,9 +537,8 @@ class Term(object):
         mlog.debug("train_rand_trans: {}".format(len(train_rand_trans)))
         # random.shuffle(train_rand_trans)
 
-        import timeit
+        # import timeit
 
-        import numpy as np
         # arr_train_rand_trans = np.asarray(train_rand_trans)
         # mlog.debug("arr_train_rand_trans: {}".format(arr_train_rand_trans.size / 2))
         # while arr_train_rand_trans.size != 0:
