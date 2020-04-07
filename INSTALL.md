@@ -59,6 +59,7 @@
     ```
     wget http://vsl.cis.udel.edu:8080/lib/sw/civl/1.20/r5259/release/CIVL-1.20_5259.tgz
     tar xvf CIVL-1.20_5259.tgz
+    java -jar lib/civl-1.20_5259.jar config
     ```
     
 - Install LLDB (optional)
