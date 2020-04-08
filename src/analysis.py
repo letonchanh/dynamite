@@ -61,8 +61,9 @@ class Setup(object):
                     try:
                         mlog.debug("Get symstates for proving NonTerm (prove_nonterm={})".format(settings.prove_nonterm))
                         self.symstates = self._get_c_symstates_from_src(src)
-                    except:
-                        pass
+                    except Exception as e:
+                        mlog.debug("Get symstates for proving NonTerm: {}".format(e))
+                        raise e
                     # ss = self.symstates.ss
                     # for loc in ss:
                         # for depth in ss[loc]:
@@ -110,6 +111,7 @@ class Setup(object):
         symstates = SymStatesC(inp_decls, inv_decls)
         symstates.compute(src.symexefile, src.mainQ_name,
                           src.funname, src.symexedir)
+        mlog.debug("symstates: {}".format(symstates.ss))
         return symstates
 
     def _get_loopinfo_symstates(self):
