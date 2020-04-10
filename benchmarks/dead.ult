@@ -5,6 +5,7 @@ use File::Temp qw/ tempfile tempdir /;
 
 my $ULTDIR = qq{/tools/ultimate/releaseScripts/default/UAutomizer-linux};
 my $SPECFILE = qq{/tools/termination.prp};
+#my $NT_SPECFILE = qq{/tools/nontermination.prp};
 
 #### Arguments parsing
 die "usage: ./ult <subdir> (list|run|harvest)\n" unless $#ARGV >= 1;
@@ -57,7 +58,7 @@ print "Benchmarks: ";
 opendir(my $dh, $benchdir) || die "Can't open $benchdir: $!";
 while (readdir $dh) {
   my $fn = $_;
-  next unless $fn =~ m/^.*-ult(-|\.)/;
+  next unless $fn =~ m/^.*-ult-n?t\.c/;
   next if $fn =~ /~$/;
   print "$benchdir/$fn  ";
   push @benches, "$fn";
@@ -78,6 +79,7 @@ if ($arg1 eq 'run') {
     foreach my $b (@benches) {
         print "---\nNow running on: $b\n";
         chdir $ULTDIR or die "can't CHDIR to $ULTDIR: $!";
+	#my $SPECFILE = ($b =~ m/-nt\./ ? $NT_SPECFILE : $T_SPECFILE);
         runc(qq{./Ultimate.py --file $benchdir/$b  --spec $SPECFILE --architecture 32bit});
         my $logfn = "$benchdir/$outdir/$b.log";
         runc(qq{cp Ultimate.log $logfn});

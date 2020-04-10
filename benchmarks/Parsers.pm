@@ -17,7 +17,9 @@ sub find_benchmarks {
     opendir(my $dh, $benchdir) || die "Can't open $benchdir: $!";
     while (readdir $dh) {
         my $fn = $_;
-        next unless $fn =~ m/^.*-ult-n?t\.c/;
+        #next unless $fn =~ m/^.*-ult-n?t\.c/;
+	next unless $fn =~ m/\.c$/;
+	next if $fn =~ m/-dyn/;
         next if $fn =~ /~$/;
         print "$benchdir/$fn  ";
         push @benches, "$fn";
@@ -42,10 +44,11 @@ sub seahorn {
 sub ult {
     my ($logfn) = @_;
     open(F,"$logfn") or warn "file $logfn - $!";
-    my ($time,$result) = ('UNKNOWN','UNKNOWN');
+    my ($time,$result) = (-1,'UNK');
     while (<F>) {
         if (/TerminationAnalysisResult: Unable to decide termination/) {
-            $result = '"Unable to decide termination"';
+            #$result = '"Unable to decide termination"';
+	    $result = 'UNK';
         }
         if (/RESULT: Ultimate proved your program to be correct/) {
             $result = 'TRUE';

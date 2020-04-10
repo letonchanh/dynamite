@@ -5,6 +5,7 @@ use warnings;
 use File::Temp qw/ tempfile tempdir /;
 
 my $SPECFILE = qq{/tools/termination.prp};
+my $TIMOUT   = '5m';
 #my $NT_SPECFILE = qq{/tools/nontermination.prp};
 
 ###############################################################
@@ -13,7 +14,7 @@ use Parsers qw{ult};
 my $CFG = {
     ultimate => {
         DIR    => qq{/tools/ultimate/releaseScripts/default/UAutomizer-linux},
-        CMD    => sub { return qq(./Ultimate.py --file $_[0]  --spec $SPECFILE --architecture 32bit); },
+        CMD    => sub { return qq(timeout $TIMOUT ./Ultimate.py --file $_[0]  --spec $SPECFILE --architecture 32bit); },
         FETCH  => sub { return qq(cp Ultimate.log $_[0]); },
         PARSE  => sub { return Parsers::ult($_[0]); },
     },
@@ -47,6 +48,9 @@ print "| Tools: $ts\n";
 
 use Parsers qw/find_benchmarks/;
 my ($benchdir,@benches) = Parsers::find_benchmarks($bdir);
+@benches = sort @benches[50..158];
+print "| Total files: ".($#benches+1)."\n";
+print "---------------\n";
 exit if ($arg1 eq 'list');
 
 chdir $benchdir;
@@ -57,6 +61,7 @@ if ($arg1 eq 'run') {
     my $outdir = $t->dirname;
     print "| Saving logs to: $benchdir/$outdir\n";
     print "----------------\n\n";
+    my $ct = 0;
     foreach my $tool (@tools) {
         my %b2res;
         foreach my $b (@benches) {
@@ -68,6 +73,7 @@ if ($arg1 eq 'run') {
             runc( $CFG->{$tool}->{FETCH}->($logfn) );
             $b2res{$b} = $CFG->{$tool}->{PARSE}->($logfn);
             print "$logfn - Time:$b2res{$b}->{time} - Result:$b2res{$b}->{result}\n";
+	    ++$ct; 
         }
     }
     print "you may now harvest the results:\n ./harvest $bdir $outdir\n";
