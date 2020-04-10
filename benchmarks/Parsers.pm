@@ -3,9 +3,10 @@ use strict;
 use warnings;
 use File::Basename;
 use Cwd qw/abs_path/;
+use YAML::Tiny;
 #use File::Temp qw/ tempfile tempdir /;
 
-our @EXPORT_OK = qw{ult find_benchmarks parse seahorn aprove};
+our @EXPORT_OK = qw{ult find_benchmarks parse seahorn aprove expected};
 
 sub find_benchmarks {
     my ($bdir) = @_;
@@ -21,6 +22,14 @@ sub find_benchmarks {
 	next unless $fn =~ m/\.c$/;
 	next if $fn =~ m/-dyn/;
         next if $fn =~ /~$/;
+	# check to see if there is a YML file:
+	my $ymlfn = "$benchdir/$fn"; $ymlfn =~ s/\.c$/\.yml/;
+	if (-e $ymlfn) {
+	    #print "  found yml: $ymlfn\n";
+	    #print "   checking for termination property\n";
+	    my $expect = expected($ymlfn);
+	    next if $expect eq 'IGNORE';
+	}
         print "$benchdir/$fn  ";
         push @benches, "$fn";
     }
@@ -28,6 +37,30 @@ sub find_benchmarks {
     print "\n";
     return ($benchdir,@benches);
 }
+
+sub expected {
+    my ($fn) = @_;
+    my $yaml = YAML::Tiny->read( $fn );
+    my @props = @{ $yaml->[0]->{properties} };
+    foreach my $p (@props) {
+	if ($p->{property_file} eq '../properties/termination.prp') {
+	    return $p->{expected_verdict};
+	}
+    }
+    #warn "could not parse $fn\n";
+    return 'IGNORE';
+}
+my $ex = "format_version: '1.0'
+
+# old file name: cstrlen_true-termination_true-no-overflow.c
+input_files: 'cstrlen.c'
+
+properties:
+  - property_file: ../properties/no-overflow.prp
+    expected_verdict: true
+  - property_file: ../properties/termination.prp
+  expected_verdict: true
+    ";
 
 sub seahorn {
     my ($logfn) = @_;

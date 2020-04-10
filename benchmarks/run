@@ -48,7 +48,7 @@ print "| Tools: $ts\n";
 
 use Parsers qw/find_benchmarks/;
 my ($benchdir,@benches) = Parsers::find_benchmarks($bdir);
-@benches = sort @benches[50..158];
+@benches = sort @benches; # [50..158];
 print "| Total files: ".($#benches+1)."\n";
 print "---------------\n";
 exit if ($arg1 eq 'list');
