@@ -111,7 +111,7 @@ class Setup(object):
         symstates = SymStatesC(inp_decls, inv_decls)
         symstates.compute(src.symexefile, src.mainQ_name,
                           src.funname, src.symexedir)
-        mlog.debug("symstates: {}".format(symstates.ss))
+        # mlog.debug("symstates: {}".format(symstates.ss))
         return symstates
 
     def _get_loopinfo_symstates(self):
@@ -157,8 +157,10 @@ class Setup(object):
             raise NotImplementedError
 
         inp_decls, inv_decls = src.inp_decls, src.inv_decls
+        loop_init_symvars = symstates.init_symvars
         mlog.debug("vloop inp_decls: {}".format(inp_decls))
         mlog.debug("vloop inv_decls: {}".format(inv_decls))
+        mlog.debug("vloop init_symvars: {}".format(loop_init_symvars))
         
         if self.inloop_loc in ss:
             inloop_symstates = ss[self.inloop_loc]
@@ -176,16 +178,20 @@ class Setup(object):
             
             if inloop_fst_symstate and inloop_snd_symstate:
                 # Get loop's condition and transition relation
-                inloop_vars = Z3.get_vars(inloop_fst_symstate.slocal).union(Z3.get_vars(inloop_snd_symstate.slocal))
-                inloop_inv_vars = inv_decls[self.inloop_loc].exprs(settings.use_reals)
-                inloop_ex_vars = inloop_vars.difference(inloop_inv_vars)
-                mlog.debug("inloop_ex_vars: {}".format(inloop_ex_vars))
                 inloop_fst_slocal = z3.substitute(inloop_fst_symstate.slocal, self.transrel_pre_sst)
                 inloop_snd_slocal = z3.substitute(inloop_snd_symstate.slocal, self.transrel_post_sst)
                 mlog.debug("inloop_fst_slocal: {}".format(inloop_fst_slocal))
                 mlog.debug("inloop_snd_slocal: {}".format(inloop_snd_slocal))
-                inloop_trans_f = z3.Exists(list(inloop_ex_vars), z3.And(inloop_fst_slocal, inloop_snd_slocal))
-                loop_transrel = Z3.qe(inloop_trans_f)
+                inloop_vars = Z3.get_vars(inloop_fst_symstate.slocal).union(Z3.get_vars(inloop_snd_symstate.slocal))
+                inloop_inv_vars = inv_decls[self.inloop_loc].exprs(settings.use_reals)
+                inloop_ex_vars = inloop_vars.difference(inloop_inv_vars)
+                # mlog.debug("inloop_ex_vars: {}".format(inloop_ex_vars))
+                # inloop_trans_f = z3.Exists(list(inloop_ex_vars), z3.And(inloop_fst_slocal, inloop_snd_slocal))
+                # loop_transrel = Z3.qe(inloop_trans_f)
+                init_sst = list(zip(loop_init_symvars.exprs(settings.use_reals),
+                                    inp_decls.exprs(settings.use_reals)))
+                loop_transrel = z3.And(inloop_fst_slocal, inloop_snd_slocal)
+                loop_transrel = z3.substitute(loop_transrel, init_sst)
                 mlog.debug("loop_transrel: {}".format(loop_transrel))
 
                 loop_cond = Z3.qe(z3.Exists(list(inloop_ex_vars), 
@@ -361,7 +367,7 @@ class NonTerm(object):
             # assert rcs, rcs
             rcs_l = z3.substitute(rcs.expr(), _config.transrel_pre_sst)
             loop_transrel = self.loop.transrel
-            rcs_transrel = z3.And(rcs_l, loop_transrel)
+            rcs_transrel = z3.And(loop_transrel, rcs_l)
             mlog.debug("rcs_l: {}".format(rcs_l))
             mlog.debug("loop_transrel: {}".format(loop_transrel))
 
@@ -373,8 +379,8 @@ class NonTerm(object):
                 mlog.debug("rc: {}".format(rc))
                 # f = z3.Not(z3.Implies(z3.And(rcs_l, transrel_expr), rc_r))
                 f = z3.And(rcs_transrel, z3.Not(rc_r)) # (x0, y0) -> (x1, y1)
-                f = z3.substitute(f, [(x0, x) for (x, x0) in _config.transrel_pre_sst]) # (x, y) -> (x1, y1)
-                init_f = self.stem.get_initial_cond(f, _config) # stem: (X_xx, X_yy) -> (x, y)
+                # f = z3.substitute(f, [(x0, x) for (x, x0) in _config.transrel_pre_sst]) # (x, y) -> (x1, y1)
+                init_f = self.stem.get_initial_cond(f, _config)
                 # mlog.debug("f: {}".format(f))
                 # mlog.debug("init_f: {}".format(init_f))
                 # using_random_seed = True

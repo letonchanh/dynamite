@@ -36,8 +36,9 @@ void vloop(int t, int n) {
 }
 
 void mainQ(int t, int n) {
-    vloop(t, n);
-
+    if (n >= 0) {
+        vloop(t+2, n+1);
+    }
 }
 
 void main(int argc, char **argv) {

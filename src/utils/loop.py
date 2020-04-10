@@ -17,15 +17,15 @@ class LoopPart(object):
 
 class Stem(LoopPart):
     def get_initial_cond(self, f, config):
-        init_symvars = (config.symstates.init_symvars).exprs(settings.use_reals)
+        # init_symvars = (config.symstates.init_symvars).exprs(settings.use_reals)
         init_f = z3.And(self.cond, self.transrel, f)
-        init_f_vars = Z3.get_vars(init_f)
-        exists_vars = init_f_vars.difference(init_symvars)
-        init_cond = z3.Exists(list(exists_vars), init_f)
+        # init_f_vars = Z3.get_vars(init_f)
+        # exists_vars = init_f_vars.difference(init_symvars)
+        # init_cond = z3.Exists(list(exists_vars), init_f)
         # mlog.debug("init_cond: {}".format(init_cond))
-        qe_init_cond = Z3.qe(init_cond)
+        # qe_init_cond = Z3.qe(init_cond)
         # mlog.debug("qe_init_cond: {}".format(qe_init_cond))
-        return qe_init_cond
+        return init_f
 
     def get_initial_inp(self, inp, config):
         assert isinstance(inp, Inp)
