@@ -11,15 +11,24 @@ my $outdir = shift @ARGV or die "usage: ./harvest <benchdir> <tmpdir>\n";
 
 my ($benchdir,@benches) = Parsers::find_benchmarks($bdir);
 
+################### Filename for results
+use POSIX qw(strftime);
+my $now = time();
+my $fn = strftime('%Y%m%d%H%M%S', gmtime($now));
+
 ################### Harvesting the results
 print "% Tool   Benchmark                     Time    Result\n";
 print "% ============================================\n";
 my %b2res;
+open CHANH, ">../results/ultimate.$fn.csv" or die $!;
 foreach my $tool (@tools) {
-  foreach my $b (@benches) {
+  foreach my $b (sort @benches) {
     my $logfn = "$benchdir/$outdir/$tool-$b.log";
     if (not (-e $logfn)) { warn "skipping $logfn. does not exist.\n"; next; }
     $b2res{$b} = Parsers::parse($tool,$logfn);
-    printf "%-10s & %-40s & %8.2f & %-10s\n", $tool, "$bdir/$b", $b2res{$b}->{time}, $b2res{$b}->{result};
+    printf "%-10s & %-80s & %8.2f & %-10s\n", $tool, "$bdir/$b", $b2res{$b}->{time}, $b2res{$b}->{result};
+    my $ln = sprintf("%s,%s,%.2f\n", $b, $b2res{$b}->{result},  $b2res{$b}->{time});
+    print CHANH $ln;
   }
 }
+close CHANH;

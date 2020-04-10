@@ -1,0 +1,31 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use lib '.';
+my @tools = qw/ultimate aprove seahorn/;
+use Parsers qw{parse find_benchmarks expected};
+
+my $bdir = shift @ARGV or die "usage: ./expected <benchdir>  # where yml files live \n";
+
+my ($benchdir,@benches) = Parsers::find_benchmarks($bdir);
+
+################### Filename for results
+use POSIX qw(strftime);
+my $now = time();
+my $fn = strftime('%Y%m%d%H%M%S', gmtime($now));
+
+################### Harvesting the results
+open CHANH, ">../results/expected.$fn.csv" or die $!;
+foreach my $b (sort @benches) {
+    my $ymlfn = "$benchdir/$b";
+    $ymlfn =~ s/\.c$/\.yml/;
+    if (not (-e $ymlfn)) { warn "skipping $ymlfn. does not exist.\n"; next; }
+    #printf "%-10s & %-80s & %8.2f & %-10s\n", $tool, "$bdir/$b", $b2res{$b}->{time}, $b2res{$b}->{result};
+    my $expect = Parsers::expected($ymlfn);
+    next if $expect eq 'IGNORE';
+    my $ln = sprintf("%s,%s\n", $b, $expect);
+    print CHANH $ln;
+}
+close CHANH;
+print "+ wrote file:\n    ../results/expected.$fn.csv\n";
