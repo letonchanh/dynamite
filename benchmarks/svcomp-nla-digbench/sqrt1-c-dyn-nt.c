@@ -35,9 +35,9 @@ void vloop(int t, int n) {
     }
 }
 
-void mainQ(int t, int n) {
-    if (n >= 0) {
-        vloop(t+2, n+1);
+void mainQ(int qt, int qn) {
+    if (qn >= 0) {
+        vloop(qt+2, qn+1);
     }
 }
 

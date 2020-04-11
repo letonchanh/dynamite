@@ -382,7 +382,7 @@ class NonTerm(object):
                 # f = z3.substitute(f, [(x0, x) for (x, x0) in _config.transrel_pre_sst]) # (x, y) -> (x1, y1)
                 init_f = self.stem.get_initial_cond(f, _config)
                 # mlog.debug("f: {}".format(f))
-                # mlog.debug("init_f: {}".format(init_f))
+                mlog.debug("init_f: {}".format(init_f))
                 # using_random_seed = True
                 rs, _ = _config.solver.get_models(init_f, _config.nInps, settings.use_random_seed)
                 if rs is None:
