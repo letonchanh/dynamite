@@ -75,6 +75,16 @@
     ninja lldb-server
     ```
     
+- Install Omega (optional, https://github.com/davewathaverford/the-omega-project)
+    ```
+    apt install g++-5 gcc-5
+    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 50
+    update-alternatives --config g++
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 50
+    update-alternatives --config gcc
+    PATH=/usr/bin:$PATH make (oc|all)
+    ```
+    
 - Install OCaml
     ```
     sh <(curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)
