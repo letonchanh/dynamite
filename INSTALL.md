@@ -75,7 +75,7 @@
     ninja lldb-server
     ```
     
-- Install Omega (optional, https://github.com/davewathaverford/the-omega-project)
+- Install Omega (optional, https://github.com/davewathaverford/the-omega-project, http://www.cs.umd.edu/projects/omega/)
     ```
     apt install g++-5 gcc-5
     update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 50
