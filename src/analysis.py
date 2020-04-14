@@ -441,7 +441,7 @@ class NonTerm(object):
             # base_term_pre = ZConj(_config.dig.infer_from_traces(
             #     itraces, _config.preloop_loc, base_term_inps))
             term_invs = ZConj(_config.dig.infer_from_traces(
-                                itraces, _config.inloop_loc, term_inps))
+                                itraces, _config.inloop_loc, term_inps, maxdeg=2))
             # mlog.debug("base_term_pre: {}".format(base_term_pre))
             mlog.debug("term_invs: {}".format(term_invs))
             term_traces = []

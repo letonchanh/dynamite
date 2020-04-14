@@ -217,3 +217,64 @@ class Solver(object):
             inps = Inps()
             inps.merge(s, tuple(inp_decls))
             return inps
+
+    @classmethod
+    def _get_expr_id(e):
+        return z3.Z3_get_ast_id(e.ctx.ref(), e.ast)
+
+    @classmethod
+    def _is_var_expr(cls, e):
+        r = z3.is_const(e) and \
+            e.decl().kind() == z3.Z3_OP_UNINTERPRETED
+        return r
+
+    @classmethod
+    def _is_const_expr(cls, e):
+        r = z3.is_const(e) and \
+            e.decl().kind() == z3.Z3_OP_ANUM
+        return r
+
+    @classmethod
+    def _is_mul_expr(cls, e, check_nla=False):
+        def _is_mul_term(e):
+            return cls._is_var_expr(e) or cls._is_const_expr(e)
+
+        def _is_mul_aux(e, seen):
+            e_id = cls._get_expr_id(e)
+            if e_id in seen:
+                return seen[e_id]
+            else:
+                r = z3.is_mul(e) and \
+                    all(_is_mul_term(c) or _is_mul_aux(c, seen) for c in e.children())
+                seen[e_id] = r
+                return r
+        
+        return _is_mul_aux(e, {})
+
+    @classmethod
+    def _is_pow_expr(cls, e, check_nla=False):
+        return z3.is_app_of(e, z3.Z3_OP_POWER)
+
+    @classmethod
+    def _is_term_expr(cls, e):
+        """
+        x, y = Ints('x y')
+        Solver._is_term_expr(x) == True
+        Solver._is_term_expr(IntVal(1)) == True
+        Solver._is_term_expr(x*y) == True
+        Solver._is_term_expr(x*y*z) == True
+        Solver._is_term_expr(x**2) == True
+        Solver._is_term_expr(2**x) == True
+        Solver._is_term_expr(x + 1) == False
+        """
+        r = cls._is_var_expr(e) or \
+            cls._is_const_expr(e) or \
+            cls._is_mul_expr(e) or \
+            cls._is_pow_expr(e)
+        return r
+
+    @classmethod
+    def _is_nonlinear_term_expr(cls, e):
+        r = _is_mul_expr(e, check_nla=True) or \
+            _is_nonlinear_pow_expr(e, check_nla=True)
+        return e
