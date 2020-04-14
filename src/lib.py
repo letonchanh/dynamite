@@ -218,63 +218,189 @@ class Solver(object):
             inps.merge(s, tuple(inp_decls))
             return inps
 
-    @classmethod
+    # Internal static methods over z3's ast
+    @staticmethod
     def _get_expr_id(e):
-        return z3.Z3_get_ast_id(e.ctx.ref(), e.ast)
+        # r = z3.Z3_get_ast_hash(e.ctx.ref(), e.ast)
+        r = e.hash()
+        return r
 
-    @classmethod
-    def _is_var_expr(cls, e):
+    @staticmethod
+    def _transform_expr(f, e):
+        # Problem: Some different exprs have the same id
+        def cache(_f, e, seen):
+            e_id = _get_expr_id(e)
+            if e_id in seen:
+                return seen[e_id]
+            else:
+                r = _f(cache, e, seen)
+                seen[e_id] = r
+                return r
+
+        def no_cache(_f, e, seen):
+            return _f(cache, e, seen)
+
+        r = f(no_cache, e, {})
+        return r
+
+    @staticmethod
+    def _is_var_expr(e):
         r = z3.is_const(e) and \
             e.decl().kind() == z3.Z3_OP_UNINTERPRETED
         return r
 
-    @classmethod
-    def _is_const_expr(cls, e):
+    @staticmethod
+    def _is_const_expr(e):
         r = z3.is_const(e) and \
             e.decl().kind() == z3.Z3_OP_ANUM
         return r
 
-    @classmethod
-    def _is_mul_expr(cls, e, check_nla=False):
-        def _is_mul_term(e):
-            return cls._is_var_expr(e) or cls._is_const_expr(e)
+    @staticmethod
+    def _is_literal_expr(e):
+        return _is_var_expr(e) or _is_const_expr(e)
 
-        def _is_mul_aux(e, seen):
-            e_id = cls._get_expr_id(e)
-            if e_id in seen:
-                return seen[e_id]
-            else:
-                r = z3.is_mul(e) and \
-                    all(_is_mul_term(c) or _is_mul_aux(c, seen) for c in e.children())
-                seen[e_id] = r
-                return r
-        
-        return _is_mul_aux(e, {})
-
-    @classmethod
-    def _is_pow_expr(cls, e, check_nla=False):
+    @staticmethod
+    def _is_pow_expr(e):
         return z3.is_app_of(e, z3.Z3_OP_POWER)
 
-    @classmethod
-    def _is_term_expr(cls, e):
-        """
-        x, y = Ints('x y')
-        Solver._is_term_expr(x) == True
-        Solver._is_term_expr(IntVal(1)) == True
-        Solver._is_term_expr(x*y) == True
-        Solver._is_term_expr(x*y*z) == True
-        Solver._is_term_expr(x**2) == True
-        Solver._is_term_expr(2**x) == True
-        Solver._is_term_expr(x + 1) == False
-        """
-        r = cls._is_var_expr(e) or \
-            cls._is_const_expr(e) or \
-            cls._is_mul_expr(e) or \
-            cls._is_pow_expr(e)
-        return r
+    @staticmethod
+    def _is_mul_of_literals(e):
+        def f(_cache, e, seen):
+            def f_cache(e):
+                return _cache(f, e, seen)
 
-    @classmethod
-    def _is_nonlinear_term_expr(cls, e):
-        r = _is_mul_expr(e, check_nla=True) or \
-            _is_nonlinear_pow_expr(e, check_nla=True)
-        return e
+            r = z3.is_mul(e) and \
+                all(_is_literal_expr(c) or f_cache(c) for c in e.children())
+            return r
+        return _transform_expr(f, e)
+
+    @staticmethod
+    def _get_mul_terms(e):
+        def f(_cache, e, seen):
+            def f_cache(e):
+                return _cache(f, e, seen)
+
+            r = []
+            if z3.is_mul(e):
+                for c in e.children():
+                    if not z3.is_mul(c):
+                        r.append(c)
+                    else:
+                        r = r + f_cache(c)
+            return r
+        return _transform_expr(f, e)
+
+    @staticmethod
+    def _distribute_mul_over_add(e):
+        def f(_cache, e, seen):
+            def f_cache(e):
+                return _cache(f, e, seen)
+
+            if is_app_of(e, Z3_OP_UMINUS):
+                return f_cache((-1)*(e.arg(0)))
+            elif is_sub(e):
+                return f_cache(e.arg(0) + (-1)*e.arg(1))
+            elif is_app(e) and e.num_args() == 2:
+                c1 = f_cache(e.arg(0))
+                c2 = f_cache(e.arg(1))
+                if is_add(e):
+                    return c1 + c2
+                elif is_mul(e):
+                    if is_add(c1):
+                        c11 = c1.arg(0)
+                        c12 = c1.arg(1)
+                        return f_cache(c11*c2 + c12*c2)
+                    elif is_add(c2):
+                        c21 = c2.arg(0)
+                        c22 = c2.arg(1)
+                        return f_cache(c1*c21 + c1*c22)
+                    else:
+                        return c1*c2
+                else:
+                    return e
+            else:
+                return e
+        return _transform_expr(f, e)
+
+    # @staticmethod
+    # def __is_mul_of_literals(e):
+    #     def __is_mul_of_literals_aux(e, seen):
+    #         e_id = _get_expr_id(e)
+    #         if e_id in seen:
+    #             return seen[e_id]
+    #         else:
+    #             r = z3.is_mul(e) and \
+    #                 all(_is_literal_expr(c) or __is_mul_of_literals_aux(c, seen) for c in e.children())
+    #             return r
+    #     return __is_mul_of_literals_aux(e, {})
+
+    # @staticmethod
+    # def __get_mul_terms(e):
+    #     def __get_mul_terms_aux(e, seen):
+    #         e_id = _get_expr_id(e)
+    #         if e_id in seen:
+    #             return seen[e_id]
+    #         else:
+    #             r = []
+    #             if z3.is_mul(e):
+    #                 for c in e.children():
+    #                     if not z3.is_mul(c):
+    #                         r.append(c)
+    #                     else:
+    #                         r = r + __get_mul_terms_aux(c, seen)
+    #                 seen[e_id] = r
+    #             return r
+    #     return __get_mul_terms_aux(e, {})
+
+    # @staticmethod
+    # def _is_term_expr(e):
+    #     """
+    #     x, y = Ints('x y')
+    #     Solver._is_term_expr(x) == True
+    #     Solver._is_term_expr(IntVal(1)) == True
+    #     Solver._is_term_expr(x*y) == True
+    #     Solver._is_term_expr(x*y*z) == True
+    #     Solver._is_term_expr(x**2) == True
+    #     Solver._is_term_expr(2**x) == True
+    #     Solver._is_term_expr(x + 1) == False
+    #     """
+    #     r = _is_var_expr(e) or \
+    #         _is_const_expr(e) or \
+    #         _is_mul_expr(e) or \
+    #         _is_pow_expr(e)
+    #     return r
+
+    # @staticmethod
+    # def __distribute_mul_over_add(e):
+    #     def __distribute_mul_over_add_aux(e, seen):
+    #         e_id = _get_expr_id(e)
+    #         if e_id in seen:
+    #             return seen[e_id]
+    #         else:
+    #             if is_app_of(e, Z3_OP_UMINUS):
+    #                 r = __distribute_mul_over_add_aux((-1)*(e.arg(0)), seen)
+    #             elif is_sub(e):
+    #                 r = __distribute_mul_over_add_aux(e.arg(0) + (-1)*e.arg(1), seen)
+    #             elif is_app(e) and e.num_args() == 2:
+    #                 c1 = __distribute_mul_over_add_aux(e.arg(0), seen)
+    #                 c2 = __distribute_mul_over_add_aux(e.arg(1), seen)
+    #                 if is_add(e):
+    #                     r = c1 + c2
+    #                 elif is_mul(e):
+    #                     if is_add(c1):
+    #                         c11 = c1.arg(0)
+    #                         c12 = c1.arg(1)
+    #                         r = __distribute_mul_over_add_aux(c11*c2 + c12*c2, seen)
+    #                     elif is_add(c2):
+    #                         c21 = c2.arg(0)
+    #                         c22 = c2.arg(1)
+    #                         r = __distribute_mul_over_add_aux(c1*c21 + c1*c22, seen)
+    #                     else:
+    #                         r = c1*c2
+    #                 else:
+    #                     r = e
+    #             else:
+    #                 r = e
+    #             seen[e_id] = r
+    #             return r
+    #     return __distribute_mul_over_add_aux(e, {})
