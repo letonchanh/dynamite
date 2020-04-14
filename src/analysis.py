@@ -11,6 +11,7 @@ import settings as dig_settings
 import helpers.vcommon as dig_common_helpers
 import helpers.src as dig_src
 import data.prog as dig_prog
+import data.prog
 from data.prog import Symb, Symbs
 from data.traces import Traces
 from helpers.miscs import Z3, Miscs
@@ -79,14 +80,17 @@ class Setup(object):
         mlog.debug("inp_decls ({}): {}".format(type(inp_decls), inp_decls))
         mlog.debug("inv_decls ({}): {}".format(type(inv_decls), inv_decls))
 
-        inloop_inv_decls = inv_decls[self.inloop_loc]
-        transrel_inv_decls = Symbs([Symb(s.name + '0', s.typ) for s in inloop_inv_decls] +
-                                   [Symb(s.name + '1', s.typ) for s in inloop_inv_decls])
-        inv_decls[self.transrel_loc] = transrel_inv_decls
-
         self.inp_decls = inp_decls
         self.inv_decls = inv_decls
         self.mainQ_name = mainQ_name
+
+        self.transrel_pre_inv_decls, self.transrel_pre_sst, \
+            self.transrel_post_sst, transrel_inv_decls = self.gen_transrel_sst()
+        self.inv_decls[self.transrel_loc] = transrel_inv_decls
+        mlog.debug("transrel_pre_inv_decls: {}".format(self.transrel_pre_inv_decls))
+        mlog.debug("transrel_pre_sst: {}".format(self.transrel_pre_sst))
+        mlog.debug("transrel_post_sst: {}".format(self.transrel_post_sst))
+
         self.exe = Execution(prog)
         self.dig = Inference(self.inv_decls, self.seed, self.tmpdir)
         self.cl = Classification(self.preloop_loc, self.inloop_loc, self.postloop_loc)
@@ -95,12 +99,6 @@ class Setup(object):
         rand_inps = self.exe.gen_rand_inps(self.nInps)
         mlog.debug("get traces from random inputs")
         self.rand_itraces = self.exe.get_traces(rand_inps)  # itraces: input to dtraces
-
-        self.transrel_pre_inv_decls, self.transrel_pre_sst, self.transrel_post_sst = \
-            self.gen_transrel_sst()
-        mlog.debug("transrel_pre_inv_decls: {}".format(self.transrel_pre_inv_decls))
-        mlog.debug("transrel_pre_sst: {}".format(self.transrel_pre_sst))
-        mlog.debug("transrel_post_sst: {}".format(self.transrel_post_sst))
 
     def _get_c_symstates_from_src(self, src):
         from data.symstates import SymStatesC
@@ -188,14 +186,18 @@ class Setup(object):
                 # mlog.debug("inloop_ex_vars: {}".format(inloop_ex_vars))
                 # inloop_trans_f = z3.Exists(list(inloop_ex_vars), z3.And(inloop_fst_slocal, inloop_snd_slocal))
                 # loop_transrel = Z3.qe(inloop_trans_f)
+                # X_x, X_y -> x, y
                 init_sst = list(zip(loop_init_symvars.exprs(settings.use_reals),
                                     inp_decls.exprs(settings.use_reals)))
                 loop_transrel = z3.And(inloop_fst_slocal, inloop_snd_slocal)
                 loop_transrel = z3.substitute(loop_transrel, init_sst)
                 mlog.debug("loop_transrel: {}".format(loop_transrel))
 
-                loop_cond = Z3.qe(z3.Exists(list(inloop_ex_vars), 
-                                                  z3.And(inloop_fst_symstate.pc, inloop_fst_symstate.slocal)))
+                mlog.debug("inloop_fst_symstate: pc: {}".format(inloop_fst_symstate.pc))
+                mlog.debug("inloop_fst_symstate: slocal: {}".format(inloop_fst_symstate.slocal))
+                # loop_cond = Z3.qe(z3.Exists(list(inloop_ex_vars), 
+                #                                   z3.And(inloop_fst_symstate.pc, inloop_fst_symstate.slocal)))
+                loop_cond = z3.substitute(inloop_fst_symstate.pc, init_sst)
                 mlog.debug("loop_cond: {}".format(loop_cond))
 
                 return Loop(inp_decls, loop_cond, loop_transrel)
@@ -318,14 +320,17 @@ class Setup(object):
     def gen_transrel_sst(self):
         inloop_inv_decls = self.inv_decls[self.inloop_loc]
         inloop_inv_exprs = inloop_inv_decls.exprs(settings.use_reals)
-        transrel_pre_inv_decls = Symbs([Symb(s.name + '0', s.typ) for s in inloop_inv_decls])
-        transrel_pre_inv_exprs = transrel_pre_inv_decls.exprs(settings.use_reals)
-        transrel_post_inv_decls = Symbs([Symb(s.name + '1', s.typ) for s in inloop_inv_decls])
-        transrel_post_inv_exprs = transrel_post_inv_decls.exprs(settings.use_reals)
+        transrel_pre_inv_decls = [data.prog.Symb(s.name + '0', s.typ) for s in inloop_inv_decls]
+        transrel_pre_inv_exprs = data.prog.Symbs(transrel_pre_inv_decls).exprs(settings.use_reals)
+        transrel_post_inv_decls = [data.prog.Symb(s.name + '1', s.typ) for s in inloop_inv_decls]
+        transrel_post_inv_exprs = data.prog.Symbs(transrel_post_inv_decls).exprs(settings.use_reals)
+
+        transrel_inv_decls = data.prog.Symbs(transrel_pre_inv_decls + transrel_post_inv_decls)
 
         return transrel_pre_inv_exprs, \
                list(zip(inloop_inv_exprs, transrel_pre_inv_exprs)), \
-               list(zip(inloop_inv_exprs, transrel_post_inv_exprs))
+               list(zip(inloop_inv_exprs, transrel_post_inv_exprs)), \
+               transrel_inv_decls
 
     def is_binary(self, fn):
         import subprocess
@@ -365,6 +370,8 @@ class NonTerm(object):
             return True, None 
         else:
             # assert rcs, rcs
+
+            # R /\ T => R'
             rcs_l = z3.substitute(rcs.expr(), _config.transrel_pre_sst)
             loop_transrel = self.loop.transrel
             rcs_transrel = z3.And(loop_transrel, rcs_l)
