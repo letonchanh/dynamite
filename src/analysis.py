@@ -199,6 +199,11 @@ class Setup(object):
                 #                                   z3.And(inloop_fst_symstate.pc, inloop_fst_symstate.slocal)))
                 loop_cond = z3.substitute(inloop_fst_symstate.pc, init_sst)
                 mlog.debug("loop_cond: {}".format(loop_cond))
+                terms = Solver.get_mul_terms(loop_cond)
+                nonlinear_terms = list(itertools.filterfalse(lambda t: not Solver.is_nonlinear_mul_term(t), terms))
+                mlog.debug("terms: {}".format(terms))
+                mlog.debug("nonlinear_terms: {}".format(nonlinear_terms))
+
 
                 return Loop(inp_decls, loop_cond, loop_transrel)
         return None

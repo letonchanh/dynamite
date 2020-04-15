@@ -1,6 +1,7 @@
 import helpers.vcommon as CM
 import z3
 import random
+import itertools
 import sage.all
 from pathlib import Path
 from data.traces import Inps, Trace, DTraces
@@ -219,17 +220,16 @@ class Solver(object):
             return inps
 
     # Internal static methods over z3's ast
-    @staticmethod
-    def _get_expr_id(e):
+    @classmethod
+    def _get_expr_id(cls, e):
         # r = z3.Z3_get_ast_hash(e.ctx.ref(), e.ast)
         r = e.hash()
         return r
 
-    @staticmethod
-    def _transform_expr(f, e):
-        # Problem: Some different exprs have the same id
+    @classmethod
+    def _transform_expr(cls, f, e):
         def cache(_f, e, seen):
-            e_id = _get_expr_id(e)
+            e_id = cls._get_expr_id(e)
             if e_id in seen:
                 return seen[e_id]
             else:
@@ -240,77 +240,98 @@ class Solver(object):
         def no_cache(_f, e, seen):
             return _f(cache, e, seen)
 
-        r = f(no_cache, e, {})
+        r = f(cache, e, {})
         return r
 
-    @staticmethod
-    def _is_var_expr(e):
+    @classmethod
+    def _is_var_expr(cls, e):
         r = z3.is_const(e) and \
             e.decl().kind() == z3.Z3_OP_UNINTERPRETED
         return r
 
-    @staticmethod
-    def _is_const_expr(e):
-        r = z3.is_const(e) and \
-            e.decl().kind() == z3.Z3_OP_ANUM
-        return r
+    @classmethod
+    def _is_const_expr(cls, e):
+        def f(_cache, e, seen):
+            def f_cache(e):
+                return _cache(f, e, seen)
 
-    @staticmethod
-    def _is_literal_expr(e):
-        return _is_var_expr(e) or _is_const_expr(e)
+            r = (z3.is_const(e) and e.decl().kind() == z3.Z3_OP_ANUM) or \
+                (e.num_args() > 0 and all(f_cache(c) for c in e.children()))
+            return r
+        return cls._transform_expr(f, e)
 
-    @staticmethod
-    def _is_pow_expr(e):
+    @classmethod
+    def _is_literal_expr(cls, e):
+        return cls._is_var_expr(e) or cls._is_const_expr(e)
+
+    @classmethod
+    def _is_pow_expr(cls, e):
         return z3.is_app_of(e, z3.Z3_OP_POWER)
 
-    @staticmethod
+    @classmethod
     def _is_mul_of_literals(e):
         def f(_cache, e, seen):
             def f_cache(e):
                 return _cache(f, e, seen)
 
             r = z3.is_mul(e) and \
-                all(_is_literal_expr(c) or f_cache(c) for c in e.children())
+                all(cls._is_literal_expr(c) or f_cache(c) for c in e.children())
             return r
-        return _transform_expr(f, e)
+        return cls._transform_expr(f, e)
 
-    @staticmethod
-    def _get_mul_terms(e):
+    @classmethod
+    def _get_op_terms(cls, is_op, e):
         def f(_cache, e, seen):
             def f_cache(e):
                 return _cache(f, e, seen)
 
             r = []
-            if z3.is_mul(e):
+            if is_op(e):
                 for c in e.children():
-                    if not z3.is_mul(c):
+                    if not is_op(c):
                         r.append(c)
                     else:
                         r = r + f_cache(c)
+            else:
+                r.append(e)
             return r
-        return _transform_expr(f, e)
+        return cls._transform_expr(f, e)
 
-    @staticmethod
-    def _distribute_mul_over_add(e):
+    @classmethod
+    def _get_mul_terms(cls, e):
+        """
+        _get_mul_terms(x*y*(z+1)) == [x, y, z+1]
+        """
+        return cls._get_op_terms(z3.is_mul, e)
+
+    @classmethod
+    def _get_add_terms(cls, e):
+        """
+        _get_add_terms(x*y + y*z) == [x*y, y*z]
+        """
+        return cls._get_op_terms(z3.is_add, e)
+
+    @classmethod
+    def _distribute_mul_over_add(cls, e):
         def f(_cache, e, seen):
             def f_cache(e):
                 return _cache(f, e, seen)
 
-            if is_app_of(e, Z3_OP_UMINUS):
+            if z3.is_app_of(e, z3.Z3_OP_UMINUS):
                 return f_cache((-1)*(e.arg(0)))
-            elif is_sub(e):
+            elif z3.is_sub(e):
                 return f_cache(e.arg(0) + (-1)*e.arg(1))
-            elif is_app(e) and e.num_args() == 2:
+            elif z3.is_app(e) and e.num_args() == 2:
                 c1 = f_cache(e.arg(0))
                 c2 = f_cache(e.arg(1))
-                if is_add(e):
+                if z3.is_add(e):
                     return c1 + c2
-                elif is_mul(e):
-                    if is_add(c1):
+                elif z3.is_mul(e):
+                    if z3.is_add(c1):
                         c11 = c1.arg(0)
                         c12 = c1.arg(1)
                         return f_cache(c11*c2 + c12*c2)
-                    elif is_add(c2):
+                    elif z3.is_add(c2):
                         c21 = c2.arg(0)
                         c22 = c2.arg(1)
                         return f_cache(c1*c21 + c1*c22)
@@ -320,7 +341,52 @@ class Solver(object):
                     return e
             else:
                 return e
-        return _transform_expr(f, e)
+        return cls._transform_expr(f, e)
+
+    @classmethod
+    def get_mul_terms(cls, e):
+        Z3_LOGICAL_OPS = [
+            z3.Z3_OP_ITE,
+            z3.Z3_OP_AND,
+            z3.Z3_OP_OR,
+            z3.Z3_OP_IFF,
+            z3.Z3_OP_XOR,
+            z3.Z3_OP_NOT,
+            z3.Z3_OP_IMPLIES]
+        Z3_REL_OPS = [
+            z3.Z3_OP_EQ,
+            z3.Z3_OP_DISTINCT,
+            z3.Z3_OP_LE,
+            z3.Z3_OP_LT,
+            z3.Z3_OP_GE,
+            z3.Z3_OP_GT]
+
+        def f(_cache, e, seen):
+            def f_cache(e):
+                return _cache(f, e, seen)
+            
+            r = []
+            if z3.is_app(e):
+                if e.decl().kind() in Z3_LOGICAL_OPS + Z3_REL_OPS:
+                    for c in e.children():
+                        r = r + f_cache(c)
+                elif z3.is_arith(e):
+                    e = cls._distribute_mul_over_add(e)
+                    r = r + cls._get_add_terms(e)
+            return r
+        return cls._transform_expr(f, e)
+
+    @classmethod
+    def is_nonlinear_mul_term(cls, e):
+        ts = cls._get_mul_terms(e)
+        mlog.debug("ts: {}".format(ts))
+        ts = list(itertools.filterfalse(lambda t: cls._is_const_expr(t), ts))
+        mlog.debug("ts: {}".format(ts))
+        r = len(ts) >= 2 or \
+            len(ts) == 1 and cls._is_pow_expr(ts[0])
+        mlog.debug("e: {}: {}".format(e, r))
+        return r
+
 
     # @staticmethod
     # def __is_mul_of_literals(e):
