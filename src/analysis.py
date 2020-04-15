@@ -11,7 +11,6 @@ import settings as dig_settings
 import helpers.vcommon as dig_common_helpers
 import helpers.src as dig_src
 import data.prog as dig_prog
-import data.prog
 from data.prog import Symb, Symbs
 from data.traces import Traces
 from helpers.miscs import Z3, Miscs
@@ -33,7 +32,7 @@ class Setup(object):
         self.is_binary_inp = self.is_binary(inp)
         assert (self.is_java_inp or self.is_c_inp or self.is_binary_inp), inp
 
-        self.nInps = 20
+        self.nInps = 100
         self.preloop_loc = dig_settings.TRACE_INDICATOR + '1' # vtrace1
         self.inloop_loc = dig_settings.TRACE_INDICATOR + '2' # vtrace2
         self.postloop_loc = dig_settings.TRACE_INDICATOR + '3' # vtrace3
@@ -325,12 +324,12 @@ class Setup(object):
     def gen_transrel_sst(self):
         inloop_inv_decls = self.inv_decls[self.inloop_loc]
         inloop_inv_exprs = inloop_inv_decls.exprs(settings.use_reals)
-        transrel_pre_inv_decls = [data.prog.Symb(s.name + '0', s.typ) for s in inloop_inv_decls]
-        transrel_pre_inv_exprs = data.prog.Symbs(transrel_pre_inv_decls).exprs(settings.use_reals)
-        transrel_post_inv_decls = [data.prog.Symb(s.name + '1', s.typ) for s in inloop_inv_decls]
-        transrel_post_inv_exprs = data.prog.Symbs(transrel_post_inv_decls).exprs(settings.use_reals)
+        transrel_pre_inv_decls = [dig_prog.Symb(s.name + '0', s.typ) for s in inloop_inv_decls]
+        transrel_pre_inv_exprs = dig_prog.Symbs(transrel_pre_inv_decls).exprs(settings.use_reals)
+        transrel_post_inv_decls = [dig_prog.Symb(s.name + '1', s.typ) for s in inloop_inv_decls]
+        transrel_post_inv_exprs = dig_prog.Symbs(transrel_post_inv_decls).exprs(settings.use_reals)
 
-        transrel_inv_decls = data.prog.Symbs(transrel_pre_inv_decls + transrel_post_inv_decls)
+        transrel_inv_decls = dig_prog.Symbs(transrel_pre_inv_decls + transrel_post_inv_decls)
 
         return transrel_pre_inv_exprs, \
                list(zip(inloop_inv_exprs, transrel_pre_inv_exprs)), \
@@ -375,10 +374,19 @@ class NonTerm(object):
             return True, None 
         else:
             # assert rcs, rcs
+            loop_transrel = self.loop.transrel
+            loop_cond = self.loop.cond
+
+            mlog.debug("loop_transrel: {}".format(loop_transrel))
+            mlog.debug("loop_cond: {}".format(loop_cond))
+            mlog.debug("rcs: {}".format(rcs))
+
+            if not rcs.implies(ZFormula([loop_cond])):
+                mlog.debug("rcs_cond =/=> loop_cond")
+                rcs.add(loop_cond)
 
             # R /\ T => R'
             rcs_l = z3.substitute(rcs.expr(), _config.transrel_pre_sst)
-            loop_transrel = self.loop.transrel
             rcs_transrel = z3.And(loop_transrel, rcs_l)
             mlog.debug("rcs_l: {}".format(rcs_l))
             mlog.debug("loop_transrel: {}".format(loop_transrel))
@@ -503,6 +511,7 @@ class Term(object):
     def __init__(self, config):
         self._config = config
         self.ntCexs = []
+        self.MAX_TRANS_NUM = 50
 
     def infer_ranking_function(self, vs, term_itraces):
         _config = self._config
@@ -545,7 +554,7 @@ class Term(object):
             rnk_trans_idx = list(itertools.combinations(range(len(rnk_terms)), 2))
             random.shuffle(rnk_trans_idx)
             rnk_trans_idx_len = len(rnk_trans_idx)
-            splitter_idx = min(50, rnk_trans_idx_len)
+            splitter_idx = min(self.MAX_TRANS_NUM, rnk_trans_idx_len)
             # mlog.debug("splitter_idx: {}".format(splitter_idx))
             # splitter_idx = rnk_trans_idx_len
             for (i1, i2) in rnk_trans_idx[:splitter_idx]:

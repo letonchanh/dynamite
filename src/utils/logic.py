@@ -18,8 +18,11 @@ class ZFormula(set):
 
     def expr(self):
         if self:
-            fs = map(lambda f: f.expr() if isinstance(f, ZFormula) else f, self)
-            return self.reduce_op(list(fs))
+            fs = list(map(lambda f: f.expr() if isinstance(f, ZFormula) else f, self))
+            if len(self) == 1:
+                return fs[0]
+            else:
+                return self.reduce_op(fs)
         else:
             return z3.BoolVal(self.empty_interp)
 
