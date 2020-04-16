@@ -32,7 +32,7 @@ class Setup(object):
         self.is_binary_inp = self.is_binary(inp)
         assert (self.is_java_inp or self.is_c_inp or self.is_binary_inp), inp
 
-        self.nInps = 20
+        self.nInps = 50
         self.preloop_loc = dig_settings.TRACE_INDICATOR + '1' # vtrace1
         self.inloop_loc = dig_settings.TRACE_INDICATOR + '2' # vtrace2
         self.postloop_loc = dig_settings.TRACE_INDICATOR + '3' # vtrace3
@@ -411,10 +411,16 @@ class NonTerm(object):
                     mlog.debug("rs: unsat")
                 else:
                     if isinstance(rs, list) and rs:
-                        rs = [[(x[len(init_symvars_prefix):], v) 
-                                if x.startswith(init_symvars_prefix) 
-                                else (x, v)
-                               for (x, v) in r] for r in rs]
+                        init_rs = []
+                        init_symvars_prefix_len = len(init_symvars_prefix)
+                        for r in rs:
+                            init_r = []
+                            for (x, v) in r:
+                                if x.startswith(init_symvars_prefix):
+                                    init_r.append((x[init_symvars_prefix_len:], v))
+                            if init_r:
+                                init_rs.append(init_r)
+
                         mlog.debug("rs: sat ({} models)\n{}".format(len(rs), rs))
                         rs = _config.solver.mk_inps_from_models(
                                     rs, _config.inp_decls.exprs(settings.use_reals), _config.exe)
@@ -442,21 +448,27 @@ class NonTerm(object):
         mlog.debug("base_term_inps: {}".format(len(base_term_inps)))
         mlog.debug("term_inps: {}".format(len(term_inps)))
         mlog.debug("mayloop_inps: {}".format(len(mayloop_inps)))
+        mlog.debug("rcs: {}".format(rcs))
 
         mayloop_invs = ZConj(_config.dig.infer_from_traces(
-            itraces, _config.inloop_loc, mayloop_inps))
+                                itraces, _config.inloop_loc, mayloop_inps))
         mlog.debug("mayloop_invs: {}".format(mayloop_invs))
+
+        term_invs = ZConj(_config.dig.infer_from_traces(
+                            itraces, _config.inloop_loc, term_inps, maxdeg=2))
+        mlog.debug("term_invs: {}".format(term_invs))
+
         if rcs is None:
-            return mayloop_invs
-        elif mayloop_invs and rcs.implies(mayloop_invs):
-            return mayloop_invs
+            return [mayloop_invs]
+        # elif mayloop_invs and rcs.implies(mayloop_invs):
+        #     return mayloop_invs
         else:
             # base_term_pre = ZConj(_config.dig.infer_from_traces(
             #     itraces, _config.preloop_loc, base_term_inps))
-            term_invs = ZConj(_config.dig.infer_from_traces(
-                                itraces, _config.inloop_loc, term_inps, maxdeg=2))
+            # term_invs = ZConj(_config.dig.infer_from_traces(
+            #                     itraces, _config.inloop_loc, term_inps, maxdeg=2))
             # mlog.debug("base_term_pre: {}".format(base_term_pre))
-            mlog.debug("term_invs: {}".format(term_invs))
+            # mlog.debug("term_invs: {}".format(term_invs))
             term_traces = []
             for term_inp in term_inps:
                 term_traces.append(itraces[term_inp])
@@ -476,7 +488,7 @@ class NonTerm(object):
             mlog.debug("invalid_rc: {}".format(invalid_rc))
             mlog.debug("nrcs: {}".format(nrcs))
             nrcs.add(dnf_neg_term_cond)
-            return nrcs
+            return [nrcs]
 
     def prove(self, precond):
         _config = self._config
@@ -499,10 +511,11 @@ class NonTerm(object):
                     elif sCexs is not None:
                         for invalid_rc, cexs in sCexs:
                             nrcs = self.strengthen(rcs, invalid_rc, cexs)
-                            assert nrcs is not None, nrcs
-                            nancestors = copy.deepcopy(ancestors)
-                            nancestors.append((depth, rcs))
-                            candidateRCS.append((nrcs, depth+1, nancestors))
+                            assert nrcs, nrcs
+                            for nrc in nrcs:
+                                nancestors = copy.deepcopy(ancestors)
+                                nancestors.append((depth, rcs))
+                                candidateRCS.append((nrc, depth+1, nancestors))
             for (tInvs, tTraces) in self.tCexs:
                 mlog.debug("tCex: {}".format(tInvs))
             return validRCS
