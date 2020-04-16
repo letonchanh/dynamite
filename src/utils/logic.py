@@ -12,6 +12,8 @@ mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
 
 class ZFormula(set):
     def __init__(self, fs):
+        if fs is None:
+            fs = []
         super(ZFormula, self).__init__(
             map(lambda f: f.expr(settings.use_reals) if isinstance(f, Inv) else f, 
             fs))

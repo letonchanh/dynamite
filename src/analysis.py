@@ -32,7 +32,7 @@ class Setup(object):
         self.is_binary_inp = self.is_binary(inp)
         assert (self.is_java_inp or self.is_c_inp or self.is_binary_inp), inp
 
-        self.nInps = 100
+        self.nInps = 20
         self.preloop_loc = dig_settings.TRACE_INDICATOR + '1' # vtrace1
         self.inloop_loc = dig_settings.TRACE_INDICATOR + '2' # vtrace2
         self.postloop_loc = dig_settings.TRACE_INDICATOR + '3' # vtrace3
