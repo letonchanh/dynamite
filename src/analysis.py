@@ -32,7 +32,7 @@ class Setup(object):
         self.is_binary_inp = self.is_binary(inp)
         assert (self.is_java_inp or self.is_c_inp or self.is_binary_inp), inp
 
-        self.nInps = 50
+        self.nInps = 20
         self.preloop_loc = dig_settings.TRACE_INDICATOR + '1' # vtrace1
         self.inloop_loc = dig_settings.TRACE_INDICATOR + '2' # vtrace2
         self.postloop_loc = dig_settings.TRACE_INDICATOR + '3' # vtrace3
@@ -421,9 +421,9 @@ class NonTerm(object):
                             if init_r:
                                 init_rs.append(init_r)
 
-                        mlog.debug("rs: sat ({} models)\n{}".format(len(rs), rs))
+                        mlog.debug("init_rs: sat ({} models)\n{}".format(len(init_rs), init_rs))
                         rs = _config.solver.mk_inps_from_models(
-                                    rs, _config.inp_decls.exprs(settings.use_reals), _config.exe)
+                                    init_rs, _config.inp_decls.exprs(settings.use_reals), _config.exe)
                 return rs
 
             chks = [(rc, _check(rc)) for rc in rcs]
@@ -458,7 +458,7 @@ class NonTerm(object):
                             itraces, _config.inloop_loc, term_inps, maxdeg=2))
         mlog.debug("term_invs: {}".format(term_invs))
 
-        if rcs is None:
+        if rcs is None and not mayloop_invs:
             return [mayloop_invs]
         # elif mayloop_invs and rcs.implies(mayloop_invs):
         #     return mayloop_invs

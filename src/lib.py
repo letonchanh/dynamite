@@ -28,7 +28,13 @@ class Execution(object):
             inps.merge(new_inps, inp_decls.names)
 
         mlog.debug("gen {}/{} random inps".format(len(inps), nInps))
-        mlog.debug("inps: {}".format(inps))
+        # mlog.debug("inps: {}".format(inps))
+
+        if len(inps) > 2*nInps:
+            import random
+            inps = Inps(set(random.sample(inps, 2*nInps)))
+            mlog.debug("reduced inps: {}".format(len(inps)))
+
         return inps
 
     def get_traces(self, rInps):
