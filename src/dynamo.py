@@ -118,7 +118,7 @@ if __name__ == "__main__":
         
         if settings.prove_nonterm:
             nt_prover = NonTerm(config) 
-            validRCS = nt_prover.prove(None)
+            validRCS = nt_prover.prove()
             mlog.debug("validRCS: {}".format(validRCS))
             for rcs, ancestors in validRCS:
                 f = Z3.to_dnf(rcs.simplify())

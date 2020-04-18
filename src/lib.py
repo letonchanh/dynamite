@@ -10,6 +10,7 @@ from utils import settings
 from parsers import Z3OutputHandler
 from helpers.miscs import Z3, Miscs
 import helpers.vcommon as dig_common_helpers
+import settings as dig_settings
 
 mlog = CM.getLogger(__name__, settings.logger_level)
 
@@ -107,7 +108,12 @@ class Inference(object):
         dtraces.vwrite(self.inv_decls, self.tmpdir / (traceid + '.tcs'))
         return dtraces
 
-    def infer_from_traces(self, itraces, traceid, inps=None, maxdeg=1):
+    def infer_from_traces(self, itraces, traceid, inps=None, maxdeg=1, simpl=False):
+        r = None
+        old_do_simplify = dig_settings.DO_SIMPLIFY
+        if not simpl:
+            dig_settings.DO_SIMPLIFY = False
+        
         try:
             dtraces = self.get_traces(itraces, traceid, inps)
             
@@ -116,11 +122,14 @@ class Inference(object):
             invs, traces = dig.start(self.seed, maxdeg)
             mlog.debug("invs: {}".format(invs)) # <class 'data.inv.invs.DInvs'>
             if traceid in invs:
-                return invs[traceid]
+                r = invs[traceid]
             else:
-                return Invs()
+                r = Invs()
         except:
-            return None
+            pass
+        finally:
+            dig_settings.DO_SIMPLIFY = old_do_simplify
+        return r
 
 class Solver(object):
     def __init__(self, tmpdir):
@@ -179,10 +188,10 @@ class Solver(object):
             for (x, v) in m:
                 if model_stat[x][v] / k > 0.1:
                     block_x = z3.Int(x) != v
-                    mlog.debug("block_x: {}".format(block_x))
+                    # mlog.debug("block_x: {}".format(block_x))
                     solver.add(block_x)
 
-        mlog.debug("model_stat: {}".format(model_stat))
+        # mlog.debug("model_stat: {}".format(model_stat))
         stat = solver.check()
 
         if stat == z3.unknown:
