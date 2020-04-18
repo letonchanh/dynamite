@@ -41,7 +41,7 @@ class Setup(object):
         self.inloop_loc = dig_settings.TRACE_INDICATOR + '2' # vtrace2
         self.postloop_loc = dig_settings.TRACE_INDICATOR + '3' # vtrace3
         self.transrel_loc = dig_settings.TRACE_INDICATOR + '4' # vtrace4
-        self.refinement_depth = 1
+        self.refinement_depth = 2
         self.tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
         self.symstates = None
         self.solver = Solver(self.tmpdir)
@@ -444,30 +444,32 @@ class NonTerm(object):
         for term_inp in term_inps:
             term_traces.append(itraces[term_inp])
         self.tCexs.append((term_invs, term_traces))
+        
         # term_cond = z3.Or(base_term_pre.expr(), term_invs.expr())
-        term_cond = term_invs.expr()
-        simplified_term_cond = Z3.simplify(term_cond)
-        cnf_term_cond = Z3.to_cnf(simplified_term_cond)
-        mlog.debug("simplified_term_cond: {}".format(simplified_term_cond))
-        mlog.debug("cnf_term_cond: {}".format(cnf_term_cond))
-        dnf_neg_term_cond = Z3.to_nnf(z3.Not(cnf_term_cond))
-        mlog.debug("dnf_neg_term_cond: {}".format(dnf_neg_term_cond))
-        
-        mlog.debug("rcs: {}".format(rcs))
-        mlog.debug("invalid_rc: {}".format(invalid_rc))
-        
+        # term_cond = term_invs.expr()
+        # simplified_term_cond = Z3.simplify(term_cond)
+        # cnf_term_cond = Z3.to_cnf(simplified_term_cond)
+        # mlog.debug("simplified_term_cond: {}".format(simplified_term_cond))
+        # mlog.debug("cnf_term_cond: {}".format(cnf_term_cond))
+        # dnf_neg_term_cond = Z3.to_nnf(z3.Not(cnf_term_cond))
+        # mlog.debug("dnf_neg_term_cond: {}".format(dnf_neg_term_cond))
+
         candidate_nrcs = []
 
-        nrcs = copy.deepcopy(rcs)
+        for term_inv in term_invs:
+            mlog.debug("term_inv: {}".format(term_inv))
+            nrcs = copy.deepcopy(rcs)
+            nrcs.add(z3.Not(term_inv))
+            candidate_nrcs.append(nrcs)
+        
         if invalid_rc is not None:
+            nrcs = copy.deepcopy(rcs)
             nrcs.remove(invalid_rc)
+            mlog.debug("invalid_rc: {}".format(invalid_rc))
             mlog.debug("nrcs: {}".format(nrcs))
             if nrcs:
                 candidate_nrcs.append(nrcs)
         
-        nrcs = copy.deepcopy(rcs)
-        nrcs.add(dnf_neg_term_cond)
-        candidate_nrcs.append(nrcs)
         return candidate_nrcs
 
     def prove(self):
