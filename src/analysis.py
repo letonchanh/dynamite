@@ -36,7 +36,7 @@ class Setup(object):
         dig_settings.DO_MINMAXPLUS = False
         dig_settings.DO_MINMAXPLUS = False
 
-        self.nInps = 50
+        self.n_inps = settings.n_inps
         self.preloop_loc = dig_settings.TRACE_INDICATOR + '1' # vtrace1
         self.inloop_loc = dig_settings.TRACE_INDICATOR + '2' # vtrace2
         self.postloop_loc = dig_settings.TRACE_INDICATOR + '3' # vtrace3
@@ -99,7 +99,7 @@ class Setup(object):
         self.cl = Classification(self.preloop_loc, self.inloop_loc, self.postloop_loc)
 
         mlog.debug("generate random inputs")
-        rand_inps = self.exe.gen_rand_inps(self.nInps)
+        rand_inps = self.exe.gen_rand_inps(self.n_inps)
         mlog.debug("get traces from random inputs")
         self.rand_itraces = self.exe.get_traces(rand_inps)  # itraces: input to dtraces
 
@@ -288,7 +288,7 @@ class Setup(object):
             #         for s in states.lst:
             #             mlog.debug("SymState ({}, {}):\n{}\n{}".format(type(s), s in states, s, s.expr))
 
-            # rand_inps = exe.gen_rand_inps(self.nInps)
+            # rand_inps = exe.gen_rand_inps(self.n_inps)
             # rand_itraces = exe.get_traces(rand_inps)
             # loop_cond = None
             # no_inloop_invs = False
@@ -307,14 +307,14 @@ class Setup(object):
             #         covered_f = z3.Or(postloop_invs.expr(), inloop_invs.expr())
             #         uncovered_f = z3.Not(covered_f)
             #         models, _ = Solver.get_models(uncovered_f, 
-            #                                       self.nInps, self.tmpdir, 
+            #                                       self.n_inps, self.tmpdir, 
             #                                       settings.use_random_seed)
             #         mlog.debug("uncovered models: {}".format(models))
             #         if isinstance(models, list) and models:
-            #             ninps = Solver.mk_inps_from_models(models, self.inp_decls.exprs((settings.use_reals)), exe)
-            #             mlog.debug("uncovered inps: {}".format(ninps))
+            #             n_inps = Solver.mk_inps_from_models(models, self.inp_decls.exprs((settings.use_reals)), exe)
+            #             mlog.debug("uncovered inps: {}".format(n_inps))
             #             mlog.debug("Starting get_traces")
-            #             nitraces = exe.get_traces(ninps)
+            #             nitraces = exe.get_traces(n_inps)
             #             mlog.debug("get_traces stopped")
             #             # mlog.debug("uncovered rand_itraces: {}".format(nitraces))
             #             rand_itraces.update(nitraces)
@@ -386,7 +386,7 @@ class NonTerm(object):
                 f = z3.And(rcs_transrel, z3.Not(rc_r))
                 init_f = self.stem.get_initial_cond(f, _config)
                 mlog.debug("init_f: {}".format(init_f))
-                rs, _ = _config.solver.get_models(init_f, _config.nInps, settings.use_random_seed)
+                rs, _ = _config.solver.get_models(init_f, _config.n_inps, settings.use_random_seed)
                 if rs is None:
                     mlog.debug("rs: unknown")
                 elif rs is False:
@@ -681,7 +681,7 @@ class Term(object):
             preloop_term_invs = _config.dig.infer_from_traces(
                                     itraces, _config.preloop_loc, term_inps, maxdeg=2)
             if preloop_term_invs is None:
-                rand_inps = _config.exe.gen_rand_inps(_config.nInps)
+                rand_inps = _config.exe.gen_rand_inps(_config.n_inps)
                 rand_itraces = _config.exe.get_traces(rand_inps)
                 old_itraces_len = len(itraces)
                 old_itraces_keys = set(itraces.keys())

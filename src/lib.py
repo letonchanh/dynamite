@@ -3,6 +3,7 @@ import z3
 import random
 import itertools
 import sage.all
+import math
 from pathlib import Path
 from data.traces import Inps, Trace, DTraces
 from data.inv.invs import Invs
@@ -11,6 +12,7 @@ from parsers import Z3OutputHandler
 from helpers.miscs import Z3, Miscs
 import helpers.vcommon as dig_common_helpers
 import settings as dig_settings
+from utils import settings
 
 mlog = CM.getLogger(__name__, settings.logger_level)
 
@@ -18,22 +20,24 @@ class Execution(object):
     def __init__(self, prog):
         self.prog = prog
 
-    def gen_rand_inps(self, nInps):
+    def gen_rand_inps(self, n_inps):
         inps = Inps()
         inp_decls = self.prog.inp_decls
         prev_len_inps = -1
-        while prev_len_inps < len(inps) and len(inps) < nInps:
+        while prev_len_inps < len(inps) and len(inps) < n_inps:
             mlog.debug("inps ({}): {}".format(len(inps), inps))
             prev_len_inps = len(inps)
-            new_inps = self.prog.gen_rand_inps(n_needed=nInps-len(inps))
+            new_inps = self.prog.gen_rand_inps(n_needed=n_inps-len(inps))
             inps.merge(new_inps, inp_decls.names)
 
-        mlog.debug("gen {}/{} random inps".format(len(inps), nInps))
+        mlog.debug("gen {}/{} random inps".format(len(inps), n_inps))
         # mlog.debug("inps: {}".format(inps))
 
-        if len(inps) > 2*nInps:
+        inps_threshold = settings.inps_threshold * (1 + settings.test_ratio)
+        max_inps = math.ceil(inps_threshold*n_inps)
+        if len(inps) > max_inps:
             import random
-            inps = Inps(set(random.sample(inps, 2*nInps)))
+            inps = Inps(set(random.sample(inps, max_inps)))
             mlog.debug("reduced inps: {}".format(len(inps)))
 
         return inps
@@ -65,7 +69,6 @@ class Execution(object):
             # print dtraces.__str__(printDetails=True)
             # itraces[inp] = dtraces
         return itraces
-
 
 class Classification(object):
     def __init__(self, preloop, inloop, postloop):
@@ -108,6 +111,31 @@ class Inference(object):
         dtraces.vwrite(self.inv_decls, self.tmpdir / (traceid + '.tcs'))
         return dtraces
 
+    @classmethod
+    def _split(cls, lst):
+        # d_cls = d.__class__
+        # train_d = d_cls()
+        # test_d = d_cls()
+        # keys = d.keys()
+        # mlog.debug("keys: {}".format(len(keys)))
+        # random.shuffle(keys)
+        # split_index = math.floor((1 - settings.test_ratio)*len(keys))
+        # mlog.debug("split_index: {}".format(split_index))
+        # train_keys = keys[:split_index]
+        # test_keys = keys[split_index:]
+        # for k in train_keys:
+        #     train_d[k] = d[k]
+        # for k in test_keys:
+        #     test_d[k] = d[k]
+        # mlog.debug("d: {}".format(len(d)))
+        # mlog.debug("train_d: {}".format(len(train_d)))
+        # mlog.debug("test_d: {}".format(len(test_d)))
+        # return train_d, test_d
+        random.shuffle(lst)
+        split_index = math.floor((1 - settings.test_ratio)*len(lst))
+        return lst[:split_index], lst[split_index:]
+
+
     def infer_from_traces(self, itraces, traceid, inps=None, maxdeg=1, simpl=False):
         r = None
         old_do_simplify = dig_settings.DO_SIMPLIFY
@@ -115,10 +143,12 @@ class Inference(object):
             dig_settings.DO_SIMPLIFY = False
         
         try:
-            dtraces = self.get_traces(itraces, traceid, inps)
+            train_inps, test_inps = self.__class__._split(inps)
+            train_dtraces = self.get_traces(itraces, traceid, train_inps)
+            test_dtraces = self.get_traces(itraces, traceid, test_inps)
             
             import alg as dig_alg
-            dig = dig_alg.DigTraces.from_dtraces(self.inv_decls, dtraces)    
+            dig = dig_alg.DigTraces.from_dtraces(self.inv_decls, train_dtraces, test_dtraces)    
             invs, traces = dig.start(self.seed, maxdeg)
             mlog.debug("invs: {}".format(invs)) # <class 'data.inv.invs.DInvs'>
             if traceid in invs:
@@ -200,7 +230,7 @@ class Solver(object):
                 if model_stat[x][v] / k > 0.1:
                     block_x = z3.Int(x) != v
                     # mlog.debug("block_x: {}".format(block_x))
-                    solver.add(block_x)
+                    # solver.add(block_x)
 
         # mlog.debug("model_stat: {}".format(model_stat))
         stat = solver.check()
