@@ -41,7 +41,7 @@ class Setup(object):
         self.inloop_loc = dig_settings.TRACE_INDICATOR + '2' # vtrace2
         self.postloop_loc = dig_settings.TRACE_INDICATOR + '3' # vtrace3
         self.transrel_loc = dig_settings.TRACE_INDICATOR + '4' # vtrace4
-        self.refinement_depth = 2
+        self.refinement_depth = 1
         self.tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
         self.symstates = None
         self.solver = Solver(self.tmpdir)
@@ -206,7 +206,6 @@ class Setup(object):
                 nonlinear_terms = list(itertools.filterfalse(lambda t: not Solver.is_nonlinear_mul_term(t), terms))
                 mlog.debug("terms: {}".format(terms))
                 mlog.debug("nonlinear_terms: {}".format(nonlinear_terms))
-
 
                 return Loop(inp_decls, loop_cond, loop_transrel)
         return None

@@ -135,13 +135,17 @@ class Solver(object):
     def __init__(self, tmpdir):
         self.tmpdir = tmpdir
 
-    def check_sat_and_get_rand_model(self, solver):
+    def check_sat_and_get_rand_model(self, solver, using_nla=False):
         z3_output_handler = Z3OutputHandler()
         myseed = random.randint(0, 1000000)
+        if using_nla:
+            theory = 'qfnra'
+        else:
+            theory = 'qflra'
         smt2_str = [
             '(set-option :smt.arith.random_initial_value true)',
             solver.to_smt2().replace('(check-sat)', ''),
-            '(check-sat-using (using-params qflra :random-seed {}))'.format(myseed),
+            '(check-sat-using (using-params {} :random-seed {}))'.format(theory, myseed),
             '(get-model)']
         smt2_str = '\n'.join(smt2_str)
         # mlog.debug("smt2_str: {}".format(smt2_str))
@@ -165,17 +169,24 @@ class Solver(object):
         solver = Z3.create_solver()
         solver.add(f)
 
+        is_nla = False
+        fterms = self.__class__.get_mul_terms(f)
+        nonlinear_fterms = list(itertools.filterfalse(lambda t: not self.__class__.is_nonlinear_mul_term(t), fterms))
+        mlog.debug("nonlinear_fterms: {}".format(nonlinear_fterms))
+        if nonlinear_fterms:
+            is_nla = True
+
         models = []
         model_stat = {}
         i = 0
         # while solver.check() == z3.sat and i < k:
         while i < k:
-            chk, m = self.check_sat_and_get_rand_model(solver)
-            if chk != z3.sat:
+            chk, m = self.check_sat_and_get_rand_model(solver, is_nla)
+            # mlog.debug("chk: {}".format(chk))
+            # mlog.debug("m: {}".format(m))
+            if chk != z3.sat or not m:
                 break
             i = i + 1
-            if not m:  # if m == []
-                break
             models.append(m)
             for (x, v) in m:
                 model_stat.setdefault(x, {})
@@ -394,12 +405,12 @@ class Solver(object):
     @classmethod
     def is_nonlinear_mul_term(cls, e):
         ts = cls._get_mul_terms(e)
-        mlog.debug("ts: {}".format(ts))
+        # mlog.debug("ts: {}".format(ts))
         ts = list(itertools.filterfalse(lambda t: cls._is_const_expr(t), ts))
-        mlog.debug("ts: {}".format(ts))
+        # mlog.debug("ts: {}".format(ts))
         r = len(ts) >= 2 or \
             len(ts) == 1 and cls._is_pow_expr(ts[0])
-        mlog.debug("e: {}: {}".format(e, r))
+        # mlog.debug("e: {}: {}".format(e, r))
         return r
 
 
