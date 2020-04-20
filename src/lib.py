@@ -106,9 +106,13 @@ class Inference(object):
         for inp in inps:
             inp_traces = itraces[inp]
             if traceid in inp_traces:
-                traces.union(inp_traces[traceid])
+                for trace in inp_traces[traceid]:
+                    traces.add(trace)
+        max_len = settings.inps_threshold * settings.n_inps
+        if len(traces) > max_len:
+            traces = Traces(set(random.sample(traces, max_len)))
         dtraces[traceid] = traces
-        mlog.debug("dtraces[{}]: {}".format(traceid, traces.__str__(printDetails=False)))
+        mlog.debug("dtraces[{}]: {}".format(traceid, dtraces[traceid].__str__(printDetails=False)))
         # dtraces.vwrite(self.inv_decls, self.tmpdir / (traceid + '.tcs'))
         return dtraces
 
