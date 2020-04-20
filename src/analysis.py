@@ -41,7 +41,7 @@ class Setup(object):
         self.inloop_loc = dig_settings.TRACE_INDICATOR + '2' # vtrace2
         self.postloop_loc = dig_settings.TRACE_INDICATOR + '3' # vtrace3
         self.transrel_loc = dig_settings.TRACE_INDICATOR + '4' # vtrace4
-        self.refinement_depth = 1
+        # self.refinement_depth = 1
         self.tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
         self.symstates = None
         self.solver = Solver(self.tmpdir)
@@ -461,19 +461,20 @@ class NonTerm(object):
             nrcs.add(z3.Not(term_inv))
             candidate_nrcs.append(nrcs)
         
-        if invalid_rc is not None:
-            nrcs = copy.deepcopy(rcs)
-            nrcs.remove(invalid_rc)
-            mlog.debug("invalid_rc: {}".format(invalid_rc))
-            mlog.debug("nrcs: {}".format(nrcs))
-            if nrcs:
-                candidate_nrcs.append(nrcs)
+        # if invalid_rc is not None:
+        #     nrcs = copy.deepcopy(rcs)
+        #     nrcs.remove(invalid_rc)
+        #     mlog.debug("invalid_rc: {}".format(invalid_rc))
+        #     mlog.debug("nrcs: {}".format(nrcs))
+        #     if nrcs:
+        #         candidate_nrcs.append(nrcs)
         
         return candidate_nrcs
 
     def prove(self):
         _config = self._config
         validRCS = []
+        max_refinement_depth = 2
 
         if self.stem is None or self.loop is None:
             mlog.debug("No loop information: stem={}, loop={}".format(self.stem, self.loop))
@@ -485,7 +486,7 @@ class NonTerm(object):
                 mlog.debug("candidateRCS: {}".format(candidateRCS))
                 rcs, depth, ancestors = candidateRCS.pop()
                 mlog.debug("PROVE_NT DEPTH {}: {}".format(depth, rcs))
-                if depth < _config.refinement_depth:
+                if depth < max_refinement_depth:
                     chk, sCexs = self.verify(rcs)
                     # mlog.debug("sCexs: {}".format(sCexs))
                     if chk and not rcs.is_unsat():
@@ -493,7 +494,7 @@ class NonTerm(object):
                     elif sCexs is not None:
                         for invalid_rc, cexs in sCexs:
                             nrcs = self.strengthen(rcs, invalid_rc, cexs)
-                            assert nrcs, nrcs
+                            # assert nrcs, nrcs
                             for nrc in nrcs:
                                 nancestors = copy.deepcopy(ancestors)
                                 nancestors.append((depth, rcs))

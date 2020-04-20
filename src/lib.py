@@ -5,7 +5,7 @@ import itertools
 import sage.all
 import math
 from pathlib import Path
-from data.traces import Inps, Trace, DTraces
+from data.traces import Inps, Trace, Traces, DTraces
 from data.inv.invs import Invs
 from utils import settings
 from parsers import Z3OutputHandler
@@ -102,13 +102,14 @@ class Inference(object):
         dtraces = DTraces()
         if inps is None:
             inps = itraces.keys()
+        traces = Traces()
         for inp in inps:
-            traces = itraces[inp]
-            if traceid in traces:
-                for trace in traces[traceid]:
-                    dtraces.add(traceid, trace)
-        mlog.debug("dtraces: {}".format(dtraces.__str__(printDetails=False)))
-        dtraces.vwrite(self.inv_decls, self.tmpdir / (traceid + '.tcs'))
+            inp_traces = itraces[inp]
+            if traceid in inp_traces:
+                traces.union(inp_traces[traceid])
+        dtraces[traceid] = traces
+        mlog.debug("dtraces[{}]: {}".format(traceid, dtraces[traceid].__str__(printDetails=False)))
+        # dtraces.vwrite(self.inv_decls, self.tmpdir / (traceid + '.tcs'))
         return dtraces
 
     @classmethod
@@ -139,8 +140,7 @@ class Inference(object):
     def infer_from_traces(self, itraces, traceid, inps=None, maxdeg=1, simpl=False):
         r = None
         old_do_simplify = dig_settings.DO_SIMPLIFY
-        if not simpl:
-            dig_settings.DO_SIMPLIFY = False
+        dig_settings.DO_SIMPLIFY = simpl
         
         try:
             train_inps, test_inps = self.__class__._split(inps)
@@ -155,7 +155,8 @@ class Inference(object):
                 r = invs[traceid]
             else:
                 r = Invs()
-        except:
+        except Exception as e:
+            mlog.debug("exception: {}".format(e))
             pass
         finally:
             dig_settings.DO_SIMPLIFY = old_do_simplify
@@ -230,7 +231,7 @@ class Solver(object):
                 if model_stat[x][v] / k > 0.1:
                     block_x = z3.Int(x) != v
                     # mlog.debug("block_x: {}".format(block_x))
-                    # solver.add(block_x)
+                    solver.add(block_x)
 
         # mlog.debug("model_stat: {}".format(model_stat))
         stat = solver.check()
