@@ -20,6 +20,15 @@ class Execution(object):
     def __init__(self, prog):
         self.prog = prog
 
+    def _sample_inps(self, inps):
+        inps_threshold = settings.inps_threshold * (1 + settings.test_ratio)
+        max_inps = math.ceil(inps_threshold * settings.n_inps)
+        if len(inps) > max_inps:
+            import random
+            inps = Inps(set(random.sample(inps, max_inps)))
+            mlog.debug("reduced inps: {}".format(len(inps)))
+        return inps
+
     def gen_rand_inps(self, n_inps):
         inps = Inps()
         inp_decls = self.prog.inp_decls
@@ -32,19 +41,13 @@ class Execution(object):
 
         mlog.debug("gen {}/{} random inps".format(len(inps), n_inps))
         # mlog.debug("inps: {}".format(inps))
-
-        inps_threshold = settings.inps_threshold * (1 + settings.test_ratio)
-        max_inps = math.ceil(inps_threshold*n_inps)
-        if len(inps) > max_inps:
-            import random
-            inps = Inps(set(random.sample(inps, max_inps)))
-            mlog.debug("reduced inps: {}".format(len(inps)))
-
+        inps = self._sample_inps(inps)
         return inps
 
     def get_traces(self, rInps):
         inp_decls = self.prog.inp_decls
         inv_decls = self.prog.inv_decls
+        rInps = self._sample_inps(rInps)
         raw_traces = self.prog._get_traces_mp(rInps)
         itraces = {}
         for inp, lines in raw_traces.items():

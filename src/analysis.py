@@ -474,7 +474,7 @@ class NonTerm(object):
     def prove(self):
         _config = self._config
         validRCS = []
-        max_refinement_depth = 2
+        max_refinement_depth = 3
 
         if self.stem is None or self.loop is None:
             mlog.debug("No loop information: stem={}, loop={}".format(self.stem, self.loop))
