@@ -108,30 +108,12 @@ class Inference(object):
             if traceid in inp_traces:
                 traces.union(inp_traces[traceid])
         dtraces[traceid] = traces
-        mlog.debug("dtraces[{}]: {}".format(traceid, dtraces[traceid].__str__(printDetails=False)))
+        mlog.debug("dtraces[{}]: {}".format(traceid, traces.__str__(printDetails=False)))
         # dtraces.vwrite(self.inv_decls, self.tmpdir / (traceid + '.tcs'))
         return dtraces
 
     @classmethod
     def _split(cls, lst):
-        # d_cls = d.__class__
-        # train_d = d_cls()
-        # test_d = d_cls()
-        # keys = d.keys()
-        # mlog.debug("keys: {}".format(len(keys)))
-        # random.shuffle(keys)
-        # split_index = math.floor((1 - settings.test_ratio)*len(keys))
-        # mlog.debug("split_index: {}".format(split_index))
-        # train_keys = keys[:split_index]
-        # test_keys = keys[split_index:]
-        # for k in train_keys:
-        #     train_d[k] = d[k]
-        # for k in test_keys:
-        #     test_d[k] = d[k]
-        # mlog.debug("d: {}".format(len(d)))
-        # mlog.debug("train_d: {}".format(len(train_d)))
-        # mlog.debug("test_d: {}".format(len(test_d)))
-        # return train_d, test_d
         random.shuffle(lst)
         split_index = math.floor((1 - settings.test_ratio)*len(lst))
         return lst[:split_index], lst[split_index:]
