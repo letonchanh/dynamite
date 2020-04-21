@@ -101,7 +101,7 @@ class Setup(object):
         mlog.debug("generate random inputs")
         rand_inps = self.exe.gen_rand_inps(self.n_inps)
         mlog.debug("get traces from random inputs")
-        self.rand_itraces = self.exe.get_traces(rand_inps)  # itraces: input to dtraces
+        self.rand_itraces = self.exe.get_traces_from_inps(rand_inps)  # itraces: input to dtraces
 
     def _get_c_symstates_from_src(self, src):
         from data.symstates import SymStatesC
@@ -289,7 +289,7 @@ class Setup(object):
             #             mlog.debug("SymState ({}, {}):\n{}\n{}".format(type(s), s in states, s, s.expr))
 
             # rand_inps = exe.gen_rand_inps(self.n_inps)
-            # rand_itraces = exe.get_traces(rand_inps)
+            # rand_itraces = exe.get_traces_from_inps(rand_inps)
             # loop_cond = None
             # no_inloop_invs = False
             # no_postloop_invs = False
@@ -314,7 +314,7 @@ class Setup(object):
             #             n_inps = Solver.mk_inps_from_models(models, self.inp_decls.exprs((settings.use_reals)), exe)
             #             mlog.debug("uncovered inps: {}".format(n_inps))
             #             mlog.debug("Starting get_traces")
-            #             nitraces = exe.get_traces(n_inps)
+            #             nitraces = exe.get_traces_from_inps(n_inps)
             #             mlog.debug("get_traces stopped")
             #             # mlog.debug("uncovered rand_itraces: {}".format(nitraces))
             #             rand_itraces.update(nitraces)
@@ -385,8 +385,10 @@ class NonTerm(object):
                 mlog.debug("rc: {}".format(rc))
                 f = z3.And(rcs_transrel, z3.Not(rc_r))
                 init_f = self.stem.get_initial_cond(f, _config)
+                init_inp_decls = Symbs([Symb(init_symvars_prefix + s.name, s.typ) for s in _config.inp_decls])
+                mlog.debug("init_inp_decls ({}): {}".format(type(init_inp_decls), init_inp_decls))
                 mlog.debug("init_f: {}".format(init_f))
-                rs, _ = _config.solver.get_models(init_f, _config.n_inps, settings.use_random_seed)
+                rs, _ = _config.solver.get_models(init_f, _config.n_inps, init_inp_decls, settings.use_random_seed)
                 if rs is None:
                     mlog.debug("rs: unknown")
                 elif rs is False:
@@ -419,7 +421,7 @@ class NonTerm(object):
                     elif rs:  # sat
                         assert isinstance(rs, Inps), rs
                         assert len(rs) > 0
-                        itraces = _config.exe.get_traces(rs)
+                        itraces = _config.exe.get_traces_from_inps(rs)
                         sCexs.append((rc, itraces))
                 return False, sCexs  # invalid with a set of new Inps
 
@@ -474,7 +476,6 @@ class NonTerm(object):
     def prove(self):
         _config = self._config
         validRCS = []
-        max_refinement_depth = 3
 
         if self.stem is None or self.loop is None:
             mlog.debug("No loop information: stem={}, loop={}".format(self.stem, self.loop))
@@ -486,7 +487,7 @@ class NonTerm(object):
                 mlog.debug("candidateRCS: {}".format(candidateRCS))
                 rcs, depth, ancestors = candidateRCS.pop()
                 mlog.debug("PROVE_NT DEPTH {}: {}".format(depth, rcs))
-                if depth < max_refinement_depth:
+                if depth < settings.max_nonterm_refinement_depth:
                     chk, sCexs = self.verify(rcs)
                     # mlog.debug("sCexs: {}".format(sCexs))
                     if chk and not rcs.is_unsat():
@@ -683,7 +684,7 @@ class Term(object):
                                     itraces, _config.preloop_loc, term_inps, maxdeg=2)
             if preloop_term_invs is None:
                 rand_inps = _config.exe.gen_rand_inps(_config.n_inps)
-                rand_itraces = _config.exe.get_traces(rand_inps)
+                rand_itraces = _config.exe.get_traces_from_inps(rand_inps)
                 old_itraces_len = len(itraces)
                 old_itraces_keys = set(itraces.keys())
                 itraces.update(rand_itraces)

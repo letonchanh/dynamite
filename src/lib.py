@@ -12,7 +12,7 @@ from parsers import Z3OutputHandler
 from helpers.miscs import Z3, Miscs
 import helpers.vcommon as dig_common_helpers
 import settings as dig_settings
-from utils import settings
+import data.prog as dig_prog
 
 mlog = CM.getLogger(__name__, settings.logger_level)
 
@@ -44,7 +44,7 @@ class Execution(object):
         inps = self._sample_inps(inps)
         return inps
 
-    def get_traces(self, rInps):
+    def get_traces_from_inps(self, rInps):
         inp_decls = self.prog.inp_decls
         inv_decls = self.prog.inv_decls
         rInps = self._sample_inps(rInps)
@@ -101,7 +101,7 @@ class Inference(object):
         self.inv_decls = inv_decls
         self.tmpdir = tmpdir
 
-    def get_traces(self, itraces, traceid, inps=None):
+    def get_traces_by_id(self, itraces, traceid, inps=None):
         dtraces = DTraces()
         if inps is None:
             inps = itraces.keys()
@@ -122,9 +122,9 @@ class Inference(object):
     @classmethod
     def _split(cls, lst):
         random.shuffle(lst)
-        split_index = math.floor((1 - settings.test_ratio)*len(lst))
+        # split_index = math.floor((1 - settings.test_ratio)*len(lst))
+        split_index = math.floor(len(lst) / 2)
         return lst[:split_index], lst[split_index:]
-
 
     def infer_from_traces(self, itraces, traceid, inps=None, maxdeg=1, simpl=False):
         r = None
@@ -132,9 +132,9 @@ class Inference(object):
         dig_settings.DO_SIMPLIFY = simpl
         
         try:
-            train_inps, test_inps = self.__class__._split(inps)
-            train_dtraces = self.get_traces(itraces, traceid, train_inps)
-            test_dtraces = self.get_traces(itraces, traceid, test_inps)
+            train_inps, test_inps = self._split(inps)
+            train_dtraces = self.get_traces_by_id(itraces, traceid, train_inps)
+            test_dtraces = self.get_traces_by_id(itraces, traceid, test_inps)
             
             import alg as dig_alg
             dig = dig_alg.DigTraces.from_dtraces(self.inv_decls, train_dtraces, test_dtraces)    
@@ -155,43 +155,70 @@ class Solver(object):
     def __init__(self, tmpdir):
         self.tmpdir = tmpdir
 
-    def check_sat_and_get_rand_model(self, solver, using_nla=False):
+    def check_sat_and_get_rand_model(self, solver, using_nla=False, range_constrs=[]):
         z3_output_handler = Z3OutputHandler()
         myseed = random.randint(0, 1000000)
         if using_nla:
             theory = 'qfnra'
         else:
             theory = 'qflra'
-        smt2_str = [
-            '(set-option :smt.arith.random_initial_value true)',
-            solver.to_smt2().replace('(check-sat)', ''),
-            '(check-sat-using (using-params {} :random-seed {}))'.format(theory, myseed),
-            '(get-model)']
-        smt2_str = '\n'.join(smt2_str)
-        # mlog.debug("smt2_str: {}".format(smt2_str))
-        filename = self.tmpdir / 't.smt2'
-        dig_common_helpers.vwrite(filename, smt2_str)
-        cmd = 'z3 {}'.format(filename)
-        rmsg, errmsg = dig_common_helpers.vcmd(cmd)
-        assert not errmsg, "'{}': {}".format(cmd, errmsg)
-        z3_output_ast = z3_output_handler.parser.parse(rmsg)
-        chk, model = z3_output_handler.transform(z3_output_ast)
-        # mlog.debug("model: {}".format(model))
-        return chk, model
+        
+        while True:
+            range_constr = None
+            if range_constrs:
+                range_constr = range_constrs.pop()
+                solver.push()
+                solver.add(range_constr)
 
-    def get_models(self, f, k, using_random_seed=False):
+            mlog.debug("range_constr: {}, {} remaining".format(range_constr, len(range_constrs)))
+            smt2_str = [
+                '(set-option :smt.arith.random_initial_value true)',
+                solver.to_smt2().replace('(check-sat)', ''),
+                '(check-sat-using (using-params {} :random-seed {}))'.format(theory, myseed),
+                '(get-model)']
+            smt2_str = '\n'.join(smt2_str)
+            # mlog.debug("smt2_str: {}".format(smt2_str))
+            filename = self.tmpdir / 't.smt2'
+            dig_common_helpers.vwrite(filename, smt2_str)
+            cmd = 'z3 {}'.format(filename)
+            rmsg, errmsg = dig_common_helpers.vcmd(cmd)
+            assert not errmsg, "'{}': {}".format(cmd, errmsg)
+            z3_output_ast = z3_output_handler.parser.parse(rmsg)
+            chk, model = z3_output_handler.transform(z3_output_ast)
+            mlog.debug("chk: {}, : {}".format(chk, model))
+            if range_constr is not None:
+                solver.pop()
+                if chk != z3.sat or not model:
+                    # continue to find another valid range
+                    continue
+            else:
+                return chk, model
+
+    def get_models(self, f, k, inp_decls=None, using_random_seed=False):
         if not using_random_seed:
             return Z3.get_models(f, k)
 
         assert z3.is_expr(f), f
         assert k >= 1, k
 
+        range_constrs = []
+        if inp_decls:
+            inp_ranges = list(dig_prog.Prog._get_inp_ranges(len(inp_decls)))
+            random.shuffle(inp_ranges)
+            # mlog.debug("inp_ranges ({}): {}".format(len(inp_ranges), inp_ranges))
+            inp_exprs = inp_decls.exprs(settings.use_reals)
+            for inp_range in inp_ranges:
+                range_constr = z3.And([z3.And(ir[0] <= v, v <= ir[1]) for v, ir in zip(inp_exprs, inp_range)])
+                # mlog.debug("range_constr: {}".format(range_constr))
+                range_constrs.append(range_constr)
+
+
         solver = Z3.create_solver()
         solver.add(f)
 
         is_nla = False
-        fterms = self.__class__.get_mul_terms(f)
-        nonlinear_fterms = list(itertools.filterfalse(lambda t: not self.__class__.is_nonlinear_mul_term(t), fterms))
+        fterms = self.get_mul_terms(f)
+        nonlinear_fterms = list(itertools.filterfalse(lambda t: not self.is_nonlinear_mul_term(t), fterms))
         mlog.debug("nonlinear_fterms: {}".format(nonlinear_fterms))
         if nonlinear_fterms:
             is_nla = True
@@ -201,9 +228,7 @@ class Solver(object):
         i = 0
         # while solver.check() == z3.sat and i < k:
         while i < k:
-            chk, m = self.check_sat_and_get_rand_model(solver, is_nla)
-            # mlog.debug("chk: {}".format(chk))
-            # mlog.debug("m: {}".format(m))
+            chk, m = self.check_sat_and_get_rand_model(solver, is_nla, range_constrs)
             if chk != z3.sat or not m:
                 break
             i = i + 1
