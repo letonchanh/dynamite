@@ -355,6 +355,7 @@ class NonTerm(object):
 
     def verify(self, rcs):
         assert isinstance(rcs, ZFormula), rcs
+        assert not rcs.is_unsat(), rcs
         _config = self._config
 
         if not rcs:
@@ -496,11 +497,16 @@ class NonTerm(object):
                 # use 0 for queue
                 rcs, depth, ancestors = candidateRCS.pop(0)
                 mlog.debug("PROVE_NT DEPTH {}: {}".format(depth, rcs))
+                if rcs.is_unsat():
+                    continue
+
                 if depth < settings.max_nonterm_refinement_depth:
                     chk, sCexs = self.verify(rcs)
                     # mlog.debug("sCexs: {}".format(sCexs))
-                    if chk and not rcs.is_unsat():
+                    if chk:
                         validRCS.append((rcs, ancestors))
+                        # return the first valid rcs
+                        return validRCS
                     elif sCexs is not None:
                         for invalid_rc, cexs in sCexs:
                             nrcs = self.strengthen(rcs, invalid_rc, cexs)
