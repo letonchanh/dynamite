@@ -201,60 +201,65 @@ class Solver(object):
         assert z3.is_expr(f), f
         assert k >= 1, k
 
-        range_constrs = []
-        if inp_decls:
-            inp_ranges = list(dig_prog.Prog._get_inp_ranges(len(inp_decls)))
-            random.shuffle(inp_ranges)
-            # mlog.debug("inp_ranges ({}): {}".format(len(inp_ranges), inp_ranges))
-            inp_exprs = inp_decls.exprs(settings.use_reals)
-            for inp_range in inp_ranges:
-                range_constr = z3.And([z3.And(ir[0] <= v, v <= ir[1]) for v, ir in zip(inp_exprs, inp_range)])
-                # mlog.debug("range_constr: {}".format(range_constr))
-                range_constrs.append(range_constr)
-
         solver = Z3.create_solver()
         solver.add(f)
-
-        is_nla = False
-        fterms = self.get_mul_terms(f)
-        nonlinear_fterms = list(itertools.filterfalse(lambda t: not self.is_nonlinear_mul_term(t), fterms))
-        # mlog.debug("nonlinear_fterms: {}".format(nonlinear_fterms))
-        if nonlinear_fterms:
-            is_nla = True
-
-        models = []
-        model_stat = {}
-        i = 0
-        # while solver.check() == z3.sat and i < k:
-        while i < k:
-            chk, m = self.check_sat_and_get_rand_model(solver, is_nla, range_constrs)
-            if chk != z3.sat or not m:
-                break
-            i = i + 1
-            models.append(m)
-            for (x, v) in m:
-                model_stat.setdefault(x, {})
-                c = model_stat[x].setdefault(v, 0)
-                model_stat[x][v] = c + 1
-            # mlog.debug("model {}: {}".format(i, m))
-            # create new constraint to block the current model
-            block_m = z3.Not(z3.And([z3.Int(x) == v for (x, v) in m]))
-            solver.add(block_m)
-            for (x, v) in m:
-                if model_stat[x][v] / k > 0.1:
-                    block_x = z3.Int(x) != v
-                    # mlog.debug("block_x: {}".format(block_x))
-                    solver.add(block_x)
-
-        # mlog.debug("model_stat: {}".format(model_stat))
         stat = solver.check()
 
         if stat == z3.unknown:
             rs = None
-        elif stat == z3.unsat and i == 0:
+        elif stat == z3.unsat:
             rs = False
         else:
-            rs = models
+            # sat, get k models
+
+            range_constrs = []
+            if inp_decls:
+                inp_ranges = list(dig_prog.Prog._get_inp_ranges(len(inp_decls)))
+                random.shuffle(inp_ranges)
+                # mlog.debug("inp_ranges ({}): {}".format(len(inp_ranges), inp_ranges))
+                inp_exprs = inp_decls.exprs(settings.use_reals)
+                for inp_range in inp_ranges:
+                    range_constr = z3.And([z3.And(ir[0] <= v, v <= ir[1]) for v, ir in zip(inp_exprs, inp_range)])
+                    # mlog.debug("range_constr: {}".format(range_constr))
+                    range_constrs.append(range_constr)
+
+
+            is_nla = False
+            fterms = self.get_mul_terms(f)
+            nonlinear_fterms = list(itertools.filterfalse(lambda t: not self.is_nonlinear_mul_term(t), fterms))
+            # mlog.debug("nonlinear_fterms: {}".format(nonlinear_fterms))
+            if nonlinear_fterms:
+                is_nla = True
+
+            models = []
+            model_stat = {}
+            i = 0
+            # while solver.check() == z3.sat and i < k:
+            while i < k:
+                chk, m = self.check_sat_and_get_rand_model(solver, is_nla, range_constrs)
+                if chk != z3.sat or not m:
+                    break
+                i = i + 1
+                models.append(m)
+                for (x, v) in m:
+                    model_stat.setdefault(x, {})
+                    c = model_stat[x].setdefault(v, 0)
+                    model_stat[x][v] = c + 1
+                # mlog.debug("model {}: {}".format(i, m))
+                # create new constraint to block the current model
+                block_m = z3.Not(z3.And([z3.Int(x) == v for (x, v) in m]))
+                solver.add(block_m)
+                for (x, v) in m:
+                    if model_stat[x][v] / k > 0.1:
+                        block_x = z3.Int(x) != v
+                        # mlog.debug("block_x: {}".format(block_x))
+                        solver.add(block_x)
+
+            if models:
+                rs = models
+            else:
+                rs = None
+                stat = z3.unknown
 
         assert not (isinstance(rs, list) and not rs), rs
         return rs, stat
