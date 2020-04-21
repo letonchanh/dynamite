@@ -4,6 +4,7 @@ import random
 import itertools
 import math
 from pathlib import Path
+from collections import defaultdict 
 # from numba import njit 
 # import numpy as np
 
@@ -386,7 +387,7 @@ class NonTerm(object):
                 f = z3.And(rcs_transrel, z3.Not(rc_r))
                 init_f = self.stem.get_initial_cond(f, _config)
                 init_inp_decls = Symbs([Symb(init_symvars_prefix + s.name, s.typ) for s in _config.inp_decls])
-                mlog.debug("init_inp_decls ({}): {}".format(type(init_inp_decls), init_inp_decls))
+                # mlog.debug("init_inp_decls ({}): {}".format(type(init_inp_decls), init_inp_decls))
                 mlog.debug("init_f: {}".format(init_f))
                 rs, _ = _config.solver.get_models(init_f, _config.n_inps, init_inp_decls, settings.use_random_seed)
                 if rs is None:
@@ -405,7 +406,7 @@ class NonTerm(object):
                             if init_r:
                                 init_rs.append(init_r)
 
-                        mlog.debug("init_rs: sat ({} models)\n{}".format(len(init_rs), init_rs))
+                        mlog.debug("init_rs: sat ({} models)".format(len(init_rs)))
                         rs = _config.solver.mk_inps_from_models(
                                     init_rs, _config.inp_decls.exprs(settings.use_reals), _config.exe)
                 return rs
@@ -438,7 +439,7 @@ class NonTerm(object):
         mlog.debug("mayloop_invs: {}".format(mayloop_invs))
 
         term_invs = ZConj(_config.dig.infer_from_traces(
-                            itraces, _config.inloop_loc, term_inps, maxdeg=2))
+                            itraces, _config.inloop_loc, term_inps, maxdeg=1))
         mlog.debug("term_invs: {}".format(term_invs))
 
         term_traces = []
@@ -473,6 +474,12 @@ class NonTerm(object):
         
         return candidate_nrcs
 
+    def _stat_candidate_rcs(self, rcs):
+        stat = defaultdict(int)
+        for (_, d, _) in rcs:
+            stat[d] += 1
+        mlog.debug("stat ({} total): {}".format(len(rcs), stat))
+
     def prove(self):
         _config = self._config
         validRCS = []
@@ -484,8 +491,10 @@ class NonTerm(object):
             # candidate rcs, depth, ancestors
             candidateRCS = [(ZConj([self.loop.cond]), 0, [])]
             while candidateRCS:
-                mlog.debug("candidateRCS: {}".format(candidateRCS))
-                rcs, depth, ancestors = candidateRCS.pop()
+                # mlog.debug("candidateRCS: {}".format(len(candidateRCS)))
+                self._stat_candidate_rcs(candidateRCS)
+                # use 0 for queue
+                rcs, depth, ancestors = candidateRCS.pop(0)
                 mlog.debug("PROVE_NT DEPTH {}: {}".format(depth, rcs))
                 if depth < settings.max_nonterm_refinement_depth:
                     chk, sCexs = self.verify(rcs)

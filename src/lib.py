@@ -122,8 +122,8 @@ class Inference(object):
     @classmethod
     def _split(cls, lst):
         random.shuffle(lst)
-        # split_index = math.floor((1 - settings.test_ratio)*len(lst))
-        split_index = math.floor(len(lst) / 2)
+        split_index = math.floor((1 - settings.test_ratio)*len(lst))
+        # split_index = math.floor(len(lst) / 2)
         return lst[:split_index], lst[split_index:]
 
     def infer_from_traces(self, itraces, traceid, inps=None, maxdeg=1, simpl=False):
@@ -162,7 +162,7 @@ class Solver(object):
             theory = 'qfnra'
         else:
             theory = 'qflra'
-        
+
         while True:
             range_constr = None
             if range_constrs:
@@ -170,7 +170,7 @@ class Solver(object):
                 solver.push()
                 solver.add(range_constr)
 
-            mlog.debug("range_constr: {}, {} remaining".format(range_constr, len(range_constrs)))
+            # mlog.debug("range_constr: {}, {} remaining".format(range_constr, len(range_constrs)))
             smt2_str = [
                 '(set-option :smt.arith.random_initial_value true)',
                 solver.to_smt2().replace('(check-sat)', ''),
@@ -185,7 +185,7 @@ class Solver(object):
             assert not errmsg, "'{}': {}".format(cmd, errmsg)
             z3_output_ast = z3_output_handler.parser.parse(rmsg)
             chk, model = z3_output_handler.transform(z3_output_ast)
-            mlog.debug("chk: {}, : {}".format(chk, model))
+            # mlog.debug("chk: {}, : {}".format(chk, model))
             if range_constr is not None:
                 solver.pop()
                 if chk != z3.sat or not model:
@@ -212,14 +212,13 @@ class Solver(object):
                 # mlog.debug("range_constr: {}".format(range_constr))
                 range_constrs.append(range_constr)
 
-
         solver = Z3.create_solver()
         solver.add(f)
 
         is_nla = False
         fterms = self.get_mul_terms(f)
         nonlinear_fterms = list(itertools.filterfalse(lambda t: not self.is_nonlinear_mul_term(t), fterms))
-        mlog.debug("nonlinear_fterms: {}".format(nonlinear_fterms))
+        # mlog.debug("nonlinear_fterms: {}".format(nonlinear_fterms))
         if nonlinear_fterms:
             is_nla = True
 
