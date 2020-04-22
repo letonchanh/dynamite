@@ -28,6 +28,11 @@ class ZFormula(set):
         else:
             return z3.BoolVal(self.empty_interp)
 
+    @classmethod
+    def substitue(cls, zf, sst):
+        zfs = list(map(lambda f: f.substitue(sst) if isinstance(f, ZFormula) else z3.substitute(f, sst), zf))
+        return zf.__class__(zfs)
+
     def negate(self):
         if self:
             fs = map(lambda f: f.expr() if isinstance(f, ZFormula) else f, self)

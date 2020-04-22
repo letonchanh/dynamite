@@ -374,42 +374,49 @@ class NonTerm(object):
                 rcs.add(loop_cond)
 
             # R /\ T => R'
-            rcs_l = z3.substitute(rcs.expr(), _config.transrel_pre_sst)
-            rcs_transrel = z3.And(loop_transrel, rcs_l)
-            mlog.debug("rcs_l: {}".format(rcs_l))
-            mlog.debug("loop_transrel: {}".format(loop_transrel))
+            # rcs_l = z3.substitute(rcs.expr(), _config.transrel_pre_sst)
+            # mlog.debug("rcs_l: {}".format(rcs_l))
+            init_transrel_rcs = ZFormula.substitue(rcs, _config.transrel_pre_sst)
+            init_transrel_rcs.add(loop_transrel)
+            init_transrel_rcs.add(self.stem.cond)
+            init_transrel_rcs.add(self.stem.transrel)
+            mlog.debug("init_transrel_rcs: {}".format(init_transrel_rcs))
+
+            # Unreachable recurrent set
+            if init_transrel_rcs.is_unsat():
+                return False, None
 
             if _config.is_c_inp:
                 init_symvars_prefix = dig_settings.C.CIVL_INIT_SYMVARS_PREFIX
 
             def _check(rc):
+                # init_transrel_rcs is sat
                 rc_r = z3.substitute(rc, _config.transrel_post_sst)
-                mlog.debug("rc: {}".format(rc))
-                f = z3.And(rcs_transrel, z3.Not(rc_r))
-                init_f = self.stem.get_initial_cond(f, _config)
-                init_inp_decls = Symbs([Symb(init_symvars_prefix + s.name, s.typ) for s in _config.inp_decls])
-                # mlog.debug("init_inp_decls ({}): {}".format(type(init_inp_decls), init_inp_decls))
+                init_f = z3.And(init_transrel_rcs.expr(), z3.Not(rc_r))
+                mlog.debug("rc_r: {}".format(rc_r))
                 mlog.debug("init_f: {}".format(init_f))
+                init_inp_decls = Symbs([Symb(init_symvars_prefix + s.name, s.typ) for s in _config.inp_decls])
+                
                 rs, _ = _config.solver.get_models(init_f, _config.n_inps, init_inp_decls, settings.use_random_seed)
                 if rs is None:
                     mlog.debug("rs: unknown")
                 elif rs is False:
                     mlog.debug("rs: unsat")
                 else:
-                    if isinstance(rs, list) and rs:
-                        init_rs = []
-                        init_symvars_prefix_len = len(init_symvars_prefix)
-                        for r in rs:
-                            init_r = []
-                            for (x, v) in r:
-                                if x.startswith(init_symvars_prefix):
-                                    init_r.append((x[init_symvars_prefix_len:], v))
-                            if init_r:
-                                init_rs.append(init_r)
+                    # isinstance(rs, list) and rs:
+                    init_rs = []
+                    init_symvars_prefix_len = len(init_symvars_prefix)
+                    for r in rs:
+                        init_r = []
+                        for (x, v) in r:
+                            if x.startswith(init_symvars_prefix):
+                                init_r.append((x[init_symvars_prefix_len:], v))
+                        if init_r:
+                            init_rs.append(init_r)
 
-                        mlog.debug("init_rs: sat ({} models)".format(len(init_rs)))
-                        rs = _config.solver.mk_inps_from_models(
-                                    init_rs, _config.inp_decls.exprs(settings.use_reals), _config.exe)
+                    mlog.debug("init_rs: sat ({} models)".format(len(init_rs)))
+                    rs = _config.solver.mk_inps_from_models(
+                                init_rs, _config.inp_decls.exprs(settings.use_reals), _config.exe)
                 return rs
 
             chks = [(rc, _check(rc)) for rc in rcs]
