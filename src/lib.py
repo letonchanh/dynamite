@@ -7,7 +7,7 @@ import math
 from pathlib import Path
 from data.traces import Inps, Trace, Traces, DTraces
 from data.inv.invs import Invs
-from utils import settings
+from utils import settings, logic
 from parsers import Z3OutputHandler
 from helpers.miscs import Z3, Miscs
 import helpers.vcommon as dig_common_helpers
@@ -183,6 +183,7 @@ class Solver(object):
             cmd = 'z3 {}'.format(filename)
             rmsg, errmsg = dig_common_helpers.vcmd(cmd)
             assert not errmsg, "'{}': {}".format(cmd, errmsg)
+            # mlog.debug("rmsg: {}".format(rmsg))
             z3_output_ast = z3_output_handler.parser.parse(rmsg)
             chk, model = z3_output_handler.transform(z3_output_ast)
             # mlog.debug("chk: {}, : {}".format(chk, model))
@@ -198,16 +199,36 @@ class Solver(object):
         if not using_random_seed:
             return Z3.get_models(f, k)
 
-        assert z3.is_expr(f), f
+        assert z3.is_expr(f) or isinstance(f, logic.ZFormula), f
         assert k >= 1, k
 
         solver = Z3.create_solver()
-        solver.add(f)
+        
+        pushed_conj = False
+
+        if z3.is_expr(f):
+            solver.add(f)
+        else: # isinstance(f, logic.ZFormula)
+            if isinstance(f, logic.ZDisj):
+                solver.add(f.expr())
+            else:
+                solver.push()
+                pushed_conj = True
+                for conj in f:
+                    conj_id = 'c_' + str(self._get_expr_id(conj))
+                    mlog.debug("conj: {} - {}".format(conj, conj_id))
+                    solver.assert_and_track(conj, conj_id)
+        
         stat = solver.check()
 
         if stat == z3.unknown:
             rs = None
         elif stat == z3.unsat:
+            if pushed_conj:
+                c = solver.unsat_core()
+                mlog.debug("unsat_core: {}".format(c))
+                solver.pop()
+                pushed_conj = False
             rs = False
         else:
             # sat, get k models
@@ -223,6 +244,11 @@ class Solver(object):
                     # mlog.debug("range_constr: {}".format(range_constr))
                     range_constrs.append(range_constr)
 
+            if pushed_conj:
+                solver.pop()
+                pushed_conj = False
+                f = f.expr()
+                solver.add(f)
 
             is_nla = False
             fterms = self.get_mul_terms(f)
@@ -241,14 +267,18 @@ class Solver(object):
                     break
                 i = i + 1
                 models.append(m)
+                block_cs = []
                 for (x, v) in m:
                     model_stat.setdefault(x, {})
-                    c = model_stat[x].setdefault(v, 0)
-                    model_stat[x][v] = c + 1
+                    if isinstance(v, (int, float)):
+                        c = model_stat[x].setdefault(v, 0)
+                        model_stat[x][v] = c + 1
+                        block_cs.append(z3.Int(x) == v)
                 # mlog.debug("model {}: {}".format(i, m))
                 # create new constraint to block the current model
-                block_m = z3.Not(z3.And([z3.Int(x) == v for (x, v) in m]))
-                solver.add(block_m)
+                if block_cs:
+                    block_c = z3.Not(z3.And(block_cs))
+                    solver.add(block_c)
                 for (x, v) in m:
                     if model_stat[x][v] / k > 0.1:
                         block_x = z3.Int(x) != v

@@ -391,8 +391,9 @@ class NonTerm(object):
 
             def _check(rc):
                 # init_transrel_rcs is sat
+                init_f = copy.deepcopy(init_transrel_rcs)
                 rc_r = z3.substitute(rc, _config.transrel_post_sst)
-                init_f = z3.And(init_transrel_rcs.expr(), z3.Not(rc_r))
+                init_f.add(z3.Not(rc_r))
                 mlog.debug("rc_r: {}".format(rc_r))
                 mlog.debug("init_f: {}".format(init_f))
                 init_inp_decls = Symbs([Symb(init_symvars_prefix + s.name, s.typ) for s in _config.inp_decls])

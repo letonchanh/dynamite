@@ -24,7 +24,9 @@ class Z3OutputHandler(Transformer):
 
         ?sol: OPAREN DEFFUN ID OPAREN CPAREN sort value CPAREN -> mk_sol
 
-        ?sort: (INTSORT | REALSORT)
+        ?sort: (INTSORT | REALSORT | BOOLSORT)
+
+        ?bool_val: (TRUE | FALSE)
 
         ?value: prim_val -> mk_prim_val
             | TOINT prim_val -> mk_toint_prim_val
@@ -32,6 +34,7 @@ class Z3OutputHandler(Transformer):
             | OPAREN value CPAREN -> mk_paren
 
         ?prim_val: INT -> mk_int_val
+            | bool_val -> mk_bool_val
             | OPAREN prim_val CPAREN -> mk_paren
             | MINUS prim_val -> mk_neg
 
@@ -46,9 +49,12 @@ class Z3OutputHandler(Transformer):
         TOINT: "to_int"
         INTSORT: "Int"
         REALSORT: "Real"
+        BOOLSORT: "Bool"
         MINUS: "-"
         DIV: "/"
         MULT: "*"
+        TRUE: "true"
+        FALSE: "false"
         COMMENT: ";" /[^\n]/*
         %import common.CNAME -> ID
         %import common.INT -> INT
@@ -98,6 +104,10 @@ class Z3OutputHandler(Transformer):
     def mk_int_val(self, tokens):
         (i,) = tokens
         return int(i)
+
+    def mk_bool_val(self, tokens):
+        (i,) = tokens
+        return bool(i)
 
     def mk_neg(self, tokens):
         (minus, e) = tokens

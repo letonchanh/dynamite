@@ -10,6 +10,7 @@ from functools import partial
 
 mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
 
+# Set of z3 formulas
 class ZFormula(set):
     def __init__(self, fs):
         if fs is None:
