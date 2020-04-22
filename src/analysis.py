@@ -369,6 +369,15 @@ class NonTerm(object):
             mlog.debug("loop_cond: {}".format(loop_cond))
             mlog.debug("rcs: {}".format(rcs))
 
+            rcs_lst = list(rcs)
+            def mk_label(e):
+                if e in rcs_lst:
+                    return 'c_' + str(rcs_lst.index(e))
+                else:
+                    return None
+            labeled_rcs = ZFormula.label(rcs, mk_label)
+            mlog.debug("labeled_rcs: {}".format(labeled_rcs))
+
             if not rcs.implies(ZFormula([loop_cond])):
                 mlog.debug("rcs_cond =/=> loop_cond")
                 rcs.add(loop_cond)
@@ -376,7 +385,7 @@ class NonTerm(object):
             # R /\ T => R'
             # rcs_l = z3.substitute(rcs.expr(), _config.transrel_pre_sst)
             # mlog.debug("rcs_l: {}".format(rcs_l))
-            init_transrel_rcs = ZFormula.substitue(rcs, _config.transrel_pre_sst)
+            init_transrel_rcs = ZFormula.substitue(labeled_rcs, _config.transrel_pre_sst)
             init_transrel_rcs.add(loop_transrel)
             init_transrel_rcs.add(self.stem.cond)
             init_transrel_rcs.add(self.stem.transrel)

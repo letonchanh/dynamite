@@ -214,10 +214,18 @@ class Solver(object):
             else:
                 solver.push()
                 pushed_conj = True
+                solver.set(unsat_core=True)
+                solver.set(':core.minimize', True)
                 for conj in f:
-                    conj_id = 'c_' + str(self._get_expr_id(conj))
-                    mlog.debug("conj: {} - {}".format(conj, conj_id))
-                    solver.assert_and_track(conj, conj_id)
+                    if isinstance(conj, logic.LabeledExpr):
+                        if conj.label:
+                            conj_label = conj.label
+                        else:
+                            conj_label = 'c_' + str(self._get_expr_id(conj.expr))
+                        mlog.debug("conj: {} - {}".format(conj.expr, conj_label))
+                        solver.assert_and_track(conj.expr, conj_label)
+                    else:
+                        solver.add(conj)
         
         stat = solver.check()
 
