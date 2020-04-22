@@ -362,6 +362,9 @@ class NonTerm(object):
             return True, None 
         else:
             # assert rcs, rcs
+            if _config.is_c_inp:
+                init_symvars_prefix = dig_settings.C.CIVL_INIT_SYMVARS_PREFIX
+
             loop_transrel = self.loop.transrel
             loop_cond = self.loop.cond
 
@@ -369,18 +372,19 @@ class NonTerm(object):
             mlog.debug("loop_cond: {}".format(loop_cond))
             mlog.debug("rcs: {}".format(rcs))
 
+            if not rcs.implies(ZFormula([loop_cond])):
+                mlog.debug("rcs_cond =/=> loop_cond")
+                rcs.add(loop_cond)
+
             rcs_lst = list(rcs)
             def mk_label(e):
                 if e in rcs_lst:
                     return 'c_' + str(rcs_lst.index(e))
                 else:
                     return None
-            labeled_rcs = ZFormula.label(rcs, mk_label)
+            labeled_rcs, label_d = ZFormula.label(rcs, mk_label)
             mlog.debug("labeled_rcs: {}".format(labeled_rcs))
-
-            if not rcs.implies(ZFormula([loop_cond])):
-                mlog.debug("rcs_cond =/=> loop_cond")
-                rcs.add(loop_cond)
+            mlog.debug("label_d: {}".format(label_d))
 
             # R /\ T => R'
             # rcs_l = z3.substitute(rcs.expr(), _config.transrel_pre_sst)
@@ -395,10 +399,9 @@ class NonTerm(object):
             if init_transrel_rcs.is_unsat():
                 return False, None
 
-            if _config.is_c_inp:
-                init_symvars_prefix = dig_settings.C.CIVL_INIT_SYMVARS_PREFIX
-
             def _check(rc):
+                mlog.debug("rc: {}:{}".format(rc, labeled_rcs.get_label(rc)))
+                mlog.debug("rc: {}:{}".format(rc, label_d[rc]))
                 # init_transrel_rcs is sat
                 init_f = copy.deepcopy(init_transrel_rcs)
                 rc_r = z3.substitute(rc, _config.transrel_post_sst)

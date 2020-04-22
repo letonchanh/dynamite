@@ -8,6 +8,7 @@ import z3
 import itertools
 import functools
 from functools import partial
+from collections import defaultdict 
 
 mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
 
@@ -98,10 +99,39 @@ class ZFormula(set):
 
     @classmethod
     def label(cls, zf, mk_label):
-        zfs = list(map(lambda f: cls.label(f, mk_label) if isinstance(f, ZFormula)
-                                 else LabeledExpr(f, mk_label(f)),
-                       zf))
-        return zf.__class__(zfs)
+        # zfs = list(map(lambda f: cls.label(f, mk_label) if isinstance(f, ZFormula)
+        #                          else LabeledExpr(f, mk_label(f)),
+        #
+        #                 zf))
+        zfs = []
+        d = defaultdict(str)
+        for f in zf:
+            if isinstance(f, ZFormula):
+                label_f, d_f = cls.label(f, mk_label)
+                d.update(d_f)
+            else:
+                label = mk_label(f)
+                label_f = LabeledExpr(f, label)
+                d[f] = label
+            zfs.append(label_f)
+        return zf.__class__(zfs), d
+
+    def get_label(self, e):
+        assert z3.is_expr(e) or isinstance(e, LabeledExpr)
+        if isinstance(e, LabeledExpr):
+            return e.label
+        else:
+            e_id = Solver._get_expr_id(e)
+            for f in self:
+                if isinstance(f, ZFormula):
+                    label_in_f = f.get_label(e)
+                elif isinstance(f, LabeledExpr) and Solver._get_expr_id(f.expr) == e_id:
+                    label_in_f = f.label
+                else:
+                    label_in_f = None
+                if label_in_f:
+                    return label_in_f
+            return None
 
 class ZConj(ZFormula):
     def __init__(self, fs):

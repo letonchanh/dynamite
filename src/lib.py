@@ -222,7 +222,7 @@ class Solver(object):
                             conj_label = conj.label
                         else:
                             conj_label = 'c_' + str(self._get_expr_id(conj.expr))
-                        mlog.debug("conj: {} - {}".format(conj.expr, conj_label))
+                        mlog.debug("conj: {}:{}".format(conj.expr, conj_label))
                         solver.assert_and_track(conj.expr, conj_label)
                     else:
                         solver.add(conj)
