@@ -679,7 +679,7 @@ class Term(object):
         st2 = str(t2)
         for d in model.decls():
             v = model[d]
-            sv = str(v)
+            sv = v.as_string()
             dn = d.name()
             st1 = st1.replace(dn, sv)
             st2 = st2.replace(dn, sv)

@@ -155,13 +155,59 @@ class Solver(object):
     def __init__(self, tmpdir):
         self.tmpdir = tmpdir
 
-    def check_sat_and_get_rand_model(self, solver, using_nla=False, range_constrs=[]):
+    def _check_sat_with_z3bin(self, solver, using_nla, myseed):
         z3_output_handler = Z3OutputHandler()
-        myseed = random.randint(0, 1000000)
         if using_nla:
             theory = 'qfnia' # qfnra
         else:
             theory = 'qflia' # qflia
+        smt2_str = [
+            '(set-option :smt.arith.random_initial_value true)',
+            solver.to_smt2().replace('(check-sat)', ''),
+            '(check-sat-using (using-params {} :random-seed {}))'.format(theory, myseed),
+            '(get-model)']
+        smt2_str = '\n'.join(smt2_str)
+        # mlog.debug("smt2_str: {}".format(smt2_str))
+        filename = self.tmpdir / 't.smt2'
+        dig_common_helpers.vwrite(filename, smt2_str)
+        cmd = 'z3 {}'.format(filename)
+        rmsg, errmsg = dig_common_helpers.vcmd(cmd)
+        # mlog.debug("rmsg: {}".format(rmsg))
+        # mlog.debug("errmsg: {}".format(errmsg))
+        assert not errmsg, "'{}': {}".format(cmd, errmsg)
+        z3_output_ast = z3_output_handler.parser.parse(rmsg)
+        chk, model = z3_output_handler.transform(z3_output_ast)
+        # mlog.debug("chk: {}, : {}".format(chk, model))
+        return chk, model
+
+    def _check_sat_with_z3py(self, solver, using_nla, myseed):
+        if using_nla:
+            theory = 'qfnia' # qfnra
+        else:
+            theory = 'qflia' # qflia
+
+        z3.set_param('smt.arith.random_initial_value', True)
+        p = z3.ParamsRef()
+        p.set("random-seed", myseed)
+        t = z3.WithParams(z3.Tactic(theory), p)
+        t_solver = t.solver() 
+        # mlog.debug("t_solver: {}".format(t_solver.param_descrs()))
+        # pds = t_solver.param_descrs()
+        # for i in range(pds.size()):
+        #     pd = pds.get_name(i)
+        #     if 'random' in pd:
+        #         mlog.debug("pds[{}]: {}".format(i, pd))
+        t_solver.add(solver.assertions())
+        chk = t_solver.check()
+        model = None
+        if chk == z3.sat:
+            m = t_solver.model() # <class 'z3.z3.ModelRef'>
+            # (<class 'z3.z3.FuncDeclRef'>, <class 'z3.z3.IntNumRef'>) list
+            model = [(v.name(), m[v].as_long()) for v in m.decls()]
+        return chk, model
+
+    def check_sat_and_get_rand_model(self, solver, using_nla=False, range_constrs=[]):
+        myseed = random.randint(0, 1000000)
 
         while True:
             range_constr = None
@@ -171,23 +217,7 @@ class Solver(object):
                 solver.add(range_constr)
 
             # mlog.debug("range_constr: {}, {} remaining".format(range_constr, len(range_constrs)))
-            smt2_str = [
-                '(set-option :smt.arith.random_initial_value true)',
-                solver.to_smt2().replace('(check-sat)', ''),
-                '(check-sat-using (using-params {} :random-seed {}))'.format(theory, myseed),
-                '(get-model)']
-            smt2_str = '\n'.join(smt2_str)
-            # mlog.debug("smt2_str: {}".format(smt2_str))
-            filename = self.tmpdir / 't.smt2'
-            dig_common_helpers.vwrite(filename, smt2_str)
-            cmd = 'z3 {}'.format(filename)
-            rmsg, errmsg = dig_common_helpers.vcmd(cmd)
-            # mlog.debug("rmsg: {}".format(rmsg))
-            # mlog.debug("errmsg: {}".format(errmsg))
-            assert not errmsg, "'{}': {}".format(cmd, errmsg)
-            z3_output_ast = z3_output_handler.parser.parse(rmsg)
-            chk, model = z3_output_handler.transform(z3_output_ast)
-            # mlog.debug("chk: {}, : {}".format(chk, model))
+            chk, model = self._check_sat_with_z3py(solver, using_nla, myseed)
             if range_constr is not None:
                 solver.pop()
                 if chk != z3.sat or not model:
