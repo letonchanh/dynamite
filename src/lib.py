@@ -214,8 +214,8 @@ class Solver(object):
         if fe_nonlinear_terms:
             is_nla = True
 
-        solver = Z3.create_solver()
-        # solver = z3.SolverFor('QF_NRA')
+        # solver = Z3.create_solver()
+        solver = z3.SolverFor('QF_NRA')
         
         pushed_labeled_conj = False
 
@@ -231,8 +231,8 @@ class Solver(object):
                     else:
                         conj_label = 'c_' + str(self._get_expr_id(conj.expr))
                     # mlog.debug("conj: {}:{}".format(conj.expr, conj_label))
-                    solver.assert_and_track(conj.expr, conj_label)
-                    # solver.add(conj.expr)
+                    # solver.assert_and_track(conj.expr, conj_label)
+                    solver.add(conj.expr)
                 else:
                     solver.add(conj)
         else:
