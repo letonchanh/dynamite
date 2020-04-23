@@ -159,9 +159,9 @@ class Solver(object):
         z3_output_handler = Z3OutputHandler()
         myseed = random.randint(0, 1000000)
         if using_nla:
-            theory = 'qfnra'
+            theory = 'qfnia' # qfnra
         else:
-            theory = 'qflra'
+            theory = 'qflia' # qflia
 
         while True:
             range_constr = None
@@ -214,8 +214,8 @@ class Solver(object):
         if fe_nonlinear_terms:
             is_nla = True
 
-        # solver = Z3.create_solver()
-        solver = z3.SolverFor('QF_NRA')
+        solver = Z3.create_solver()
+        # solver = z3.SolverFor('QF_NRA')
         
         pushed_labeled_conj = False
 
