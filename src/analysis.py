@@ -384,7 +384,6 @@ class NonTerm(object):
                     return None
             labeled_rcs, label_d = ZFormula.label(rcs, mk_label)
             mlog.debug("labeled_rcs: {}".format(labeled_rcs))
-            mlog.debug("label_d: {}".format(label_d))
 
             # R /\ T => R'
             # rcs_l = z3.substitute(rcs.expr(), _config.transrel_pre_sst)
@@ -399,9 +398,10 @@ class NonTerm(object):
             if init_transrel_rcs.is_unsat():
                 return False, None
 
+            dg = defaultdict(list)
             def _check(rc):
-                mlog.debug("rc: {}:{}".format(rc, labeled_rcs.get_label(rc)))
-                mlog.debug("rc: {}:{}".format(rc, label_d[rc]))
+                rc_label = label_d[rc]
+                mlog.debug("rc: {}:{}".format(rc, rc_label))
                 # init_transrel_rcs is sat
                 init_f = copy.deepcopy(init_transrel_rcs)
                 rc_r = z3.substitute(rc, _config.transrel_post_sst)
@@ -410,11 +410,14 @@ class NonTerm(object):
                 mlog.debug("init_f: {}".format(init_f))
                 init_inp_decls = Symbs([Symb(init_symvars_prefix + s.name, s.typ) for s in _config.inp_decls])
                 
-                rs, _ = _config.solver.get_models(init_f, _config.n_inps, init_inp_decls, settings.use_random_seed)
+                rs, _, unsat_core = _config.solver.get_models(init_f, _config.n_inps, init_inp_decls, settings.use_random_seed)
                 if rs is None:
                     mlog.debug("rs: unknown")
                 elif rs is False:
                     mlog.debug("rs: unsat")
+                    mlog.debug("unsat_core: {}".format(unsat_core))
+                    # assert unsat_core is not None, unsat_core
+                    # dg[rc_label] = unsat_core
                 else:
                     # isinstance(rs, list) and rs:
                     init_rs = []
@@ -433,6 +436,10 @@ class NonTerm(object):
                 return rs
 
             chks = [(rc, _check(rc)) for rc in rcs]
+
+            mlog.debug("dg: {}".format(dg))
+            mlog.debug("label_d: {}".format(label_d))
+
             if all(rs is False for _, rs in chks):
                 return True, None  # valid
             else:
@@ -480,7 +487,7 @@ class NonTerm(object):
         candidate_nrcs = []
 
         for term_inv in term_invs:
-            mlog.debug("term_inv: {}".format(term_inv))
+            # mlog.debug("term_inv: {}".format(term_inv))
             nrcs = copy.deepcopy(rcs)
             nrcs.add(z3.Not(term_inv))
             candidate_nrcs.append(nrcs)

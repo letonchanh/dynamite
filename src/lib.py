@@ -182,8 +182,9 @@ class Solver(object):
             dig_common_helpers.vwrite(filename, smt2_str)
             cmd = 'z3 {}'.format(filename)
             rmsg, errmsg = dig_common_helpers.vcmd(cmd)
-            assert not errmsg, "'{}': {}".format(cmd, errmsg)
             # mlog.debug("rmsg: {}".format(rmsg))
+            # mlog.debug("errmsg: {}".format(errmsg))
+            assert not errmsg, "'{}': {}".format(cmd, errmsg)
             z3_output_ast = z3_output_handler.parser.parse(rmsg)
             chk, model = z3_output_handler.transform(z3_output_ast)
             # mlog.debug("chk: {}, : {}".format(chk, model))
@@ -202,9 +203,21 @@ class Solver(object):
         assert z3.is_expr(f) or isinstance(f, logic.ZFormula), f
         assert k >= 1, k
 
+        if z3.is_expr(f):
+            fe = f
+        else:
+            fe = f.expr()
+
+        is_nla = False
+        fe_terms = self.get_mul_terms(fe)
+        fe_nonlinear_terms = list(itertools.filterfalse(lambda t: not self.is_nonlinear_mul_term(t), fe_terms))
+        if fe_nonlinear_terms:
+            is_nla = True
+
         solver = Z3.create_solver()
+        # solver = z3.SolverFor('QF_NRA')
         
-        pushed_conj = False
+        pushed_labeled_conj = False
 
         if z3.is_expr(f):
             solver.add(f)
@@ -212,34 +225,43 @@ class Solver(object):
             if isinstance(f, logic.ZDisj):
                 solver.add(f.expr())
             else:
-                solver.push()
-                pushed_conj = True
-                solver.set(unsat_core=True)
-                solver.set(':core.minimize', True)
+                # solver.push()
+                # pushed_labeled_conj = True
+                # solver.set(unsat_core=True)
+                # solver.set(':core.minimize', True)
                 for conj in f:
                     if isinstance(conj, logic.LabeledExpr):
                         if conj.label:
                             conj_label = conj.label
                         else:
                             conj_label = 'c_' + str(self._get_expr_id(conj.expr))
-                        mlog.debug("conj: {}:{}".format(conj.expr, conj_label))
-                        solver.assert_and_track(conj.expr, conj_label)
+                        # mlog.debug("conj: {}:{}".format(conj.expr, conj_label))
+                        # solver.assert_and_track(conj.expr, conj_label)
+                        solver.add(conj.expr)
                     else:
                         solver.add(conj)
         
         stat = solver.check()
+        unsat_core = None
 
+        mlog.debug("stat: {}".format(stat))
         if stat == z3.unknown:
+            mlog.debug("reason_unknown: {}".format(solver.reason_unknown()))
             rs = None
         elif stat == z3.unsat:
-            if pushed_conj:
-                c = solver.unsat_core()
-                mlog.debug("unsat_core: {}".format(c))
-                solver.pop()
-                pushed_conj = False
+            # if pushed_labeled_conj:
+            #     unsat_core = solver.unsat_core()
+            #     # mlog.debug("unsat_core: {}".format(unsat_core))
+            #     solver.pop()
+            #     pushed_labeled_conj = False
             rs = False
         else:
             # sat, get k models
+            # if pushed_labeled_conj:
+            #     solver.pop()
+            #     pushed_labeled_conj = False
+            #     fe = f.expr()
+            #     solver.add(fe)
 
             range_constrs = []
             if inp_decls:
@@ -251,19 +273,6 @@ class Solver(object):
                     range_constr = z3.And([z3.And(ir[0] <= v, v <= ir[1]) for v, ir in zip(inp_exprs, inp_range)])
                     # mlog.debug("range_constr: {}".format(range_constr))
                     range_constrs.append(range_constr)
-
-            if pushed_conj:
-                solver.pop()
-                pushed_conj = False
-                f = f.expr()
-                solver.add(f)
-
-            is_nla = False
-            fterms = self.get_mul_terms(f)
-            nonlinear_fterms = list(itertools.filterfalse(lambda t: not self.is_nonlinear_mul_term(t), fterms))
-            # mlog.debug("nonlinear_fterms: {}".format(nonlinear_fterms))
-            if nonlinear_fterms:
-                is_nla = True
 
             models = []
             model_stat = {}
@@ -293,6 +302,8 @@ class Solver(object):
                         # mlog.debug("block_x: {}".format(block_x))
                         solver.add(block_x)
 
+            # mlog.debug("models: {}".format(models))
+
             if models:
                 rs = models
             else:
@@ -300,7 +311,7 @@ class Solver(object):
                 stat = z3.unknown
 
         assert not (isinstance(rs, list) and not rs), rs
-        return rs, stat
+        return rs, stat, unsat_core
 
     def mk_inps_from_models(self, models, inp_decls, exe):
         if not models:
