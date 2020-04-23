@@ -219,27 +219,24 @@ class Solver(object):
         
         pushed_labeled_conj = False
 
-        if z3.is_expr(f):
-            solver.add(f)
-        else: # isinstance(f, logic.ZFormula)
-            if isinstance(f, logic.ZDisj):
-                solver.add(f.expr())
-            else:
-                # solver.push()
-                # pushed_labeled_conj = True
-                # solver.set(unsat_core=True)
-                # solver.set(':core.minimize', True)
-                for conj in f:
-                    if isinstance(conj, logic.LabeledExpr):
-                        if conj.label:
-                            conj_label = conj.label
-                        else:
-                            conj_label = 'c_' + str(self._get_expr_id(conj.expr))
-                        # mlog.debug("conj: {}:{}".format(conj.expr, conj_label))
-                        # solver.assert_and_track(conj.expr, conj_label)
-                        solver.add(conj.expr)
+        if isinstance(f, logic.ZConj):
+            solver.push()
+            pushed_labeled_conj = True
+            solver.set(unsat_core=True)
+            solver.set(':core.minimize', True)
+            for conj in f:
+                if isinstance(conj, logic.LabeledExpr):
+                    if conj.label:
+                        conj_label = conj.label
                     else:
-                        solver.add(conj)
+                        conj_label = 'c_' + str(self._get_expr_id(conj.expr))
+                    # mlog.debug("conj: {}:{}".format(conj.expr, conj_label))
+                    solver.assert_and_track(conj.expr, conj_label)
+                    # solver.add(conj.expr)
+                else:
+                    solver.add(conj)
+        else:
+            solver.add(fe)
         
         stat = solver.check()
         unsat_core = None
@@ -249,19 +246,18 @@ class Solver(object):
             mlog.debug("reason_unknown: {}".format(solver.reason_unknown()))
             rs = None
         elif stat == z3.unsat:
-            # if pushed_labeled_conj:
-            #     unsat_core = solver.unsat_core()
-            #     # mlog.debug("unsat_core: {}".format(unsat_core))
-            #     solver.pop()
-            #     pushed_labeled_conj = False
+            if pushed_labeled_conj:
+                unsat_core = solver.unsat_core()
+                # mlog.debug("unsat_core: {}".format(unsat_core))
+                solver.pop()
+                pushed_labeled_conj = False
             rs = False
         else:
             # sat, get k models
-            # if pushed_labeled_conj:
-            #     solver.pop()
-            #     pushed_labeled_conj = False
-            #     fe = f.expr()
-            #     solver.add(fe)
+            if pushed_labeled_conj:
+                solver.pop()
+                pushed_labeled_conj = False
+                solver.add(fe)
 
             range_constrs = []
             if inp_decls:
