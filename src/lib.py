@@ -158,13 +158,19 @@ class Solver(object):
     def _check_sat_with_z3bin(self, solver, using_nla, myseed):
         z3_output_handler = Z3OutputHandler()
         if using_nla:
-            theory = 'qfnia' # qfnra
+            int_theory = 'qfnia'
+            real_theory = 'qfnra'
         else:
-            theory = 'qflia' # qflia
+            int_theory = 'qflia'
+            real_theory = 'qflra'
+        ti = '(using-params {} :random-seed {})'.format(int_theory, myseed)
+        tr = '(using-params {} :random-seed {})'.format(real_theory, myseed)
+        t = '(par-or {} {})'.format(ti, tr)
         smt2_str = [
             '(set-option :smt.arith.random_initial_value true)',
             solver.to_smt2().replace('(check-sat)', ''),
-            '(check-sat-using (using-params {} :random-seed {}))'.format(theory, myseed),
+            # '(check-sat-using (using-params {} :random-seed {}))'.format(theory, myseed),
+            '(check-sat-using {})'.format(t),
             '(get-model)']
         smt2_str = '\n'.join(smt2_str)
         # mlog.debug("smt2_str: {}".format(smt2_str))
@@ -180,17 +186,30 @@ class Solver(object):
         # mlog.debug("chk: {}, : {}".format(chk, model))
         return chk, model
 
-    def _check_sat_with_z3py(self, solver, using_nla, myseed):
+    def _create_solver(self, using_nla, myseed=None):
         if using_nla:
-            theory = 'qfnia' # qfnra
+            int_theory = 'qfnia' # qfnra
+            real_theory = 'qfnra'
         else:
-            theory = 'qflia' # qflia
+            int_theory = 'qflia' # qflia
+            real_theory = 'qflra'
 
-        z3.set_param('smt.arith.random_initial_value', True)
-        p = z3.ParamsRef()
-        p.set("random-seed", myseed)
-        t = z3.WithParams(z3.Tactic(theory), p)
-        t_solver = t.solver() 
+        ti = z3.Tactic(int_theory)
+        tr = z3.Tactic(real_theory)
+
+        if myseed:
+            z3.set_param('smt.arith.random_initial_value', True)
+            p = z3.ParamsRef()
+            p.set("random-seed", myseed)
+            ti = z3.WithParams(ti, p)
+            tr = z3.WithParams(tr, p)
+
+        t = z3.ParOr(ti, tr)
+        t = z3.TryFor(t, settings.SOLVER_TIMEOUT)
+        return t.solver()
+
+    def _check_sat_with_z3py(self, solver, using_nla, myseed):
+        t_solver = self._create_solver(using_nla, myseed)
         # mlog.debug("t_solver: {}".format(t_solver.param_descrs()))
         # pds = t_solver.param_descrs()
         # for i in range(pds.size()):
@@ -209,6 +228,11 @@ class Solver(object):
     def check_sat_and_get_rand_model(self, solver, using_nla=False, range_constrs=[]):
         myseed = random.randint(0, 1000000)
 
+        chk, model = self._check_sat_with_z3py(solver, using_nla, myseed)
+        if chk == z3.unsat:
+            return chk, model
+        
+        # sat or unknown, try to find a model in a valid range
         while True:
             range_constr = None
             if range_constrs:
@@ -218,12 +242,15 @@ class Solver(object):
 
             # mlog.debug("range_constr: {}, {} remaining".format(range_constr, len(range_constrs)))
             chk, model = self._check_sat_with_z3py(solver, using_nla, myseed)
+            # mlog.debug("chk: {}".format(chk))
             if range_constr is not None:
                 solver.pop()
                 if chk != z3.sat or not model:
                     # continue to find another valid range
                     continue
-            else:
+                else:
+                    return chk, model
+            else: # range_constrs is empty
                 return chk, model
 
     def get_models(self, f, k, inp_decls=None, using_random_seed=False):
@@ -244,7 +271,9 @@ class Solver(object):
         if fe_nonlinear_terms:
             is_nla = True
 
-        solver = Z3.create_solver()
+        mlog.debug("is_nla: {}".format(is_nla))
+        # solver = Z3.create_solver()
+        solver = self._create_solver(is_nla)
         # solver = z3.SolverFor('QF_NRA')
         
         pushed_labeled_conj = False

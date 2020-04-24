@@ -8,3 +8,4 @@ max_nonterm_refinement_depth = 3
 n_inps = 100
 inps_threshold = 2
 test_ratio = 0.2
+SOLVER_TIMEOUT = 5 * 1000 # 5s

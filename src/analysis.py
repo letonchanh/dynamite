@@ -533,7 +533,7 @@ class NonTerm(object):
                     if chk:
                         validRCS.append((rcs, ancestors))
                         # return the first valid rcs
-                        return validRCS
+                        # return validRCS
                     elif sCexs is not None:
                         for invalid_rc, cexs in sCexs:
                             nrcs = self.strengthen(rcs, invalid_rc, cexs)
