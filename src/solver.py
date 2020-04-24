@@ -1,3 +1,19 @@
+import z3
+import itertools
+import random
+import math
+import sage.all
+from utils import settings, logic
+import data.prog as dig_prog
+import helpers.vcommon as CM
+from data.traces import Inps, Trace, Traces
+from parsers import Z3OutputHandler
+from helpers.miscs import Z3
+
+mlog = CM.getLogger(__name__, settings.logger_level)
+
+# /tools/SageMath/local/bin/python3 /tools/CVC4/build/src/api/python/setup.py install --prefix=/usr/local
+
 class Solver(object):
     def __init__(self, tmpdir):
         self.tmpdir = tmpdir
@@ -22,9 +38,9 @@ class Solver(object):
         smt2_str = '\n'.join(smt2_str)
         # mlog.debug("smt2_str: {}".format(smt2_str))
         filename = self.tmpdir / 't.smt2'
-        dig_common_helpers.vwrite(filename, smt2_str)
+        CM.vwrite(filename, smt2_str)
         cmd = 'z3 {}'.format(filename)
-        rmsg, errmsg = dig_common_helpers.vcmd(cmd)
+        rmsg, errmsg = CM.vcmd(cmd)
         # mlog.debug("rmsg: {}".format(rmsg))
         # mlog.debug("errmsg: {}".format(errmsg))
         assert not errmsg, "'{}': {}".format(cmd, errmsg)

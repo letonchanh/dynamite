@@ -21,6 +21,7 @@ from utils import settings
 from utils.logic import *
 from utils.loop import *
 from lib import *
+from solver import Solver
 
 mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
 

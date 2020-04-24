@@ -1,7 +1,7 @@
 from data.inv.invs import Invs
 from data.inv.base import Inv
 from helpers.miscs import Z3
-from lib import Solver
+from solver import Solver
 from utils import settings
 import helpers.vcommon as dig_common_helpers
 import z3
