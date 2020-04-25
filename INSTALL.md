@@ -38,7 +38,7 @@
     sudo make install
     ```
     
-- Install `pysmt` and CVC4:
+- Install `pysmt` and solvers (CVC4, Yices):
     ```
     ./contrib/get-antlr-3.4
     git clone https://github.com/CVC4/CVC4.git
@@ -51,6 +51,7 @@
     ```
     git clone git@github.com:letonchanh/pysmt.git
     CC=/tools/SageMath/local/bin/gcc CXX=/tools/SageMath/local/bin/g++ python3 install.py --cvc4
+    python3 install.py --yices
     ```
     
 - Install JavaPathFinder (optional)
