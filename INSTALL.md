@@ -51,6 +51,7 @@
     ```
     git clone git@github.com:letonchanh/pysmt.git
     CC=/tools/SageMath/local/bin/gcc CXX=/tools/SageMath/local/bin/g++ python3 install.py --cvc4
+    pip3 install wheel
     python3 install.py --yices
     ```
     
