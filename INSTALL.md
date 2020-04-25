@@ -40,6 +40,7 @@
     
 - Install CVC4 from source:
     ```
+    ./contrib/get-antlr-3.4
     git clone https://github.com/CVC4/CVC4.git
     CC=/tools/SageMath/local/bin/gcc CXX=/tools/SageMath/local/bin/g++ ./configure.sh --language-bindings=python --python3
     cd build
