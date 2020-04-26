@@ -20,9 +20,9 @@ class ZSolver(object):
     def check_sat_and_get_rand_model(self, solver, using_nla=False, range_constrs=[]):
         myseed = random.randint(0, 1000000)
 
-        chk, model = self.check_sat(solver, using_nla, myseed)
-        if chk == z3.unsat:
-            return chk, model
+        fst_chk, fst_model = self.check_sat(solver, using_nla, myseed)
+        if fst_chk == z3.unsat or not range_constrs:
+            return fst_chk, fst_model
         
         # sat or unknown, try to find a model in a valid range
         while True:
@@ -34,12 +34,18 @@ class ZSolver(object):
 
             # mlog.debug("range_constr: {}, {} remaining".format(range_constr, len(range_constrs)))
             chk, model = self.check_sat(solver, using_nla, myseed)
-            # mlog.debug("chk: {}".format(chk))
+            mlog.debug("chk: {}".format(chk))
+            mlog.debug("model: {}".format(model))
+            
             if range_constr is not None:
                 solver.pop()
-                if chk != z3.sat or not model:
-                    # continue to find another valid range
+                if (chk != z3.sat or not model): # and range_constrs
+                    # continue to find a model within another range 
+                    # or without a range when range_constrs becomes empty
+                    # mlog.debug("range_constrs: {}".format(len(range_constrs)))
                     continue
+                # elif not range_constrs:
+                #     return fst_chk, fst_model
                 else:
                     return chk, model
             else: # range_constrs is empty
@@ -92,11 +98,12 @@ class ZSolver(object):
         # stat = solver.check()
         psolver = PySMT()
         stat, _ = psolver.check_sat(solver)
+        # stat, _ = self.check_sat(solver, is_nla)
         unsat_core = None
 
         mlog.debug("stat: {}".format(stat))
         if stat == z3.unknown:
-            mlog.debug("reason_unknown: {}".format(solver.reason_unknown()))
+            # mlog.debug("reason_unknown: {}".format(solver.reason_unknown()))
             rs = None
         elif stat == z3.unsat:
             if pushed_labeled_conj:
@@ -128,7 +135,10 @@ class ZSolver(object):
             i = 0
             # while solver.check() == z3.sat and i < k:
             while i < k:
+                mlog.debug("{} -> {}".format(i, k))
                 chk, m = self.check_sat_and_get_rand_model(solver, is_nla, range_constrs)
+                mlog.debug("chk: {}".format(chk))
+                mlog.debug("m: {}".format(m))
                 if chk != z3.sat or not m:
                     break
                 i = i + 1
@@ -365,10 +375,10 @@ class Z3Bin(ZSolver):
     def __init__(self, tmpdir):
         self.tmpdir = tmpdir
 
-    def mk(self, using_nla, myseed=None):
+    def mk(self, using_nla=False, myseed=None):
         return z3.Solver()
 
-    def check_sat(self, zsolver, using_nla, myseed):
+    def check_sat(self, zsolver, using_nla=False, myseed=None):
         z3_output_handler = Z3OutputHandler()
         if using_nla:
             int_theory = 'qfnia'
@@ -403,7 +413,7 @@ class Z3Py(ZSolver):
     def __init__(self):
         pass
 
-    def mk(self, using_nla, myseed=None):
+    def mk(self, using_nla=False, myseed=None):
         if using_nla:
             int_theory = 'qfnia' # qfnra
             real_theory = 'qfnra'
@@ -425,7 +435,7 @@ class Z3Py(ZSolver):
         t = z3.TryFor(t, settings.SOLVER_TIMEOUT)
         return t.solver()
 
-    def check_sat(self, zsolver, using_nla, myseed):
+    def check_sat(self, zsolver, using_nla=False, myseed=None):
         tsolver = self.mk(using_nla, myseed)
         # mlog.debug("t_solver: {}".format(t_solver.param_descrs()))
         # pds = t_solver.param_descrs()
@@ -454,32 +464,41 @@ class PySMT(ZSolver):
 
     def check_sat(self, zsolver, using_nla=False, myseed=None):
         zlogic = 'QF_NIA' if using_nla else 'QF_LIA'
+        solver_opts = {"random_seed": myseed} if myseed else {}
         zf = z3.And(zsolver.assertions())
         zvs = z3.z3util.get_vars(zf)
         vs = [Symbol(v.decl().name(), 
               INT if v.is_int() else REAL) for v in zvs]
-        z3s = Solver(name='z3', logic=zlogic)
+        z3s = Solver(name='z3', 
+                     logic=zlogic,
+                     random_seed=myseed,
+                     generate_models=True)
         f = z3s.converter.back(zf)
-        opts = {"random_seed": myseed} if myseed else {}
+        f_logic = get_logic(f)
         with Portfolio([
-                ("cvc4", opts),
-                ("z3", opts),
-                ("yices", opts)
+                ("cvc4", solver_opts),
+                ("z3", solver_opts),
+                ("yices", solver_opts)
                 ],
-                logic=get_logic(f),
+                logic=f_logic,
                 incremental=False,
                 generate_models=True) as solver:
+        # with z3s as solver:
             solver.add_assertion(f)
             model = []
             try:
-                mlog.debug("PySMT: solving ...")
+                mlog.debug("PySMT: solving {}".format(f))
                 r = solver.solve()
-                mlog.debug(r)
+                mlog.debug("r: {}".format(r))
                 if r:
-                    for v in vs:
-                        mv = solver.get_value(v).constant_value()
-                        model.append((v.symbol_name(), int(mv)))
-                return z3.sat if r else z3.unsat, model
+                    # for v in vs:
+                    #     # mv = solver.get_value(v).constant_value()
+                    #     mv = solver.get_py_value(v)
+                    #     model.append((v.symbol_name(), int(mv)))
+                    py_model = solver.get_model()
+                    model = [(v.symbol_name(), int(py_model.get_py_value(v))) for v in vs]
+                mlog.debug("model: {}".format(model))
+                return (z3.sat if r else z3.unsat), model
             except Exception as e:
                 mlog.debug("check_sat: {}".format(e))
                 return z3.unknown, []

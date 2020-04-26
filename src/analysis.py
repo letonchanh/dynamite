@@ -47,7 +47,8 @@ class Setup(object):
         self.tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
         self.symstates = None
         # self.solver = ZSolver(self.tmpdir)
-        self.solver = Z3Py() # PySMT()
+        # self.solver = PySMT() 
+        self.solver = Z3Py()
         
         if self.is_binary_inp:
             from bin import Bin
@@ -101,10 +102,10 @@ class Setup(object):
         self.dig = Inference(self.inv_decls, self.seed, self.tmpdir)
         self.cl = Classification(self.preloop_loc, self.inloop_loc, self.postloop_loc)
 
-        mlog.debug("generate random inputs")
-        rand_inps = self.exe.gen_rand_inps(self.n_inps)
-        mlog.debug("get traces from random inputs")
-        self.rand_itraces = self.exe.get_traces_from_inps(rand_inps)  # itraces: input to dtraces
+        # mlog.debug("generate random inputs")
+        # rand_inps = self.exe.gen_rand_inps(self.n_inps)
+        # mlog.debug("get traces from random inputs")
+        # self.rand_itraces = self.exe.get_traces_from_inps(rand_inps)  # itraces: input to dtraces
 
     def _get_c_symstates_from_src(self, src):
         from data.symstates import SymStatesC
