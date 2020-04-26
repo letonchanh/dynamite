@@ -4,9 +4,6 @@ import random
 import math
 import sage.all
 
-from pysmt.shortcuts import Portfolio, Solver, Symbol
-from pysmt.typing import INT, REAL
-
 from utils import settings, logic
 import data.prog as dig_prog
 import helpers.vcommon as CM
@@ -92,7 +89,9 @@ class ZSolver(object):
         else:
             solver.add(fe)
         
-        stat = solver.check()
+        # stat = solver.check()
+        psolver = PySMT()
+        stat, _ = psolver.check_sat(solver)
         unsat_core = None
 
         mlog.debug("stat: {}".format(stat))
@@ -148,7 +147,8 @@ class ZSolver(object):
                     solver.add(block_c)
                 for (x, v) in m:
                     if model_stat[x][v] / k > 0.1:
-                        block_x = z3.Int(x) != v
+                        # block_x = z3.Int(x) != v
+                        block_x = z3.Not(z3.Int(x) == v)
                         # mlog.debug("block_x: {}".format(block_x))
                         solver.add(block_x)
 
@@ -368,7 +368,7 @@ class Z3Bin(ZSolver):
     def mk(self, using_nla, myseed=None):
         return z3.Solver()
 
-    def check_sat(self, solver, using_nla, myseed):
+    def check_sat(self, zsolver, using_nla, myseed):
         z3_output_handler = Z3OutputHandler()
         if using_nla:
             int_theory = 'qfnia'
@@ -381,7 +381,7 @@ class Z3Bin(ZSolver):
         t = '(par-or {} {})'.format(ti, tr)
         smt2_str = [
             '(set-option :smt.arith.random_initial_value true)',
-            solver.to_smt2().replace('(check-sat)', ''),
+            zsolver.to_smt2().replace('(check-sat)', ''),
             # '(check-sat-using (using-params {} :random-seed {}))'.format(theory, myseed),
             '(check-sat-using {})'.format(t),
             '(get-model)']
@@ -425,19 +425,62 @@ class Z3Py(ZSolver):
         t = z3.TryFor(t, settings.SOLVER_TIMEOUT)
         return t.solver()
 
-    def check_sat(self, solver, using_nla, myseed):
-        t_solver = self.mk(using_nla, myseed)
+    def check_sat(self, zsolver, using_nla, myseed):
+        tsolver = self.mk(using_nla, myseed)
         # mlog.debug("t_solver: {}".format(t_solver.param_descrs()))
         # pds = t_solver.param_descrs()
         # for i in range(pds.size()):
         #     pd = pds.get_name(i)
         #     if 'random' in pd:
         #         mlog.debug("pds[{}]: {}".format(i, pd))
-        t_solver.add(solver.assertions())
-        chk = t_solver.check()
+        tsolver.add(zsolver.assertions())
+        chk = tsolver.check()
         model = None
         if chk == z3.sat:
-            m = t_solver.model() # <class 'z3.z3.ModelRef'>
+            m = tsolver.model() # <class 'z3.z3.ModelRef'>
             # (<class 'z3.z3.FuncDeclRef'>, <class 'z3.z3.IntNumRef'>) list
             model = [(v.name(), m[v].as_long()) for v in m.decls()]
         return chk, model
+
+from pysmt.shortcuts import Portfolio, Solver, Symbol
+from pysmt.typing import INT, REAL
+from pysmt.oracles import get_logic
+class PySMT(ZSolver):
+    def __init__(self):
+        pass
+
+    def mk(self, using_nla, myseed=None):
+        return z3.Solver()
+
+    def check_sat(self, zsolver, using_nla=False, myseed=None):
+        zlogic = 'QF_NIA' if using_nla else 'QF_LIA'
+        zf = z3.And(zsolver.assertions())
+        zvs = z3.z3util.get_vars(zf)
+        vs = [Symbol(v.decl().name(), 
+              INT if v.is_int() else REAL) for v in zvs]
+        z3s = Solver(name='z3', logic=zlogic)
+        f = z3s.converter.back(zf)
+        opts = {"random_seed": myseed} if myseed else {}
+        with Portfolio([
+                ("cvc4", opts),
+                ("z3", opts),
+                ("yices", opts)
+                ],
+                logic=get_logic(f),
+                incremental=False,
+                generate_models=True) as solver:
+            solver.add_assertion(f)
+            model = []
+            try:
+                mlog.debug("PySMT: solving ...")
+                r = solver.solve()
+                mlog.debug(r)
+                if r:
+                    for v in vs:
+                        mv = solver.get_value(v).constant_value()
+                        model.append((v.symbol_name(), int(mv)))
+                return z3.sat if r else z3.unsat, model
+            except Exception as e:
+                mlog.debug("check_sat: {}".format(e))
+                return z3.unknown, []
+

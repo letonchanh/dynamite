@@ -21,7 +21,7 @@ from utils import settings
 from utils.logic import *
 from utils.loop import *
 from lib import *
-from solver import ZSolver, Z3Py, Z3Bin
+from solver import ZSolver, Z3Py, Z3Bin, PySMT
 
 mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
 
@@ -47,7 +47,7 @@ class Setup(object):
         self.tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
         self.symstates = None
         # self.solver = ZSolver(self.tmpdir)
-        self.solver = Z3Py()
+        self.solver = Z3Py() # PySMT()
         
         if self.is_binary_inp:
             from bin import Bin
