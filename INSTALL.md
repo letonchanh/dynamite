@@ -38,6 +38,23 @@
     sudo make install
     ```
     
+- Install `pysmt` and solvers (CVC4, Yices):
+    ```
+    ./contrib/get-antlr-3.4
+    git clone https://github.com/CVC4/CVC4.git
+    CC=/tools/SageMath/local/bin/gcc CXX=/tools/SageMath/local/bin/g++ ./configure.sh --language-bindings=python --python3
+    cd build
+    make
+    ```
+    and/or
+    
+    ```
+    git clone git@github.com:letonchanh/pysmt.git
+    CC=/tools/SageMath/local/bin/gcc CXX=/tools/SageMath/local/bin/g++ python3 install.py --cvc4
+    pip3 install wheel
+    python3 install.py --yices
+    ```
+    
 - Install JavaPathFinder (optional)
     ```
     mkdir jpf; cd jpf
