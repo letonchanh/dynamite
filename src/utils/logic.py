@@ -1,7 +1,7 @@
 from data.inv.invs import Invs
 from data.inv.base import Inv
 from helpers.miscs import Z3
-from solver import Solver
+from solver import ZSolver
 from utils import settings
 import helpers.vcommon as dig_common_helpers
 import z3
@@ -121,11 +121,11 @@ class ZFormula(set):
         if isinstance(e, LabeledExpr):
             return e.label
         else:
-            e_id = Solver._get_expr_id(e)
+            e_id = ZSolver._get_expr_id(e)
             for f in self:
                 if isinstance(f, ZFormula):
                     label_in_f = f.get_label(e)
-                elif isinstance(f, LabeledExpr) and Solver._get_expr_id(f.expr) == e_id:
+                elif isinstance(f, LabeledExpr) and ZSolver._get_expr_id(f.expr) == e_id:
                     label_in_f = f.label
                 else:
                     label_in_f = None

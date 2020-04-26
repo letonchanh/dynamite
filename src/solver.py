@@ -3,6 +3,10 @@ import itertools
 import random
 import math
 import sage.all
+
+from pysmt.shortcuts import Portfolio, Solver, Symbol
+from pysmt.typing import INT, REAL
+
 from utils import settings, logic
 import data.prog as dig_prog
 import helpers.vcommon as CM
@@ -12,86 +16,14 @@ from helpers.miscs import Z3
 
 mlog = CM.getLogger(__name__, settings.logger_level)
 
-# /tools/SageMath/local/bin/python3 /tools/CVC4/build/src/api/python/setup.py install --prefix=/usr/local
-
-class Solver(object):
-    def __init__(self, tmpdir):
-        self.tmpdir = tmpdir
-
-    def _check_sat_with_z3bin(self, solver, using_nla, myseed):
-        z3_output_handler = Z3OutputHandler()
-        if using_nla:
-            int_theory = 'qfnia'
-            real_theory = 'qfnra'
-        else:
-            int_theory = 'qflia'
-            real_theory = 'qflra'
-        ti = '(using-params {} :random-seed {})'.format(int_theory, myseed)
-        tr = '(using-params {} :random-seed {})'.format(real_theory, myseed)
-        t = '(par-or {} {})'.format(ti, tr)
-        smt2_str = [
-            '(set-option :smt.arith.random_initial_value true)',
-            solver.to_smt2().replace('(check-sat)', ''),
-            # '(check-sat-using (using-params {} :random-seed {}))'.format(theory, myseed),
-            '(check-sat-using {})'.format(t),
-            '(get-model)']
-        smt2_str = '\n'.join(smt2_str)
-        # mlog.debug("smt2_str: {}".format(smt2_str))
-        filename = self.tmpdir / 't.smt2'
-        CM.vwrite(filename, smt2_str)
-        cmd = 'z3 {}'.format(filename)
-        rmsg, errmsg = CM.vcmd(cmd)
-        # mlog.debug("rmsg: {}".format(rmsg))
-        # mlog.debug("errmsg: {}".format(errmsg))
-        assert not errmsg, "'{}': {}".format(cmd, errmsg)
-        z3_output_ast = z3_output_handler.parser.parse(rmsg)
-        chk, model = z3_output_handler.transform(z3_output_ast)
-        # mlog.debug("chk: {}, : {}".format(chk, model))
-        return chk, model
-
-    def _create_solver(self, using_nla, myseed=None):
-        if using_nla:
-            int_theory = 'qfnia' # qfnra
-            real_theory = 'qfnra'
-        else:
-            int_theory = 'qflia' # qflia
-            real_theory = 'qflra'
-
-        ti = z3.Tactic(int_theory)
-        tr = z3.Tactic(real_theory)
-
-        if myseed:
-            z3.set_param('smt.arith.random_initial_value', True)
-            p = z3.ParamsRef()
-            p.set("random-seed", myseed)
-            ti = z3.WithParams(ti, p)
-            tr = z3.WithParams(tr, p)
-
-        t = z3.ParOr(ti, tr)
-        t = z3.TryFor(t, settings.SOLVER_TIMEOUT)
-        return t.solver()
-
-    def _check_sat_with_z3py(self, solver, using_nla, myseed):
-        t_solver = self._create_solver(using_nla, myseed)
-        # mlog.debug("t_solver: {}".format(t_solver.param_descrs()))
-        # pds = t_solver.param_descrs()
-        # for i in range(pds.size()):
-        #     pd = pds.get_name(i)
-        #     if 'random' in pd:
-        #         mlog.debug("pds[{}]: {}".format(i, pd))
-        t_solver.add(solver.assertions())
-        chk = t_solver.check()
-        model = None
-        if chk == z3.sat:
-            m = t_solver.model() # <class 'z3.z3.ModelRef'>
-            # (<class 'z3.z3.FuncDeclRef'>, <class 'z3.z3.IntNumRef'>) list
-            model = [(v.name(), m[v].as_long()) for v in m.decls()]
-        return chk, model
+class ZSolver(object):
+    def __init__(self):
+        pass
 
     def check_sat_and_get_rand_model(self, solver, using_nla=False, range_constrs=[]):
         myseed = random.randint(0, 1000000)
 
-        chk, model = self._check_sat_with_z3py(solver, using_nla, myseed)
+        chk, model = self.check_sat(solver, using_nla, myseed)
         if chk == z3.unsat:
             return chk, model
         
@@ -104,7 +36,7 @@ class Solver(object):
                 solver.add(range_constr)
 
             # mlog.debug("range_constr: {}, {} remaining".format(range_constr, len(range_constrs)))
-            chk, model = self._check_sat_with_z3py(solver, using_nla, myseed)
+            chk, model = self.check_sat(solver, using_nla, myseed)
             # mlog.debug("chk: {}".format(chk))
             if range_constr is not None:
                 solver.pop()
@@ -136,7 +68,7 @@ class Solver(object):
 
         mlog.debug("is_nla: {}".format(is_nla))
         # solver = Z3.create_solver()
-        solver = self._create_solver(is_nla)
+        solver = self.mk(is_nla)
         # solver = z3.SolverFor('QF_NRA')
         
         pushed_labeled_conj = False
@@ -429,86 +361,83 @@ class Solver(object):
         # mlog.debug("e: {}: {}".format(e, r))
         return r
 
+class Z3Bin(ZSolver):
+    def __init__(self, tmpdir):
+        self.tmpdir = tmpdir
 
-    # @staticmethod
-    # def __is_mul_of_literals(e):
-    #     def __is_mul_of_literals_aux(e, seen):
-    #         e_id = _get_expr_id(e)
-    #         if e_id in seen:
-    #             return seen[e_id]
-    #         else:
-    #             r = z3.is_mul(e) and \
-    #                 all(_is_literal_expr(c) or __is_mul_of_literals_aux(c, seen) for c in e.children())
-    #             return r
-    #     return __is_mul_of_literals_aux(e, {})
+    def mk(self, using_nla, myseed=None):
+        return z3.Solver()
 
-    # @staticmethod
-    # def __get_mul_terms(e):
-    #     def __get_mul_terms_aux(e, seen):
-    #         e_id = _get_expr_id(e)
-    #         if e_id in seen:
-    #             return seen[e_id]
-    #         else:
-    #             r = []
-    #             if z3.is_mul(e):
-    #                 for c in e.children():
-    #                     if not z3.is_mul(c):
-    #                         r.append(c)
-    #                     else:
-    #                         r = r + __get_mul_terms_aux(c, seen)
-    #                 seen[e_id] = r
-    #             return r
-    #     return __get_mul_terms_aux(e, {})
+    def check_sat(self, solver, using_nla, myseed):
+        z3_output_handler = Z3OutputHandler()
+        if using_nla:
+            int_theory = 'qfnia'
+            real_theory = 'qfnra'
+        else:
+            int_theory = 'qflia'
+            real_theory = 'qflra'
+        ti = '(using-params {} :random-seed {})'.format(int_theory, myseed)
+        tr = '(using-params {} :random-seed {})'.format(real_theory, myseed)
+        t = '(par-or {} {})'.format(ti, tr)
+        smt2_str = [
+            '(set-option :smt.arith.random_initial_value true)',
+            solver.to_smt2().replace('(check-sat)', ''),
+            # '(check-sat-using (using-params {} :random-seed {}))'.format(theory, myseed),
+            '(check-sat-using {})'.format(t),
+            '(get-model)']
+        smt2_str = '\n'.join(smt2_str)
+        # mlog.debug("smt2_str: {}".format(smt2_str))
+        filename = self.tmpdir / 't.smt2'
+        CM.vwrite(filename, smt2_str)
+        cmd = 'z3 {}'.format(filename)
+        rmsg, errmsg = CM.vcmd(cmd)
+        # mlog.debug("rmsg: {}".format(rmsg))
+        # mlog.debug("errmsg: {}".format(errmsg))
+        assert not errmsg, "'{}': {}".format(cmd, errmsg)
+        z3_output_ast = z3_output_handler.parser.parse(rmsg)
+        chk, model = z3_output_handler.transform(z3_output_ast)
+        # mlog.debug("chk: {}, : {}".format(chk, model))
+        return chk, model
 
-    # @staticmethod
-    # def _is_term_expr(e):
-    #     """
-    #     x, y = Ints('x y')
-    #     Solver._is_term_expr(x) == True
-    #     Solver._is_term_expr(IntVal(1)) == True
-    #     Solver._is_term_expr(x*y) == True
-    #     Solver._is_term_expr(x*y*z) == True
-    #     Solver._is_term_expr(x**2) == True
-    #     Solver._is_term_expr(2**x) == True
-    #     Solver._is_term_expr(x + 1) == False
-    #     """
-    #     r = _is_var_expr(e) or \
-    #         _is_const_expr(e) or \
-    #         _is_mul_expr(e) or \
-    #         _is_pow_expr(e)
-    #     return r
+class Z3Py(ZSolver):
+    def __init__(self):
+        pass
 
-    # @staticmethod
-    # def __distribute_mul_over_add(e):
-    #     def __distribute_mul_over_add_aux(e, seen):
-    #         e_id = _get_expr_id(e)
-    #         if e_id in seen:
-    #             return seen[e_id]
-    #         else:
-    #             if is_app_of(e, Z3_OP_UMINUS):
-    #                 r = __distribute_mul_over_add_aux((-1)*(e.arg(0)), seen)
-    #             elif is_sub(e):
-    #                 r = __distribute_mul_over_add_aux(e.arg(0) + (-1)*e.arg(1), seen)
-    #             elif is_app(e) and e.num_args() == 2:
-    #                 c1 = __distribute_mul_over_add_aux(e.arg(0), seen)
-    #                 c2 = __distribute_mul_over_add_aux(e.arg(1), seen)
-    #                 if is_add(e):
-    #                     r = c1 + c2
-    #                 elif is_mul(e):
-    #                     if is_add(c1):
-    #                         c11 = c1.arg(0)
-    #                         c12 = c1.arg(1)
-    #                         r = __distribute_mul_over_add_aux(c11*c2 + c12*c2, seen)
-    #                     elif is_add(c2):
-    #                         c21 = c2.arg(0)
-    #                         c22 = c2.arg(1)
-    #                         r = __distribute_mul_over_add_aux(c1*c21 + c1*c22, seen)
-    #                     else:
-    #                         r = c1*c2
-    #                 else:
-    #                     r = e
-    #             else:
-    #                 r = e
-    #             seen[e_id] = r
-    #             return r
-    #     return __distribute_mul_over_add_aux(e, {})
+    def mk(self, using_nla, myseed=None):
+        if using_nla:
+            int_theory = 'qfnia' # qfnra
+            real_theory = 'qfnra'
+        else:
+            int_theory = 'qflia' # qflia
+            real_theory = 'qflra'
+
+        ti = z3.Tactic(int_theory)
+        tr = z3.Tactic(real_theory)
+
+        if myseed:
+            z3.set_param('smt.arith.random_initial_value', True)
+            p = z3.ParamsRef()
+            p.set("random-seed", myseed)
+            ti = z3.WithParams(ti, p)
+            tr = z3.WithParams(tr, p)
+
+        t = z3.ParOr(ti, tr)
+        t = z3.TryFor(t, settings.SOLVER_TIMEOUT)
+        return t.solver()
+
+    def check_sat(self, solver, using_nla, myseed):
+        t_solver = self.mk(using_nla, myseed)
+        # mlog.debug("t_solver: {}".format(t_solver.param_descrs()))
+        # pds = t_solver.param_descrs()
+        # for i in range(pds.size()):
+        #     pd = pds.get_name(i)
+        #     if 'random' in pd:
+        #         mlog.debug("pds[{}]: {}".format(i, pd))
+        t_solver.add(solver.assertions())
+        chk = t_solver.check()
+        model = None
+        if chk == z3.sat:
+            m = t_solver.model() # <class 'z3.z3.ModelRef'>
+            # (<class 'z3.z3.FuncDeclRef'>, <class 'z3.z3.IntNumRef'>) list
+            model = [(v.name(), m[v].as_long()) for v in m.decls()]
+        return chk, model

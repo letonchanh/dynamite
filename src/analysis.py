@@ -21,7 +21,7 @@ from utils import settings
 from utils.logic import *
 from utils.loop import *
 from lib import *
-from solver import Solver
+from solver import ZSolver, Z3Py, Z3Bin
 
 mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
 
@@ -46,7 +46,8 @@ class Setup(object):
         # self.refinement_depth = 1
         self.tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
         self.symstates = None
-        self.solver = Solver(self.tmpdir)
+        # self.solver = ZSolver(self.tmpdir)
+        self.solver = Z3Py()
         
         if self.is_binary_inp:
             from bin import Bin
@@ -204,8 +205,8 @@ class Setup(object):
                 #                                   z3.And(inloop_fst_symstate.pc, inloop_fst_symstate.slocal)))
                 loop_cond = z3.substitute(inloop_fst_symstate.pc, init_sst)
                 mlog.debug("loop_cond: {}".format(loop_cond))
-                terms = Solver.get_mul_terms(loop_cond)
-                nonlinear_terms = list(itertools.filterfalse(lambda t: not Solver.is_nonlinear_mul_term(t), terms))
+                terms = ZSolver.get_mul_terms(loop_cond)
+                nonlinear_terms = list(itertools.filterfalse(lambda t: not ZSolver.is_nonlinear_mul_term(t), terms))
                 mlog.debug("terms: {}".format(terms))
                 mlog.debug("nonlinear_terms: {}".format(nonlinear_terms))
 
@@ -308,12 +309,12 @@ class Setup(object):
             #             no_inloop_invs = True
             #         covered_f = z3.Or(postloop_invs.expr(), inloop_invs.expr())
             #         uncovered_f = z3.Not(covered_f)
-            #         models, _ = Solver.get_models(uncovered_f, 
-            #                                       self.n_inps, self.tmpdir, 
-            #                                       settings.use_random_seed)
+            #         models, _ = ZSolver.get_models(uncovered_f, 
+            #                                        self.n_inps, self.tmpdir, 
+            #                                        settings.use_random_seed)
             #         mlog.debug("uncovered models: {}".format(models))
             #         if isinstance(models, list) and models:
-            #             n_inps = Solver.mk_inps_from_models(models, self.inp_decls.exprs((settings.use_reals)), exe)
+            #             n_inps = ZSolver.mk_inps_from_models(models, self.inp_decls.exprs((settings.use_reals)), exe)
             #             mlog.debug("uncovered inps: {}".format(n_inps))
             #             mlog.debug("Starting get_traces")
             #             nitraces = exe.get_traces_from_inps(n_inps)

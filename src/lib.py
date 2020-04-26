@@ -1,14 +1,11 @@
 import helpers.vcommon as CM
 import z3
 import random
-import itertools
-import sage.all
 import math
 from pathlib import Path
 from data.traces import Inps, Trace, Traces, DTraces
 from data.inv.invs import Invs
-from utils import settings, logic
-from parsers import Z3OutputHandler
+from utils import settings
 from helpers.miscs import Z3, Miscs
 import helpers.vcommon as dig_common_helpers
 import settings as dig_settings
