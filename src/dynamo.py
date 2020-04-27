@@ -89,8 +89,8 @@ if __name__ == "__main__":
     
     mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
 
-    mlog.debug("settings.logger_level: {}".format(logging.getLevelName(settings.logger_level)))
-    mlog.debug("dig_settings.logger_level: {}".format(logging.getLevelName(dig_settings.logger_level)))
+    mlog.info("Dynamite's logger_level: {}".format(logging.getLevelName(settings.logger_level)))
+    mlog.info("Dig's logger_level: {}".format(logging.getLevelName(dig_settings.logger_level)))
 
     mlog.info("{}: {}".format(datetime.datetime.now(), ' '.join(sys.argv)))
 
@@ -119,16 +119,16 @@ if __name__ == "__main__":
         if settings.prove_nonterm:
             nt_prover = NonTerm(config) 
             validRCS = nt_prover.prove()
-            mlog.debug("validRCS: {}".format(validRCS))
+            mlog.info("validRCS: {}".format(validRCS))
             for rcs, ancestors in validRCS:
                 f = Z3.to_dnf(rcs.simplify())
-                mlog.debug("(simplified) rcs: {}".format(f))
+                mlog.info("(simplified) rcs: {}".format(f))
                 for depth, ancestor in ancestors:
                     if ancestor is None:
                         ancestor_ = None
                     else:
                         ancestor_ = Z3.to_dnf(ancestor.simplify())
-                    mlog.debug("ancestor {}: {}".format(depth, ancestor_))
+                    mlog.info("ancestor {}: {}".format(depth, ancestor_))
 
         if settings.prove_term:
             t_prover = Term(config)
