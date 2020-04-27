@@ -10,6 +10,7 @@ import helpers.vcommon as CM
 from data.traces import Inps, Trace, Traces
 from parsers import Z3OutputHandler
 from helpers.miscs import Z3
+from utils.profiling import timeit
 
 mlog = CM.getLogger(__name__, settings.logger_level)
 
@@ -21,6 +22,10 @@ class ZSolver(object):
         myseed = random.randint(0, 1000000)
 
         fst_chk, fst_model = self.check_sat(solver, using_nla, myseed)
+        py_chk, py_model = PySMT.py_check_sat(solver, using_nla, myseed)
+
+        assert fst_chk == py_chk, (fst_chk, py_chk)
+
         if fst_chk == z3.unsat or not range_constrs:
             return fst_chk, fst_model
         
@@ -96,8 +101,8 @@ class ZSolver(object):
             solver.add(fe)
         
         # stat = solver.check()
-        psolver = PySMT()
-        stat, _ = psolver.check_sat(solver)
+        # psolver = PySMT()
+        stat, _ = PySMT.py_check_sat(solver)
         # stat, _ = self.check_sat(solver, is_nla)
         unsat_core = None
 
@@ -413,7 +418,8 @@ class Z3Py(ZSolver):
     def __init__(self):
         pass
 
-    def mk(self, using_nla=False, myseed=None):
+    @classmethod
+    def mk(cls, using_nla=False, myseed=None):
         if using_nla:
             int_theory = 'qfnia' # qfnra
             real_theory = 'qfnra'
@@ -435,8 +441,10 @@ class Z3Py(ZSolver):
         t = z3.TryFor(t, settings.SOLVER_TIMEOUT)
         return t.solver()
 
-    def check_sat(self, zsolver, using_nla=False, myseed=None):
-        tsolver = self.mk(using_nla, myseed)
+    @classmethod
+    @timeit
+    def check_sat(cls, zsolver, using_nla=False, myseed=None):
+        tsolver = cls.mk(using_nla, myseed)
         # mlog.debug("t_solver: {}".format(t_solver.param_descrs()))
         # pds = t_solver.param_descrs()
         # for i in range(pds.size()):
@@ -459,47 +467,61 @@ class PySMT(ZSolver):
     def __init__(self):
         pass
 
-    def mk(self, using_nla, myseed=None):
+    @classmethod
+    def mk(cls, using_nla, myseed=None):
         return z3.Solver()
 
-    def check_sat(self, zsolver, using_nla=False, myseed=None):
+    @classmethod
+    @timeit
+    def py_check_sat(cls, zsolver, using_nla=False, myseed=None):
         zlogic = 'QF_NIA' if using_nla else 'QF_LIA'
         solver_opts = {"random_seed": myseed} if myseed else {}
         zf = z3.And(zsolver.assertions())
-        zvs = z3.z3util.get_vars(zf)
-        vs = [Symbol(v.decl().name(), 
-              INT if v.is_int() else REAL) for v in zvs]
-        z3s = Solver(name='z3', 
-                     logic=zlogic,
-                     random_seed=myseed,
-                     generate_models=True)
-        f = z3s.converter.back(zf)
+
+        @timeit
+        def _convert(zf):
+            zvs = z3.z3util.get_vars(zf)
+            vs = [Symbol(v.decl().name(), 
+                INT if v.is_int() else REAL) for v in zvs]
+            z3s = Solver(name='z3', 
+                        logic=zlogic,
+                        random_seed=myseed,
+                        generate_models=True)
+            f = z3s.converter.back(zf)
+            return vs, f
+
+        vs, f = _convert(zf)
         f_logic = get_logic(f)
-        with Portfolio([
-                ("cvc4", solver_opts),
-                ("z3", solver_opts),
-                ("yices", solver_opts)
-                ],
-                logic=f_logic,
-                incremental=False,
-                generate_models=True) as solver:
-        # with z3s as solver:
-            solver.add_assertion(f)
-            model = []
-            try:
-                mlog.debug("PySMT: solving {}".format(f))
-                r = solver.solve()
-                mlog.debug("r: {}".format(r))
-                if r:
-                    # for v in vs:
-                    #     # mv = solver.get_value(v).constant_value()
-                    #     mv = solver.get_py_value(v)
-                    #     model.append((v.symbol_name(), int(mv)))
-                    py_model = solver.get_model()
-                    model = [(v.symbol_name(), int(py_model.get_py_value(v))) for v in vs]
-                mlog.debug("model: {}".format(model))
-                return (z3.sat if r else z3.unsat), model
-            except Exception as e:
-                mlog.debug("check_sat: {}".format(e))
-                return z3.unknown, []
+
+        @timeit
+        def _solve(f):
+            with Portfolio([
+                    # ("cvc4", solver_opts),
+                    ("z3", solver_opts),
+                    # ("yices", solver_opts)
+                    ],
+                    logic=f_logic,
+                    incremental=False,
+                    generate_models=True) as solver:
+            # with z3s as solver:
+                solver.add_assertion(f)
+                model = []
+                try:
+                    # mlog.debug("PySMT: solving {}".format(f))
+                    r = solver.solve()
+                    # mlog.debug("r: {}".format(r))
+                    if r:
+                        # for v in vs:
+                        #     # mv = solver.get_value(v).constant_value()
+                        #     mv = solver.get_py_value(v)
+                        #     model.append((v.symbol_name(), int(mv)))
+                        py_model = solver.get_model()
+                        model = [(v.symbol_name(), int(py_model.get_py_value(v))) for v in vs]
+                    # mlog.debug("model: {}".format(model))
+                    return (z3.sat if r else z3.unsat), model
+                except Exception as e:
+                    mlog.debug("check_sat: {}".format(e))
+                    return z3.unknown, []
+
+        return _solve(f)
 
