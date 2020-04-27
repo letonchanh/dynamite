@@ -419,8 +419,8 @@ class NonTerm(object):
                 elif rs is False:
                     mlog.debug("rs: unsat")
                     mlog.debug("unsat_core: {}".format(unsat_core))
-                    # assert unsat_core is not None, unsat_core
-                    # dg[rc_label] = unsat_core
+                    assert unsat_core is not None, unsat_core
+                    dg[rc_label] = unsat_core
                 else:
                     # isinstance(rs, list) and rs:
                     init_rs = []
@@ -440,8 +440,15 @@ class NonTerm(object):
 
             chks = [(rc, _check(rc)) for rc in rcs]
 
-            mlog.debug("dg: {}".format(dg))
-            mlog.debug("label_d: {}".format(label_d))
+            mlog.info("dg: {}".format(dg))
+            mlog.info("label_d: {}".format(label_d))
+
+            # Finding a mutually dependent recurrent set
+            loop_cond_label = label_d[loop_cond]
+            mlog.info("loop_cond_label: {}".format(loop_cond_label))
+            # A condition whose label is in dg is already proved succesfully
+            if loop_cond_label in dg:
+                mlog.info("To find a mutually dependent set")
 
             if all(rs is False for _, rs in chks):
                 return True, None  # valid

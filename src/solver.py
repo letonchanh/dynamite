@@ -119,11 +119,10 @@ class ZSolver(object):
             if pushed_labeled_conjs:
                 # unsat_core = solver.unsat_core()
                 # mlog.debug("unsat_core: {}".format(unsat_core))
-                mlog.debug("To compute unsat core from the labeled conjs: {}".format(labeled_conjs))
                 pushed_labeled_conj = False
                 solver.pop()
                 soft_labeled_constraints = [(lbl, conj) for (lbl, conj) in labeled_conjs.items()]
-                self.get_unsat_core(solver, is_nla, soft_labeled_constraints)
+                unsat_core = self.get_unsat_core(solver, is_nla, soft_labeled_constraints)
             rs = False
         else:
             # sat, get k models
@@ -207,6 +206,7 @@ class ZSolver(object):
                 mlog.debug("unsat: removing {}".format(clid))
                 approx = to_test
         mlog.debug("approx: {}".format(approx))
+        return [lbl for (lbl, _) in approx]
 
     def mk_inps_from_models(self, models, inp_decls, exe):
         if not models:
@@ -473,7 +473,7 @@ class Z3Py(ZSolver):
         return t.solver()
 
     @classmethod
-    @timeit
+    # @timeit
     def _check_sat(cls, zsolver, using_nla=False, myseed=None):
         tsolver = cls.mk(using_nla, myseed)
         # mlog.debug("t_solver: {}".format(t_solver.param_descrs()))
@@ -492,7 +492,7 @@ class Z3Py(ZSolver):
         return chk, model
 
     @classmethod
-    @timeit
+    # @timeit
     def check_sat(cls, zsolver, using_nla=False, myseed=None):
         if not using_nla:
             return cls._check_sat(zsolver, using_nla, myseed)
@@ -542,7 +542,7 @@ class PySMT(ZSolver):
         return z3.Solver()
 
     @classmethod
-    @timeit
+    # @timeit
     def _check_sat(cls, zsolver, using_nla=False, myseed=None):
         zlogic = 'QF_NIA' if using_nla else 'QF_LIA'
         solver_opts = {"random_seed": myseed} if myseed else {}
@@ -593,7 +593,7 @@ class PySMT(ZSolver):
         return _solve(f)
 
     @classmethod
-    @timeit
+    # @timeit
     def check_sat(cls, zsolver, using_nla=False, myseed=None):
         return cls._check_sat(zsolver, using_nla, myseed)
 
