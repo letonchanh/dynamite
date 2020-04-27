@@ -78,13 +78,14 @@ class ZSolver(object):
         solver = self.mk(is_nla)
         # solver = z3.SolverFor('QF_NRA')
         
-        pushed_labeled_conj = False
+        pushed_labeled_conjs = False
+        labeled_conjs = {}
 
         if isinstance(f, logic.ZConj):
-            solver.push()
-            pushed_labeled_conj = True
-            solver.set(unsat_core=True)
-            solver.set(':core.minimize', True)
+            # solver.push()
+            # pushed_labeled_conjs = True
+            # solver.set(unsat_core=True)
+            # solver.set(':core.minimize', True)
             for conj in f:
                 if isinstance(conj, logic.LabeledExpr):
                     if conj.label:
@@ -93,11 +94,16 @@ class ZSolver(object):
                         conj_label = 'c_' + str(self._get_expr_id(conj.expr))
                     # mlog.debug("conj: {}:{}".format(conj.expr, conj_label))
                     # solver.assert_and_track(conj.expr, conj_label)
-                    solver.add(conj.expr)
+                    labeled_conjs[conj_label] = conj.expr
                 else:
                     solver.add(conj)
         else:
             solver.add(fe)
+
+        if labeled_conjs:
+            solver.push()
+            pushed_labeled_conjs = True
+            solver.add([conj for _, conj in labeled_conjs.items()])
         
         # stat = solver.check()
         # psolver = PySMT()
@@ -110,18 +116,21 @@ class ZSolver(object):
             # mlog.debug("reason_unknown: {}".format(solver.reason_unknown()))
             rs = None
         elif stat == z3.unsat:
-            if pushed_labeled_conj:
-                unsat_core = solver.unsat_core()
+            if pushed_labeled_conjs:
+                # unsat_core = solver.unsat_core()
                 # mlog.debug("unsat_core: {}".format(unsat_core))
-                solver.pop()
+                mlog.debug("To compute unsat core from the labeled conjs: {}".format(labeled_conjs))
                 pushed_labeled_conj = False
+                solver.pop()
+                soft_labeled_constraints = [(lbl, conj) for (lbl, conj) in labeled_conjs.items()]
+                self.get_unsat_core(solver, is_nla, soft_labeled_constraints)
             rs = False
         else:
             # sat, get k models
-            if pushed_labeled_conj:
-                solver.pop()
-                pushed_labeled_conj = False
-                solver.add(fe)
+            if pushed_labeled_conjs:
+                pushed_labeled_conjs = False
+                # solver.pop()
+                # solver.add([conj for _, conj in labeled_conjs.items()])
 
             range_constrs = []
             if inp_decls:
@@ -176,6 +185,28 @@ class ZSolver(object):
 
         assert not (isinstance(rs, list) and not rs), rs
         return rs, stat, unsat_core
+
+    # Deletion-based MUS extraction
+    # https://github.com/pysathq/pysat/blob/3383af566c3f922761cf66b84c16888ff1dacb93/examples/musx.py#L211
+    def get_unsat_core(self, solver, is_nla, soft_labeled_constraints):
+        i = 0
+        approx = soft_labeled_constraints
+        while i < len(approx):
+            to_test = approx[:i] + approx[(i + 1):]
+            clid, sel = approx[i]
+
+            mlog.debug("testing soft constraint {}: {}".format(clid, sel))
+            solver.push()
+            solver.add([conj for (_, conj) in to_test])
+            stat, _ = self.check_sat(solver, is_nla)
+            solver.pop()
+            if stat == z3.sat:
+                mlog.debug("sat: keeping {}".format(clid))
+                i += 1
+            else:
+                mlog.debug("unsat: removing {}".format(clid))
+                approx = to_test
+        mlog.debug("approx: {}".format(approx))
 
     def mk_inps_from_models(self, models, inp_decls, exe):
         if not models:
@@ -463,38 +494,41 @@ class Z3Py(ZSolver):
     @classmethod
     @timeit
     def check_sat(cls, zsolver, using_nla=False, myseed=None):
-        def _run_check_sat(pid, pcls, zsolver, using_nla, myseed, comm_queue):
-            try:
-                res = pcls._check_sat(zsolver, using_nla, myseed)
-            except Exception as ex:
-                comm_queue.put((pid, ex))
-                return
-            comm_queue.put((pid, res))
+        if not using_nla:
+            return cls._check_sat(zsolver, using_nla, myseed)
+        else:
+            def _run_check_sat(pcls, pid, zsolver, using_nla, myseed, comm_queue):
+                try:
+                    res = pcls._check_sat(zsolver, using_nla, myseed)
+                except Exception as ex:
+                    comm_queue.put((pid, ex))
+                    return
+                comm_queue.put((pid, res))
 
-        comm_queue = Queue()
-        zid = "z3py"
-        pid = "pysmt"
-        tasks = {zid: Z3Py, pid: PySMT}
-        procs = {}
-        for pid, pcls in tasks.items():
-            _p = Process(name=pid,
-                         target=_run_check_sat,
-                         args=(pid, pcls, zsolver, using_nla, 
-                               myseed, comm_queue))
-            procs[pid] = _p
-            _p.start()
+            comm_queue = Queue()
+            zid = "z3py"
+            pid = "pysmt"
+            tasks = {zid: Z3Py, pid: PySMT}
+            procs = {}
+            for pid, pcls in tasks.items():
+                _p = Process(name=pid,
+                            target=_run_check_sat,
+                            args=(pcls, pid, zsolver, using_nla, 
+                                myseed, comm_queue))
+                procs[pid] = _p
+                _p.start()
 
-        while True:
-            (idx, res) = comm_queue.get(block=True)
-            if isinstance(res, Exception):
-                _p = procs[idx]
-                _p.terminate()
-                continue
-            else:
-                mlog.debug("idx: {}".format(idx))
-                for _, _p in procs.items():
+            while True:
+                (idx, res) = comm_queue.get(block=True)
+                if isinstance(res, Exception):
+                    _p = procs[idx]
                     _p.terminate()
-                return res
+                    continue
+                else:
+                    mlog.debug("idx: {}".format(idx))
+                    for _, _p in procs.items():
+                        _p.terminate()
+                    return res
 
 from pysmt.shortcuts import Portfolio, Solver, Symbol
 from pysmt.typing import INT, REAL
