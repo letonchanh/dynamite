@@ -440,18 +440,21 @@ class NonTerm(object):
 
             chks = [(rc, _check(rc)) for rc in rcs]
 
+            # Finding a mutually dependent recurrent set (mds)
+            # A mds is a valid recurrent set
+            # It can be used to simplify a valid recurrent set
+            # or find a valid recurrent set from an invalid one.
+            mlog.info("dg: {}".format(dg))
+            mlog.info("label_d: {}".format(label_d))
+            loop_cond_label = label_d[loop_cond]
+            mlog.info("loop_cond_label: {}".format(loop_cond_label))
+            # A condition whose label is in dg is already proved succesfully
+            mds = self._get_mutually_dependent_set(loop_cond_label, dg)
+            mlog.info("mds: {}".format(mds))
+
             if all(rs is False for _, rs in chks):
                 return True, None  # valid
             else:
-                # Finding a mutually dependent recurrent set
-                mlog.info("dg: {}".format(dg))
-                mlog.info("label_d: {}".format(label_d))
-                loop_cond_label = label_d[loop_cond]
-                mlog.info("loop_cond_label: {}".format(loop_cond_label))
-                # A condition whose label is in dg is already proved succesfully
-                mds = self._get_mutually_dependent_set(loop_cond_label, dg)
-                mlog.info("mds: {}".format(mds))
-
                 sCexs = []
                 for rc, rs in chks:
                     if rs is None:
@@ -495,12 +498,15 @@ class NonTerm(object):
 
         candidate_nrcs = []
 
+        # Candidate rcs from potential termination invs
         for term_inv in term_invs:
             # mlog.debug("term_inv: {}".format(term_inv))
             nrcs = copy.deepcopy(rcs)
             nrcs.add(z3.Not(term_inv))
             candidate_nrcs.append(nrcs)
 
+        # In the next step, we will find a mutually dependent set 
+        # from this mayloop_invs. That set will be a valid rcs.
         if mayloop_invs:
             candidate_nrcs.append(mayloop_invs)
         
