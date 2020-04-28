@@ -122,6 +122,7 @@ if __name__ == "__main__":
             mlog.info("validRCS: {}".format(validRCS))
             for rcs, ancestors in validRCS:
                 f = Z3.to_dnf(rcs.simplify())
+                mlog.info("rcs: {}".format(rcs))
                 mlog.info("(simplified) rcs: {}".format(f))
                 for depth, ancestor in ancestors:
                     if ancestor is None:

@@ -119,10 +119,11 @@ class ZSolver(object):
             if pushed_labeled_conjs:
                 # unsat_core = solver.unsat_core()
                 # mlog.debug("unsat_core: {}".format(unsat_core))
+                
                 pushed_labeled_conj = False
                 solver.pop()
                 soft_labeled_constraints = [(lbl, conj) for (lbl, conj) in labeled_conjs.items()]
-                unsat_core = self.get_unsat_core(solver, is_nla, soft_labeled_constraints)
+                unsat_core = self._get_unsat_core(solver, is_nla, soft_labeled_constraints)
             rs = False
         else:
             # sat, get k models
@@ -187,7 +188,7 @@ class ZSolver(object):
 
     # Deletion-based MUS extraction
     # https://github.com/pysathq/pysat/blob/3383af566c3f922761cf66b84c16888ff1dacb93/examples/musx.py#L211
-    def get_unsat_core(self, solver, is_nla, soft_labeled_constraints):
+    def _get_unsat_core(self, solver, is_nla, soft_labeled_constraints):
         i = 0
         approx = soft_labeled_constraints
         while i < len(approx):
@@ -525,7 +526,7 @@ class Z3Py(ZSolver):
                     _p.terminate()
                     continue
                 else:
-                    mlog.debug("idx: {}".format(idx))
+                    # mlog.debug("idx: {}".format(idx))
                     for _, _p in procs.items():
                         _p.terminate()
                     return res

@@ -440,19 +440,18 @@ class NonTerm(object):
 
             chks = [(rc, _check(rc)) for rc in rcs]
 
-            mlog.info("dg: {}".format(dg))
-            mlog.info("label_d: {}".format(label_d))
-
-            # Finding a mutually dependent recurrent set
-            loop_cond_label = label_d[loop_cond]
-            mlog.info("loop_cond_label: {}".format(loop_cond_label))
-            # A condition whose label is in dg is already proved succesfully
-            if loop_cond_label in dg:
-                mlog.info("To find a mutually dependent set")
-
             if all(rs is False for _, rs in chks):
                 return True, None  # valid
             else:
+                # Finding a mutually dependent recurrent set
+                mlog.info("dg: {}".format(dg))
+                mlog.info("label_d: {}".format(label_d))
+                loop_cond_label = label_d[loop_cond]
+                mlog.info("loop_cond_label: {}".format(loop_cond_label))
+                # A condition whose label is in dg is already proved succesfully
+                mds = self._get_mutually_dependent_set(loop_cond_label, dg)
+                mlog.info("mds: {}".format(mds))
+
                 sCexs = []
                 for rc, rs in chks:
                     if rs is None:
@@ -501,6 +500,9 @@ class NonTerm(object):
             nrcs = copy.deepcopy(rcs)
             nrcs.add(z3.Not(term_inv))
             candidate_nrcs.append(nrcs)
+
+        if mayloop_invs:
+            candidate_nrcs.append(mayloop_invs)
         
         # if invalid_rc is not None:
         #     nrcs = copy.deepcopy(rcs)
@@ -511,6 +513,21 @@ class NonTerm(object):
         #         candidate_nrcs.append(nrcs)
         
         return candidate_nrcs
+
+    def _get_mutually_dependent_set(self, start, dg):
+        ws = [start]
+        visited = set()
+        while ws:
+            node = ws.pop(0)
+            if node not in dg:
+                return set()
+            else:
+                visited.add(node)
+                node_deps = dg[node]
+                for node_dep in node_deps:
+                    if node_dep not in visited:
+                        ws.append(node_dep)
+        return visited
 
     def _stat_candidate_rcs(self, rcs):
         stat = defaultdict(int)
