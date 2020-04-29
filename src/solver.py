@@ -513,9 +513,9 @@ class Z3Py(ZSolver):
             procs = {}
             for pid, pcls in tasks.items():
                 _p = Process(name=pid,
-                            target=_run_check_sat,
-                            args=(pcls, pid, zsolver, using_nla, 
-                                myseed, comm_queue))
+                             target=_run_check_sat,
+                             args=(pcls, pid, zsolver, using_nla, 
+                                   myseed, comm_queue))
                 procs[pid] = _p
                 _p.start()
 
