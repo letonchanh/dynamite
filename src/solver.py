@@ -223,20 +223,19 @@ class ZSolver(object):
             rand_inps = []
             for m in ms:
                 inp = []
-                for v in inp_decls:
-                    sv = str(v)
-                    if sv in m:
-                        inp.append(m[sv])
+                for v in inp_decls.names:
+                    if v in m:
+                        inp.append(m[v])
                     else:
                         if not rand_inps:
                             rand_inps = exe.gen_rand_inps(len(ms))
                             mlog.debug("rand_inps: {} - {}\n{}".format(len(ms), len(rand_inps), rand_inps))
                         rand_inp = rand_inps.pop()
                         d = dict(zip(rand_inp.ss, rand_inp.vs))
-                        inp.append(sage.all.sage_eval(str(d[sv])))
+                        inp.append(sage.all.sage_eval(str(d[v])))
                 s.add(tuple(inp))
             inps = Inps()
-            inps.merge(s, tuple(inp_decls))
+            inps.merge(s, inp_decls.names)
             return inps
 
     # Internal static methods over z3's ast

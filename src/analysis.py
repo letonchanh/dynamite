@@ -435,7 +435,7 @@ class NonTerm(object):
 
                     mlog.debug("init_rs: sat ({} models)".format(len(init_rs)))
                     rs = _config.solver.mk_inps_from_models(
-                                init_rs, _config.inp_decls.exprs(settings.use_reals), _config.exe)
+                                init_rs, _config.inp_decls, _config.exe)
                 return rs
 
             chks = [(rc, _check(rc)) for rc in rcs]

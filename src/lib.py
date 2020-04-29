@@ -41,11 +41,11 @@ class Execution(object):
         inps = self._sample_inps(inps)
         return inps
 
-    def get_traces_from_inps(self, rInps):
+    def get_traces_from_inps(self, inps):
         inp_decls = self.prog.inp_decls
         inv_decls = self.prog.inv_decls
-        rInps = self._sample_inps(rInps)
-        raw_traces = self.prog._get_traces_mp(rInps)
+        inps = self._sample_inps(inps)
+        raw_traces = self.prog._get_traces_mp(inps)
         itraces = {}
         for inp, lines in raw_traces.items():
             # dtraces = {}
