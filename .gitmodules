@@ -1,3 +1,6 @@
 [submodule "deps/dig"]
 	path = deps/dig
 	url = git@github.com:letonchanh/dig.git
+[submodule "deps/dynamo-instr"]
+	path = deps/dynamo-instr
+	url = git@github.com:parisaF163/dynamo-instr.git
