@@ -386,6 +386,7 @@ class NonTerm(object):
                 else:
                     return None
             labeled_rcs, label_d = ZFormula.label(rcs, mk_label)
+            rev_label_d = {v: k for k, v in label_d.items()}
             mlog.debug("labeled_rcs: {}".format(labeled_rcs))
 
             # R /\ T => R'
@@ -446,14 +447,18 @@ class NonTerm(object):
             # or find a valid recurrent set from an invalid one.
             mlog.info("dg: {}".format(dg))
             mlog.info("label_d: {}".format(label_d))
+            mlog.info("rev_label_d: {}".format(rev_label_d))
+            
             loop_cond_label = label_d[loop_cond]
             mlog.info("loop_cond_label: {}".format(loop_cond_label))
             # A condition whose label is in dg is already proved succesfully
-            mds = self._get_mutually_dependent_set(loop_cond_label, dg)
+            mds_labels = self._get_mutually_dependent_set(loop_cond_label, dg)
+            mds = ZConj([rev_label_d[lbl] for lbl in mds_labels])
+            mlog.info("mds_labels: {}".format(mds_labels))
             mlog.info("mds: {}".format(mds))
 
             if all(rs is False for _, rs in chks):
-                return True, None  # valid
+                return True, None, mds  # valid
             else:
                 sCexs = []
                 for rc, rs in chks:
@@ -464,7 +469,7 @@ class NonTerm(object):
                         assert len(rs) > 0
                         itraces = _config.exe.get_traces_from_inps(rs)
                         sCexs.append((rc, itraces))
-                return False, sCexs  # invalid with a set of new Inps
+                return False, sCexs, mds  # invalid with a set of new Inps
 
     def strengthen(self, rcs, invalid_rc, itraces):
         _config = self._config
@@ -561,8 +566,14 @@ class NonTerm(object):
                     continue
 
                 if depth < settings.max_nonterm_refinement_depth:
-                    chk, sCexs = self.verify(rcs)
+                    chk, sCexs, mds = self.verify(rcs)
                     # mlog.debug("sCexs: {}".format(sCexs))
+                    if mds and len(mds) < len(rcs):
+                        # mds is a valid recurrent set which is smaller (weaker) than rcs
+                        nancestors = copy.deepcopy(ancestors)
+                        nancestors.append((depth, rcs))
+                        validRCS.append((mds, nancestors))
+                    
                     if chk:
                         validRCS.append((rcs, ancestors))
                         # return the first valid rcs
