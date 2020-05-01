@@ -110,7 +110,7 @@ class Setup(object):
     def _get_c_symstates_from_src(self, src):
         from data.symstates import SymStatesC
         
-        exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
+        # exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
         inp_decls, inv_decls, mainQ_name = src.inp_decls, src.inv_decls, src.mainQ_name
 
         symstates = SymStatesC(inp_decls, inv_decls)
@@ -149,6 +149,11 @@ class Setup(object):
                 return stem
         return None
 
+    def _strip_ptr_loop_params(self, symbs):
+        symbs = [Symb(s.name.replace(settings.PTR_VARS_PREFIX, ''), 'I') if settings.PTR_VARS_PREFIX in s.name and s.typ == 'P' 
+                 else s for s in symbs]
+        return Symbs(symbs)
+
     def _get_loop_symstates(self):
         if self.is_c_inp:
             from helpers.src import C as c_src
@@ -163,6 +168,8 @@ class Setup(object):
 
         inp_decls, inv_decls = src.inp_decls, src.inv_decls
         loop_init_symvars = symstates.init_symvars
+        inp_decls = self._strip_ptr_loop_params(inp_decls)
+        loop_init_symvars = self._strip_ptr_loop_params(loop_init_symvars)
         mlog.debug("vloop inp_decls: {}".format(inp_decls))
         mlog.debug("vloop inv_decls: {}".format(inv_decls))
         mlog.debug("vloop init_symvars: {}".format(loop_init_symvars))

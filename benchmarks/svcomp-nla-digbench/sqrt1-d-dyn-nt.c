@@ -38,5 +38,5 @@ void mainQ(int qt, int qn, int qm) {
 }
 
 void main(int argc, char **argv) {
-    mainQ(atoi(argv[1]), atoi(argv[2]), atoi(argv[3]));
+    //mainQ(atoi(argv[1]), atoi(argv[2]), atoi(argv[3]));
 }
