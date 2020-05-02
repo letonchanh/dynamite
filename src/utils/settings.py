@@ -12,6 +12,8 @@ n_inps = 100
 inps_threshold = 2
 test_ratio = 0.2
 SOLVER_TIMEOUT = 5 * 1000 # 5s
+LOOP_ITER_BND = 500
+VLOOP_FUN = "vloop"
 
 DYNAMITE_DIR = Path(__file__).parent.parent.parent
 

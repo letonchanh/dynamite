@@ -66,13 +66,19 @@ class Setup(object):
                 mlog.debug("Create C source for mainQ: {}".format(self.tmpdir))
                 
                 trans_outf = self.tmpdir / (os.path.basename(inp))
-                trans_cmd = settings.C.TRANSFORM(inf=inp, outf=trans_outf, bnd=500)
+                trans_cmd = settings.C.TRANSFORM(inf=inp, 
+                                                 outf=trans_outf, 
+                                                 bnd=settings.LOOP_ITER_BND)
                 mlog.debug("trans_cmd: {}".format(trans_cmd))
                 trans_rmsg, trans_errmsg = CM.vcmd(trans_cmd)
                 assert not trans_errmsg, "'{}': {}".format(trans_cmd, trans_errmsg)
                 mlog.debug("trans_rmsg: {}".format(trans_rmsg))
 
+                cg = self._parse_call_graph(trans_rmsg)
+                mlog.debug("cg: {}".format(cg))
+
                 self.trans_inp = trans_outf
+                self.cg = cg
 
                 src = c_src(Path(self.trans_inp), self.tmpdir)
                 exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
@@ -168,10 +174,17 @@ class Setup(object):
     def _get_loop_from_symstates(self):
         if self.is_c_inp:
             from helpers.src import C as c_src
+
+            vloops = self.cg[dig_settings.MAINQ_FUN]
+            assert len(vloops) >= 1, vloops
+            if len(vloops) > 1:
+                raise NotImplementedError
+            else:
+                vloop = vloops[0]
         
             tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
-            mlog.debug("Create C source for vloop: {}".format(tmpdir))
-            src = c_src(Path(self.trans_inp), tmpdir, mainQ="vloop_3")
+            mlog.debug("Create C source for {}: {}".format(vloop, tmpdir))
+            src = c_src(Path(self.trans_inp), tmpdir, mainQ=vloop)
             symstates = self._get_c_symstates_from_src(src)
             ss = symstates.ss
         else:
@@ -231,6 +244,18 @@ class Setup(object):
 
                 return Loop(inp_decls, loop_cond, loop_transrel)
         return None
+
+    def _parse_call_graph(self, msg):
+        lines = [l.split(':') for l in msg.split('\n')
+                 if l.startswith(dig_settings.MAINQ_FUN)
+                 or l.startswith(settings.VLOOP_FUN)]
+        cg = defaultdict(list)
+
+        for caller, s in lines:
+            caller = caller.strip()
+            for callee in s.split(','):
+                cg[caller].append(callee.strip())
+        return cg
 
     def _get_loopinfo_from_traces(self):
         raise NotImplementedError
