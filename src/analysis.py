@@ -3,6 +3,7 @@ import copy
 import random
 import itertools
 import math
+import os
 from pathlib import Path
 from collections import defaultdict 
 # from numba import njit 
@@ -63,7 +64,17 @@ class Setup(object):
                 from helpers.src import C as c_src
                 # import alg
                 mlog.debug("Create C source for mainQ: {}".format(self.tmpdir))
-                src = c_src(Path(inp), self.tmpdir)
+                
+                trans_outf = self.tmpdir / (os.path.basename(inp))
+                trans_cmd = settings.C.TRANSFORM(inf=inp, outf=trans_outf, bnd=500)
+                mlog.debug("trans_cmd: {}".format(trans_cmd))
+                trans_rmsg, trans_errmsg = CM.vcmd(trans_cmd)
+                assert not trans_errmsg, "'{}': {}".format(trans_cmd, trans_errmsg)
+                mlog.debug("trans_rmsg: {}".format(trans_rmsg))
+
+                self.trans_inp = trans_outf
+
+                src = c_src(Path(self.trans_inp), self.tmpdir)
                 exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
                 if settings.prove_nonterm:
                     try:
@@ -119,12 +130,12 @@ class Setup(object):
         # mlog.debug("symstates: {}".format(symstates.ss))
         return symstates
 
-    def _get_loopinfo_symstates(self):
-        stem = self._get_stem_symstates()
-        loop = self._get_loop_symstates()
+    def _get_loopinfo_from_symstates(self):
+        stem = self._get_stem_from_symstates()
+        loop = self._get_loop_from_symstates()
         return LoopInfo(stem, loop)
 
-    def _get_stem_symstates(self):
+    def _get_stem_from_symstates(self):
         assert self.symstates, self.symstates
 
         ss = self.symstates.ss
@@ -150,17 +161,17 @@ class Setup(object):
         return None
 
     def _strip_ptr_loop_params(self, symbs):
-        symbs = [Symb(s.name.replace(settings.PTR_VARS_PREFIX, ''), 'I') if settings.PTR_VARS_PREFIX in s.name and s.typ == 'P' 
+        symbs = [Symb(s.name.replace(settings.C.PTR_VARS_PREFIX, ''), 'I') if settings.C.PTR_VARS_PREFIX in s.name and s.typ == 'P' 
                  else s for s in symbs]
         return Symbs(symbs)
 
-    def _get_loop_symstates(self):
+    def _get_loop_from_symstates(self):
         if self.is_c_inp:
             from helpers.src import C as c_src
         
             tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
             mlog.debug("Create C source for vloop: {}".format(tmpdir))
-            src = c_src(Path(self.inp), tmpdir, mainQ="vloop")
+            src = c_src(Path(self.trans_inp), tmpdir, mainQ="vloop_3")
             symstates = self._get_c_symstates_from_src(src)
             ss = symstates.ss
         else:
@@ -221,7 +232,7 @@ class Setup(object):
                 return Loop(inp_decls, loop_cond, loop_transrel)
         return None
 
-    def _get_loopinfo_traces(self):
+    def _get_loopinfo_from_traces(self):
         raise NotImplementedError
         # old_do_ieqs = dig_settings.DO_IEQS
         # # dig_settings.DO_IEQS = False
@@ -258,9 +269,9 @@ class Setup(object):
         # return transrel_expr
 
     def get_loopinfo(self):
-        loopinfo = self._get_loopinfo_symstates()
+        loopinfo = self._get_loopinfo_from_symstates()
         if loopinfo is None:
-            loopinfo = self._get_loopinfo_traces()
+            loopinfo = self._get_loopinfo_from_traces()
         return loopinfo
 
     def infer_precond(self):
