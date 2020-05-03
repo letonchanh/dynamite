@@ -4,6 +4,7 @@ import random
 import itertools
 import math
 import os
+import sage
 from pathlib import Path
 from collections import defaultdict 
 # from numba import njit 
@@ -66,12 +67,13 @@ class Setup(object):
                 mlog.debug("Create C source for mainQ: {}".format(self.tmpdir))
                 
                 trans_outf = self.tmpdir / (os.path.basename(inp))
-                trans_cmd = settings.C.TRANSFORM(inf=inp, 
+                trans_cmd = settings.C.TRANSFORM(inf=inp,
                                                  outf=trans_outf, 
                                                  bnd=settings.LOOP_ITER_BND)
                 mlog.debug("trans_cmd: {}".format(trans_cmd))
                 trans_rmsg, trans_errmsg = CM.vcmd(trans_cmd)
-                assert not trans_errmsg, "'{}': {}".format(trans_cmd, trans_errmsg)
+                # assert not trans_errmsg, "'{}': {}".format(trans_cmd, trans_errmsg)
+                assert trans_outf.exists(), trans_outf
                 mlog.debug("trans_rmsg: {}".format(trans_rmsg))
 
                 cg = self._parse_call_graph(trans_rmsg)
@@ -801,7 +803,9 @@ class Term(object):
 
     def prove(self):
         _config = self._config
-        itraces = _config.rand_itraces
+        # itraces = _config.rand_itraces
+        rand_inps = _config.exe.gen_rand_inps(_config.n_inps)
+        itraces = _config.exe.get_traces_from_inps(rand_inps)
         preloop_term_invs = None
         while preloop_term_invs is None:
             base_term_inps, term_inps, mayloop_inps = _config.cl.classify_inps(itraces)
