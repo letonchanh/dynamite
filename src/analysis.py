@@ -816,7 +816,7 @@ class Term(object):
 
                 train_rand_trans = list(i_train_rand_trans)
             mlog.debug("train_rand_trans: {}".format(len(train_rand_trans)))
-            mlog.debug("ranking_function_list: {}".format(ranking_function_list))
+        mlog.debug("ranking_function_list: {}".format(ranking_function_list))
         return ranking_function_list
 
     def validate_ranking_functions(self, rfs):
@@ -840,8 +840,8 @@ class Term(object):
         validate_rmsg, validate_errmsg = CM.vcmd(validate_cmd)
         # assert not trans_errmsg, "'{}': {}".format(trans_cmd, trans_errmsg)
         assert validate_outf.exists(), validate_outf
-        mlog.debug("validate_rmsg: {}".format(validate_rmsg))
-        mlog.debug("validate_errmsg: {}".format(validate_errmsg))
+        # mlog.debug("validate_rmsg: {}".format(validate_rmsg))
+        # mlog.debug("validate_errmsg: {}".format(validate_errmsg))
 
     def prove(self):
         _config = self._config
