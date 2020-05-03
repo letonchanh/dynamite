@@ -238,6 +238,10 @@ class ZSolver(object):
             inps.merge(s, inp_decls.names)
             return inps
 
+    # def mk_dict_from_model(self, model):
+    #     d = {sage.all.var(x): v for x, v in model}
+    #     return d
+
     # Internal static methods over z3's ast
     @classmethod
     def _get_expr_id(cls, e):

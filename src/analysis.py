@@ -645,7 +645,7 @@ class Term(object):
         _config = self._config
         terms = Miscs.get_terms([sage.all.var(v) for v in vs.names], 1)
         rnk_template, uks = Miscs.mk_template(terms, None, retCoefVars=True)
-        mlog.debug("rnk_template: {}".format(rnk_template))
+        mlog.debug("rnk_template ({}): {}".format(type(rnk_template), rnk_template))
         mlog.debug("uks: {}".format(uks))
 
         zuks = []
@@ -715,14 +715,19 @@ class Term(object):
         #     else:
         #         arr_train_rand_trans = np.delete(arr_train_rand_trans, [0])
         #     mlog.debug("arr_train_rand_trans: {}".format(arr_train_rand_trans.size / 2))
-            
+        
+        rnk_ztemplate = self._to_Z3(rnk_template)
+        ranking_function_list = []
         while train_rand_trans:
             (t1, t2) = train_rand_trans.pop()
             model = self._infer_ranking_function_trans(t1, t2, opt)
             mlog.debug("model: {}".format(model))
             if model:
+                rf = model.evaluate(rnk_ztemplate)
+                ranking_function_list.append(rf)
                 mlog.debug("t1: {}".format(t1))
                 mlog.debug("t2: {}".format(t2))
+                mlog.debug("rf: {}".format(rf))
 
                 # start_time = timeit.default_timer()
                 # l_train_rand_trans = [(t1, t2) for (t1, t2) in train_rand_trans 
@@ -746,6 +751,7 @@ class Term(object):
 
                 train_rand_trans = list(i_train_rand_trans)
             mlog.debug("train_rand_trans: {}".format(len(train_rand_trans)))
+            mlog.debug("ranking_function_list: {}".format(ranking_function_list))
 
     def _check_ranking_function_trans(self, t1, t2, model):
         # import timeit
