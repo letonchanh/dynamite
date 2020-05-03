@@ -126,6 +126,22 @@ class Setup(object):
         # mlog.debug("get traces from random inputs")
         # self.rand_itraces = self.exe.get_traces_from_inps(rand_inps)  # itraces: input to dtraces
 
+    def _get_vloop(self):
+        vloops = self.cg[dig_settings.MAINQ_FUN]
+        assert len(vloops) >= 1, vloops
+        if len(vloops) > 1:
+            raise NotImplementedError
+        else:
+            vloop = vloops[0]
+        return vloop
+
+    def _get_vloop_pos(self, vloop_name):
+        vloop_prefix = settings.VLOOP_FUN + '_'
+        if vloop_name.startswith(vloop_prefix):
+            return vloop_name[len(vloop_prefix):]
+        else:
+            return None
+
     def _get_c_symstates_from_src(self, src):
         from data.symstates import SymStatesC
         
@@ -177,12 +193,7 @@ class Setup(object):
         if self.is_c_inp:
             from helpers.src import C as c_src
 
-            vloops = self.cg[dig_settings.MAINQ_FUN]
-            assert len(vloops) >= 1, vloops
-            if len(vloops) > 1:
-                raise NotImplementedError
-            else:
-                vloop = vloops[0]
+            vloop = self._get_vloop()
         
             tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
             mlog.debug("Create C source for {}: {}".format(vloop, tmpdir))
@@ -641,7 +652,61 @@ class Term(object):
         self.ntCexs = []
         self.MAX_TRANS_NUM = 50
 
-    def infer_ranking_function(self, vs, term_itraces):
+    def _check_ranking_function_trans(self, t1, t2, model):
+        # import timeit
+        # start_time = timeit.default_timer()
+        # s = z3.Solver()
+        # s.add(t1 > t2)
+        # s.add(t1 >= 0)
+        # for d in model.decls():
+        #     zuk = globals()[d.name()]
+        #     s.add(zuk == model[d])
+        # if s.check() == z3.sat:
+        #     r = True
+        # else:
+        #     r = False
+        # elapsed = timeit.default_timer() - start_time
+        # mlog.debug("z3: {}".format(elapsed * 1000000))
+        
+        # start_time = timeit.default_timer()
+        st1 = str(t1)
+        st2 = str(t2)
+        for d in model.decls():
+            v = model[d]
+            sv = v.as_string()
+            dn = d.name()
+            st1 = st1.replace(dn, sv)
+            st2 = st2.replace(dn, sv)
+        vt1 = eval(st1)
+        vt2 = eval(st2)
+        r = (vt1 > vt2) and (vt1 >= 0)
+        # elapsed = timeit.default_timer() - start_time
+        # mlog.debug("py: {}".format(elapsed * 1000000))
+
+        return r
+
+    def _infer_ranking_function_trans(self, t1, t2, opt):
+        opt.push()
+        # desc_scond = str(sage.all.operator.gt(t1, t2))
+        # bnd_scond = str(sage.all.operator.ge(t1, 0))
+        # desc_zcond = eval(desc_scond)
+        # bnd_zcond = eval(bnd_scond)
+        # desc_zcond = Z3.parse(desc_scond, False)
+        # bnd_zcond = Z3.parse(bnd_scond, False)
+        opt.add(t1 > t2)
+        opt.add(t1 >= 0)
+
+        model = None
+        if opt.check() == z3.sat:
+            model = opt.model()
+            # mlog.debug("model: {}".format(model))
+        opt.pop()
+        return model
+
+    def _to_Z3(self, f):
+        return Z3.parse(str(f), False)
+
+    def infer_ranking_functions(self, vs, term_itraces):
         _config = self._config
         terms = Miscs.get_terms([sage.all.var(v) for v in vs.names], 1)
         rnk_template, uks = Miscs.mk_template(terms, None, retCoefVars=True)
@@ -752,60 +817,31 @@ class Term(object):
                 train_rand_trans = list(i_train_rand_trans)
             mlog.debug("train_rand_trans: {}".format(len(train_rand_trans)))
             mlog.debug("ranking_function_list: {}".format(ranking_function_list))
+        return ranking_function_list
 
-    def _check_ranking_function_trans(self, t1, t2, model):
-        # import timeit
-        # start_time = timeit.default_timer()
-        # s = z3.Solver()
-        # s.add(t1 > t2)
-        # s.add(t1 >= 0)
-        # for d in model.decls():
-        #     zuk = globals()[d.name()]
-        #     s.add(zuk == model[d])
-        # if s.check() == z3.sat:
-        #     r = True
-        # else:
-        #     r = False
-        # elapsed = timeit.default_timer() - start_time
-        # mlog.debug("z3: {}".format(elapsed * 1000000))
-        
-        # start_time = timeit.default_timer()
-        st1 = str(t1)
-        st2 = str(t2)
-        for d in model.decls():
-            v = model[d]
-            sv = v.as_string()
-            dn = d.name()
-            st1 = st1.replace(dn, sv)
-            st2 = st2.replace(dn, sv)
-        vt1 = eval(st1)
-        vt2 = eval(st2)
-        r = (vt1 > vt2) and (vt1 >= 0)
-        # elapsed = timeit.default_timer() - start_time
-        # mlog.debug("py: {}".format(elapsed * 1000000))
+    def validate_ranking_functions(self, rfs):
+        _config = self._config
+        ranks_str = '|'.join(['{}'.format(rf) for rf in rfs])
+        mlog.debug("ranks_str: {}".format(ranks_str))
+        vloop_name = _config._get_vloop()
+        mlog.debug("vloop_name: {}".format(vloop_name))
+        vloop_pos = _config._get_vloop_pos(vloop_name)
+        assert vloop_pos, vloop_pos
 
-        return r
-
-    def _infer_ranking_function_trans(self, t1, t2, opt):
-        opt.push()
-        # desc_scond = str(sage.all.operator.gt(t1, t2))
-        # bnd_scond = str(sage.all.operator.ge(t1, 0))
-        # desc_zcond = eval(desc_scond)
-        # bnd_zcond = eval(bnd_scond)
-        # desc_zcond = Z3.parse(desc_scond, False)
-        # bnd_zcond = Z3.parse(bnd_scond, False)
-        opt.add(t1 > t2)
-        opt.add(t1 >= 0)
-
-        model = None
-        if opt.check() == z3.sat:
-            model = opt.model()
-            # mlog.debug("model: {}".format(model))
-        opt.pop()
-        return model
-
-    def _to_Z3(self, f):
-        return Z3.parse(str(f), False)
+        validate_dir = _config.tmpdir / 'validate'
+        if not validate_dir.exists():
+            validate_dir.mkdir()
+        validate_outf = validate_dir / (os.path.basename(_config.inp))
+        validate_cmd = settings.C.RANK_VALIDATE(inf=_config.inp,
+                                                outf=validate_outf, 
+                                                pos=vloop_pos,
+                                                ranks=ranks_str)
+        mlog.debug("validate_cmd: {}".format(validate_cmd))
+        validate_rmsg, validate_errmsg = CM.vcmd(validate_cmd)
+        # assert not trans_errmsg, "'{}': {}".format(trans_cmd, trans_errmsg)
+        assert validate_outf.exists(), validate_outf
+        mlog.debug("validate_rmsg: {}".format(validate_rmsg))
+        mlog.debug("validate_errmsg: {}".format(validate_errmsg))
 
     def prove(self):
         _config = self._config
@@ -845,4 +881,5 @@ class Term(object):
         # Generate ranking function template
         vs = _config.inv_decls[_config.inloop_loc]
         term_itraces = dict((term_inp, itraces[term_inp]) for term_inp in term_inps)
-        self.infer_ranking_function(vs, term_itraces)
+        rfs = self.infer_ranking_functions(vs, term_itraces)
+        self.validate_ranking_functions(rfs)

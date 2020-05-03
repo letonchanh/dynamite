@@ -34,4 +34,4 @@ class C:
 
     RANK_VALIDATE_OPTS = partial("--pos={pos} --ranks={ranks}".format)
     RANK_VALIDATE = lambda pos, ranks, inf, outf: C.CIL_CMD(ext="--dovalidate", 
-            inf=inf, outf=outf, opts=(C.TRANSFORM_OPTS(pos=pos, ranks=ranks)))
+            inf=inf, outf=outf, opts=(C.RANK_VALIDATE_OPTS(pos=pos, ranks=('"' + ranks + '"'))))

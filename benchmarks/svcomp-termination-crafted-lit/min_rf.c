@@ -8,7 +8,7 @@
 
 typedef enum {false, true} bool;
 
-int __VERIFIER_nondet_int(void) { return 0; }
+extern int __VERIFIER_nondet_int(void);
 
 int main(int argc, char **argv)
 {
