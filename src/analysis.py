@@ -833,8 +833,25 @@ class Term(object):
         # cpa.prove_reach(validate_outf)
         ult = UAutomizer(_config.tmpdir)
         r, cex = ult.prove_reach(validate_outf)
-        cex_inps = _config.solver.mk_inps_from_models(cex, _config.inp_decls, _config.exe)
-        mlog.debug("cex_inps: {}".format(cex_inps))
+        # cex_inps = _config.solver.mk_inps_from_models(cex, _config.inp_decls, _config.exe)
+        # mlog.debug("cex_inps: {}".format(cex_inps))
+
+        ss = _config.inv_decls[_config.inloop_loc].names
+        tss = tuple('t' + s for s in ss)
+        mlog.debug("ss: {}".format(ss))
+        mlog.debug("tss: {}".format(tss))
+        trans_cex = []
+        if cex:
+            for c in cex:
+                dc = dict(c)
+                vs = tuple(dc[s] for s in ss)
+                t = Trace.parse(ss, vs)
+                tvs = tuple(dc[ts] for ts in tss)
+                tt = Trace.parse(ss, tvs)
+                trans_cex.append((tt, t))
+            mlog.debug("trans_cex: {}".format(trans_cex))
+            n_rfs = self._infer_ranking_functions_from_trans(_config.inv_decls[_config.inloop_loc], trans_cex)
+            mlog.debug("n_rfs: {}".format(n_rfs))
 
     def prove(self):
         _config = self._config
