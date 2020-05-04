@@ -1,5 +1,6 @@
 from pathlib import Path
 from functools import partial
+import os
 
 logger_level = 2
 run_dig = False
@@ -17,7 +18,7 @@ VLOOP_FUN = "vloop"
 
 DYNAMITE_DIR = Path(__file__).parent.parent.parent
 
-class C:
+class CIL:
     PTR_VARS_PREFIX = 'PTR_'
 
     CIL_TRANSFORM_DIR = DYNAMITE_DIR / "deps" / "dynamo-instr"
@@ -29,9 +30,25 @@ class C:
                       cil_exe=CIL_EXE, cil_opts=CIL_OPTS)
 
     TRANSFORM_OPTS = partial("--bnd={bnd}".format)
-    TRANSFORM = lambda bnd, inf, outf: C.CIL_CMD(ext="--dotransform", 
-            inf=inf, outf=outf, opts=(C.TRANSFORM_OPTS(bnd=bnd)))
+    TRANSFORM = lambda bnd, inf, outf: CIL.CIL_CMD(ext="--dotransform", 
+            inf=inf, outf=outf, opts=(CIL.TRANSFORM_OPTS(bnd=bnd)))
 
     RANK_VALIDATE_OPTS = partial("--pos={pos} --ranks={ranks}".format)
-    RANK_VALIDATE = lambda pos, ranks, inf, outf: C.CIL_CMD(ext="--dovalidate", 
-            inf=inf, outf=outf, opts=(C.RANK_VALIDATE_OPTS(pos=pos, ranks=('"' + ranks + '"'))))
+    RANK_VALIDATE = lambda pos, ranks, inf, outf: CIL.CIL_CMD(ext="--dovalidate", 
+            inf=inf, outf=outf, opts=(CIL.RANK_VALIDATE_OPTS(pos=pos, ranks=('"' + ranks + '"'))))
+
+class REACHABILITY:
+    ARCH = 32
+    SPEC = Path('/tools/reachability.prp')
+    assert SPEC.is_file(), SPEC
+
+class CPAchecker:
+    CPA_HOME = Path(os.path.expandvars("$CPA_HOME"))
+    CPA_EXE = CPA_HOME / 'scripts' / 'cpa.sh'
+    
+    CPA_COMMON_OPTS = "-spec {spec}".format(spec=REACHABILITY.SPEC)
+    CPA_REACH_OPTS = "-predicateAnalysis -setprop counterexample.export.compressWitness=false"
+    CPA_VALIDATE_OPTS = partial("-witnessValidation -witness {witness}".format)
+    
+    CPA_CMD = partial("{cpa_exe} {cpa_opts} {cpa_task_opts} {input}".format,
+                      cpa_exe=CPA_EXE, cpa_opts=CPA_COMMON_OPTS)

@@ -24,6 +24,7 @@ from utils.logic import *
 from utils.loop import *
 from lib import *
 from solver import ZSolver, Z3Py, Z3Bin, PySMT
+from validate import Validator, CPAchecker
 
 mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
 
@@ -67,9 +68,9 @@ class Setup(object):
                 mlog.debug("Create C source for mainQ: {}".format(self.tmpdir))
                 
                 trans_outf = self.tmpdir / (os.path.basename(inp))
-                trans_cmd = settings.C.TRANSFORM(inf=inp,
-                                                 outf=trans_outf, 
-                                                 bnd=settings.LOOP_ITER_BND)
+                trans_cmd = settings.CIL.TRANSFORM(inf=inp,
+                                                   outf=trans_outf, 
+                                                   bnd=settings.LOOP_ITER_BND)
                 mlog.debug("trans_cmd: {}".format(trans_cmd))
                 trans_rmsg, trans_errmsg = CM.vcmd(trans_cmd)
                 # assert not trans_errmsg, "'{}': {}".format(trans_cmd, trans_errmsg)
@@ -185,7 +186,7 @@ class Setup(object):
         return None
 
     def _strip_ptr_loop_params(self, symbs):
-        symbs = [Symb(s.name.replace(settings.C.PTR_VARS_PREFIX, ''), 'I') if settings.C.PTR_VARS_PREFIX in s.name and s.typ == 'P' 
+        symbs = [Symb(s.name.replace(settings.CIL.PTR_VARS_PREFIX, ''), 'I') if settings.CIL.PTR_VARS_PREFIX in s.name and s.typ == 'P' 
                  else s for s in symbs]
         return Symbs(symbs)
 
@@ -832,16 +833,19 @@ class Term(object):
         if not validate_dir.exists():
             validate_dir.mkdir()
         validate_outf = validate_dir / (os.path.basename(_config.inp))
-        validate_cmd = settings.C.RANK_VALIDATE(inf=_config.inp,
-                                                outf=validate_outf, 
-                                                pos=vloop_pos,
-                                                ranks=ranks_str)
+        validate_cmd = settings.CIL.RANK_VALIDATE(inf=_config.inp,
+                                                  outf=validate_outf, 
+                                                  pos=vloop_pos,
+                                                  ranks=ranks_str)
         mlog.debug("validate_cmd: {}".format(validate_cmd))
         validate_rmsg, validate_errmsg = CM.vcmd(validate_cmd)
         # assert not trans_errmsg, "'{}': {}".format(trans_cmd, trans_errmsg)
         assert validate_outf.exists(), validate_outf
         # mlog.debug("validate_rmsg: {}".format(validate_rmsg))
         # mlog.debug("validate_errmsg: {}".format(validate_errmsg))
+
+        cpa = CPAchecker()
+        cpa.prove_reach(validate_outf)
 
     def prove(self):
         _config = self._config
