@@ -494,6 +494,7 @@ class NonTerm(object):
                     mlog.debug("init_rs: sat ({} models)".format(len(init_rs)))
                     rs = _config.solver.mk_inps_from_models(
                                 init_rs, _config.inp_decls, _config.exe)
+                    # mlog.debug("rs: {}".format(rs))
                 return rs
 
             chks = [(rc, _check(rc)) for rc in rcs]
@@ -847,7 +848,9 @@ class Term(object):
         # cpa = CPAchecker()
         # cpa.prove_reach(validate_outf)
         ult = UAutomizer(_config.tmpdir)
-        ult.prove_reach(validate_outf)
+        r, cex = ult.prove_reach(validate_outf)
+        cex_inps = _config.solver.mk_inps_from_models(cex, _config.inp_decls, _config.exe)
+        mlog.debug("cex_inps: {}".format(cex_inps))
 
     def prove(self):
         _config = self._config

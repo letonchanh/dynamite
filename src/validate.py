@@ -18,6 +18,7 @@ class Validator(object):
 
     def prove_reach(self, input):
         cwd = os.getcwd()
+        cex = None
         try:
             os.chdir(self.tmpdir)
             assert input.is_file(), input
@@ -37,10 +38,10 @@ class Validator(object):
                 mlog.debug("v_rmsg: {}".format(v_rmsg))
                 # mlog.debug("v_errmsg: {}".format(v_errmsg))
                 v_res = self.parse_rmsg(v_rmsg)
-                cex = self.tmpdir / self.cex_name
+                cex_file = self.tmpdir / self.cex_name
                 assert v_res is False, v_res
-                assert cex.is_file(), cex
-                cex_model = self.parse_cex(cex)
+                assert cex_file.is_file(), cex_file
+                cex = self.parse_cex(cex_file)
 
         except Exception as ex:
             mlog.debug("Exception: {}".format(ex))
@@ -48,7 +49,7 @@ class Validator(object):
             res = None
         finally:
             os.chdir(cwd)
-            return res
+            return res, cex
 
     def _get_substring(self, s, start_indicator, end_indicator=None):
         start_index = s.find(start_indicator)
@@ -98,9 +99,7 @@ class CPAchecker(Validator):
         return 'UltimateCounterExample.errorpath'
 
     def parse_cex(self, cex):
-        model_lines = [l for l in CM.iread(cex) if 'VAL' in l]
-        last_model_line = model_lines[-1]
-        mlog.debug("last_model_line: {}".format(last_model_line))
+        raise NotImplementedError
 
 class Ultimate(Validator):
     @property
@@ -128,14 +127,15 @@ class Ultimate(Validator):
         return 'UltimateCounterExample.errorpath'
 
     def parse_cex(self, cex):
-        model_lines = [l for l in CM.iread(cex) if 'VAL' in l]
-        last_model_line = model_lines[-1]
-        mlog.debug("last_model_line: {}".format(last_model_line))
-        model_str = self._get_substring(last_model_line, '[', end_indicator=']')
+        val_lines = [l for l in CM.iread(cex) if 'VAL' in l]
+        last_val_line = val_lines[-1]
+        mlog.debug("last_val_line: {}".format(last_val_line))
+        model_str = self._get_substring(last_val_line, '[', end_indicator=']')
         model_parts = model_str.split(', ')
         model = [part.strip().split('=') for part in model_parts]
-        model = {m[0]: m[1] for m in model}
-        mlog.debug("model: {}".format(model))
+        cex = [(p[0], p[1]) for p in model]
+        mlog.debug("cex: {}".format(cex))
+        return [cex]
 
 class UAutomizer(Ultimate):
     @property
