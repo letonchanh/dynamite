@@ -846,7 +846,7 @@ class Term(object):
 
         # cpa = CPAchecker()
         # cpa.prove_reach(validate_outf)
-        ult = UAutomizer(_config.tmpdir)
+        ult = CPAchecker(_config.tmpdir)
         ult.prove_reach(validate_outf)
 
     def prove(self):
