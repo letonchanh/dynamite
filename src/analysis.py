@@ -805,9 +805,9 @@ class Term(object):
         mlog.debug("ranking_function_list: {}".format(ranking_function_list))
         return ranking_function_list
 
-    def validate_ranking_functions(self, rfs):
+    def validate_ranking_functions(self, vs, rfs):
         _config = self._config
-        ranks_str = '|'.join(['{}'.format(rf) for rf in rfs[1:]]) ####
+        ranks_str = '|'.join(['{}'.format(rf) for rf in (rfs[1:] if len(rfs) > 1 else rfs)])
         mlog.debug("ranks_str: {}".format(ranks_str))
         vloop_name = _config._get_vloop()
         mlog.debug("vloop_name: {}".format(vloop_name))
@@ -836,22 +836,26 @@ class Term(object):
         # cex_inps = _config.solver.mk_inps_from_models(cex, _config.inp_decls, _config.exe)
         # mlog.debug("cex_inps: {}".format(cex_inps))
 
-        ss = _config.inv_decls[_config.inloop_loc].names
-        tss = tuple('t' + s for s in ss)
-        mlog.debug("ss: {}".format(ss))
-        mlog.debug("tss: {}".format(tss))
-        trans_cex = []
-        if cex:
-            for c in cex:
-                dc = dict(c)
-                vs = tuple(dc[s] for s in ss)
-                t = Trace.parse(ss, vs)
-                tvs = tuple(dc[ts] for ts in tss)
-                tt = Trace.parse(ss, tvs)
-                trans_cex.append((tt, t))
-            mlog.debug("trans_cex: {}".format(trans_cex))
-            n_rfs = self._infer_ranking_functions_from_trans(_config.inv_decls[_config.inloop_loc], trans_cex)
-            mlog.debug("n_rfs: {}".format(n_rfs))
+        if r:
+            return r, rfs
+        else:
+            ss = vs.names
+            tss = tuple('t' + s for s in ss)
+            # mlog.debug("ss: {}".format(ss))
+            # mlog.debug("tss: {}".format(tss))
+            trans_cex = []
+            if cex:
+                for c in cex:
+                    dc = dict(c)
+                    vs = tuple(dc[s] for s in ss)
+                    t = Trace.parse(ss, vs)
+                    tvs = tuple(dc[ts] for ts in tss)
+                    tt = Trace.parse(ss, tvs)
+                    trans_cex.append((tt, t))
+                mlog.debug("trans_cex: {}".format(trans_cex))
+                n_rfs = self._infer_ranking_functions_from_trans(_config.inv_decls[_config.inloop_loc], trans_cex)
+                mlog.debug("n_rfs: {}".format(n_rfs))
+            return self.validate_ranking_functions(vs, rfs + n_rfs)
 
     def prove(self):
         _config = self._config
@@ -891,5 +895,6 @@ class Term(object):
         # Generate ranking function template
         vs = _config.inv_decls[_config.inloop_loc]
         term_itraces = dict((term_inp, itraces[term_inp]) for term_inp in term_inps)
+        # while
         rfs = self.infer_ranking_functions(vs, term_itraces)
-        self.validate_ranking_functions(rfs)
+        self.validate_ranking_functions(vs, rfs)
