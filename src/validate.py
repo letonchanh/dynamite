@@ -50,16 +50,27 @@ class Validator(object):
             os.chdir(cwd)
             return res
 
-    def parse_rmsg(self, rmsg):
-        res_index = rmsg.find(self.res_keyword)
-        if res_index != -1:
-            res = rmsg[(res_index + len(self.res_keyword)):]
-            if 'TRUE' in res:
-                return True
-            elif 'FALSE' in res:
-                return False
+    def _get_substring(self, s, start_indicator, end_indicator=None):
+        start_index = s.find(start_indicator)
+        if start_index != -1:
+            if end_indicator:
+                end_index = s.find(end_indicator)
+                if end_index != -1:
+                    return s[(start_index + len(start_indicator)):end_index]
+                else:
+                    return s[(start_index + len(start_indicator)):]
             else:
-                return None
+                return s[(start_index + len(start_indicator)):]
+        else:
+            return None
+
+    def parse_rmsg(self, rmsg):
+        res = self._get_substring(rmsg, self.res_keyword)
+        mlog.debug("res: {}".format(res))
+        if 'TRUE' in res:
+            return True
+        elif 'FALSE' in res:
+            return False
         else:
             return None
 
@@ -120,6 +131,11 @@ class Ultimate(Validator):
         model_lines = [l for l in CM.iread(cex) if 'VAL' in l]
         last_model_line = model_lines[-1]
         mlog.debug("last_model_line: {}".format(last_model_line))
+        model_str = self._get_substring(last_model_line, '[', end_indicator=']')
+        model_parts = model_str.split(', ')
+        model = [part.strip().split('=') for part in model_parts]
+        model = {m[0]: m[1] for m in model}
+        mlog.debug("model: {}".format(model))
 
 class UAutomizer(Ultimate):
     @property
