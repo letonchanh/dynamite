@@ -52,3 +52,14 @@ class CPAchecker:
     
     CPA_CMD = partial("{cpa_exe} {cpa_opts} {cpa_task_opts} {input}".format,
                       cpa_exe=CPA_EXE, cpa_opts=CPA_COMMON_OPTS)
+
+class Ultimate:
+    ULT_HOME = Path(os.path.expandvars("$ULT_HOME"))
+    ULT_EXE = lambda variant: Ultimate.ULT_HOME / 'releaseScripts' / 'default' / ('{variant}-linux'.format(variant=variant)) / 'Ultimate.py'
+
+    ULT_COMMON_OPTS = "--spec {spec} --architecture {arch}bit".format(spec=REACHABILITY.SPEC, arch=REACHABILITY.ARCH)
+    
+    ULT_CMD = lambda variant, input: "{ult_exe} {ult_opts} --file {input}".format(
+                                        ult_exe=Ultimate.ULT_EXE(variant), 
+                                        ult_opts=Ultimate.ULT_COMMON_OPTS,
+                                        input=input)

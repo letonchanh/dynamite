@@ -28,3 +28,8 @@ class CPAchecker(Validator):
     def validate_witness_cmd(self):
         return partial(settings.CPAchecker.CPA_CMD, 
                        cpa_task_opts=settings.CPAchecker.CPA_VALIDATE_OPTS)
+
+class UAutomizer(Validator):
+    @property
+    def prove_reach_cmd(self):
+        return partial(settings.Ultimate.ULT_CMD, variant="UAutomizer")

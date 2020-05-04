@@ -24,7 +24,7 @@ from utils.logic import *
 from utils.loop import *
 from lib import *
 from solver import ZSolver, Z3Py, Z3Bin, PySMT
-from validate import Validator, CPAchecker
+from validate import Validator, CPAchecker, UAutomizer
 
 mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
 
@@ -844,8 +844,10 @@ class Term(object):
         # mlog.debug("validate_rmsg: {}".format(validate_rmsg))
         # mlog.debug("validate_errmsg: {}".format(validate_errmsg))
 
-        cpa = CPAchecker()
-        cpa.prove_reach(validate_outf)
+        # cpa = CPAchecker()
+        # cpa.prove_reach(validate_outf)
+        ult = UAutomizer()
+        ult.prove_reach(validate_outf)
 
     def prove(self):
         _config = self._config
