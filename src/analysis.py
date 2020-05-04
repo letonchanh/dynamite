@@ -822,7 +822,7 @@ class Term(object):
 
     def validate_ranking_functions(self, rfs):
         _config = self._config
-        ranks_str = '|'.join(['{}'.format(rf) for rf in rfs])
+        ranks_str = '|'.join(['{}'.format(rf) for rf in rfs[1:]]) ####
         mlog.debug("ranks_str: {}".format(ranks_str))
         vloop_name = _config._get_vloop()
         mlog.debug("vloop_name: {}".format(vloop_name))
@@ -846,7 +846,7 @@ class Term(object):
 
         # cpa = CPAchecker()
         # cpa.prove_reach(validate_outf)
-        ult = UAutomizer()
+        ult = UAutomizer(_config.tmpdir)
         ult.prove_reach(validate_outf)
 
     def prove(self):

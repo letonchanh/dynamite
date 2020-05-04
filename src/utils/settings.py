@@ -57,9 +57,9 @@ class Ultimate:
     ULT_HOME = Path(os.path.expandvars("$ULT_HOME"))
     ULT_EXE = lambda variant: Ultimate.ULT_HOME / 'releaseScripts' / 'default' / ('{variant}-linux'.format(variant=variant)) / 'Ultimate.py'
 
-    ULT_COMMON_OPTS = "--spec {spec} --architecture {arch}bit".format(spec=REACHABILITY.SPEC, arch=REACHABILITY.ARCH)
+    ULT_COMMON_OPTS = partial("--spec {spec} --architecture {arch}bit --witness-dir {witness_dir} --witness-name {witness_name}".format, spec=REACHABILITY.SPEC, arch=REACHABILITY.ARCH)
     
-    ULT_CMD = lambda variant, input: "{ult_exe} {ult_opts} --file {input}".format(
-                                        ult_exe=Ultimate.ULT_EXE(variant), 
-                                        ult_opts=Ultimate.ULT_COMMON_OPTS,
+    ULT_CMD = lambda variant, witness_dir, witness_name, input: "{ult_exe} {ult_opts} --file {input}".format(
+                                        ult_exe=Ultimate.ULT_EXE(variant=variant), 
+                                        ult_opts=Ultimate.ULT_COMMON_OPTS(witness_dir=witness_dir, witness_name=witness_name),
                                         input=input)
