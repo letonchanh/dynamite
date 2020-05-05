@@ -1,4 +1,5 @@
 import os
+import re
 import traceback
 import shutil
 from pathlib import Path
@@ -130,8 +131,18 @@ class CPAchecker(Validator):
     def cex_filename(self):
         return 'output/Counterexample.1.assignment.txt'
 
-    def parse_trans_cex(self, cex):
-        # val_lines = [l for l in CM.iread(cex) if 'VAL' in l]
+    def parse_trans_cex(self, vs, cex):
+        lines = [l.strip() for l in CM.iread(cex)]
+        regex = r"([_a-zA-Z0-9]+::)?([_a-zA-Z0-9]+)@(\d+): (\d+)"
+        for l in lines:
+            mlog.debug(l)
+            match = re.match(regex, l)
+            x = match.group(2)
+            i = match.group(3)
+            v = match.group(4)
+            for i in range(2, len(matches.groups()) + 1):
+                mlog.debug(matches.group(i))
+
         # last_val_line = val_lines[-1]
         # mlog.debug("last_val_line: {}".format(last_val_line))
         # model_str = self._get_substring(last_val_line, '[', end_indicator=']')
