@@ -7,6 +7,7 @@ from functools import partial
 import helpers.vcommon as CM
 import data.traces
 from utils import settings
+from collections import defaultdict 
 
 mlog = CM.getLogger(__name__, settings.logger_level)
 
@@ -26,7 +27,7 @@ class Validator(object):
             os.chdir(self.tmpdir)
             assert input.is_file(), input
             if self.output_dir and self.output_dir.is_dir():
-                shutil.rmtree(dirpath)
+                shutil.rmtree(self.output_dir)
 
             pcmd = self.prove_reach_cmd(input=input)
             mlog.debug("pcmd: {}".format(pcmd))
@@ -103,11 +104,11 @@ class Validator(object):
 class CPAchecker(Validator):
     def __init__(self, tmpdir):
         super().__init__(tmpdir)
-        self.output_dir = self.tmpdir / 'output'
+        self.output_dir = self.tmpdir / settings.CPAchecker.CPA_OUTPUT_DIR
 
     @property
     def short_name(self):
-        return "cpa"
+        return settings.CPAchecker.CPA_SHORT_NAME
 
     @property
     def prove_reach_cmd(self):
@@ -121,37 +122,47 @@ class CPAchecker(Validator):
 
     @property
     def witness_filename(self):
-        return 'output/Counterexample.1.graphml'
+        return settings.CPAchecker.CPA_WITNESS_NAME
     
     @property
     def res_keyword(self):
-        return 'Verification result:'
+        return settings.CPAchecker.CPA_RES_KEYWORD
 
     @property
     def cex_filename(self):
-        return 'output/Counterexample.1.assignment.txt'
+        return settings.CPAchecker.CPA_CEX_NAME
 
     def parse_trans_cex(self, vs, cex):
         lines = [l.strip() for l in CM.iread(cex)]
         regex = r"([_a-zA-Z0-9]+::)?([_a-zA-Z0-9]+)@(\d+): (\d+)"
+        ss = vs.names
+        ss_len = len(ss)
+        dcex = defaultdict(dict)
+        is_interesting_local_var = lambda x: x in ss
         for l in lines:
             mlog.debug(l)
             match = re.match(regex, l)
             x = match.group(2)
-            i = match.group(3)
-            v = match.group(4)
-            for i in range(2, len(matches.groups()) + 1):
-                mlog.debug(matches.group(i))
-
-        # last_val_line = val_lines[-1]
-        # mlog.debug("last_val_line: {}".format(last_val_line))
-        # model_str = self._get_substring(last_val_line, '[', end_indicator=']')
-        # model_parts = model_str.split(', ')
-        # model = [part.strip().split('=') for part in model_parts]
-        # cex = [(p[0], p[1]) for p in model]
-        # mlog.debug("cex: {}".format(cex))
-        # return [cex]
-        raise NotImplementedError
+            if is_interesting_local_var(x):
+                i = int(match.group(3))
+                v = int(match.group(4))
+                dcex[i][x] = v
+        mlog.debug("dcex: {}".format(dcex))
+        latest_i = None
+        for i in sorted(dcex.keys(), reverse=True):
+            if len(dcex[i]) == ss_len:
+                j = i - 1
+                if j in dcex and len(dcex[j]) == ss_len:
+                    latest_i = i
+        if latest_i:
+            xs = tuple(dcex[latest_i][x] for x in ss)
+            txs = tuple(dcex[latest_i - 1][x] for x in ss)
+            t = data.traces.Trace.parse(ss, xs)
+            tt = data.traces.Trace.parse(ss, txs)
+            trans_cex = (tt, t)
+            mlog.debug("trans_cex: {}".format(trans_cex))
+            return [trans_cex]
+        return []
 
 class Ultimate(Validator):
     @property
@@ -172,15 +183,15 @@ class Ultimate(Validator):
 
     @property
     def witness_filename(self):
-        return 'witness.graphml'
+        return settings.Ultimate.ULT_WITNESS_NAME
 
     @property
     def res_keyword(self):
-        return 'Result:'
+        return settings.Ultimate.ULT_RES_KEYWORD
 
     @property
     def cex_filename(self):
-        return 'UltimateCounterExample.errorpath'
+        return settings.Ultimate.ULT_CEX_NAME
 
     def parse_trans_cex(self, vs, cex):
         val_lines = [l for l in CM.iread(cex) if 'VAL' in l]
@@ -207,9 +218,9 @@ class Ultimate(Validator):
 class UAutomizer(Ultimate):
     @property
     def short_name(self):
-        return "ult"
+        return settings.Ultimate.UAUTOMIZER_SHORT_NAME
 
     @property
     def name(self):
-        return 'UAutomizer'
+        return settings.Ultimate.UAUTOMIZER_FULL_NAME
         

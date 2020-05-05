@@ -53,6 +53,12 @@ class CPAchecker:
     CPA_CMD = partial("{cpa_exe} {cpa_opts} {cpa_task_opts} {input}".format)
     CPA_RUN = partial(CPA_CMD, cpa_exe=CPA_EXE, cpa_opts=CPA_COMMON_OPTS)
 
+    CPA_SHORT_NAME = 'cpa'
+    CPA_OUTPUT_DIR = 'output'
+    CPA_CEX_NAME = CPA_OUTPUT_DIR + '/' + 'Counterexample.1.assignment.txt'
+    CPA_WITNESS_NAME = CPA_OUTPUT_DIR + '/' + 'Counterexample.1.graphml'
+    CPA_RES_KEYWORD = 'Verification result:'
+
 class Ultimate:
     ULT_HOME = Path(os.path.expandvars("$ULT_HOME"))
     ULT_EXE = lambda variant: Ultimate.ULT_HOME / 'releaseScripts' / 'default' / ('{variant}-linux'.format(variant=variant)) / 'Ultimate.py'
@@ -71,3 +77,11 @@ class Ultimate:
                     ult_task_opts=(Ultimate.ULT_REACH_OPTS(witness_dir=witness_dir, witness_name=witness_name) if task is Ultimate.ULT_REACH_TASK
                                     else Ultimate.ULT_VALIDATE_OPTS(witness_dir=witness_dir, witness_name=witness_name)), 
                     input=input)
+
+    UAUTOMIZER_SHORT_NAME = 'ult'
+    UAUTOMIZER_FULL_NAME = 'UAutomizer'
+    
+    ULT_OUTPUT_DIR = ''
+    ULT_CEX_NAME = 'UltimateCounterExample.errorpath'
+    ULT_WITNESS_NAME = 'witness.graphml'
+    ULT_RES_KEYWORD = 'Result:'
