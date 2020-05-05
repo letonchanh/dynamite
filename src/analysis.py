@@ -457,7 +457,7 @@ class NonTerm(object):
 
             # Unreachable recurrent set
             if init_transrel_rcs.is_unsat():
-                return False, None
+                return False, None, None
 
             dg = defaultdict(list)
             def _check(rc):
@@ -562,6 +562,8 @@ class NonTerm(object):
         candidate_nrcs = []
 
         # Candidate rcs from potential termination invs
+        # A /\ B /\ C
+        # RCS /\ !A, RCS /\ !B
         for term_inv in term_invs:
             # mlog.debug("term_inv: {}".format(term_inv))
             nrcs = copy.deepcopy(rcs)
@@ -712,6 +714,7 @@ class Term(object):
         _config = self._config
         
         # Create and randomly pick terminating transitive closure transitions 
+        # input: (t1: {x=2, y=3, z=5}, t2, t3) -> [(t1, t2), (t1, t3), (t2, t3)]
         train_rand_trans = []
         for term_inp in term_itraces:
             term_traces = term_itraces[term_inp]
