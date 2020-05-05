@@ -788,7 +788,7 @@ class Term(object):
                 
                 # start_time = timeit.default_timer()
                 invalid_train_term_rand_trans = itertools.filterfalse(lambda t: (self._check_ranking_function_trans(*t, model)),
-                                                           train_term_rand_trans)
+                                                                      train_term_rand_trans)
                 # elapsed = timeit.default_timer() - start_time
                 # mlog.debug("invalid_train_term_rand_trans: {}".format(elapsed * 1000000))
 
@@ -808,53 +808,25 @@ class Term(object):
     def validate_ranking_functions(self, vs, rfs):
         _config = self._config
         ranks_str = '|'.join(['{}'.format(rf) for rf in (rfs[1:] if len(rfs) > 1 else rfs)])
+        # ranks_str = '|'.join(['{}'.format(rf) for rf in rfs])
         mlog.debug("ranks_str: {}".format(ranks_str))
         vloop_name = _config._get_vloop()
         mlog.debug("vloop_name: {}".format(vloop_name))
         vloop_pos = _config._get_vloop_pos(vloop_name)
         assert vloop_pos, vloop_pos
-
-        validate_dir = _config.tmpdir / 'validate'
-        if not validate_dir.exists():
-            validate_dir.mkdir()
-        validate_outf = validate_dir / (os.path.basename(_config.inp))
-        validate_cmd = settings.CIL.RANK_VALIDATE(inf=_config.inp,
-                                                  outf=validate_outf, 
-                                                  pos=vloop_pos,
-                                                  ranks=ranks_str)
-        mlog.debug("validate_cmd: {}".format(validate_cmd))
-        validate_rmsg, validate_errmsg = CM.vcmd(validate_cmd)
-        # assert not trans_errmsg, "'{}': {}".format(trans_cmd, trans_errmsg)
-        assert validate_outf.exists(), validate_outf
-        # mlog.debug("validate_rmsg: {}".format(validate_rmsg))
-        # mlog.debug("validate_errmsg: {}".format(validate_errmsg))
-
-        # cpa = CPAchecker()
-        # cpa.prove_reach(validate_outf)
-        ult = UAutomizer(_config.tmpdir)
-        r, cex = ult.prove_reach(validate_outf)
+        
+        # validator = CPAchecker(_config.tmpdir)
+        validator = UAutomizer(_config.tmpdir)
+        validate_outf = validator.gen_validate_file(_config.inp, vloop_pos, ranks_str)
+        r, trans_cex = validator.prove_reach(vs, validate_outf)
         # cex_inps = _config.solver.mk_inps_from_models(cex, _config.inp_decls, _config.exe)
         # mlog.debug("cex_inps: {}".format(cex_inps))
 
         if r:
             return r, rfs
         else:
-            ss = vs.names
-            tss = tuple('t' + s for s in ss)
-            # mlog.debug("ss: {}".format(ss))
-            # mlog.debug("tss: {}".format(tss))
-            trans_cex = []
-            if cex:
-                for c in cex:
-                    dc = dict(c)
-                    vs = tuple(dc[s] for s in ss)
-                    t = Trace.parse(ss, vs)
-                    tvs = tuple(dc[ts] for ts in tss)
-                    tt = Trace.parse(ss, tvs)
-                    trans_cex.append((tt, t))
-                mlog.debug("trans_cex: {}".format(trans_cex))
-                n_rfs = self._infer_ranking_functions_from_trans(_config.inv_decls[_config.inloop_loc], trans_cex)
-                mlog.debug("n_rfs: {}".format(n_rfs))
+            n_rfs = self._infer_ranking_functions_from_trans(_config.inv_decls[_config.inloop_loc], trans_cex)
+            mlog.debug("n_rfs: {}".format(n_rfs))
             return self.validate_ranking_functions(vs, rfs + n_rfs)
 
     def prove(self):
