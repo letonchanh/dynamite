@@ -86,8 +86,6 @@ class Validator(object):
         validate_dir = self.tmpdir / 'validate'
         if not validate_dir.exists():
             validate_dir.mkdir()
-        # os.chdir(validate_dir)
-        # mlog.debug("Changed cwd to {}".format(os.getcwd()))
         validate_outf = validate_dir / (os.path.basename(input))
         validate_cmd = settings.CIL.RANK_VALIDATE(inf=input,
                                                   outf=validate_outf, 
@@ -100,6 +98,14 @@ class Validator(object):
         # mlog.debug("validate_errmsg: {}".format(validate_errmsg))
         assert validate_outf.exists(), validate_outf
         return validate_outf
+
+    def clean(self):
+        cwd = os.path.dirname(__file__)
+        items = os.listdir(cwd)
+
+        for item in items:
+            if item.endswith(".i") or item.endswith(".o"):
+                os.remove(os.path.join(cwd, item))
 
 class CPAchecker(Validator):
     def __init__(self, tmpdir):

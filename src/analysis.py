@@ -824,6 +824,7 @@ class Term(object):
         r, trans_cex = validator.prove_reach(vs, validate_outf)
         # cex_inps = _config.solver.mk_inps_from_models(cex, _config.inp_decls, _config.exe)
         # mlog.debug("cex_inps: {}".format(cex_inps))
+        validator.clean()
 
         if r:
             return r, rfs
