@@ -102,16 +102,25 @@
     PATH=/usr/bin:$PATH make (oc|all)
     ```
     
-- Install OCaml
+- Install OCaml and build instrumentation tools
     ```
     sh <(curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)
     opam init
     opam switch create 4.05.0
     opam install oasis cil camlp4
+    ```
+    
+    ```
     cd dynamo/deps/dig/src/ocaml
     oasis setup
     make
     mv instr.native instr.exe
+    ```
+    
+    ```
+    cd dynamo/deps/dynamo-instr/src/cil
+    ./configure
+    make
     ```
     
 - Config in `bashrc`
@@ -121,9 +130,12 @@
     export LLVM=~/tools/llvm-project/build
     export JPF_HOME=~/tools/jpf
     export CIVL_HOME=/tools/civl
+    export CPA_HOME=/tools/CPAchecker-1.9-unix
+    export ULT_HOME=/tools/ultimate
+    export PYSMT=/tools/pysmt
     export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
     export PATH=$SAGE_ROOT/local/bin:$LLVM/bin:$Z3/build:$PATH
-    export PYTHONPATH=$SAGE_ROOT/local/lib/python3.7/site-packages:$LLVM/lib/python3.7/site-packages:$Z3/build/python:$PYTHONPATH
+    export PYTHONPATH=$SAGE_ROOT/local/lib/python3.7/site-packages:$LLVM/lib/python3.7/site-packages:$Z3/build/python:$PYSMT:$PYTHONPATH
     export LD_LIBRARY_PATH=$SAGE_ROOT/local/lib:$JPF_HOME/jpf-symbc/lib:$Z3/build:$LD_LIBRARY_PATH
     ```
     
