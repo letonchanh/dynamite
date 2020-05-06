@@ -88,14 +88,20 @@ class Validator(object):
             return None
 
     def parse_rmsg(self, rmsg):
-        res = self._get_substring(rmsg, self.res_keyword)
-        mlog.debug("res: {}".format(res))
-        if 'TRUE' in res:
-            return True
-        elif 'FALSE' in res:
-            return False
-        else:
+        # res = self._get_substring(rmsg, self.res_keyword)
+        # mlog.debug("res: {}".format(res))
+        regex = r"{}\s*(TRUE|FALSE)".format(self.res_keyword)
+        match = re.search(regex, rmsg)
+        if match is None:
             return None
+        else:
+            res = match.group(1)
+            if 'TRUE' in res:
+                return True
+            elif 'FALSE' in res:
+                return False
+            else:
+                return None
 
     def gen_validate_file(self, input, pos, ranks):
         validate_dir = self.tmpdir / 'validate'
@@ -159,7 +165,8 @@ class CPAchecker(Validator):
 
     def parse_trans_cex(self, vs, cex):
         lines = [l.strip() for l in CM.iread(cex)]
-        regex = r"([_a-zA-Z0-9]+::)?([_a-zA-Z0-9]+)@(\d+): (\d+)"
+        # regex = r"([_a-zA-Z0-9]+::)?([_a-zA-Z0-9]+)@(\d+): (\d+)"
+        regex = r"(\w+::)?(\w+)@(\d+): (\d+)"
         ss = vs.names
         ss_len = len(ss)
         dcex = defaultdict(dict)
@@ -167,11 +174,12 @@ class CPAchecker(Validator):
         for l in lines:
             mlog.debug(l)
             match = re.match(regex, l)
-            x = match.group(2)
-            if is_interesting_local_var(x):
-                i = int(match.group(3))
-                v = int(match.group(4))
-                dcex[i][x] = v
+            if match:
+                x = match.group(2)
+                if is_interesting_local_var(x):
+                    i = int(match.group(3))
+                    v = int(match.group(4))
+                    dcex[i][x] = v
         mlog.debug("dcex: {}".format(dcex))
         latest_i = None
         for i in sorted(dcex.keys(), reverse=True):
@@ -276,4 +284,3 @@ class Portfolio(Validator):
         vid, r = wrs[0]
         mlog.debug('Got result firstly from {}'.format(vid))
         return r
-        
