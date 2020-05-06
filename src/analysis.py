@@ -810,16 +810,16 @@ class Term(object):
 
     def validate_ranking_functions(self, vs, rfs):
         _config = self._config
-        # ranks_str = '|'.join(['{}'.format(rf) for rf in (rfs[1:] if len(rfs) > 1 else rfs)])
-        ranks_str = '|'.join(['{}'.format(rf) for rf in rfs])
+        ranks_str = '|'.join(['{}'.format(rf) for rf in (rfs[1:] if len(rfs) > 1 else rfs)])
+        # ranks_str = '|'.join(['{}'.format(rf) for rf in rfs])
         mlog.debug("ranks_str: {}".format(ranks_str))
         vloop_name = _config._get_vloop()
         mlog.debug("vloop_name: {}".format(vloop_name))
         vloop_pos = _config._get_vloop_pos(vloop_name)
         assert vloop_pos, vloop_pos
         
-        validator = CPAchecker(_config.tmpdir)
-        # validator = UAutomizer(_config.tmpdir)
+        # validator = CPAchecker(_config.tmpdir)
+        validator = UAutomizer(_config.tmpdir)
         # validator = Portfolio(_config.tmpdir)
         validate_outf = validator.gen_validate_file(_config.inp, vloop_pos, ranks_str)
         r, trans_cex = validator.prove_reach(vs, validate_outf)

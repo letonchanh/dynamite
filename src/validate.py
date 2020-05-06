@@ -73,19 +73,19 @@ class Validator(object):
         #     raise NotImplementedError
         return cex_file
 
-    def _get_substring(self, s, start_indicator, end_indicator=None):
-        start_index = s.find(start_indicator)
-        if start_index != -1:
-            if end_indicator:
-                end_index = s.find(end_indicator)
-                if end_index != -1:
-                    return s[(start_index + len(start_indicator)):end_index]
-                else:
-                    return s[(start_index + len(start_indicator)):]
-            else:
-                return s[(start_index + len(start_indicator)):]
-        else:
-            return None
+    # def _get_substring(self, s, start_indicator, end_indicator=None):
+    #     start_index = s.find(start_indicator)
+    #     if start_index != -1:
+    #         if end_indicator:
+    #             end_index = s.find(end_indicator)
+    #             if end_index != -1:
+    #                 return s[(start_index + len(start_indicator)):end_index]
+    #             else:
+    #                 return s[(start_index + len(start_indicator)):]
+    #         else:
+    #             return s[(start_index + len(start_indicator)):]
+    #     else:
+    #         return None
 
     def parse_rmsg(self, rmsg):
         # res = self._get_substring(rmsg, self.res_keyword)
@@ -166,7 +166,7 @@ class CPAchecker(Validator):
     def parse_trans_cex(self, vs, cex):
         lines = [l.strip() for l in CM.iread(cex)]
         # regex = r"([_a-zA-Z0-9]+::)?([_a-zA-Z0-9]+)@(\d+): (\d+)"
-        regex = r"(\w+::)?(\w+)@(\d+): (\d+)"
+        regex = r"(\w+::)?(\w+)@(\d+): (-?\d+)"
         ss = vs.names
         ss_len = len(ss)
         dcex = defaultdict(dict)
@@ -231,13 +231,24 @@ class Ultimate(Validator):
         return None
 
     def parse_trans_cex(self, vs, cex):
-        val_lines = [l for l in CM.iread(cex) if 'VAL' in l]
-        last_val_line = val_lines[-1]
-        mlog.debug("last_val_line: {}".format(last_val_line))
-        model_str = self._get_substring(last_val_line, '[', end_indicator=']')
-        model_parts = model_str.split(', ')
-        model = [part.strip().split('=') for part in model_parts]
-        dcex = dict((p[0], p[1]) for p in model)
+        # val_lines = [l for l in CM.iread(cex) if 'VAL' in l]
+        # last_val_line = val_lines[-1]
+        # mlog.debug("last_val_line: {}".format(last_val_line))
+        # model_str = self._get_substring(last_val_line, '[', end_indicator=']')
+        # model_parts = model_str.split(', ')
+        # model = [part.strip().split('=') for part in model_parts]
+        # dcex = dict((p[0], p[1]) for p in model)
+
+        lines = CM.iread(cex)
+        regex = r"VAL\s*\[(.*)\]"
+        match = re.findall(regex, '\n'.join(lines))
+        if not match:
+            return []
+        model_str = match[-1]
+        mregex = r"(\w+)=(-?\d+)"
+        model = re.findall(mregex, model_str)
+        dcex = dict(model)
+        
         mlog.debug("dcex: {}".format(dcex))
 
         ss = vs.names
