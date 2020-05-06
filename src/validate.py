@@ -2,6 +2,7 @@ import os
 import re
 import traceback
 import shutil
+import z3
 from pathlib import Path
 from functools import partial
 import helpers.vcommon as CM
@@ -27,6 +28,7 @@ class Validator(object):
     def prove_reach(self, vs, input):
         cwd = os.getcwd()
         trans_cex = None
+        sym_cex = None
         try:
             os.chdir(self.tmpdir)
             assert input.is_file(), input
@@ -41,16 +43,16 @@ class Validator(object):
             res = self.parse_rmsg(rmsg)
             mlog.debug("res: {}".format(res))
             if res is False:
-                cex_file = self.validate_witness(input, expected_result=res)
+                cex_file, smtlib_cex = self.validate_witness(input, expected_result=res)
                 trans_cex = self.parse_trans_cex(vs, cex_file)
-
+                sym_cex = smtlib_cex
         except Exception as ex:
             mlog.debug("Exception: {}".format(ex))
             mlog.debug(traceback.format_exc())
             res = None
         finally:
             os.chdir(cwd)
-            return res, trans_cex
+            return res, trans_cex, sym_cex
 
     def validate_witness(self, input, expected_result=False):
         assert self.witness.is_file(), self.witness
@@ -64,14 +66,13 @@ class Validator(object):
         assert v_res is expected_result, v_res
         cex_file = self.tmpdir / self.cex_filename
         assert cex_file.is_file(), cex_file
-        # if self.cex_smtlib_filename:
-        #     smtlib_file = self.tmpdir / self.cex_smtlib_filename
-        #     assert smtlib_file.is_file(), smtlib_file
-        #     f = z3.parse_smt2_file()
-        #     s = Solver()
-        #     s.add(f)
-        #     raise NotImplementedError
-        return cex_file
+        sym_cex = None
+        if self.cex_smtlib_filename:
+            smtlib_file = self.tmpdir / self.cex_smtlib_filename
+            assert smtlib_file.is_file(), smtlib_file
+            f = z3.parse_smt2_file(str(smtlib_file))
+            sym_cex = f
+        return cex_file, sym_cex
 
     # def _get_substring(self, s, start_indicator, end_indicator=None):
     #     start_index = s.find(start_indicator)

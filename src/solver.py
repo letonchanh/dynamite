@@ -59,10 +59,13 @@ class ZSolver(object):
         if not using_random_seed:
             return Z3.get_models(f, k)
 
-        assert z3.is_expr(f) or isinstance(f, logic.ZFormula), f
+        def is_z3_assertions(f):
+            return z3.is_expr(f) or isinstance(f, z3.AstVector) 
+
+        assert is_z3_assertions(f) or isinstance(f, logic.ZFormula), '{}: {}'.format(type(f), f)
         assert k >= 1, k
 
-        if z3.is_expr(f):
+        if is_z3_assertions(f):
             fe = f
         else:
             fe = f.expr()

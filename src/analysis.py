@@ -52,7 +52,8 @@ class Setup(object):
         # self.solver = ZSolver(self.tmpdir)
         # self.solver = PySMT() 
         self.solver = Z3Py()
-        
+                
+        self.init_symvars_prefix = None
         if self.is_binary_inp:
             from bin import Bin
             prog = Bin(self.inloop_loc, inp)
@@ -66,6 +67,8 @@ class Setup(object):
                 from helpers.src import C as c_src
                 # import alg
                 mlog.debug("Create C source for mainQ: {}".format(self.tmpdir))
+
+                self.init_symvars_prefix = dig_settings.C.CIVL_INIT_SYMVARS_PREFIX
                 
                 trans_outf = self.tmpdir / (os.path.basename(inp))
                 trans_cmd = settings.CIL.TRANSFORM(inf=inp,
@@ -110,6 +113,12 @@ class Setup(object):
         self.inp_decls = inp_decls
         self.inv_decls = inv_decls
         self.mainQ_name = mainQ_name
+
+        self.init_inp_decls = None
+        if self.is_c_inp:
+            assert self.init_symvars_prefix, self.init_symvars_prefix
+            self.init_inp_decls = Symbs([Symb(self.init_symvars_prefix + s.name, s.typ) 
+                                         for s in self.inp_decls])
 
         self.transrel_pre_inv_decls, self.transrel_pre_sst, \
             self.transrel_post_sst, transrel_inv_decls = self.gen_transrel_sst()
@@ -422,8 +431,7 @@ class NonTerm(object):
             return True, None 
         else:
             # assert rcs, rcs
-            if _config.is_c_inp:
-                init_symvars_prefix = dig_settings.C.CIVL_INIT_SYMVARS_PREFIX
+            init_symvars_prefix = _config.init_symvars_prefix
 
             loop_transrel = self.loop.transrel
             loop_cond = self.loop.cond
@@ -469,9 +477,10 @@ class NonTerm(object):
                 init_f.add(z3.Not(rc_r))
                 mlog.debug("rc_r: {}".format(rc_r))
                 mlog.debug("init_f: {}".format(init_f))
-                init_inp_decls = Symbs([Symb(init_symvars_prefix + s.name, s.typ) for s in _config.inp_decls])
                 
-                rs, _, unsat_core = _config.solver.get_models(init_f, _config.n_inps, init_inp_decls, settings.use_random_seed)
+                rs, _, unsat_core = _config.solver.get_models(init_f, _config.n_inps, 
+                                                              _config.init_inp_decls, 
+                                                              settings.use_random_seed)
                 if rs is None:
                     mlog.debug("rs: unknown")
                 elif rs is False:
@@ -818,21 +827,31 @@ class Term(object):
         vloop_pos = _config._get_vloop_pos(vloop_name)
         assert vloop_pos, vloop_pos
         
-        # validator = CPAchecker(_config.tmpdir)
-        validator = UAutomizer(_config.tmpdir)
+        validator = CPAchecker(_config.tmpdir)
+        # validator = UAutomizer(_config.tmpdir)
         # validator = Portfolio(_config.tmpdir)
         validate_outf = validator.gen_validate_file(_config.inp, vloop_pos, ranks_str)
-        r, trans_cex = validator.prove_reach(vs, validate_outf)
+        r, trans_cex, sym_cex = validator.prove_reach(vs, validate_outf)
         # cex_inps = _config.solver.mk_inps_from_models(cex, _config.inp_decls, _config.exe)
         # mlog.debug("cex_inps: {}".format(cex_inps))
         validator.clean()
 
-        if r is False and trans_cex:
-            n_rfs = self._infer_ranking_functions_from_trans(_config.inv_decls[_config.inloop_loc], trans_cex)
-            mlog.debug("n_rfs: {}".format(n_rfs))
-            return self.validate_ranking_functions(vs, rfs + n_rfs)
-        else:
-            return r, rfs
+        mlog.debug('sym_cex: {}'.format(sym_cex))
+        rs, _, _ = _config.solver.get_models(sym_cex, _config.n_inps, 
+                                             # _config.init_inp_decls, 
+                                             None,
+                                             settings.use_random_seed)
+        mlog.debug('rs: {}'.format(rs))
+        raise NotImplementedError
+
+        # if r is False and trans_cex:
+        #     n_rfs = self._infer_ranking_functions_from_trans(_config.inv_decls[_config.inloop_loc], trans_cex)
+        #     mlog.debug("n_rfs: {}".format(n_rfs))
+        #     return self.validate_ranking_functions(vs, rfs + n_rfs)
+        # else:
+        #     return r, rfs
+
+        return r, sym_cex
 
     def prove(self):
         _config = self._config
