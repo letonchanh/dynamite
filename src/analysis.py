@@ -24,7 +24,7 @@ from utils.logic import *
 from utils.loop import *
 from lib import *
 from solver import ZSolver, Z3Py, Z3Bin, PySMT
-from validate import Validator, CPAchecker, UAutomizer
+from validate import Validator, CPAchecker, UAutomizer, Portfolio
 
 mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
 
@@ -818,8 +818,9 @@ class Term(object):
         vloop_pos = _config._get_vloop_pos(vloop_name)
         assert vloop_pos, vloop_pos
         
-        validator = CPAchecker(_config.tmpdir)
-        # validator = UAutomizer(_config.tmpdir)
+        # validator = CPAchecker(_config.tmpdir)
+        validator = UAutomizer(_config.tmpdir)
+        # validator = Portfolio(_config.tmpdir)
         validate_outf = validator.gen_validate_file(_config.inp, vloop_pos, ranks_str)
         r, trans_cex = validator.prove_reach(vs, validate_outf)
         # cex_inps = _config.solver.mk_inps_from_models(cex, _config.inp_decls, _config.exe)

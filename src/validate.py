@@ -5,9 +5,10 @@ import shutil
 from pathlib import Path
 from functools import partial
 import helpers.vcommon as CM
+from helpers.miscs import Miscs
 import data.traces
 from utils import settings
-from collections import defaultdict 
+from collections import defaultdict
 
 mlog = CM.getLogger(__name__, settings.logger_level)
 
@@ -17,8 +18,11 @@ class Validator(object):
         if not mytempdir.exists():
             mytempdir.mkdir()
         self.tmpdir = mytempdir
-        self.witness = self.tmpdir / self.witness_filename
         self.output_dir = None
+
+    @property
+    def witness(self):
+        return self.tmpdir / self.witness_filename
 
     def prove_reach(self, vs, input):
         cwd = os.getcwd()
@@ -37,17 +41,7 @@ class Validator(object):
             res = self.parse_rmsg(rmsg)
             mlog.debug("res: {}".format(res))
             if res is False:
-                assert self.witness.is_file(), self.witness
-                vcmd = self.validate_witness_cmd(input=input)
-                mlog.debug("vcmd: {}".format(vcmd))
-                v_rmsg, v_errmsg = CM.vcmd(vcmd)
-                # assert not v_errmsg, "'{}': {}".format(vcmd, v_errmsg)
-                mlog.debug("v_rmsg: {}".format(v_rmsg))
-                # mlog.debug("v_errmsg: {}".format(v_errmsg))
-                v_res = self.parse_rmsg(v_rmsg)
-                assert v_res is False, v_res
-                cex_file = self.tmpdir / self.cex_filename
-                assert cex_file.is_file(), cex_file
+                cex_file = self.validate_witness(input, expected_result=res)
                 trans_cex = self.parse_trans_cex(vs, cex_file)
 
         except Exception as ex:
@@ -57,6 +51,27 @@ class Validator(object):
         finally:
             os.chdir(cwd)
             return res, trans_cex
+
+    def validate_witness(self, input, expected_result=False):
+        assert self.witness.is_file(), self.witness
+        vcmd = self.validate_witness_cmd(input=input)
+        mlog.debug("vcmd: {}".format(vcmd))
+        v_rmsg, v_errmsg = CM.vcmd(vcmd)
+        # assert not v_errmsg, "'{}': {}".format(vcmd, v_errmsg)
+        mlog.debug("v_rmsg: {}".format(v_rmsg))
+        # mlog.debug("v_errmsg: {}".format(v_errmsg))
+        v_res = self.parse_rmsg(v_rmsg)
+        assert v_res is expected_result, v_res
+        cex_file = self.tmpdir / self.cex_filename
+        assert cex_file.is_file(), cex_file
+        # if self.cex_smtlib_filename:
+        #     smtlib_file = self.tmpdir / self.cex_smtlib_filename
+        #     assert smtlib_file.is_file(), smtlib_file
+        #     f = z3.parse_smt2_file()
+        #     s = Solver()
+        #     s.add(f)
+        #     raise NotImplementedError
+        return cex_file
 
     def _get_substring(self, s, start_indicator, end_indicator=None):
         start_index = s.find(start_indicator)
@@ -129,7 +144,7 @@ class CPAchecker(Validator):
     @property
     def witness_filename(self):
         return settings.CPAchecker.CPA_WITNESS_NAME
-    
+
     @property
     def res_keyword(self):
         return settings.CPAchecker.CPA_RES_KEYWORD
@@ -137,6 +152,10 @@ class CPAchecker(Validator):
     @property
     def cex_filename(self):
         return settings.CPAchecker.CPA_CEX_NAME
+
+    @property
+    def cex_smtlib_filename(self):
+        return settings.CPAchecker.CPA_CEX_SMTLIB_NAME
 
     def parse_trans_cex(self, vs, cex):
         lines = [l.strip() for l in CM.iread(cex)]
@@ -199,6 +218,10 @@ class Ultimate(Validator):
     def cex_filename(self):
         return settings.Ultimate.ULT_CEX_NAME
 
+    @property
+    def cex_smtlib_filename(self):
+        return None
+
     def parse_trans_cex(self, vs, cex):
         val_lines = [l for l in CM.iread(cex) if 'VAL' in l]
         last_val_line = val_lines[-1]
@@ -229,4 +252,28 @@ class UAutomizer(Ultimate):
     @property
     def name(self):
         return settings.Ultimate.UAUTOMIZER_FULL_NAME
+
+class Portfolio(Validator):
+    @property
+    def short_name(self):
+        return 'par'
+
+    def prove_reach(self, vs, input):
+        from utils.profiling import timeit
+
+        @timeit
+        def f(task):
+            vid, vld_cls = task
+            vld = vld_cls(self.tmpdir)
+            r = vld.prove_reach(vs, input)
+            return vid, r
+        
+        wrs = Miscs.run_mp_ex("prove_reach", 
+            [(settings.CPAchecker.CPA_SHORT_NAME, CPAchecker), 
+             (settings.Ultimate.UAUTOMIZER_SHORT_NAME, UAutomizer)
+            ], f, get_fst_res=True)
+        mlog.debug('wrs: {}'.format(wrs))
+        vid, r = wrs[0]
+        mlog.debug('Got result firstly from {}'.format(vid))
+        return r
         

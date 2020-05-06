@@ -56,6 +56,7 @@ class CPAchecker:
     CPA_SHORT_NAME = 'cpa'
     CPA_OUTPUT_DIR = 'output'
     CPA_CEX_NAME = CPA_OUTPUT_DIR + '/' + 'Counterexample.1.assignment.txt'
+    CPA_CEX_SMTLIB_NAME = CPA_OUTPUT_DIR + '/' + 'Counterexample.1.smt2'
     CPA_WITNESS_NAME = CPA_OUTPUT_DIR + '/' + 'Counterexample.1.graphml'
     CPA_RES_KEYWORD = 'Verification result:'
 
