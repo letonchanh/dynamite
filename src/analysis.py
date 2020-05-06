@@ -819,8 +819,8 @@ class Term(object):
 
     def validate_ranking_functions(self, vs, rfs):
         _config = self._config
-        # ranks_str = '|'.join(['{}'.format(rf) for rf in (rfs[1:] if len(rfs) > 1 else rfs)])
-        ranks_str = '|'.join(['{}'.format(rf) for rf in rfs])
+        ranks_str = '|'.join(['{}'.format(rf) for rf in (rfs[1:] if len(rfs) > 1 else rfs)])
+        # ranks_str = '|'.join(['{}'.format(rf) for rf in rfs])
         mlog.debug("ranks_str: {}".format(ranks_str))
         vloop_name = _config._get_vloop()
         mlog.debug("vloop_name: {}".format(vloop_name))
@@ -831,7 +831,7 @@ class Term(object):
         # validator = UAutomizer(_config.tmpdir)
         # validator = Portfolio(_config.tmpdir)
         validate_outf = validator.gen_validate_file(_config.inp, vloop_pos, ranks_str)
-        r, trans_cex, sym_cex = validator.prove_reach(vs, validate_outf)
+        r, cex = validator.prove_reach(vs, validate_outf)
         # cex_inps = _config.solver.mk_inps_from_models(cex, _config.inp_decls, _config.exe)
         # mlog.debug("cex_inps: {}".format(cex_inps))
         validator.clean()
@@ -844,8 +844,9 @@ class Term(object):
         # mlog.debug('rs ({}): {}'.format(len(rs), rs))
         # raise NotImplementedError
 
-        if r is False and trans_cex:
-            n_rfs = self._infer_ranking_functions_from_trans(_config.inv_decls[_config.inloop_loc], trans_cex)
+        if r is False and cex.trans_cex:
+            mlog.debug('imap: {}'.format(cex.imap))
+            n_rfs = self._infer_ranking_functions_from_trans(_config.inv_decls[_config.inloop_loc], cex.trans_cex)
             mlog.debug("n_rfs: {}".format(n_rfs))
             return self.validate_ranking_functions(vs, rfs + n_rfs)
         else:
