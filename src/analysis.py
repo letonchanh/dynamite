@@ -836,22 +836,22 @@ class Term(object):
         # mlog.debug("cex_inps: {}".format(cex_inps))
         validator.clean()
 
-        mlog.debug('sym_cex: {}'.format(sym_cex))
-        rs, _, _ = _config.solver.get_models(sym_cex, _config.n_inps, 
-                                             # _config.init_inp_decls, 
-                                             None,
-                                             settings.use_random_seed)
-        mlog.debug('rs ({}): {}'.format(len(rs), rs))
-        raise NotImplementedError
+        # mlog.debug('sym_cex: {}'.format(sym_cex))
+        # rs, _, _ = _config.solver.get_models(sym_cex, _config.n_inps, 
+        #                                      # _config.init_inp_decls, 
+        #                                      None,
+        #                                      settings.use_random_seed)
+        # mlog.debug('rs ({}): {}'.format(len(rs), rs))
+        # raise NotImplementedError
 
-        # if r is False and trans_cex:
-        #     n_rfs = self._infer_ranking_functions_from_trans(_config.inv_decls[_config.inloop_loc], trans_cex)
-        #     mlog.debug("n_rfs: {}".format(n_rfs))
-        #     return self.validate_ranking_functions(vs, rfs + n_rfs)
-        # else:
-        #     return r, rfs
+        if r is False and trans_cex:
+            n_rfs = self._infer_ranking_functions_from_trans(_config.inv_decls[_config.inloop_loc], trans_cex)
+            mlog.debug("n_rfs: {}".format(n_rfs))
+            return self.validate_ranking_functions(vs, rfs + n_rfs)
+        else:
+            return r, rfs
 
-        return r, sym_cex
+        # return r, sym_cex
 
     def prove(self):
         _config = self._config
@@ -893,5 +893,42 @@ class Term(object):
         term_itraces = dict((term_inp, itraces[term_inp]) for term_inp in term_inps)
         # while
         rfs = self.infer_ranking_functions(vs, term_itraces)
-        r = self.validate_ranking_functions(vs, rfs)
-        mlog.debug('r: {}'.format(r))
+        r, n_rfs = self.validate_ranking_functions(vs, rfs)
+        mlog.info('Termination result: {} ({})'.format(r, n_rfs))
+
+        """
+        ProveT(P):
+            P_instr = Instrument(P)
+            inps = GenRandomInps(P)
+            ranking_function_set = {}
+            do {
+                \pi = Execute(P, inps)
+                \pi_base, \pi_term, \pi_mayloop = Partition(\pi)
+                new_ranking_functions = InferRankingFunction(P_instr, \pi_term)
+                if new_ranking_functions is non-empty:
+                    ranking_function_set = ranking_function_set U new_ranking_functions
+                    r, cex = validate_ranking_functions(P, ranking_function_set)
+                    if r:
+                        return r, ranking_function_sets
+                    else:
+                        inps = GuessInput(cex)
+            } while (ranking_function_sets.unchanged)
+
+        InferRankingFunction(P_instr, \pi_term):
+            vloop_params = GetParams(P_instr)
+            # x, y, z
+            # u_0 + u_1*x + u_2*y + u_3*z
+            ranking_function_template = GenRankingFunctionTemplate(P_instr)
+            transitive_closure_transitions = {}
+            for each snap_shot in \pi_term:
+                transitive_closure_transitions = transitive_closure_transitions U GenTransitiveClosureTransitions(snap_shot)
+            ranking_function_set = {}
+            while transitive_closure_transitions is non-empty:
+                (s1, s2) = RandomlyPick(transitive_closure_transitions)
+                t1 = ranking_function_template(s1)
+                t2 = ranking_function_template(s2)
+                ranking_function = SolveTemplate(ranking_function_template, {t1>t2, t1>=0})
+                ranking_function_set = ranking_function_set U {ranking_function}
+                transitive_closure_transitions.filter(t: NotSatisfied(t, ranking_function))
+            return ranking_function_set
+        """

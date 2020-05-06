@@ -67,13 +67,13 @@ class Validator(object):
         cex_file = self.tmpdir / self.cex_filename
         assert cex_file.is_file(), cex_file
         sym_cex = None
-        if self.cex_smtlib_filename:
-            smtlib_file = self.tmpdir / self.cex_smtlib_filename
-            assert smtlib_file.is_file(), smtlib_file
-            vmap = self.get_var_map_from_smtlib(vs, smtlib_file)
+        # if self.cex_smtlib_filename:
+        #     smtlib_file = self.tmpdir / self.cex_smtlib_filename
+        #     assert smtlib_file.is_file(), smtlib_file
+        #     vmap = self.get_var_map_from_smtlib(vs, smtlib_file)
 
-            f = z3.parse_smt2_file(str(smtlib_file))
-            sym_cex = f
+        #     f = z3.parse_smt2_file(str(smtlib_file))
+        #     sym_cex = f
         return cex_file, sym_cex
 
     # def _get_substring(self, s, start_indicator, end_indicator=None):
