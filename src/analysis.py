@@ -819,8 +819,8 @@ class Term(object):
 
     def validate_ranking_functions(self, vs, rfs):
         _config = self._config
-        ranks_str = '|'.join(['{}'.format(rf) for rf in (rfs[1:] if len(rfs) > 1 else rfs)])
-        # ranks_str = '|'.join(['{}'.format(rf) for rf in rfs])
+        # ranks_str = '|'.join(['{}'.format(rf) for rf in (rfs[1:] if len(rfs) > 1 else rfs)])
+        ranks_str = '|'.join(['{}'.format(rf) for rf in rfs])
         mlog.debug("ranks_str: {}".format(ranks_str))
         vloop_name = _config._get_vloop()
         mlog.debug("vloop_name: {}".format(vloop_name))
