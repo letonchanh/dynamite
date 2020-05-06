@@ -43,7 +43,7 @@ class Validator(object):
             res = self.parse_rmsg(rmsg)
             mlog.debug("res: {}".format(res))
             if res is False:
-                cex_file, smtlib_cex = self.validate_witness(input, expected_result=res)
+                cex_file, smtlib_cex = self.validate_witness(vs, input, expected_result=res)
                 trans_cex = self.parse_trans_cex(vs, cex_file)
                 sym_cex = smtlib_cex
         except Exception as ex:
@@ -54,7 +54,7 @@ class Validator(object):
             os.chdir(cwd)
             return res, trans_cex, sym_cex
 
-    def validate_witness(self, input, expected_result=False):
+    def validate_witness(self, vs, input, expected_result=False):
         assert self.witness.is_file(), self.witness
         vcmd = self.validate_witness_cmd(input=input)
         mlog.debug("vcmd: {}".format(vcmd))
@@ -70,6 +70,8 @@ class Validator(object):
         if self.cex_smtlib_filename:
             smtlib_file = self.tmpdir / self.cex_smtlib_filename
             assert smtlib_file.is_file(), smtlib_file
+            vmap = self.get_var_map_from_smtlib(vs, smtlib_file)
+
             f = z3.parse_smt2_file(str(smtlib_file))
             sym_cex = f
         return cex_file, sym_cex
@@ -163,6 +165,22 @@ class CPAchecker(Validator):
     @property
     def cex_smtlib_filename(self):
         return settings.CPAchecker.CPA_CEX_SMTLIB_NAME
+
+    def get_var_map_from_smtlib(self, vs, smtlib_file):
+        declare_fun_lines = [l.strip() for l in CM.iread(smtlib_file) if 'declare-fun' in l]
+        regex = r"declare-fun (\|?(?:\w+::)?(\w+)@(\d+)\|?)"
+        vmap = defaultdict(dict)
+        ss = vs.names
+        for l in declare_fun_lines:
+            match = re.search(regex, l)
+            if match:
+                v = match.group(2)
+                if v in ss:
+                    smt_var = match.group(1)
+                    i = int(match.group(3))
+                    vmap[v][i] = smt_var
+        mlog.debug('vmap: {}'.format(vmap))
+        return vmap
 
     def parse_trans_cex(self, vs, cex):
         lines = [l.strip() for l in CM.iread(cex)]

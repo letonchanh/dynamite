@@ -841,7 +841,7 @@ class Term(object):
                                              # _config.init_inp_decls, 
                                              None,
                                              settings.use_random_seed)
-        mlog.debug('rs: {}'.format(rs))
+        mlog.debug('rs ({}): {}'.format(len(rs), rs))
         raise NotImplementedError
 
         # if r is False and trans_cex:
