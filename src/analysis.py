@@ -42,10 +42,10 @@ class Setup(object):
         dig_settings.DO_MINMAXPLUS = False
 
         self.n_inps = settings.n_inps
-        self.preloop_loc = dig_settings.TRACE_INDICATOR + '1' # vtrace1
-        self.inloop_loc = dig_settings.TRACE_INDICATOR + '2' # vtrace2
-        self.postloop_loc = dig_settings.TRACE_INDICATOR + '3' # vtrace3
-        self.transrel_loc = dig_settings.TRACE_INDICATOR + '4' # vtrace4
+        # self.preloop_loc = dig_settings.TRACE_INDICATOR + '1' # vtrace1
+        # self.inloop_loc = dig_settings.TRACE_INDICATOR + '2' # vtrace2
+        # self.postloop_loc = dig_settings.TRACE_INDICATOR + '3' # vtrace3
+        # self.transrel_loc = dig_settings.TRACE_INDICATOR + '4' # vtrace4
         # self.refinement_depth = 1
         self.tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
         self.symstates = None
@@ -85,6 +85,14 @@ class Setup(object):
 
                 self.trans_inp = trans_outf
                 self.cg = cg
+
+                vloop_pos = self._get_vloop_pos(self.vloop)
+                mlog.debug('vloop_pos: {}'.format(vloop_pos))
+
+                self.preloop_loc = dig_settings.TRACE_INDICATOR + '1' + '_' + vloop_pos # vtrace1
+                self.inloop_loc = dig_settings.TRACE_INDICATOR + '2' + '_' + vloop_pos # vtrace2
+                self.postloop_loc = dig_settings.TRACE_INDICATOR + '3' + '_' + vloop_pos # vtrace3
+                self.transrel_loc = dig_settings.TRACE_INDICATOR 
 
                 src = c_src(Path(self.trans_inp), self.tmpdir)
                 exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
@@ -136,7 +144,8 @@ class Setup(object):
         # mlog.debug("get traces from random inputs")
         # self.rand_itraces = self.exe.get_traces_from_inps(rand_inps)  # itraces: input to dtraces
 
-    def _get_vloop(self):
+    @property
+    def vloop(self):
         vloops = self.cg[dig_settings.MAINQ_FUN]
         assert len(vloops) >= 1, vloops
         if len(vloops) > 1:
@@ -824,9 +833,7 @@ class Term(object):
         # ranks_str = '|'.join(['{}'.format(rf) for rf in (rfs[1:] if len(rfs) > 1 else rfs)])
         ranks_str = '|'.join(['{}'.format(rf) for rf in rfs])
         mlog.debug("ranks_str: {}".format(ranks_str))
-        vloop_name = _config._get_vloop()
-        mlog.debug("vloop_name: {}".format(vloop_name))
-        vloop_pos = _config._get_vloop_pos(vloop_name)
+        vloop_pos = _config._get_vloop_pos(_config.vloop)
         assert vloop_pos, vloop_pos
         
         validator = CPAchecker(_config.tmpdir)
@@ -859,7 +866,7 @@ class Term(object):
         #     return r, None
 
         if r is False and cex.trans_cex:
-            n_rfs = self._infer_ranking_functions_from_trans(_config.inv_decls[_config.inloop_loc], cex.trans_cex)
+            n_rfs = self._infer_ranking_functions_from_trans(vs, cex.trans_cex)
             mlog.debug("n_rfs: {}".format(n_rfs))
             # n_rfs \intersect rfs = \emptyset
             return self.validate_ranking_functions(vs, rfs + n_rfs) 
