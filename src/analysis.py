@@ -682,14 +682,16 @@ class Term(object):
         # mlog.debug("z3: {}".format(elapsed * 1000000))
         
         # start_time = timeit.default_timer()
-        st1 = str(t1)
-        st2 = str(t2)
+        st1 = (str(t1)).replace(r'\n', "") 
+        st2 = (str(t2)).replace(r'\n', "") 
         for d in model.decls():
             v = model[d]
             sv = v.as_string()
             dn = d.name()
             st1 = st1.replace(dn, sv)
             st2 = st2.replace(dn, sv)
+        mlog.debug('st1:\n{}'.format(st1))
+        mlog.debug('st2:\n{}'.format(st2))
         vt1 = eval(st1)
         vt2 = eval(st2)
         r = (vt1 > vt2) and (vt1 >= 0)
@@ -819,8 +821,8 @@ class Term(object):
 
     def validate_ranking_functions(self, vs, rfs):
         _config = self._config
-        ranks_str = '|'.join(['{}'.format(rf) for rf in (rfs[1:] if len(rfs) > 1 else rfs)])
-        # ranks_str = '|'.join(['{}'.format(rf) for rf in rfs])
+        # ranks_str = '|'.join(['{}'.format(rf) for rf in (rfs[1:] if len(rfs) > 1 else rfs)])
+        ranks_str = '|'.join(['{}'.format(rf) for rf in rfs])
         mlog.debug("ranks_str: {}".format(ranks_str))
         vloop_name = _config._get_vloop()
         mlog.debug("vloop_name: {}".format(vloop_name))
@@ -832,23 +834,35 @@ class Term(object):
         # validator = Portfolio(_config.tmpdir)
         validate_outf = validator.gen_validate_file(_config.inp, vloop_pos, ranks_str)
         r, cex = validator.prove_reach(vs, validate_outf)
-        # cex_inps = _config.solver.mk_inps_from_models(cex, _config.inp_decls, _config.exe)
-        # mlog.debug("cex_inps: {}".format(cex_inps))
         validator.clean()
 
-        # mlog.debug('sym_cex: {}'.format(sym_cex))
-        # rs, _, _ = _config.solver.get_models(sym_cex, _config.n_inps, 
-        #                                      # _config.init_inp_decls, 
-        #                                      None,
-        #                                      settings.use_random_seed)
-        # mlog.debug('rs ({}): {}'.format(len(rs), rs))
-        # raise NotImplementedError
+        # if r is False and cex.trans_cex:
+        #     imap = cex.imap
+        #     mlog.debug('imap: {}'.format(imap))
+        #     rs, _, _ = _config.solver.get_models(cex.symb_cex, _config.n_inps, 
+        #                                          # _config.init_inp_decls, 
+        #                                          None,
+        #                                          settings.use_random_seed)
+        #     mlog.debug('n_inps: {}'.format(_config.n_inps))
+        #     mlog.debug('rs ({})'.format(len(rs)))
+            
+        #     cex_models = []
+        #     for m in rs:
+        #         dm = dict(m)
+        #         cex_model = [(v, dm[imap[v]]) for v in _config.inp_decls.names]
+        #         cex_models.append(cex_model)
+        #     mlog.debug('cex_models ({}): {}'.format(len(cex_models), cex_models))
+        #     cex_inps = _config.solver.mk_inps_from_models(cex_models, _config.inp_decls, _config.exe)
+        #     mlog.debug("cex_inps: {}".format(cex_inps))
+        #     return r, cex_inps
+        # else:
+        #     return r, None
 
         if r is False and cex.trans_cex:
-            mlog.debug('imap: {}'.format(cex.imap))
             n_rfs = self._infer_ranking_functions_from_trans(_config.inv_decls[_config.inloop_loc], cex.trans_cex)
             mlog.debug("n_rfs: {}".format(n_rfs))
-            return self.validate_ranking_functions(vs, rfs + n_rfs)
+            # n_rfs \intersect rfs = \emptyset
+            return self.validate_ranking_functions(vs, rfs + n_rfs) 
         else:
             return r, rfs
 
@@ -856,6 +870,7 @@ class Term(object):
 
     def prove(self):
         _config = self._config
+        vs = _config.inv_decls[_config.inloop_loc]
         # itraces = _config.rand_itraces
         rand_inps = _config.exe.gen_rand_inps(_config.n_inps)
         itraces = _config.exe.get_traces_from_inps(rand_inps)
@@ -889,13 +904,35 @@ class Term(object):
         
         mlog.debug("inloop_term_invs: {}".format(inloop_term_invs))
 
-        # Generate ranking function template
-        vs = _config.inv_decls[_config.inloop_loc]
         term_itraces = dict((term_inp, itraces[term_inp]) for term_inp in term_inps)
-        # while
         rfs = self.infer_ranking_functions(vs, term_itraces)
         r, n_rfs = self.validate_ranking_functions(vs, rfs)
-        mlog.info('Termination result: {} ({})'.format(r, n_rfs))
+        # mlog.info('Termination result: {} ({})'.format(r, n_rfs))
+        print('Termination result: {} ({})'.format(r, n_rfs))
+
+        # rfs = set()
+        # r = None
+        # while True:
+        #     base_term_inps, term_inps, mayloop_inps = _config.cl.classify_inps(itraces)
+        #     term_itraces = dict((term_inp, itraces[term_inp]) for term_inp in term_inps)
+        #     candidate_rfs = self.infer_ranking_functions(vs, term_itraces)
+        #     if len(candidate_rfs) > 1:
+        #         candidate_rfs = candidate_rfs[1:]
+        #     old_rfs = rfs
+        #     rfs = old_rfs | set(candidate_rfs)
+        #     if rfs.issubset(old_rfs): # rfs is not changed
+        #         r = None
+        #         break
+        #     else:
+        #         r, cex_inps = self.validate_ranking_functions(vs, list(rfs))
+        #         if not r and cex_inps:
+        #             itraces = _config.exe.get_traces_from_inps(cex_inps)
+        #         else: # Unknown
+        #             if not r:
+        #                 r = None
+        #             break
+
+        # mlog.info('Termination result: {} ({})'.format(r, rfs))
 
         """
         ProveT(P):
