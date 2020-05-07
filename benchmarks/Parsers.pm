@@ -144,6 +144,7 @@ sub parse {
     return ult($logfn)     if $tool eq 'ultimate';
     return aprove($logfn)  if $tool eq 'aprove';
     return seahorn($logfn) if $tool eq 'seahorn';
+    return dynamo($logfn)  if $tool eq 'dynamo';
     die "parse: unknown tool: $tool\n";
 }
 
