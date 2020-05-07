@@ -27,6 +27,7 @@ class Validator(object):
 
     def prove_reach(self, vs, input):
         cwd = os.getcwd()
+        res = None
         cex = None
         try:
             os.chdir(self.tmpdir)
@@ -46,7 +47,6 @@ class Validator(object):
         except Exception as ex:
             mlog.debug("Exception: {}".format(ex))
             mlog.debug(traceback.format_exc())
-            res = None
         finally:
             os.chdir(cwd)
             return res, cex
@@ -253,7 +253,7 @@ class CpaCex(Counterexample):
         dcex = defaultdict(dict)
         is_interesting_local_var = lambda x: x in ss
         for l in lines:
-            mlog.debug(l)
+            # mlog.debug(l)
             match = re.match(regex, l)
             if match:
                 x = match.group(2)
@@ -285,7 +285,7 @@ class CpaCex(Counterexample):
 
     def mk_var_map_from_smtlib(self, smtlib_file):
         declare_fun_lines = [l.strip() for l in CM.iread(smtlib_file) if 'declare-fun' in l]
-        regex = r"declare-fun (\|?(?:\w+::)?(\w+)@(\d+)\|?)"
+        regex = r"declare-fun \|?((?:\w+::)?(\w+)@(\d+))\|?" # (?:e) for non-grouping e
         vmap = defaultdict(dict)
         ss = self.vs.names
         for l in declare_fun_lines:
