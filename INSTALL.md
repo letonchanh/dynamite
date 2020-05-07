@@ -64,6 +64,10 @@
     cd releaseScripts/default/
     ./makeFresh.sh
     ```
+    If the build fails, try
+    ```
+    mv ../../trunk/examples/Automata/regression/nwa/operations/buchiComplement/ba/LowNondeterminismBüchiInterpolantAutomaton.ats ../../trunk/examples/Automata/regression/nwa/operations/buchiComplement/ba/LowNondeterminismBuchiInterpolantAutomaton.ats
+    ```
     
 - Install CPAchecker
     ```
