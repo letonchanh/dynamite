@@ -12,21 +12,21 @@ my $TIMOUT   = '5m';
 use lib '.';
 use Parsers qw{ult dynamo};
 use Time::HiRes qw(gettimeofday tv_interval);
+my $t0;
 
 my $CFG = {
     dynamo => {
         DIR => qq{/home/ejk/dynamo/src},
         CMD => sub { my $arg = ($SPECFILE =~ m/\/term/ ? '-t' : '-nt');
-                     my $t0 = [gettimeofday];
-                     my $output = qq(python3 dynamo.py $_[0] $arg > /tmp/dynamo.ejk.txt);
-                     my $elapsed = tv_interval($t0)
-                     my $tm = "EJK TIMER: $elapsed\n";
-                     open TM, ">>/tmp/dynamo.ejk.txt" or warn $!;
-                     print TM "\n$tm\n";
-                     close TM;
-                     return $output;
+                     $t0 = [gettimeofday];
+                     return qq(python3 dynamo.py $_[0] $arg 2>\&1 > /tmp/dynamo.ejk.txt);
         },
-        FETCH => sub { return qq(cp /tmp/dynamo.ejk.txt $_[0]); },
+        FETCH => sub { my $elapsed = tv_interval($t0);
+		       my $tm = "EJK TIMER: $elapsed\n";
+		       open TM, ">>/tmp/dynamo.ejk.txt" or warn $!;
+		       print TM "\n$tm\n";
+		       close TM;
+		       return qq(cp /tmp/dynamo.ejk.txt $_[0]); },
         PARSE => sub { return Parsers::dynamo($_[0]); },
     },
     ultimate => {

@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 use lib '.';
-my @tools = qw/ultimate aprove seahorn/;
+my @tools = qw/dynamo ultimate aprove seahorn/;
 use Parsers qw{parse find_benchmarks};
 
 my $bdir = shift @ARGV or die "usage: ./harvest <benchdir> <tmpdir>\n";
@@ -32,3 +32,4 @@ foreach my $tool (@tools) {
   }
 }
 close CHANH;
+print "+ wrote:\n   ../results/ultimate.$fn.csv\n";
