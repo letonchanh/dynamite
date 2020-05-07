@@ -74,6 +74,29 @@ sub seahorn {
     return { time => $time, result => $result };
 }
 
+sub dynamo {
+    my ($logfn) = @_;
+    open(F,"$logfn") or warn "file $logfn - $!";
+    my ($time,$result) = (-1,'UNK');
+    while (<F>) {
+        if (/Termination result: True/) {
+            $result = 'TRUE';
+        }
+        elsif (/Termination result: False/) {
+            $result = 'FALSE';
+        }
+        elsif (/Termination result: /) {
+            warn "can't parse termination result: $_\n";
+        }
+
+        if (/EJK TIMER: (\d+(\.\d+)?)$/) {
+            $time = $1;
+        }
+    }
+    close F;
+    return { time => $time, result => $result };
+}
+
 sub ult {
     my ($logfn) = @_;
     open(F,"$logfn") or warn "file $logfn - $!";
