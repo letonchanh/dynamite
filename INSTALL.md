@@ -55,6 +55,22 @@
     python3 install.py --yices
     ```
     
+- Install Ultimate
+    ```
+    apt-get install maven zip
+    git clone https://github.com/ultimate-pa/ultimate.git
+    cd ultimate/
+    git checkout v0.1.25
+    cd releaseScripts/default/
+    ./makeFresh.sh
+    ```
+    
+- Install CPAchecker
+    ```
+    wget https://gitlab.com/sosy-lab/sv-comp/archives-2020/-/raw/master/2020/cpa-seq.zip
+    unzip cpa-seq.zi
+    ```
+    
 - Install JavaPathFinder (optional)
     ```
     mkdir jpf; cd jpf
@@ -72,7 +88,7 @@
     ant
     ```
     
-- Install CIVL (optional)
+- Install CIVL
     ```
     wget http://vsl.cis.udel.edu:8080/lib/sw/civl/1.20/r5259/release/CIVL-1.20_5259.tgz
     tar xvf CIVL-1.20_5259.tgz
