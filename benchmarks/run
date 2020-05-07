@@ -3,9 +3,11 @@
 use strict;
 use warnings;
 use File::Temp qw/ tempfile tempdir /;
+use Time::Out qw(timeout) ;
 
 my $SPECFILE = qq{/tools/termination.prp};
-my $TIMOUT   = '5m';
+my $TIMEOUT  = 400;
+my @timedout;
 #my $NT_SPECFILE = qq{/tools/nontermination.prp};
 
 ###############################################################
@@ -31,7 +33,7 @@ my $CFG = {
     },
     ultimate => {
         DIR    => qq{/tools/ultimate/releaseScripts/default/UAutomizer-linux},
-        CMD    => sub { return qq(timeout $TIMOUT ./Ultimate.py --file $_[0]  --spec $SPECFILE --architecture 32bit); },
+        CMD    => sub { return qq(timeout ${TIMEOUT}s ./Ultimate.py --file $_[0]  --spec $SPECFILE --architecture 32bit); },
         FETCH  => sub { return qq(cp Ultimate.log $_[0]); },
         PARSE  => sub { return Parsers::ult($_[0]); },
     },
@@ -51,7 +53,12 @@ my $CFG = {
 
 ###############################################################
 #### Utilities
-sub runc { my ($cmd) = @_; print "+ $cmd\n"; my $r = qx{$cmd}; print $r; }
+sub runc { my ($cmd) = @_; print "+ $cmd\n(with timeout of $TIMEOUT s)\n";
+	   timeout $TIMEOUT => sub { print qx{$cmd}; };
+	   if ($@) {
+	       push @timedout, $cmd;
+	   }
+}	   
 
 ###############################################################
 #### Arguments parsing
@@ -94,6 +101,6 @@ if ($arg1 eq 'run') {
         }
     }
     print "you may now harvest the results:\n ./harvest $bdir $outdir\n";
-    print "TODO\n\n\n results/[benchmark_name]/[tool_name].[time].csv\n\n";
+    print "Timedout:  \n".join("\n   ",@timedout)."\n";
 }
 
