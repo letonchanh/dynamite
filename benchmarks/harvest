@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 use lib '.';
-my @tools = qw/dynamo ultimate aprove seahorn/;
+my @tools = qw/dynamo/; #ultimate aprove seahorn/;
 use Parsers qw{parse find_benchmarks};
 
 my $bdir = shift @ARGV or die "usage: ./harvest <benchdir> <tmpdir>\n";
@@ -20,16 +20,20 @@ my $fn = strftime('%Y%m%d%H%M%S', gmtime($now));
 print "% Tool   Benchmark                     Time    Result\n";
 print "% ============================================\n";
 my %b2res;
-open CHANH, ">../results/ultimate.$fn.csv" or die $!;
+my @newfile;
 foreach my $tool (@tools) {
   foreach my $b (sort @benches) {
-    my $logfn = "$benchdir/$outdir/$tool-$b.log";
-    if (not (-e $logfn)) { warn "skipping $logfn. does not exist.\n"; next; }
-    $b2res{$b} = Parsers::parse($tool,$logfn);
-    printf "%-10s & %-80s & %8.2f & %-10s\n", $tool, "$bdir/$b", $b2res{$b}->{time}, $b2res{$b}->{result};
-    my $ln = sprintf("%s,%s,%.2f\n", $b, $b2res{$b}->{result},  $b2res{$b}->{time});
-    print CHANH $ln;
+      mkdir("../results/$b") if (not (-e "../results/$b"));
+      open CHANH, ">../results/$b/$tool.$fn.csv" or die $!;
+      my $logfn = "$benchdir/$outdir/$tool-$b.log";
+      if (not (-e $logfn)) { warn "skipping $logfn. does not exist.\n"; next; }
+      $b2res{$b} = Parsers::parse($tool,$logfn);
+      printf "%-10s & %-80s & %8.2f & %-10s\n", $tool, "$bdir/$b", $b2res{$b}->{time}, $b2res{$b}->{result};
+      my $ln = sprintf("%s,%s,%.2f\n", $b, $b2res{$b}->{result},  $b2res{$b}->{time});
+      print CHANH $ln;
+      close CHANH;
+      push @newfile, "../results/$b/$tool.$fn.csv";
   }
 }
-close CHANH;
-print "+ wrote:\n   ../results/ultimate.$fn.csv\n";
+print "\n";
+print "You may now wish to:\n  git add ".(join(" ",@newfile))."\n  git commit -m \"results $fn\"\n";
