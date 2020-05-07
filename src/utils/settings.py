@@ -46,7 +46,7 @@ class CPAchecker:
     CPA_HOME = Path(os.path.expandvars("$CPA_HOME"))
     CPA_EXE = CPA_HOME / 'scripts' / 'cpa.sh'
     
-    CPA_COMMON_OPTS = "-spec {spec} -setprop cpa.predicate.encodeBitvectorAs=INTEGER".format(spec=REACHABILITY.SPEC)
+    CPA_COMMON_OPTS = "-spec {spec}".format(spec=REACHABILITY.SPEC) # -setprop cpa.predicate.encodeBitvectorAs=INTEGER
     CPA_REACH_OPTS = "-predicateAnalysis -setprop counterexample.export.compressWitness=false"
     CPA_VALIDATE_OPTS = partial("-witnessValidation -witness {witness}".format)
     

@@ -739,12 +739,14 @@ class Term(object):
         for term_inp in term_itraces:
             term_traces = term_itraces[term_inp]
             inloop_term_traces = term_traces[_config.inloop_loc]
-            postloop_term_traces = term_traces[_config.postloop_loc]
-
             assert inloop_term_traces, inloop_term_traces
-            assert postloop_term_traces, postloop_term_traces
 
-            loop_term_traces = inloop_term_traces + postloop_term_traces[:1]
+            if _config.postloop_loc in term_traces:
+                postloop_term_traces = term_traces[_config.postloop_loc][:1]
+            else:
+                postloop_term_traces = []
+
+            loop_term_traces = inloop_term_traces + postloop_term_traces
 
             trans_idx = list(itertools.combinations(range(len(loop_term_traces)), 2))
             random.shuffle(trans_idx)
@@ -911,7 +913,11 @@ class Term(object):
         
         mlog.debug("inloop_term_invs: {}".format(inloop_term_invs))
 
-        term_itraces = dict((term_inp, itraces[term_inp]) for term_inp in term_inps)
+        if not _config.inp_decls and not term_inps:
+            term_itraces = dict((mayloop_inp, itraces[mayloop_inp]) for mayloop_inp in mayloop_inps)
+        else:
+            term_itraces = dict((term_inp, itraces[term_inp]) for term_inp in term_inps)
+        # mlog.debug('term_itraces: {}'.format(term_itraces))
         rfs = self.infer_ranking_functions(vs, term_itraces)
         r, n_rfs = self.validate_ranking_functions(vs, rfs)
         # mlog.info('Termination result: {} ({})'.format(r, n_rfs))
