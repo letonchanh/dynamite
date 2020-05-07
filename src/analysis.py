@@ -682,16 +682,16 @@ class Term(object):
         # mlog.debug("z3: {}".format(elapsed * 1000000))
         
         # start_time = timeit.default_timer()
-        st1 = (str(t1)).replace(r'\n', "") 
-        st2 = (str(t2)).replace(r'\n', "") 
+        st1 = (str(t1)).replace("\n", "") 
+        st2 = (str(t2)).replace("\n", "")
         for d in model.decls():
             v = model[d]
             sv = v.as_string()
             dn = d.name()
             st1 = st1.replace(dn, sv)
             st2 = st2.replace(dn, sv)
-        mlog.debug('st1:\n{}'.format(st1))
-        mlog.debug('st2:\n{}'.format(st2))
+        # mlog.debug('st1:\n{}'.format(repr(st1)))
+        # mlog.debug('st2:\n{}'.format(repr(st2)))
         vt1 = eval(st1)
         vt2 = eval(st2)
         r = (vt1 > vt2) and (vt1 >= 0)
