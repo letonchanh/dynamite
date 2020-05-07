@@ -10,8 +10,25 @@ my $TIMOUT   = '5m';
 
 ###############################################################
 use lib '.';
-use Parsers qw{ult};
+use Parsers qw{ult dynamo};
+use Time::HiRes qw(gettimeofday tv_interval);
+
 my $CFG = {
+    dynamo => {
+        DIR => qq{/home/ejk/dynamo/src},
+        CMD => sub { my $arg = ($SPECFILE =~ m/\/term/ ? '-t' : '-nt');
+                     my $t0 = [gettimeofday];
+                     my $output = qq(python3 dynamo.py $_[0] $arg > /tmp/dynamo.ejk.txt);
+                     my $elapsed = tv_interval($t0)
+                     my $tm = "EJK TIMER: $elapsed\n";
+                     open TM, ">>/tmp/dynamo.ejk.txt" or warn $!;
+                     print TM "\n$tm\n";
+                     close TM;
+                     return $output;
+        },
+        FETCH => sub { return qq(cp /tmp/dynamo.ejk.txt $_[0]); },
+        PARSE => sub { return Parsers::dynamo($_[0]); },
+    },
     ultimate => {
         DIR    => qq{/tools/ultimate/releaseScripts/default/UAutomizer-linux},
         CMD    => sub { return qq(timeout $TIMOUT ./Ultimate.py --file $_[0]  --spec $SPECFILE --architecture 32bit); },
@@ -38,7 +55,7 @@ sub runc { my ($cmd) = @_; print "+ $cmd\n"; my $r = qx{$cmd}; print $r; }
 
 ###############################################################
 #### Arguments parsing
-die "usage: ./ult <subdir> (list|run) [ultimate,seahorn,aprove]\n" unless $#ARGV >= 1;
+die "usage: ./run <subdir> (list|run) [dynamo,ultimate,seahorn,aprove]\n" unless $#ARGV >= 1;
 my $bdir = shift(@ARGV); # subdirectory to use like 'nla'
 my $arg1 = shift(@ARGV); # list or run or harvest
 my $ts   = shift(@ARGV);
@@ -77,5 +94,6 @@ if ($arg1 eq 'run') {
         }
     }
     print "you may now harvest the results:\n ./harvest $bdir $outdir\n";
+    print "TODO\n\n\n results/[benchmark_name]/[tool_name].[time].csv\n\n";
 }
 
