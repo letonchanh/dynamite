@@ -30,6 +30,11 @@
     ./sage
     ```
     
+- Install `lark-parser`
+    ```
+    pip3 install lark-parser
+    ```
+    
 - Install Z3 with Python3 from source
     ```
     git clone https://github.com/Z3Prover/z3.git
