@@ -146,7 +146,27 @@ class Setup(object):
 
     @property
     def vloop(self):
-        vloops = self.cg[dig_settings.MAINQ_FUN]
+        vloop_prefix = settings.VLOOP_FUN + '_'
+        def collect_vloop_cg(start, cg):
+            ws = [start]
+            visited = set()
+            vloops = []
+            while ws:
+                caller = ws.pop(0)
+                if caller not in cg:
+                    continue
+                else:
+                    visited.add(caller)
+                    callees = cg[caller]
+                    for callee in callees:
+                        if callee not in visited:
+                            if callee.startswith(vloop_prefix):
+                                vloops.append(callee)
+                            else:
+                                ws.append(callee)
+            return vloops
+
+        vloops = collect_vloop_cg(dig_settings.MAINQ_FUN, self.cg)
         assert len(vloops) >= 1, vloops
         if len(vloops) > 1:
             raise NotImplementedError
@@ -278,12 +298,15 @@ class Setup(object):
         return None
 
     def _parse_call_graph(self, msg):
-        lines = [l.split(':') for l in msg.split('\n')
-                 if l.startswith(dig_settings.MAINQ_FUN)
-                 or l.startswith(settings.VLOOP_FUN)]
+        lines = [l.strip().split(':') for l in msg.split('\n') if l.strip() != ''
+                #  if l.startswith(dig_settings.MAINQ_FUN)
+                #  or l.startswith(settings.VLOOP_FUN)
+                ]
         cg = defaultdict(list)
 
-        for caller, s in lines:
+        for l in lines:
+            mlog.debug('l: {}'.format(l))
+            caller, s = l
             caller = caller.strip()
             for callee in s.split(','):
                 cg[caller].append(callee.strip())
@@ -838,9 +861,9 @@ class Term(object):
         vloop_pos = _config._get_vloop_pos(_config.vloop)
         assert vloop_pos, vloop_pos
         
-        # validator = CPAchecker(_config.tmpdir)
+        validator = CPAchecker(_config.tmpdir)
         # validator = UAutomizer(_config.tmpdir)
-        validator = Portfolio(_config.tmpdir)
+        # validator = Portfolio(_config.tmpdir)
         validate_outf = validator.gen_validate_file(_config.inp, vloop_pos, ranks_str)
         r, cex = validator.prove_reach(vs, validate_outf)
         validator.clean()
