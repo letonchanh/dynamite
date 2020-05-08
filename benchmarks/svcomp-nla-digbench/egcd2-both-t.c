@@ -7,7 +7,13 @@ int main() {
     x = __VERIFIER_nondet_int();
     y = __VERIFIER_nondet_int();
     //assume_abort_if_not(x >= 1);
+    if (x<1) {
+	return x
+    }
     //assume_abort_if_not(y >= 1);
+    if (y < 1) {
+	return x
+    }
 
     a = x;
     b = y;
