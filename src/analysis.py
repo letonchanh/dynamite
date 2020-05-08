@@ -838,12 +838,16 @@ class Term(object):
         vloop_pos = _config._get_vloop_pos(_config.vloop)
         assert vloop_pos, vloop_pos
         
-        validator = CPAchecker(_config.tmpdir)
+        # validator = CPAchecker(_config.tmpdir)
         # validator = UAutomizer(_config.tmpdir)
-        # validator = Portfolio(_config.tmpdir)
+        validator = Portfolio(_config.tmpdir)
         validate_outf = validator.gen_validate_file(_config.inp, vloop_pos, ranks_str)
         r, cex = validator.prove_reach(vs, validate_outf)
         validator.clean()
+
+        mlog.debug('r: {}'.format(r))
+        if not r:
+            mlog.debug('cex.trans_cex: {}'.format(cex.trans_cex))
 
         # if r is False and cex.trans_cex:
         #     imap = cex.imap

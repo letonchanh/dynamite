@@ -44,6 +44,8 @@ class Validator(object):
             mlog.debug("res: {}".format(res))
             if res is False:
                 cex = self.validate_witness(vs, input, expected_result=res)
+                mlog.debug('validate_witness: DONE')
+                mlog.debug('cex.trans_cex: {}'.format(cex.trans_cex))
         except Exception as ex:
             mlog.debug("Exception: {}".format(ex))
             mlog.debug(traceback.format_exc())
@@ -220,7 +222,7 @@ class Portfolio(Validator):
     def prove_reach(self, vs, input):
         from utils.profiling import timeit
 
-        @timeit
+        # @timeit
         def f(task):
             vid, vld_cls = task
             vld = vld_cls(self.tmpdir)
@@ -228,9 +230,9 @@ class Portfolio(Validator):
             return vid, r
         
         wrs = Miscs.run_mp_ex("prove_reach", 
-            [(settings.CPAchecker.CPA_SHORT_NAME, CPAchecker), 
-             (settings.Ultimate.UAUTOMIZER_SHORT_NAME, UAutomizer)
-            ], f, get_fst_res=True)
+                [(settings.CPAchecker.CPA_SHORT_NAME, CPAchecker), 
+                 (settings.Ultimate.UAUTOMIZER_SHORT_NAME, UAutomizer)
+                ], f, get_fst_res=True)
         mlog.debug('wrs: {}'.format(wrs))
         vid, r = wrs[0]
         mlog.debug('Got result firstly from {}'.format(vid))
@@ -307,7 +309,7 @@ class CpaCex(Counterexample):
         return imap
 
 class UltCex(Counterexample):
-    def parse_trans_cex(self, cex_file):
+    def mk_trans_cex(self, cex_file):
         # val_lines = [l for l in CM.iread(cex) if 'VAL' in l]
         # last_val_line = val_lines[-1]
         # mlog.debug("last_val_line: {}".format(last_val_line))
@@ -316,7 +318,7 @@ class UltCex(Counterexample):
         # model = [part.strip().split('=') for part in model_parts]
         # dcex = dict((p[0], p[1]) for p in model)
 
-        lines = CM.iread(cex)
+        lines = CM.iread(cex_file)
         regex = r"VAL\s*\[(.*)\]"
         match = re.findall(regex, '\n'.join(lines))
         if match:
@@ -335,7 +337,6 @@ class UltCex(Counterexample):
             t = data.traces.Trace.parse(ss, vs)
             tvs = tuple(dcex[ts] for ts in tss)
             tt = data.traces.Trace.parse(ss, tvs)
-            trans_cex = [(tt, t)]
-            mlog.debug("trans_cex: {}".format(trans_cex))
-            return [trans_cex]
+            self.trans_cex = [(tt, t)]
+        mlog.debug("trans_cex: {}".format(self.trans_cex))
 
