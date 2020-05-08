@@ -8,6 +8,13 @@ int main() {
     y = __VERIFIER_nondet_int();
     //assume_abort_if_not(x >= 1);
     //assume_abort_if_not(y >= 1);
+    if (x<1) {
+        return x
+    }
+    if (y < 1) {
+        return x
+    }
+
 
     a = x;
     b = y;
