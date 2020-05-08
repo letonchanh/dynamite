@@ -214,6 +214,15 @@ class UAutomizer(Ultimate):
     def name(self):
         return settings.Ultimate.UAUTOMIZER_FULL_NAME
 
+class UTaipan(Ultimate):
+    @property
+    def short_name(self):
+        return settings.Ultimate.UTAIPAN_SHORT_NAME
+
+    @property
+    def name(self):
+        return settings.Ultimate.UTAIPAN_FULL_NAME
+
 class Portfolio(Validator):
     @property
     def short_name(self):
@@ -232,6 +241,7 @@ class Portfolio(Validator):
         wrs = Miscs.run_mp_ex("prove_reach", 
                 [(settings.CPAchecker.CPA_SHORT_NAME, CPAchecker), 
                  (settings.Ultimate.UAUTOMIZER_SHORT_NAME, UAutomizer)
+                 (settings.Ultimate.UTAIPAN_SHORT_NAME, UTaipan)
                 ], f, get_fst_res=True)
         mlog.debug('wrs: {}'.format(wrs))
         vid, r = wrs[0]

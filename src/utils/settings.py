@@ -79,8 +79,11 @@ class Ultimate:
                                     else Ultimate.ULT_VALIDATE_OPTS(witness_dir=witness_dir, witness_name=witness_name)), 
                     input=input)
 
-    UAUTOMIZER_SHORT_NAME = 'ult'
+    UAUTOMIZER_SHORT_NAME = 'uatm'
     UAUTOMIZER_FULL_NAME = 'UAutomizer'
+
+    UTAIPAN_SHORT_NAME = 'utp'
+    UTAIPAN_FULL_NAME = 'UTaipan'
     
     ULT_OUTPUT_DIR = ''
     ULT_CEX_NAME = 'UltimateCounterExample.errorpath'
