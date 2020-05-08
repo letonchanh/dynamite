@@ -863,8 +863,8 @@ class Term(object):
         
         # validator = CPAchecker(_config.tmpdir)
         # validator = UAutomizer(_config.tmpdir)
-        validator = UTaipan(_config.tmpdir)
-        # validator = Portfolio(_config.tmpdir)
+        # validator = UTaipan(_config.tmpdir)
+        validator = Portfolio(_config.tmpdir)
         validate_outf = validator.gen_validate_file(_config.inp, vloop_pos, ranks_str)
         r, cex = validator.prove_reach(vs, validate_outf)
         validator.clean()

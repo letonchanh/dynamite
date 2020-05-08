@@ -240,7 +240,7 @@ class Portfolio(Validator):
         
         wrs = Miscs.run_mp_ex("prove_reach", 
                 [(settings.CPAchecker.CPA_SHORT_NAME, CPAchecker), 
-                 (settings.Ultimate.UAUTOMIZER_SHORT_NAME, UAutomizer)
+                 (settings.Ultimate.UAUTOMIZER_SHORT_NAME, UAutomizer),
                  (settings.Ultimate.UTAIPAN_SHORT_NAME, UTaipan)
                 ], f, get_fst_res=True)
         mlog.debug('wrs: {}'.format(wrs))
