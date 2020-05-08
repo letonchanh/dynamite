@@ -77,7 +77,7 @@
 - Install CPAchecker
     ```
     wget https://gitlab.com/sosy-lab/sv-comp/archives-2020/-/raw/master/2020/cpa-seq.zip
-    unzip cpa-seq.zi
+    unzip cpa-seq.zip
     ```
     
 - Install JavaPathFinder (optional)
