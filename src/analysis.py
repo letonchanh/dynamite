@@ -870,7 +870,7 @@ class Term(object):
         validator.clean()
 
         mlog.debug('r: {}'.format(r))
-        if not r:
+        if r is False:
             mlog.debug('cex.trans_cex: {}'.format(cex.trans_cex))
 
         # if r is False and cex.trans_cex:
