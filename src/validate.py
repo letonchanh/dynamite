@@ -61,7 +61,7 @@ class Validator(object):
         mlog.debug("vcmd: {}".format(vcmd))
         v_rmsg, v_errmsg = CM.vcmd(vcmd)
         # assert not v_errmsg, "'{}': {}".format(vcmd, v_errmsg)
-        mlog.debug("v_rmsg: {}".format(v_rmsg))
+        # mlog.debug("v_rmsg: {}".format(v_rmsg))
         # mlog.debug("v_errmsg: {}".format(v_errmsg))
         v_res = self.parse_rmsg(v_rmsg)
         assert v_res is expected_result, v_res
