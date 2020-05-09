@@ -16,6 +16,8 @@ void __VERIFIER_assert(int cond) {
     return;
     }*/
 
+extern int __VERIFIER_nondet_int(void);
+
 int main() {
   unsigned A, B;
   unsigned q, r, b;

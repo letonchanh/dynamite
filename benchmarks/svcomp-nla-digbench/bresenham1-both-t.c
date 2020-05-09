@@ -14,15 +14,18 @@ void __VERIFIER_assert(int cond) {
     return;
 }
 */
+extern int __VERIFIER_nondet_int(void);
 int main() {
     int X, Y;
     int v, x, y;
-    X;// = __VERIFIER_nondet_int();
-    Y;// = __VERIFIER_nondet_int();
+    X = __VERIFIER_nondet_int();
+    Y = __VERIFIER_nondet_int();
     v = 2 * Y - X;
     y = 0;
     x = 0;
     int c, k;
+    c = 0;
+    k = __VERIFIER_nondet_int();
 
     while (2*Y*x - 2*X*y - X + 2*Y - v + c <= k) {
       //__VERIFIER_assert(2*Y*x - 2*X*y - X + 2*Y - v == 0);

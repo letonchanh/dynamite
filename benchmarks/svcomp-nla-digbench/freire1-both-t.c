@@ -18,6 +18,8 @@ void __VERIFIER_assert(int cond) {
 }
 */
 
+extern int __VERIFIER_nondet_int(void);
+
 int main() {
     int r;
     //double a, x;

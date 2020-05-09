@@ -41,7 +41,7 @@ class Validator(object):
             mlog.debug("pcmd: {}".format(pcmd))
             rmsg, errmsg = CM.vcmd(pcmd)
             # assert not errmsg, "'{}': {}".format(pcmd, errmsg)
-            mlog.debug("rmsg: {}".format(rmsg))
+            # mlog.debug("rmsg: {}".format(rmsg))
             res = self.parse_rmsg(rmsg)
             mlog.debug("res: {}".format(res))
             if res is False:
