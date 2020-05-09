@@ -10,6 +10,7 @@ from helpers.miscs import Miscs
 import data.traces
 from utils import settings
 from collections import defaultdict
+from utils.profiling import timeit
 
 mlog = CM.getLogger(__name__, settings.logger_level)
 
@@ -25,6 +26,7 @@ class Validator(object):
     def witness(self):
         return self.tmpdir / self.witness_filename
 
+    # @timeit
     def prove_reach(self, vs, input):
         cwd = os.getcwd()
         res = None
@@ -228,8 +230,8 @@ class Portfolio(Validator):
     def short_name(self):
         return 'par'
 
+    @timeit
     def prove_reach(self, vs, input):
-        from utils.profiling import timeit
 
         # @timeit
         def f(task):

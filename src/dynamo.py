@@ -135,6 +135,10 @@ if __name__ == "__main__":
             t_prover = Term(config)
             t_prover.prove()
 
+        import utils.profiling
+        print('Time log:')
+        for meth, time in utils.profiling.time_log.items():
+            print('{}: {:.3f}s'.format(meth, time / 1000))
 
     
 

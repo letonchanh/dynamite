@@ -25,6 +25,8 @@ from utils.loop import *
 from lib import *
 from solver import ZSolver, Z3Py, Z3Bin, PySMT
 from validate import Validator, CPAchecker, UAutomizer, UTaipan, Portfolio
+import utils.profiling
+from utils.profiling import timeit
 
 mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
 
@@ -753,6 +755,7 @@ class Term(object):
     def _to_Z3(self, f):
         return Z3.parse(str(f), False)
 
+    @timeit
     def infer_ranking_functions(self, vs, term_itraces):
         _config = self._config
         
@@ -853,6 +856,7 @@ class Term(object):
         mlog.debug("ranking_function_list: {}".format(ranking_function_list))
         return ranking_function_list
 
+    @timeit
     def validate_ranking_functions(self, vs, rfs):
         _config = self._config
         # ranks_str = '|'.join(['{}'.format(rf) for rf in (rfs[1:] if len(rfs) > 1 else rfs)])
@@ -906,11 +910,20 @@ class Term(object):
         # return r, sym_cex
 
     def prove(self):
+        @timeit
+        def gen_rand_inps(config):
+            return config.exe.gen_rand_inps(config.n_inps)
+
+        @timeit
+        def get_traces_from_inps(config, rand_inps):
+            return config.exe.get_traces_from_inps(rand_inps)
+
+
         _config = self._config
         vs = _config.inv_decls[_config.inloop_loc]
         # itraces = _config.rand_itraces
-        rand_inps = _config.exe.gen_rand_inps(_config.n_inps)
-        itraces = _config.exe.get_traces_from_inps(rand_inps)
+        rand_inps = gen_rand_inps(_config)
+        itraces = get_traces_from_inps(_config, rand_inps)
         preloop_term_invs = None
         while preloop_term_invs is None:
             base_term_inps, term_inps, mayloop_inps = _config.cl.classify_inps(itraces)
@@ -921,8 +934,8 @@ class Term(object):
             preloop_term_invs = _config.dig.infer_from_traces(
                                     itraces, _config.preloop_loc, term_inps, maxdeg=2)
             if preloop_term_invs is None:
-                rand_inps = _config.exe.gen_rand_inps(_config.n_inps)
-                rand_itraces = _config.exe.get_traces_from_inps(rand_inps)
+                rand_inps = gen_rand_inps(_config)
+                rand_itraces = get_traces_from_inps(_config, rand_inps)
                 old_itraces_len = len(itraces)
                 old_itraces_keys = set(itraces.keys())
                 itraces.update(rand_itraces)
