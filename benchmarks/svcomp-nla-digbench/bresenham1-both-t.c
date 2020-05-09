@@ -14,6 +14,7 @@ void __VERIFIER_assert(int cond) {
     return;
 }
 */
+extern int __VERIFIER_nondet_int(void);
 int main() {
     int X, Y;
     int v, x, y;
