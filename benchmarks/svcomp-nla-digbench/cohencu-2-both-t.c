@@ -14,6 +14,9 @@ void __VERIFIER_assert(int cond) {
     return;
 }
 */
+
+extern int __VERIFIER_nondet_int(void);
+
 int main() {
     int a, n, x, y, z;
     //a = __VERIFIER_nondet_int();
@@ -21,7 +24,7 @@ int main() {
     x = 0;
     y = 1;
     z = 6;
-    k;
+    int k = __VERIFIER_nondet_int();
     while (3 * n * n + 3 * n + 1 <= k) {
       //__VERIFIER_assert(z == 6 * n + 6);
       //__VERIFIER_assert(y == 3 * n * n + 3 * n + 1);
