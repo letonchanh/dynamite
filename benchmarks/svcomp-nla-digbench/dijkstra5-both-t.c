@@ -11,16 +11,18 @@ void __VERIFIER_assert(int cond) {
     return;
 }
 */
+extern int __VERIFIER_nondet_int(void);
+
 int main() {
     int n, p, q, r, h;
 
-    n; // = __VERIFIER_nondet_int();
+    n = __VERIFIER_nondet_int();
 
     p = 0;
     q = 1;
     r = n;
     h = 0;
-    int c, k;
+    int c = 0, k = __VERIFIER_nondet_int();
     while ( q <= n ) {
       // if (!(q <= n)) break;
 

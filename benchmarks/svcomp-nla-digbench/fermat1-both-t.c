@@ -11,11 +11,13 @@ void __VERIFIER_assert(int cond) {
     return;
 }
 */
+extern int __VERIFIER_nondet_int(void);
+
 int main() {
     int A, R;
     int u, v, r;
-    //A = __VERIFIER_nondet_double();
-    //R = __VERIFIER_nondet_double();
+    A = __VERIFIER_nondet_double();
+    R = __VERIFIER_nondet_double();
     //__VERIFIER_assume((R - 1) * (R - 1) < A);
     if ((R - 1) * (R - 1) >= A) return 0;
     //__VERIFIER_assume(A <= R * R);
@@ -27,12 +29,12 @@ int main() {
     r = R * R - A;
 
 
-    int cc, kk;
+    int cc = 0, kk = __VERIFIER_nondet_int();
     while (u*u - v*v - 2*u + 2*v - 4*(A+r) + cc < kk) {
       //__VERIFIER_assert(4*(A+r) == u*u - v*v - 2*u + 2*v);
       //if (!(r != 0)) break;
 
-        int c, k;
+      int c = 0, k = __VERIFIER_nondet_int();
         while (u*u - v*v - 2*u + 2*v - 4*(A+r) + c <= k) {
           //__VERIFIER_assert(4*(A+r) == u*u - v*v - 2*u + 2*v);
           //if (!(r > 0)) break;

@@ -18,14 +18,16 @@ void __VERIFIER_assert(int cond) {
 }
 */
 
+extern int __VERIFIER_nondet_int(void);
+
 int main() {
     int r;
     //double a, x;
-    int a, x;
-    //a = __VERIFIER_nondet_int();
+    int x;
+    int a = __VERIFIER_nondet_int();
     x = a / 2.0;
     r = 0;
-    int c = 0; int k; // Added
+    int c = 0; int k = __VERIFIER_nondet_int(); // Added
     
     while ( r*r - a - r + 2*x + c <= k ) {
       //__VERIFIER_assert((int)(r*r - a - r + 2*x) == 0);

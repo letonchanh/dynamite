@@ -16,12 +16,14 @@ void __VERIFIER_assert(int cond) {
     return;
     }*/
 
+extern int __VERIFIER_nondet_int(void);
+
 int main() {
   unsigned A, B;
   unsigned q, r, b;
-  int c, k;
-  // A = __VERIFIER_nondet_unsigned_int();
-  // B = __VERIFIER_nondet_unsigned_int();
+  int c = 0, k = __VERIFIER_nondet_int();
+  A = __VERIFIER_nondet_unsigned_int();
+  B = __VERIFIER_nondet_unsigned_int();
   //__VERIFIER_assume(B < UINT_MAX/2);
   if (B >= UINT_MAX/2) return 0;
   //__VERIFIER_assume(B >= 1);
