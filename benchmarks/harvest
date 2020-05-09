@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 use lib '.';
-my @tools = qw/dynamo/; #ultimate aprove seahorn/;
+my @tools = qw/ultimate dynamo/; #ultimate aprove seahorn/;
 use Parsers qw{parse find_benchmarks};
 
 my $bdir = shift @ARGV or die "usage: ./harvest <benchdir> <tmpdir>\n";
@@ -16,6 +16,11 @@ use POSIX qw(strftime);
 my $now = time();
 my $fn = strftime('%Y%m%d%H%M%S', gmtime($now));
 
+# dynamo-mannadiv-both-t.c.log     ultimate-cohencu4-both-t.c.log
+
+# /home/ejk/dynamo/benchmarks/svcomp-nla-digbench/out-C4SElYT/ultimate-bresenham-both-t.c-both-t.c.log
+
+my @skips;
 ################### Harvesting the results
 print "% Tool   Benchmark                     Time    Result\n";
 print "% ============================================\n";
@@ -26,7 +31,7 @@ foreach my $tool (@tools) {
       mkdir("../results/$b") if (not (-e "../results/$b"));
       open CHANH, ">../results/$b/$tool.$fn.csv" or die $!;
       my $logfn = "$benchdir/$outdir/$tool-$b.log";
-      if (not (-e $logfn)) { warn "skipping $logfn. does not exist.\n"; next; }
+      if (not (-e $logfn)) { push @skips, $logfn; next; }
       $b2res{$b} = Parsers::parse($tool,$logfn);
       printf "%-10s & %-80s & %8.2f & %-10s\n", $tool, "$bdir/$b", $b2res{$b}->{time}, $b2res{$b}->{result};
       my $ln = sprintf("%s,%s,%.2f\n", $b, $b2res{$b}->{result},  $b2res{$b}->{time});
@@ -35,5 +40,6 @@ foreach my $tool (@tools) {
       push @newfile, "../results/$b/$tool.$fn.csv";
   }
 }
+print "Skipped These:\n   ".join("\n   ",@skips)."\n";
 print "\n";
 print "You may now wish to:\n  git add ".(join(" ",@newfile))."\n  git commit -m \"results $fn\"\n";

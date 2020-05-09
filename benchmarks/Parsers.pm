@@ -19,8 +19,9 @@ sub find_benchmarks {
     while (readdir $dh) {
         my $fn = $_;
         #next unless $fn =~ m/^.*-ult-n?t\.c/;
-	next unless $fn =~ m/\.c$/;
-	next if $fn =~ m/-dyn/;
+	#next unless $fn =~ m/\.c$/;
+	#next if $fn =~ m/-dyn/;
+	next unless $fn =~ m/-both-t/;
         next if $fn =~ /~$/;
 	# check to see if there is a YML file:
 	my $ymlfn = "$benchdir/$fn"; $ymlfn =~ s/\.c$/\.yml/;

@@ -6,7 +6,7 @@ use File::Temp qw/ tempfile tempdir /;
 use Time::Out qw(timeout) ;
 
 my $SPECFILE = qq{/tools/termination.prp};
-my $TIMEOUT  = 400;
+my $TIMEOUT  = 300;
 my @timedout;
 #my $NT_SPECFILE = qq{/tools/nontermination.prp};
 
