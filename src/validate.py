@@ -235,8 +235,11 @@ class Portfolio(Validator):
         def f(task):
             vid, vld_cls = task
             vld = vld_cls(self.tmpdir)
-            r = vld.prove_reach(vs, input)
-            return vid, r
+            r, cex = vld.prove_reach(vs, input)
+            if r is None:
+                return None
+            else:
+                return vid, (r, cex)
         
         wrs = Miscs.run_mp_ex("prove_reach", 
                 [(settings.CPAchecker.CPA_SHORT_NAME, CPAchecker), 
@@ -244,9 +247,12 @@ class Portfolio(Validator):
                  (settings.Ultimate.UTAIPAN_SHORT_NAME, UTaipan)
                 ], f, get_fst_res=True)
         mlog.debug('wrs: {}'.format(wrs))
-        vid, r = wrs[0]
-        mlog.debug('Got result firstly from {}'.format(vid))
-        return r
+        if wrs:
+            vid, r = wrs[0]
+            mlog.debug('Got result firstly from {}'.format(vid))
+            return r
+        else:
+            return None, None
 
 class Counterexample(object):
     def __init__(self, vs):
