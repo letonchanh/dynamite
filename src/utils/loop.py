@@ -1,11 +1,13 @@
 import z3
 
 import helpers.vcommon as dig_common_helpers
+import settings as dig_settings
 from data.prog import Symb, Symbs
 from data.traces import Inps, Inp
 from helpers.miscs import Z3
 
 from utils import settings
+from lib import Classification
 
 mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
 
@@ -49,6 +51,24 @@ class Loop(LoopPart):
     pass
 
 class LoopInfo(object):
-    def __init__(self, stem, loop):
+    def __init__(self, vloop_id, stem=None, loop=None):
         self.stem = stem
         self.loop = loop
+        self.vloop_id = vloop_id
+        self.vloop_pos = self._get_vloop_pos(vloop_id)
+        if self.vloop_pos:
+            vloop_postfix = '_' + self.vloop_pos
+        else:
+            vloop_postfix = ''
+        vtrace_loc = lambda i: dig_settings.TRACE_INDICATOR + str(i) + vloop_postfix
+        self.preloop_loc = vtrace_loc(1) # vtrace1
+        self.inloop_loc =  vtrace_loc(2) # vtrace2
+        self.postloop_loc = vtrace_loc(3) # vtrace3
+        self.cl = Classification(self.preloop_loc, self.inloop_loc, self.postloop_loc)
+
+    def _get_vloop_pos(self, vloop_id):
+        vloop_prefix = settings.VLOOP_FUN + '_'
+        if vloop_id.startswith(vloop_prefix):
+            return vloop_id[len(vloop_prefix):]
+        else:
+            return None

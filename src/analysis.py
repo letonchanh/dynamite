@@ -88,18 +88,12 @@ class Setup(object):
                 self.trans_inp = trans_outf
                 self.cg = cg
 
-                postorder_meth_calls = self._collect_vloops_in_postorder_from_main(self.cg)
-                mlog.debug('postorder_meth_calls: {}'.format(postorder_meth_calls))
+                postorder_vloop_ids = self._collect_vloops_in_postorder_from_main(self.cg)
+                mlog.debug('postorder_vloop_ids: {}'.format(postorder_vloop_ids))
 
-                # raise NotImplementedError
-
-                vloop_pos = self._get_vloop_pos(self.vloop)
-                mlog.debug('vloop_pos: {}'.format(vloop_pos))
-
-                self.preloop_loc = dig_settings.TRACE_INDICATOR + '1' + '_' + vloop_pos # vtrace1
-                self.inloop_loc = dig_settings.TRACE_INDICATOR + '2' + '_' + vloop_pos # vtrace2
-                self.postloop_loc = dig_settings.TRACE_INDICATOR + '3' + '_' + vloop_pos # vtrace3
-                self.transrel_loc = dig_settings.TRACE_INDICATOR 
+                self.vloop_info = []
+                for vloop_id in postorder_vloop_ids:
+                    self.vloop_info.append(LoopInfo(vloop_id))
 
                 src = c_src(Path(self.trans_inp), self.tmpdir)
                 exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
@@ -135,16 +129,15 @@ class Setup(object):
             self.init_inp_decls = Symbs([Symb(self.init_symvars_prefix + s.name, s.typ) 
                                          for s in self.inp_decls])
 
-        self.transrel_pre_inv_decls, self.transrel_pre_sst, \
-            self.transrel_post_sst, transrel_inv_decls = self.gen_transrel_sst()
-        self.inv_decls[self.transrel_loc] = transrel_inv_decls
-        mlog.debug("transrel_pre_inv_decls: {}".format(self.transrel_pre_inv_decls))
-        mlog.debug("transrel_pre_sst: {}".format(self.transrel_pre_sst))
-        mlog.debug("transrel_post_sst: {}".format(self.transrel_post_sst))
+        # self.transrel_pre_inv_decls, self.transrel_pre_sst, \
+        #     self.transrel_post_sst, transrel_inv_decls = self.gen_transrel_sst()
+        # self.inv_decls[self.transrel_loc] = transrel_inv_decls
+        # mlog.debug("transrel_pre_inv_decls: {}".format(self.transrel_pre_inv_decls))
+        # mlog.debug("transrel_pre_sst: {}".format(self.transrel_pre_sst))
+        # mlog.debug("transrel_post_sst: {}".format(self.transrel_post_sst))
 
         self.exe = Execution(prog)
         self.dig = Inference(self.inv_decls, self.seed, self.tmpdir)
-        self.cl = Classification(self.preloop_loc, self.inloop_loc, self.postloop_loc)
 
         # mlog.debug("generate random inputs")
         # rand_inps = self.exe.gen_rand_inps(self.n_inps)
@@ -152,53 +145,20 @@ class Setup(object):
         # self.rand_itraces = self.exe.get_traces_from_inps(rand_inps)  # itraces: input to dtraces
 
     def _collect_vloops_in_postorder_from_main(self, cg):
-        postorder_funcs = []
-        def visit(node, visited):
-            if node not in visited:
-                visited.add(node)
-                node_children = cg[node]
-                for child in node_children:
-                    visit(child, visited)
-                postorder_funcs.append(node)
+        # Do not support mutual loops
+        # https://github.com/sosy-lab/sv-benchmarks/blob/master/c/termination-numeric/twisted.c
+        postorder_meth_calls = []
+        def visit(caller, visited):
+            if caller not in visited:
+                visited.add(caller)
+                callees = cg[caller]
+                for callee in callees:
+                    visit(callee, visited)
+                postorder_meth_calls.append(caller)
+        
         visit(dig_settings.MAINQ_FUN, set())
-        return postorder_funcs
-                
-    @property
-    def vloop(self):
-        vloop_prefix = settings.VLOOP_FUN + '_'
-        def collect_vloop_cg(start, cg):
-            ws = [start]
-            visited = set()
-            vloops = []
-            while ws:
-                caller = ws.pop(0)
-                if caller not in cg:
-                    continue
-                else:
-                    visited.add(caller)
-                    callees = cg[caller]
-                    for callee in callees:
-                        if callee not in visited:
-                            if callee.startswith(vloop_prefix):
-                                vloops.append(callee)
-                            else:
-                                ws.append(callee)
-            return vloops
-
-        vloops = collect_vloop_cg(dig_settings.MAINQ_FUN, self.cg)
-        assert len(vloops) >= 1, vloops
-        if len(vloops) > 1:
-            raise NotImplementedError
-        else:
-            vloop = vloops[0]
-        return vloop
-
-    def _get_vloop_pos(self, vloop_name):
-        vloop_prefix = settings.VLOOP_FUN + '_'
-        if vloop_name.startswith(vloop_prefix):
-            return vloop_name[len(vloop_prefix):]
-        else:
-            return None
+        postorder_vloop_calls = [c for c in postorder_meth_calls if c.startswith(settings.VLOOP_FUN)]
+        return postorder_vloop_calls
 
     def _get_c_symstates_from_src(self, src):
         from data.symstates import SymStatesC
@@ -324,7 +284,7 @@ class Setup(object):
         cg = defaultdict(list)
 
         for l in lines:
-            mlog.debug('l: {}'.format(l))
+            # mlog.debug('l: {}'.format(l))
             caller, s = l
             caller = caller.strip()
             for callee in s.split(','):
@@ -775,7 +735,7 @@ class Term(object):
         return Z3.parse(str(f), False)
 
     @timeit
-    def infer_ranking_functions(self, vs, term_itraces):
+    def infer_ranking_functions(self, vloop, vs, term_itraces):
         _config = self._config
         
         # Create and randomly pick terminating transitive closure transitions 
@@ -783,11 +743,11 @@ class Term(object):
         train_rand_trans = []
         for term_inp in term_itraces:
             term_traces = term_itraces[term_inp]
-            inloop_term_traces = term_traces[_config.inloop_loc]
+            inloop_term_traces = term_traces[vloop.inloop_loc]
             assert inloop_term_traces, inloop_term_traces
 
-            if _config.postloop_loc in term_traces:
-                postloop_term_traces = term_traces[_config.postloop_loc][:1]
+            if vloop.postloop_loc in term_traces:
+                postloop_term_traces = term_traces[vloop.postloop_loc][:1]
             else:
                 postloop_term_traces = []
 
@@ -876,18 +836,19 @@ class Term(object):
         return ranking_function_list
 
     @timeit
-    def validate_ranking_functions(self, vs, rfs):
+    def validate_ranking_functions(self, vloop, vs, rfs):
         _config = self._config
         # ranks_str = '|'.join(['{}'.format(rf) for rf in (rfs[1:] if len(rfs) > 1 else rfs)])
         ranks_str = '|'.join(['{}'.format(rf) for rf in rfs])
         mlog.debug("ranks_str: {}".format(ranks_str))
-        vloop_pos = _config._get_vloop_pos(_config.vloop)
+        vloop_pos = vloop.vloop_pos
         assert vloop_pos, vloop_pos
         
-        # validator = CPAchecker(_config.tmpdir)
-        # validator = UAutomizer(_config.tmpdir)
-        # validator = UTaipan(_config.tmpdir)
-        validator = Portfolio(_config.tmpdir)
+        validate_tmpdir = _config.tmpdir / vloop.vloop_id
+        # validator = CPAchecker(validate_tmpdir)
+        # validator = UAutomizer(validate_tmpdir)
+        # validator = UTaipan(validate_tmpdir)
+        validator = Portfolio(validate_tmpdir)
         validate_outf = validator.gen_validate_file(_config.inp, vloop_pos, ranks_str)
         r, cex = validator.prove_reach(vs, validate_outf)
         validator.clean()
@@ -922,11 +883,31 @@ class Term(object):
             n_rfs = self._infer_ranking_functions_from_trans(vs, cex.trans_cex)
             mlog.debug("n_rfs: {}".format(n_rfs))
             # n_rfs \intersect rfs = \emptyset
-            return self.validate_ranking_functions(vs, rfs + n_rfs) 
+            return self.validate_ranking_functions(vloop, vs, rfs + n_rfs) 
         else:
             return r, rfs
 
         # return r, sym_cex
+
+    def prove_vloop(self, itraces, vloop):
+        _config = self._config
+        base_term_inps, term_inps, mayloop_inps = vloop.cl.classify_inps(itraces)
+            
+        # inloop_term_invs = ZConj(_config.dig.infer_from_traces(
+        #                 itraces, vloop.inloop_loc, term_inps,
+        #                 maxdeg=2))
+        # mlog.debug("inloop_term_invs: {}".format(inloop_term_invs))
+
+        if not _config.inp_decls and not term_inps:
+            term_itraces = dict((mayloop_inp, itraces[mayloop_inp]) for mayloop_inp in mayloop_inps)
+        else:
+            term_itraces = dict((term_inp, itraces[term_inp]) for term_inp in term_inps)
+        # mlog.debug('term_itraces: {}'.format(term_itraces))
+        vs = _config.inv_decls[vloop.inloop_loc]
+        rfs = self.infer_ranking_functions(vloop, vs, term_itraces)
+        r, n_rfs = self.validate_ranking_functions(vloop, vs, rfs)
+        mlog.debug('Termination result ({}): {} ({})'.format(vloop.vloop_id, r, n_rfs))
+        return r, n_rfs
 
     def prove(self):
         @timeit
@@ -937,51 +918,44 @@ class Term(object):
         def get_traces_from_inps(config, rand_inps):
             return config.exe.get_traces_from_inps(rand_inps)
 
-
         _config = self._config
-        vs = _config.inv_decls[_config.inloop_loc]
+        # vs = _config.inv_decls[_config.inloop_loc]
         # itraces = _config.rand_itraces
         rand_inps = gen_rand_inps(_config)
         itraces = get_traces_from_inps(_config, rand_inps)
-        preloop_term_invs = None
-        while preloop_term_invs is None:
-            base_term_inps, term_inps, mayloop_inps = _config.cl.classify_inps(itraces)
-            mlog.debug("base_term_inps: {}".format(len(base_term_inps)))
-            mlog.debug("term_inps: {}".format(len(term_inps)))
-            mlog.debug("mayloop_inps: {}".format(len(mayloop_inps)))
+        # preloop_term_invs = None
+        # while preloop_term_invs is None:
+        #     base_term_inps, term_inps, mayloop_inps = _config.cl.classify_inps(itraces)
+        #     mlog.debug("base_term_inps: {}".format(len(base_term_inps)))
+        #     mlog.debug("term_inps: {}".format(len(term_inps)))
+        #     mlog.debug("mayloop_inps: {}".format(len(mayloop_inps)))
 
-            preloop_term_invs = _config.dig.infer_from_traces(
-                                    itraces, _config.preloop_loc, term_inps, maxdeg=2)
-            if preloop_term_invs is None:
-                rand_inps = gen_rand_inps(_config)
-                rand_itraces = get_traces_from_inps(_config, rand_inps)
-                old_itraces_len = len(itraces)
-                old_itraces_keys = set(itraces.keys())
-                itraces.update(rand_itraces)
-                new_itraces_len = len(itraces)
-                new_itraces_keys = set(itraces.keys())
-                mlog.debug("new rand inps: {}".format(new_itraces_keys.difference(old_itraces_keys)))
-                if new_itraces_len <= old_itraces_len:
-                    break
+        #     preloop_term_invs = _config.dig.infer_from_traces(
+        #                             itraces, _config.preloop_loc, term_inps, maxdeg=2)
+        #     if preloop_term_invs is None:
+        #         rand_inps = gen_rand_inps(_config)
+        #         rand_itraces = get_traces_from_inps(_config, rand_inps)
+        #         old_itraces_len = len(itraces)
+        #         old_itraces_keys = set(itraces.keys())
+        #         itraces.update(rand_itraces)
+        #         new_itraces_len = len(itraces)
+        #         new_itraces_keys = set(itraces.keys())
+        #         mlog.debug("new rand inps: {}".format(new_itraces_keys.difference(old_itraces_keys)))
+        #         if new_itraces_len <= old_itraces_len:
+        #             break
                     
-        mlog.debug("preloop_term_invs: {}".format(preloop_term_invs))
+        # mlog.debug("preloop_term_invs: {}".format(preloop_term_invs))
         mlog.debug("itraces: {}".format(len(itraces)))
-        mlog.debug("term_inps: {}".format(len(term_inps)))
-        inloop_term_invs = ZConj(_config.dig.infer_from_traces(
-                            itraces, _config.inloop_loc, term_inps,
-                            maxdeg=2))
-        
-        mlog.debug("inloop_term_invs: {}".format(inloop_term_invs))
+        # mlog.debug("term_inps: {}".format(len(term_inps)))
 
-        if not _config.inp_decls and not term_inps:
-            term_itraces = dict((mayloop_inp, itraces[mayloop_inp]) for mayloop_inp in mayloop_inps)
-        else:
-            term_itraces = dict((term_inp, itraces[term_inp]) for term_inp in term_inps)
-        # mlog.debug('term_itraces: {}'.format(term_itraces))
-        rfs = self.infer_ranking_functions(vs, term_itraces)
-        r, n_rfs = self.validate_ranking_functions(vs, rfs)
+        res = None
+        for vloop in _config.vloop_info:
+            vloop_r, vloop_rfs = self.prove_vloop(itraces, vloop)
+            res = vloop_r
+            if not vloop_r:
+                break
         # mlog.info('Termination result: {} ({})'.format(r, n_rfs))
-        print('Termination result: {} ({})'.format(r, n_rfs))
+        # print('Termination result: {} ({})'.format(r, n_rfs))
 
         # rfs = set()
         # r = None
