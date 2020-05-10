@@ -1,11 +1,15 @@
 - Install Ubuntu packages
     ```
-    sudo apt-get install python ant binutils make unzip bubblewrap m4
+    sudo apt-get install python ant binutils make unzip bubblewrap m4 gcc-5 g++-5
     ```
     
 - Install Java JDK 8
     ```
     sudo apt install openjdk-8-jdk
+    ```
+  or download its prebuilt binaries from
+    ```
+    wget https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u252-b09/OpenJDK8U-jdk_x64_linux_hotspot_8u252b09.tar.gz
     ```
     
 - NOTE: Every following step is started at `~/tools` folder
