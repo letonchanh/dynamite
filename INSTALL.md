@@ -10,13 +10,6 @@
     
 - NOTE: Every following step is started at `~/tools` folder
     
-- Clone Dig
-    ```
-    git clone https://gitlab.com/nguyenthanhvuh/dig.git
-    cd dig/
-    git checkout dev
-    ```
-    
 - Clone Dynamo
     ```
     git clone --recurse-submodules https://github.com/letonchanh/dynamo.git
