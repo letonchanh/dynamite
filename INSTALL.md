@@ -32,16 +32,27 @@
     ```
     git clone https://github.com/Z3Prover/z3.git
     cd z3
-    git checkout z3-4.8.3
+    git checkout z3-4.8.7
     python scripts/mk_make.py --python
     sudo make install
     ```
     
+- Install CVC4 (optional)
+    ```
+    git clone https://github.com/CVC4/CVC4.git
+    cd CVC4
+    ./contrib/get-antlr-3.4
+    CC=/tools/SageMath/local/bin/gcc CXX=/tools/SageMath/local/bin/g++ ./configure.sh --language-bindings=python --python3
+    cd build
+    make
+    ```
+    and/or
+    
 - Install `pysmt` and solvers (CVC4, Yices):
     ```
     git clone git@github.com:letonchanh/pysmt.git
-    CC=/tools/SageMath/local/bin/gcc CXX=/tools/SageMath/local/bin/g++ python3 install.py --cvc4
     pip3 install wheel
+    CC=/tools/SageMath/local/bin/gcc CXX=/tools/SageMath/local/bin/g++ python3 install.py --cvc4
     python3 install.py --yices
     ```
     
@@ -124,7 +135,6 @@
     cd dynamo/deps/dig/src/ocaml
     oasis setup
     make
-    mv instr.native instr.exe
     ```
     
     ```
@@ -135,10 +145,10 @@
     
 - Config in `bashrc`
     ```
-    export SAGE_ROOT=~/tools/SageMath
-    export Z3=~/tools/z3
-    export LLVM=~/tools/llvm-project/build
-    export JPF_HOME=~/tools/jpf
+    export SAGE_ROOT=/tools/SageMath
+    export Z3=/tools/z3
+    export LLVM=/tools/llvm-project/build
+    export JPF_HOME=/tools/jpf
     export CIVL_HOME=/tools/civl
     export CPA_HOME=/tools/CPAchecker-1.9-unix
     export ULT_HOME=/tools/ultimate
