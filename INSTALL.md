@@ -50,6 +50,7 @@
 - Install `pysmt` and solvers (CVC4, Yices):
     ```
     git clone git@github.com:letonchanh/pysmt.git
+    apt-get install -y swig
     pip3 install wheel
     CC=/tools/SageMath/local/bin/gcc CXX=/tools/SageMath/local/bin/g++ python3 install.py --cvc4
     python3 install.py --yices
