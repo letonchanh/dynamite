@@ -80,7 +80,7 @@ class Setup(object):
                 trans_rmsg, trans_errmsg = CM.vcmd(trans_cmd)
                 # assert not trans_errmsg, "'{}': {}".format(trans_cmd, trans_errmsg)
                 assert trans_outf.exists(), trans_outf
-                mlog.debug("trans_rmsg: {}".format(trans_rmsg))
+                # mlog.debug("trans_rmsg: {}".format(trans_rmsg))
 
                 cg = self._parse_call_graph(trans_rmsg)
                 mlog.debug("cg: {}".format(cg))
@@ -891,6 +891,7 @@ class Term(object):
 
     def prove_vloop(self, itraces, vloop):
         _config = self._config
+        mlog.debug('classify_inps: {}'.format(vloop.vloop_id))
         base_term_inps, term_inps, mayloop_inps = vloop.cl.classify_inps(itraces)
             
         # inloop_term_invs = ZConj(_config.dig.infer_from_traces(
@@ -904,7 +905,9 @@ class Term(object):
             term_itraces = dict((term_inp, itraces[term_inp]) for term_inp in term_inps)
         # mlog.debug('term_itraces: {}'.format(term_itraces))
         vs = _config.inv_decls[vloop.inloop_loc]
+        mlog.debug('infer_ranking_functions: {}'.format(vloop.vloop_id))
         rfs = self.infer_ranking_functions(vloop, vs, term_itraces)
+        mlog.debug('validate_ranking_functions: {}'.format(vloop.vloop_id))
         r, n_rfs = self.validate_ranking_functions(vloop, vs, rfs)
         mlog.debug('Termination result ({}): {} ({})'.format(vloop.vloop_id, r, n_rfs))
         return r, n_rfs
@@ -950,6 +953,7 @@ class Term(object):
 
         res = None
         for vloop in _config.vloop_info:
+            mlog.debug('Analysing {}'.format(vloop.vloop_id))
             vloop_r, vloop_rfs = self.prove_vloop(itraces, vloop)
             res = vloop_r
             if not vloop_r:
