@@ -676,7 +676,7 @@ class Term(object):
     def __init__(self, config):
         self._config = config
         self.ntCexs = []
-        self.MAX_TRANS_NUM = 50
+        self.MAX_TOTAL_TRANS_NUM = 2000
 
     def _check_ranking_function_trans(self, t1, t2, model):
         # import timeit
@@ -736,10 +736,18 @@ class Term(object):
 
     @timeit
     def infer_ranking_functions(self, vloop, vs, term_itraces):
+        mlog.debug('vloop: {}'.format(vloop.vloop_id))
+
+        if not term_itraces:
+            return []
+
         _config = self._config
         
         # Create and randomly pick terminating transitive closure transitions 
         # input: (t1: {x=2, y=3, z=5}, t2, t3) -> [(t1, t2), (t1, t3), (t2, t3)]
+        MAX_TRANS_NUM = math.ceil(self.MAX_TOTAL_TRANS_NUM / len(term_itraces))
+        # 2 * MAX_TRANS_NUM = MAX_TRACE_NUM * (MAX_TRACE_NUM - 1) / 2
+        MAX_TRACE_NUM = math.ceil(math.sqrt(4 * MAX_TRANS_NUM))
         train_rand_trans = []
         for term_inp in term_itraces:
             term_traces = term_itraces[term_inp]
@@ -753,10 +761,18 @@ class Term(object):
 
             loop_term_traces = inloop_term_traces + postloop_term_traces
 
+            if len(loop_term_traces) > MAX_TRACE_NUM:
+                sampled_loop_term_trace_indexes = random.sample(range(len(loop_term_traces)), k=MAX_TRACE_NUM)
+                sorted_loop_term_trace_indexes = sorted(sampled_loop_term_trace_indexes)
+                loop_term_traces = [loop_term_traces[i] for i in sorted_loop_term_trace_indexes]
+
+            # mlog.debug('generating transitive closure transitions with {} traces'.format(len(loop_term_traces)))
             trans_idx = list(itertools.combinations(range(len(loop_term_traces)), 2))
+            # mlog.debug('random.shuffle')
             random.shuffle(trans_idx)
             trans_idx_len = len(trans_idx)
-            splitter_idx = min(self.MAX_TRANS_NUM, trans_idx_len)
+            # mlog.debug('trans_idx_len: {}'.format(trans_idx_len))
+            splitter_idx = min(MAX_TRANS_NUM, trans_idx_len)
             # splitter_idx = trans_idx_len
             # mlog.debug("splitter_idx: {}".format(splitter_idx))
             for (i1, i2) in trans_idx[:splitter_idx]:
@@ -905,7 +921,6 @@ class Term(object):
             term_itraces = dict((term_inp, itraces[term_inp]) for term_inp in term_inps)
         # mlog.debug('term_itraces: {}'.format(term_itraces))
         vs = _config.inv_decls[vloop.inloop_loc]
-        mlog.debug('infer_ranking_functions: {}'.format(vloop.vloop_id))
         rfs = self.infer_ranking_functions(vloop, vs, term_itraces)
         mlog.debug('validate_ranking_functions: {}'.format(vloop.vloop_id))
         r, n_rfs = self.validate_ranking_functions(vloop, vs, rfs)
