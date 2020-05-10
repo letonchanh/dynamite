@@ -88,6 +88,11 @@ class Setup(object):
                 self.trans_inp = trans_outf
                 self.cg = cg
 
+                postorder_meth_calls = self._collect_vloops_in_postorder_from_main(self.cg)
+                mlog.debug('postorder_meth_calls: {}'.format(postorder_meth_calls))
+
+                # raise NotImplementedError
+
                 vloop_pos = self._get_vloop_pos(self.vloop)
                 mlog.debug('vloop_pos: {}'.format(vloop_pos))
 
@@ -146,6 +151,18 @@ class Setup(object):
         # mlog.debug("get traces from random inputs")
         # self.rand_itraces = self.exe.get_traces_from_inps(rand_inps)  # itraces: input to dtraces
 
+    def _collect_vloops_in_postorder_from_main(self, cg):
+        postorder_funcs = []
+        def visit(node, visited):
+            if node not in visited:
+                visited.add(node)
+                node_children = cg[node]
+                for child in node_children:
+                    visit(child, visited)
+                postorder_funcs.append(node)
+        visit(dig_settings.MAINQ_FUN, set())
+        return postorder_funcs
+                
     @property
     def vloop(self):
         vloop_prefix = settings.VLOOP_FUN + '_'
@@ -311,7 +328,9 @@ class Setup(object):
             caller, s = l
             caller = caller.strip()
             for callee in s.split(','):
-                cg[caller].append(callee.strip())
+                callee = callee.strip()
+                if callee != '':
+                    cg[caller].append(callee)
         return cg
 
     def _get_loopinfo_from_traces(self):
