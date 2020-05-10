@@ -38,8 +38,9 @@ class CIL:
             inf=inf, outf=outf, opts=(CIL.RANK_VALIDATE_OPTS(pos=pos, ranks=('"' + ranks + '"'))))
 
 class REACHABILITY:
+    TOOLS_HOME = Path(os.path.expandvars("$DYNAMITE_DEPS"))
     ARCH = 32
-    SPEC = Path('/tools/reachability.prp')
+    SPEC = TOOLS_HOME / 'reachability.prp'
     assert SPEC.is_file(), SPEC
 
 class CPAchecker:
