@@ -38,6 +38,7 @@
 - Install Z3 with Python3 from source
     ```
     git clone https://github.com/Z3Prover/z3.git
+    cd z3
     git checkout z3-4.8.3
     python scripts/mk_make.py --python
     sudo make install
