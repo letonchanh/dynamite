@@ -46,7 +46,6 @@
     cd build
     make
     ```
-    and/or
     
 - Install `pysmt` and solvers (CVC4, Yices):
     ```
