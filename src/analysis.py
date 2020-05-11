@@ -981,9 +981,10 @@ class Term(object):
         for vloop in _config.vloop_info:
             mlog.debug('Analysing {}'.format(vloop.vloop_id))
             vloop_r, vloop_rfs = self.prove_vloop(itraces, vloop)
-            res = vloop_r
             if not vloop_r:
+                res = None
                 break
+            res = vloop_r
         # mlog.info('Termination result: {} ({})'.format(r, n_rfs))
         print('Termination result: {}'.format(res))
 
