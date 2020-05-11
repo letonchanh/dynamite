@@ -61,9 +61,9 @@ class LoopInfo(object):
         else:
             vloop_postfix = ''
         vtrace_loc = lambda i: dig_settings.TRACE_INDICATOR + str(i) + vloop_postfix
-        self.preloop_loc = vtrace_loc(1) # vtrace1
-        self.inloop_loc =  vtrace_loc(2) # vtrace2
-        self.postloop_loc = vtrace_loc(3) # vtrace3
+        self.preloop_loc = vtrace_loc(settings.VTRACE.PRELOOP_LABEL) # vtrace1
+        self.inloop_loc =  vtrace_loc(settings.VTRACE.INLOOP_LABEL) # vtrace2
+        self.postloop_loc = vtrace_loc(settings.VTRACE.POSTLOOP_LABEL) # vtrace3
         self.cl = Classification(self.preloop_loc, self.inloop_loc, self.postloop_loc)
 
     def _get_vloop_pos(self, vloop_id):
