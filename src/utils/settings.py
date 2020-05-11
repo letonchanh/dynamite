@@ -18,6 +18,11 @@ VLOOP_FUN = "vloop"
 
 DYNAMITE_DIR = Path(__file__).parent.parent.parent
 
+class VTRACE:
+    PRELOOP_LABEL = 1
+    INLOOP_LABEL = 2
+    POSTLOOP_LABEL = 3
+
 class CIL:
     PTR_VARS_PREFIX = 'PTR_'
 

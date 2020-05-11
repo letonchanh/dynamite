@@ -5,7 +5,7 @@ import math
 from pathlib import Path
 from collections import defaultdict 
 
-from data.traces import Inps, Trace, Traces, DTraces
+from data.traces import Inp, Inps, Trace, Traces, DTraces
 from data.inv.invs import Invs
 from helpers.miscs import Z3, Miscs
 import helpers.vcommon as dig_common_helpers
@@ -49,7 +49,7 @@ class Execution(object):
     def get_traces_from_inps(self, inps):
         inp_decls = self.prog.inp_decls
         inv_decls = self.prog.inv_decls
-        inps = self._sample_inps(inps)
+        # inps = self._sample_inps(inps)
 
         @timeit
         def _get_traces_mp(inps):
@@ -78,23 +78,56 @@ class Execution(object):
             # return itraces
 
             def f(task):
+                import os
+                pid = os.getpid()
                 inp, lines = task
-                dtraces = defaultdict(list)
+                ltraces = defaultdict(list)
+                ptraces = defaultdict(dict)
+                itraces = defaultdict()
+                mlog.debug('inp: {}'.format(inp))
                 for l in lines:
                     # vtrace1: 8460 16 0 1 16 8460
                     parts = l.split(':')
                     assert len(parts) == 2, parts
                     loc, tracevals = parts[0], parts[1]
-                    loc = loc.strip()  # vtrace1
+                    loc = loc.strip()  # vtrace1_20
                     ss = inv_decls[loc].names
                     vs = tracevals.strip().split()
                     trace = Trace.parse(ss, vs)
-                    dtraces[loc].append(trace)
-                return (inp, dtraces)
+                    if '_' in loc:
+                        lparts = loc.split('_')
+                        indicator, pos = lparts[0], lparts[1] # vtrace1, 20
+                        # mlog.debug('{}: loc, indicator, pos: {}, {}, {}'.format(pid, loc, indicator, pos))
+                        if indicator == (dig_settings.TRACE_INDICATOR + str(settings.VTRACE.PRELOOP_LABEL)):
+                            prev_trace = ptraces[pos]
+                            if prev_trace:
+                                prev_inp = Inp(ss, prev_trace[loc][0].vs)
+                                if prev_inp not in itraces:
+                                    itraces[prev_inp] = prev_trace
+                            ptraces[pos] = defaultdict(list)
+                            ptraces[pos][loc] = [trace]
+                        else:
+                            ptraces[pos][loc].append(trace)
+                    else:
+                        ltraces[loc].append(trace)
+                if itraces:
+                    for pos in ptraces:
+                        last_trace = ptraces[pos]
+                        if last_trace:
+                            loc = dig_settings.TRACE_INDICATOR + str(settings.VTRACE.PRELOOP_LABEL) + '_' + pos
+                            last_inp = Inp(ss, last_trace[loc][0].vs)
+                            if last_inp not in itraces:
+                                itraces[last_inp] = last_trace
+                    return [(inp, dtraces) for inp, dtraces in itraces.items()]
+                else:
+                    return [(inp, ltraces)]      
 
             tasks = raw_traces.items()
             wrs = Miscs.run_mp_ex("merge traces", tasks, f)
-            itraces = {inp: dtraces for inp, dtraces in wrs}
+            # wrs = []
+            # for task in tasks:
+            #     wrs.append(f(task))
+            itraces = {inp: dtraces for wr in wrs for inp, dtraces in wr}
             return itraces
 
             # itraces = {}
@@ -136,13 +169,14 @@ class Classification(object):
         for inp, dtraces in itraces.items():
             # mlog.debug("{}: {}".format(inp, dtraces.keys()))
             chains = dtraces.keys()
-            if self.postloop in chains:
-                if self.inloop in chains:
-                    term_inps.append(inp)
+            if self.preloop in chains:
+                if self.postloop in chains:
+                    if self.inloop in chains:
+                        term_inps.append(inp)
+                    else:
+                        base_term_inps.append(inp)
                 else:
-                    base_term_inps.append(inp)
-            else:
-                mayloop_inps.append(inp)
+                    mayloop_inps.append(inp)
         return base_term_inps, term_inps, mayloop_inps
 
 class Inference(object):
