@@ -84,7 +84,7 @@ class Execution(object):
                 ltraces = defaultdict(list)
                 ptraces = defaultdict(dict)
                 itraces = defaultdict()
-                mlog.debug('inp: {}'.format(inp))
+                # mlog.debug('inp: {}'.format(inp))
                 for l in lines:
                     # vtrace1: 8460 16 0 1 16 8460
                     parts = l.split(':')
@@ -110,7 +110,7 @@ class Execution(object):
                             ptraces[pos][loc].append(trace)
                     else:
                         ltraces[loc].append(trace)
-                if itraces:
+                if itraces or ptraces:
                     for pos in ptraces:
                         last_trace = ptraces[pos]
                         if last_trace:
