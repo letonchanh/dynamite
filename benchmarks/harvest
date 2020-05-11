@@ -8,8 +8,10 @@ use Parsers qw{parse find_benchmarks};
 
 my $bdir = shift @ARGV or die "usage: ./harvest <benchdir> <tmpdir>\n";
 my $outdir = shift @ARGV or die "usage: ./harvest <benchdir> <tmpdir>\n";
-
-my ($benchdir,@benches) = Parsers::find_benchmarks($bdir);
+my @bnames = ();
+@bames = @ARGV if $#ARGV > -1;
+    
+my ($benchdir,@benches) = Parsers::find_benchmarks($bdir,\@bnames);
 
 ################### Filename for results
 use POSIX qw(strftime);

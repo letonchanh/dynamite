@@ -62,16 +62,26 @@ sub runc { my ($cmd) = @_; print "+ $cmd\n(with timeout of $TIMEOUT s)\n";
 
 ###############################################################
 #### Arguments parsing
-die "usage: ./run <subdir> (list|run) [dynamo,ultimate,seahorn,aprove]\n" unless $#ARGV >= 1;
-my $bdir = shift(@ARGV); # subdirectory to use like 'nla'
-my $arg1 = shift(@ARGV); # list or run or harvest
-my $ts   = shift(@ARGV);
+die "usage: ./run (options) <subdir> (list|run) [dynamo,ultimate,seahorn,aprove] (geo1-both-t,cohencu2-both-t,...)\n".
+    "  (last argument is optional) \n".
+    "  options:\n".
+    "    --timeout=900\n" unless $#ARGV >= 1;
+while ($ARGV[0] =~ /^--(.*)=(.+)$/) {
+    my ($k,$v) = ($1,$2);
+    shift @ARGV;
+    $TIMEOUT = $v if $k eq 'timeout';
+}
+my @bames = ();
+my ($bdir,$arg1,$ts,$bms) = @ARGV;
 my @tools = split ',', $ts;
+my @bnames = split ',', $bms if defined $bms;
+use Data::Dumper;
+print Dumper(\@bnames);
 print "--- Configuration ---\n";
 print "| Tools: $ts\n";
 
 use Parsers qw/find_benchmarks/;
-my ($benchdir,@benches) = Parsers::find_benchmarks($bdir);
+my ($benchdir,@benches) = Parsers::find_benchmarks($bdir,\@bnames);
 @benches = sort @benches; # [50..158];
 print "| Total files: ".($#benches+1)."\n";
 print "---------------\n";
