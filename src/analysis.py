@@ -677,6 +677,10 @@ class Term(object):
         self._config = config
         self.ntCexs = []
         self.MAX_TOTAL_TRANS_NUM = 2000
+        self.MAX_TRANS_NUM = 20
+        self.MAX_INP_NUM = math.ceil(self.MAX_TOTAL_TRANS_NUM / self.MAX_TRANS_NUM)
+        # 2 * MAX_TRANS_NUM = MAX_TRACE_NUM * (MAX_TRACE_NUM - 1) / 2
+        self.MAX_TRACE_NUM = math.floor(math.sqrt(4 * self.MAX_TRANS_NUM))
 
     def _check_ranking_function_trans(self, t1, t2, model):
         # import timeit
@@ -737,6 +741,7 @@ class Term(object):
     @timeit
     def infer_ranking_functions(self, vloop, vs, term_itraces):
         mlog.debug('vloop: {}'.format(vloop.vloop_id))
+        mlog.debug('term_itraces: {}'.format(len(term_itraces)))
 
         if not term_itraces:
             return []
@@ -745,11 +750,13 @@ class Term(object):
         
         # Create and randomly pick terminating transitive closure transitions 
         # input: (t1: {x=2, y=3, z=5}, t2, t3) -> [(t1, t2), (t1, t3), (t2, t3)]
-        MAX_TRANS_NUM = math.ceil(self.MAX_TOTAL_TRANS_NUM / len(term_itraces))
-        # 2 * MAX_TRANS_NUM = MAX_TRACE_NUM * (MAX_TRACE_NUM - 1) / 2
-        MAX_TRACE_NUM = math.ceil(math.sqrt(4 * MAX_TRANS_NUM))
+
         train_rand_trans = []
-        for term_inp in term_itraces:
+        sampled_term_inps = term_itraces.keys()
+        if len(sampled_term_inps) > self.MAX_INP_NUM:
+            sampled_term_inps = random.sample(sampled_term_inps, k=self.MAX_INP_NUM)
+
+        for term_inp in sampled_term_inps:
             term_traces = term_itraces[term_inp]
             inloop_term_traces = term_traces[vloop.inloop_loc]
             assert inloop_term_traces, inloop_term_traces
@@ -761,18 +768,19 @@ class Term(object):
 
             loop_term_traces = inloop_term_traces + postloop_term_traces
 
-            if len(loop_term_traces) > MAX_TRACE_NUM:
-                sampled_loop_term_trace_indexes = random.sample(range(len(loop_term_traces)), k=MAX_TRACE_NUM)
+            if len(loop_term_traces) > self.MAX_TRACE_NUM:
+                sampled_loop_term_trace_indexes = random.sample(range(len(loop_term_traces)), k=self.MAX_TRACE_NUM)
                 sorted_loop_term_trace_indexes = sorted(sampled_loop_term_trace_indexes)
                 loop_term_traces = [loop_term_traces[i] for i in sorted_loop_term_trace_indexes]
 
             # mlog.debug('generating transitive closure transitions with {} traces'.format(len(loop_term_traces)))
+            assert len(loop_term_traces) <= self.MAX_TRANS_NUM + 1, len(loop_term_traces)
             trans_idx = list(itertools.combinations(range(len(loop_term_traces)), 2))
             # mlog.debug('random.shuffle')
             random.shuffle(trans_idx)
             trans_idx_len = len(trans_idx)
             # mlog.debug('trans_idx_len: {}'.format(trans_idx_len))
-            splitter_idx = min(MAX_TRANS_NUM, trans_idx_len)
+            splitter_idx = min(self.MAX_TRANS_NUM, trans_idx_len)
             # splitter_idx = trans_idx_len
             # mlog.debug("splitter_idx: {}".format(splitter_idx))
             for (i1, i2) in trans_idx[:splitter_idx]:
@@ -780,6 +788,7 @@ class Term(object):
                 rand_trans = (loop_term_traces[i1], loop_term_traces[i2])
                 # mlog.debug("rand_trans: {} -> {}: {}".format(i1, i2, rand_trans))
                 train_rand_trans.append(rand_trans)
+        mlog.debug('train_rand_trans: {}'.format(len(train_rand_trans)))
         return self._infer_ranking_functions_from_trans(vs, train_rand_trans)
 
     def _infer_ranking_functions_from_trans(self, vs, train_rand_trans):
@@ -965,15 +974,17 @@ class Term(object):
                     
         # mlog.debug("preloop_term_invs: {}".format(preloop_term_invs))
         mlog.debug("itraces: {}".format(len(itraces)))
+        # mlog.debug("{}".format(itraces))
         # mlog.debug("term_inps: {}".format(len(term_inps)))
 
         res = None
         for vloop in _config.vloop_info:
             mlog.debug('Analysing {}'.format(vloop.vloop_id))
             vloop_r, vloop_rfs = self.prove_vloop(itraces, vloop)
-            res = vloop_r
             if not vloop_r:
+                res = None
                 break
+            res = vloop_r
         # mlog.info('Termination result: {} ({})'.format(r, n_rfs))
         print('Termination result: {}'.format(res))
 
