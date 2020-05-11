@@ -123,10 +123,10 @@ class Execution(object):
                     return [(inp, ltraces)]      
 
             tasks = raw_traces.items()
-            # wrs = Miscs.run_mp_ex("merge traces", tasks, f)
-            wrs = []
-            for task in tasks:
-                wrs.append(f(task))
+            wrs = Miscs.run_mp_ex("merge traces", tasks, f)
+            # wrs = []
+            # for task in tasks:
+            #     wrs.append(f(task))
             itraces = {inp: dtraces for wr in wrs for inp, dtraces in wr}
             return itraces
 

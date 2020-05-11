@@ -975,7 +975,7 @@ class Term(object):
             if not vloop_r:
                 break
         # mlog.info('Termination result: {} ({})'.format(r, n_rfs))
-        # print('Termination result: {} ({})'.format(r, n_rfs))
+        print('Termination result: {}'.format(res))
 
         # rfs = set()
         # r = None
