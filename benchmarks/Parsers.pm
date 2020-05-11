@@ -9,7 +9,7 @@ use YAML::Tiny;
 our @EXPORT_OK = qw{ult find_benchmarks parse seahorn aprove expected};
 
 sub find_benchmarks {
-    my ($bdir) = @_;
+    my ($bdir,$bnames) = @_;
     my $scriptfn = Cwd::abs_path($0);
     my $benchdir = dirname($scriptfn)."/".$bdir;
     my @benches;
@@ -23,6 +23,11 @@ sub find_benchmarks {
 	#next if $fn =~ m/-dyn/;
 	next unless $fn =~ m/-both-t/;
         next if $fn =~ /~$/;
+	if ($#{$bnames} > -1) {
+	    next unless $fn ~~ @{$bnames};
+	    #use Data::Dumper;
+	    #print "not skipping $fn\n".Dumper($bnames);
+	}
 	# check to see if there is a YML file:
 	my $ymlfn = "$benchdir/$fn"; $ymlfn =~ s/\.c$/\.yml/;
 	if (-e $ymlfn) {
