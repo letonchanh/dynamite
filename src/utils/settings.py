@@ -25,7 +25,7 @@ class CIL:
     assert CIL_TRANSFORM_DIR.is_dir(), CIL_TRANSFORM_DIR
 
     CIL_EXE = CIL_TRANSFORM_DIR / "src" / "cil" / "bin" / "cilly"
-    CIL_OPTS = "--gcc=/usr/bin/gcc-5 --save-temps -D HAPPY_MOOD"
+    CIL_OPTS = "--save-temps -D HAPPY_MOOD" # --gcc=/usr/bin/gcc-5
     CIL_CMD = partial("{cil_exe} {cil_opts} {ext} {inf} --out={outf} {opts}".format,
                       cil_exe=CIL_EXE, cil_opts=CIL_OPTS)
 
@@ -38,8 +38,9 @@ class CIL:
             inf=inf, outf=outf, opts=(CIL.RANK_VALIDATE_OPTS(pos=pos, ranks=('"' + ranks + '"'))))
 
 class REACHABILITY:
+    TOOLS_HOME = Path(os.path.expandvars("$DYNAMITE_DEPS"))
     ARCH = 32
-    SPEC = Path('/tools/reachability.prp')
+    SPEC = TOOLS_HOME / 'reachability.prp'
     assert SPEC.is_file(), SPEC
 
 class CPAchecker:

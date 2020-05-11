@@ -18,7 +18,7 @@ class Validator(object):
     def __init__(self, tmpdir):
         mytempdir = tmpdir / self.short_name
         if not mytempdir.exists():
-            mytempdir.mkdir()
+            mytempdir.mkdir(parents=True, exist_ok=True)
         self.tmpdir = mytempdir
         self.output_dir = None
 
