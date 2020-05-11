@@ -927,12 +927,13 @@ class Term(object):
         mlog.debug('Termination result ({}): {} ({})'.format(vloop.vloop_id, r, n_rfs))
         return r, n_rfs
 
+    @timeit
     def prove(self):
         @timeit
         def gen_rand_inps(config):
             return config.exe.gen_rand_inps(config.n_inps)
 
-        @timeit
+        # @timeit
         def get_traces_from_inps(config, rand_inps):
             return config.exe.get_traces_from_inps(rand_inps)
 

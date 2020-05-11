@@ -3,13 +3,17 @@ import z3
 import random
 import math
 from pathlib import Path
+from collections import defaultdict 
+
 from data.traces import Inps, Trace, Traces, DTraces
 from data.inv.invs import Invs
-from utils import settings
 from helpers.miscs import Z3, Miscs
 import helpers.vcommon as dig_common_helpers
 import settings as dig_settings
 import data.prog as dig_prog
+
+from utils import settings
+from utils.profiling import timeit
 
 mlog = CM.getLogger(__name__, settings.logger_level)
 
@@ -41,34 +45,83 @@ class Execution(object):
         inps = self._sample_inps(inps)
         return inps
 
+    @timeit
     def get_traces_from_inps(self, inps):
         inp_decls = self.prog.inp_decls
         inv_decls = self.prog.inv_decls
         inps = self._sample_inps(inps)
-        raw_traces = self.prog._get_traces_mp(inps)
-        itraces = {}
-        for inp, lines in raw_traces.items():
-            # dtraces = {}
-            itraces.setdefault(inp, {})
-            for l in lines:
-                # vtrace1: 8460 16 0 1 16 8460
-                parts = l.split(':')
-                assert len(parts) == 2, parts
-                loc, tracevals = parts[0], parts[1]
-                loc = loc.strip()  # vtrace1
-                ss = inv_decls[loc].names
-                vs = tracevals.strip().split()
-                trace = Trace.parse(ss, vs)
-                # if loc not in dtraces:
-                #     dtraces[loc] = [trace]
-                # else:
-                #     dtraces[loc].append(trace)
-                # dtraces.setdefault(loc, []).append(trace)
-                itraces[inp].setdefault(loc, []).append(trace)
-            # dtraces = DTraces.parse(lines, inv_decls) # Using set, do not preserve order of traces
-            # print dtraces.__str__(printDetails=True)
-            # itraces[inp] = dtraces
-        return itraces
+
+        @timeit
+        def _get_traces_mp(inps):
+            return self.prog._get_traces_mp(inps)
+        raw_traces = _get_traces_mp(inps)
+
+        @timeit
+        def _merge_traces():
+            # def f(task):
+            #     inp, l = task
+            #     # vtrace1: 8460 16 0 1 16 8460
+            #     parts = l.split(':')
+            #     assert len(parts) == 2, parts
+            #     loc, tracevals = parts[0], parts[1]
+            #     loc = loc.strip()  # vtrace1
+            #     ss = inv_decls[loc].names
+            #     vs = tracevals.strip().split()
+            #     trace = Trace.parse(ss, vs)
+            #     return (inp, loc, trace)
+
+            # tasks = [(inp, l) for inp, lines in raw_traces.items() for l in lines]
+            # wrs = Miscs.run_mp_ex("merge traces", tasks, f)
+            # itraces = defaultdict(dict)
+            # for inp, loc, trace in wrs:
+            #     itraces[inp].setdefault(loc, []).append(trace)
+            # return itraces
+
+            def f(task):
+                inp, lines = task
+                dtraces = defaultdict(list)
+                for l in lines:
+                    # vtrace1: 8460 16 0 1 16 8460
+                    parts = l.split(':')
+                    assert len(parts) == 2, parts
+                    loc, tracevals = parts[0], parts[1]
+                    loc = loc.strip()  # vtrace1
+                    ss = inv_decls[loc].names
+                    vs = tracevals.strip().split()
+                    trace = Trace.parse(ss, vs)
+                    dtraces[loc].append(trace)
+                return (inp, dtraces)
+
+            tasks = raw_traces.items()
+            wrs = Miscs.run_mp_ex("merge traces", tasks, f)
+            itraces = {inp: dtraces for inp, dtraces in wrs}
+            return itraces
+
+            # itraces = {}
+            # for inp, lines in raw_traces.items():
+            #     # dtraces = {}
+            #     itraces.setdefault(inp, {})
+            #     for l in lines:
+            #         # vtrace1: 8460 16 0 1 16 8460
+            #         parts = l.split(':')
+            #         assert len(parts) == 2, parts
+            #         loc, tracevals = parts[0], parts[1]
+            #         loc = loc.strip()  # vtrace1
+            #         ss = inv_decls[loc].names
+            #         vs = tracevals.strip().split()
+            #         trace = Trace.parse(ss, vs)
+            #         # if loc not in dtraces:
+            #         #     dtraces[loc] = [trace]
+            #         # else:
+            #         #     dtraces[loc].append(trace)
+            #         # dtraces.setdefault(loc, []).append(trace)
+            #         itraces[inp].setdefault(loc, []).append(trace)
+            #     # dtraces = DTraces.parse(lines, inv_decls) # Using set, do not preserve order of traces
+            #     # print dtraces.__str__(printDetails=True)
+            #     # itraces[inp] = dtraces
+            # return itraces
+
+        return _merge_traces()
 
 class Classification(object):
     def __init__(self, preloop, inloop, postloop):
