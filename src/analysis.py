@@ -844,6 +844,12 @@ class Term(object):
                 # start_time = timeit.default_timer()
                 invalid_train_term_rand_trans = itertools.filterfalse(lambda t: (self._check_ranking_function_trans(*t, model)),
                                                                       train_term_rand_trans)
+                # def f(tasks):
+                #     r = itertools.filterfalse(lambda t: (self._check_ranking_function_trans(*t, model)), tasks)
+                #     return list(r)
+
+                # invalid_train_term_rand_trans = Miscs.run_mp("filterfalse", train_term_rand_trans, f)
+
                 # elapsed = timeit.default_timer() - start_time
                 # mlog.debug("invalid_train_term_rand_trans: {}".format(elapsed * 1000000))
 
@@ -918,6 +924,12 @@ class Term(object):
         _config = self._config
         mlog.debug('classify_inps: {}'.format(vloop.vloop_id))
         base_term_inps, term_inps, mayloop_inps = vloop.cl.classify_inps(itraces)
+
+        mlog.debug('itraces: {}'.format(len(itraces)))
+        Classification.print_inps(itraces)
+        mlog.debug('base_term_inps: {}'.format(len(base_term_inps)))
+        mlog.debug('term_inps: {}'.format(len(term_inps)))
+        mlog.debug('mayloop_inps: {}'.format(len(mayloop_inps)))
             
         # inloop_term_invs = ZConj(_config.dig.infer_from_traces(
         #                 itraces, vloop.inloop_loc, term_inps,

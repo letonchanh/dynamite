@@ -132,13 +132,33 @@ if __name__ == "__main__":
                     mlog.info("ancestor {}: {}".format(depth, ancestor_))
 
         if settings.prove_term:
-            t_prover = Term(config)
-            t_prover.prove()
+            try:
+                t_prover = Term(config)
+                t_prover.prove()
 
-        import utils.profiling
-        print('Time log:')
-        for meth, time in utils.profiling.time_log.items():
-            print('{}: {:.3f}s'.format(meth, time / 1000))
+                import utils.profiling
+                print('Time log:')
+                for meth, time in utils.profiling.time_log.items():
+                    print('{}: {:.3f}s'.format(meth, time / 1000))
+            except Exception as ex:
+                import traceback
+                mlog.debug("Exception: {}".format(ex))
+                mlog.debug(traceback.format_exc())
+            finally:
+                import psutil
+
+                def on_terminate(proc):
+                    print("process {} terminated with exit code {}".format(proc, proc.returncode))
+
+                dynamite_process = psutil.Process()
+                dynamite_children = dynamite_process.children(recursive=True)
+                for child in dynamite_children:
+                    print('Child pid is {}, {}'.format(child.pid, child.name()))
+                    child.terminate()
+                gone, alive = psutil.wait_procs(dynamite_children, timeout=1, callback=on_terminate)
+                for p in alive:
+                    print('{} alive'.format(p))
+                    p.kill()
 
     
 
