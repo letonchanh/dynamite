@@ -11,6 +11,10 @@ my $TIMEOUT  = 300;
 my @timedout;
 #my $NT_SPECFILE = qq{/tools/nontermination.prp};
 
+my $hn = qx{hostname -A};
+$SPECFILE = '/home/exp'.$SPECFILE if $hn =~ /cse-tnguyen-02/;
+my $KILL = "killall java; killall z3;";
+
 ###############################################################
 use lib '.';
 use Parsers qw{ult dynamo};
@@ -22,7 +26,7 @@ my $CFG = {
         DIR => qq{/home/ejk/dynamo/src},
         CMD => sub { my $arg = ($SPECFILE =~ m/\/term/ ? '-t' : '-nt');
                      $t0 = [gettimeofday];
-                     return qq(killall java; killall z3; python3 dynamo.py --timeout=$TIMEOUT $_[0] $arg 2>\&1 | tee /tmp/dynamo.ejk.txt);
+                     return qq($KILL python3 dynamo.py --timeout=$TIMEOUT $_[0] $arg 2>\&1 | tee /tmp/dynamo.ejk.txt);
         },
         FETCH => sub { my $elapsed = tv_interval($t0);
 		       my $tm = "EJK TIMER: $elapsed\n";
@@ -34,7 +38,7 @@ my $CFG = {
     },
     ultimate => {
         DIR    => qq{/tools/ultimate/releaseScripts/default/UAutomizer-linux},
-        CMD    => sub { return qq(timeout ${TIMEOUT}s ./Ultimate.py --file $_[0]  --spec $SPECFILE --architecture 32bit); },
+        CMD    => sub { return qq($KILL timeout ${TIMEOUT}s ./Ultimate.py --file $_[0]  --spec $SPECFILE --architecture 32bit); },
         FETCH  => sub { return qq(cp Ultimate.log $_[0]); },
         PARSE  => sub { return Parsers::ult($_[0]); },
     },
@@ -52,9 +56,8 @@ my $CFG = {
     }
 };
 
-my $hn = qx{hostname -A};
 $CFG->{dynamo}->{DIR} = '/home/exp/eric/dynamo/src' if $hn =~ /cse-tnguyen-02/;
-
+$CFG->{ultimate}->{DIR} = '/home/exp'.$CFG->{ultimate}->{DIR} if $hn =~ /cse-tnguyen-02/;
     
 ###############################################################
 #### Utilities
