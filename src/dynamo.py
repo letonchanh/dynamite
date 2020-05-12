@@ -133,26 +133,15 @@ if __name__ == "__main__":
         def prove():
             if settings.prove_nonterm:
                 nt_prover = NonTerm(config) 
-                validRCS = nt_prover.prove()
-                mlog.info("validRCS: {}".format(validRCS))
-                for rcs, ancestors in validRCS:
-                    f = Z3.to_dnf(rcs.simplify())
-                    mlog.info("rcs: {}".format(rcs))
-                    mlog.info("(simplified) rcs: {}".format(f))
-                    for depth, ancestor in ancestors:
-                        if ancestor is None:
-                            ancestor_ = None
-                        else:
-                            ancestor_ = Z3.to_dnf(ancestor.simplify())
-                        mlog.info("ancestor {}: {}".format(depth, ancestor_))
+                nt_prover.prove()
 
             if settings.prove_term:
                 t_prover = Term(config)
                 t_prover.prove()
 
-                print('Time log:')
-                for meth, time in utils.profiling.time_log.items():
-                    print('{}: {:.3f}s'.format(meth, time / 1000))
+            print('Time log:')
+            for meth, time in utils.profiling.time_log.items():
+                print('{}: {:.3f}s'.format(meth, time / 1000))
 
 
         prove_process = multiprocessing.Process(target=prove)

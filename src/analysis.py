@@ -161,6 +161,7 @@ class Setup(object):
         postorder_vloop_calls = [c for c in postorder_meth_calls if c.startswith(settings.VLOOP_FUN)]
         return postorder_vloop_calls
 
+    @timeit
     def _get_c_symstates_from_src(self, src):
         from data.symstates import SymStatesC
         
@@ -454,7 +455,7 @@ class NonTerm(object):
             # R /\ T => R'
             # rcs_l = z3.substitute(rcs.expr(), _config.transrel_pre_sst)
             # mlog.debug("rcs_l: {}".format(rcs_l))
-            init_transrel_rcs = ZFormula.substitue(labeled_rcs, _config.transrel_pre_sst)
+            init_transrel_rcs = ZFormula.substitue(labeled_rcs, vloop.transrel_pre_sst)
             init_transrel_rcs.add(loop_transrel)
             init_transrel_rcs.add(vloop.stem.cond)
             init_transrel_rcs.add(vloop.stem.transrel)
@@ -470,7 +471,7 @@ class NonTerm(object):
                 mlog.debug("rc: {}:{}".format(rc, rc_label))
                 # init_transrel_rcs is sat
                 init_f = copy.deepcopy(init_transrel_rcs)
-                rc_r = z3.substitute(rc, _config.transrel_post_sst)
+                rc_r = z3.substitute(rc, vloop.transrel_post_sst)
                 init_f.add(z3.Not(rc_r))
                 mlog.debug("rc_r: {}".format(rc_r))
                 mlog.debug("init_f: {}".format(init_f))
@@ -632,7 +633,7 @@ class NonTerm(object):
                     continue
 
                 if depth < settings.max_nonterm_refinement_depth:
-                    chk, sCexs, mds = self.verify(rcs)
+                    chk, sCexs, mds = self.verify(rcs, vloop)
                     # mlog.debug("sCexs: {}".format(sCexs))
                     if mds and len(mds) < len(rcs):
                         # mds is a valid recurrent set which is smaller (weaker) than rcs
@@ -646,7 +647,7 @@ class NonTerm(object):
                         # return validRCS
                     elif sCexs is not None:
                         for invalid_rc, cexs in sCexs:
-                            nrcs = self.strengthen(rcs, invalid_rc, cexs)
+                            nrcs = self.strengthen(rcs, invalid_rc, cexs, vloop)
                             # assert nrcs, nrcs
                             for nrc in nrcs:
                                 nancestors = copy.deepcopy(ancestors)
@@ -660,18 +661,28 @@ class NonTerm(object):
         _config = self._config
         res = None
         for vloop in _config.vloop_info:
-            stem, loop = config.get_loopinfo(vloop)
+            stem, loop = _config.get_loopinfo(vloop)
             vloop.stem = stem
             vloop.loop = loop
-            rcs = self.prove_vloop(vloop)
-            if rcs:
-                res = (False, vloop.vloop_id, rcs)
+            validRCS = self.prove_vloop(vloop)
+            if validRCS:
+                res = (False, vloop.vloop_id, validRCS)
                 break 
         if res is None:
             print('Non-termination result: Unknown')
         else:
-            r, vid, rcs = res
-            print('Non-termination result: {} ({}: {})'.format(r, vid, rcs))
+            r, vid, validRCS = res
+            for rcs, ancestors in validRCS:
+                f = Z3.to_dnf(rcs.simplify())
+                mlog.info("rcs: {}".format(rcs))
+                mlog.info("(simplified) rcs: {}".format(f))
+                for depth, ancestor in ancestors:
+                    if ancestor is None:
+                        ancestor_ = None
+                    else:
+                        ancestor_ = Z3.to_dnf(ancestor.simplify())
+                    mlog.info("ancestor {}: {}".format(depth, ancestor_))
+            print('Non-termination result: {} ({})'.format(r, vid))
 
 class Term(object):
     def __init__(self, config):
