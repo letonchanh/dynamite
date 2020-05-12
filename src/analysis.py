@@ -162,7 +162,7 @@ class Setup(object):
         return postorder_vloop_calls
 
     @timeit
-    def _get_c_symstates_from_src(self, src):
+    def _get_c_symstates_from_src(self, src, target_location=None):
         from data.symstates import SymStatesC
         
         # exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
@@ -172,6 +172,12 @@ class Setup(object):
         symstates.compute(src.symexefile, src.mainQ_name,
                           src.funname, src.symexedir)
         # mlog.debug("symstates: {}".format(symstates.ss))
+        if target_location:
+            if target_location in symstates.ss:
+                return symstates
+            else:
+                # Increase the depth and try again
+                mlog.debug('symstates.maxdepth: {}'.format(symstates.maxdepth))
         return symstates
 
     def _get_loopinfo_from_symstates(self, vloop):
@@ -182,8 +188,7 @@ class Setup(object):
     def _get_stem_from_symstates(self, vloop):
         assert self.symstates, self.symstates
 
-        ss = self.symstates.ss
-        if vloop.preloop_loc in ss:
+        def _get_stem_from_ss(ss):
             preloop_symstates = ss[vloop.preloop_loc]
             preloop_ss_depths = sorted(preloop_symstates.keys())
             preloop_fst_symstate = None
@@ -202,6 +207,15 @@ class Setup(object):
                 mlog.debug("stem_transrel ({}): {}".format(type(stem_transrel), stem_transrel))
                 stem = Stem(self.inp_decls, stem_cond, stem_transrel)
                 return stem
+            else:
+                return None
+
+        ss = self.symstates.ss
+        mlog.debug('ss: {}'.format(ss))
+        mlog.debug('vloop.preloop_loc: {}'.format(vloop.preloop_loc))
+        stem = None
+        while vloop.preloop_loc not in ss or stem is None:
+            
         return None
 
     def _strip_ptr_loop_params(self, symbs):
@@ -331,6 +345,8 @@ class Setup(object):
 
     def get_loopinfo(self, vloop):
         stem, loop = self._get_loopinfo_from_symstates(vloop)
+        mlog.debug('stem: {}'.format(stem))
+        mlog.debug('loop: {}'.format(loop))
         if stem is None or loop is None:
             stem, loop = self._get_loopinfo_from_traces()
         return stem, loop
