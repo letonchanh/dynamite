@@ -126,7 +126,7 @@ class Setup(object):
         if settings.prove_nonterm:
             try:
                 mlog.debug("Get symstates for proving NonTerm (prove_nonterm={})".format(settings.prove_nonterm))
-                self.symstates = self._get_symstates_from_src()
+                self.symstates = self._get_symstates_from_src(self.src)
             except Exception as e:
                 mlog.debug("Get symstates for proving NonTerm: {}".format(e))
                 raise e
@@ -164,20 +164,21 @@ class Setup(object):
         return postorder_vloop_calls
 
     @timeit
-    def _get_symstates_from_src(self, target_loc=None):
-        assert self.src, self.src
-        src = self.src
+    def _get_symstates_from_src(self, src, target_loc=None, min_depth=None):
 
         # exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
         inp_decls, inv_decls, mainQ_name = src.inp_decls, src.inv_decls, src.mainQ_name
 
         if self.is_c_inp:
             from data.symstates import SymStatesC
+            mlog.debug('SymStatesC.maxdepth: {}'.format(SymStatesC.maxdepth))
+            if min_depth and min_depth > SymStatesC.maxdepth:
+                SymStatesC.mindepth = min_depth
+                SymStatesC.maxdepth = min_depth + dig_settings.C.SE_DEPTH_INCR
 
             symstates = SymStatesC(inp_decls, inv_decls)
 
-        symstates.compute(src.symexefile, src.mainQ_name,
-                          src.funname, src.symexedir)
+        symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
         # mlog.debug("symstates: {}".format(symstates.ss))
         mlog.debug('target_loc: {}'.format(target_loc))
         if target_loc:
@@ -185,8 +186,7 @@ class Setup(object):
                 return symstates
             else:
                 # Increase the depth and try again
-                mlog.debug('symstates.maxdepth: {}'.format(symstates.maxdepth))
-                raise NotImplementedError
+                return self._get_symstates_from_src(src, target_loc, min_depth=symstates.maxdepth + 1)
         return symstates
 
     def _get_loopinfo_from_symstates(self, vloop):
@@ -219,18 +219,17 @@ class Setup(object):
             else:
                 return None
 
-        ss = self.symstates.ss
         # mlog.debug('ss: {}'.format(ss))
         mlog.debug('vloop.preloop_loc: {}'.format(vloop.preloop_loc))
         stem = None
-        while stem is None:
-            if vloop.preloop_loc in ss:
-                stem = _get_stem_from_ss(ss)
-                if stem:
-                    break
-            
-            self.symstates = self._get_symstates_from_src(target_loc=vloop.preloop_loc)
-            ss = self.symstates.ss
+        if vloop.preloop_loc not in self.symstates.ss:
+            self.symstates = self._get_symstates_from_src(self.src, target_loc=vloop.preloop_loc,
+                                                          min_depth=self.symstates.maxdepth + 1)
+
+        ss = self.symstates.ss
+        assert vloop.preloop_loc in ss, vloop.preloop_loc
+
+        stem = _get_stem_from_ss(ss)
             
         return stem
 
@@ -247,7 +246,7 @@ class Setup(object):
             tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
             mlog.debug("Create C source for {}: {}".format(vloop.vloop_id, tmpdir))
             src = c_src(Path(self.trans_inp), tmpdir, mainQ=vloop.vloop_id)
-            symstates = self._get_c_symstates_from_src(src)
+            symstates = self._get_symstates_from_src(src)
             ss = symstates.ss
         else:
             raise NotImplementedError
