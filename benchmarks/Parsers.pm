@@ -18,23 +18,24 @@ sub find_benchmarks {
     opendir(my $dh, $benchdir) || die "Can't open $benchdir: $!";
     while (readdir $dh) {
         my $fn = $_;
-        #next unless $fn =~ m/^.*-ult-n?t\.c/;
-	#next unless $fn =~ m/\.c$/;
-	#next if $fn =~ m/-dyn/;
-	next unless $fn =~ m/-both-t/;
+	next unless $fn =~ m/\.c$/; 
         next if $fn =~ /~$/;
 	if ($#{$bnames} > -1) {
 	    next unless $fn ~~ @{$bnames};
-	    #use Data::Dumper;
-	    #print "not skipping $fn\n".Dumper($bnames);
 	}
-	# check to see if there is a YML file:
-	my $ymlfn = "$benchdir/$fn"; $ymlfn =~ s/\.c$/\.yml/;
-	if (-e $ymlfn) {
-	    #print "  found yml: $ymlfn\n";
-	    #print "   checking for termination property\n";
-	    my $expect = expected($ymlfn);
-	    next if $expect eq 'IGNORE';
+	if ($bdir =~ /svcomp-nla-digbench/) {
+	    #next unless $fn =~ m/^.*-ult-n?t\.c/;
+	    #next unless $fn =~ m/\.c$/;
+	    #next if $fn =~ m/-dyn/;
+	    next unless $fn =~ m/-both-t/;
+	} elsif ($bdir =~ /termination-crafted-lit/) {
+	    # check to see if there is a YML file:
+	    my $ymlfn = "$benchdir/$fn"; $ymlfn =~ s/\.c$/\.yml/;
+	    #print "yamlfn: $ymlfn\n";
+	    if (-e $ymlfn) {
+		my $expect = expected($ymlfn);
+		next if $expect eq 'IGNORE';
+	    }
 	}
         print "$benchdir/$fn  ";
         push @benches, "$fn";
