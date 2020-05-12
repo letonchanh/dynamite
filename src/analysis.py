@@ -91,28 +91,14 @@ class Setup(object):
                 src = c_src(Path(self.trans_inp), self.tmpdir)
                 exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
 
+                self.src = src
+
                 postorder_vloop_ids = self._collect_vloops_in_postorder_from_main(self.cg)
                 mlog.debug('postorder_vloop_ids: {}'.format(postorder_vloop_ids))
 
                 self.vloop_info = []
                 for vloop_id in postorder_vloop_ids:
                     self.vloop_info.append(LoopInfo(vloop_id, src.inv_decls))
-
-                if settings.prove_nonterm:
-                    try:
-                        mlog.debug("Get symstates for proving NonTerm (prove_nonterm={})".format(settings.prove_nonterm))
-                        self.symstates = self._get_c_symstates_from_src(src)
-                    except Exception as e:
-                        mlog.debug("Get symstates for proving NonTerm: {}".format(e))
-                        raise e
-                    # ss = self.symstates.ss
-                    # for loc in ss:
-                        # for depth in ss[loc]:
-                            # pcs = ss[loc][depth]
-                            # mlog.debug("DEPTH {}".format(depth))
-                            # mlog.debug("pcs ({}):\n{}".format(len(pcs.lst), pcs))
-                else:
-                    pass
                 
             inp_decls, inv_decls, mainQ_name = src.inp_decls, src.inv_decls, src.mainQ_name
             prog = dig_prog.Prog(exe_cmd, inp_decls, inv_decls)
@@ -136,6 +122,22 @@ class Setup(object):
         # mlog.debug("transrel_pre_inv_decls: {}".format(self.transrel_pre_inv_decls))
         # mlog.debug("transrel_pre_sst: {}".format(self.transrel_pre_sst))
         # mlog.debug("transrel_post_sst: {}".format(self.transrel_post_sst))
+
+        if settings.prove_nonterm:
+            try:
+                mlog.debug("Get symstates for proving NonTerm (prove_nonterm={})".format(settings.prove_nonterm))
+                self.symstates = self._get_symstates_from_src()
+            except Exception as e:
+                mlog.debug("Get symstates for proving NonTerm: {}".format(e))
+                raise e
+            # ss = self.symstates.ss
+            # for loc in ss:
+                # for depth in ss[loc]:
+                    # pcs = ss[loc][depth]
+                    # mlog.debug("DEPTH {}".format(depth))
+                    # mlog.debug("pcs ({}):\n{}".format(len(pcs.lst), pcs))
+        else:
+            pass
 
         self.exe = Execution(prog)
         self.dig = Inference(self.inv_decls, self.seed, self.tmpdir)
@@ -162,22 +164,29 @@ class Setup(object):
         return postorder_vloop_calls
 
     @timeit
-    def _get_c_symstates_from_src(self, src, target_location=None):
-        from data.symstates import SymStatesC
-        
+    def _get_symstates_from_src(self, target_loc=None):
+        assert self.src, self.src
+        src = self.src
+
         # exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
         inp_decls, inv_decls, mainQ_name = src.inp_decls, src.inv_decls, src.mainQ_name
 
-        symstates = SymStatesC(inp_decls, inv_decls)
+        if self.is_c_inp:
+            from data.symstates import SymStatesC
+
+            symstates = SymStatesC(inp_decls, inv_decls)
+
         symstates.compute(src.symexefile, src.mainQ_name,
                           src.funname, src.symexedir)
         # mlog.debug("symstates: {}".format(symstates.ss))
-        if target_location:
-            if target_location in symstates.ss:
+        mlog.debug('target_loc: {}'.format(target_loc))
+        if target_loc:
+            if target_loc in symstates.ss:
                 return symstates
             else:
                 # Increase the depth and try again
                 mlog.debug('symstates.maxdepth: {}'.format(symstates.maxdepth))
+                raise NotImplementedError
         return symstates
 
     def _get_loopinfo_from_symstates(self, vloop):
@@ -211,15 +220,23 @@ class Setup(object):
                 return None
 
         ss = self.symstates.ss
-        mlog.debug('ss: {}'.format(ss))
+        # mlog.debug('ss: {}'.format(ss))
         mlog.debug('vloop.preloop_loc: {}'.format(vloop.preloop_loc))
         stem = None
-        while vloop.preloop_loc not in ss or stem is None:
+        while stem is None:
+            if vloop.preloop_loc in ss:
+                stem = _get_stem_from_ss(ss)
+                if stem:
+                    break
             
-        return None
+            self.symstates = self._get_symstates_from_src(target_loc=vloop.preloop_loc)
+            ss = self.symstates.ss
+            
+        return stem
 
     def _strip_ptr_loop_params(self, symbs):
-        symbs = [Symb(s.name.replace(settings.CIL.PTR_VARS_PREFIX, ''), 'I') if settings.CIL.PTR_VARS_PREFIX in s.name and s.typ == 'P' 
+        symbs = [Symb(s.name.replace(settings.CIL.PTR_VARS_PREFIX, ''), 'I') 
+                 if settings.CIL.PTR_VARS_PREFIX in s.name and s.typ == 'P' 
                  else s for s in symbs]
         return Symbs(symbs)
 
