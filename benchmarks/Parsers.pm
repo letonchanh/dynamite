@@ -91,10 +91,18 @@ sub dynamo {
         elsif (/Termination result: False/) {
             $result = 'FALSE';
         }
-        elsif (/Termination result: /) {
-            warn "can't parse termination result: $_\n";
+        elsif (/Termination result: None/) {
+            $result = 'UNKNOWN';
         }
-
+# Time log:
+#gen_rand_inps: 0.141s
+#_get_traces_mp: 0.158s
+#_merge_traces: 0.121s
+#get_traces_from_inps: 0.280s
+#infer_ranking_functions: 10.530s
+#prove_reach: 16.663s
+#validate_ranking_functions: 16.807s
+#prove: 27.762s
         if (/EJK TIMER: (\d+(\.\d+)?)$/) {
             $time = $1;
         }
