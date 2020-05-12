@@ -84,7 +84,7 @@ class Execution(object):
                 ltraces = defaultdict(list)
                 ptraces = defaultdict(dict)
                 itraces = defaultdict()
-                mlog.debug('inp: {}'.format(inp))
+                # mlog.debug('inp: {}'.format(inp))
                 for l in lines:
                     # vtrace1: 8460 16 0 1 16 8460
                     parts = l.split(':')
@@ -110,7 +110,7 @@ class Execution(object):
                             ptraces[pos][loc].append(trace)
                     else:
                         ltraces[loc].append(trace)
-                if itraces:
+                if itraces or ptraces:
                     for pos in ptraces:
                         last_trace = ptraces[pos]
                         if last_trace:
@@ -178,6 +178,11 @@ class Classification(object):
                 else:
                     mayloop_inps.append(inp)
         return base_term_inps, term_inps, mayloop_inps
+
+    @classmethod
+    def print_inps(cls, itraces):
+        for inp, dtraces in itraces.items():
+            mlog.debug('{}'.format(list(map(lambda k: (k, len(dtraces[k])), dtraces.keys()))))
 
 class Inference(object):
     def __init__(self, inv_decls, seed, tmpdir):

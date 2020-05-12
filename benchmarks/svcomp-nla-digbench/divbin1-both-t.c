@@ -29,6 +29,8 @@ int main() {
   //__VERIFIER_assume(B >= 1);
   if ( B < 1 ) return 0;
 
+  if (A >= UINT_MAX/2) return 0;
+
     q = 0;
     r = A;
     b = B;
