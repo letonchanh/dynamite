@@ -133,15 +133,17 @@ sub dynDetail {
     }
     if($timedout) {
         # decide when it timed out
-        if ($d->{validt} > 800) { $d->{validt} = '\rTIMEOUT'; }
+        if ($d->{validt} > 800) { $d->{validt} = '\rTO'; }
     }
 
     $logfn =~ s/^.*benchmarks//;
-    return sprintf("\\texttt{%-10s} & \$%-20s\$ & %-3.2f & %10s & %.2f & %10s & %.2f & %10s \\\\ \% $logfn \n",
+    $d->{allt} = sprintf("%.2f",$d->{allt});
+    $d->{allt} = '\rTO' if $d->{allt} >= 900;
+    return sprintf("\\texttt{%-10s} & \$%-20s\$ & %-3.2f & %10s & %.2f & %10s & %s \\\\ \% $logfn \n",
                    $tmpb, $d->{rf},
                    $d->{guesst}, $d->{guessr},
                    $d->{validt}, $d->{validr},
-                   $d->{allt}, $d->{allr}
+                   $d->{allt}
         );
     #$tool, $tmpb, $b2res{$b}->{time}, $b2res{$b}->{result});
 
