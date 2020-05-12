@@ -1,6 +1,9 @@
 from __future__ import absolute_import
 import os
+import signal
 import sys
+import multiprocessing
+import psutil
 import time
 import datetime
 import itertools
@@ -27,6 +30,11 @@ if __name__ == "__main__":
        choices=range(5),
        default=4,
        help="set logger info")
+
+    ag("--timeout", "-timeout",
+       type=int,
+       default=300,
+       help="set timeout")
 
     ag("--run_dig", "-run_dig",
         action="store_true",
@@ -73,6 +81,8 @@ if __name__ == "__main__":
     settings.use_random_seed = not args.no_random_seed
     settings.prove_term = args.term
     settings.prove_nonterm = args.nonterm
+    if args.timeout:
+        settings.timeout = int(args.timeout)
 
     dig_settings.DO_MP = not args.dig_nomp
 
@@ -91,6 +101,7 @@ if __name__ == "__main__":
 
     mlog.info("Dynamite's logger_level: {}".format(logging.getLevelName(settings.logger_level)))
     mlog.info("Dig's logger_level: {}".format(logging.getLevelName(dig_settings.logger_level)))
+    mlog.info("Timeout: {}s".format(settings.timeout))
 
     mlog.info("{}: {}".format(datetime.datetime.now(), ' '.join(sys.argv)))
 
@@ -112,6 +123,8 @@ if __name__ == "__main__":
     else:
         from helpers.miscs import Z3
         from analysis import Setup, NonTerm, Term
+        import utils.profiling
+        from utils.profiling import timeit
     
         if settings.prove_term or settings.prove_nonterm:
             config = Setup(seed, inp)
@@ -132,33 +145,40 @@ if __name__ == "__main__":
                     mlog.info("ancestor {}: {}".format(depth, ancestor_))
 
         if settings.prove_term:
-            try:
+            @timeit
+            def prove_term():
                 t_prover = Term(config)
                 t_prover.prove()
 
-                import utils.profiling
                 print('Time log:')
                 for meth, time in utils.profiling.time_log.items():
                     print('{}: {:.3f}s'.format(meth, time / 1000))
-            except Exception as ex:
-                import traceback
-                mlog.debug("Exception: {}".format(ex))
-                mlog.debug(traceback.format_exc())
-            finally:
-                import psutil
 
-                def on_terminate(proc):
-                    print("process {} terminated with exit code {}".format(proc, proc.returncode))
 
-                dynamite_process = psutil.Process()
-                dynamite_children = dynamite_process.children(recursive=True)
-                for child in dynamite_children:
-                    print('Child pid is {}, {}'.format(child.pid, child.name()))
-                    child.terminate()
-                gone, alive = psutil.wait_procs(dynamite_children, timeout=1, callback=on_terminate)
-                for p in alive:
-                    print('{} alive'.format(p))
-                    p.kill()
+            prove_process = multiprocessing.Process(target=prove_term)
+            prove_process.start()
+            mlog.debug('prove_process: {}'.format(prove_process.pid))
+            prove_process.join(timeout=settings.timeout)
+
+            # def on_terminate(proc):
+            #     print("process {} terminated with exit code {}".format(proc, proc.returncode))
+
+            # dynamite_process = psutil.Process(pid=prove_process.pid)
+            # dynamite_children = dynamite_process.children(recursive=True)
+            # for child in dynamite_children:
+            #     print('Child pid is {}, {}'.format(child.pid, child.name()))
+            #     child.terminate()
+            # gone, alive = psutil.wait_procs(dynamite_children, timeout=1, callback=on_terminate)
+            # for p in alive:
+            #     print('{} alive'.format(p))
+            #     p.kill()
+            
+            # prove_process.terminate()
+            # if prove_process.exitcode is None:
+            #     pgrp = os.getpgid(prove_process.pid)
+            #     os.killpg(pgrp, signal.SIGINT)
+            pgrp = os.getpgid(os.getpid())
+            os.killpg(pgrp, signal.SIGTERM)
 
     
 
