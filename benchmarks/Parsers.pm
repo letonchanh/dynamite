@@ -69,6 +69,14 @@ properties:
   expected_verdict: true
     ";
 
+sub tm2str {
+    my ($t) = @_;
+    return '\rUNK' if $t == -1;
+    return '\rTO' if $t >= 900;
+    return sprintf("%0.1f", $t) if $t < 900;
+    die "strange time: $t";
+}
+
 sub seahorn {
     my ($logfn) = @_;
     open(F,"$logfn") or warn "file $logfn - $!";
@@ -78,7 +86,7 @@ sub seahorn {
         $result = $_ if m/BRUNCH_STAT Result/;
         $time   = $1 if m/BRUNCH_STAT Termination (.*)$/;
     }
-    return { time => $time, result => $result };
+    return { time => tm2str($time), result => $result };
 }
 
 sub dynamo {
@@ -108,8 +116,9 @@ sub dynamo {
             $time = $1;
         }
     }
+    warn "TM: $time\n";
     close F;
-    return { time => $time, result => $result };
+    return { time => tm2str($time), result => $result };
 }
 
 sub toTex { my $t = shift @_;
@@ -118,11 +127,54 @@ sub toTex { my $t = shift @_;
     return $t;
 }
 
+my $b2desc = {
+    "cohendiv" => "int div",
+        "divbin1" => "int div",
+        "manna" => "int div",
+        "hard" => "int div",
+        "hard2" => "int div",
+        "sqrt1" => "square root",
+        "dijkstra1" => "square root",
+        "dijkstra2" => "square root",
+        "dijkstra3" => "square root",
+        "dijkstra4" => "square root",
+        "dijkstra5" => "square root",
+        "dijkstra6" => "square root",
+        "freire1" => "square root",
+        "freire2" => "cubic root",
+        "cohencu1" => "cubic sum",
+        "cohencu2" => "cubic sum",
+        "cohencu3" => "cubic sum",
+        "cohencu4" => "cubic sum",
+        "cohencu5" => "cubic sum",
+        "cohencu6" => "cubic sum",
+        "cohencu7" => "cubic sum",
+        "egcd" => "gcd",
+        "egcd1" => "gcd",
+        "egcd2" => "gcd",
+        "egcd3" => "gcd",
+        "prodbin" => "gcd, lcm",
+        "prod4br" => "gcd, lcm",
+        "knuth" => "product",
+        "fermat1" => "product",
+        "fermat2" => "divisor",
+        "lcm1" => "divisor",
+        "lcm2" => "divisor",
+        "geo1" => "geo series",
+        "geo2" => "geo series",
+        "geo3" => "geo series",
+        "ps2" => "pow sum",
+        "ps3" => "pow sum",
+        "ps4" => "pow sum",
+        "ps5" => "pow sum",
+        "ps6" => "pow sum"
+};
 sub dynDetail {
     my ($tmpb,$logfn,$timedout,$overallt,$overallr) = @_;
     open(F,"$logfn") or warn "file $logfn - $!";
     my $d = { allt => $overallt, allr => $overallr,
-              guessr => '\nparse', validr => '\nparse' };
+              guessr => '\nparse', validr => '\nparse',
+              guesst => tm2str(-1), validt => tm2str(-1) };
     while(<F>) {
         $d->{validt} = $1 if /validate_ranking_functions: ((\d)*\.\d+)s/;
         $d->{guesst} = $1 if /infer_ranking_functions: ((\d)*\.\d+)s/;
@@ -140,12 +192,13 @@ sub dynDetail {
     $logfn =~ s/^.*benchmarks//;
     $d->{allt} = sprintf("%.2f",$d->{allt});
     $d->{allt} = '\rTO' if $d->{allt} >= 900;
-    return sprintf("\\texttt{%-10s} & \$%-20s\$ & %-3.2f & %10s & %.2f & %10s & %s \\\\ \% $logfn \n",
-                   $tmpb, $d->{rf},
+    my $str = sprintf("\\texttt{%-10s} & %-10s & \$%-12s\$ & %-3.2f & %10s & %.2f & %10s & %s \\\\ \% $logfn \n",
+                   $tmpb, $b2desc->{$tmpb}, $d->{rf},
                    $d->{guesst}, $d->{guessr},
                    $d->{validt}, $d->{validr},
                    $d->{allt}
         );
+    return ($d,$str);
     #$tool, $tmpb, $b2res{$b}->{time}, $b2res{$b}->{result});
 
     # Time log:
@@ -188,7 +241,7 @@ sub ult {
         }
     }
     close F;
-    return { time => $time, result => $result };
+    return { time => tm2str($time), result => $result };
 }
 
 sub aprove {

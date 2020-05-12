@@ -1,14 +1,14 @@
 /* shift_add algorithm for computing the 
    product of two natural numbers
 */
-extern double __VERIFIER_nondet_double(void);
+extern int __VERIFIER_nondet_int(void);
 
 int main() {
     int a, b;
     int x, y, z;
 
-    a = __VERIFIER_nondet_double();
-    b = __VERIFIER_nondet_double();
+    a = __VERIFIER_nondet_int();
+    b = __VERIFIER_nondet_int();
     // assume_abort_if_not(b >= 1);
 
     if (b < 1) {

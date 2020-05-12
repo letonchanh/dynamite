@@ -31,19 +31,24 @@ print "% Tool   Benchmark                     Time    Result\n";
 print "% ============================================\n";
 my %b2res;
 my @newfile;
+my $compare;
 foreach my $tool (@tools) {
   foreach my $b (sort @benches) {
       mkdir("../results/$b") if (not (-e "../results/$b"));
       my $logfn = "$benchdir/$outdir/$tool-$b.log";
       if (not (-e $logfn)) { push @skips, $logfn; next; }
-      $b2res{$b} = Parsers::parse($tool,$logfn);
       my $tmpb = $b; $tmpb =~ s/-both-t.c//;
-      printf "\\%-10s & %-80s & %8.2f & %-10s\n", $tool, $tmpb, $b2res{$b}->{time}, $b2res{$b}->{result};
+      $compare->{$tmpb}->{$tool} = Parsers::parse($tool,$logfn);
+      if ($tool eq 'dynamo') {
+          my ($d,$dstr) = Parsers::dynDetail($tmpb,$logfn,
+                                              ($b2res{$b}->{time} > 900 ? 1 : 0),
+                                              $b2res{$b}->{time}, $b2res{$b}->{result});
+          push @dynDetail, $dstr;
+          $compare->{$tmpb}->{dynamo}->{rf} = "";
+          $compare->{$tmpb}->{dynamo}->{rf} .= $d->{rf};
+          $compare->{$tmpb}->{dynamo}->{$_} = $d->{$_} for qw/guesst guessr validt validr/;
+      }
 
-      push @dynDetail, Parsers::dynDetail($tmpb,$logfn,
-                                          ($b2res{$b}->{time} > 900 ? 1 : 0),
-                                          $b2res{$b}->{time}, $b2res{$b}->{result})
-          if ($tool eq 'dynamo');
 
       if ($csvs eq 'csvs') {
           my $ln = sprintf("%s,%s,%.2f\n", $b, $b2res{$b}->{result},  $b2res{$b}->{time});
@@ -56,5 +61,29 @@ foreach my $tool (@tools) {
 }
 print "Skipped These:\n   ".join("\n   ",@skips)."\n";
 print "\n";
+print "========= DYN DETAIL ============\n";
 print for @dynDetail;
-print "You may now wish to:\n  git add ".(join(" ",@newfile))."\n  git commit -m \"results $fn\"\n";
+
+print "========= COMPARISON ============\n";
+my $prev = ''; my $ctr = 2;
+foreach my $b (sort keys %{$compare}) {
+    my $trunc = substr($b,0,15);
+    if ($trunc eq $prev) { $trunc .= "".($ctr++); } else { $prev = $trunc; $ctr = 2; };
+    printf("%-25s \& \$ %-15s \$ \& %-4s \& %-6s \& %-4s \& %-6s \& %5s \&   \\ULTIMATE{  %-5s \& %-6s } \\\\\n",
+           $trunc,
+           $compare->{$b}->{dynamo}->{rf}." ",
+           $compare->{$b}->{dynamo}->{guesst},
+           $compare->{$b}->{dynamo}->{guessr},
+           $compare->{$b}->{dynamo}->{validt},
+           $compare->{$b}->{dynamo}->{validr},
+           $compare->{$b}->{dynamo}->{time},
+           $compare->{$b}->{ultimate}->{time},
+           '\r'.$compare->{$b}->{ultimate}->{result}
+        );
+}
+#$b2res{$b} = 
+#
+#printf "\\%-10s & %-80s & %8.2f & %-10s\n", $tool, $tmpb, $b2res{$b}->{time}, $b2res{$b}->{result};
+
+
+print "You may now wish to:\n  git add ".(join(" ",@newfile))."\n  git commit -m \"results $fn\"\n" if $csvs eq 'csvs';

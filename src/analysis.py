@@ -88,15 +88,16 @@ class Setup(object):
                 self.trans_inp = trans_outf
                 self.cg = cg
 
+                src = c_src(Path(self.trans_inp), self.tmpdir)
+                exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
+
                 postorder_vloop_ids = self._collect_vloops_in_postorder_from_main(self.cg)
                 mlog.debug('postorder_vloop_ids: {}'.format(postorder_vloop_ids))
 
                 self.vloop_info = []
                 for vloop_id in postorder_vloop_ids:
-                    self.vloop_info.append(LoopInfo(vloop_id))
+                    self.vloop_info.append(LoopInfo(vloop_id, src.inv_decls))
 
-                src = c_src(Path(self.trans_inp), self.tmpdir)
-                exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
                 if settings.prove_nonterm:
                     try:
                         mlog.debug("Get symstates for proving NonTerm (prove_nonterm={})".format(settings.prove_nonterm))
@@ -160,6 +161,7 @@ class Setup(object):
         postorder_vloop_calls = [c for c in postorder_meth_calls if c.startswith(settings.VLOOP_FUN)]
         return postorder_vloop_calls
 
+    @timeit
     def _get_c_symstates_from_src(self, src):
         from data.symstates import SymStatesC
         
@@ -172,17 +174,17 @@ class Setup(object):
         # mlog.debug("symstates: {}".format(symstates.ss))
         return symstates
 
-    def _get_loopinfo_from_symstates(self):
-        stem = self._get_stem_from_symstates()
-        loop = self._get_loop_from_symstates()
-        return LoopInfo(stem, loop)
+    def _get_loopinfo_from_symstates(self, vloop):
+        stem = self._get_stem_from_symstates(vloop)
+        loop = self._get_loop_from_symstates(vloop)
+        return stem, loop
 
-    def _get_stem_from_symstates(self):
+    def _get_stem_from_symstates(self, vloop):
         assert self.symstates, self.symstates
 
         ss = self.symstates.ss
-        if self.preloop_loc in ss:
-            preloop_symstates = ss[self.preloop_loc]
+        if vloop.preloop_loc in ss:
+            preloop_symstates = ss[vloop.preloop_loc]
             preloop_ss_depths = sorted(preloop_symstates.keys())
             preloop_fst_symstate = None
             while preloop_fst_symstate is None and preloop_ss_depths:
@@ -207,15 +209,13 @@ class Setup(object):
                  else s for s in symbs]
         return Symbs(symbs)
 
-    def _get_loop_from_symstates(self):
+    def _get_loop_from_symstates(self, vloop):
         if self.is_c_inp:
             from helpers.src import C as c_src
-
-            vloop = self._get_vloop()
         
             tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
-            mlog.debug("Create C source for {}: {}".format(vloop, tmpdir))
-            src = c_src(Path(self.trans_inp), tmpdir, mainQ=vloop)
+            mlog.debug("Create C source for {}: {}".format(vloop.vloop_id, tmpdir))
+            src = c_src(Path(self.trans_inp), tmpdir, mainQ=vloop.vloop_id)
             symstates = self._get_c_symstates_from_src(src)
             ss = symstates.ss
         else:
@@ -229,8 +229,8 @@ class Setup(object):
         mlog.debug("vloop inv_decls: {}".format(inv_decls))
         mlog.debug("vloop init_symvars: {}".format(loop_init_symvars))
         
-        if self.inloop_loc in ss:
-            inloop_symstates = ss[self.inloop_loc]
+        if vloop.inloop_loc in ss:
+            inloop_symstates = ss[vloop.inloop_loc]
             inloop_ss_depths = sorted(inloop_symstates.keys())
             inloop_fst_symstate = None
             inloop_snd_symstate = None
@@ -245,12 +245,12 @@ class Setup(object):
             
             if inloop_fst_symstate and inloop_snd_symstate:
                 # Get loop's condition and transition relation
-                inloop_fst_slocal = z3.substitute(inloop_fst_symstate.slocal, self.transrel_pre_sst)
-                inloop_snd_slocal = z3.substitute(inloop_snd_symstate.slocal, self.transrel_post_sst)
+                inloop_fst_slocal = z3.substitute(inloop_fst_symstate.slocal, vloop.transrel_pre_sst)
+                inloop_snd_slocal = z3.substitute(inloop_snd_symstate.slocal, vloop.transrel_post_sst)
                 mlog.debug("inloop_fst_slocal: {}".format(inloop_fst_slocal))
                 mlog.debug("inloop_snd_slocal: {}".format(inloop_snd_slocal))
                 inloop_vars = Z3.get_vars(inloop_fst_symstate.slocal).union(Z3.get_vars(inloop_snd_symstate.slocal))
-                inloop_inv_vars = inv_decls[self.inloop_loc].exprs(settings.use_reals)
+                inloop_inv_vars = inv_decls[vloop.inloop_loc].exprs(settings.use_reals)
                 inloop_ex_vars = inloop_vars.difference(inloop_inv_vars)
                 # mlog.debug("inloop_ex_vars: {}".format(inloop_ex_vars))
                 # inloop_trans_f = z3.Exists(list(inloop_ex_vars), z3.And(inloop_fst_slocal, inloop_snd_slocal))
@@ -329,11 +329,11 @@ class Setup(object):
         # transrel_expr = transrel_invs.expr()
         # return transrel_expr
 
-    def get_loopinfo(self):
-        loopinfo = self._get_loopinfo_from_symstates()
-        if loopinfo is None:
-            loopinfo = self._get_loopinfo_from_traces()
-        return loopinfo
+    def get_loopinfo(self, vloop):
+        stem, loop = self._get_loopinfo_from_symstates(vloop)
+        if stem is None or loop is None:
+            stem, loop = self._get_loopinfo_from_traces()
+        return stem, loop
 
     def infer_precond(self):
         if not self.symstates:
@@ -407,21 +407,6 @@ class Setup(object):
             # mlog.debug("loop_cond: {}".format(loop_cond))
             # return loop_cond
 
-    def gen_transrel_sst(self):
-        inloop_inv_decls = self.inv_decls[self.inloop_loc]
-        inloop_inv_exprs = inloop_inv_decls.exprs(settings.use_reals)
-        transrel_pre_inv_decls = [dig_prog.Symb(s.name + '0', s.typ) for s in inloop_inv_decls]
-        transrel_pre_inv_exprs = dig_prog.Symbs(transrel_pre_inv_decls).exprs(settings.use_reals)
-        transrel_post_inv_decls = [dig_prog.Symb(s.name + '1', s.typ) for s in inloop_inv_decls]
-        transrel_post_inv_exprs = dig_prog.Symbs(transrel_post_inv_decls).exprs(settings.use_reals)
-
-        transrel_inv_decls = dig_prog.Symbs(transrel_pre_inv_decls + transrel_post_inv_decls)
-
-        return transrel_pre_inv_exprs, \
-               list(zip(inloop_inv_exprs, transrel_pre_inv_exprs)), \
-               list(zip(inloop_inv_exprs, transrel_post_inv_exprs)), \
-               transrel_inv_decls
-
     def is_binary(self, fn):
         import subprocess
         mime = subprocess.Popen(["file", "--mime", fn], stdout=subprocess.PIPE).communicate()[0]
@@ -430,12 +415,12 @@ class Setup(object):
 class NonTerm(object):
     def __init__(self, config):
         self._config = config
-        loopinfo = config.get_loopinfo()
-        self.stem = loopinfo.stem
-        self.loop = loopinfo.loop
+        # loopinfo = config.get_loopinfo()
+        # self.stem = loopinfo.stem
+        # self.loop = loopinfo.loop
         self.tCexs = []
 
-    def verify(self, rcs):
+    def verify(self, rcs, vloop):
         assert isinstance(rcs, ZFormula), rcs
         assert not rcs.is_unsat(), rcs
         _config = self._config
@@ -446,8 +431,8 @@ class NonTerm(object):
             # assert rcs, rcs
             init_symvars_prefix = _config.init_symvars_prefix
 
-            loop_transrel = self.loop.transrel
-            loop_cond = self.loop.cond
+            loop_transrel = vloop.loop.transrel
+            loop_cond = vloop.loop.cond
 
             mlog.debug("loop_transrel: {}".format(loop_transrel))
             mlog.debug("loop_cond: {}".format(loop_cond))
@@ -470,10 +455,10 @@ class NonTerm(object):
             # R /\ T => R'
             # rcs_l = z3.substitute(rcs.expr(), _config.transrel_pre_sst)
             # mlog.debug("rcs_l: {}".format(rcs_l))
-            init_transrel_rcs = ZFormula.substitue(labeled_rcs, _config.transrel_pre_sst)
+            init_transrel_rcs = ZFormula.substitue(labeled_rcs, vloop.transrel_pre_sst)
             init_transrel_rcs.add(loop_transrel)
-            init_transrel_rcs.add(self.stem.cond)
-            init_transrel_rcs.add(self.stem.transrel)
+            init_transrel_rcs.add(vloop.stem.cond)
+            init_transrel_rcs.add(vloop.stem.transrel)
             mlog.debug("init_transrel_rcs: {}".format(init_transrel_rcs))
 
             # Unreachable recurrent set
@@ -486,7 +471,7 @@ class NonTerm(object):
                 mlog.debug("rc: {}:{}".format(rc, rc_label))
                 # init_transrel_rcs is sat
                 init_f = copy.deepcopy(init_transrel_rcs)
-                rc_r = z3.substitute(rc, _config.transrel_post_sst)
+                rc_r = z3.substitute(rc, vloop.transrel_post_sst)
                 init_f.add(z3.Not(rc_r))
                 mlog.debug("rc_r: {}".format(rc_r))
                 mlog.debug("init_f: {}".format(init_f))
@@ -551,20 +536,20 @@ class NonTerm(object):
                         sCexs.append((rc, itraces))
                 return False, sCexs, mds  # invalid with a set of new Inps
 
-    def strengthen(self, rcs, invalid_rc, itraces):
+    def strengthen(self, rcs, invalid_rc, itraces, vloop):
         _config = self._config
-        base_term_inps, term_inps, mayloop_inps = _config.cl.classify_inps(itraces)
+        base_term_inps, term_inps, mayloop_inps = vloop.cl.classify_inps(itraces)
         mlog.debug("base_term_inps: {}".format(len(base_term_inps)))
         mlog.debug("term_inps: {}".format(len(term_inps)))
         mlog.debug("mayloop_inps: {}".format(len(mayloop_inps)))
         mlog.debug("rcs: {}".format(rcs))
 
         mayloop_invs = ZConj(_config.dig.infer_from_traces(
-                                itraces, _config.inloop_loc, mayloop_inps))
+                                itraces, vloop.inloop_loc, mayloop_inps))
         mlog.debug("mayloop_invs: {}".format(mayloop_invs))
 
         term_invs = ZConj(_config.dig.infer_from_traces(
-                            itraces, _config.inloop_loc, term_inps, maxdeg=1))
+                            itraces, vloop.inloop_loc, term_inps, maxdeg=1))
         mlog.debug("term_invs: {}".format(term_invs))
 
         term_traces = []
@@ -628,16 +613,16 @@ class NonTerm(object):
             stat[d] += 1
         mlog.debug("stat ({} total): {}".format(len(rcs), stat))
 
-    def prove(self):
+    def prove_vloop(self, vloop):
         _config = self._config
         validRCS = []
 
-        if self.stem is None or self.loop is None:
+        if vloop.stem is None or vloop.loop is None:
             mlog.debug("No loop information: stem={}, loop={}".format(self.stem, self.loop))
             return []
         else:
             # candidate rcs, depth, ancestors
-            candidateRCS = [(ZConj([self.loop.cond]), 0, [])]
+            candidateRCS = [(ZConj([vloop.loop.cond]), 0, [])]
             while candidateRCS:
                 # mlog.debug("candidateRCS: {}".format(len(candidateRCS)))
                 self._stat_candidate_rcs(candidateRCS)
@@ -648,7 +633,7 @@ class NonTerm(object):
                     continue
 
                 if depth < settings.max_nonterm_refinement_depth:
-                    chk, sCexs, mds = self.verify(rcs)
+                    chk, sCexs, mds = self.verify(rcs, vloop)
                     # mlog.debug("sCexs: {}".format(sCexs))
                     if mds and len(mds) < len(rcs):
                         # mds is a valid recurrent set which is smaller (weaker) than rcs
@@ -662,7 +647,7 @@ class NonTerm(object):
                         # return validRCS
                     elif sCexs is not None:
                         for invalid_rc, cexs in sCexs:
-                            nrcs = self.strengthen(rcs, invalid_rc, cexs)
+                            nrcs = self.strengthen(rcs, invalid_rc, cexs, vloop)
                             # assert nrcs, nrcs
                             for nrc in nrcs:
                                 nancestors = copy.deepcopy(ancestors)
@@ -671,6 +656,33 @@ class NonTerm(object):
             for (tInvs, tTraces) in self.tCexs:
                 mlog.debug("tCex: {}".format(tInvs))
             return validRCS
+
+    def prove(self):
+        _config = self._config
+        res = None
+        for vloop in _config.vloop_info:
+            stem, loop = _config.get_loopinfo(vloop)
+            vloop.stem = stem
+            vloop.loop = loop
+            validRCS = self.prove_vloop(vloop)
+            if validRCS:
+                res = (False, vloop.vloop_id, validRCS)
+                break 
+        if res is None:
+            print('Non-termination result: Unknown')
+        else:
+            r, vid, validRCS = res
+            for rcs, ancestors in validRCS:
+                f = Z3.to_dnf(rcs.simplify())
+                mlog.info("rcs: {}".format(rcs))
+                mlog.info("(simplified) rcs: {}".format(f))
+                for depth, ancestor in ancestors:
+                    if ancestor is None:
+                        ancestor_ = None
+                    else:
+                        ancestor_ = Z3.to_dnf(ancestor.simplify())
+                    mlog.info("ancestor {}: {}".format(depth, ancestor_))
+            print('Non-termination result: {} ({})'.format(r, vid))
 
 class Term(object):
     def __init__(self, config):
