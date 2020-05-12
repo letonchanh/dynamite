@@ -179,6 +179,11 @@ class Classification(object):
                     mayloop_inps.append(inp)
         return base_term_inps, term_inps, mayloop_inps
 
+    @classmethod
+    def print_inps(cls, itraces):
+        for inp, dtraces in itraces.items():
+            mlog.debug('{}'.format(list(map(lambda k: (k, len(dtraces[k])), dtraces.keys()))))
+
 class Inference(object):
     def __init__(self, inv_decls, seed, tmpdir):
         self.seed = seed

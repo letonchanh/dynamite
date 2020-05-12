@@ -232,7 +232,6 @@ class Portfolio(Validator):
 
     @timeit
     def prove_reach(self, vs, input):
-
         # @timeit
         def f(task):
             vid, vld_cls = task
