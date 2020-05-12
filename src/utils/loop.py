@@ -1,6 +1,7 @@
 import z3
 
 import helpers.vcommon as dig_common_helpers
+import data.prog as dig_prog
 import settings as dig_settings
 from data.prog import Symb, Symbs
 from data.traces import Inps, Inp
@@ -51,10 +52,11 @@ class Loop(LoopPart):
     pass
 
 class LoopInfo(object):
-    def __init__(self, vloop_id, stem=None, loop=None):
+    def __init__(self, vloop_id, inv_decls, stem=None, loop=None):
         self.stem = stem
         self.loop = loop
         self.vloop_id = vloop_id
+        self.inv_decls = inv_decls
         self.vloop_pos = self._get_vloop_pos(vloop_id)
         if self.vloop_pos:
             vloop_postfix = '_' + self.vloop_pos
@@ -65,6 +67,8 @@ class LoopInfo(object):
         self.inloop_loc =  vtrace_loc(settings.VTRACE.INLOOP_LABEL) # vtrace2
         self.postloop_loc = vtrace_loc(settings.VTRACE.POSTLOOP_LABEL) # vtrace3
         self.cl = Classification(self.preloop_loc, self.inloop_loc, self.postloop_loc)
+        self.transrel_pre_inv_decls, self.transrel_pre_sst, \
+            self.transrel_post_sst, transrel_inv_decls = self._mk_transrel_sst()
 
     def _get_vloop_pos(self, vloop_id):
         vloop_prefix = settings.VLOOP_FUN + '_'
@@ -72,3 +76,18 @@ class LoopInfo(object):
             return vloop_id[len(vloop_prefix):]
         else:
             return None
+
+    def _mk_transrel_sst(self):
+        inloop_inv_decls = self.inv_decls[self.inloop_loc]
+        inloop_inv_exprs = inloop_inv_decls.exprs(settings.use_reals)
+        transrel_pre_inv_decls = [dig_prog.Symb(s.name + '0', s.typ) for s in inloop_inv_decls]
+        transrel_pre_inv_exprs = dig_prog.Symbs(transrel_pre_inv_decls).exprs(settings.use_reals)
+        transrel_post_inv_decls = [dig_prog.Symb(s.name + '1', s.typ) for s in inloop_inv_decls]
+        transrel_post_inv_exprs = dig_prog.Symbs(transrel_post_inv_decls).exprs(settings.use_reals)
+
+        transrel_inv_decls = dig_prog.Symbs(transrel_pre_inv_decls + transrel_post_inv_decls)
+
+        return transrel_pre_inv_exprs, \
+               list(zip(inloop_inv_exprs, transrel_pre_inv_exprs)), \
+               list(zip(inloop_inv_exprs, transrel_post_inv_exprs)), \
+               transrel_inv_decls

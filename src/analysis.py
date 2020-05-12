@@ -88,15 +88,16 @@ class Setup(object):
                 self.trans_inp = trans_outf
                 self.cg = cg
 
+                src = c_src(Path(self.trans_inp), self.tmpdir)
+                exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
+
                 postorder_vloop_ids = self._collect_vloops_in_postorder_from_main(self.cg)
                 mlog.debug('postorder_vloop_ids: {}'.format(postorder_vloop_ids))
 
                 self.vloop_info = []
                 for vloop_id in postorder_vloop_ids:
-                    self.vloop_info.append(LoopInfo(vloop_id))
+                    self.vloop_info.append(LoopInfo(vloop_id, src.inv_decls))
 
-                src = c_src(Path(self.trans_inp), self.tmpdir)
-                exe_cmd = dig_settings.C.C_RUN(exe=src.traceexe)
                 if settings.prove_nonterm:
                     try:
                         mlog.debug("Get symstates for proving NonTerm (prove_nonterm={})".format(settings.prove_nonterm))
@@ -175,7 +176,7 @@ class Setup(object):
     def _get_loopinfo_from_symstates(self, vloop):
         stem = self._get_stem_from_symstates(vloop)
         loop = self._get_loop_from_symstates(vloop)
-        return LoopInfo(stem, loop)
+        return stem, loop
 
     def _get_stem_from_symstates(self, vloop):
         assert self.symstates, self.symstates
@@ -213,8 +214,8 @@ class Setup(object):
         
             tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
             mlog.debug("Create C source for {}: {}".format(vloop.vloop_id, tmpdir))
-            src = c_src(Path(self.trans_inp), tmpdir, mainQ=vloop)
-            symstates = self._get_c_symstates_from_src(src).vloop_id
+            src = c_src(Path(self.trans_inp), tmpdir, mainQ=vloop.vloop_id)
+            symstates = self._get_c_symstates_from_src(src)
             ss = symstates.ss
         else:
             raise NotImplementedError
@@ -243,12 +244,12 @@ class Setup(object):
             
             if inloop_fst_symstate and inloop_snd_symstate:
                 # Get loop's condition and transition relation
-                inloop_fst_slocal = z3.substitute(inloop_fst_symstate.slocal, self.transrel_pre_sst)
-                inloop_snd_slocal = z3.substitute(inloop_snd_symstate.slocal, self.transrel_post_sst)
+                inloop_fst_slocal = z3.substitute(inloop_fst_symstate.slocal, vloop.transrel_pre_sst)
+                inloop_snd_slocal = z3.substitute(inloop_snd_symstate.slocal, vloop.transrel_post_sst)
                 mlog.debug("inloop_fst_slocal: {}".format(inloop_fst_slocal))
                 mlog.debug("inloop_snd_slocal: {}".format(inloop_snd_slocal))
                 inloop_vars = Z3.get_vars(inloop_fst_symstate.slocal).union(Z3.get_vars(inloop_snd_symstate.slocal))
-                inloop_inv_vars = inv_decls[self.inloop_loc].exprs(settings.use_reals)
+                inloop_inv_vars = inv_decls[vloop.inloop_loc].exprs(settings.use_reals)
                 inloop_ex_vars = inloop_vars.difference(inloop_inv_vars)
                 # mlog.debug("inloop_ex_vars: {}".format(inloop_ex_vars))
                 # inloop_trans_f = z3.Exists(list(inloop_ex_vars), z3.And(inloop_fst_slocal, inloop_snd_slocal))
@@ -328,10 +329,10 @@ class Setup(object):
         # return transrel_expr
 
     def get_loopinfo(self, vloop):
-        loopinfo = self._get_loopinfo_from_symstates()
-        if loopinfo is None:
-            loopinfo = self._get_loopinfo_from_traces()
-        return loopinfo
+        stem, loop = self._get_loopinfo_from_symstates(vloop)
+        if stem is None or loop is None:
+            stem, loop = self._get_loopinfo_from_traces()
+        return stem, loop
 
     def infer_precond(self):
         if not self.symstates:
@@ -404,21 +405,6 @@ class Setup(object):
             
             # mlog.debug("loop_cond: {}".format(loop_cond))
             # return loop_cond
-
-    def gen_transrel_sst(self):
-        inloop_inv_decls = self.inv_decls[self.inloop_loc]
-        inloop_inv_exprs = inloop_inv_decls.exprs(settings.use_reals)
-        transrel_pre_inv_decls = [dig_prog.Symb(s.name + '0', s.typ) for s in inloop_inv_decls]
-        transrel_pre_inv_exprs = dig_prog.Symbs(transrel_pre_inv_decls).exprs(settings.use_reals)
-        transrel_post_inv_decls = [dig_prog.Symb(s.name + '1', s.typ) for s in inloop_inv_decls]
-        transrel_post_inv_exprs = dig_prog.Symbs(transrel_post_inv_decls).exprs(settings.use_reals)
-
-        transrel_inv_decls = dig_prog.Symbs(transrel_pre_inv_decls + transrel_post_inv_decls)
-
-        return transrel_pre_inv_exprs, \
-               list(zip(inloop_inv_exprs, transrel_pre_inv_exprs)), \
-               list(zip(inloop_inv_exprs, transrel_post_inv_exprs)), \
-               transrel_inv_decls
 
     def is_binary(self, fn):
         import subprocess
@@ -672,10 +658,20 @@ class NonTerm(object):
 
     def prove(self):
         _config = self._config
+        res = None
         for vloop in _config.vloop_info:
-            loopinfo = config.get_loopinfo(vloop)
-            self.stem = loopinfo.stem
-            self.loop = loopinfo.loop
+            stem, loop = config.get_loopinfo(vloop)
+            vloop.stem = stem
+            vloop.loop = loop
+            rcs = self.prove_vloop(vloop)
+            if rcs:
+                res = (False, vloop.vloop_id, rcs)
+                break 
+        if res is None:
+            print('Non-termination result: Unknown')
+        else:
+            r, vid, rcs = res
+            print('Non-termination result: {} ({}: {})'.format(r, vid, rcs))
 
 class Term(object):
     def __init__(self, config):
