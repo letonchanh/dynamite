@@ -111,6 +111,53 @@ sub dynamo {
     return { time => $time, result => $result };
 }
 
+sub toTex { my $t = shift @_;
+    $t =~ s/-1\*/-/g;
+    $t =~ s/\*/\\cdot /g;
+    return $t;
+}
+
+sub dynDetail {
+    my ($tmpb,$logfn,$timedout,$overallt,$overallr) = @_;
+    open(F,"$logfn") or warn "file $logfn - $!";
+    my $d = { allt => $overallt, allr => $overallr,
+              guessr => '\nparse', validr => '\nparse' };
+    while(<F>) {
+        $d->{validt} = $1 if /validate_ranking_functions: ((\d)*\.\d+)s/;
+        $d->{guesst} = $1 if /infer_ranking_functions: ((\d)*\.\d+)s/;
+        $d->{validr} = '\rTRUE' if /Termination result: True/;
+        if(/ranking_function_list: \[([^\]]+)\]/) {
+            $d->{guessr} = '\rTRUE';
+            $d->{rf} = toTex($1);
+        }
+    }
+    if($timedout) {
+        # decide when it timed out
+        if ($d->{validt} > 800) { $d->{validt} = '\rTO'; }
+    }
+
+    $logfn =~ s/^.*benchmarks//;
+    $d->{allt} = sprintf("%.2f",$d->{allt});
+    $d->{allt} = '\rTO' if $d->{allt} >= 900;
+    return sprintf("\\texttt{%-10s} & \$%-20s\$ & %-3.2f & %10s & %.2f & %10s & %s \\\\ \% $logfn \n",
+                   $tmpb, $d->{rf},
+                   $d->{guesst}, $d->{guessr},
+                   $d->{validt}, $d->{validr},
+                   $d->{allt}
+        );
+    #$tool, $tmpb, $b2res{$b}->{time}, $b2res{$b}->{result});
+
+    # Time log:
+    #gen_rand_inps: 0.141s
+    #_get_traces_mp: 0.158s
+    #_merge_traces: 0.121s
+    #get_traces_from_inps: 0.280s
+    #infer_ranking_functions: 10.530s
+    #prove_reach: 16.663s
+    #validate_ranking_functions: 16.807s
+    #prove: 27.762s
+}
+
 sub ult {
     my ($logfn) = @_;
     open(F,"$logfn") or warn "file $logfn - $!";
