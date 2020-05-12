@@ -22,7 +22,7 @@ my $CFG = {
         DIR => qq{/home/ejk/dynamo/src},
         CMD => sub { my $arg = ($SPECFILE =~ m/\/term/ ? '-t' : '-nt');
                      $t0 = [gettimeofday];
-                     return qq(killall java; killall z3; python3 dynamo.py $_[0] $arg 2>\&1 | tee /tmp/dynamo.ejk.txt);
+                     return qq(killall java; killall z3; python3 dynamo.py --timeout=$TIMEOUT $_[0] $arg 2>\&1 | tee /tmp/dynamo.ejk.txt);
         },
         FETCH => sub { my $elapsed = tv_interval($t0);
 		       my $tm = "EJK TIMER: $elapsed\n";
@@ -59,10 +59,9 @@ $CFG->{dynamo}->{DIR} = '/home/exp/eric/dynamo/src' if $hn =~ /cse-tnguyen-02/;
 ###############################################################
 #### Utilities
 sub runc { my ($cmd) = @_; print "+ $cmd\n(with timeout of $TIMEOUT s)\n";
-	   timeout $TIMEOUT => sub { print qx{$cmd}; };
-	   if ($@) {
-	       push @timedout, $cmd;
-	   }
+	   #timeout $TIMEOUT => sub { print qx{$cmd}; };
+	   # if ($@) {  push @timedout, $cmd; }
+	   print print qx{$cmd};
 }	   
 
 ###############################################################
@@ -76,10 +75,10 @@ while ($ARGV[0] =~ /^--(.*)=(.+)$/) {
     shift @ARGV;
     $TIMEOUT = $v if $k eq 'timeout';
 }
-my @bames = ();
+my @bnames = ();
 my ($bdir,$arg1,$ts,$bms) = @ARGV;
 my @tools = split ',', $ts;
-my @bnames = split ',', $bms if defined $bms;
+@bnames = split ',', $bms if defined $bms;
 use Data::Dumper;
 print Dumper(\@bnames);
 print "--- Configuration ---\n";

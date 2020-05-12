@@ -18,23 +18,24 @@ sub find_benchmarks {
     opendir(my $dh, $benchdir) || die "Can't open $benchdir: $!";
     while (readdir $dh) {
         my $fn = $_;
-        #next unless $fn =~ m/^.*-ult-n?t\.c/;
-	#next unless $fn =~ m/\.c$/;
-	#next if $fn =~ m/-dyn/;
-	next unless $fn =~ m/-both-t/;
+	next unless $fn =~ m/\.c$/; 
         next if $fn =~ /~$/;
 	if ($#{$bnames} > -1) {
 	    next unless $fn ~~ @{$bnames};
-	    #use Data::Dumper;
-	    #print "not skipping $fn\n".Dumper($bnames);
 	}
-	# check to see if there is a YML file:
-	my $ymlfn = "$benchdir/$fn"; $ymlfn =~ s/\.c$/\.yml/;
-	if (-e $ymlfn) {
-	    #print "  found yml: $ymlfn\n";
-	    #print "   checking for termination property\n";
-	    my $expect = expected($ymlfn);
-	    next if $expect eq 'IGNORE';
+	if ($bdir =~ /svcomp-nla-digbench/) {
+	    #next unless $fn =~ m/^.*-ult-n?t\.c/;
+	    #next unless $fn =~ m/\.c$/;
+	    #next if $fn =~ m/-dyn/;
+	    next unless $fn =~ m/-both-t/;
+	} elsif ($bdir =~ /termination-crafted-lit/) {
+	    # check to see if there is a YML file:
+	    my $ymlfn = "$benchdir/$fn"; $ymlfn =~ s/\.c$/\.yml/;
+	    #print "yamlfn: $ymlfn\n";
+	    if (-e $ymlfn) {
+		my $expect = expected($ymlfn);
+		next if $expect eq 'IGNORE';
+	    }
 	}
         print "$benchdir/$fn  ";
         push @benches, "$fn";
@@ -117,6 +118,48 @@ sub toTex { my $t = shift @_;
     return $t;
 }
 
+my $b2desc = {
+    "cohendiv" => "int div",
+        "divbin1" => "int div",
+        "manna" => "int div",
+        "hard" => "int div",
+        "hard2" => "int div",
+        "sqrt1" => "square root",
+        "dijkstra1" => "square root",
+        "dijkstra2" => "square root",
+        "dijkstra3" => "square root",
+        "dijkstra4" => "square root",
+        "dijkstra5" => "square root",
+        "dijkstra6" => "square root",
+        "freire1" => "square root",
+        "freire2" => "cubic root",
+        "cohencu1" => "cubic sum",
+        "cohencu2" => "cubic sum",
+        "cohencu3" => "cubic sum",
+        "cohencu4" => "cubic sum",
+        "cohencu5" => "cubic sum",
+        "cohencu6" => "cubic sum",
+        "cohencu7" => "cubic sum",
+        "egcd" => "gcd",
+        "egcd1" => "gcd",
+        "egcd2" => "gcd",
+        "egcd3" => "gcd",
+        "prodbin" => "gcd, lcm",
+        "prod4br" => "gcd, lcm",
+        "knuth" => "product",
+        "fermat1" => "product",
+        "fermat2" => "divisor",
+        "lcm1" => "divisor",
+        "lcm2" => "divisor",
+        "geo1" => "geo series",
+        "geo2" => "geo series",
+        "geo3" => "geo series",
+        "ps2" => "pow sum",
+        "ps3" => "pow sum",
+        "ps4" => "pow sum",
+        "ps5" => "pow sum",
+        "ps6" => "pow sum"
+};
 sub dynDetail {
     my ($tmpb,$logfn,$timedout,$overallt,$overallr) = @_;
     open(F,"$logfn") or warn "file $logfn - $!";
@@ -139,8 +182,8 @@ sub dynDetail {
     $logfn =~ s/^.*benchmarks//;
     $d->{allt} = sprintf("%.2f",$d->{allt});
     $d->{allt} = '\rTO' if $d->{allt} >= 900;
-    return sprintf("\\texttt{%-10s} & \$%-20s\$ & %-3.2f & %10s & %.2f & %10s & %s \\\\ \% $logfn \n",
-                   $tmpb, $d->{rf},
+    return sprintf("\\texttt{%-10s} & %-10s & \$%-12s\$ & %-3.2f & %10s & %.2f & %10s & %s \\\\ \% $logfn \n",
+                   $tmpb, $b2desc->{$tmpb}, $d->{rf},
                    $d->{guesst}, $d->{guessr},
                    $d->{validt}, $d->{validr},
                    $d->{allt}
