@@ -567,7 +567,8 @@ class NonTerm(object):
                     init_rs, _, _ = _config.solver.get_models(init_f, _config.n_inps, 
                                                               _config.init_inp_decls, 
                                                               settings.use_random_seed)
-
+                    mlog.debug('init_f: {}'.format(init_f))
+                    mlog.debug('init_rs: {}'.format(init_rs))
                     if not init_rs:
                         return []
                     else:
