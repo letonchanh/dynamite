@@ -212,9 +212,12 @@ class ZSolver(object):
         mlog.debug("approx: {}".format(approx))
         return [lbl for (lbl, _) in approx]
 
-    def mk_inps_from_models(self, models, inp_decls, exe):
+    def mk_inps_from_models(self, models, inp_decls, exe, n_inps=0):
         if not models:
-            return Inps()
+            if n_inps > 0:
+                return exe.gen_rand_inps(n_inps)
+            else:
+                return Inps()
         else:
             assert isinstance(models, list), models
             if all(isinstance(m, z3.ModelRef) for m in models):

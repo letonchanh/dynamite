@@ -533,8 +533,8 @@ class NonTerm(object):
             mlog.debug("init_transrel_rcs: {}".format(init_transrel_rcs))
 
             # Unreachable recurrent set
-            if init_transrel_rcs.is_unsat():
-                return False, None, None
+            # if init_transrel_rcs.is_unsat():
+            #     return False, None, None
 
             dg = defaultdict(list)
             def _check(rc):
@@ -569,7 +569,7 @@ class NonTerm(object):
                                                               settings.use_random_seed)
                     mlog.debug('init_f: {}'.format(init_f))
                     mlog.debug('init_rs: {}'.format(init_rs))
-                    if not init_rs:
+                    if init_rs is None:
                         return []
                     else:
                         init_models = []
@@ -583,10 +583,12 @@ class NonTerm(object):
                                 if init_model:
                                     init_models.append(init_model)
 
-                            mlog.debug("init_models: sat ({} models)".format(len(init_models)))
-                            inps = _config.solver.mk_inps_from_models(
-                                        init_models, _config.inp_decls, _config.exe)
-                            mlog.debug("inps: {}".format(inps))
+                        mlog.debug("init_models: sat ({} models)".format(len(init_models)))
+                        inps = _config.solver.mk_inps_from_models(init_models, 
+                                                                  _config.inp_decls, 
+                                                                  _config.exe,
+                                                                  _config.n_inps)
+                        mlog.debug("inps: {}".format(inps))
                         return inps
 
             chks = [(rc, _check(rc)) for rc in rcs]
@@ -699,6 +701,12 @@ class NonTerm(object):
             stat[d] += 1
         mlog.debug("stat ({} total): {}".format(len(rcs), stat))
 
+    def check_reachable_rcs(self, vloop, rcs):
+        init_transrel_rcs = ZFormula.substitue(rcs, vloop.transrel_pre_sst)
+        init_transrel_rcs.add(vloop.stem.cond)
+        init_transrel_rcs.add(vloop.stem.transrel)
+        return not init_transrel_rcs.is_unsat()
+
     @timeit
     def prove_nonterm_vloop(self, vloop):
         _config = self._config
@@ -729,11 +737,13 @@ class NonTerm(object):
                         # mds is a valid recurrent set which is smaller (weaker) than rcs
                         nancestors = copy.deepcopy(ancestors)
                         nancestors.append((depth, rcs))
-                        valid_rcs.append((mds, nancestors))
+                        if self.check_reachable_rcs(vloop, mds):
+                            valid_rcs.append((mds, nancestors))
                     
                     if chk:
                         mlog.debug('new valid rcs: {}'.format(rcs))
-                        valid_rcs.append((rcs, ancestors))
+                        if self.check_reachable_rcs(vloop, rcs):
+                            valid_rcs.append((rcs, ancestors))
                         # return the first valid rcs
                         # return valid_rcs
                     elif sCexs is not None:
