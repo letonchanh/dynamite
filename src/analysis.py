@@ -1130,7 +1130,8 @@ class TNT(object):
                     break
                 else:
                     mlog.debug('Proving Termination: {}'.format(vloop.vloop_id))
-                    term_traces = _config.get_traces_from_inps(Inps(set(term_inps)))
+                    # term_traces = _config.get_traces_from_inps(Inps(set(term_inps)))
+                    term_traces = {inp: itraces[inp] for inp in term_inps}
                     t_res, t_rfs = self.t_prover.prove_vloop(term_traces, vloop)
                     if not t_res:
                         res = None
@@ -1139,7 +1140,8 @@ class TNT(object):
                         mlog.debug('{} terminates: {}'.format(vloop.vloop_id, t_rfs))
             else:
                 mlog.debug('Proving Termination: {}'.format(vloop.vloop_id))
-                term_traces = _config.get_traces_from_inps(Inps(set(term_inps)))
+                # term_traces = _config.get_traces_from_inps(Inps(set(term_inps)))
+                term_traces = {inp: itraces[inp] for inp in term_inps}
                 t_res, t_rfs = self.t_prover.prove_vloop(term_traces, vloop)
                 if t_res:
                     mlog.debug('{} terminates: {}'.format(vloop.vloop_id, t_rfs))
