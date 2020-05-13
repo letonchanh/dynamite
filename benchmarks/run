@@ -13,6 +13,7 @@ my $NT_SPECFILE = qq{/tools/nontermination.prp};
 
 my $hn = qx{hostname -A};
 $SPECFILE = '/home/exp'.$SPECFILE if $hn =~ /cse-tnguyen-02/;
+$NT_SPECFILE = '/home/exp'.$NT_SPECFILE if $hn =~ /cse-tnguyen-02/;
 my $KILL = "killall java; killall z3;";
 
 ###############################################################
