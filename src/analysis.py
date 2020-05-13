@@ -194,6 +194,7 @@ class Setup(object):
                 return self._get_symstates_from_src(src, target_loc, min_depth=symstates.maxdepth + 1)
         return symstates
 
+    @timeit
     def _get_loopinfo_from_symstates(self, vloop):
         stem = self._get_stem_from_symstates(vloop)
         loop = self._get_loop_from_symstates(vloop)
@@ -371,6 +372,7 @@ class Setup(object):
         # transrel_expr = transrel_invs.expr()
         # return transrel_expr
 
+    @timeit
     def get_loopinfo(self, vloop):
         stem, loop = self._get_loopinfo_from_symstates(vloop)
         mlog.debug('stem: {}'.format(stem))
@@ -464,6 +466,7 @@ class NonTerm(object):
         # self.loop = loopinfo.loop
         self.tCexs = []
 
+    @timeit
     def verify(self, rcs, vloop):
         assert isinstance(rcs, ZFormula), rcs
         assert not rcs.is_unsat(), rcs
@@ -580,6 +583,7 @@ class NonTerm(object):
                         sCexs.append((rc, itraces))
                 return False, sCexs, mds  # invalid with a set of new Inps
 
+    @timeit
     def strengthen(self, rcs, invalid_rc, itraces, vloop):
         _config = self._config
         base_term_inps, term_inps, mayloop_inps = vloop.cl.classify_inps(itraces)
@@ -657,6 +661,7 @@ class NonTerm(object):
             stat[d] += 1
         mlog.debug("stat ({} total): {}".format(len(rcs), stat))
 
+    @timeit
     def prove_vloop(self, vloop):
         _config = self._config
         validRCS = []
@@ -701,6 +706,7 @@ class NonTerm(object):
                 mlog.debug("tCex: {}".format(tInvs))
             return validRCS
 
+    @timeit
     def prove(self):
         _config = self._config
         res = None
