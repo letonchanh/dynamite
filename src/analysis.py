@@ -16,7 +16,7 @@ import helpers.vcommon as dig_common_helpers
 import helpers.src as dig_src
 import data.prog as dig_prog
 from data.prog import Symb, Symbs
-from data.traces import Traces
+from data.traces import Traces, Inps
 from helpers.miscs import Z3, Miscs
 # from bin import Bin
 
@@ -148,6 +148,15 @@ class Setup(object):
         # mlog.debug("get traces from random inputs")
         # self.rand_itraces = self.exe.get_traces_from_inps(rand_inps)  # itraces: input to dtraces
 
+    @timeit
+    def gen_rand_inps(self):
+        return self.exe.gen_rand_inps(self.n_inps)
+
+    # @timeit
+    def get_traces_from_inps(self, inps):
+        return self.exe.get_traces_from_inps(inps)
+
+    
     def _collect_vloops_in_postorder_from_main(self, cg):
         # Do not support mutual loops
         # https://github.com/sosy-lab/sv-benchmarks/blob/master/c/termination-numeric/twisted.c
@@ -259,7 +268,7 @@ class Setup(object):
             tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
             mlog.debug("Create C source for {}: {}".format(vloop.vloop_id, tmpdir))
             src = c_src(Path(self.trans_inp), tmpdir, mainQ=vloop.vloop_id)
-            symstates = self._get_symstates_from_src(src)
+            symstates = self._get_symstates_from_src(src, target_loc=vloop.inloop_loc)
             ss = symstates.ss
         else:
             raise NotImplementedError
@@ -272,19 +281,31 @@ class Setup(object):
         mlog.debug("vloop inv_decls: {}".format(inv_decls))
         mlog.debug("vloop init_symvars: {}".format(loop_init_symvars))
         
+        assert vloop.inloop_loc in ss, vloop.inloop_loc
+
         if vloop.inloop_loc in ss:
             inloop_symstates = ss[vloop.inloop_loc]
             inloop_ss_depths = sorted(inloop_symstates.keys())
             inloop_fst_symstate = None
             inloop_snd_symstate = None
-            while (inloop_fst_symstate is None or inloop_snd_symstate is None) and inloop_ss_depths:
-                depth = inloop_ss_depths.pop()
-                symstates = inloop_symstates[depth]
-                # mlog.debug("DEPTH {}".format(depth))
-                # mlog.debug("symstates ({}):\n{}".format(len(symstates.lst), symstates))
-                if len(symstates.lst) >= 2:
-                    inloop_fst_symstate = symstates.lst[0]
-                    inloop_snd_symstate = symstates.lst[1]
+            while (inloop_fst_symstate is None or inloop_snd_symstate is None):
+                if inloop_ss_depths:
+                    depth = inloop_ss_depths.pop()
+                    depth_symstates = inloop_symstates[depth]
+                    # mlog.debug("DEPTH {}".format(depth))
+                    # mlog.debug("symstates ({}):\n{}".format(len(symstates.lst), symstates))
+                    if len(depth_symstates.lst) >= 2:
+                        inloop_fst_symstate = depth_symstates.lst[0]
+                        inloop_snd_symstate = depth_symstates.lst[1]
+                else:
+                    symstates = self._get_symstates_from_src(src, target_loc=vloop.inloop_loc,
+                                                             min_depth=symstates.maxdepth + 1)
+                    ss = symstates.ss
+                    inloop_symstates = ss[vloop.inloop_loc]
+                    inloop_ss_depths = sorted(inloop_symstates.keys())
+            
+            assert inloop_fst_symstate, inloop_fst_symstate
+            assert inloop_snd_symstate, inloop_snd_symstate
             
             if inloop_fst_symstate and inloop_snd_symstate:
                 # Get loop's condition and transition relation
@@ -481,8 +502,8 @@ class NonTerm(object):
             loop_transrel = vloop.loop.transrel
             loop_cond = vloop.loop.cond
 
-            mlog.debug("loop_transrel: {}".format(loop_transrel))
-            mlog.debug("loop_cond: {}".format(loop_cond))
+            # mlog.debug("loop_transrel: {}".format(loop_transrel))
+            # mlog.debug("loop_cond: {}".format(loop_cond))
             mlog.debug("rcs: {}".format(rcs))
 
             if not rcs.implies(ZFormula([loop_cond])):
@@ -506,7 +527,7 @@ class NonTerm(object):
             init_transrel_rcs.add(loop_transrel)
             init_transrel_rcs.add(vloop.stem.cond)
             init_transrel_rcs.add(vloop.stem.transrel)
-            mlog.debug("init_transrel_rcs: {}".format(init_transrel_rcs))
+            # mlog.debug("init_transrel_rcs: {}".format(init_transrel_rcs))
 
             # Unreachable recurrent set
             if init_transrel_rcs.is_unsat():
@@ -579,7 +600,7 @@ class NonTerm(object):
                     elif rs:  # sat
                         assert isinstance(rs, Inps), rs
                         assert len(rs) > 0
-                        itraces = _config.exe.get_traces_from_inps(rs)
+                        itraces = _config.get_traces_from_inps(rs)
                         sCexs.append((rc, itraces))
                 return False, sCexs, mds  # invalid with a set of new Inps
 
@@ -588,7 +609,7 @@ class NonTerm(object):
         _config = self._config
         base_term_inps, term_inps, mayloop_inps = vloop.cl.classify_inps(itraces)
         mlog.debug("base_term_inps: {}".format(len(base_term_inps)))
-        mlog.debug("term_inps: {}".format(len(term_inps)))
+        mlog.debug("term_inps: {}".format(term_inps))
         mlog.debug("mayloop_inps: {}".format(len(mayloop_inps)))
         mlog.debug("rcs: {}".format(rcs))
 
@@ -662,9 +683,12 @@ class NonTerm(object):
         mlog.debug("stat ({} total): {}".format(len(rcs), stat))
 
     @timeit
-    def prove_vloop(self, vloop):
+    def prove_nonterm_vloop(self, vloop):
         _config = self._config
-        validRCS = []
+        stem, loop = _config.get_loopinfo(vloop)
+        vloop.stem = stem
+        vloop.loop = loop
+        valid_rcs = []
 
         if vloop.stem is None or vloop.loop is None:
             mlog.debug("No loop information: stem={}, loop={}".format(self.stem, self.loop))
@@ -688,12 +712,12 @@ class NonTerm(object):
                         # mds is a valid recurrent set which is smaller (weaker) than rcs
                         nancestors = copy.deepcopy(ancestors)
                         nancestors.append((depth, rcs))
-                        validRCS.append((mds, nancestors))
+                        valid_rcs.append((mds, nancestors))
                     
                     if chk:
-                        validRCS.append((rcs, ancestors))
+                        valid_rcs.append((rcs, ancestors))
                         # return the first valid rcs
-                        # return validRCS
+                        # return valid_rcs
                     elif sCexs is not None:
                         for invalid_rc, cexs in sCexs:
                             nrcs = self.strengthen(rcs, invalid_rc, cexs, vloop)
@@ -704,34 +728,34 @@ class NonTerm(object):
                                 candidateRCS.append((nrc, depth+1, nancestors))
             for (tInvs, tTraces) in self.tCexs:
                 mlog.debug("tCex: {}".format(tInvs))
-            return validRCS
+            return valid_rcs
+
+    def print_valid_rcs(self, valid_rcs):
+        for rcs, ancestors in valid_rcs:
+            f = Z3.to_dnf(rcs.simplify())
+            mlog.info("rcs: {}".format(rcs))
+            mlog.info("(simplified) rcs: {}".format(f))
+            for depth, ancestor in ancestors:
+                if ancestor is None:
+                    ancestor_ = None
+                else:
+                    ancestor_ = Z3.to_dnf(ancestor.simplify())
+                mlog.info("ancestor {}: {}".format(depth, ancestor_))
 
     @timeit
     def prove(self):
         _config = self._config
         res = None
         for vloop in _config.vloop_info:
-            stem, loop = _config.get_loopinfo(vloop)
-            vloop.stem = stem
-            vloop.loop = loop
-            validRCS = self.prove_vloop(vloop)
-            if validRCS:
-                res = (False, vloop.vloop_id, validRCS)
+            valid_rcs = self.prove_nonterm_vloop(vloop)
+            if valid_rcs:
+                res = (False, vloop.vloop_id, valid_rcs)
                 break 
         if res is None:
             print('Non-termination result: Unknown')
         else:
-            r, vid, validRCS = res
-            for rcs, ancestors in validRCS:
-                f = Z3.to_dnf(rcs.simplify())
-                mlog.info("rcs: {}".format(rcs))
-                mlog.info("(simplified) rcs: {}".format(f))
-                for depth, ancestor in ancestors:
-                    if ancestor is None:
-                        ancestor_ = None
-                    else:
-                        ancestor_ = Z3.to_dnf(ancestor.simplify())
-                    mlog.info("ancestor {}: {}".format(depth, ancestor_))
+            r, vid, valid_rcs = res
+            self.print_valid_rcs(valid_rcs)
             print('Non-termination result: {} ({})'.format(r, vid))
 
 class Term(object):
@@ -982,7 +1006,8 @@ class Term(object):
 
         # return r, sym_cex
 
-    def prove_vloop(self, itraces, vloop):
+    @timeit
+    def prove_term_vloop(self, itraces, vloop):
         _config = self._config
         mlog.debug('classify_inps: {}'.format(vloop.vloop_id))
         base_term_inps, term_inps, mayloop_inps = vloop.cl.classify_inps(itraces)
@@ -1012,19 +1037,11 @@ class Term(object):
 
     @timeit
     def prove(self):
-        @timeit
-        def gen_rand_inps(config):
-            return config.exe.gen_rand_inps(config.n_inps)
-
-        # @timeit
-        def get_traces_from_inps(config, rand_inps):
-            return config.exe.get_traces_from_inps(rand_inps)
-
         _config = self._config
         # vs = _config.inv_decls[_config.inloop_loc]
         # itraces = _config.rand_itraces
-        rand_inps = gen_rand_inps(_config)
-        itraces = get_traces_from_inps(_config, rand_inps)
+        rand_inps = _config.gen_rand_inps()
+        itraces = _config.get_traces_from_inps(rand_inps)
         # preloop_term_invs = None
         # while preloop_term_invs is None:
         #     base_term_inps, term_inps, mayloop_inps = _config.cl.classify_inps(itraces)
@@ -1036,7 +1053,7 @@ class Term(object):
         #                             itraces, _config.preloop_loc, term_inps, maxdeg=2)
         #     if preloop_term_invs is None:
         #         rand_inps = gen_rand_inps(_config)
-        #         rand_itraces = get_traces_from_inps(_config, rand_inps)
+        #         rand_itraces = _config.get_traces_from_inps(rand_inps)
         #         old_itraces_len = len(itraces)
         #         old_itraces_keys = set(itraces.keys())
         #         itraces.update(rand_itraces)
@@ -1053,8 +1070,8 @@ class Term(object):
 
         res = None
         for vloop in _config.vloop_info:
-            mlog.debug('Analysing {}'.format(vloop.vloop_id))
-            vloop_r, vloop_rfs = self.prove_vloop(itraces, vloop)
+            mlog.debug('Analysing Termination {}'.format(vloop.vloop_id))
+            vloop_r, vloop_rfs = self.prove_term_vloop(itraces, vloop)
             if not vloop_r:
                 res = None
                 break
@@ -1078,7 +1095,7 @@ class Term(object):
         #     else:
         #         r, cex_inps = self.validate_ranking_functions(vs, list(rfs))
         #         if not r and cex_inps:
-        #             itraces = _config.exe.get_traces_from_inps(cex_inps)
+        #             itraces = _config.get_traces_from_inps(cex_inps)
         #         else: # Unknown
         #             if not r:
         #                 r = None
@@ -1086,39 +1103,59 @@ class Term(object):
 
         # mlog.info('Termination result: {} ({})'.format(r, rfs))
 
-        """
-        ProveT(P):
-            P_instr = Instrument(P)
-            inps = GenRandomInps(P)
-            ranking_function_set = {}
-            do {
-                \pi = Execute(P, inps)
-                \pi_base, \pi_term, \pi_mayloop = Partition(\pi)
-                new_ranking_functions = InferRankingFunction(P_instr, \pi_term)
-                if new_ranking_functions is non-empty:
-                    ranking_function_set = ranking_function_set U new_ranking_functions
-                    r, cex = validate_ranking_functions(P, ranking_function_set)
-                    if r:
-                        return r, ranking_function_sets
-                    else:
-                        inps = GuessInput(cex)
-            } while (ranking_function_sets.unchanged)
+class TNT(object):
+    def __init__(self, config):
+        self._config = config
+        self.t_prover = Term(config)
+        self.nt_prover = NonTerm(config)
 
-        InferRankingFunction(P_instr, \pi_term):
-            vloop_params = GetParams(P_instr)
-            # x, y, z
-            # u_0 + u_1*x + u_2*y + u_3*z
-            ranking_function_template = GenRankingFunctionTemplate(P_instr)
-            transitive_closure_transitions = {}
-            for each snap_shot in \pi_term:
-                transitive_closure_transitions = transitive_closure_transitions U GenTransitiveClosureTransitions(snap_shot)
-            ranking_function_set = {}
-            while transitive_closure_transitions is non-empty:
-                (s1, s2) = RandomlyPick(transitive_closure_transitions)
-                t1 = ranking_function_template(s1)
-                t2 = ranking_function_template(s2)
-                ranking_function = SolveTemplate(ranking_function_template, {t1>t2, t1>=0})
-                ranking_function_set = ranking_function_set U {ranking_function}
-                transitive_closure_transitions.filter(t: NotSatisfied(t, ranking_function))
-            return ranking_function_set
-        """
+    def prove(self):
+        _config = self._config
+        rand_inps = _config.gen_rand_inps()
+        itraces = _config.get_traces_from_inps(rand_inps)
+        
+        res = None
+        for vloop in _config.vloop_info:
+            mlog.debug('Analysing {}'.format(vloop.vloop_id))
+            base_term_inps, term_inps, mayloop_inps = vloop.cl.classify_inps(itraces)
+            mlog.debug('base_term_inps: {}'.format(len(base_term_inps)))
+            mlog.debug('term_inps: {}'.format(len(term_inps)))
+            mlog.debug('mayloop_inps: {}'.format(len(mayloop_inps)))
+
+            if len(mayloop_inps) > 4 * (len(base_term_inps) + len(term_inps)):
+                mlog.debug('Proving Non-Termination: {}'.format(vloop.vloop_id))
+                valid_rcs = self.nt_prover.prove_nonterm_vloop(vloop)
+                if valid_rcs:
+                    self.nt_prover.print_valid_rcs(valid_rcs)
+                    res = (False, (vloop.vloop_id, valid_rcs))
+                    break
+                else:
+                    mlog.debug('Proving Termination: {}'.format(vloop.vloop_id))
+                    # term_traces = _config.get_traces_from_inps(Inps(set(term_inps)))
+                    term_traces = {inp: itraces[inp] for inp in term_inps}
+                    t_res, t_rfs = self.t_prover.prove_term_vloop(term_traces, vloop)
+                    if not t_res:
+                        res = None
+                        break
+                    else:
+                        mlog.debug('{} terminates: {}'.format(vloop.vloop_id, t_rfs))
+            else:
+                mlog.debug('Proving Termination: {}'.format(vloop.vloop_id))
+                # term_traces = _config.get_traces_from_inps(Inps(set(term_inps)))
+                term_traces = {inp: itraces[inp] for inp in term_inps}
+                t_res, t_rfs = self.t_prover.prove_term_vloop(term_traces, vloop)
+                if t_res:
+                    mlog.debug('{} terminates: {}'.format(vloop.vloop_id, t_rfs))
+                    res = t_res
+                else:
+                    mlog.debug('Proving Non-Termination: {}'.format(vloop.vloop_id))
+                    valid_rcs = self.nt_prover.prove_nonterm_vloop(vloop)
+                    if valid_rcs:
+                        self.nt_prover.print_valid_rcs(valid_rcs)
+                        res = (False, (vloop.vloop_id, valid_rcs))
+                    else:
+                        res = None
+                    break
+
+        # mlog.info('Termination result: {} ({})'.format(r, n_rfs))
+        print('TNT result: {}'.format(res))

@@ -16,8 +16,8 @@ extern int __VERIFIER_nondet_int(void);
 int main() {
     int A, R;
     int u, v, r;
-    A = __VERIFIER_nondet_double();
-    R = __VERIFIER_nondet_double();
+    A = __VERIFIER_nondet_int();
+    R = __VERIFIER_nondet_int();
     //__VERIFIER_assume((R - 1) * (R - 1) < A);
     if ((R - 1) * (R - 1) >= A) return 0;
     //__VERIFIER_assume(A <= R * R);

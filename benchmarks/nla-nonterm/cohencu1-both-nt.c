@@ -25,7 +25,7 @@ int main() {
     y = 1;
     z = 6;
 
-    while (z == 6 * n + 6) {
+    while (z <= 6 * n + 6) {
       //__VERIFIER_assert(z == 6 * n + 6);
       //__VERIFIER_assert(y == 3 * n * n + 3 * n + 1);
       //__VERIFIER_assert(x == n * n * n);

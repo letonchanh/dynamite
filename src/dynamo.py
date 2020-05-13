@@ -122,12 +122,11 @@ if __name__ == "__main__":
         invs, traces = dig.start(seed, maxdeg)
     else:
         from helpers.miscs import Z3
-        from analysis import Setup, NonTerm, Term
+        from analysis import Setup, NonTerm, Term, TNT
         import utils.profiling
         from utils.profiling import timeit
     
-        if settings.prove_term or settings.prove_nonterm:
-            config = Setup(seed, inp)
+        config = Setup(seed, inp)
 
         @timeit
         def prove():
@@ -135,9 +134,13 @@ if __name__ == "__main__":
                 nt_prover = NonTerm(config) 
                 nt_prover.prove()
 
-            if settings.prove_term:
+            elif settings.prove_term:
                 t_prover = Term(config)
                 t_prover.prove()
+
+            else:
+                tnt_prover = TNT(config)
+                tnt_prover.prove()
 
             print('Time log:')
             for meth, time in utils.profiling.time_log.items():
