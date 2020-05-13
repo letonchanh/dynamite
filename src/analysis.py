@@ -683,7 +683,7 @@ class NonTerm(object):
         mlog.debug("stat ({} total): {}".format(len(rcs), stat))
 
     @timeit
-    def prove_vloop(self, vloop):
+    def prove_nonterm_vloop(self, vloop):
         _config = self._config
         stem, loop = _config.get_loopinfo(vloop)
         vloop.stem = stem
@@ -747,7 +747,7 @@ class NonTerm(object):
         _config = self._config
         res = None
         for vloop in _config.vloop_info:
-            valid_rcs = self.prove_vloop(vloop)
+            valid_rcs = self.prove_nonterm_vloop(vloop)
             if valid_rcs:
                 res = (False, vloop.vloop_id, valid_rcs)
                 break 
@@ -1006,7 +1006,8 @@ class Term(object):
 
         # return r, sym_cex
 
-    def prove_vloop(self, itraces, vloop):
+    @timeit
+    def prove_term_vloop(self, itraces, vloop):
         _config = self._config
         mlog.debug('classify_inps: {}'.format(vloop.vloop_id))
         base_term_inps, term_inps, mayloop_inps = vloop.cl.classify_inps(itraces)
@@ -1070,7 +1071,7 @@ class Term(object):
         res = None
         for vloop in _config.vloop_info:
             mlog.debug('Analysing Termination {}'.format(vloop.vloop_id))
-            vloop_r, vloop_rfs = self.prove_vloop(itraces, vloop)
+            vloop_r, vloop_rfs = self.prove_term_vloop(itraces, vloop)
             if not vloop_r:
                 res = None
                 break
@@ -1123,7 +1124,7 @@ class TNT(object):
 
             if len(mayloop_inps) > 4 * (len(base_term_inps) + len(term_inps)):
                 mlog.debug('Proving Non-Termination: {}'.format(vloop.vloop_id))
-                valid_rcs = self.nt_prover.prove_vloop(vloop)
+                valid_rcs = self.nt_prover.prove_nonterm_vloop(vloop)
                 if valid_rcs:
                     self.nt_prover.print_valid_rcs(valid_rcs)
                     res = (False, (vloop.vloop_id, valid_rcs))
@@ -1132,7 +1133,7 @@ class TNT(object):
                     mlog.debug('Proving Termination: {}'.format(vloop.vloop_id))
                     # term_traces = _config.get_traces_from_inps(Inps(set(term_inps)))
                     term_traces = {inp: itraces[inp] for inp in term_inps}
-                    t_res, t_rfs = self.t_prover.prove_vloop(term_traces, vloop)
+                    t_res, t_rfs = self.t_prover.prove_term_vloop(term_traces, vloop)
                     if not t_res:
                         res = None
                         break
@@ -1142,13 +1143,13 @@ class TNT(object):
                 mlog.debug('Proving Termination: {}'.format(vloop.vloop_id))
                 # term_traces = _config.get_traces_from_inps(Inps(set(term_inps)))
                 term_traces = {inp: itraces[inp] for inp in term_inps}
-                t_res, t_rfs = self.t_prover.prove_vloop(term_traces, vloop)
+                t_res, t_rfs = self.t_prover.prove_term_vloop(term_traces, vloop)
                 if t_res:
                     mlog.debug('{} terminates: {}'.format(vloop.vloop_id, t_rfs))
                     res = t_res
                 else:
                     mlog.debug('Proving Non-Termination: {}'.format(vloop.vloop_id))
-                    valid_rcs = self.nt_prover.prove_vloop(vloop)
+                    valid_rcs = self.nt_prover.prove_nonterm_vloop(vloop)
                     if valid_rcs:
                         self.nt_prover.print_valid_rcs(valid_rcs)
                         res = (False, (vloop.vloop_id, valid_rcs))
