@@ -502,8 +502,8 @@ class NonTerm(object):
             loop_transrel = vloop.loop.transrel
             loop_cond = vloop.loop.cond
 
-            # mlog.debug("loop_transrel: {}".format(loop_transrel))
-            # mlog.debug("loop_cond: {}".format(loop_cond))
+            mlog.debug("loop_transrel: {}".format(loop_transrel))
+            mlog.debug("loop_cond: {}".format(loop_cond))
             mlog.debug("rcs: {}".format(rcs))
 
             if not rcs.implies(ZFormula([loop_cond])):
@@ -523,54 +523,73 @@ class NonTerm(object):
             # R /\ T => R'
             # rcs_l = z3.substitute(rcs.expr(), _config.transrel_pre_sst)
             # mlog.debug("rcs_l: {}".format(rcs_l))
-            init_transrel_rcs = ZFormula.substitue(labeled_rcs, vloop.transrel_pre_sst)
-            init_transrel_rcs.add(loop_transrel)
+            transrel_rcs = ZFormula.substitue(labeled_rcs, vloop.transrel_pre_sst)
+            transrel_rcs.add(loop_transrel)
+            mlog.debug("transrel_rcs: {}".format(transrel_rcs))
+
+            init_transrel_rcs = copy.deepcopy(transrel_rcs)
             init_transrel_rcs.add(vloop.stem.cond)
             init_transrel_rcs.add(vloop.stem.transrel)
-            # mlog.debug("init_transrel_rcs: {}".format(init_transrel_rcs))
+            mlog.debug("init_transrel_rcs: {}".format(init_transrel_rcs))
 
             # Unreachable recurrent set
-            if init_transrel_rcs.is_unsat():
-                return False, None, None
+            # if init_transrel_rcs.is_unsat():
+            #     return False, None, None
 
             dg = defaultdict(list)
             def _check(rc):
                 rc_label = label_d[rc]
                 mlog.debug("rc: {}:{}".format(rc, rc_label))
                 # init_transrel_rcs is sat
-                init_f = copy.deepcopy(init_transrel_rcs)
+                f = copy.deepcopy(transrel_rcs)
                 rc_r = z3.substitute(rc, vloop.transrel_post_sst)
-                init_f.add(z3.Not(rc_r))
+                f.add(z3.Not(rc_r))
                 mlog.debug("rc_r: {}".format(rc_r))
-                mlog.debug("init_f: {}".format(init_f))
+                mlog.debug("f: {}".format(f))
+
+                rs, _, unsat_core = _config.solver.get_models(f, 1, using_random_seed=settings.use_random_seed)
                 
-                rs, _, unsat_core = _config.solver.get_models(init_f, _config.n_inps, 
-                                                              _config.init_inp_decls, 
-                                                              settings.use_random_seed)
                 if rs is None:
                     mlog.debug("rs: unknown")
+                    return rs
                 elif rs is False:
                     mlog.debug("rs: unsat")
                     mlog.debug("unsat_core: {}".format(unsat_core))
                     assert unsat_core is not None, unsat_core
                     dg[rc_label] = unsat_core
+                    return rs
                 else:
                     # isinstance(rs, list) and rs:
-                    init_rs = []
-                    init_symvars_prefix_len = len(init_symvars_prefix)
-                    for r in rs:
-                        init_r = []
-                        for (x, v) in r:
-                            if x.startswith(init_symvars_prefix):
-                                init_r.append((x[init_symvars_prefix_len:], v))
-                        if init_r:
-                            init_rs.append(init_r)
+                    mlog.debug("rs: sat")
+                    init_f = copy.deepcopy(init_transrel_rcs)
+                    init_f.add(z3.Not(rc_r))
 
-                    mlog.debug("init_rs: sat ({} models)".format(len(init_rs)))
-                    rs = _config.solver.mk_inps_from_models(
-                                init_rs, _config.inp_decls, _config.exe)
-                    # mlog.debug("rs: {}".format(rs))
-                return rs
+                    init_rs, _, _ = _config.solver.get_models(init_f, _config.n_inps, 
+                                                              _config.init_inp_decls, 
+                                                              settings.use_random_seed)
+                    mlog.debug('init_f: {}'.format(init_f))
+                    mlog.debug('init_rs: {}'.format(init_rs))
+                    if init_rs is None:
+                        return []
+                    else:
+                        init_models = []
+                        init_symvars_prefix_len = len(init_symvars_prefix)
+                        if isinstance(init_rs, list):
+                            for r in init_rs:
+                                init_model = []
+                                for (x, v) in r:
+                                    if x.startswith(init_symvars_prefix):
+                                        init_model.append((x[init_symvars_prefix_len:], v))
+                                if init_model:
+                                    init_models.append(init_model)
+
+                        mlog.debug("init_models: sat ({} models)".format(len(init_models)))
+                        inps = _config.solver.mk_inps_from_models(init_models, 
+                                                                  _config.inp_decls, 
+                                                                  _config.exe,
+                                                                  _config.n_inps)
+                        mlog.debug("inps: {}".format(inps))
+                        return inps
 
             chks = [(rc, _check(rc)) for rc in rcs]
 
@@ -682,6 +701,12 @@ class NonTerm(object):
             stat[d] += 1
         mlog.debug("stat ({} total): {}".format(len(rcs), stat))
 
+    def check_reachable_rcs(self, vloop, rcs):
+        init_transrel_rcs = ZFormula.substitue(rcs, vloop.transrel_pre_sst)
+        init_transrel_rcs.add(vloop.stem.cond)
+        init_transrel_rcs.add(vloop.stem.transrel)
+        return not init_transrel_rcs.is_unsat()
+
     @timeit
     def prove_nonterm_vloop(self, vloop):
         _config = self._config
@@ -712,10 +737,13 @@ class NonTerm(object):
                         # mds is a valid recurrent set which is smaller (weaker) than rcs
                         nancestors = copy.deepcopy(ancestors)
                         nancestors.append((depth, rcs))
-                        valid_rcs.append((mds, nancestors))
+                        if self.check_reachable_rcs(vloop, mds):
+                            valid_rcs.append((mds, nancestors))
                     
                     if chk:
-                        valid_rcs.append((rcs, ancestors))
+                        mlog.debug('new valid rcs: {}'.format(rcs))
+                        if self.check_reachable_rcs(vloop, rcs):
+                            valid_rcs.append((rcs, ancestors))
                         # return the first valid rcs
                         # return valid_rcs
                     elif sCexs is not None:
