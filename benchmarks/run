@@ -91,7 +91,7 @@ print "--- Configuration ---\n";
 print "| Tools: $ts\n";
 
 use Parsers qw/find_benchmarks/;
-my ($benchdir,@benches) = Parsers::find_benchmarks($bdir,\@bnames);
+my ($benchdir,@benches,$b2expected) = Parsers::find_benchmarks($bdir,\@bnames);
 @benches = sort @benches; # [50..158];
 print "| Total files: ".($#benches+1)."\n";
 print "---------------\n";
