@@ -9,7 +9,7 @@ use Time::Out qw(timeout) ;
 my $SPECFILE = qq{/tools/termination.prp};
 my $TIMEOUT  = 300;
 my @timedout;
-#my $NT_SPECFILE = qq{/tools/nontermination.prp};
+my $NT_SPECFILE = qq{/tools/nontermination.prp};
 
 my $hn = qx{hostname -A};
 $SPECFILE = '/home/exp'.$SPECFILE if $hn =~ /cse-tnguyen-02/;
@@ -72,11 +72,13 @@ sub runc { my ($cmd) = @_; print "+ $cmd\n(with timeout of $TIMEOUT s)\n";
 die "usage: ./run (options) <subdir> (list|run) [dynamo,ultimate,seahorn,aprove] (geo1-both-t,cohencu2-both-t,...)\n".
     "  (last argument is optional) \n".
     "  options:\n".
+    "    --nt=1    # for non-termination".
     "    --timeout=900\n" unless $#ARGV >= 1;
 while ($ARGV[0] =~ /^--(.*)=(.+)$/) {
     my ($k,$v) = ($1,$2);
     shift @ARGV;
     $TIMEOUT = $v if $k eq 'timeout';
+    $SPECFILE = $NT_SPECFILE if $k eq 'nt';
 }
 my @bnames = ();
 my ($bdir,$arg1,$ts,$bms) = @ARGV;
