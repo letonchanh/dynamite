@@ -23,7 +23,7 @@ sub find_benchmarks {
 	if ($#{$bnames} > -1) {
 	    next unless $fn ~~ @{$bnames};
 	}
-	if ($bdir =~ /nla/) {
+	if ($bdir =~ /nla-term/) {
 	    #next unless $fn =~ m/^.*-ult-n?t\.c/;
 	    #next unless $fn =~ m/\.c$/;
 	    #next if $fn =~ m/-dyn/;
