@@ -481,8 +481,8 @@ class NonTerm(object):
             loop_transrel = vloop.loop.transrel
             loop_cond = vloop.loop.cond
 
-            mlog.debug("loop_transrel: {}".format(loop_transrel))
-            mlog.debug("loop_cond: {}".format(loop_cond))
+            # mlog.debug("loop_transrel: {}".format(loop_transrel))
+            # mlog.debug("loop_cond: {}".format(loop_cond))
             mlog.debug("rcs: {}".format(rcs))
 
             if not rcs.implies(ZFormula([loop_cond])):
@@ -506,7 +506,7 @@ class NonTerm(object):
             init_transrel_rcs.add(loop_transrel)
             init_transrel_rcs.add(vloop.stem.cond)
             init_transrel_rcs.add(vloop.stem.transrel)
-            mlog.debug("init_transrel_rcs: {}".format(init_transrel_rcs))
+            # mlog.debug("init_transrel_rcs: {}".format(init_transrel_rcs))
 
             # Unreachable recurrent set
             if init_transrel_rcs.is_unsat():
@@ -588,7 +588,7 @@ class NonTerm(object):
         _config = self._config
         base_term_inps, term_inps, mayloop_inps = vloop.cl.classify_inps(itraces)
         mlog.debug("base_term_inps: {}".format(len(base_term_inps)))
-        mlog.debug("term_inps: {}".format(len(term_inps)))
+        mlog.debug("term_inps: {}".format(term_inps))
         mlog.debug("mayloop_inps: {}".format(len(mayloop_inps)))
         mlog.debug("rcs: {}".format(rcs))
 
