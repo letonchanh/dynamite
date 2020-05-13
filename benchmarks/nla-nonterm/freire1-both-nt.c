@@ -27,7 +27,6 @@ int main() {
     int a = __VERIFIER_nondet_int();
     x = a / 2.0;
     r = 0;
-    int c = 0; int k = __VERIFIER_nondet_int(); // Added
     
     while ( r*r - a - r + 2*x == 0 ) {
       //__VERIFIER_assert((int)(r*r - a - r + 2*x) == 0);
