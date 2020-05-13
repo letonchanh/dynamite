@@ -259,7 +259,7 @@ class Setup(object):
             tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
             mlog.debug("Create C source for {}: {}".format(vloop.vloop_id, tmpdir))
             src = c_src(Path(self.trans_inp), tmpdir, mainQ=vloop.vloop_id)
-            symstates = self._get_symstates_from_src(src)
+            symstates = self._get_symstates_from_src(src, target_loc=vloop.inloop_loc)
             ss = symstates.ss
         else:
             raise NotImplementedError
@@ -272,19 +272,31 @@ class Setup(object):
         mlog.debug("vloop inv_decls: {}".format(inv_decls))
         mlog.debug("vloop init_symvars: {}".format(loop_init_symvars))
         
+        assert vloop.inloop_loc in ss, vloop.inloop_loc
+
         if vloop.inloop_loc in ss:
             inloop_symstates = ss[vloop.inloop_loc]
             inloop_ss_depths = sorted(inloop_symstates.keys())
             inloop_fst_symstate = None
             inloop_snd_symstate = None
-            while (inloop_fst_symstate is None or inloop_snd_symstate is None) and inloop_ss_depths:
-                depth = inloop_ss_depths.pop()
-                symstates = inloop_symstates[depth]
-                # mlog.debug("DEPTH {}".format(depth))
-                # mlog.debug("symstates ({}):\n{}".format(len(symstates.lst), symstates))
-                if len(symstates.lst) >= 2:
-                    inloop_fst_symstate = symstates.lst[0]
-                    inloop_snd_symstate = symstates.lst[1]
+            while (inloop_fst_symstate is None or inloop_snd_symstate is None):
+                if inloop_ss_depths:
+                    depth = inloop_ss_depths.pop()
+                    depth_symstates = inloop_symstates[depth]
+                    # mlog.debug("DEPTH {}".format(depth))
+                    # mlog.debug("symstates ({}):\n{}".format(len(symstates.lst), symstates))
+                    if len(depth_symstates.lst) >= 2:
+                        inloop_fst_symstate = depth_symstates.lst[0]
+                        inloop_snd_symstate = depth_symstates.lst[1]
+                else:
+                    symstates = self._get_symstates_from_src(src, target_loc=vloop.inloop_loc,
+                                                             min_depth=symstates.maxdepth + 1)
+                    ss = symstates.ss
+                    inloop_symstates = ss[vloop.inloop_loc]
+                    inloop_ss_depths = sorted(inloop_symstates.keys())
+            
+            assert inloop_fst_symstate, inloop_fst_symstate
+            assert inloop_snd_symstate, inloop_snd_symstate
             
             if inloop_fst_symstate and inloop_snd_symstate:
                 # Get loop's condition and transition relation
