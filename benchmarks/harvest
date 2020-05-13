@@ -35,6 +35,7 @@ foreach my $tool (@tools) {
   foreach my $b (sort @benches) {
       mkdir("../results/$b") if (not (-e "../results/$b"));
       my $logfn = "$benchdir/$outdir/$tool-$b.log";
+      warn $logfn;
       if (not (-e $logfn)) { push @skips, $logfn; next; }
       my $tmpb = $b; $tmpb =~ s/-both-n?t.c//;
       $compare->{$tmpb}->{$tool} = Parsers::parse($tool,$logfn);
@@ -43,7 +44,8 @@ foreach my $tool (@tools) {
           my $tm = $compare->{$tmpb}->{$tool}->{time};
           my ($d,$dstr) = Parsers::dynDetail($tmpb,$logfn,
                                               ($tm >= 900 ? 1 : 0),
-                                              $tm, $compare->{$tmpb}->{$tool}->{result});
+                                             $tm, $compare->{$tmpb}->{$tool}->{result},
+                                             ($benchdir =~ /nonterm/ ? 1 : 0));
           push @dynDetail, $dstr;
           $compare->{$tmpb}->{dynamo}->{rf} = "";
           $compare->{$tmpb}->{dynamo}->{rf} .= $d->{rf};
@@ -65,23 +67,24 @@ print "\n";
 print "========= DYN DETAIL ============\n";
 print for @dynDetail;
 
-print "========= COMPARISON ============\n";
-my $prev = ''; my $ctr = 2;
-foreach my $b (sort keys %{$compare}) {
-    my $trunc = substr($b,0,15);
-    if ($trunc eq $prev) { $trunc .= "".($ctr++); } else { $prev = $trunc; $ctr = 2; };
-    printf("%-25s \& \$ %-15s \$ \& %-4s \& %-6s \& %-4s \& %-6s \& %5s \&   \\ULTIMATE{  %-5s \& %-6s } \\\\\n",
-           $trunc,
-           $compare->{$b}->{dynamo}->{rf}." ",
-           $compare->{$b}->{dynamo}->{guesst},
-           $compare->{$b}->{dynamo}->{guessr},
-           $compare->{$b}->{dynamo}->{validt},
-           $compare->{$b}->{dynamo}->{validr},
-           $compare->{$b}->{dynamo}->{time},
-           $compare->{$b}->{ultimate}->{time},
-           '\r'.$compare->{$b}->{ultimate}->{result}
-        );
+if($benchdir =~ /termination-crafted-lit/) {
+    print "========= COMPARISON ============\n";
+    my $prev = ''; my $ctr = 2;
+    foreach my $b (sort keys %{$compare}) {
+        my $trunc = substr($b,0,15);
+        if ($trunc eq $prev) { $trunc .= "".($ctr++); } else { $prev = $trunc; $ctr = 2; };
+        printf("%-25s \& \$ %-15s \$ \& %-4s \& %-6s \& %-4s \& %-6s \& %5s \&   \\ULTIMATE{  %-5s \& %-6s } \\\\\n",
+               $trunc,
+               $compare->{$b}->{dynamo}->{rf}." ",
+               $compare->{$b}->{dynamo}->{guesst},
+               $compare->{$b}->{dynamo}->{guessr},
+               $compare->{$b}->{dynamo}->{validt},
+               $compare->{$b}->{dynamo}->{validr},
+               $compare->{$b}->{dynamo}->{time},
+               $compare->{$b}->{ultimate}->{time},
+               '\r'.$compare->{$b}->{ultimate}->{result}
+            );
+    }
 }
-
 
 print "You may now wish to:\n  git add ".(join(" ",@newfile))."\n  git commit -m \"results $fn\"\n" if $csvs eq 'csvs';

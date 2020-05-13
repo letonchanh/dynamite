@@ -120,8 +120,10 @@ sub dynamo {
 }
 
 sub toTex { my $t = shift @_;
-    $t =~ s/-1\*/-/g;
-    $t =~ s/\*/\\cdot /g;
+            $t =~ s/\*\*(\d)/^{$1} /g;
+            $t =~ s/-1\*/-/g;
+            $t =~ s/\*/\\cdot /g;
+            $t =~ s/%/\\%/g;
     return $t;
 }
 
@@ -168,7 +170,7 @@ my $b2desc = {
         "ps6" => "pow sum"
 };
 sub dynDetail {
-    my ($tmpb,$logfn,$timedout,$overallt,$overallr) = @_;
+    my ($tmpb,$logfn,$timedout,$overallt,$overallr,$nonterm) = @_;
     open(F,"$logfn") or warn "file $logfn - $!";
     my $d = { allt => $overallt, allr => $overallr,
               guessr => '\nparse', validr => '\nparse',
@@ -178,32 +180,37 @@ sub dynDetail {
         $d->{guesst} = $1 if /infer_ranking_functions: ((\d)*\.\d+)s/;
         $d->{validr} = '\rTRUE' if /Termination result: True/;
         $d->{validr} = '\rFALSE' if /Termination result: False/;
-        $d->{validr} = '\rTRUE' if /Non-termination result: True/;
-        $d->{validr} = '\rFALSE' if /Non-termination result: False/;
         if(/ranking_function_list: \[([^\]]+)\]/) {
             $d->{guessr} = '\rTRUE';
             $d->{rf} = toTex($1);
         }
+        ### RECURRENT SET STUFF
+        $d->{validr} = '\rTRUE' if /Non-termination result: True/;
+        $d->{validr} = '\rFALSE' if /Non-termination result: False/;
         if(/\(simplified\) rcs: (.*)$/) { # -1 == x*z + -1*x + -1*y)
             $d->{guessr} = '\rTRUE';
             $d->{rf} = toTex($1);
         }
+        $d->{validt} = $1 if /^verify: ((\d)*\.\d+)s/;
+        $d->{guesst} = $1 if /^strengthen: ((\d)*\.\d+)s/;
+        $d->{allt}   = $1 if /^prove: ((\d)*\.\d+)s/;
     }
     if($timedout and $d->{validt} > 0) {
         # decide when it timed out
         if ($d->{validt} > 800) { $d->{validt} = '\rTO'; }
     }
+    $d->{allr} = '\rSCD' if $nonterm and $d->{allr} eq 'FALSE';
 
     $logfn =~ s/^.*benchmarks//;
     $d->{allt} = sprintf("%.2f",$d->{allt});
     $d->{allt} = '\rTO' if $d->{allt} >= 900;
     use Data::Dumper; print Dumper($d);
-    my $str = sprintf("\\texttt{%-10s} & %-10s & \$%-12s\$ & %-3.2f & %10s & %.2f & %10s & %s \\\\ \% $logfn \n",
+    my $str = sprintf("\\texttt{%-10s} & %-10s & \$%-42s\$ & %s & %10s & %s & %10s & %s & %10s \\\\ \n",
                    $tmpb, $b2desc->{$tmpb}, $d->{rf},
                    $d->{guesst}, $d->{guessr},
                    $d->{validt}, $d->{validr},
-                   $d->{allt}
-        );
+                      $d->{allt}, $d->{allr});
+    warn "$str\n";
     return ($d,$str);
     #$tool, $tmpb, $b2res{$b}->{time}, $b2res{$b}->{result});
 
