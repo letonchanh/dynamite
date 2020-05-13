@@ -73,7 +73,9 @@ sub tm2str {
     my ($t) = @_;
     return '\rUNK' if $t == -1;
     return '\rTO' if $t >= 900;
-    return sprintf("%0.1f", $t) if $t < 900;
+    my $out = sprintf("%0.1f", $t) if $t < 900;
+    warn "formatting, tm2str $t = $out\n";
+    return $out;
     die "strange time: $t";
 }
 
@@ -94,15 +96,11 @@ sub dynamo {
     open(F,"$logfn") or warn "file $logfn - $!";
     my ($time,$result) = (-1,'UNK');
     while (<F>) {
-        if (/Termination result: True/) {
-            $result = 'TRUE';
-        }
-        elsif (/Termination result: False/) {
-            $result = 'FALSE';
-        }
-        elsif (/Termination result: None/) {
-            $result = 'UNKNOWN';
-        }
+        $result = 'TRUE' if /Termination result: True/;
+        $result = 'TRUE' if /Termination result: False/;
+        $result = 'FALSE' if /Non-termination result: True/;
+        $result = 'FALSE' if /Non-termination result: False/;
+        $result = 'UNKNOWN' if /Termination result: None/;
 # Time log:
 #gen_rand_inps: 0.141s
 #_get_traces_mp: 0.158s
@@ -112,11 +110,11 @@ sub dynamo {
 #prove_reach: 16.663s
 #validate_ranking_functions: 16.807s
 #prove: 27.762s
-        if (/EJK TIMER: (\d+(\.\d+)?)$/) {
+        if (/EJK TIMER: (\d+\.\d+)$/) {
             $time = $1;
         }
     }
-    warn "TM: $time\n";
+    warn "TM: $time, RES: $result\n";
     close F;
     return { time => tm2str($time), result => $result };
 }
@@ -179,12 +177,19 @@ sub dynDetail {
         $d->{validt} = $1 if /validate_ranking_functions: ((\d)*\.\d+)s/;
         $d->{guesst} = $1 if /infer_ranking_functions: ((\d)*\.\d+)s/;
         $d->{validr} = '\rTRUE' if /Termination result: True/;
+        $d->{validr} = '\rFALSE' if /Termination result: False/;
+        $d->{validr} = '\rTRUE' if /Non-termination result: True/;
+        $d->{validr} = '\rFALSE' if /Non-termination result: False/;
         if(/ranking_function_list: \[([^\]]+)\]/) {
             $d->{guessr} = '\rTRUE';
             $d->{rf} = toTex($1);
         }
+        if(/\(simplified\) rcs: (.*)$/) { # -1 == x*z + -1*x + -1*y)
+            $d->{guessr} = '\rTRUE';
+            $d->{rf} = toTex($1);
+        }
     }
-    if($timedout) {
+    if($timedout and $d->{validt} > 0) {
         # decide when it timed out
         if ($d->{validt} > 800) { $d->{validt} = '\rTO'; }
     }
@@ -192,6 +197,7 @@ sub dynDetail {
     $logfn =~ s/^.*benchmarks//;
     $d->{allt} = sprintf("%.2f",$d->{allt});
     $d->{allt} = '\rTO' if $d->{allt} >= 900;
+    use Data::Dumper; print Dumper($d);
     my $str = sprintf("\\texttt{%-10s} & %-10s & \$%-12s\$ & %-3.2f & %10s & %.2f & %10s & %s \\\\ \% $logfn \n",
                    $tmpb, $b2desc->{$tmpb}, $d->{rf},
                    $d->{guesst}, $d->{guessr},

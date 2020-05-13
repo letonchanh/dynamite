@@ -29,7 +29,6 @@ my @skips;
 ################### Harvesting the results
 print "% Tool   Benchmark                     Time    Result\n";
 print "% ============================================\n";
-my %b2res;
 my @newfile;
 my $compare;
 foreach my $tool (@tools) {
@@ -37,12 +36,14 @@ foreach my $tool (@tools) {
       mkdir("../results/$b") if (not (-e "../results/$b"));
       my $logfn = "$benchdir/$outdir/$tool-$b.log";
       if (not (-e $logfn)) { push @skips, $logfn; next; }
-      my $tmpb = $b; $tmpb =~ s/-both-t.c//;
+      my $tmpb = $b; $tmpb =~ s/-both-n?t.c//;
       $compare->{$tmpb}->{$tool} = Parsers::parse($tool,$logfn);
       if ($tool eq 'dynamo') {
+          #die "can't get time at all: $b and $b2res{$tmpb}->{time}\n" unless $b2res{$b}->{time} > 0;
+          my $tm = $compare->{$tmpb}->{$tool}->{time};
           my ($d,$dstr) = Parsers::dynDetail($tmpb,$logfn,
-                                              ($b2res{$b}->{time} > 900 ? 1 : 0),
-                                              $b2res{$b}->{time}, $b2res{$b}->{result});
+                                              ($tm >= 900 ? 1 : 0),
+                                              $tm, $compare->{$tmpb}->{$tool}->{result});
           push @dynDetail, $dstr;
           $compare->{$tmpb}->{dynamo}->{rf} = "";
           $compare->{$tmpb}->{dynamo}->{rf} .= $d->{rf};
@@ -51,7 +52,7 @@ foreach my $tool (@tools) {
 
 
       if ($csvs eq 'csvs') {
-          my $ln = sprintf("%s,%s,%.2f\n", $b, $b2res{$b}->{result},  $b2res{$b}->{time});
+          my $ln = sprintf("%s,%s,%.2f\n", $b, $compare->{$tmpb}->{$tool}->{result},  $compare->{$tmpb}->{$tool}->{time});
           open CHANH, ">../results/$b/$tool.$fn.csv" or die $!;
           print CHANH $ln;
           close CHANH;
@@ -81,9 +82,6 @@ foreach my $b (sort keys %{$compare}) {
            '\r'.$compare->{$b}->{ultimate}->{result}
         );
 }
-#$b2res{$b} = 
-#
-#printf "\\%-10s & %-80s & %8.2f & %-10s\n", $tool, $tmpb, $b2res{$b}->{time}, $b2res{$b}->{result};
 
 
 print "You may now wish to:\n  git add ".(join(" ",@newfile))."\n  git commit -m \"results $fn\"\n" if $csvs eq 'csvs';
