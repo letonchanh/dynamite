@@ -51,6 +51,9 @@ class Execution(object):
         inv_decls = self.prog.inv_decls
         # inps = self._sample_inps(inps)
 
+        mlog.debug('inp_decls: {}'.format(inp_decls))
+        mlog.debug('inv_decls: {}'.format(inv_decls))
+
         @timeit
         def _get_traces_mp(inps):
             return self.prog._get_traces_mp(inps)
@@ -78,57 +81,77 @@ class Execution(object):
             # return itraces
 
             def f(task):
-                import os
-                pid = os.getpid()
                 inp, lines = task
-                ltraces = defaultdict(list)
-                ptraces = defaultdict(dict)
-                itraces = defaultdict()
-                # mlog.debug('inp: {}'.format(inp))
+                dtraces = defaultdict(list)
                 for l in lines:
                     # vtrace1: 8460 16 0 1 16 8460
                     parts = l.split(':')
                     assert len(parts) == 2, parts
                     loc, tracevals = parts[0], parts[1]
-                    loc = loc.strip()  # vtrace1_20
+                    loc = loc.strip()  # vtrace1
                     ss = inv_decls[loc].names
                     vs = tracevals.strip().split()
                     trace = Trace.parse(ss, vs)
-                    if '_' in loc:
-                        lparts = loc.split('_')
-                        indicator, pos = lparts[0], lparts[1] # vtrace1, 20
-                        # mlog.debug('{}: loc, indicator, pos: {}, {}, {}'.format(pid, loc, indicator, pos))
-                        if indicator == (dig_settings.TRACE_INDICATOR + str(settings.VTRACE.PRELOOP_LABEL)):
-                            prev_trace = ptraces[pos]
-                            if prev_trace:
-                                prev_inp = Inp(ss, prev_trace[loc][0].vs)
-                                if prev_inp not in itraces:
-                                    itraces[prev_inp] = prev_trace
-                            ptraces[pos] = defaultdict(list)
-                            ptraces[pos][loc] = [trace]
-                        else:
-                            ptraces[pos][loc].append(trace)
-                    else:
-                        ltraces[loc].append(trace)
-                if itraces or ptraces:
-                    for pos in ptraces:
-                        last_trace = ptraces[pos]
-                        if last_trace:
-                            loc = dig_settings.TRACE_INDICATOR + str(settings.VTRACE.PRELOOP_LABEL) + '_' + pos
-                            last_inp = Inp(ss, last_trace[loc][0].vs)
-                            if last_inp not in itraces:
-                                itraces[last_inp] = last_trace
-                    return [(inp, dtraces) for inp, dtraces in itraces.items()]
-                else:
-                    return [(inp, ltraces)]      
+                    dtraces[loc].append(trace)
+                return (inp, dtraces)
 
             tasks = raw_traces.items()
             wrs = Miscs.run_mp_ex("merge traces", tasks, f)
-            # wrs = []
-            # for task in tasks:
-            #     wrs.append(f(task))
-            itraces = {inp: dtraces for wr in wrs for inp, dtraces in wr}
+            itraces = {inp: dtraces for inp, dtraces in wrs}
             return itraces
+
+            # def f(task):
+            #     import os
+            #     pid = os.getpid()
+            #     inp, lines = task
+            #     ltraces = defaultdict(list)
+            #     ptraces = defaultdict(dict)
+            #     itraces = defaultdict()
+            #     # mlog.debug('inp: {}'.format(inp))
+            #     for l in lines:
+            #         # vtrace1: 8460 16 0 1 16 8460
+            #         parts = l.split(':')
+            #         assert len(parts) == 2, parts
+            #         loc, tracevals = parts[0], parts[1]
+            #         loc = loc.strip()  # vtrace1_20
+            #         ss = inv_decls[loc].names
+            #         vs = tracevals.strip().split()
+            #         trace = Trace.parse(ss, vs)
+            #         if '_' in loc:
+            #             lparts = loc.split('_')
+            #             indicator, pos = lparts[0], lparts[1] # vtrace1, 20
+            #             # mlog.debug('{}: loc, indicator, pos: {}, {}, {}'.format(pid, loc, indicator, pos))
+            #             if indicator == (dig_settings.TRACE_INDICATOR + str(settings.VTRACE.PRELOOP_LABEL)):
+            #                 prev_trace = ptraces[pos]
+            #                 if prev_trace:
+            #                     prev_inp = Inp(ss, prev_trace[loc][0].vs)
+            #                     if prev_inp not in itraces:
+            #                         itraces[prev_inp] = prev_trace
+            #                 ptraces[pos] = defaultdict(list)
+            #                 ptraces[pos][loc] = [trace]
+            #             else:
+            #                 ptraces[pos][loc].append(trace)
+            #         else:
+            #             ltraces[loc].append(trace)
+            #     if itraces or ptraces:
+            #         for pos in ptraces:
+            #             last_trace = ptraces[pos]
+            #             if last_trace:
+            #                 loc = dig_settings.TRACE_INDICATOR + str(settings.VTRACE.PRELOOP_LABEL) + '_' + pos
+            #                 last_inp = Inp(ss, last_trace[loc][0].vs)
+            #                 if last_inp not in itraces:
+            #                     itraces[last_inp] = last_trace
+            #         return [(inp, dtraces) for inp, dtraces in itraces.items()]
+            #     else:
+            #         return [(inp, ltraces)]      
+
+            # tasks = raw_traces.items()
+            # wrs = Miscs.run_mp_ex("merge traces", tasks, f)
+            # # wrs = []
+            # # for task in tasks:
+            # #     wrs.append(f(task))
+            # itraces = {inp: dtraces for wr in wrs for inp, dtraces in wr}
+            # return itraces
 
             # itraces = {}
             # for inp, lines in raw_traces.items():
