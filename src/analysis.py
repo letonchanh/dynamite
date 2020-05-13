@@ -7,6 +7,7 @@ import os
 import sage
 from pathlib import Path
 from collections import defaultdict 
+import traceback
 # from numba import njit 
 # import numpy as np
 
@@ -123,21 +124,21 @@ class Setup(object):
         # mlog.debug("transrel_pre_sst: {}".format(self.transrel_pre_sst))
         # mlog.debug("transrel_post_sst: {}".format(self.transrel_post_sst))
 
-        if settings.prove_nonterm:
-            try:
-                mlog.debug("Get symstates for proving NonTerm (prove_nonterm={})".format(settings.prove_nonterm))
-                self.symstates = self._get_symstates_from_src(self.src)
-            except Exception as e:
-                mlog.debug("Get symstates for proving NonTerm: {}".format(e))
-                raise e
-            # ss = self.symstates.ss
-            # for loc in ss:
-                # for depth in ss[loc]:
-                    # pcs = ss[loc][depth]
-                    # mlog.debug("DEPTH {}".format(depth))
-                    # mlog.debug("pcs ({}):\n{}".format(len(pcs.lst), pcs))
-        else:
-            pass
+        # if settings.prove_nonterm:
+        #     try:
+        #         mlog.debug("Get symstates for proving NonTerm (prove_nonterm={})".format(settings.prove_nonterm))
+        #         self.symstates = self._get_symstates_from_src(self.src)
+        #     except Exception as e:
+        #         mlog.debug("Get symstates for proving NonTerm: {}".format(e))
+        #         raise e
+        #     # ss = self.symstates.ss
+        #     # for loc in ss:
+        #         # for depth in ss[loc]:
+        #             # pcs = ss[loc][depth]
+        #             # mlog.debug("DEPTH {}".format(depth))
+        #             # mlog.debug("pcs ({}):\n{}".format(len(pcs.lst), pcs))
+        # else:
+        #     pass
 
         self.exe = Execution(prog)
         self.dig = Inference(self.inv_decls, self.seed, self.tmpdir)
@@ -177,8 +178,12 @@ class Setup(object):
                 SymStatesC.maxdepth = min_depth + dig_settings.C.SE_DEPTH_INCR
 
             symstates = SymStatesC(inp_decls, inv_decls)
-
-        symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+        
+        try:
+            symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+        except SystemExit:
+            mlog.debug(traceback.format_exc())
+            symstates.ss = {}
         # mlog.debug("symstates: {}".format(symstates.ss))
         mlog.debug('target_loc: {}'.format(target_loc))
         if target_loc:
@@ -195,7 +200,8 @@ class Setup(object):
         return stem, loop
 
     def _get_stem_from_symstates(self, vloop):
-        assert self.symstates, self.symstates
+        # Use symstates of mainQ
+        # assert self.symstates, self.symstates
 
         def _get_stem_from_ss(ss):
             preloop_symstates = ss[vloop.preloop_loc]
@@ -222,9 +228,14 @@ class Setup(object):
         # mlog.debug('ss: {}'.format(ss))
         mlog.debug('vloop.preloop_loc: {}'.format(vloop.preloop_loc))
         stem = None
-        if vloop.preloop_loc not in self.symstates.ss:
+            
+        if not (self.symstates and vloop.preloop_loc in self.symstates.ss):
+            if self.symstates:
+                min_depth = self.symstates.maxdepth + 1
+            else:
+                min_depth = None
             self.symstates = self._get_symstates_from_src(self.src, target_loc=vloop.preloop_loc,
-                                                          min_depth=self.symstates.maxdepth + 1)
+                                                          min_depth=min_depth)
 
         ss = self.symstates.ss
         assert vloop.preloop_loc in ss, vloop.preloop_loc
@@ -240,6 +251,7 @@ class Setup(object):
         return Symbs(symbs)
 
     def _get_loop_from_symstates(self, vloop):
+        # Use symstates of vloop
         if self.is_c_inp:
             from helpers.src import C as c_src
         
