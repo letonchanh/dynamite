@@ -12,7 +12,7 @@ sub find_benchmarks {
     my ($bdir,$bnames) = @_;
     my $scriptfn = Cwd::abs_path($0);
     my $benchdir = dirname($scriptfn)."/".$bdir;
-    my @benches;
+    my @benches; my %b2expect;
     print "| Directory: $benchdir\n";
     print "| Benchmarks: ";
     opendir(my $dh, $benchdir) || die "Can't open $benchdir: $!";
@@ -20,6 +20,8 @@ sub find_benchmarks {
         my $fn = $_;
         next unless $fn =~ m/\.c$/; 
         next if $fn =~ /~$/;
+        $b2expect{$fn} = 'true'  if $fn =~ /-t\.c/;
+        $b2expect{$fn} = 'false' if $fn =~ /-nt\.c/;
         if ($#{$bnames} > -1) {
             next unless $fn ~~ @{$bnames};
         }
@@ -34,15 +36,16 @@ sub find_benchmarks {
             #print "yamlfn: $ymlfn\n";
             if (-e $ymlfn) {
                 my $expect = expected($ymlfn);
+                $b2expect{$fn} = $expect;
                 next if $expect eq 'IGNORE';
             }
         }
-        print "$benchdir/$fn  ";
+        print "  $benchdir/$fn  (expect: $b2expect{$fn})\n";
         push @benches, "$fn";
     }
     closedir $dh;
     print "\n";
-    return ($benchdir,@benches);
+    return ($benchdir,@benches,\%b2expect);
 }
 
 sub expected {
@@ -172,14 +175,15 @@ my $b2desc = {
 sub dynDetail {
     my ($tmpb,$logfn,$timedout,$overallt,$overallr,$nonterm) = @_;
     open(F,"$logfn") or warn "file $logfn - $!";
-    my $d = { allt => $overallt, allr => $overallr,
-              guessr => '\nparse', validr => '\nparse',
+    my $d = { allt => tm2str($overallt), allr => $overallr,
+              guessr => '\rUNK', validr => '\rUNK',
               guesst => tm2str(-1), validt => tm2str(-1) };
     while(<F>) {
-        $d->{validt} = $1 if /validate_ranking_functions: ((\d)*\.\d+)s/;
-        $d->{guesst} = $1 if /infer_ranking_functions: ((\d)*\.\d+)s/;
+        $d->{validt} = tm2str($1) if /validate_ranking_functions: ((\d)*\.\d+)s/;
+        $d->{guesst} = tm2str($1) if /infer_ranking_functions: ((\d)*\.\d+)s/;
         $d->{validr} = '\rTRUE' if /Termination result: True/;
         $d->{validr} = '\rFALSE' if /Termination result: False/;
+        $d->{validr} = '\rUNK' if /Termination result: None/;
         if(/ranking_function_list: \[([^\]]+)\]/) {
             $d->{guessr} = '\rTRUE';
             $d->{rf} = toTex($1);
@@ -191,9 +195,12 @@ sub dynDetail {
             $d->{guessr} = '\rTRUE';
             $d->{rf} = toTex($1);
         }
-        $d->{validt} = $1 if /^verify: ((\d)*\.\d+)s/;
-        $d->{guesst} = $1 if /^strengthen: ((\d)*\.\d+)s/;
-        $d->{allt}   = $1 if /^prove: ((\d)*\.\d+)s/;
+        $d->{validt} = tm2str($1) if /^verify: ((\d)*\.\d+)s/;
+        $d->{guesst} = tm2str($1) if /^strengthen: ((\d)*\.\d+)s/;
+        $d->{allt}   = tm2str($1) if /^prove: ((\d)*\.\d+)s/;
+        if(/AssertionError/ or /AttributeError/) {
+            $d->{$_} = '\rAF' for qw/guesst guessr validt validr allt allr/;
+        }
     }
     if($timedout and $d->{validt} > 0) {
         # decide when it timed out
@@ -202,10 +209,10 @@ sub dynDetail {
     $d->{allr} = '\rSCD' if $nonterm and $d->{allr} eq 'FALSE';
 
     $logfn =~ s/^.*benchmarks//;
-    $d->{allt} = sprintf("%.2f",$d->{allt});
+    #$d->{allt} = sprintf("%.2f",$d->{allt});
     $d->{allt} = '\rTO' if $d->{allt} >= 900;
     use Data::Dumper; print Dumper($d);
-    my $str = sprintf("\\texttt{%-10s} & %-10s & \$%-42s\$ & %s & %10s & %s & %10s & %s & %10s \\\\ \n",
+    my $str = sprintf("\\texttt{%-10s} & %-10s & \$%-42s\$ & %-8s & %10s & %-5s & %10s & %-5s & %10s \\\\ \n",
                    $tmpb, $b2desc->{$tmpb}, $d->{rf},
                    $d->{guesst}, $d->{guessr},
                    $d->{validt}, $d->{validr},
