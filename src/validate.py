@@ -47,7 +47,7 @@ class Validator(object):
             if res is False:
                 cex = self.validate_witness(vs, input, expected_result=res)
                 mlog.debug('validate_witness: DONE')
-                mlog.debug('cex.trans_cex: {}'.format(cex.trans_cex))
+                mlog.debug('cex: {}'.format(cex))
         except Exception as ex:
             mlog.debug("Exception: {}".format(ex))
             mlog.debug(traceback.format_exc())
@@ -64,19 +64,22 @@ class Validator(object):
         # mlog.debug("v_rmsg: {}".format(v_rmsg))
         # mlog.debug("v_errmsg: {}".format(v_errmsg))
         v_res = self.parse_rmsg(v_rmsg)
-        assert v_res is expected_result, v_res
+        if v_res:
+            assert v_res is expected_result, v_res
 
-        cex = self.mk_cex(vs)
+            cex = self.mk_cex(vs)
 
-        cex_file = self.tmpdir / self.cex_filename
-        assert cex_file.is_file(), cex_file
-        cex.mk_trans_cex(cex_file)
+            cex_file = self.tmpdir / self.cex_filename
+            assert cex_file.is_file(), cex_file
+            cex.mk_trans_cex(cex_file)
 
-        if self.cex_smtlib_filename:
-            smtlib_file = self.tmpdir / self.cex_smtlib_filename
-            assert smtlib_file.is_file(), smtlib_file
-            cex.mk_symb_cex(smtlib_file)
-        return cex
+            if self.cex_smtlib_filename:
+                smtlib_file = self.tmpdir / self.cex_smtlib_filename
+                assert smtlib_file.is_file(), smtlib_file
+                cex.mk_symb_cex(smtlib_file)
+            return cex
+        else:
+            return None
 
     # def _get_substring(self, s, start_indicator, end_indicator=None):
     #     start_index = s.find(start_indicator)

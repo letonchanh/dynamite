@@ -627,8 +627,9 @@ class NonTerm(object):
     def strengthen(self, rcs, invalid_rc, itraces, vloop):
         _config = self._config
         base_term_inps, term_inps, mayloop_inps = vloop.cl.classify_inps(itraces)
+        Classification.print_inps(itraces)
         mlog.debug("base_term_inps: {}".format(len(base_term_inps)))
-        mlog.debug("term_inps: {}".format(term_inps))
+        mlog.debug("term_inps: {}".format(len(term_inps)))
         mlog.debug("mayloop_inps: {}".format(len(mayloop_inps)))
         mlog.debug("rcs: {}".format(rcs))
 
@@ -746,8 +747,9 @@ class NonTerm(object):
                         mlog.debug('new valid rcs: {}'.format(rcs))
                         if self.check_reachable_rcs(vloop, rcs):
                             valid_rcs.append((rcs, ancestors))
-                        # return the first valid rcs
-                        # return valid_rcs
+                            break
+                            # return the first valid rcs
+                            # return valid_rcs
                     elif sCexs is not None:
                         for invalid_rc, cexs in sCexs:
                             nrcs = self.strengthen(rcs, invalid_rc, cexs, vloop)
@@ -779,7 +781,7 @@ class NonTerm(object):
         _config = self._config
         res = None
         for vloop in _config.vloop_info:
-            valid_rcs = self.prove_nonterm_vloop(vloop)
+            valid_rcs, _ = self.prove_nonterm_vloop(vloop)
             if valid_rcs:
                 res = (False, vloop.vloop_id, valid_rcs)
                 break 
@@ -1003,7 +1005,7 @@ class Term(object):
         validator.clean()
 
         mlog.debug('r: {}'.format(r))
-        if r is False:
+        if r is False and cex:
             mlog.debug('cex.trans_cex: {}'.format(cex.trans_cex))
 
         # if r is False and cex.trans_cex:
@@ -1028,7 +1030,7 @@ class Term(object):
         # else:
         #     return r, None
 
-        if r is False and cex.trans_cex:
+        if r is False and cex and cex.trans_cex:
             n_rfs = self._infer_ranking_functions_from_trans(vs, cex.trans_cex)
             mlog.debug("n_rfs: {}".format(n_rfs))
             # n_rfs \intersect rfs = \emptyset

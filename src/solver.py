@@ -198,16 +198,16 @@ class ZSolver(object):
             to_test = approx[:i] + approx[(i + 1):]
             clid, sel = approx[i]
 
-            mlog.debug("testing soft constraint {}: {}".format(clid, sel))
+            # mlog.debug("testing soft constraint {}: {}".format(clid, sel))
             solver.push()
             solver.add([conj for (_, conj) in to_test])
             stat, _ = self.check_sat(solver, is_nla)
             solver.pop()
             if stat == z3.sat:
-                mlog.debug("sat: keeping {}".format(clid))
+                # mlog.debug("sat: keeping {}".format(clid))
                 i += 1
             else:
-                mlog.debug("unsat: removing {}".format(clid))
+                # mlog.debug("unsat: removing {}".format(clid))
                 approx = to_test
         mlog.debug("approx: {}".format(approx))
         return [lbl for (lbl, _) in approx]
