@@ -1,0 +1,112 @@
+__main__:102:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:103:INFO (<module>) - Dig's logger_level: WARNING
+__main__:104:INFO (<module>) - Timeout: 400s
+__main__:106:INFO (<module>) - 2020-05-14 14:41:42.709833: dynamo.py --timeout=400 /home/exp/eric/dynamo/benchmarks/nla-nonterm/cohencu1-both-nt.c
+/home/exp/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:72:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_vjx9nbef
+analysis:80:DEBUG (__init__) - trans_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /home/exp/eric/dynamo/benchmarks/nla-nonterm/cohencu1-both-nt.c --out=/var/tmp/Dig_vjx9nbef/cohencu1-both-nt.c --bnd=500
+analysis:87:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_28': ['exit'], 'mainQ': ['vloop_28'], 'main': ['mainQ']})
+analysis:98:DEBUG (__init__) - postorder_vloop_ids: ['vloop_28']
+analysis:107:DEBUG (__init__) - inp_decls (<class 'data.prog.Symbs'>): I a
+analysis:108:DEBUG (__init__) - inv_decls (<class 'data.prog.DSymbs'>): {'vtrace1_28': (Symb(name='n', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='z', typ='I')), 'vtrace2_28': (Symb(name='n', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='z', typ='I')), 'vtrace3_28': (Symb(name='n', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='z', typ='I'))}
+__main__:152:DEBUG (<module>) - prove_process: 24034
+lib:38:DEBUG (gen_rand_inps) - inps (0): Inps()
+lib:38:DEBUG (gen_rand_inps) - inps (6): Inps({Inp(ss=('a',), vs=(13,)), Inp(ss=('a',), vs=(-15,)), Inp(ss=('a',), vs=(270,)), Inp(ss=('a',), vs=(-7,)), Inp(ss=('a',), vs=(27,)), Inp(ss=('a',), vs=(-293,))})
+lib:38:DEBUG (gen_rand_inps) - inps (68): Inps({Inp(ss=('a',), vs=(9,)), Inp(ss=('a',), vs=(18,)), Inp(ss=('a',), vs=(-277,)), Inp(ss=('a',), vs=(294,)), Inp(ss=('a',), vs=(-8,)), Inp(ss=('a',), vs=(12,)), Inp(ss=('a',), vs=(277,)), Inp(ss=('a',), vs=(-274,)), Inp(ss=('a',), vs=(-9,)), Inp(ss=('a',), vs=(25,)), Inp(ss=('a',), vs=(-5,)), Inp(ss=('a',), vs=(-291,)), Inp(ss=('a',), vs=(8,)), Inp(ss=('a',), vs=(-287,)), Inp(ss=('a',), vs=(-278,)), Inp(ss=('a',), vs=(-22,)), Inp(ss=('a',), vs=(284,)), Inp(ss=('a',), vs=(-1,)), Inp(ss=('a',), vs=(-2,)), Inp(ss=('a',), vs=(297,)), Inp(ss=('a',), vs=(11,)), Inp(ss=('a',), vs=(-28,)), Inp(ss=('a',), vs=(-284,)), Inp(ss=('a',), vs=(-275,)), Inp(ss=('a',), vs=(24,)), Inp(ss=('a',), vs=(-15,)), Inp(ss=('a',), vs=(280,)), Inp(ss=('a',), vs=(-6,)), Inp(ss=('a',), vs=(-271,)), Inp(ss=('a',), vs=(270,)), Inp(ss=('a',), vs=(14,)), Inp(ss=('a',), vs=(279,)), Inp(ss=('a',), vs=(27,)), Inp(ss=('a',), vs=(283,)), Inp(ss=('a',), vs=(-3,)), Inp(ss=('a',), vs=(-289,)), Inp(ss=('a',), vs=(1,)), Inp(ss=('a',), vs=(10,)), Inp(ss=('a',), vs=(4,)), Inp(ss=('a',), vs=(13,)), Inp(ss=('a',), vs=(-282,)), Inp(ss=('a',), vs=(-13,)), Inp(ss=('a',), vs=(0,)), Inp(ss=('a',), vs=(-295,)), Inp(ss=('a',), vs=(-30,)), Inp(ss=('a',), vs=(276,)), Inp(ss=('a',), vs=(285,)), Inp(ss=('a',), vs=(-10,)), Inp(ss=('a',), vs=(29,)), Inp(ss=('a',), vs=(-292,)), Inp(ss=('a',), vs=(-283,)), Inp(ss=('a',), vs=(-27,)), Inp(ss=('a',), vs=(272,)), Inp(ss=('a',), vs=(-279,)), Inp(ss=('a',), vs=(-14,)), Inp(ss=('a',), vs=(-25,)), Inp(ss=('a',), vs=(275,)), Inp(ss=('a',), vs=(-20,)), Inp(ss=('a',), vs=(-11,)), Inp(ss=('a',), vs=(19,)), Inp(ss=('a',), vs=(-7,)), Inp(ss=('a',), vs=(-293,)), Inp(ss=('a',), vs=(287,)), Inp(ss=('a',), vs=(-24,)), Inp(ss=('a',), vs=(291,)), Inp(ss=('a',), vs=(-4,)), Inp(ss=('a',), vs=(5,)), Inp(ss=('a',), vs=(-281,))})
+lib:38:DEBUG (gen_rand_inps) - inps (79): Inps({Inp(ss=('a',), vs=(-8,)), Inp(ss=('a',), vs=(-9,)), Inp(ss=('a',), vs=(-5,)), Inp(ss=('a',), vs=(-22,)), Inp(ss=('a',), vs=(-1,)), Inp(ss=('a',), vs=(-2,)), Inp(ss=('a',), vs=(24,)), Inp(ss=('a',), vs=(-15,)), Inp(ss=('a',), vs=(27,)), Inp(ss=('a',), vs=(-12,)), Inp(ss=('a',), vs=(10,)), Inp(ss=('a',), vs=(13,)), Inp(ss=('a',), vs=(-26,)), Inp(ss=('a',), vs=(0,)), Inp(ss=('a',), vs=(20,)), Inp(ss=('a',), vs=(6,)), Inp(ss=('a',), vs=(287,)), Inp(ss=('a',), vs=(291,)), Inp(ss=('a',), vs=(-281,)), Inp(ss=('a',), vs=(-277,)), Inp(ss=('a',), vs=(294,)), Inp(ss=('a',), vs=(-294,)), Inp(ss=('a',), vs=(277,)), Inp(ss=('a',), vs=(-274,)), Inp(ss=('a',), vs=(-291,)), Inp(ss=('a',), vs=(-287,)), Inp(ss=('a',), vs=(284,)), Inp(ss=('a',), vs=(-284,)), Inp(ss=('a',), vs=(-6,)), Inp(ss=('a',), vs=(270,)), Inp(ss=('a',), vs=(-3,)), Inp(ss=('a',), vs=(26,)), Inp(ss=('a',), vs=(-13,)), Inp(ss=('a',), vs=(-30,)), Inp(ss=('a',), vs=(29,)), Inp(ss=('a',), vs=(-10,)), Inp(ss=('a',), vs=(-27,)), Inp(ss=('a',), vs=(19,)), Inp(ss=('a',), vs=(-20,)), Inp(ss=('a',), vs=(2,)), Inp(ss=('a',), vs=(22,)), Inp(ss=('a',), vs=(5,)), Inp(ss=('a',), vs=(9,)), Inp(ss=('a',), vs=(12,)), Inp(ss=('a',), vs=(-278,)), Inp(ss=('a',), vs=(293,)), Inp(ss=('a',), vs=(297,)), Inp(ss=('a',), vs=(-275,)), Inp(ss=('a',), vs=(280,)), Inp(ss=('a',), vs=(-271,)), Inp(ss=('a',), vs=(279,)), Inp(ss=('a',), vs=(283,)), Inp(ss=('a',), vs=(-289,)), Inp(ss=('a',), vs=(-282,)), Inp(ss=('a',), vs=(-295,)), Inp(ss=('a',), vs=(276,)), Inp(ss=('a',), vs=(-292,)), Inp(ss=('a',), vs=(-14,)), Inp(ss=('a',), vs=(-11,)), Inp(ss=('a',), vs=(-7,)), Inp(ss=('a',), vs=(-24,)), Inp(ss=('a',), vs=(-4,)), Inp(ss=('a',), vs=(-25,)), Inp(ss=('a',), vs=(18,)), Inp(ss=('a',), vs=(25,)), Inp(ss=('a',), vs=(8,)), Inp(ss=('a',), vs=(11,)), Inp(ss=('a',), vs=(-28,)), Inp(ss=('a',), vs=(14,)), Inp(ss=('a',), vs=(1,)), Inp(ss=('a',), vs=(4,)), Inp(ss=('a',), vs=(285,)), Inp(ss=('a',), vs=(-283,)), Inp(ss=('a',), vs=(272,)), Inp(ss=('a',), vs=(-279,)), Inp(ss=('a',), vs=(275,)), Inp(ss=('a',), vs=(-293,)), Inp(ss=('a',), vs=(278,)), Inp(ss=('a',), vs=(-290,))})
+lib:38:DEBUG (gen_rand_inps) - inps (85): Inps({Inp(ss=('a',), vs=(-8,)), Inp(ss=('a',), vs=(-9,)), Inp(ss=('a',), vs=(-5,)), Inp(ss=('a',), vs=(-22,)), Inp(ss=('a',), vs=(-1,)), Inp(ss=('a',), vs=(-2,)), Inp(ss=('a',), vs=(24,)), Inp(ss=('a',), vs=(-15,)), Inp(ss=('a',), vs=(27,)), Inp(ss=('a',), vs=(-12,)), Inp(ss=('a',), vs=(10,)), Inp(ss=('a',), vs=(13,)), Inp(ss=('a',), vs=(-26,)), Inp(ss=('a',), vs=(0,)), Inp(ss=('a',), vs=(20,)), Inp(ss=('a',), vs=(298,)), Inp(ss=('a',), vs=(6,)), Inp(ss=('a',), vs=(287,)), Inp(ss=('a',), vs=(291,)), Inp(ss=('a',), vs=(-281,)), Inp(ss=('a',), vs=(-277,)), Inp(ss=('a',), vs=(294,)), Inp(ss=('a',), vs=(-294,)), Inp(ss=('a',), vs=(277,)), Inp(ss=('a',), vs=(-274,)), Inp(ss=('a',), vs=(-291,)), Inp(ss=('a',), vs=(-287,)), Inp(ss=('a',), vs=(284,)), Inp(ss=('a',), vs=(-284,)), Inp(ss=('a',), vs=(-6,)), Inp(ss=('a',), vs=(270,)), Inp(ss=('a',), vs=(-3,)), Inp(ss=('a',), vs=(-17,)), Inp(ss=('a',), vs=(26,)), Inp(ss=('a',), vs=(-13,)), Inp(ss=('a',), vs=(-30,)), Inp(ss=('a',), vs=(29,)), Inp(ss=('a',), vs=(-10,)), Inp(ss=('a',), vs=(-27,)), Inp(ss=('a',), vs=(19,)), Inp(ss=('a',), vs=(-20,)), Inp(ss=('a',), vs=(2,)), Inp(ss=('a',), vs=(22,)), Inp(ss=('a',), vs=(5,)), Inp(ss=('a',), vs=(9,)), Inp(ss=('a',), vs=(12,)), Inp(ss=('a',), vs=(-278,)), Inp(ss=('a',), vs=(293,)), Inp(ss=('a',), vs=(297,)), Inp(ss=('a',), vs=(-275,)), Inp(ss=('a',), vs=(280,)), Inp(ss=('a',), vs=(-271,)), Inp(ss=('a',), vs=(279,)), Inp(ss=('a',), vs=(283,)), Inp(ss=('a',), vs=(-289,)), Inp(ss=('a',), vs=(-282,)), Inp(ss=('a',), vs=(-295,)), Inp(ss=('a',), vs=(276,)), Inp(ss=('a',), vs=(-292,)), Inp(ss=('a',), vs=(-14,)), Inp(ss=('a',), vs=(-11,)), Inp(ss=('a',), vs=(-7,)), Inp(ss=('a',), vs=(-24,)), Inp(ss=('a',), vs=(-4,)), Inp(ss=('a',), vs=(-25,)), Inp(ss=('a',), vs=(18,)), Inp(ss=('a',), vs=(25,)), Inp(ss=('a',), vs=(8,)), Inp(ss=('a',), vs=(7,)), Inp(ss=('a',), vs=(11,)), Inp(ss=('a',), vs=(-28,)), Inp(ss=('a',), vs=(14,)), Inp(ss=('a',), vs=(1,)), Inp(ss=('a',), vs=(4,)), Inp(ss=('a',), vs=(282,)), Inp(ss=('a',), vs=(-286,)), Inp(ss=('a',), vs=(285,)), Inp(ss=('a',), vs=(-283,)), Inp(ss=('a',), vs=(272,)), Inp(ss=('a',), vs=(-279,)), Inp(ss=('a',), vs=(292,)), Inp(ss=('a',), vs=(275,)), Inp(ss=('a',), vs=(-293,)), Inp(ss=('a',), vs=(278,)), Inp(ss=('a',), vs=(-290,))})
+lib:38:DEBUG (gen_rand_inps) - inps (87): Inps({Inp(ss=('a',), vs=(-8,)), Inp(ss=('a',), vs=(-9,)), Inp(ss=('a',), vs=(-5,)), Inp(ss=('a',), vs=(-22,)), Inp(ss=('a',), vs=(-1,)), Inp(ss=('a',), vs=(-2,)), Inp(ss=('a',), vs=(24,)), Inp(ss=('a',), vs=(-15,)), Inp(ss=('a',), vs=(27,)), Inp(ss=('a',), vs=(-12,)), Inp(ss=('a',), vs=(10,)), Inp(ss=('a',), vs=(13,)), Inp(ss=('a',), vs=(-26,)), Inp(ss=('a',), vs=(0,)), Inp(ss=('a',), vs=(20,)), Inp(ss=('a',), vs=(298,)), Inp(ss=('a',), vs=(6,)), Inp(ss=('a',), vs=(287,)), Inp(ss=('a',), vs=(-280,)), Inp(ss=('a',), vs=(291,)), Inp(ss=('a',), vs=(-281,)), Inp(ss=('a',), vs=(-277,)), Inp(ss=('a',), vs=(294,)), Inp(ss=('a',), vs=(-294,)), Inp(ss=('a',), vs=(277,)), Inp(ss=('a',), vs=(-274,)), Inp(ss=('a',), vs=(-291,)), Inp(ss=('a',), vs=(-287,)), Inp(ss=('a',), vs=(284,)), Inp(ss=('a',), vs=(-284,)), Inp(ss=('a',), vs=(-6,)), Inp(ss=('a',), vs=(270,)), Inp(ss=('a',), vs=(-3,)), Inp(ss=('a',), vs=(-17,)), Inp(ss=('a',), vs=(26,)), Inp(ss=('a',), vs=(-13,)), Inp(ss=('a',), vs=(-30,)), Inp(ss=('a',), vs=(29,)), Inp(ss=('a',), vs=(-10,)), Inp(ss=('a',), vs=(-27,)), Inp(ss=('a',), vs=(19,)), Inp(ss=('a',), vs=(-20,)), Inp(ss=('a',), vs=(2,)), Inp(ss=('a',), vs=(22,)), Inp(ss=('a',), vs=(5,)), Inp(ss=('a',), vs=(9,)), Inp(ss=('a',), vs=(12,)), Inp(ss=('a',), vs=(-278,)), Inp(ss=('a',), vs=(293,)), Inp(ss=('a',), vs=(297,)), Inp(ss=('a',), vs=(-275,)), Inp(ss=('a',), vs=(280,)), Inp(ss=('a',), vs=(-271,)), Inp(ss=('a',), vs=(279,)), Inp(ss=('a',), vs=(283,)), Inp(ss=('a',), vs=(-289,)), Inp(ss=('a',), vs=(-282,)), Inp(ss=('a',), vs=(-295,)), Inp(ss=('a',), vs=(276,)), Inp(ss=('a',), vs=(-292,)), Inp(ss=('a',), vs=(-14,)), Inp(ss=('a',), vs=(-11,)), Inp(ss=('a',), vs=(-7,)), Inp(ss=('a',), vs=(-24,)), Inp(ss=('a',), vs=(-4,)), Inp(ss=('a',), vs=(-25,)), Inp(ss=('a',), vs=(18,)), Inp(ss=('a',), vs=(-21,)), Inp(ss=('a',), vs=(25,)), Inp(ss=('a',), vs=(8,)), Inp(ss=('a',), vs=(7,)), Inp(ss=('a',), vs=(11,)), Inp(ss=('a',), vs=(-28,)), Inp(ss=('a',), vs=(14,)), Inp(ss=('a',), vs=(1,)), Inp(ss=('a',), vs=(4,)), Inp(ss=('a',), vs=(282,)), Inp(ss=('a',), vs=(-286,)), Inp(ss=('a',), vs=(285,)), Inp(ss=('a',), vs=(-283,)), Inp(ss=('a',), vs=(272,)), Inp(ss=('a',), vs=(-279,)), Inp(ss=('a',), vs=(292,)), Inp(ss=('a',), vs=(275,)), Inp(ss=('a',), vs=(-293,)), Inp(ss=('a',), vs=(278,)), Inp(ss=('a',), vs=(-290,))})
+lib:38:DEBUG (gen_rand_inps) - inps (90): Inps({Inp(ss=('a',), vs=(-8,)), Inp(ss=('a',), vs=(-9,)), Inp(ss=('a',), vs=(-5,)), Inp(ss=('a',), vs=(-300,)), Inp(ss=('a',), vs=(-22,)), Inp(ss=('a',), vs=(-1,)), Inp(ss=('a',), vs=(-2,)), Inp(ss=('a',), vs=(24,)), Inp(ss=('a',), vs=(-15,)), Inp(ss=('a',), vs=(23,)), Inp(ss=('a',), vs=(27,)), Inp(ss=('a',), vs=(-12,)), Inp(ss=('a',), vs=(10,)), Inp(ss=('a',), vs=(13,)), Inp(ss=('a',), vs=(-26,)), Inp(ss=('a',), vs=(0,)), Inp(ss=('a',), vs=(20,)), Inp(ss=('a',), vs=(298,)), Inp(ss=('a',), vs=(6,)), Inp(ss=('a',), vs=(287,)), Inp(ss=('a',), vs=(-280,)), Inp(ss=('a',), vs=(291,)), Inp(ss=('a',), vs=(-281,)), Inp(ss=('a',), vs=(-277,)), Inp(ss=('a',), vs=(294,)), Inp(ss=('a',), vs=(-294,)), Inp(ss=('a',), vs=(277,)), Inp(ss=('a',), vs=(-274,)), Inp(ss=('a',), vs=(-291,)), Inp(ss=('a',), vs=(-287,)), Inp(ss=('a',), vs=(284,)), Inp(ss=('a',), vs=(-284,)), Inp(ss=('a',), vs=(-6,)), Inp(ss=('a',), vs=(270,)), Inp(ss=('a',), vs=(-3,)), Inp(ss=('a',), vs=(-17,)), Inp(ss=('a',), vs=(26,)), Inp(ss=('a',), vs=(-13,)), Inp(ss=('a',), vs=(-30,)), Inp(ss=('a',), vs=(29,)), Inp(ss=('a',), vs=(-10,)), Inp(ss=('a',), vs=(-27,)), Inp(ss=('a',), vs=(19,)), Inp(ss=('a',), vs=(-20,)), Inp(ss=('a',), vs=(2,)), Inp(ss=('a',), vs=(22,)), Inp(ss=('a',), vs=(5,)), Inp(ss=('a',), vs=(9,)), Inp(ss=('a',), vs=(12,)), Inp(ss=('a',), vs=(-278,)), Inp(ss=('a',), vs=(293,)), Inp(ss=('a',), vs=(297,)), Inp(ss=('a',), vs=(-275,)), Inp(ss=('a',), vs=(280,)), Inp(ss=('a',), vs=(-271,)), Inp(ss=('a',), vs=(279,)), Inp(ss=('a',), vs=(283,)), Inp(ss=('a',), vs=(-289,)), Inp(ss=('a',), vs=(-282,)), Inp(ss=('a',), vs=(-295,)), Inp(ss=('a',), vs=(276,)), Inp(ss=('a',), vs=(-292,)), Inp(ss=('a',), vs=(-14,)), Inp(ss=('a',), vs=(-11,)), Inp(ss=('a',), vs=(-7,)), Inp(ss=('a',), vs=(-24,)), Inp(ss=('a',), vs=(-4,)), Inp(ss=('a',), vs=(-25,)), Inp(ss=('a',), vs=(18,)), Inp(ss=('a',), vs=(-21,)), Inp(ss=('a',), vs=(25,)), Inp(ss=('a',), vs=(8,)), Inp(ss=('a',), vs=(7,)), Inp(ss=('a',), vs=(11,)), Inp(ss=('a',), vs=(-28,)), Inp(ss=('a',), vs=(14,)), Inp(ss=('a',), vs=(296,)), Inp(ss=('a',), vs=(1,)), Inp(ss=('a',), vs=(4,)), Inp(ss=('a',), vs=(282,)), Inp(ss=('a',), vs=(-286,)), Inp(ss=('a',), vs=(285,)), Inp(ss=('a',), vs=(-283,)), Inp(ss=('a',), vs=(272,)), Inp(ss=('a',), vs=(-279,)), Inp(ss=('a',), vs=(292,)), Inp(ss=('a',), vs=(275,)), Inp(ss=('a',), vs=(-293,)), Inp(ss=('a',), vs=(278,)), Inp(ss=('a',), vs=(-290,))})
+lib:38:DEBUG (gen_rand_inps) - inps (92): Inps({Inp(ss=('a',), vs=(-8,)), Inp(ss=('a',), vs=(-9,)), Inp(ss=('a',), vs=(-5,)), Inp(ss=('a',), vs=(-300,)), Inp(ss=('a',), vs=(-22,)), Inp(ss=('a',), vs=(-1,)), Inp(ss=('a',), vs=(-2,)), Inp(ss=('a',), vs=(24,)), Inp(ss=('a',), vs=(-15,)), Inp(ss=('a',), vs=(23,)), Inp(ss=('a',), vs=(27,)), Inp(ss=('a',), vs=(-12,)), Inp(ss=('a',), vs=(10,)), Inp(ss=('a',), vs=(13,)), Inp(ss=('a',), vs=(-26,)), Inp(ss=('a',), vs=(0,)), Inp(ss=('a',), vs=(20,)), Inp(ss=('a',), vs=(298,)), Inp(ss=('a',), vs=(6,)), Inp(ss=('a',), vs=(287,)), Inp(ss=('a',), vs=(-280,)), Inp(ss=('a',), vs=(291,)), Inp(ss=('a',), vs=(-281,)), Inp(ss=('a',), vs=(-277,)), Inp(ss=('a',), vs=(294,)), Inp(ss=('a',), vs=(-294,)), Inp(ss=('a',), vs=(277,)), Inp(ss=('a',), vs=(-274,)), Inp(ss=('a',), vs=(-291,)), Inp(ss=('a',), vs=(-287,)), Inp(ss=('a',), vs=(284,)), Inp(ss=('a',), vs=(-284,)), Inp(ss=('a',), vs=(-6,)), Inp(ss=('a',), vs=(270,)), Inp(ss=('a',), vs=(-3,)), Inp(ss=('a',), vs=(-17,)), Inp(ss=('a',), vs=(26,)), Inp(ss=('a',), vs=(-13,)), Inp(ss=('a',), vs=(-30,)), Inp(ss=('a',), vs=(29,)), Inp(ss=('a',), vs=(-10,)), Inp(ss=('a',), vs=(-27,)), Inp(ss=('a',), vs=(16,)), Inp(ss=('a',), vs=(19,)), Inp(ss=('a',), vs=(-20,)), Inp(ss=('a',), vs=(2,)), Inp(ss=('a',), vs=(22,)), Inp(ss=('a',), vs=(5,)), Inp(ss=('a',), vs=(9,)), Inp(ss=('a',), vs=(12,)), Inp(ss=('a',), vs=(-278,)), Inp(ss=('a',), vs=(293,)), Inp(ss=('a',), vs=(297,)), Inp(ss=('a',), vs=(-275,)), Inp(ss=('a',), vs=(280,)), Inp(ss=('a',), vs=(-271,)), Inp(ss=('a',), vs=(279,)), Inp(ss=('a',), vs=(283,)), Inp(ss=('a',), vs=(-289,)), Inp(ss=('a',), vs=(-282,)), Inp(ss=('a',), vs=(-295,)), Inp(ss=('a',), vs=(276,)), Inp(ss=('a',), vs=(-292,)), Inp(ss=('a',), vs=(-14,)), Inp(ss=('a',), vs=(-11,)), Inp(ss=('a',), vs=(-7,)), Inp(ss=('a',), vs=(-24,)), Inp(ss=('a',), vs=(-4,)), Inp(ss=('a',), vs=(-25,)), Inp(ss=('a',), vs=(18,)), Inp(ss=('a',), vs=(-21,)), Inp(ss=('a',), vs=(25,)), Inp(ss=('a',), vs=(8,)), Inp(ss=('a',), vs=(7,)), Inp(ss=('a',), vs=(11,)), Inp(ss=('a',), vs=(-28,)), Inp(ss=('a',), vs=(14,)), Inp(ss=('a',), vs=(296,)), Inp(ss=('a',), vs=(1,)), Inp(ss=('a',), vs=(4,)), Inp(ss=('a',), vs=(282,)), Inp(ss=('a',), vs=(-286,)), Inp(ss=('a',), vs=(285,)), Inp(ss=('a',), vs=(-283,)), Inp(ss=('a',), vs=(272,)), Inp(ss=('a',), vs=(-279,)), Inp(ss=('a',), vs=(292,)), Inp(ss=('a',), vs=(275,)), Inp(ss=('a',), vs=(-276,)), Inp(ss=('a',), vs=(-293,)), Inp(ss=('a',), vs=(278,)), Inp(ss=('a',), vs=(-290,))})
+lib:43:DEBUG (gen_rand_inps) - gen 92/100 random inps
+utils.profiling:31:DEBUG (timed) - gen_rand_inps: 43.97ms
+lib:54:DEBUG (get_traces_from_inps) - inp_decls: I a
+lib:55:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_28': (Symb(name='n', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='z', typ='I')), 'vtrace2_28': (Symb(name='n', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='z', typ='I')), 'vtrace3_28': (Symb(name='n', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='z', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 130.14ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 293.03ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 423.71ms
+analysis:1147:DEBUG (prove) - Analysing vloop_28
+analysis:1149:DEBUG (prove) - base_term_inps: 0
+analysis:1150:DEBUG (prove) - term_inps: 0
+analysis:1151:DEBUG (prove) - mayloop_inps: 92
+analysis:1154:DEBUG (prove) - Proving Non-Termination: vloop_28
+analysis:239:DEBUG (_get_stem_from_symstates) - vloop.preloop_loc: vtrace1_28
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_28
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 3756.13ms
+analysis:225:DEBUG (_get_stem_from_ss) - preloop_fst_symstate: loc: vtrace1_28
+pc: True
+slocal: And(0 == n, 0 == x, 1 == y, 6 == z)
+analysis:228:DEBUG (_get_stem_from_ss) - mainQ init_symvars: I X_a
+analysis:231:DEBUG (_get_stem_from_ss) - stem_cond (<class 'z3.z3.BoolRef'>): True
+analysis:232:DEBUG (_get_stem_from_ss) - stem_transrel (<class 'z3.z3.BoolRef'>): And(0 == n, 0 == x, 1 == y, 6 == z)
+analysis:269:DEBUG (_get_loop_from_symstates) - Create C source for vloop_28: /var/tmp/Dig_lcuvpz58
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_28
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 4063.80ms
+analysis:280:DEBUG (_get_loop_from_symstates) - vloop inp_decls: I n, I x, I y, I z
+analysis:281:DEBUG (_get_loop_from_symstates) - vloop inv_decls: {'vtrace1_28': (Symb(name='n', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='z', typ='I')), 'vtrace2_28': (Symb(name='n', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='z', typ='I')), 'vtrace3_28': (Symb(name='n', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='z', typ='I'))}
+analysis:282:DEBUG (_get_loop_from_symstates) - vloop init_symvars: I X_n, I X_x, I X_y, I X_z
+analysis:314:DEBUG (_get_loop_from_symstates) - inloop_fst_slocal: And(n0 == X_n, x0 == X_x, y0 == X_y, z0 == X_z)
+analysis:315:DEBUG (_get_loop_from_symstates) - inloop_snd_slocal: And(n1 == 1 + X_n,
+    x1 == X_x + X_y,
+    y1 == X_y + X_z,
+    z1 == 6 + X_z)
+analysis:327:DEBUG (_get_loop_from_symstates) - loop_transrel: And(And(n0 == n, x0 == x, y0 == y, z0 == z),
+    And(n1 == 1 + n, x1 == x + y, y1 == y + z, z1 == 6 + z))
+analysis:329:DEBUG (_get_loop_from_symstates) - inloop_fst_symstate: pc: -6 <= 6*X_n + -1*X_z
+analysis:330:DEBUG (_get_loop_from_symstates) - inloop_fst_symstate: slocal: And(n == X_n, x == X_x, y == X_y, z == X_z)
+analysis:334:DEBUG (_get_loop_from_symstates) - loop_cond: -6 <= 6*n + -1*z
+analysis:337:DEBUG (_get_loop_from_symstates) - terms: [-6, 6*n, -1*z]
+analysis:338:DEBUG (_get_loop_from_symstates) - nonlinear_terms: []
+utils.profiling:31:DEBUG (timed) - _get_loopinfo_from_symstates: 7869.89ms
+analysis:399:DEBUG (get_loopinfo) - stem: <utils.loop.Stem object at 0x7f5893f26ba8>
+analysis:400:DEBUG (get_loopinfo) - loop: <utils.loop.Loop object at 0x7f5893b83e80>
+utils.profiling:31:DEBUG (timed) - get_loopinfo: 7870.02ms
+analysis:702:DEBUG (_stat_candidate_rcs) - stat (1 total): defaultdict(<class 'int'>, {0: 1})
+analysis:729:DEBUG (prove_nonterm_vloop) - PROVE_NT DEPTH 0: ZConj({-6 <= 6*n + -1*z})
+analysis:505:DEBUG (verify) - loop_transrel: And(And(n0 == n, x0 == x, y0 == y, z0 == z),
+    And(n1 == 1 + n, x1 == x + y, y1 == y + z, z1 == 6 + z))
+analysis:506:DEBUG (verify) - loop_cond: -6 <= 6*n + -1*z
+analysis:507:DEBUG (verify) - rcs: ZConj({-6 <= 6*n + -1*z})
+analysis:521:DEBUG (verify) - labeled_rcs: ZConj({-6 <= 6*n + -1*z:c_0})
+analysis:528:DEBUG (verify) - transrel_rcs: ZConj({-6 <= 6*n0 + -1*z0:c_0, And(And(n0 == n, x0 == x, y0 == y, z0 == z),
+    And(n1 == 1 + n, x1 == x + y, y1 == y + z, z1 == 6 + z))})
+analysis:533:DEBUG (verify) - init_transrel_rcs: ZConj({True, -6 <= 6*n0 + -1*z0:c_0, And(0 == n, 0 == x, 1 == y, 6 == z), And(And(n0 == n, x0 == x, y0 == y, z0 == z),
+    And(n1 == 1 + n, x1 == x + y, y1 == y + z, z1 == 6 + z))})
+analysis:542:DEBUG (_check) - rc: -6 <= 6*n + -1*z:c_0
+analysis:547:DEBUG (_check) - rc_r: -6 <= 6*n1 + -1*z1
+analysis:548:DEBUG (_check) - f: ZConj({Not(-6 <= 6*n1 + -1*z1), -6 <= 6*n0 + -1*z0:c_0, And(And(n0 == n, x0 == x, y0 == y, z0 == z),
+    And(n1 == 1 + n, x1 == x + y, y1 == y + z, z1 == 6 + z))})
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: -6 <= 6*n0 + -1*z0
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_0
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_0', -6 <= 6*n0 + -1*z0)]
+analysis:556:DEBUG (_check) - rs: unsat
+analysis:557:DEBUG (_check) - unsat_core: ['c_0']
+analysis:600:INFO (verify) - dg: defaultdict(<class 'list'>, {'c_0': ['c_0']})
+analysis:601:INFO (verify) - label_d: defaultdict(<class 'str'>, {-6 <= 6*n + -1*z: 'c_0'})
+analysis:602:INFO (verify) - rev_label_d: {'c_0': -6 <= 6*n + -1*z}
+analysis:605:INFO (verify) - loop_cond_label: c_0
+analysis:609:INFO (verify) - mds_labels: {'c_0'}
+analysis:610:INFO (verify) - mds: ZConj({-6 <= 6*n + -1*z})
+utils.profiling:31:DEBUG (timed) - verify: 85.67ms
+analysis:744:DEBUG (prove_nonterm_vloop) - new valid rcs: ZConj({-6 <= 6*n + -1*z})
+utils.profiling:31:DEBUG (timed) - prove_nonterm_vloop: 7985.91ms
+analysis:764:INFO (print_valid_rcs) - rcs: ZConj({-6 <= 6*n + -1*z})
+analysis:765:INFO (print_valid_rcs) - (simplified) rcs: -6 <= 6*n + -1*z
+utils.profiling:31:DEBUG (timed) - prove: 8471.07ms
+TNT result: (False, ('vloop_28', [(ZConj({-6 <= 6*n + -1*z}), [])]))
+Time log:
+gen_rand_inps: 0.044s
+_get_traces_mp: 0.130s
+_merge_traces: 0.293s
+get_traces_from_inps: 0.424s
+_get_symstates_from_src: 7.820s
+_get_loopinfo_from_symstates: 7.870s
+get_loopinfo: 7.870s
+verify: 0.086s
+prove_nonterm_vloop: 7.986s
+
+EJK TIMER: 10.064768
+

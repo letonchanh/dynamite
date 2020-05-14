@@ -1,0 +1,1101 @@
+__main__:102:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:103:INFO (<module>) - Dig's logger_level: WARNING
+__main__:104:INFO (<module>) - Timeout: 400s
+__main__:106:INFO (<module>) - 2020-05-14 16:03:07.040901: dynamo.py --timeout=400 /home/exp/eric/dynamo/benchmarks/nla-nonterm/prod4br-both-nt.c
+/home/exp/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:72:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_ro5mg9bo
+analysis:80:DEBUG (__init__) - trans_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /home/exp/eric/dynamo/benchmarks/nla-nonterm/prod4br-both-nt.c --out=/var/tmp/Dig_ro5mg9bo/prod4br-both-nt.c --bnd=500
+analysis:87:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_22': ['exit'], 'mainQ': ['vloop_22'], 'main': ['mainQ']})
+analysis:98:DEBUG (__init__) - postorder_vloop_ids: ['vloop_22']
+analysis:107:DEBUG (__init__) - inp_decls (<class 'data.prog.Symbs'>): I x, I y
+analysis:108:DEBUG (__init__) - inv_decls (<class 'data.prog.DSymbs'>): {'vtrace1_22': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I')), 'vtrace2_22': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I')), 'vtrace3_22': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'))}
+__main__:152:DEBUG (<module>) - prove_process: 31373
+lib:38:DEBUG (gen_rand_inps) - inps (0): Inps()
+lib:38:DEBUG (gen_rand_inps) - inps (18): Inps({Inp(ss=('x', 'y'), vs=(8, 1)), Inp(ss=('x', 'y'), vs=(-1, 20)), Inp(ss=('x', 'y'), vs=(18, 24)), Inp(ss=('x', 'y'), vs=(-298, 274)), Inp(ss=('x', 'y'), vs=(-273, 3)), Inp(ss=('x', 'y'), vs=(284, 2)), Inp(ss=('x', 'y'), vs=(24, 279)), Inp(ss=('x', 'y'), vs=(8, 294)), Inp(ss=('x', 'y'), vs=(-12, 293)), Inp(ss=('x', 'y'), vs=(285, 3)), Inp(ss=('x', 'y'), vs=(-5, 8)), Inp(ss=('x', 'y'), vs=(-291, 25)), Inp(ss=('x', 'y'), vs=(0, 5)), Inp(ss=('x', 'y'), vs=(-24, 271)), Inp(ss=('x', 'y'), vs=(278, 296)), Inp(ss=('x', 'y'), vs=(-21, 13)), Inp(ss=('x', 'y'), vs=(10, 13)), Inp(ss=('x', 'y'), vs=(-27, 9))})
+lib:43:DEBUG (gen_rand_inps) - gen 107/100 random inps
+utils.profiling:31:DEBUG (timed) - gen_rand_inps: 1247.76ms
+lib:54:DEBUG (get_traces_from_inps) - inp_decls: I x, I y
+lib:55:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_22': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I')), 'vtrace2_22': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I')), 'vtrace3_22': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 1543.39ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 2195.03ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 3752.34ms
+analysis:1147:DEBUG (prove) - Analysing vloop_22
+analysis:1149:DEBUG (prove) - base_term_inps: 0
+analysis:1150:DEBUG (prove) - term_inps: 0
+analysis:1151:DEBUG (prove) - mayloop_inps: 103
+analysis:1154:DEBUG (prove) - Proving Non-Termination: vloop_22
+analysis:239:DEBUG (_get_stem_from_symstates) - vloop.preloop_loc: vtrace1_22
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_22
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 12854.20ms
+analysis:225:DEBUG (_get_stem_from_ss) - preloop_fst_symstate: loc: vtrace1_22
+pc: 1 <= X_y
+slocal: And(x == X_x, y == X_y, a == X_x, b == X_y, 1 == p, 0 == q)
+analysis:228:DEBUG (_get_stem_from_ss) - mainQ init_symvars: I X_x, I X_y
+analysis:231:DEBUG (_get_stem_from_ss) - stem_cond (<class 'z3.z3.BoolRef'>): 1 <= X_y
+analysis:232:DEBUG (_get_stem_from_ss) - stem_transrel (<class 'z3.z3.BoolRef'>): And(x == X_x, y == X_y, a == X_x, b == X_y, 1 == p, 0 == q)
+analysis:269:DEBUG (_get_loop_from_symstates) - Create C source for vloop_22: /var/tmp/Dig_ujczugia
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_22
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 20751.87ms
+analysis:280:DEBUG (_get_loop_from_symstates) - vloop inp_decls: I x, I y, I a, I b, I p, I q
+analysis:281:DEBUG (_get_loop_from_symstates) - vloop inv_decls: {'vtrace1_22': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I')), 'vtrace2_22': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I')), 'vtrace3_22': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'))}
+analysis:282:DEBUG (_get_loop_from_symstates) - vloop init_symvars: I X_x, I X_y, I X_a, I X_b, I X_p, I X_q
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_22
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 23025.01ms
+analysis:314:DEBUG (_get_loop_from_symstates) - inloop_fst_slocal: And(x0 == X_x,
+    y0 == X_y,
+    a0 == X_a,
+    b0 == X_b,
+    p0 == X_p,
+    q0 == X_q)
+analysis:315:DEBUG (_get_loop_from_symstates) - inloop_snd_slocal: And(x1 == X_x,
+    y1 == X_y,
+    a1 == X_a/2,
+    b1 == X_b/2,
+    p1 == 4*X_p,
+    q1 == X_q)
+analysis:327:DEBUG (_get_loop_from_symstates) - loop_transrel: And(And(x0 == x,
+        y0 == y,
+        a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q),
+    And(x1 == x,
+        y1 == y,
+        a1 == a/2,
+        b1 == b/2,
+        p1 == 4*p,
+        q1 == q))
+analysis:329:DEBUG (_get_loop_from_symstates) - inloop_fst_symstate: pc: 0 == X_a*X_b*X_p + -1*X_x*X_y + X_q
+analysis:330:DEBUG (_get_loop_from_symstates) - inloop_fst_symstate: slocal: And(x == X_x,
+    y == X_y,
+    a == X_a,
+    b == X_b,
+    p == X_p,
+    q == X_q)
+analysis:334:DEBUG (_get_loop_from_symstates) - loop_cond: 0 == a*b*p + -1*x*y + q
+analysis:337:DEBUG (_get_loop_from_symstates) - terms: [0, a*b*p, -1*x*y, q]
+analysis:338:DEBUG (_get_loop_from_symstates) - nonlinear_terms: [a*b*p, -1*x*y]
+utils.profiling:31:DEBUG (timed) - _get_loopinfo_from_symstates: 57115.48ms
+analysis:399:DEBUG (get_loopinfo) - stem: <utils.loop.Stem object at 0x7fee12917588>
+analysis:400:DEBUG (get_loopinfo) - loop: <utils.loop.Loop object at 0x7fee12930438>
+utils.profiling:31:DEBUG (timed) - get_loopinfo: 57115.93ms
+analysis:702:DEBUG (_stat_candidate_rcs) - stat (1 total): defaultdict(<class 'int'>, {0: 1})
+analysis:729:DEBUG (prove_nonterm_vloop) - PROVE_NT DEPTH 0: ZConj({0 == a*b*p + -1*x*y + q})
+analysis:505:DEBUG (verify) - loop_transrel: And(And(x0 == x,
+        y0 == y,
+        a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q),
+    And(x1 == x,
+        y1 == y,
+        a1 == a/2,
+        b1 == b/2,
+        p1 == 4*p,
+        q1 == q))
+analysis:506:DEBUG (verify) - loop_cond: 0 == a*b*p + -1*x*y + q
+analysis:507:DEBUG (verify) - rcs: ZConj({0 == a*b*p + -1*x*y + q})
+analysis:521:DEBUG (verify) - labeled_rcs: ZConj({0 == a*b*p + -1*x*y + q:c_0})
+analysis:528:DEBUG (verify) - transrel_rcs: ZConj({And(And(x0 == x,
+        y0 == y,
+        a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q),
+    And(x1 == x,
+        y1 == y,
+        a1 == a/2,
+        b1 == b/2,
+        p1 == 4*p,
+        q1 == q)), 0 == a0*b0*p0 + -1*x0*y0 + q0:c_0})
+analysis:533:DEBUG (verify) - init_transrel_rcs: ZConj({0 == a0*b0*p0 + -1*x0*y0 + q0:c_0, 1 <= X_y, And(x == X_x, y == X_y, a == X_x, b == X_y, 1 == p, 0 == q), And(And(x0 == x,
+        y0 == y,
+        a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q),
+    And(x1 == x,
+        y1 == y,
+        a1 == a/2,
+        b1 == b/2,
+        p1 == 4*p,
+        q1 == q))})
+analysis:542:DEBUG (_check) - rc: 0 == a*b*p + -1*x*y + q:c_0
+analysis:547:DEBUG (_check) - rc_r: 0 == a1*b1*p1 + -1*x1*y1 + q1
+analysis:548:DEBUG (_check) - f: ZConj({And(And(x0 == x,
+        y0 == y,
+        a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q),
+    And(x1 == x,
+        y1 == y,
+        a1 == a/2,
+        b1 == b/2,
+        p1 == 4*p,
+        q1 == q)), Not(0 == a1*b1*p1 + -1*x1*y1 + q1), 0 == a0*b0*p0 + -1*x0*y0 + q0:c_0})
+analysis:563:DEBUG (_check) - rs: sat
+analysis:570:DEBUG (_check) - init_f: ZConj({And(x == X_x, y == X_y, a == X_x, b == X_y, 1 == p, 0 == q), 0 == a0*b0*p0 + -1*x0*y0 + q0:c_0, 1 <= X_y, And(And(x0 == x,
+        y0 == y,
+        a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q),
+    And(x1 == x,
+        y1 == y,
+        a1 == a/2,
+        b1 == b/2,
+        p1 == 4*p,
+        q1 == q)), Not(0 == a1*b1*p1 + -1*x1*y1 + q1)})
+analysis:571:DEBUG (_check) - init_rs: [[('X_x', -29), ('X_y', 271), ('q1', 0), ('p1', 4), ('b1', 135), ('a1', -15), ('y1', 271), ('x1', -29), ('q0', 0), ('p0', 1), ('b0', 271), ('a0', -29), ('y0', 271), ('x0', -29), ('q', 0), ('p', 1), ('b', 271), ('a', -29), ('y', 271), ('x', -29)], [('X_x', -299), ('X_y', 2), ('q1', 0), ('p1', 4), ('b1', 1), ('a1', -150), ('y1', 2), ('x1', -299), ('q0', 0), ('p0', 1), ('b0', 2), ('a0', -299), ('y0', 2), ('x0', -299), ('q', 0), ('p', 1), ('b', 2), ('a', -299), ('y', 2), ('x', -299)], [('X_x', -29), ('X_y', 2), ('q1', 0), ('p1', 4), ('b1', 1), ('a1', -15), ('y1', 2), ('x1', -29), ('q0', 0), ('p0', 1), ('b0', 2), ('a0', -29), ('y0', 2), ('x0', -29), ('q', 0), ('p', 1), ('b', 2), ('a', -29), ('y', 2), ('x', -29)], [('X_x', -15), ('X_y', 2), ('q1', 0), ('p1', 4), ('b1', 1), ('a1', -8), ('y1', 2), ('x1', -15), ('q0', 0), ('p0', 1), ('b0', 2), ('a0', -15), ('y0', 2), ('x0', -15), ('q', 0), ('p', 1), ('b', 2), ('a', -15), ('y', 2), ('x', -15)], [('X_x', -297), ('X_y', 2), ('q1', 0), ('p1', 4), ('b1', 1), ('a1', -149), ('y1', 2), ('x1', -297), ('q0', 0), ('p0', 1), ('b0', 2), ('a0', -297), ('y0', 2), ('x0', -297), ('q', 0), ('p', 1), ('b', 2), ('a', -297), ('y', 2), ('x', -297)], [('X_x', 1), ('X_y', 2), ('q1', 0), ('p1', 4), ('b1', 1), ('a1', 0), ('y1', 2), ('x1', 1), ('q0', 0), ('p0', 1), ('b0', 2), ('a0', 1), ('y0', 2), ('x0', 1), ('q', 0), ('p', 1), ('b', 2), ('a', 1), ('y', 2), ('x', 1)], [('X_x', 271), ('X_y', 271), ('q1', 0), ('p1', 4), ('b1', 135), ('a1', 135), ('y1', 271), ('x1', 271), ('q0', 0), ('p0', 1), ('b0', 271), ('a0', 271), ('y0', 271), ('x0', 271), ('q', 0), ('p', 1), ('b', 271), ('a', 271), ('y', 271), ('x', 271)], [('X_x', 1), ('X_y', 271), ('q1', 0), ('p1', 4), ('b1', 135), ('a1', 0), ('y1', 271), ('x1', 1), ('q0', 0), ('p0', 1), ('b0', 271), ('a0', 1), ('y0', 271), ('x0', 1), ('q', 0), ('p', 1), ('b', 271), ('a', 1), ('y', 271), ('x', 1)], [('X_x', 3), ('X_y', 2), ('q1', 0), ('p1', 4), ('b1', 1), ('a1', 1), ('y1', 2), ('x1', 3), ('q0', 0), ('p0', 1), ('b0', 2), ('a0', 3), ('y0', 2), ('x0', 3), ('q', 0), ('p', 1), ('b', 2), ('a', 3), ('y', 2), ('x', 3)], [('X_x', 271), ('X_y', 2), ('q1', 0), ('p1', 4), ('b1', 1), ('a1', 135), ('y1', 2), ('x1', 271), ('q0', 0), ('p0', 1), ('b0', 2), ('a0', 271), ('y0', 2), ('x0', 271), ('q', 0), ('p', 1), ('b', 2), ('a', 271), ('y', 2), ('x', 271)], [('X_x', 5), ('X_y', 2), ('q1', 0), ('p1', 4), ('b1', 1), ('a1', 2), ('y1', 2), ('x1', 5), ('q0', 0), ('p0', 1), ('b0', 2), ('a0', 5), ('y0', 2), ('x0', 5), ('q', 0), ('p', 1), ('b', 2), ('a', 5), ('y', 2), ('x', 5)]]
+analysis:586:DEBUG (_check) - init_models: sat (11 models)
+analysis:591:DEBUG (_check) - inps: Inps({Inp(ss=('x', 'y'), vs=(5, 2)), Inp(ss=('x', 'y'), vs=(271, 2)), Inp(ss=('x', 'y'), vs=(271, 271)), Inp(ss=('x', 'y'), vs=(-297, 2)), Inp(ss=('x', 'y'), vs=(-15, 2)), Inp(ss=('x', 'y'), vs=(1, 271)), Inp(ss=('x', 'y'), vs=(-299, 2)), Inp(ss=('x', 'y'), vs=(3, 2)), Inp(ss=('x', 'y'), vs=(-29, 2)), Inp(ss=('x', 'y'), vs=(1, 2)), Inp(ss=('x', 'y'), vs=(-29, 271))})
+analysis:600:INFO (verify) - dg: defaultdict(<class 'list'>, {})
+analysis:601:INFO (verify) - label_d: defaultdict(<class 'str'>, {0 == a*b*p + -1*x*y + q: 'c_0'})
+analysis:602:INFO (verify) - rev_label_d: {'c_0': 0 == a*b*p + -1*x*y + q}
+analysis:605:INFO (verify) - loop_cond_label: c_0
+analysis:609:INFO (verify) - mds_labels: set()
+analysis:610:INFO (verify) - mds: ZConj()
+lib:54:DEBUG (get_traces_from_inps) - inp_decls: I x, I y
+lib:55:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_22': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I')), 'vtrace2_22': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I')), 'vtrace3_22': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 408.03ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 275.06ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 683.79ms
+utils.profiling:31:DEBUG (timed) - verify: 6919.70ms
+analysis:630:DEBUG (strengthen) - base_term_inps: 0
+analysis:631:DEBUG (strengthen) - term_inps: []
+analysis:632:DEBUG (strengthen) - mayloop_inps: 11
+analysis:633:DEBUG (strengthen) - rcs: ZConj({0 == a*b*p + -1*x*y + q})
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_22]: 200
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_22]: 61
+lib:254:DEBUG (infer_from_traces) - invs: vtrace2_22 (2 invs):
+1. b - y <= 0
+2. -y <= -2
+analysis:637:DEBUG (strengthen) - mayloop_invs: ZConj({0 >= b + -1*y, y >= 2})
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_22]: 0
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_22]: 0
+*** 'None', 1 locs, 2 invs (2 Oct), 261 traces, 0 inps, time 14.61s, rand seed 1589490187.04, test 59 93:
+vtrace2_22 (2 invs):
+1. b - y <= 0
+2. -y <= -2
+lib:254:DEBUG (infer_from_traces) - invs: 
+analysis:641:DEBUG (strengthen) - term_invs: ZConj()
+utils.profiling:31:DEBUG (timed) - strengthen: 14857.67ms
+analysis:702:DEBUG (_stat_candidate_rcs) - stat (1 total): defaultdict(<class 'int'>, {1: 1})
+analysis:729:DEBUG (prove_nonterm_vloop) - PROVE_NT DEPTH 1: ZConj({0 >= b + -1*y, y >= 2})
+analysis:505:DEBUG (verify) - loop_transrel: And(And(x0 == x,
+        y0 == y,
+        a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q),
+    And(x1 == x,
+        y1 == y,
+        a1 == a/2,
+        b1 == b/2,
+        p1 == 4*p,
+        q1 == q))
+analysis:506:DEBUG (verify) - loop_cond: 0 == a*b*p + -1*x*y + q
+analysis:507:DEBUG (verify) - rcs: ZConj({0 >= b + -1*y, y >= 2})
+analysis:510:DEBUG (verify) - rcs_cond =/=> loop_cond
+analysis:521:DEBUG (verify) - labeled_rcs: ZConj({0 >= b + -1*y:c_0, y >= 2:c_1, 0 == a*b*p + -1*x*y + q:c_2})
+analysis:528:DEBUG (verify) - transrel_rcs: ZConj({y0 >= 2:c_1, 0 >= b0 + -1*y0:c_0, 0 == a0*b0*p0 + -1*x0*y0 + q0:c_2, And(And(x0 == x,
+        y0 == y,
+        a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q),
+    And(x1 == x,
+        y1 == y,
+        a1 == a/2,
+        b1 == b/2,
+        p1 == 4*p,
+        q1 == q))})
+analysis:533:DEBUG (verify) - init_transrel_rcs: ZConj({And(x == X_x, y == X_y, a == X_x, b == X_y, 1 == p, 0 == q), 1 <= X_y, y0 >= 2:c_1, And(And(x0 == x,
+        y0 == y,
+        a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q),
+    And(x1 == x,
+        y1 == y,
+        a1 == a/2,
+        b1 == b/2,
+        p1 == 4*p,
+        q1 == q)), 0 == a0*b0*p0 + -1*x0*y0 + q0:c_2, 0 >= b0 + -1*y0:c_0})
+analysis:542:DEBUG (_check) - rc: 0 >= b + -1*y:c_0
+analysis:547:DEBUG (_check) - rc_r: 0 >= b1 + -1*y1
+analysis:548:DEBUG (_check) - f: ZConj({0 == a0*b0*p0 + -1*x0*y0 + q0:c_2, y0 >= 2:c_1, And(And(x0 == x,
+        y0 == y,
+        a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q),
+    And(x1 == x,
+        y1 == y,
+        a1 == a/2,
+        b1 == b/2,
+        p1 == 4*p,
+        q1 == q)), Not(0 >= b1 + -1*y1), 0 >= b0 + -1*y0:c_0})
+*** 'None', 0 locs, 0 invs (), 0 traces, 0 inps, time 0.22s, rand seed 1589490187.04, test 59 93:
+
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_2: 0 == a0*b0*p0 + -1*x0*y0 + q0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_2
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: y0 >= 2
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_1
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: 0 >= b0 + -1*y0
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_0
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_1', y0 >= 2), ('c_0', 0 >= b0 + -1*y0)]
+analysis:556:DEBUG (_check) - rs: unsat
+analysis:557:DEBUG (_check) - unsat_core: ['c_1', 'c_0']
+analysis:542:DEBUG (_check) - rc: y >= 2:c_1
+analysis:547:DEBUG (_check) - rc_r: y1 >= 2
+analysis:548:DEBUG (_check) - f: ZConj({Not(y1 >= 2), And(And(x0 == x,
+        y0 == y,
+        a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q),
+    And(x1 == x,
+        y1 == y,
+        a1 == a/2,
+        b1 == b/2,
+        p1 == 4*p,
+        q1 == q)), 0 == a0*b0*p0 + -1*x0*y0 + q0:c_2, 0 >= b0 + -1*y0:c_0, y0 >= 2:c_1})
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_2: 0 == a0*b0*p0 + -1*x0*y0 + q0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_2
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: 0 >= b0 + -1*y0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_0
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: y0 >= 2
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_1
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_1', y0 >= 2)]
+analysis:556:DEBUG (_check) - rs: unsat
+analysis:557:DEBUG (_check) - unsat_core: ['c_1']
+analysis:542:DEBUG (_check) - rc: 0 == a*b*p + -1*x*y + q:c_2
+analysis:547:DEBUG (_check) - rc_r: 0 == a1*b1*p1 + -1*x1*y1 + q1
+analysis:548:DEBUG (_check) - f: ZConj({And(And(x0 == x,
+        y0 == y,
+        a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q),
+    And(x1 == x,
+        y1 == y,
+        a1 == a/2,
+        b1 == b/2,
+        p1 == 4*p,
+        q1 == q)), 0 >= b0 + -1*y0:c_0, Not(0 == a1*b1*p1 + -1*x1*y1 + q1), y0 >= 2:c_1, 0 == a0*b0*p0 + -1*x0*y0 + q0:c_2})
+analysis:563:DEBUG (_check) - rs: sat
+analysis:570:DEBUG (_check) - init_f: ZConj({And(x == X_x, y == X_y, a == X_x, b == X_y, 1 == p, 0 == q), 1 <= X_y, And(And(x0 == x,
+        y0 == y,
+        a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q),
+    And(x1 == x,
+        y1 == y,
+        a1 == a/2,
+        b1 == b/2,
+        p1 == 4*p,
+        q1 == q)), 0 == a0*b0*p0 + -1*x0*y0 + q0:c_2, Not(0 == a1*b1*p1 + -1*x1*y1 + q1), 0 >= b0 + -1*y0:c_0, y0 >= 2:c_1})
+analysis:571:DEBUG (_check) - init_rs: [[('X_x', 1), ('X_y', 271), ('q1', 0), ('p1', 4), ('b1', 135), ('a1', 0), ('y1', 271), ('x1', 1), ('q0', 0), ('p0', 1), ('b0', 271), ('a0', 1), ('y0', 271), ('x0', 1), ('q', 0), ('p', 1), ('b', 271), ('a', 1), ('y', 271), ('x', 1)], [('X_x', -299), ('X_y', 3), ('q1', 0), ('p1', 4), ('b1', 1), ('a1', -150), ('y1', 3), ('x1', -299), ('q0', 0), ('p0', 1), ('b0', 3), ('a0', -299), ('y0', 3), ('x0', -299), ('q', 0), ('p', 1), ('b', 3), ('a', -299), ('y', 3), ('x', -299)], [('X_x', -29), ('X_y', 271), ('q1', 0), ('p1', 4), ('b1', 135), ('a1', -15), ('y1', 271), ('x1', -29), ('q0', 0), ('p0', 1), ('b0', 271), ('a0', -29), ('y0', 271), ('x0', -29), ('q', 0), ('p', 1), ('b', 271), ('a', -29), ('y', 271), ('x', -29)], [('X_x', -29), ('X_y', 3), ('q1', 0), ('p1', 4), ('b1', 1), ('a1', -15), ('y1', 3), ('x1', -29), ('q0', 0), ('p0', 1), ('b0', 3), ('a0', -29), ('y0', 3), ('x0', -29), ('q', 0), ('p', 1), ('b', 3), ('a', -29), ('y', 3), ('x', -29)], [('X_x', 3), ('X_y', 271), ('q1', 0), ('p1', 4), ('b1', 135), ('a1', 1), ('y1', 271), ('x1', 3), ('q0', 0), ('p0', 1), ('b0', 271), ('a0', 3), ('y0', 271), ('x0', 3), ('q', 0), ('p', 1), ('b', 271), ('a', 3), ('y', 271), ('x', 3)], [('X_x', -30), ('X_y', 3), ('q1', 0), ('p1', 4), ('b1', 1), ('a1', -15), ('y1', 3), ('x1', -30), ('q0', 0), ('p0', 1), ('b0', 3), ('a0', -30), ('y0', 3), ('x0', -30), ('q', 0), ('p', 1), ('b', 3), ('a', -30), ('y', 3), ('x', -30)], [('X_x', 1), ('X_y', 3), ('q1', 0), ('p1', 4), ('b1', 1), ('a1', 0), ('y1', 3), ('x1', 1), ('q0', 0), ('p0', 1), ('b0', 3), ('a0', 1), ('y0', 3), ('x0', 1), ('q', 0), ('p', 1), ('b', 3), ('a', 1), ('y', 3), ('x', 1)], [('x', -299), ('y1', 2), ('y0', 2), ('x1', -299), ('b', 2), ('a0', -299), ('x0', -299), ('X_x', -299), ('b1', 1), ('a1', -150), ('y', 2), ('a', -299), ('b0', 2), ('X_y', 2), ('q1', 0), ('p1', 4), ('q0', 0), ('p0', 1), ('q', 0), ('p', 1)], [('X_x', 3), ('X_y', 3), ('q1', 0), ('p1', 4), ('b1', 1), ('a1', 1), ('y1', 3), ('x1', 3), ('q0', 0), ('p0', 1), ('b0', 3), ('a0', 3), ('y0', 3), ('x0', 3), ('q', 0), ('p', 1), ('b', 3), ('a', 3), ('y', 3), ('x', 3)], [('X_x', 271), ('X_y', 3), ('q1', 0), ('p1', 4), ('b1', 1), ('a1', 135), ('y1', 3), ('x1', 271), ('q0', 0), ('p0', 1), ('b0', 3), ('a0', 271), ('y0', 3), ('x0', 271), ('q', 0), ('p', 1), ('b', 3), ('a', 271), ('y', 3), ('x', 271)], [('X_x', -299), ('X_y', 271), ('q1', 0), ('p1', 4), ('b1', 135), ('a1', -150), ('y1', 271), ('x1', -299), ('q0', 0), ('p0', 1), ('b0', 271), ('a0', -299), ('y0', 271), ('x0', -299), ('q', 0), ('p', 1), ('b', 271), ('a', -299), ('y', 271), ('x', -299)]]
+analysis:586:DEBUG (_check) - init_models: sat (11 models)
+analysis:591:DEBUG (_check) - inps: Inps({Inp(ss=('x', 'y'), vs=(271, 3)), Inp(ss=('x', 'y'), vs=(1, 3)), Inp(ss=('x', 'y'), vs=(-29, 3)), Inp(ss=('x', 'y'), vs=(3, 3)), Inp(ss=('x', 'y'), vs=(-299, 3)), Inp(ss=('x', 'y'), vs=(1, 271)), Inp(ss=('x', 'y'), vs=(-299, 2)), Inp(ss=('x', 'y'), vs=(-30, 3)), Inp(ss=('x', 'y'), vs=(-299, 271)), Inp(ss=('x', 'y'), vs=(-29, 271)), Inp(ss=('x', 'y'), vs=(3, 271))})
+analysis:600:INFO (verify) - dg: defaultdict(<class 'list'>, {'c_0': ['c_1', 'c_0'], 'c_1': ['c_1']})
+analysis:601:INFO (verify) - label_d: defaultdict(<class 'str'>, {0 >= b + -1*y: 'c_0', y >= 2: 'c_1', 0 == a*b*p + -1*x*y + q: 'c_2'})
+analysis:602:INFO (verify) - rev_label_d: {'c_0': 0 >= b + -1*y, 'c_1': y >= 2, 'c_2': 0 == a*b*p + -1*x*y + q}
+analysis:605:INFO (verify) - loop_cond_label: c_2
+analysis:609:INFO (verify) - mds_labels: set()
+analysis:610:INFO (verify) - mds: ZConj()
+lib:54:DEBUG (get_traces_from_inps) - inp_decls: I x, I y
+lib:55:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_22': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I')), 'vtrace2_22': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I')), 'vtrace3_22': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 287.91ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 475.83ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 764.60ms
+utils.profiling:31:DEBUG (timed) - verify: 9350.10ms
+analysis:630:DEBUG (strengthen) - base_term_inps: 0
+analysis:631:DEBUG (strengthen) - term_inps: []
+analysis:632:DEBUG (strengthen) - mayloop_inps: 11
+analysis:633:DEBUG (strengthen) - rcs: ZConj({0 >= b + -1*y, y >= 2, 0 == a*b*p + -1*x*y + q})
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_22]: 200
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_22]: 200
+lib:254:DEBUG (infer_from_traces) - invs: vtrace2_22 (10 invs):
+1. x <= 3
+2. x - y <= 0
+3. a <= 1
+4. a - y <= -3
+5. a - p <= 0
+6. a - b <= 0
+7. a + x <= 4
+8. -y <= -2
+9. -p <= 0
+10. -p + x <= 3
+analysis:637:DEBUG (strengthen) - mayloop_invs: ZConj({0 >= a + -1*b, 4 >= a + x, 1 >= a, a + -1*y <= -3, 0 >= x + -1*y, p >= 0, 0 >= a + -1*p, y >= 2, 3 >= -1*p + x, 3 >= x})
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_22]: 0
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_22]: 0
+*** 'None', 1 locs, 10 invs (10 Oct), 400 traces, 0 inps, time 8.82s, rand seed 1589490187.04, test 59 93:
+vtrace2_22 (10 invs):
+1. x <= 3
+2. x - y <= 0
+3. a <= 1
+4. a - y <= -3
+5. a - p <= 0
+6. a - b <= 0
+7. a + x <= 4
+8. -y <= -2
+9. -p <= 0
+10. -p + x <= 3
+lib:254:DEBUG (infer_from_traces) - invs: 
+analysis:641:DEBUG (strengthen) - term_invs: ZConj()
+utils.profiling:31:DEBUG (timed) - strengthen: 8989.13ms
+analysis:702:DEBUG (_stat_candidate_rcs) - stat (1 total): defaultdict(<class 'int'>, {2: 1})
+analysis:729:DEBUG (prove_nonterm_vloop) - PROVE_NT DEPTH 2: ZConj({0 >= a + -1*b, 4 >= a + x, 1 >= a, a + -1*y <= -3, 0 >= x + -1*y, p >= 0, 0 >= a + -1*p, y >= 2, 3 >= -1*p + x, 3 >= x})
+analysis:505:DEBUG (verify) - loop_transrel: And(And(x0 == x,
+        y0 == y,
+        a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q),
+    And(x1 == x,
+        y1 == y,
+        a1 == a/2,
+        b1 == b/2,
+        p1 == 4*p,
+        q1 == q))
+analysis:506:DEBUG (verify) - loop_cond: 0 == a*b*p + -1*x*y + q
+analysis:507:DEBUG (verify) - rcs: ZConj({0 >= a + -1*b, 4 >= a + x, 1 >= a, a + -1*y <= -3, 0 >= x + -1*y, p >= 0, 0 >= a + -1*p, y >= 2, 3 >= -1*p + x, 3 >= x})
+analysis:510:DEBUG (verify) - rcs_cond =/=> loop_cond
+analysis:521:DEBUG (verify) - labeled_rcs: ZConj({4 >= a + x:c_2, p >= 0:c_6, y >= 2:c_8, 0 >= a + -1*p:c_7, 1 >= a:c_3, 3 >= x:c_10, 0 == a*b*p + -1*x*y + q:c_1, 0 >= x + -1*y:c_5, 0 >= a + -1*b:c_0, a + -1*y <= -3:c_4, 3 >= -1*p + x:c_9})
+analysis:528:DEBUG (verify) - transrel_rcs: ZConj({y0 >= 2:c_8, 0 >= a0 + -1*b0:c_0, 4 >= a0 + x0:c_2, 0 >= x0 + -1*y0:c_5, And(And(x0 == x,
+        y0 == y,
+        a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q),
+    And(x1 == x,
+        y1 == y,
+        a1 == a/2,
+        b1 == b/2,
+        p1 == 4*p,
+        q1 == q)), 3 >= x0:c_10, 0 == a0*b0*p0 + -1*x0*y0 + q0:c_1, 0 >= a0 + -1*p0:c_7, a0 + -1*y0 <= -3:c_4, 1 >= a0:c_3, p0 >= 0:c_6, 3 >= -1*p0 + x0:c_9})
+analysis:533:DEBUG (verify) - init_transrel_rcs: ZConj({And(x == X_x, y == X_y, a == X_x, b == X_y, 1 == p, 0 == q), y0 >= 2:c_8, 0 >= a0 + -1*p0:c_7, 1 >= a0:c_3, 1 <= X_y, And(And(x0 == x,
+        y0 == y,
+        a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q),
+    And(x1 == x,
+        y1 == y,
+        a1 == a/2,
+        b1 == b/2,
+        p1 == 4*p,
+        q1 == q)), a0 + -1*y0 <= -3:c_4, 0 >= a0 + -1*b0:c_0, 3 >= -1*p0 + x0:c_9, 0 == a0*b0*p0 + -1*x0*y0 + q0:c_1, p0 >= 0:c_6, 3 >= x0:c_10, 4 >= a0 + x0:c_2, 0 >= x0 + -1*y0:c_5})
+analysis:542:DEBUG (_check) - rc: 0 >= a + -1*b:c_0
+analysis:547:DEBUG (_check) - rc_r: 0 >= a1 + -1*b1
+analysis:548:DEBUG (_check) - f: ZConj({0 >= x0 + -1*y0:c_5, 0 >= a0 + -1*b0:c_0, 4 >= a0 + x0:c_2, p0 >= 0:c_6, 0 == a0*b0*p0 + -1*x0*y0 + q0:c_1, And(And(x0 == x,
+        y0 == y,
+        a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q),
+    And(x1 == x,
+        y1 == y,
+        a1 == a/2,
+        b1 == b/2,
+        p1 == 4*p,
+        q1 == q)), Not(0 >= a1 + -1*b1), y0 >= 2:c_8, 3 >= x0:c_10, 0 >= a0 + -1*p0:c_7, 1 >= a0:c_3, a0 + -1*y0 <= -3:c_4, 3 >= -1*p0 + x0:c_9})
+*** 'None', 0 locs, 0 invs (), 0 traces, 0 inps, time 0.09s, rand seed 1589490187.04, test 59 93:
+
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_5: 0 >= x0 + -1*y0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_5
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: 0 >= a0 + -1*b0
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_0
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_2: 4 >= a0 + x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_2
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_6: p0 >= 0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_6
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: 0 == a0*b0*p0 + -1*x0*y0 + q0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_1
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_8: y0 >= 2
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_8
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_10: 3 >= x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_10
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_7: 0 >= a0 + -1*p0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_7
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_3: 1 >= a0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_3
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_4: a0 + -1*y0 <= -3
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_4
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_9: 3 >= -1*p0 + x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_9
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_0', 0 >= a0 + -1*b0)]
+analysis:556:DEBUG (_check) - rs: unsat
+analysis:557:DEBUG (_check) - unsat_core: ['c_0']
+analysis:542:DEBUG (_check) - rc: 0 == a*b*p + -1*x*y + q:c_1
+analysis:547:DEBUG (_check) - rc_r: 0 == a1*b1*p1 + -1*x1*y1 + q1
+analysis:548:DEBUG (_check) - f: ZConj({a0 + -1*y0 <= -3:c_4, 3 >= x0:c_10, 3 >= -1*p0 + x0:c_9, 1 >= a0:c_3, And(And(x0 == x,
+        y0 == y,
+        a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q),
+    And(x1 == x,
+        y1 == y,
+        a1 == a/2,
+        b1 == b/2,
+        p1 == 4*p,
+        q1 == q)), p0 >= 0:c_6, 0 >= x0 + -1*y0:c_5, 0 >= a0 + -1*b0:c_0, y0 >= 2:c_8, 0 == a0*b0*p0 + -1*x0*y0 + q0:c_1, 4 >= a0 + x0:c_2, Not(0 == a1*b1*p1 + -1*x1*y1 + q1), 0 >= a0 + -1*p0:c_7})
+analysis:563:DEBUG (_check) - rs: sat
+analysis:570:DEBUG (_check) - init_f: ZConj({y0 >= 2:c_8, 0 >= a0 + -1*b0:c_0, And(x == X_x, y == X_y, a == X_x, b == X_y, 1 == p, 0 == q), 0 == a0*b0*p0 + -1*x0*y0 + q0:c_1, 1 <= X_y, And(And(x0 == x,
+        y0 == y,
+        a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q),
+    And(x1 == x,
+        y1 == y,
+        a1 == a/2,
+        b1 == b/2,
+        p1 == 4*p,
+        q1 == q)), 3 >= x0:c_10, 0 >= x0 + -1*y0:c_5, 0 >= a0 + -1*p0:c_7, 1 >= a0:c_3, Not(0 == a1*b1*p1 + -1*x1*y1 + q1), a0 + -1*y0 <= -3:c_4, 3 >= -1*p0 + x0:c_9, p0 >= 0:c_6, 4 >= a0 + x0:c_2})
+analysis:571:DEBUG (_check) - init_rs: [[('X_x', 1), ('X_y', 271), ('q1', 0), ('p1', 4), ('b1', 135), ('a1', 0), ('y1', 271), ('x1', 1), ('q0', 0), ('p0', 1), ('b0', 271), ('a0', 1), ('y0', 271), ('x0', 1), ('q', 0), ('p', 1), ('b', 271), ('a', 1), ('y', 271), ('x', 1)], [('X_x', -299), ('X_y', 3), ('q1', 0), ('p1', 4), ('b1', 1), ('a1', -150), ('y1', 3), ('x1', -299), ('q0', 0), ('p0', 1), ('b0', 3), ('a0', -299), ('y0', 3), ('x0', -299), ('q', 0), ('p', 1), ('b', 3), ('a', -299), ('y', 3), ('x', -299)], [('X_x', -29), ('X_y', 271), ('q1', 0), ('p1', 4), ('b1', 135), ('a1', -15), ('y1', 271), ('x1', -29), ('q0', 0), ('p0', 1), ('b0', 271), ('a0', -29), ('y0', 271), ('x0', -29), ('q', 0), ('p', 1), ('b', 271), ('a', -29), ('y', 271), ('x', -29)], [('X_x', -29), ('X_y', 3), ('q1', 0), ('p1', 4), ('b1', 1), ('a1', -15), ('y1', 3), ('x1', -29), ('q0', 0), ('p0', 1), ('b0', 3), ('a0', -29), ('y0', 3), ('x0', -29), ('q', 0), ('p', 1), ('b', 3), ('a', -29), ('y', 3), ('x', -29)], [('X_x', 1), ('X_y', 270), ('q1', 0), ('p1', 4), ('b1', 135), ('a1', 0), ('y1', 270), ('x1', 1), ('q0', 0), ('p0', 1), ('b0', 270), ('a0', 1), ('y0', 270), ('x0', 1), ('q', 0), ('p', 1), ('b', 270), ('a', 1), ('y', 270), ('x', 1)], [('X_x', -29), ('X_y', 2), ('q1', 0), ('p1', 4), ('b1', 1), ('a1', -15), ('y1', 2), ('x1', -29), ('q0', 0), ('p0', 1), ('b0', 2), ('a0', -29), ('y0', 2), ('x0', -29), ('q', 0), ('p', 1), ('b', 2), ('a', -29), ('y', 2), ('x', -29)], [('X_x', 1), ('X_y', 5), ('q1', 0), ('p1', 4), ('b1', 2), ('a1', 0), ('y1', 5), ('x1', 1), ('q0', 0), ('p0', 1), ('b0', 5), ('a0', 1), ('y0', 5), ('x0', 1), ('q', 0), ('p', 1), ('b', 5), ('a', 1), ('y', 5), ('x', 1)], [('X_x', -299), ('X_y', 2), ('q1', 0), ('p1', 4), ('b1', 1), ('a1', -150), ('y1', 2), ('x1', -299), ('q0', 0), ('p0', 1), ('b0', 2), ('a0', -299), ('y0', 2), ('x0', -299), ('q', 0), ('p', 1), ('b', 2), ('a', -299), ('y', 2), ('x', -299)], [('X_x', 1), ('X_y', 7), ('q1', 0), ('p1', 4), ('b1', 3), ('a1', 0), ('y1', 7), ('x1', 1), ('q0', 0), ('p0', 1), ('b0', 7), ('a0', 1), ('y0', 7), ('x0', 1), ('q', 0), ('p', 1), ('b', 7), ('a', 1), ('y', 7), ('x', 1)], [('X_x', -299), ('X_y', 271), ('q1', 0), ('p1', 4), ('b1', 135), ('a1', -150), ('y1', 271), ('x1', -299), ('q0', 0), ('p0', 1), ('b0', 271), ('a0', -299), ('y0', 271), ('x0', -299), ('q', 0), ('p', 1), ('b', 271), ('a', -299), ('y', 271), ('x', -299)], [('X_x', -14), ('X_y', 3), ('q1', 0), ('p1', 4), ('b1', 1), ('a1', -7), ('y1', 3), ('x1', -14), ('q0', 0), ('p0', 1), ('b0', 3), ('a0', -14), ('y0', 3), ('x0', -14), ('q', 0), ('p', 1), ('b', 3), ('a', -14), ('y', 3), ('x', -14)]]
+analysis:586:DEBUG (_check) - init_models: sat (11 models)
+analysis:591:DEBUG (_check) - inps: Inps({Inp(ss=('x', 'y'), vs=(-14, 3)), Inp(ss=('x', 'y'), vs=(-29, 3)), Inp(ss=('x', 'y'), vs=(1, 271)), Inp(ss=('x', 'y'), vs=(-299, 3)), Inp(ss=('x', 'y'), vs=(1, 5)), Inp(ss=('x', 'y'), vs=(1, 270)), Inp(ss=('x', 'y'), vs=(-299, 2)), Inp(ss=('x', 'y'), vs=(1, 7)), Inp(ss=('x', 'y'), vs=(-29, 2)), Inp(ss=('x', 'y'), vs=(-299, 271)), Inp(ss=('x', 'y'), vs=(-29, 271))})
+analysis:542:DEBUG (_check) - rc: 4 >= a + x:c_2
+analysis:547:DEBUG (_check) - rc_r: 4 >= a1 + x1
+analysis:548:DEBUG (_check) - f: ZConj({Not(4 >= a1 + x1), 0 >= x0 + -1*y0:c_5, 1 >= a0:c_3, 0 == a0*b0*p0 + -1*x0*y0 + q0:c_1, And(And(x0 == x,
+        y0 == y,
+        a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q),
+    And(x1 == x,
+        y1 == y,
+        a1 == a/2,
+        b1 == b/2,
+        p1 == 4*p,
+        q1 == q)), y0 >= 2:c_8, a0 + -1*y0 <= -3:c_4, 3 >= -1*p0 + x0:c_9, 0 >= a0 + -1*b0:c_0, 3 >= x0:c_10, 4 >= a0 + x0:c_2, p0 >= 0:c_6, 0 >= a0 + -1*p0:c_7})
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_5: 0 >= x0 + -1*y0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_5
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_3: 1 >= a0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_3
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: 0 == a0*b0*p0 + -1*x0*y0 + q0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_1
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_8: y0 >= 2
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_8
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_4: a0 + -1*y0 <= -3
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_4
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_9: 3 >= -1*p0 + x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_9
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: 0 >= a0 + -1*b0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_0
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_10: 3 >= x0
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_10
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_2: 4 >= a0 + x0
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_2
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_6: p0 >= 0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_6
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_7: 0 >= a0 + -1*p0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_7
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_10', 3 >= x0), ('c_2', 4 >= a0 + x0)]
+analysis:556:DEBUG (_check) - rs: unsat
+analysis:557:DEBUG (_check) - unsat_core: ['c_10', 'c_2']
+analysis:542:DEBUG (_check) - rc: 1 >= a:c_3
+analysis:547:DEBUG (_check) - rc_r: 1 >= a1
+analysis:548:DEBUG (_check) - f: ZConj({1 >= a0:c_3, Not(1 >= a1), y0 >= 2:c_8, 3 >= x0:c_10, 0 >= a0 + -1*p0:c_7, And(And(x0 == x,
+        y0 == y,
+        a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q),
+    And(x1 == x,
+        y1 == y,
+        a1 == a/2,
+        b1 == b/2,
+        p1 == 4*p,
+        q1 == q)), 0 >= a0 + -1*b0:c_0, 0 == a0*b0*p0 + -1*x0*y0 + q0:c_1, p0 >= 0:c_6, 4 >= a0 + x0:c_2, a0 + -1*y0 <= -3:c_4, 3 >= -1*p0 + x0:c_9, 0 >= x0 + -1*y0:c_5})
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_3: 1 >= a0
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_3
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_8: y0 >= 2
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_8
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_10: 3 >= x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_10
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_7: 0 >= a0 + -1*p0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_7
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: 0 >= a0 + -1*b0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_0
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: 0 == a0*b0*p0 + -1*x0*y0 + q0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_1
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_6: p0 >= 0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_6
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_2: 4 >= a0 + x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_2
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_4: a0 + -1*y0 <= -3
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_4
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_9: 3 >= -1*p0 + x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_9
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_5: 0 >= x0 + -1*y0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_5
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_3', 1 >= a0)]
+analysis:556:DEBUG (_check) - rs: unsat
+analysis:557:DEBUG (_check) - unsat_core: ['c_3']
+analysis:542:DEBUG (_check) - rc: a + -1*y <= -3:c_4
+analysis:547:DEBUG (_check) - rc_r: a1 + -1*y1 <= -3
+analysis:548:DEBUG (_check) - f: ZConj({1 >= a0:c_3, 0 >= a0 + -1*p0:c_7, 0 >= x0 + -1*y0:c_5, 3 >= x0:c_10, 3 >= -1*p0 + x0:c_9, And(And(x0 == x,
+        y0 == y,
+        a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q),
+    And(x1 == x,
+        y1 == y,
+        a1 == a/2,
+        b1 == b/2,
+        p1 == 4*p,
+        q1 == q)), p0 >= 0:c_6, 0 >= a0 + -1*b0:c_0, a0 + -1*y0 <= -3:c_4, 4 >= a0 + x0:c_2, Not(a1 + -1*y1 <= -3), y0 >= 2:c_8, 0 == a0*b0*p0 + -1*x0*y0 + q0:c_1})
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_3: 1 >= a0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_3
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_7: 0 >= a0 + -1*p0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_7
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_5: 0 >= x0 + -1*y0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_5
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_10: 3 >= x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_10
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_9: 3 >= -1*p0 + x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_9
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_6: p0 >= 0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_6
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: 0 >= a0 + -1*b0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_0
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_4: a0 + -1*y0 <= -3
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_4
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_2: 4 >= a0 + x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_2
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_8: y0 >= 2
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_8
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: 0 == a0*b0*p0 + -1*x0*y0 + q0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_1
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_4', a0 + -1*y0 <= -3), ('c_8', y0 >= 2)]
+analysis:556:DEBUG (_check) - rs: unsat
+analysis:557:DEBUG (_check) - unsat_core: ['c_4', 'c_8']
+analysis:542:DEBUG (_check) - rc: 0 >= x + -1*y:c_5
+analysis:547:DEBUG (_check) - rc_r: 0 >= x1 + -1*y1
+analysis:548:DEBUG (_check) - f: ZConj({a0 + -1*y0 <= -3:c_4, y0 >= 2:c_8, 0 >= x0 + -1*y0:c_5, 0 >= a0 + -1*b0:c_0, 0 == a0*b0*p0 + -1*x0*y0 + q0:c_1, And(And(x0 == x,
+        y0 == y,
+        a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q),
+    And(x1 == x,
+        y1 == y,
+        a1 == a/2,
+        b1 == b/2,
+        p1 == 4*p,
+        q1 == q)), 0 >= a0 + -1*p0:c_7, Not(0 >= x1 + -1*y1), p0 >= 0:c_6, 4 >= a0 + x0:c_2, 3 >= -1*p0 + x0:c_9, 3 >= x0:c_10, 1 >= a0:c_3})
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_4: a0 + -1*y0 <= -3
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_4
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_8: y0 >= 2
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_8
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_5: 0 >= x0 + -1*y0
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_5
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: 0 >= a0 + -1*b0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_0
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: 0 == a0*b0*p0 + -1*x0*y0 + q0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_1
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_7: 0 >= a0 + -1*p0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_7
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_6: p0 >= 0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_6
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_2: 4 >= a0 + x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_2
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_9: 3 >= -1*p0 + x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_9
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_10: 3 >= x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_10
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_3: 1 >= a0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_3
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_5', 0 >= x0 + -1*y0)]
+analysis:556:DEBUG (_check) - rs: unsat
+analysis:557:DEBUG (_check) - unsat_core: ['c_5']
+analysis:542:DEBUG (_check) - rc: p >= 0:c_6
+analysis:547:DEBUG (_check) - rc_r: p1 >= 0
+analysis:548:DEBUG (_check) - f: ZConj({0 >= a0 + -1*b0:c_0, Not(p1 >= 0), 0 >= x0 + -1*y0:c_5, 3 >= -1*p0 + x0:c_9, 0 >= a0 + -1*p0:c_7, p0 >= 0:c_6, y0 >= 2:c_8, And(And(x0 == x,
+        y0 == y,
+        a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q),
+    And(x1 == x,
+        y1 == y,
+        a1 == a/2,
+        b1 == b/2,
+        p1 == 4*p,
+        q1 == q)), 1 >= a0:c_3, a0 + -1*y0 <= -3:c_4, 4 >= a0 + x0:c_2, 0 == a0*b0*p0 + -1*x0*y0 + q0:c_1, 3 >= x0:c_10})
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: 0 >= a0 + -1*b0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_0
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_5: 0 >= x0 + -1*y0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_5
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_9: 3 >= -1*p0 + x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_9
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_7: 0 >= a0 + -1*p0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_7
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_6: p0 >= 0
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_6
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_8: y0 >= 2
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_8
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_3: 1 >= a0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_3
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_4: a0 + -1*y0 <= -3
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_4
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_2: 4 >= a0 + x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_2
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: 0 == a0*b0*p0 + -1*x0*y0 + q0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_1
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_10: 3 >= x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_10
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_6', p0 >= 0)]
+analysis:556:DEBUG (_check) - rs: unsat
+analysis:557:DEBUG (_check) - unsat_core: ['c_6']
+analysis:542:DEBUG (_check) - rc: 0 >= a + -1*p:c_7
+analysis:547:DEBUG (_check) - rc_r: 0 >= a1 + -1*p1
+analysis:548:DEBUG (_check) - f: ZConj({0 >= a0 + -1*b0:c_0, 4 >= a0 + x0:c_2, p0 >= 0:c_6, a0 + -1*y0 <= -3:c_4, 3 >= x0:c_10, 1 >= a0:c_3, And(And(x0 == x,
+        y0 == y,
+        a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q),
+    And(x1 == x,
+        y1 == y,
+        a1 == a/2,
+        b1 == b/2,
+        p1 == 4*p,
+        q1 == q)), 0 >= x0 + -1*y0:c_5, Not(0 >= a1 + -1*p1), 0 >= a0 + -1*p0:c_7, 3 >= -1*p0 + x0:c_9, y0 >= 2:c_8, 0 == a0*b0*p0 + -1*x0*y0 + q0:c_1})
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: 0 >= a0 + -1*b0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_0
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_2: 4 >= a0 + x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_2
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_6: p0 >= 0
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_6
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_4: a0 + -1*y0 <= -3
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_4
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_10: 3 >= x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_10
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_3: 1 >= a0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_3
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_5: 0 >= x0 + -1*y0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_5
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_7: 0 >= a0 + -1*p0
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_7
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_9: 3 >= -1*p0 + x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_9
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_8: y0 >= 2
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_8
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: 0 == a0*b0*p0 + -1*x0*y0 + q0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_1
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_6', p0 >= 0), ('c_7', 0 >= a0 + -1*p0)]
+analysis:556:DEBUG (_check) - rs: unsat
+analysis:557:DEBUG (_check) - unsat_core: ['c_6', 'c_7']
+analysis:542:DEBUG (_check) - rc: y >= 2:c_8
+analysis:547:DEBUG (_check) - rc_r: y1 >= 2
+analysis:548:DEBUG (_check) - f: ZConj({0 >= a0 + -1*p0:c_7, 4 >= a0 + x0:c_2, 0 >= x0 + -1*y0:c_5, 1 >= a0:c_3, Not(y1 >= 2), And(And(x0 == x,
+        y0 == y,
+        a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q),
+    And(x1 == x,
+        y1 == y,
+        a1 == a/2,
+        b1 == b/2,
+        p1 == 4*p,
+        q1 == q)), 0 == a0*b0*p0 + -1*x0*y0 + q0:c_1, 0 >= a0 + -1*b0:c_0, p0 >= 0:c_6, 3 >= -1*p0 + x0:c_9, 3 >= x0:c_10, a0 + -1*y0 <= -3:c_4, y0 >= 2:c_8})
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_7: 0 >= a0 + -1*p0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_7
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_2: 4 >= a0 + x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_2
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_5: 0 >= x0 + -1*y0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_5
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_3: 1 >= a0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_3
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: 0 == a0*b0*p0 + -1*x0*y0 + q0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_1
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: 0 >= a0 + -1*b0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_0
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_6: p0 >= 0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_6
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_9: 3 >= -1*p0 + x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_9
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_10: 3 >= x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_10
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_4: a0 + -1*y0 <= -3
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_4
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_8: y0 >= 2
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_8
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_8', y0 >= 2)]
+analysis:556:DEBUG (_check) - rs: unsat
+analysis:557:DEBUG (_check) - unsat_core: ['c_8']
+analysis:542:DEBUG (_check) - rc: 3 >= -1*p + x:c_9
+analysis:547:DEBUG (_check) - rc_r: 3 >= -1*p1 + x1
+analysis:548:DEBUG (_check) - f: ZConj({p0 >= 0:c_6, 0 >= a0 + -1*b0:c_0, And(And(x0 == x,
+        y0 == y,
+        a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q),
+    And(x1 == x,
+        y1 == y,
+        a1 == a/2,
+        b1 == b/2,
+        p1 == 4*p,
+        q1 == q)), a0 + -1*y0 <= -3:c_4, y0 >= 2:c_8, 3 >= -1*p0 + x0:c_9, 0 == a0*b0*p0 + -1*x0*y0 + q0:c_1, 0 >= a0 + -1*p0:c_7, Not(3 >= -1*p1 + x1), 0 >= x0 + -1*y0:c_5, 1 >= a0:c_3, 3 >= x0:c_10, 4 >= a0 + x0:c_2})
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_6: p0 >= 0
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_6
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: 0 >= a0 + -1*b0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_0
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_4: a0 + -1*y0 <= -3
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_4
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_8: y0 >= 2
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_8
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_9: 3 >= -1*p0 + x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_9
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: 0 == a0*b0*p0 + -1*x0*y0 + q0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_1
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_7: 0 >= a0 + -1*p0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_7
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_5: 0 >= x0 + -1*y0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_5
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_3: 1 >= a0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_3
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_10: 3 >= x0
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_10
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_2: 4 >= a0 + x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_2
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_6', p0 >= 0), ('c_10', 3 >= x0)]
+analysis:556:DEBUG (_check) - rs: unsat
+analysis:557:DEBUG (_check) - unsat_core: ['c_6', 'c_10']
+analysis:542:DEBUG (_check) - rc: 3 >= x:c_10
+analysis:547:DEBUG (_check) - rc_r: 3 >= x1
+analysis:548:DEBUG (_check) - f: ZConj({Not(3 >= x1), 0 >= x0 + -1*y0:c_5, 0 >= a0 + -1*b0:c_0, 3 >= x0:c_10, p0 >= 0:c_6, And(And(x0 == x,
+        y0 == y,
+        a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q),
+    And(x1 == x,
+        y1 == y,
+        a1 == a/2,
+        b1 == b/2,
+        p1 == 4*p,
+        q1 == q)), y0 >= 2:c_8, 1 >= a0:c_3, a0 + -1*y0 <= -3:c_4, 3 >= -1*p0 + x0:c_9, 0 == a0*b0*p0 + -1*x0*y0 + q0:c_1, 4 >= a0 + x0:c_2, 0 >= a0 + -1*p0:c_7})
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_5: 0 >= x0 + -1*y0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_5
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: 0 >= a0 + -1*b0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_0
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_10: 3 >= x0
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_10
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_6: p0 >= 0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_6
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_8: y0 >= 2
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_8
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_3: 1 >= a0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_3
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_4: a0 + -1*y0 <= -3
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_4
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_9: 3 >= -1*p0 + x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_9
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: 0 == a0*b0*p0 + -1*x0*y0 + q0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_1
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_2: 4 >= a0 + x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_2
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_7: 0 >= a0 + -1*p0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_7
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_10', 3 >= x0)]
+analysis:556:DEBUG (_check) - rs: unsat
+analysis:557:DEBUG (_check) - unsat_core: ['c_10']
+analysis:600:INFO (verify) - dg: defaultdict(<class 'list'>, {'c_0': ['c_0'], 'c_2': ['c_10', 'c_2'], 'c_3': ['c_3'], 'c_4': ['c_4', 'c_8'], 'c_5': ['c_5'], 'c_6': ['c_6'], 'c_7': ['c_6', 'c_7'], 'c_8': ['c_8'], 'c_9': ['c_6', 'c_10'], 'c_10': ['c_10']})
+analysis:601:INFO (verify) - label_d: defaultdict(<class 'str'>, {0 >= a + -1*b: 'c_0', 0 == a*b*p + -1*x*y + q: 'c_1', 4 >= a + x: 'c_2', 1 >= a: 'c_3', a + -1*y <= -3: 'c_4', 0 >= x + -1*y: 'c_5', p >= 0: 'c_6', 0 >= a + -1*p: 'c_7', y >= 2: 'c_8', 3 >= -1*p + x: 'c_9', 3 >= x: 'c_10'})
+analysis:602:INFO (verify) - rev_label_d: {'c_0': 0 >= a + -1*b, 'c_1': 0 == a*b*p + -1*x*y + q, 'c_2': 4 >= a + x, 'c_3': 1 >= a, 'c_4': a + -1*y <= -3, 'c_5': 0 >= x + -1*y, 'c_6': p >= 0, 'c_7': 0 >= a + -1*p, 'c_8': y >= 2, 'c_9': 3 >= -1*p + x, 'c_10': 3 >= x}
+analysis:605:INFO (verify) - loop_cond_label: c_1
+analysis:609:INFO (verify) - mds_labels: set()
+analysis:610:INFO (verify) - mds: ZConj()
+lib:54:DEBUG (get_traces_from_inps) - inp_decls: I x, I y
+lib:55:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_22': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I')), 'vtrace2_22': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I')), 'vtrace3_22': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 150.82ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 366.14ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 517.75ms
+utils.profiling:31:DEBUG (timed) - verify: 25033.89ms
+analysis:630:DEBUG (strengthen) - base_term_inps: 0
+analysis:631:DEBUG (strengthen) - term_inps: []
+analysis:632:DEBUG (strengthen) - mayloop_inps: 11
+analysis:633:DEBUG (strengthen) - rcs: ZConj({0 >= a + -1*b, 0 == a*b*p + -1*x*y + q, 4 >= a + x, 1 >= a, a + -1*y <= -3, 0 >= x + -1*y, p >= 0, 0 >= a + -1*p, y >= 2, 3 >= -1*p + x, 3 >= x})
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_22]: 200
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_22]: 200
+lib:254:DEBUG (infer_from_traces) - invs: vtrace2_22 (7 invs):
+1. x <= 1
+2. x - y <= -4
+3. a <= 0
+4. a - y <= -4
+5. a - b <= 0
+6. a + x <= 1
+7. -y <= -2
+analysis:637:DEBUG (strengthen) - mayloop_invs: ZConj({0 >= a + -1*b, 1 >= a + x, 1 >= x, 0 >= a, a + -1*y <= -4, y >= 2, x + -1*y <= -4})
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_22]: 0
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_22]: 0
+*** 'None', 1 locs, 7 invs (7 Oct), 400 traces, 0 inps, time 19.52s, rand seed 1589490187.04, test 59 93:
+vtrace2_22 (7 invs):
+1. x <= 1
+2. x - y <= -4
+3. a <= 0
+4. a - y <= -4
+5. a - b <= 0
+6. a + x <= 1
+7. -y <= -2
+lib:254:DEBUG (infer_from_traces) - invs: 
+analysis:641:DEBUG (strengthen) - term_invs: ZConj()
+utils.profiling:31:DEBUG (timed) - strengthen: 19662.59ms
+analysis:702:DEBUG (_stat_candidate_rcs) - stat (1 total): defaultdict(<class 'int'>, {3: 1})
+analysis:729:DEBUG (prove_nonterm_vloop) - PROVE_NT DEPTH 3: ZConj({0 >= a + -1*b, 1 >= a + x, 1 >= x, 0 >= a, a + -1*y <= -4, y >= 2, x + -1*y <= -4})
+analysis:758:DEBUG (prove_nonterm_vloop) - tCex: ZConj()
+analysis:758:DEBUG (prove_nonterm_vloop) - tCex: ZConj()
+analysis:758:DEBUG (prove_nonterm_vloop) - tCex: ZConj()
+utils.profiling:31:DEBUG (timed) - prove_nonterm_vloop: 142589.02ms
+analysis:1161:DEBUG (prove) - Proving Termination: vloop_22
+analysis:1040:DEBUG (prove_term_vloop) - classify_inps: vloop_22
+analysis:1043:DEBUG (prove_term_vloop) - itraces: 0
+analysis:1045:DEBUG (prove_term_vloop) - base_term_inps: 0
+analysis:1046:DEBUG (prove_term_vloop) - term_inps: 0
+analysis:1047:DEBUG (prove_term_vloop) - mayloop_inps: 0
+analysis:857:DEBUG (infer_ranking_functions) - vloop: vloop_22
+analysis:858:DEBUG (infer_ranking_functions) - term_itraces: 0
+utils.profiling:31:DEBUG (timed) - infer_ranking_functions: 0.13ms
+analysis:1061:DEBUG (prove_term_vloop) - validate_ranking_functions: vloop_22
+analysis:988:DEBUG (validate_ranking_functions) - ranks_str: 
+validate:120:DEBUG (gen_validate_file) - validate_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/eric/dynamo/benchmarks/nla-nonterm/prod4br-both-nt.c --out=/var/tmp/Dig_ro5mg9bo/vloop_22/par/validate/prod4br-both-nt.c --pos=22 --ranks=""
+*** 'None', 0 locs, 0 invs (), 0 traces, 0 inps, time 0.06s, rand seed 1589490187.04, test 59 93:
+
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/CPAchecker-1.9-unix/scripts/cpa.sh -spec /home/exp/tools/reachability.prp -predicateAnalysis -setprop counterexample.export.compressWitness=false /var/tmp/Dig_ro5mg9bo/vloop_22/par/validate/prod4br-both-nt.c
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_ro5mg9bo/vloop_22/par/uatm --witness-name witness.graphml --file /var/tmp/Dig_ro5mg9bo/vloop_22/par/validate/prod4br-both-nt.c
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UTaipan-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_ro5mg9bo/vloop_22/par/utp --witness-name witness.graphml --file /var/tmp/Dig_ro5mg9bo/vloop_22/par/validate/prod4br-both-nt.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /home/exp/tools/CPAchecker-1.9-unix/scripts/cpa.sh -spec /home/exp/tools/reachability.prp -witnessValidation -witness /var/tmp/Dig_ro5mg9bo/vloop_22/par/cpa/output/Counterexample.1.graphml /var/tmp/Dig_ro5mg9bo/vloop_22/par/validate/prod4br-both-nt.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --validate /var/tmp/Dig_ro5mg9bo/vloop_22/par/uatm/witness.graphml --file /var/tmp/Dig_ro5mg9bo/vloop_22/par/validate/prod4br-both-nt.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /home/exp/tools/ultimate/releaseScripts/default/UTaipan-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --validate /var/tmp/Dig_ro5mg9bo/vloop_22/par/utp/witness.graphml --file /var/tmp/Dig_ro5mg9bo/vloop_22/par/validate/prod4br-both-nt.c
+validate:283:DEBUG (mk_trans_cex) - dcex: defaultdict(<class 'dict'>, {3: {'a': 2147483649, 'b': 2, 'p': 1, 'q': 0, 'x': 2147483649, 'y': 2}, 4: {'a': 2147483648, 'b': 1, 'q': 2147483650}})
+validate:296:DEBUG (mk_trans_cex) - trans_cex: None
+validate:318:DEBUG (mk_var_map_from_smtlib) - vmap: defaultdict(<class 'dict'>, {'x': {3: 'main::x@3'}, 'y': {3: 'main::y@3'}, 'a': {3: 'main::a@3', 4: 'main::a@4'}, 'b': {3: 'main::b@3', 4: 'main::b@4'}, 'p': {3: 'main::p@3'}, 'q': {3: 'main::q@3', 4: 'main::q@4'}})
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex.trans_cex: None
+validate:347:DEBUG (mk_trans_cex) - dcex: {'__cil_tmp14': '-1', 'a': '0', 'b': '1', 'dup': '1', 'p': '4', 'q': '0', 'ta': '0', 'tb': '2', 'tp': '1', 'tq': '0', 'tx': '0', 'ty': '2', 'x': '0', 'y': '2'}
+validate:358:DEBUG (mk_trans_cex) - trans_cex: [(Trace(ss=('x', 'y', 'a', 'b', 'p', 'q'), vs=(0, 2, 0, 2, 1, 0)), Trace(ss=('x', 'y', 'a', 'b', 'p', 'q'), vs=(0, 2, 0, 1, 4, 0)))]
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex.trans_cex: [(Trace(ss=('x', 'y', 'a', 'b', 'p', 'q'), vs=(0, 2, 0, 2, 1, 0)), Trace(ss=('x', 'y', 'a', 'b', 'p', 'q'), vs=(0, 2, 0, 1, 4, 0)))]
+validate:358:DEBUG (mk_trans_cex) - trans_cex: None
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex.trans_cex: None
+validate:250:DEBUG (prove_reach) - wrs: []
+utils.profiling:31:DEBUG (timed) - prove_reach: 38251.26ms
+analysis:1001:DEBUG (validate_ranking_functions) - r: None
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 38746.05ms
+analysis:1063:DEBUG (prove_term_vloop) - Termination result (vloop_22): None ([])
+utils.profiling:31:DEBUG (timed) - prove_term_vloop: 38746.82ms
+utils.profiling:31:DEBUG (timed) - prove: 186417.41ms
+TNT result: None
+Time log:
+gen_rand_inps: 1.248s
+_get_traces_mp: 2.390s
+_merge_traces: 3.312s
+get_traces_from_inps: 5.718s
+_get_symstates_from_src: 56.631s
+_get_loopinfo_from_symstates: 57.115s
+get_loopinfo: 57.116s
+verify: 41.304s
+strengthen: 43.509s
+prove_nonterm_vloop: 142.589s
+infer_ranking_functions: 0.000s
+prove_reach: 38.251s
+validate_ranking_functions: 38.746s
+prove_term_vloop: 38.747s
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_c3uektcp/symexe/dijkstra5-both-nt_vloop_33.c.vloop_33_702.straces'
+data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_c3uektcp/symexe/dijkstra5-both-nt_vloop_33.c.vloop_33_700.straces'
+data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_c3uektcp/symexe/dijkstra5-both-nt_vloop_33.c.vloop_33_704.straces'
+data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_c3uektcp/symexe/dijkstra5-both-nt_vloop_33.c.vloop_33_703.straces'
+data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_c3uektcp/symexe/dijkstra5-both-nt_vloop_33.c.vloop_33_701.straces'
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 704
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 709
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 714
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 719
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 724
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 729
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 734
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 739
+et_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 919
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 924
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 929
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 934
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 939
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 944
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 949
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 954
+annot obtain symstates from '/var/tmp/Dig_lgtuxxao/symexe/freire1-both-nt_mainQ.c.mainQ_327.straces'
+data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_lgtuxxao/symexe/freire1-both-nt_mainQ.c.mainQ_328.straces'
+data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_lgtuxxao/symexe/freire1-both-nt_mainQ.c.mainQ_329.straces'
+data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_lgtuxxao/symexe/freire1-both-nt_mainQ.c.mainQ_325.straces'
+data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_lgtuxxao/symexe/freire1-both-nt_mainQ.c.mainQ_326.straces'
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_31
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 329
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_31
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 334
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_31
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 339
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_31
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 344
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_31
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 349
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_31
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 354
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_31
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 359
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_31
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 364
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_31
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 369
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_31
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 374
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_3_kqkrv8/symexe/dijkstra3-both-nt_vloop_33.c.vloop_33_981.straces'
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 984
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 989
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 994
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 999
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 1004
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 1009
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 1014
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 1019
+
+EJK TIMER: 198.351516
+

@@ -1,0 +1,442 @@
+__main__:102:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:103:INFO (<module>) - Dig's logger_level: WARNING
+__main__:104:INFO (<module>) - Timeout: 400s
+__main__:106:INFO (<module>) - 2020-05-14 15:29:06.937696: dynamo.py --timeout=400 /home/exp/eric/dynamo/benchmarks/nla-nonterm/fermat1-both-nt.c
+/home/exp/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:72:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_ohofjcca
+analysis:80:DEBUG (__init__) - trans_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /home/exp/eric/dynamo/benchmarks/nla-nonterm/fermat1-both-nt.c --out=/var/tmp/Dig_ohofjcca/fermat1-both-nt.c --bnd=500
+analysis:87:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_37': ['exit'], 'vloop_45': ['exit'], 'vloop_32': ['exit', 'vloop_37', 'vloop_45'], 'mainQ': ['vloop_32'], 'main': ['mainQ']})
+analysis:98:DEBUG (__init__) - postorder_vloop_ids: ['vloop_37', 'vloop_45', 'vloop_32']
+analysis:107:DEBUG (__init__) - inp_decls (<class 'data.prog.Symbs'>): I A, I R, I k
+analysis:108:DEBUG (__init__) - inv_decls (<class 'data.prog.DSymbs'>): {'vtrace1_32': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace2_32': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace3_32': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace1_45': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace2_45': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace3_45': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace1_37': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace2_37': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace3_37': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I'))}
+lib:38:DEBUG (gen_rand_inps) - inps (0): Inps()
+__main__:152:DEBUG (<module>) - prove_process: 9904
+lib:38:DEBUG (gen_rand_inps) - inps (10): Inps({Inp(ss=('A', 'R', 'k'), vs=(17, 5, 12)), Inp(ss=('A', 'R', 'k'), vs=(297, 3, 272)), Inp(ss=('A', 'R', 'k'), vs=(297, -2, 5)), Inp(ss=('A', 'R', 'k'), vs=(285, -10, -18)), Inp(ss=('A', 'R', 'k'), vs=(295, -8, -274)), Inp(ss=('A', 'R', 'k'), vs=(289, 17, 14)), Inp(ss=('A', 'R', 'k'), vs=(11, 1, -13)), Inp(ss=('A', 'R', 'k'), vs=(21, -2, 4)), Inp(ss=('A', 'R', 'k'), vs=(297, 11, 14)), Inp(ss=('A', 'R', 'k'), vs=(273, -2, 276))})
+lib:43:DEBUG (gen_rand_inps) - gen 100/100 random inps
+utils.profiling:31:DEBUG (timed) - gen_rand_inps: 2553.71ms
+lib:54:DEBUG (get_traces_from_inps) - inp_decls: I A, I R, I k
+lib:55:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_32': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace2_32': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace3_32': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace1_45': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace2_45': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace3_45': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace1_37': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace2_37': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace3_37': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 1384.74ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 1535.95ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 2926.26ms
+analysis:1147:DEBUG (prove) - Analysing vloop_37
+analysis:1149:DEBUG (prove) - base_term_inps: 0
+analysis:1150:DEBUG (prove) - term_inps: 40
+analysis:1151:DEBUG (prove) - mayloop_inps: 0
+analysis:1171:DEBUG (prove) - Proving Termination: vloop_37
+analysis:1040:DEBUG (prove_term_vloop) - classify_inps: vloop_37
+analysis:1043:DEBUG (prove_term_vloop) - itraces: 40
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 1), ('vtrace1_37', 1), ('vtrace2_37', 2), ('vtrace3_37', 1), ('vtrace1_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 2), ('vtrace1_37', 2), ('vtrace2_37', 8), ('vtrace3_37', 2), ('vtrace1_45', 2), ('vtrace3_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 1), ('vtrace1_37', 1), ('vtrace2_37', 2), ('vtrace3_37', 1), ('vtrace1_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 1), ('vtrace1_37', 1), ('vtrace2_37', 2), ('vtrace3_37', 1), ('vtrace1_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 1), ('vtrace1_37', 1), ('vtrace2_37', 2), ('vtrace3_37', 1), ('vtrace1_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 2), ('vtrace1_37', 2), ('vtrace2_37', 8), ('vtrace3_37', 2), ('vtrace1_45', 2), ('vtrace3_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 1), ('vtrace1_37', 1), ('vtrace2_37', 2), ('vtrace3_37', 1), ('vtrace1_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 1), ('vtrace1_37', 1), ('vtrace2_37', 2), ('vtrace3_37', 1), ('vtrace1_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 1), ('vtrace1_37', 1), ('vtrace2_37', 2), ('vtrace3_37', 1), ('vtrace1_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 1), ('vtrace1_37', 1), ('vtrace2_37', 2), ('vtrace3_37', 1), ('vtrace1_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 1), ('vtrace1_37', 1), ('vtrace2_37', 2), ('vtrace3_37', 1), ('vtrace1_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 2), ('vtrace1_37', 2), ('vtrace2_37', 8), ('vtrace3_37', 2), ('vtrace1_45', 2), ('vtrace3_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 1), ('vtrace1_37', 1), ('vtrace2_37', 2), ('vtrace3_37', 1), ('vtrace1_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 1), ('vtrace1_37', 1), ('vtrace2_37', 2), ('vtrace3_37', 1), ('vtrace1_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 1), ('vtrace1_37', 1), ('vtrace2_37', 2), ('vtrace3_37', 1), ('vtrace1_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 2), ('vtrace1_37', 2), ('vtrace2_37', 8), ('vtrace3_37', 2), ('vtrace1_45', 2), ('vtrace3_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 1), ('vtrace1_37', 1), ('vtrace2_37', 2), ('vtrace3_37', 1), ('vtrace1_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 2), ('vtrace1_37', 2), ('vtrace2_37', 8), ('vtrace3_37', 2), ('vtrace1_45', 2), ('vtrace3_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 1), ('vtrace1_37', 1), ('vtrace2_37', 2), ('vtrace3_37', 1), ('vtrace1_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 1), ('vtrace1_37', 1), ('vtrace2_37', 2), ('vtrace3_37', 1), ('vtrace1_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 1), ('vtrace1_37', 1), ('vtrace2_37', 2), ('vtrace3_37', 1), ('vtrace1_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 2), ('vtrace1_37', 2), ('vtrace2_37', 8), ('vtrace3_37', 2), ('vtrace1_45', 2), ('vtrace3_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 1), ('vtrace1_37', 1), ('vtrace2_37', 2), ('vtrace3_37', 1), ('vtrace1_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 2), ('vtrace1_37', 2), ('vtrace2_37', 8), ('vtrace3_37', 2), ('vtrace1_45', 2), ('vtrace3_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 2), ('vtrace1_37', 2), ('vtrace2_37', 8), ('vtrace3_37', 2), ('vtrace1_45', 2), ('vtrace3_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 1), ('vtrace1_37', 1), ('vtrace2_37', 2), ('vtrace3_37', 1), ('vtrace1_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 1), ('vtrace1_37', 1), ('vtrace2_37', 2), ('vtrace3_37', 1), ('vtrace1_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 1), ('vtrace1_37', 1), ('vtrace2_37', 2), ('vtrace3_37', 1), ('vtrace1_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 2), ('vtrace1_37', 2), ('vtrace2_37', 8), ('vtrace3_37', 2), ('vtrace1_45', 2), ('vtrace3_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 1), ('vtrace1_37', 1), ('vtrace2_37', 2), ('vtrace3_37', 1), ('vtrace1_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 2), ('vtrace1_37', 2), ('vtrace2_37', 8), ('vtrace3_37', 2), ('vtrace1_45', 2), ('vtrace3_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 2), ('vtrace1_37', 2), ('vtrace2_37', 8), ('vtrace3_37', 2), ('vtrace1_45', 2), ('vtrace3_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 1), ('vtrace1_37', 1), ('vtrace2_37', 2), ('vtrace3_37', 1), ('vtrace1_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 2), ('vtrace1_37', 2), ('vtrace2_37', 8), ('vtrace3_37', 2), ('vtrace1_45', 2), ('vtrace3_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 1), ('vtrace1_37', 1), ('vtrace2_37', 2), ('vtrace3_37', 1), ('vtrace1_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 1), ('vtrace1_37', 1), ('vtrace2_37', 2), ('vtrace3_37', 1), ('vtrace1_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 1), ('vtrace1_37', 1), ('vtrace2_37', 2), ('vtrace3_37', 1), ('vtrace1_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 1), ('vtrace1_37', 1), ('vtrace2_37', 2), ('vtrace3_37', 1), ('vtrace1_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 2), ('vtrace1_37', 2), ('vtrace2_37', 8), ('vtrace3_37', 2), ('vtrace1_45', 2), ('vtrace3_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 2), ('vtrace1_37', 2), ('vtrace2_37', 8), ('vtrace3_37', 2), ('vtrace1_45', 2), ('vtrace3_45', 1), ('vtrace2_45', 500)]
+analysis:1045:DEBUG (prove_term_vloop) - base_term_inps: 0
+analysis:1046:DEBUG (prove_term_vloop) - term_inps: 40
+analysis:1047:DEBUG (prove_term_vloop) - mayloop_inps: 0
+analysis:857:DEBUG (infer_ranking_functions) - vloop: vloop_37
+analysis:858:DEBUG (infer_ranking_functions) - term_itraces: 40
+analysis:905:DEBUG (infer_ranking_functions) - train_rand_trans: 358
+analysis:912:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): A*uk_1 + u*uk_2 + r*uk_4 + c*uk_5 + k*uk_6 + uk_3*v + uk_0
+analysis:913:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3, uk_4, uk_5, uk_6]
+analysis:937:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 358
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = 1,
+ uk_3 = 0,
+ uk_4 = 0,
+ uk_5 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:948:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 +
+279*uk_1 +
+-17*uk_2 +
+11*uk_3 +
+-223*uk_4 +
+3*uk_5 +
+5*uk_6
+analysis:949:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 +
+279*uk_1 +
+-17*uk_2 +
+5*uk_3 +
+-202*uk_4 +
+2*uk_5 +
+uk_6
+analysis:950:DEBUG (_infer_ranking_functions_from_trans) - rf: k
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 318
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = 0,
+ uk_3 = 0,
+ uk_4 = 0,
+ uk_5 = 1,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:948:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 +
+279*uk_1 +
+-17*uk_2 +
+3*uk_3 +
+-199*uk_4 +
+uk_5 +
+uk_6
+analysis:949:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 279*uk_1 + -17*uk_2 + 5*uk_3 + -202*uk_4 + 5*uk_6
+analysis:950:DEBUG (_infer_ranking_functions_from_trans) - rf: c
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 306
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = 0,
+ uk_3 = 0,
+ uk_5 = -1,
+ uk_4 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:948:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 279*uk_1 + -17*uk_2 + 5*uk_3 + -202*uk_4 + 5*uk_6
+analysis:949:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 +
+279*uk_1 +
+-17*uk_2 +
+11*uk_3 +
+-223*uk_4 +
+3*uk_5 +
+5*uk_6
+analysis:950:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*c
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 156
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = 1,
+ uk_3 = 0,
+ uk_5 = -1,
+ uk_4 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:948:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 +
+279*uk_1 +
+-17*uk_2 +
+13*uk_3 +
+-234*uk_4 +
+4*uk_5 +
+5*uk_6
+analysis:949:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 +
+279*uk_1 +
+-17*uk_2 +
+15*uk_3 +
+-247*uk_4 +
+5*uk_5 +
+5*uk_6
+analysis:950:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*c + k
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 49
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = -1,
+ uk_3 = 0,
+ uk_4 = 0,
+ uk_5 = 0,
+ uk_2 = -1,
+ uk_0 = 0]
+analysis:948:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 +
+279*uk_1 +
+-17*uk_2 +
+3*uk_3 +
+-199*uk_4 +
+uk_5 +
+uk_6
+analysis:949:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 +
+279*uk_1 +
+-17*uk_2 +
+15*uk_3 +
+-247*uk_4 +
+5*uk_5 +
+5*uk_6
+analysis:950:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*u + -1*k
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:980:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [k, c, -1*c, -1*c + k, -1*u + -1*k]
+utils.profiling:31:DEBUG (timed) - infer_ranking_functions: 14929.40ms
+analysis:1061:DEBUG (prove_term_vloop) - validate_ranking_functions: vloop_37
+analysis:988:DEBUG (validate_ranking_functions) - ranks_str: k|c|-1*c|-1*c + k|-1*u + -1*k
+validate:120:DEBUG (gen_validate_file) - validate_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/eric/dynamo/benchmarks/nla-nonterm/fermat1-both-nt.c --out=/var/tmp/Dig_ohofjcca/vloop_37/par/validate/fermat1-both-nt.c --pos=37 --ranks="k|c|-1*c|-1*c + k|-1*u + -1*k"
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/CPAchecker-1.9-unix/scripts/cpa.sh -spec /home/exp/tools/reachability.prp -predicateAnalysis -setprop counterexample.export.compressWitness=false /var/tmp/Dig_ohofjcca/vloop_37/par/validate/fermat1-both-nt.c
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UTaipan-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_ohofjcca/vloop_37/par/utp --witness-name witness.graphml --file /var/tmp/Dig_ohofjcca/vloop_37/par/validate/fermat1-both-nt.c
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_ohofjcca/vloop_37/par/uatm --witness-name witness.graphml --file /var/tmp/Dig_ohofjcca/vloop_37/par/validate/fermat1-both-nt.c
+validate:46:DEBUG (prove_reach) - res: True
+validate:250:DEBUG (prove_reach) - wrs: [('uatm', (True, None))]
+validate:253:DEBUG (prove_reach) - Got result firstly from uatm
+utils.profiling:31:DEBUG (timed) - prove_reach: 25904.31ms
+analysis:1001:DEBUG (validate_ranking_functions) - r: True
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 26811.98ms
+analysis:1063:DEBUG (prove_term_vloop) - Termination result (vloop_37): True ([k, c, -1*c, -1*c + k, -1*u + -1*k])
+utils.profiling:31:DEBUG (timed) - prove_term_vloop: 41775.10ms
+analysis:1176:DEBUG (prove) - vloop_37 terminates: [k, c, -1*c, -1*c + k, -1*u + -1*k]
+analysis:1147:DEBUG (prove) - Analysing vloop_45
+analysis:1149:DEBUG (prove) - base_term_inps: 0
+analysis:1150:DEBUG (prove) - term_inps: 14
+analysis:1151:DEBUG (prove) - mayloop_inps: 26
+analysis:1171:DEBUG (prove) - Proving Termination: vloop_45
+analysis:1040:DEBUG (prove_term_vloop) - classify_inps: vloop_45
+analysis:1043:DEBUG (prove_term_vloop) - itraces: 14
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 2), ('vtrace1_37', 2), ('vtrace2_37', 8), ('vtrace3_37', 2), ('vtrace1_45', 2), ('vtrace3_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 2), ('vtrace1_37', 2), ('vtrace2_37', 8), ('vtrace3_37', 2), ('vtrace1_45', 2), ('vtrace3_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 2), ('vtrace1_37', 2), ('vtrace2_37', 8), ('vtrace3_37', 2), ('vtrace1_45', 2), ('vtrace3_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 2), ('vtrace1_37', 2), ('vtrace2_37', 8), ('vtrace3_37', 2), ('vtrace1_45', 2), ('vtrace3_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 2), ('vtrace1_37', 2), ('vtrace2_37', 8), ('vtrace3_37', 2), ('vtrace1_45', 2), ('vtrace3_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 2), ('vtrace1_37', 2), ('vtrace2_37', 8), ('vtrace3_37', 2), ('vtrace1_45', 2), ('vtrace3_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 2), ('vtrace1_37', 2), ('vtrace2_37', 8), ('vtrace3_37', 2), ('vtrace1_45', 2), ('vtrace3_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 2), ('vtrace1_37', 2), ('vtrace2_37', 8), ('vtrace3_37', 2), ('vtrace1_45', 2), ('vtrace3_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 2), ('vtrace1_37', 2), ('vtrace2_37', 8), ('vtrace3_37', 2), ('vtrace1_45', 2), ('vtrace3_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 2), ('vtrace1_37', 2), ('vtrace2_37', 8), ('vtrace3_37', 2), ('vtrace1_45', 2), ('vtrace3_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 2), ('vtrace1_37', 2), ('vtrace2_37', 8), ('vtrace3_37', 2), ('vtrace1_45', 2), ('vtrace3_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 2), ('vtrace1_37', 2), ('vtrace2_37', 8), ('vtrace3_37', 2), ('vtrace1_45', 2), ('vtrace3_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 2), ('vtrace1_37', 2), ('vtrace2_37', 8), ('vtrace3_37', 2), ('vtrace1_45', 2), ('vtrace3_45', 1), ('vtrace2_45', 500)]
+lib:208:DEBUG (print_inps) - [('vtrace1_32', 1), ('vtrace2_32', 2), ('vtrace1_37', 2), ('vtrace2_37', 8), ('vtrace3_37', 2), ('vtrace1_45', 2), ('vtrace3_45', 1), ('vtrace2_45', 500)]
+analysis:1045:DEBUG (prove_term_vloop) - base_term_inps: 0
+analysis:1046:DEBUG (prove_term_vloop) - term_inps: 14
+analysis:1047:DEBUG (prove_term_vloop) - mayloop_inps: 0
+analysis:857:DEBUG (infer_ranking_functions) - vloop: vloop_45
+analysis:858:DEBUG (infer_ranking_functions) - term_itraces: 14
+analysis:905:DEBUG (infer_ranking_functions) - train_rand_trans: 280
+analysis:912:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): A*uk_1 + u*uk_2 + r*uk_4 + c*uk_5 + k*uk_6 + uk_3*v + uk_0
+analysis:913:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3, uk_4, uk_5, uk_6]
+analysis:937:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 280
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 1,
+ uk_6 = 0,
+ uk_3 = 0,
+ uk_5 = -1,
+ uk_4 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:948:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 +
+279*uk_1 +
+271*uk_2 +
+17*uk_3 +
+17882*uk_4 +
+150*uk_5 +
+5*uk_6
+analysis:949:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 +
+279*uk_1 +
+679*uk_2 +
+17*uk_3 +
+114578*uk_4 +
+354*uk_5 +
+5*uk_6
+analysis:950:DEBUG (_infer_ranking_functions_from_trans) - rf: A + -1*c
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 60
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 1,
+ uk_6 = 0,
+ uk_3 = 0,
+ uk_5 = 1,
+ uk_4 = 0,
+ uk_2 = -1,
+ uk_0 = 0]
+analysis:948:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 +
+279*uk_1 +
+569*uk_2 +
+17*uk_3 +
+80313*uk_4 +
+299*uk_5 +
+5*uk_6
+analysis:949:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 +
+279*uk_1 +
+857*uk_2 +
+17*uk_3 +
+182841*uk_4 +
+443*uk_5 +
+5*uk_6
+analysis:950:DEBUG (_infer_ranking_functions_from_trans) - rf: A + -1*u + c
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 45
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 2,
+ uk_6 = 0,
+ uk_3 = 0,
+ uk_5 = -1,
+ uk_4 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:948:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 +
+279*uk_1 +
+679*uk_2 +
+17*uk_3 +
+114578*uk_4 +
+354*uk_5 +
+5*uk_6
+analysis:949:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 +
+279*uk_1 +
+833*uk_2 +
+17*uk_3 +
+172713*uk_4 +
+431*uk_5 +
+5*uk_6
+analysis:950:DEBUG (_infer_ranking_functions_from_trans) - rf: 2*A + -1*c
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 4
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = 1,
+ uk_3 = 0,
+ uk_4 = 0,
+ uk_5 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:948:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 +
+285*uk_1 +
+765*uk_2 +
+17*uk_3 +
+145575*uk_4 +
+403*uk_5 +
+5*uk_6
+analysis:949:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 +
+285*uk_1 +
+-29*uk_2 +
+5*uk_3 +
+-64*uk_4 +
+2*uk_5 +
+uk_6
+analysis:950:DEBUG (_infer_ranking_functions_from_trans) - rf: k
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:980:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [A + -1*c, A + -1*u + c, 2*A + -1*c, k]
+utils.profiling:31:DEBUG (timed) - infer_ranking_functions: 11903.39ms
+analysis:1061:DEBUG (prove_term_vloop) - validate_ranking_functions: vloop_45
+analysis:988:DEBUG (validate_ranking_functions) - ranks_str: A + -1*c|A + -1*u + c|2*A + -1*c|k
+validate:120:DEBUG (gen_validate_file) - validate_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/eric/dynamo/benchmarks/nla-nonterm/fermat1-both-nt.c --out=/var/tmp/Dig_ohofjcca/vloop_45/par/validate/fermat1-both-nt.c --pos=45 --ranks="A + -1*c|A + -1*u + c|2*A + -1*c|k"
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/CPAchecker-1.9-unix/scripts/cpa.sh -spec /home/exp/tools/reachability.prp -predicateAnalysis -setprop counterexample.export.compressWitness=false /var/tmp/Dig_ohofjcca/vloop_45/par/validate/fermat1-both-nt.c
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_ohofjcca/vloop_45/par/uatm --witness-name witness.graphml --file /var/tmp/Dig_ohofjcca/vloop_45/par/validate/fermat1-both-nt.c
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UTaipan-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_ohofjcca/vloop_45/par/utp --witness-name witness.graphml --file /var/tmp/Dig_ohofjcca/vloop_45/par/validate/fermat1-both-nt.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /home/exp/tools/CPAchecker-1.9-unix/scripts/cpa.sh -spec /home/exp/tools/reachability.prp -witnessValidation -witness /var/tmp/Dig_ohofjcca/vloop_45/par/cpa/output/Counterexample.1.graphml /var/tmp/Dig_ohofjcca/vloop_45/par/validate/fermat1-both-nt.c
+validate:283:DEBUG (mk_trans_cex) - dcex: defaultdict(<class 'dict'>, {3: {'A': 1, 'c': 0, 'k': 4294967294, 'r': 4294967295, 'u': 1073741825, 'v': 1}, 4: {'c': 1, 'r': 1073741824, 'u': 1073741827}, 5: {'c': 2, 'r': 2147483651, 'u': 1073741829}, 6: {'c': 3, 'r': 3221225480, 'u': 1073741831}, 7: {'c': 4, 'r': 15, 'u': 1073741833}})
+validate:296:DEBUG (mk_trans_cex) - trans_cex: None
+validate:318:DEBUG (mk_var_map_from_smtlib) - vmap: defaultdict(<class 'dict'>, {'A': {3: 'main::A@3'}, 'u': {3: 'main::u@3', 4: 'main::u@4', 5: 'main::u@5', 6: 'main::u@6', 7: 'main::u@7'}, 'v': {3: 'main::v@3'}, 'r': {3: 'main::r@3', 4: 'main::r@4', 5: 'main::r@5', 6: 'main::r@6', 7: 'main::r@7'}, 'c': {3: 'main::c@3', 4: 'main::c@4', 5: 'main::c@5', 6: 'main::c@6', 7: 'main::c@7'}, 'k': {3: 'main::k@3'}})
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex.trans_cex: None
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --validate /var/tmp/Dig_ohofjcca/vloop_45/par/uatm/witness.graphml --file /var/tmp/Dig_ohofjcca/vloop_45/par/validate/fermat1-both-nt.c
+validate:347:DEBUG (mk_trans_cex) - dcex: {'__cil_tmp': '1', '__cil_tmp17': '-2', '__cil_tmp18': '-3', '__cil_tmp19': '-1', '__cil_tmp20': '-2', '__cil_tmp21': '-1', '__cil_tmp22': '-2', '__cil_tmp23': '1', '__cil_tmp24': '1', '__cil_tmp25': '1', 'A': '1', 'c': '4', 'dup': '1', 'k': '1', 'r': '4', 'R': '1', 'tA': '1', 'tc': '3', 'tk': '1', 'tr': '-1', 'tR': '1', 'tu': '5', 'tv': '5', 'u': '7', 'v': '5'}
+validate:358:DEBUG (mk_trans_cex) - trans_cex: [(Trace(ss=('A', 'u', 'v', 'r', 'c', 'k'), vs=(1, 5, 5, -1, 3, 1)), Trace(ss=('A', 'u', 'v', 'r', 'c', 'k'), vs=(1, 7, 5, 4, 4, 1)))]
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex.trans_cex: [(Trace(ss=('A', 'u', 'v', 'r', 'c', 'k'), vs=(1, 5, 5, -1, 3, 1)), Trace(ss=('A', 'u', 'v', 'r', 'c', 'k'), vs=(1, 7, 5, 4, 4, 1)))]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_c3uektcp/symexe/dijkstra5-both-nt_vloop_33.c.vloop_33_268.straces'
+data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_c3uektcp/symexe/dijkstra5-both-nt_vloop_33.c.vloop_33_269.straces'
+data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_c3uektcp/symexe/dijkstra5-both-nt_vloop_33.c.vloop_33_265.straces'
+data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_c3uektcp/symexe/dijkstra5-both-nt_vloop_33.c.vloop_33_267.straces'
+data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_c3uektcp/symexe/dijkstra5-both-nt_vloop_33.c.vloop_33_266.straces'
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 269
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 274
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 279
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 284
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 289
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 294
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 299
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 304
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 309
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 314
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 319
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 324
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 329
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 334
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 339
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 344
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 349
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 354
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 359
+184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 559
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 564
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 569
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 574
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 579
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 529
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 534
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 539
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 544
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 549
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 554
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 559
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 564
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 569
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 574
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 579
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 584
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 589
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 594
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 599
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 604
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 609
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 614
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 619
+
+EJK TIMER: 400.000243
+
