@@ -1,0 +1,972 @@
+__main__:102:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:103:INFO (<module>) - Dig's logger_level: WARNING
+__main__:104:INFO (<module>) - Timeout: 400s
+__main__:106:INFO (<module>) - 2020-05-14 11:07:54.128478: dynamo.py --timeout=400 /home/exp/eric/dynamo/benchmarks/nla-term/geo3-both-t.c
+/home/exp/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:72:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_20xm27hn
+analysis:80:DEBUG (__init__) - trans_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /home/exp/eric/dynamo/benchmarks/nla-term/geo3-both-t.c --out=/var/tmp/Dig_20xm27hn/geo3-both-t.c --bnd=500
+analysis:87:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_18': ['exit'], 'mainQ': ['vloop_18'], 'main': ['mainQ']})
+analysis:98:DEBUG (__init__) - postorder_vloop_ids: ['vloop_18']
+analysis:107:DEBUG (__init__) - inp_decls (<class 'data.prog.Symbs'>): I z, I a, I k
+analysis:108:DEBUG (__init__) - inv_decls (<class 'data.prog.DSymbs'>): {'vtrace1_18': (Symb(name='z', typ='I'), Symb(name='a', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace2_18': (Symb(name='z', typ='I'), Symb(name='a', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace3_18': (Symb(name='z', typ='I'), Symb(name='a', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I'))}
+__main__:152:DEBUG (<module>) - prove_process: 28145
+lib:38:DEBUG (gen_rand_inps) - inps (0): Inps()
+lib:43:DEBUG (gen_rand_inps) - gen 216/100 random inps
+utils.profiling:31:DEBUG (timed) - gen_rand_inps: 951.44ms
+lib:54:DEBUG (get_traces_from_inps) - inp_decls: I z, I a, I k
+lib:55:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_18': (Symb(name='z', typ='I'), Symb(name='a', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace2_18': (Symb(name='z', typ='I'), Symb(name='a', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace3_18': (Symb(name='z', typ='I'), Symb(name='a', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 0.34ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 343.95ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 358.95ms
+analysis:1147:DEBUG (prove) - Analysing vloop_18
+analysis:1149:DEBUG (prove) - base_term_inps: 115
+analysis:1150:DEBUG (prove) - term_inps: 101
+analysis:1151:DEBUG (prove) - mayloop_inps: 0
+analysis:1171:DEBUG (prove) - Proving Termination: vloop_18
+analysis:1040:DEBUG (prove_term_vloop) - classify_inps: vloop_18
+analysis:1043:DEBUG (prove_term_vloop) - itraces: 101
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 27), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 279), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 2), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 289), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 284), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 2), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 25), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 23), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 4), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 291), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 11), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 4), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 292), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 21), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 1), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 278), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 6), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 8), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 286), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 272), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 273), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 13), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 5), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 27), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 277), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 297), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 289), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 3), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 12), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 298), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 10), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 8), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 9), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 271), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 296), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 13), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 5), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 285), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 282), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 285), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 4), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 290), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 274), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 8), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 20), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 17), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 8), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 25), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 16), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 279), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 7), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 26), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 8), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 296), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 8), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 4), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 294), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 6), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 294), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 2), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 6), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 10), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 2), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 11), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 4), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 281), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 293), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 4), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 27), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 1), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 12), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 4), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 10), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 3), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 8), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 286), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 9), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 290), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 18), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 275), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 28), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 13), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 270), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 10), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 26), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 276), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 17), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 277), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 289), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 17), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 26), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 20), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 24), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 10), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 17), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 285), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 286),validate:46:DEBUG (prove_reach) - res: None
+validate:46:DEBUG (prove_reach) - res: None
+validate:250:DEBUG (prove_reach) - wrs: []
+utils.profiling:31:DEBUG (timed) - prove_reach: 379735.78ms
+analysis:1001:DEBUG (validate_ranking_functions) - r: None
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 380330.66ms
+analysis:1063:DEBUG (prove_term_vloop) - Termination result (vloop_17): None ([k + -1*c])
+utils.profiling:31:DEBUG (timed) - prove_term_vloop: 401374.01ms
+analysis:1179:DEBUG (prove) - Proving Non-Termination: vloop_17
+analysis:239:DEBUG (_get_stem_from_symstates) - vloop.preloop_loc: vtrace1_17
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_17
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 9331.22ms
+analysis:225:DEBUG (_get_stem_from_ss) - preloop_fst_symstate: loc: vtrace1_17
+pc: True
+slocal: And(z == X_z, k == X_k, 1 == x, 1 == y, 1 == c)
+analysis:228:DEBUG (_get_stem_from_ss) - mainQ initanalysis:937:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1781
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = 0,
+ uk_3 = 0,
+ uk_4 = 0,
+ uk_5 = -1,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:948:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 +
+-13*uk_1 +
+3*uk_2 +
+277*uk_3 +
+518006156*uk_4 +
+-1906469037*uk_5 +
+202*uk_6
+analysis:949:DEBUG (_infer_rananalysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_17
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 6396.83ms
+analysis:280:DEBUG (_get_loop_from_symstatesanalysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1439
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = 0,
+ uk_3 = 0,
+ uk_4 = 0,
+ uk_5 = 1,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:948:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + -13*uk_1 + 3*uk_2 + 277*uk_3 + 3*uk_4 + uk_5 + uk_6
+analysis:949:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 +
+-13*uk_1 +
+3*uk_2 +
+277*uk_3 +
+-709456701*uk_4 +
+-1906587263*uk_5 +
+97*uk_6
+analysis:950:DEBUG (_infer_ranking_functions_from_trans) - rf: y
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 982
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = 0,
+ uk_3 = 0,
+ uk_4 = -1,
+ uk_5 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:948:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 +
+-13*uk_1 +
+3*uk_2 +
+277*uk_3 +
+-788947052*uk_4 +
+1148444003*uk_5 +
+86*uk_6
+analysis:949:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 +
+-13*uk_1 +
+3*uk_2 +
+277*uk_3 +
+934323020*uk_4 +
+1877181139*uk_5 +
+106*uk_6
+analysis:950:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*x
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 888
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = 0,
+ uk_3 = 0,
+ uk_4 = 1,
+ uk_5 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:948:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + -13*uk_1 + 3*uk_2 + 277*uk_3 + 3*uk_4 + uk_5 + uk_6
+analysis:949:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 +
+-13*uk_1 +
+3*uk_2 +
+277*uk_3 +
+-788947052*uk_4 +
+1148444003*uk_5 +
+86*uk_6
+analysis:950:DEBUG (_infer_ranking_functions_from_trans) - rf: x
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 802
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = -1,
+ uk_3 = 0,
+ uk_4 = -1,
+ uk_5 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:948:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 +
+-12*uk_1 +
+-17*uk_2 +
+290*uk_3 +
+-330382101*uk_4 +
+167*uk_6
+analysis:949:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 +
+-12*uk_1 +
+-17*uk_2 +
+290*uk_3 +
+-330382101*uk_4 +
+223*uk_6
+analysis:950:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*c + -1*x
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 639
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = -1,
+ uk_3 = 1,
+ uk_5 = 0,
+ uk_4 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:948:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + -19*uk_1 + 283*uk_3 + 401661689*uk_5 + 135*uk_6
+analysis:949:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + -19*uk_1 + 283*uk_3 + 868497093*uk_5 + 152*uk_6
+analysis:950:DEBUG (_infer_ranking_functions_from_trans) - rf: k + -1*c
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:980:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [-1*y, y, -1*x, x, -1*c + -1*x, k + -1*c]
+utils.profiling:31:DEBUG (timed) - infer_ranking_functions: 77847.82ms
+analysis:1061:DEBUG (prove_term_vloop) - validate_ranking_functions: vloop_18
+analysis:988:DEBUG (validate_ranking_functions) - ranks_str: -1*y|y|-1*x|x|-1*c + -1*x|k + -1*c
+validate:120:DEBUG (gen_validate_file) - validate_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/eric/dynamo/benchmarks/nla-term/geo3-both-t.c --out=/var/tmp/Dig_20xm27hn/vloop_18/par/validate/geo3-both-t.c --pos=18 --ranks="-1*y|y|-1*x|x|-1*c + -1*x|k + -1*c"
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/CPAchecker-1.9-unix/scripts/cpa.sh -spec /home/exp/tools/reachability.prp -predicateAnalysis -setprop counterexample.export.compressWitness=false /var/tmp/Dig_20xm27hn/vloop_18/par/validate/geo3-both-t.c
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_20xm27hn/vloop_18/par/uatm --witness-name witness.graphml --file /var/tmp/Dig_20xm27hn/vloop_18/par/validate/geo3-both-t.c
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UTaipan-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_20xm27hn/vloop_18/par/utp --witness-name witness.graphml --file /var/tmp/Dig_20xm27hn/vloop_18/par/validate/geo3-both-t.c
+, ('k1', 2), ('z1', -29), ('c0', 1), ('y0', 1), ('x0', 1), ('k0', 2), ('z0', -29), ('c', 1), ('y', 1), ('x', 1), ('k', 2), ('z', -29)], [('X_z', 271), ('X_k', 2), ('c1', 2), ('y1', 271), ('x1', 272), ('k1', 2), ('z1', 271), ('c0', 1), ('y0', 1), ('x0', 1), ('k0', 2), ('z0', 271), ('c', 1), ('y', 1), ('x', 1), ('k', 2), ('z', 271)], [('X_z', -14), ('X_k', 2), ('c1', 2), ('y1', -14), ('x1', -13), ('k1', 2), ('z1', -14), ('c0', 1), ('y0', 1), ('x0', 1), ('k0', 2), ('z0', -14), ('c', 1), ('y', 1), ('x', 1), ('k', 2), ('z', -14)], [('X_z', -13), ('X_k', 2), ('c1', 2), ('y1', -13), ('x1', -12), ('k1', 2), ('z1', -13), ('c0', 1), ('y0', 1), ('x0', 1), ('k0', 2), ('z0', -13), ('c', 1), ('y', 1), ('x', 1), ('k', 2), ('z', -13)], [('X_z', 272), ('X_k', 2), ('c1', 2), ('y1', 272), ('x1', 273), ('k1', 2), ('z1', 272), ('c0', 1), ('y0', 1), ('x0', 1), ('k0', 2), ('z0', 272), ('c', 1), ('y', 1), ('x', 1), ('k', 2), ('z', 272)], [('X_z', -298), ('X_k', 2), ('c1', 2), ('y1', -298), ('x1', -297), ('k1', 2), ('z1', -298), ('c0', 1), ('y0', 1), ('x0', 1), ('k0', 2), ('z0', -298), ('c', 1), ('y', 1), ('x', 1), ('k', 2), ('z', -298)], [('X_z', 2), ('X_k', 2), ('c1', 2), ('y1', 2), ('x1', 3), ('k1', 2), ('z1', 2), ('c0', 1), ('y0', 1), ('x0', 1), ('k0', 2), ('z0', 2), ('c', 1), ('y', 1), ('x', 1), ('k', 2), ('z', 2)], [('X_z', -30), ('X_k', 2), ('c1', 2), ('y1', -30), ('x1', -29), ('k1', 2), ('z1', -30), ('c0', 1), ('y0', 1), ('x0', 1), ('k0', 2), ('z0', -30), ('c', 1), ('y', 1), ('x', 1), ('k', 2), ('z', -30)], [('X_z', 3), ('X_k', 2), ('c1', 2), ('y1', 3), ('x1', 4), ('k1', 2), ('z1', 3), ('c0', 1), ('y0', 1), ('x0', 1), ('k0', 2), ('z0', 3), ('c', 1), ('y', 1), ('x', 1), ('k', 2), ('z', 3)]]
+analysis:586:DEBUG (_check) - init_models: sat (11 models)
+analysis:591:DEBUG (_check) - inps: Inps({Inp(ss=('z', 'k'), vs=(-30, 2)), Inp(ss=('z', 'k'), vs=(1, 2)), Inp(ss=('z', 'k'), vs=(2, 2)), Inp(ss=('z', 'k'), vs=(-298, 2)), Inp(ss=('z', 'k'), vs=(3, 2)), Inp(ss=('z', 'k'), vs=(-29, 2)), Inp(ss=('z', 'k'), vs=(-14, 2)), Inp(ss=('z', 'k'), vs=(272, 2)), Inp(ss=('z', 'k'), vs=(271, 2)), Inp(ss=('z', 'k'), vs=(-299, 2)), Inp(ss=('z', 'k'), vs=(-13, 2))})
+analysis:600:INFO (verify) - dg: defaultdict(<class 'list'>, {})
+analysis:601:INFO (verify) - label_d: defaultdict(<class 'str'>, {-2 >= x*z + -1*y*z + c + -1*k + -1*x: 'c_0'})
+analysis:602:INFO (verify) - rev_label_d: {'c_0': -2 >= x*z + -1*y*z + c + -1*k + -1*x}
+analysis:605:INFO (verify) - loop_cond_label: c_0
+analysis:609:INFO (verify) - mds_labels: set()
+analysis:610:INFO (verify) - mds: ZConj()
+lib:54:DEBUG (get_traces_from_inps) - inp_decls: I z, I k
+lib:55:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_17': (Symb(name='z', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace2_17': (Symb(name='z', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace3_17': (Symb(name='z', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 398.43ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 162.57ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 561.83ms
+utils.profiling:31:DEBUG (timed) - verify: 4729.71ms
+analysis:630:DEBUG (strengthen) - base_term_inps: 0
+analysis:631:DEBUG (strengthen) - term_inps: [Inp(ss=('z', 'k'), vs=(1, 2)), Inp(ss=('z', 'k'), vs=(-30, 2)), Inp(ss=('z', 'k'), vs=(-298, 2)), Inp(ss=('z', 'k'), vs=(2, 2)), Inp(ss=('z', 'k'), vs=(3, 2)), Inp(ss=('z', 'k'), vs=(-29, 2)), Inp(ss=('z', 'k'), vs=(-14, 2)), Inp(ss=('z', 'k'), vs=(272, 2)), Inp(ss=('z', 'k'), vs=(271, 2)), Inp(ss=('z', 'k'), vs=(-13, 2)), Inp(ss=('z', 'k'), vs=(-299, 2))]
+analysis:632:DEBUG (strengthen) - mayloop_inps: 0
+analysis:633:DEBUG (strengthen) - rcs: ZConj({-2 >= x*z + -1*y*z + c + -1*k + -1*x})
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_17]: 0
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_17]: 0
+lib:254:DEBUG (infer_from_traces) - invs: 
+analysis:637:DEBUG (strengthen) - mayloop_invs: ZConj()
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_17]: 8
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_17]: 3
+*** 'None', 0 locs, 0 invs (), 0 traces, 0 inps, time 0.05s, rand seed 1589472074.22, test 80 61:
+
+lib:254:DEBUG (infer_from_traces) - invs: vtrace2_17 (36 invs):
+1. y - 1 == 0
+2. x - 1 == 0
+3. k - 2 == 0
+4. c - 1 == 0
+5. y <= 1
+6. x <= 1
+7. x - y <= 0
+8. x + y <= 2
+9. k <= 2
+10. k - y <= 1
+11. k - x <= 1
+12. k + y <= 3
+13. k + x <= 3
+14. c <= 1
+15. c - y <= 0
+16. c - x <= 0
+17. c - k <= -1
+18. c + y <= 2
+19. c + x <= 2
+20. c + k <= 3
+21. -y <= -1
+22. -x <= -1
+23. -x - y <= -2
+24. -x + y <= 0
+25. -k <= -2
+26. -k - y <= -3
+27. -k - x <= -3
+28. -k + y <= -1
+29. -k + x <= -1
+30. -c <= -1
+31. -c - y <= -2
+32. -c - x <= -2
+33. -c - k <= -3
+34. -c + y <= 0
+35. -c + x <= 0
+36. -c + k <= 1
+analysis:641:DEBUG (strengthen) - term_invs: ZConj({-1*c + -1*y <= -2, x >= 1, 0 >= c + -1*y, 2 >= c + x, 0 >= -1*x + y, y >= 1, 0 >= c + -1*x, 2 >= k, 1 >= k + -1*y, 1 >= x, 2 == k, -1*k + -1*x <= -3, 1 == x, 1 >= k + -1*x, 1 >= c, 3 >= c + k, 3 >= k + y, 1 >= y, 1 == c, -1*k + -1*y <= -3, -1*c + -1*k <= -3, 2 >= x + y, 0 >= -1*c + y, 1 == y, -1*x + -1*y <= -2, c + -1*k <= -1, k >= 2, 3 >= k + x, 1 >= -1*c + k, 0 >= x + -1*y, c >= 1, 2 >= c + y, -1*c + -1*x <= -2, 0 >= -1*c + x, -1*k + y <= -1, -1*k + x <= -1})
+utils.profiling:31:DEBUG (timed) - strengthen: 5113.02ms
+analysis:702:DEBUG (_stat_candidate_rcs) - stat (36 total): defaultdict(<class 'int'>, {1: 36})
+analysis:729:DEBUG (prove_nonterm_vloop) - PROVE_NT DEPTH 1: ZConj({Not(-1*c + -1*y <= -2), -2 >= x*z + -1*y*z + c + -1*k + -1*x})
+analysis:505:DEBUG (verify) - loop_transrel: And(And(z0 == z, k0 == k, x0 == x, y0 == y, c0 == c),
+    And(z1 == z,
+        k1 == k,
+        x1 == 1 + x*z,
+        y1 == y*z,
+        c1 == 1 + c))
+analysis:506:DEBUG (verify) - loop_cond: -2 >= x*z + -1*y*z + c + -1*k + -1*x
+analysis:507:DEBUG (verify) - rcs: ZConj({Not(-1*c + -1*y <= -2), -2 >= x*z + -1*y*z + c + -1*k + -1*x})
+analysis:521:DEBUG (verify) - labeled_rcs: ZConj({-2 >= x*z + -1*y*z + c + -1*k + -1*x:c_1, Not(-1*c + -1*y <= -2):c_0})
+analysis:528:DEBUG (verify) - transrel_rcs: ZConj({-2 >= x0*z0 + -1*y0*z0 + c0 + -1*k0 + -1*x0:c_1, And(And(z0 == z, k0 == k, x0 == x, y0 == y, c0 == c),
+    And(z1 == z,
+        k1 == k,
+        x1 == 1 + x*z,
+        y1 == y*z,
+        c1 == 1 + c)), Not(-1*c0 + -1*y0 <= -2):c_0})
+analysis:533:DEBUG (verify) - init_transrel_rcs: ZConj({And(z == X_z, k == X_k, 1 == x, 1 == y, 1 == c), And(And(z0 == z, k0 == k, x0 == x, y0 == y, c0 == c),
+    And(z1 == z,
+        k1 == k,
+        x1 == 1 + x*z,
+        y1 == y*z,
+        c1 == 1 + c)), -2 >= x0*z0 + -1*y0*z0 + c0 + -1*k0 + -1*x0:c_1, True, Not(-1*c0 + -1*y0 <= -2):c_0})
+analysis:542:DEBUG (_check) - rc: Not(-1*c + -1*y <= -2):c_0
+analysis:547:DEBUG (_check) - rc_r: Not(-1*c1 + -1*y1 <= -2)
+analysis:548:DEBUG (_check) - f: ZConj({-2 >= x0*z0 + -1*y0*z0 + c0 + -1*k0 + -1*x0:c_1, Not(-1*c0 + -1*y0 <= -2):c_0, Not(Not(-1*c1 + -1*y1 <= -2)), And(And(z0 == z, k0 == k, x0 == x, y0 == y, c0 == c),
+    And(z1 == z,
+        k1 == k,
+        x1 == 1 + x*z,
+        y1 == y*z,
+        c1 == 1 + c))})
+*** 'None', 1 locs, 36 invs (4 Eqt, 32 Oct), 11 traces, 0 inps, time 4.44s, rand seed 1589472074.22, test 80 61:
+vtrace2_17 (36 invs):
+1. y - 1 == 0
+2. x - 1 == 0
+3. k - 2 == 0
+4. c - 1 == 0
+5. y <= 1
+6. x <= 1
+7. x - y <= 0
+8. x + y <= 2
+9. k <= 2
+10. k - y <= 1
+11. k - x <= 1
+12. k + y <= 3
+13. k + x <= 3
+14. c <= 1
+15. c - y <= 0
+16. c - x <= 0
+17. c - k <= -1
+18. c + y <= 2
+19. c + x <= 2
+20. c + k <= 3
+21. -y <= -1
+22. -x <= -1
+23. -x - y <= -2
+24. -x + y <= 0
+25. -k <= -2
+26. -k - y <= -3
+27. -k - x <= -3
+28. -k + y <= -1
+29. -k + x <= -1
+30. -c <= -1
+31. -c - y <= -2
+32. -c - x <= -2
+33. -c - k <= -3
+34. -c + y <= 0
+35. -c + x <= 0
+36. -c + k <= 1
+analysis:563:DEBUG (_check) - rs: sat
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: Not(-1*c0 + -1*y0 <= -2)
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_0
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: -2 >= x0*z0 + -1*y0*z0 + c0 + -1*k0 + -1*x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_1
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_0', Not(-1*c0 + -1*y0 <= -2))]
+analysis:570:DEBUG (_check) - init_f: ZConj({And(z == X_z, k == X_k, 1 == x, 1 == y, 1 == c), Not(Not(-1*c1 + -1*y1 <= -2)), Not(-1*c0 + -1*y0 <= -2):c_0, And(And(z0 == z, k0 == k, x0 == x, y0 == y, c0 == c),
+    And(z1 == z,
+        k1 == k,
+        x1 == 1 + x*z,
+        y1 == y*z,
+        c1 == 1 + c)), True, -2 >= x0*z0 + -1*y0*z0 + c0 + -1*k0 + -1*x0:c_1})
+analysis:571:DEBUG (_check) - init_rs: False
+analysis:586:DEBUG (_check) - init_models: sat (0 models)
+lib:38:DEBUG (gen_rand_inps) - inps (0): Inps()
+lib:43:DEBUG (gen_rand_inps) - gen 108/100 random inps
+analysis:591:DEBUG (_check) - inps: Inps({Inp(ss=('z', 'k'), vs=(298, -300)), Inp(ss=('z', 'k'), vs=(-7, -291)), Inp(ss=('z', 'k'), vs=(26, -13)), Inp(ss=('z', 'k'), vs=(274, -278)), Inp(ss=('z', 'k'), vs=(-10, -5)), Inp(ss=('z', 'k'), vs=(277, -11)), Inp(ss=('z', 'k'), vs=(-13, 282)), Inp(ss=('z', 'k'), vs=(1, 6)), Inp(ss=('z', 'k'), vs=(-289, -281)), Inp(ss=('z', 'k'), vs=(-298, 4)), Inp(ss=('z', 'k'), vs=(-13, -273)), Inp(ss=('z', 'k'), vs=(6, 6)), Inp(ss=('z', 'k'), vs=(289, 10)), Inp(ss=('z', 'k'), vs=(286, -13)), Inp(ss=('z', 'k'), vs=(-8, 12)), Inp(ss=('z', 'k'), vs=(1, 295)), Inp(ss=('z', 'k'), vs=(4, -287)), Inp(ss=('z', 'k'), vs=(5, 4)), Inp(ss=('z', 'k'), vs=(-1, 3)), Inp(ss=('z', 'k'), vs=(-9, -3)), Inp(ss=('z', 'k'), vs=(-30, 274)), Inp(ss=('z', 'k'), vs=(8, -15)), Inp(ss=('z', 'k'), vs=(-276, -2)), Inp(ss=('z', 'k'), vs=(5, 288)), Inp(ss=('z', 'k'), vs=(-3, 295)), Inp(ss=('z', 'k'), vs=(-13, -13)), Inp(ss=('z', 'k'), vs=(7, -21)), Inp(ss=('z', 'k'), vs=(-281, 3)), Inp(ss=('z', 'k'), vs=(28, 7)), Inp(ss=('z', 'k'), vs=(-7, -275)), Inp(ss=('z', 'k'), vs=(-286, -21)), Inp(ss=('z', 'k'), vs=(9, 16)), Inp(ss=('z', 'k'), vs=(-9, 13)), Inp(ss=('z', 'k'), vs=(-22, 3)), Inp(ss=('z', 'k'), vs=(-5, -3)), Inp(ss=('z', 'k'), vs=(-10, 27)), Inp(ss=('z', 'k'), vs=(-8, 5)), Inp(ss=('z', 'k'), vs=(3, 6)), Inp(ss=('z', 'k'), vs=(2, -5)), Inp(ss=('z', 'k'), vs=(14, -10)), Inp(ss=('z', 'k'), vs=(286, 13)), Inp(ss=('z', 'k'), vs=(-3, 19)), Inp(ss=('z', 'k'), vs=(8, -22)), Inp(ss=('z', 'k'), vs=(11, 1)), Inp(ss=('z', 'k'), vs=(-284, 290)), Inp(ss=('z', 'k'), vs=(8, -272)), Inp(ss=('z', 'k'), vs=(-292, 5)), Inp(ss=('z', 'k'), vs=(-3, 9)), Inp(ss=('z', 'k'), vs=(-11, -3)), Inp(ss=('z', 'k'), vs=(-296, -6)), Inp(ss=('z', 'k'), vs=(6, 29)), Inp(ss=('z', 'k'), vs=(6, -6)), Inp(ss=('z', 'k'), vs=(-18, -23)), Inp(ss=('z', 'k'), vs=(12, 272)), Inp(ss=('z', 'k'), vs=(-290, 0)), Inp(ss=('z', 'k'), vs=(1, -5)), Inp(ss=('z', 'k'), vs=(12, 295)), Inp(ss=('z', 'k'), vs=(-30, 279)), Inp(ss=('z', 'k'), vs=(284, 9)), Inp(ss=('z', 'k'), vs=(279, 296)), Inp(ss=('z', 'k'), vs=(-3, 0)), Inp(ss=('z', 'k'), vs=(292, -278)), Inp(ss=('z', 'k'), vs=(287, -2)), Inp(ss=('z', 'k'), vs=(293, -5)), Inp(ss=('z', 'k'), vs=(-274, 21)), Inp(ss=('z', 'k'), vs=(-299, -14)), Inp(ss=('z', 'k'), vs=(293, -30)), Inp(ss=('z', 'k'), vs=(25, -19)), Inp(ss=('z', 'k'), vs=(-28, -276)), Inp(ss=('z', 'k'), vs=(279, 9)), Inp(ss=('z', 'k'), vs=(-14, -4)), Inp(ss=('z', 'k'), vs=(287, 279)), Inp(ss=('z', 'k'), vs=(23, 4)), Inp(ss=('z', 'k'), vs=(288, -3)), Inp(ss=('z', 'k'), vs=(271, 25)), Inp(ss=('z', 'k'), vs=(-10, -4)), Inp(ss=('z', 'k'), vs=(-9, 297)), Inp(ss=('z', 'k'), vs=(-16, 25)), Inp(ss=('z', 'k'), vs=(25, -3)), Inp(ss=('z', 'k'), vs=(16, 286)), Inp(ss=('z', 'k'), vs=(12, 291)), Inp(ss=('z', 'k'), vs=(-7, -19)), Inp(ss=('z', 'k'), vs=(15, 11)), Inp(ss=('z', 'k'), vs=(-299, -15)), Inp(ss=('z', 'k'), vs=(271, 8)), Inp(ss=('z', 'k'), vs=(-8, -1)), Inp(ss=('z', 'k'), vs=(-16, 275)), Inp(ss=('z', 'k'), vs=(25, -280)), Inp(ss=('z', 'k'), vs=(-13, -278)), Inp(ss=('z', 'k'), vs=(27, -285)), Inp(ss=('z', 'k'), vs=(-15, -13)), Inp(ss=('z', 'k'), vs=(5, -284)), Inp(ss=('z', 'k'), vs=(26, 18)), Inp(ss=('z', 'k'), vs=(-287, 5)), Inp(ss=('z', 'k'), vs=(28, -9)), Inp(ss=('z', 'k'), vs=(17, 7)), Inp(ss=('z', 'k'), vs=(-7, 25)), Inp(ss=('z', 'k'), vs=(12, -284)), Inp(ss=('z', 'k'), vs=(-285, 277)), Inp(ss=('z', 'k'), vs=(-6, 10)), Inp(ss=('z', 'k'), vs=(-290, 280)), Inp(ss=('z', 'k'), vs=(-280, -298)), Inp(ss=('z', 'k'), vs=(-297, -10)), Inp(ss=('z', 'k'), vs=(-14, -5)), Inp(ss=('z', 'k'), vs=(3, -13)), Inp(ss=('z', 'k'), vs=(-14, -292)), Inp(ss=('z', 'k'), vs=(281, 278)), Inp(ss=('z', 'k'), vs=(-298, -292))})
+analysis:542:DEBUG (_check) - rc: -2 >= x*z + -1*y*z + c + -1*k + -1*x:c_1
+analysis:547:DEBUG (_check) - rc_r: -2 >= x1*z1 + -1*y1*z1 + c1 + -1*k1 + -1*x1
+analysis:548:DEBUG (_check) - f: ZConj({Not(-1*c0 + -1*y0 <= -2):c_0, -2 >= x0*z0 + -1*y0*z0 + c0 + -1*k0 + -1*x0:c_1, Not(-2 >= x1*z1 + -1*y1*z1 + c1 + -1*k1 + -1*x1), And(And(z0 == z, k0 == k, x0 == x, y0 == y, c0 == c),
+    And(z1 == z,
+        k1 == k,
+        x1 == 1 + x*z,
+        y1 == y*z,
+        c1 == 1 + c))})
+analysis:563:DEBUG (_check) - rs: sat
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: Not(-1*c0 + -1*y0 <= -2)
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_0
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: -2 >= x0*z0 + -1*y0*z0 + c0 + -1*k0 + -1*x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_1
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_0', Not(-1*c0 + -1*y0 <= -2))]
+analysis:570:DEBUG (_check) - init_f: ZConj({Not(-2 >= x1*z1 + -1*y1*z1 + c1 + -1*k1 + -1*x1), Not(-1*c0 + -1*y0 <= -2):c_0, And(z == X_z, k == X_k, 1 == x, 1 == y, 1 == c), -2 >= x0*z0 + -1*y0*z0 + c0 + -1*k0 + -1*x0:c_1, And(And(z0 == z, k0 == k, x0 == x, y0 == y, c0 == c),
+    And(z1 == z,
+        k1 == k,
+        x1 == 1 + x*z,
+        y1 == y*z,
+        c1 == 1 + c)), True})
+analysis:571:DEBUG (_check) - init_rs: False
+analysis:586:DEBUG (_check) - init_models: sat (0 models)
+lib:38:DEBUG (gen_rand_inps) - inps (0): Inps()
+lib:43:DEBUG (gen_rand_inps) - gen 108/100 random inps
+analysis:591:DEBUG (_check) - inps: Inps({Inp(ss=('z', 'k'), vs=(16, -4)), Inp(ss=('z', 'k'), vs=(-2, 18)), Inp(ss=('z', 'k'), vs=(287, -11)), Inp(ss=('z', 'k'), vs=(-278, -2)), Inp(ss=('z', 'k'), vs=(270, 285)), Inp(ss=('z', 'k'), vs=(-23, 12)), Inp(ss=('z', 'k'), vs=(-4, -9)), Inp(ss=('z', 'k'), vs=(9, -24)), Inp(ss=('z', 'k'), vs=(-288, -1)), Inp(ss=('z', 'k'), vs=(-10, -283)), Inp(ss=('z', 'k'), vs=(290, 4)), Inp(ss=('z', 'k'), vs=(8, -8)), Inp(ss=('z', 'k'), vs=(1, -298)), Inp(ss=('z', 'k'), vs=(-293, 16)), Inp(ss=('z', 'k'), vs=(12, -283)), Inp(ss=('z', 'k'), vs=(-30, -287)), Inp(ss=('z', 'k'), vs=(-299, 7)), Inp(ss=('z', 'k'), vs=(-8, 12)), Inp(ss=('z', 'k'), vs=(-14, 279)), Inp(ss=('z', 'k'), vs=(-290, -2)), Inp(ss=('z', 'k'), vs=(-5, -1)), Inp(ss=('z', 'k'), vs=(-299, -12)), Inp(ss=('z', 'k'), vs=(0, -271)), Inp(ss=('z', 'k'), vs=(6, -3)), Inp(ss=('z', 'k'), vs=(23, 10)), Inp(ss=('z', 'k'), vs=(8, 294)), Inp(ss=('z', 'k'), vs=(-28, -22)), Inp(ss=('z', 'k'), vs=(23, -8)), Inp(ss=('z', 'k'), vs=(3, 290)), Inp(ss=('z', 'k'), vs=(-294, 18)), Inp(ss=('z', 'k'), vs=(289, -295)), Inp(ss=('z', 'k'), vs=(-3, 1)), Inp(ss=('z', 'k'), vs=(21, 28)), Inp(ss=('z', 'k'), vs=(-272, -291)), Inp(ss=('z', 'k'), vs=(14, 13)), Inp(ss=('z', 'k'), vs=(4, -12)), Inp(ss=('z', 'k'), vs=(293, 282)), Inp(ss=('z', 'k'), vs=(-4, 12)), Inp(ss=('z', 'k'), vs=(272, -12)), Inp(ss=('z', 'k'), vs=(23, -6)), Inp(ss=('z', 'k'), vs=(14, 272)), Inp(ss=('z', 'k'), vs=(-298, 279)), Inp(ss=('z', 'k'), vs=(-273, 6)), Inp(ss=('z', 'k'), vs=(2, 271)), Inp(ss=('z', 'k'), vs=(-282, 277)), Inp(ss=('z', 'k'), vs=(26, 271)), Inp(ss=('z', 'k'), vs=(-15, 4)), Inp(ss=('z', 'k'), vs=(10, -26)), Inp(ss=('z', 'k'), vs=(-6, 8)), Inp(ss=('z', 'k'), vs=(290, 11)), Inp(ss=('z', 'k'), vs=(-14, 297)), Inp(ss=('z', 'k'), vs=(3, 2)), Inp(ss=('z', 'k'), vs=(-30, -289)), Inp(ss=('z', 'k'), vs=(-279, -285)), Inp(ss=('z', 'k'), vs=(-21, -1)), Inp(ss=('z', 'k'), vs=(-300, 284)), Inp(ss=('z', 'k'), vs=(-2, -9)), Inp(ss=('z', 'k'), vs=(-287, -3)), Inp(ss=('z', 'k'), vs=(-15, 24)), Inp(ss=('z', 'k'), vs=(289, 1)), Inp(ss=('z', 'k'), vs=(14, 292)), Inp(ss=('z', 'k'), vs=(11, 11)), Inp(ss=('z', 'k'), vs=(21, -9)), Inp(ss=('z', 'k'), vs=(295, -288)), Inp(ss=('z', 'k'), vs=(274, -16)), Inp(ss=('z', 'k'), vs=(-288, 1)), Inp(ss=('z', 'k'), vs=(8, 4)), Inp(ss=('z', 'k'), vs=(-30, -29)), Inp(ss=('z', 'k'), vs=(-30, -5)), Inp(ss=('z', 'k'), vs=(6, -4)), Inp(ss=('z', 'k'), vs=(1, 27)), Inp(ss=('z', 'k'), vs=(-8, 14)), Inp(ss=('z', 'k'), vs=(286, 11)), Inp(ss=('z', 'k'), vs=(-7, -5)), Inp(ss=('z', 'k'), vs=(279, 0)), Inp(ss=('z', 'k'), vs=(0, -293)), Inp(ss=('z', 'k'), vs=(13, 11)), Inp(ss=('z', 'k'), vs=(-3, -290)), Inp(ss=('z', 'k'), vs=(-20, 270)), Inp(ss=('z', 'k'), vs=(283, -8)), Inp(ss=('z', 'k'), vs=(-296, -273)), Inp(ss=('z', 'k'), vs=(279, -288)), Inp(ss=('z', 'k'), vs=(270, 14)), Inp(ss=('z', 'k'), vs=(-287, -29)), Inp(ss=('z', 'k'), vs=(-13, -1)), Inp(ss=('z', 'k'), vs=(278, -10)), Inp(ss=('z', 'k'), vs=(1, 8)), Inp(ss=('z', 'k'), vs=(-3, -284)), Inp(ss=('z', 'k'), vs=(-5, 0)), Inp(ss=('z', 'k'), vs=(285, 295)), Inp(ss=('z', 'k'), vs=(-6, -11)), Inp(ss=('z', 'k'), vs=(-14, -20)), Inp(ss=('z', 'k'), vs=(-4, 272)), Inp(ss=('z', 'k'), vs=(-13, 283)), Inp(ss=('z', 'k'), vs=(2, 19)), Inp(ss=('z', 'k'), vs=(28, -9)), Inp(ss=('z', 'k'), vs=(-2, 299)), Inp(ss=('z', 'k'), vs=(29, -297)), Inp(ss=('z', 'k'), vs=(294, -8)), Inp(ss=('z', 'k'), vs=(9, -15)), Inp(ss=('z', 'k'), vs=(28, 3)), Inp(ss=('z', 'k'), vs=(10, -294)), Inp(ss=('z', 'k'), vs=(-4, 11)), Inp(ss=('z', 'k'), vs=(10, 21)), Inp(ss=('z', 'k'), vs=(-10, -23)), Inp(ss=('z', 'k'), vs=(-9, 0)), Inp(ss=('z', 'k'), vs=(-6, -273)), Inp(ss=('z', 'k'), vs=(-272, 11))})
+analysis:600:INFO (verify) - dg: defaultdict(<class 'list'>, {})
+analysis:601:INFO (verify) - label_d: defaultdict(<class 'str'>, {Not(-1*c + -1*y <= -2): 'c_0', -2 >= x*z + -1*y*z + c + -1*k + -1*x: 'c_1'})
+analysis:602:INFO (verify) - rev_label_d: {'c_0': Not(-1*c + -1*y <= -2), 'c_1': -2 >= x*z + -1*y*z + c + -1*k + -1*x}
+analysis:605:INFO (verify) - loop_cond_label: c_1
+analysis:609:INFO (verify) - mds_labels: set()
+analysis:610:INFO (verify) - mds: ZConj()
+lib:54:DEBUG (get_traces_from_inps) - inp_decls: I z, I k
+lib:55:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_17': (Symb(name='z', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace2_17': (Symb(name='z', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace3_17': (Symb(name='z', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 205.34ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 264.75ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 470.64ms
+lib:54:DEBUG (get_traces_from_inps) - inp_decls: I z, I k
+lib:55:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_17': (Symb(name='z', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace2_17': (Symb(name='z', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace3_17': (Symb(name='z', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 208.17ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 155.18ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 363.98ms
+utils.profiling:31:DEBUG (timed) - verify: 1283.05ms
+analysis:630:DEBUG (strengthen) - base_term_inps: 57
+analysis:631:DEBUG (strengthen) - term_inps: [Inp(ss=('z', 'k'), vs=(-298, 4)), Inp(ss=('z', 'k'), vs=(279, 9)), Inp(ss=('z', 'k'), vs=(28, 7)), Inp(ss=('z', 'k'), vs=(6, 29)), Inp(ss=('z', 'k'), vs=(289, 10)), Inp(ss=('z', 'k'), vs=(-9, 13)), Inp(ss=('z', 'k'), vs=(23, 4)), Inp(ss=('z', 'k'), vs=(26, 18)), Inp(ss=('z', 'k'), vs=(-22, 3)), Inp(ss=('z', 'k'), vs=(12, 272)), Inp(ss=('z', 'k'), vs=(-287, 5)), Inp(ss=('z', 'k'), vs=(-8, 12)), Inp(ss=('z', 'k'), vs=(271, 25)), Inp(ss=('z', 'k'), vs=(1, 295)), Inp(ss=('z', 'k'), vs=(-10, 27)), Inp(ss=('z', 'k'), vs=(17, 7)), Inp(ss=('z', 'k'), vs=(5, 4)), Inp(ss=('z', 'k'), vs=(3, 6)), Inp(ss=('z', 'k'), vs=(-30, 279)), Inp(ss=('z', 'k'), vs=(-16, 25)), Inp(ss=('z', 'k'), vs=(-3, 19)), Inp(ss=('z', 'k'), vs=(15, 11)), Inp(ss=('z', 'k'), vs=(1, 6)), Inp(ss=('z', 'k'), vs=(-281, 3)), Inp(ss=('z', 'k'), vs=(-3, 9)), Inp(ss=('z', 'k'), vs=(6, 6)), Inp(ss=('z', 'k'), vs=(9, 16)), Inp(ss=('z', 'k'), vs=(287, 279)), Inp(ss=('z', 'k'), vs=(-8, 5)), Inp(ss=('z', 'k'), vs=(12, 295)), Inp(ss=('z', 'k'), vs=(-9, 297)), Inp(ss=('z', 'k'), vs=(-7, 25)), Inp(ss=('z', 'k'), vs=(-30, 274)), Inp(ss=('z', 'k'), vs=(286, 13)), Inp(ss=('z', 'k'), vs=(12, 291)), Inp(ss=('z', 'k'), vs=(-290, 280)), Inp(ss=('z', 'k'), vs=(5, 288)), Inp(ss=('z', 'k'), vs=(-3, 295)), Inp(ss=('z', 'k'), vs=(-284, 290)), Inp(ss=('z', 'k'), vs=(-274, 21)), Inp(ss=('z', 'k'), vs=(271, 8)), Inp(ss=('z', 'k'), vs=(-13, 282)), Inp(ss=('z', 'k'), vs=(-292, 5)), Inp(ss=('z', 'k'), vs=(-16, 275)), Inp(ss=('z', 'k'), vs=(281, 278)), Inp(ss=('z', 'k'), vs=(279, 296)), Inp(ss=('z', 'k'), vs=(16, 286)), Inp(ss=('z', 'k'), vs=(-6, 10)), Inp(ss=('z', 'k'), vs=(-1, 3)), Inp(ss=('z', 'k'), vs=(284, 9)), Inp(ss=('z', 'k'), vs=(-285, 277))]
+analysis:632:DEBUG (strengthen) - mayloop_inps: 0
+analysis:633:DEBUG (strengthen) - rcs: ZConj({Not(-1*c + -1*y <= -2), -2 >= x*z + -1*y*z + c + -1*k + -1*x})
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_17]: 0
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_17]: 0
+lib:254:DEBUG (infer_from_traces) - invs: 
+analysis:637:DEBUG (strengthen) - mayloop_invs: ZConj()
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_17]: 200
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_17]: 200
+*** 'None', 0 locs, 0 invs (), 0 traces, 0 inps, time 0.01s, rand seed 1589472074.22, test 80 61:
+
+lib:254:DEBUG (infer_from_traces) - invs: vtrace2_17 (2 invs):
+1. c - k <= -1
+2. -k - z <= 10
+analysis:641:DEBUG (strengthen) - term_invs: ZConj({c + -1*k <= -1, 10 >= -1*k + -1*z})
+utils.profiling:31:DEBUG (timed) - strengthen: 1541.93ms
+analysis:630:DEBUG (strengthen) - base_term_inps: 60
+analysis:631:DEBUG (strengthen) - term_inps: [Inp(ss=('z', 'k'), vs=(3, 290)), Inp(ss=('z', 'k'), vs=(-6, 8)), Inp(ss=('z', 'k'), vs=(-294, 18)), Inp(ss=('z', 'k'), vs=(290, 11)), Inp(ss=('z', 'k'), vs=(285, 295)), Inp(ss=('z', 'k'), vs=(290, 4)), Inp(ss=('z', 'k'), vs=(-14, 297)), Inp(ss=('z', 'k'), vs=(1, 27)), Inp(ss=('z', 'k'), vs=(3, 2)), Inp(ss=('z', 'k'), vs=(-8, 14)), Inp(ss=('z', 'k'), vs=(21, 28)), Inp(ss=('z', 'k'), vs=(286, 11)), Inp(ss=('z', 'k'), vs=(-4, 272)), Inp(ss=('z', 'k'), vs=(-293, 16)), Inp(ss=('z', 'k'), vs=(-13, 283)), Inp(ss=('z', 'k'), vs=(14, 13)), Inp(ss=('z', 'k'), vs=(2, 19)), Inp(ss=('z', 'k'), vs=(-300, 284)), Inp(ss=('z', 'k'), vs=(-8, 12)), Inp(ss=('z', 'k'), vs=(-4, 12)), Inp(ss=('z', 'k'), vs=(-299, 7)), Inp(ss=('z', 'k'), vs=(293, 282)), Inp(ss=('z', 'k'), vs=(13, 11)), Inp(ss=('z', 'k'), vs=(-2, 299)), Inp(ss=('z', 'k'), vs=(-14, 279)), Inp(ss=('z', 'k'), vs=(-15, 24)), Inp(ss=('z', 'k'), vs=(-20, 270)), Inp(ss=('z', 'k'), vs=(14, 272)), Inp(ss=('z', 'k'), vs=(14, 292)), Inp(ss=('z', 'k'), vs=(28, 3)), Inp(ss=('z', 'k'), vs=(-2, 18)), Inp(ss=('z', 'k'), vs=(-298, 279)), Inp(ss=('z', 'k'), vs=(11, 11)), Inp(ss=('z', 'k'), vs=(-273, 6)), Inp(ss=('z', 'k'), vs=(270, 14)), Inp(ss=('z', 'k'), vs=(-4, 11)), Inp(ss=('z', 'k'), vs=(2, 271)), Inp(ss=('z', 'k'), vs=(10, 21)), Inp(ss=('z', 'k'), vs=(270, 285)), Inp(ss=('z', 'k'), vs=(23, 10)), Inp(ss=('z', 'k'), vs=(-282, 277)), Inp(ss=('z', 'k'), vs=(-15, 4)), Inp(ss=('z', 'k'), vs=(8, 4)), Inp(ss=('z', 'k'), vs=(1, 8)), Inp(ss=('z', 'k'), vs=(-23, 12)), Inp(ss=('z', 'k'), vs=(8, 294)), Inp(ss=('z', 'k'), vs=(26, 271)), Inp(ss=('z', 'k'), vs=(-272, 11))]
+analysis:632:DEBUG (strengthen) - mayloop_inps: 0
+analysis:633:DEBUG (strengthen) - rcs: ZConj({Not(-1*c + -1*y <= -2), -2 >= x*z + -1*y*z + c + -1*k + -1*x})
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_17]: 0
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_17]: 0
+*** 'None', 1 locs, 2 invs (2 Oct), 400 traces, 0 inps, time 1.51s, rand seed 1589472074.22, test 80 61:
+vtrace2_17 (2 invs):
+1. c - k <= -1
+2. -k - z <= 10
+lib:254:DEBUG (infer_from_traces) - invs: 
+analysis:637:DEBUG (strengthen) - mayloop_invs: ZConj()
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_17]: 200
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_17]: 200
+*** 'None', 0 locs, 0 invs (), 0 traces, 0 inps, time 0.02s, rand seed 1589472074.22, test 80 61:
+
+lib:254:DEBUG (infer_from_traces) - invs: vtrace2_17 (2 invs):
+1. -k <= -8
+2. -c <= -1
+analysis:641:DEBUG (strengthen) - term_invs: ZConj({k >= 8, c >= 1})
+utils.profiling:31:DEBUG (timed) - strengthen: 2397.34ms
+analysis:702:DEBUG (_stat_candidate_rcs) - stat (39 total): defaultdict(<class 'int'>, {1: 35, 2: 4})
+analysis:729:DEBUG (prove_nonterm_vloop) - PROVE_NT DEPTH 1: ZConj({-2 >= x*z + -1*y*z + c + -1*k + -1*x, Not(x >= 1)})
+analysis:505:DEBUG (verify) - loop_transrel: And(And(z0 == z, k0 == k, x0 == x, y0 == y, c0 == c),
+    And(z1 == z,
+        k1 == k,
+        x1 == 1 + x*z,
+        y1 == y*z,
+        c1 == 1 + c))
+analysis:506:DEBUG (verify) - loop_cond: -2 >= x*z + -1*y*z + c + -1*k + -1*x
+analysis:507:DEBUG (verify) - rcs: ZConj({-2 >= x*z + -1*y*z + c + -1*k + -1*x, Not(x >= 1)})
+analysis:521:DEBUG (verify) - labeled_rcs: ZConj({Not(x >= 1):c_1, -2 >= x*z + -1*y*z + c + -1*k + -1*x:c_0})
+analysis:528:DEBUG (verify) - transrel_rcs: ZConj({-2 >= x0*z0 + -1*y0*z0 + c0 + -1*k0 + -1*x0:c_0, And(And(z0 == z, k0 == k, x0 == x, y0 == y, c0 == c),
+    And(z1 == z,
+        k1 == k,
+        x1 == 1 + x*z,
+        y1 == y*z,
+        c1 == 1 + c)), Not(x0 >= 1):c_1})
+analysis:533:DEBUG (verify) - init_transrel_rcs: ZConj({And(z == X_z, k == X_k, 1 == x, 1 == y, 1 == c), And(And(z0 == z, k0 == k, x0 == x, y0 == y, c0 == c),
+    And(z1 == z,
+        k1 == k,
+        x1 == 1 + x*z,
+        y1 == y*z,
+        c1 == 1 + c)), -2 >= x0*z0 + -1*y0*z0 + c0 + -1*k0 + -1*x0:c_0, Not(x0 >= 1):c_1, True})
+analysis:542:DEBUG (_check) - rc: -2 >= x*z + -1*y*z + c + -1*k + -1*x:c_0
+analysis:547:DEBUG (_check) - rc_r: -2 >= x1*z1 + -1*y1*z1 + c1 + -1*k1 + -1*x1
+analysis:548:DEBUG (_check) - f: ZConj({-2 >= x0*z0 + -1*y0*z0 + c0 + -1*k0 + -1*x0:c_0, Not(-2 >= x1*z1 + -1*y1*z1 + c1 + -1*k1 + -1*x1), And(And(z0 == z, k0 == k, x0 == x, y0 == y, c0 == c),
+    And(z1 == z,
+        k1 == k,
+        x1 == 1 + x*z,
+        y1 == y*z,
+        c1 == 1 + c)), Not(x0 >= 1):c_1})
+*** 'None', 1 locs, 2 invs (2 Oct), 400 traces, 0 inps, time 2.35s, rand seed 1589472074.22, test 80 61:
+vtrace2_17 (2 invs):
+1. -k <= -8
+2. -c <= -1
+analysis:563:DEBUG (_check) - rs: sat
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: -2 >= x0*z0 + -1*y0*z0 + c0 + -1*k0 + -1*x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_0
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: Not(x0 >= 1)
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_1
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_1', Not(x0 >= 1))]
+analysis:570:DEBUG (_check) - init_f: ZConj({Not(-2 >= x1*z1 + -1*y1*z1 + c1 + -1*k1 + -1*x1), -2 >= x0*z0 + -1*y0*z0 + c0 + -1*k0 + -1*x0:c_0, And(z == X_z, k == X_k, 1 == x, 1 == y, 1 == c), Not(x0 >= 1):c_1, And(And(z0 == z, k0 == k, x0 == x, y0 == y, c0 == c),
+    And(z1 == z,
+        k1 == k,
+        x1 == 1 + x*z,
+        y1 == y*z,
+        c1 == 1 + c)), True})
+analysis:571:DEBUG (_check) - init_rs: False
+analysis:586:DEBUG (_check) - init_models: sat (0 models)
+lib:38:DEBUG (gen_rand_inps) - inps (0): Inps()
+lib:43:DEBUG (gen_rand_inps) - gen 108/100 random inps
+analysis:591:DEBUG (_check) - inps: Inps({Inp(ss=('z', 'k'), vs=(298, -300)), Inp(ss=('z', 'k'), vs=(-7, -291)), Inp(ss=('z', 'k'), vs=(26, -13)), Inp(ss=('z', 'k'), vs=(274, -278)), Inp(ss=('z', 'k'), vs=(-10, -5)), Inp(ss=('z', 'k'), vs=(277, -11)), Inp(ss=('z', 'k'), vs=(-13, 282)), Inp(ss=('z', 'k'), vs=(1, 6)), Inp(ss=('z', 'k'), vs=(-289, -281)), Inp(ss=('z', 'k'), vs=(-298, 4)), Inp(ss=('z', 'k'), vs=(-13, -273)), Inp(ss=('z', 'k'), vs=(6, 6)), Inp(ss=('z', 'k'), vs=(289, 10)), Inp(ss=('z', 'k'), vs=(286, -13)), Inp(ss=('z', 'k'), vs=(-8, 12)), Inp(ss=('z', 'k'), vs=(1, 295)), Inp(ss=('z', 'k'), vs=(4, -287)), Inp(ss=('z', 'k'), vs=(5, 4)), Inp(ss=('z', 'k'), vs=(-1, 3)), Inp(ss=('z', 'k'), vs=(-9, -3)), Inp(ss=('z', 'k'), vs=(-30, 274)), Inp(ss=('z', 'k'), vs=(8, -15)), Inp(ss=('z', 'k'), vs=(-276, -2)), Inp(ss=('z', 'k'), vs=(5, 288)), Inp(ss=('z', 'k'), vs=(-3, 295)), Inp(ss=('z', 'k'), vs=(-13, -13)), Inp(ss=('z', 'k'), vs=(7, -21)), Inp(ss=('z', 'k'), vs=(-281, 3)), Inp(ss=('z', 'k'), vs=(28, 7)), Inp(ss=('z', 'k'), vs=(-7, -275)), Inp(ss=('z', 'k'), vs=(-286, -21)), Inp(ss=('z', 'k'), vs=(9, 16)), Inp(ss=('z', 'k'), vs=(-9, 13)), Inp(ss=('z', 'k'), vs=(-22, 3)), Inp(ss=('z', 'k'), vs=(-5, -3)), Inp(ss=('z', 'k'), vs=(-10, 27)), Inp(ss=('z', 'k'), vs=(-8, 5)), Inp(ss=('z', 'k'), vs=(3, 6)), Inp(ss=('z', 'k'), vs=(2, -5)), Inp(ss=('z', 'k'), vs=(14, -10)), Inp(ss=('z', 'k'), vs=(286, 13)), Inp(ss=('z', 'k'), vs=(-3, 19)), Inp(ss=('z', 'k'), vs=(8, -22)), Inp(ss=('z', 'k'), vs=(11, 1)), Inp(ss=('z', 'k'), vs=(-284, 290)), Inp(ss=('z', 'k'), vs=(8, -272)), Inp(ss=('z', 'k'), vs=(-292, 5)), Inp(ss=('z', 'k'), vs=(-3, 9)), Inp(ss=('z', 'k'), vs=(-11, -3)), Inp(ss=('z', 'k'), vs=(-296, -6)), Inp(ss=('z', 'k'), vs=(6, 29)), Inp(ss=('z', 'k'), vs=(6, -6)), Inp(ss=('z', 'k'), vs=(-18, -23)), Inp(ss=('z', 'k'), vs=(12, 272)), Inp(ss=('z', 'k'), vs=(-290, 0)), Inp(ss=('z', 'k'), vs=(1, -5)), Inp(ss=('z', 'k'), vs=(12, 295)), Inp(ss=('z', 'k'), vs=(-30, 279)), Inp(ss=('z', 'k'), vs=(284, 9)), Inp(ss=('z', 'k'), vs=(279, 296)), Inp(ss=('z', 'k'), vs=(-3, 0)), Inp(ss=('z', 'k'), vs=(292, -278)), Inp(ss=('z', 'k'), vs=(287, -2)), Inp(ss=('z', 'k'), vs=(293, -5)), Inp(ss=('z', 'k'), vs=(-274, 21)), Inp(ss=('z', 'k'), vs=(-299, -14)), Inp(ss=('z', 'k'), vs=(293, -30)), Inp(ss=('z', 'k'), vs=(25, -19)), Inp(ss=('z', 'k'), vs=(-28, -276)), Inp(ss=('z', 'k'), vs=(279, 9)), Inp(ss=('z', 'k'), vs=(-14, -4)), Inp(ss=('z', 'k'), vs=(287, 279)), Inp(ss=('z', 'k'), vs=(23, 4)), Inp(ss=('z', 'k'), vs=(288, -3)), Inp(ss=('z', 'k'), vs=(271, 25)), Inp(ss=('z', 'k'), vs=(-10, -4)), Inp(ss=('z', 'k'), vs=(-9, 297)), Inp(ss=('z', 'k'), vs=(-16, 25)), Inp(ss=('z', 'k'), vs=(25, -3)), Inp(ss=('z', 'k'), vs=(16, 286)), Inp(ss=('z', 'k'), vs=(12, 291)), Inp(ss=('z', 'k'), vs=(-7, -19)), Inp(ss=('z', 'k'), vs=(15, 11)), Inp(ss=('z', 'k'), vs=(-299, -15)), Inp(ss=('z', 'k'), vs=(271, 8)), Inp(ss=('z', 'k'), vs=(-8, -1)), Inp(ss=('z', 'k'), vs=(-16, 275)), Inp(ss=('z', 'k'), vs=(25, -280)), Inp(ss=('z', 'k'), vs=(-13, -278)), Inp(ss=('z', 'k'), vs=(27, -285)), Inp(ss=('z', 'k'), vs=(-15, -13)), Inp(ss=('z', 'k'), vs=(5, -284)), Inp(ss=('z', 'k'), vs=(26, 18)), Inp(ss=('z', 'k'), vs=(-287, 5)), Inp(ss=('z', 'k'), vs=(28, -9)), Inp(ss=('z', 'k'), vs=(17, 7)), Inp(ss=('z', 'k'), vs=(-7, 25)), Inp(ss=('z', 'k'), vs=(12, -284)), Inp(ss=('z', 'k'), vs=(-285, 277)), Inp(ss=('z', 'k'), vs=(-6, 10)), Inp(ss=('z', 'k'), vs=(-290, 280)), Inp(ss=('z', 'k'), vs=(-280, -298)), Inp(ss=('z', 'k'), vs=(-297, -10)), Inp(ss=('z', 'k'), vs=(-14, -5)), Inp(ss=('z', 'k'), vs=(3, -13)), Inp(ss=('z', 'k'), vs=(-14, -292)), Inp(ss=('z', 'k'), vs=(281, 278)), Inp(ss=('z', 'k'), vs=(-298, -292))})
+analysis:542:DEBUG (_check) - rc: Not(x >= 1):c_1
+analysis:547:DEBUG (_check) - rc_r: Not(x1 >= 1)
+analysis:548:DEBUG (_check) - f: ZConj({Not(Not(x1 >= 1)), -2 >= x0*z0 + -1*y0*z0 + c0 + -1*k0 + -1*x0:c_0, And(And(z0 == z, k0 == k, x0 == x, y0 == y, c0 == c),
+    And(z1 == z,
+        k1 == k,
+        x1 == 1 + x*z,
+        y1 == y*z,
+        c1 == 1 + c)), Not(x0 >= 1):c_1})
+analysis:563:DEBUG (_check) - rs: sat
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: Not(x0 >= 1)
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_1
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: -2 >= x0*z0 + -1*y0*z0 + c0 + -1*k0 + -1*x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_0
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_1', Not(x0 >= 1))]
+analysis:570:DEBUG (_check) - init_f: ZConj({And(z == X_z, k == X_k, 1 == x, 1 == y, 1 == c), Not(x0 >= 1):c_1, -2 >= x0*z0 + -1*y0*z0 + c0 + -1*k0 + -1*x0:c_0, And(And(z0 == z, k0 == k, x0 == x, y0 == y, c0 == c),
+    And(z1 == z,
+        k1 == k,
+        x1 == 1 + x*z,
+        y1 == y*z,
+        c1 == 1 + c)), True, Not(Not(x1 >= 1))})
+analysis:571:DEBUG (_check) - init_rs: False
+analysis:586:DEBUG (_check) - init_models: sat (0 models)
+lib:38:DEBUG (gen_rand_inps) - inps (0): Inps()
+lib:43:DEBUG (gen_rand_inps) - gen 108/100 random inps
+analysis:591:DEBUG (_check) - inps: Inps({Inp(ss=('z', 'k'), vs=(16, -4)), Inp(ss=('z', 'k'), vs=(-2, 18)), Inp(ss=('z', 'k'), vs=(287, -11)), Inp(ss=('z', 'k'), vs=(-278, -2)), Inp(ss=('z', 'k'), vs=(270, 285)), Inp(ss=('z', 'k'), vs=(-23, 12)), Inp(ss=('z', 'k'), vs=(-4, -9)), Inp(ss=('z', 'k'), vs=(9, -24)), Inp(ss=('z', 'k'), vs=(-288, -1)), Inp(ss=('z', 'k'), vs=(-10, -283)), Inp(ss=('z', 'k'), vs=(290, 4)), Inp(ss=('z', 'k'), vs=(8, -8)), Inp(ss=('z', 'k'), vs=(1, -298)), Inp(ss=('z', 'k'), vs=(-293, 16)), Inp(ss=('z', 'k'), vs=(12, -283)), Inp(ss=('z', 'k'), vs=(-30, -287)), Inp(ss=('z', 'k'), vs=(-299, 7)), Inp(ss=('z', 'k'), vs=(-8, 12)), Inp(ss=('z', 'k'), vs=(-14, 279)), Inp(ss=('z', 'k'), vs=(-290, -2)), Inp(ss=('z', 'k'), vs=(-5, -1)), Inp(ss=('z', 'k'), vs=(-299, -12)), Inp(ss=('z', 'k'), vs=(0, -271)), Inp(ss=('z', 'k'), vs=(6, -3)), Inp(ss=('z', 'k'), vs=(23, 10)), Inp(ss=('z', 'k'), vs=(8, 294)), Inp(ss=('z', 'k'), vs=(-28, -22)), Inp(ss=('z', 'k'), vs=(23, -8)), Inp(ss=('z', 'k'), vs=(3, 290)), Inp(ss=('z', 'k'), vs=(-294, 18)), Inp(ss=('z', 'k'), vs=(289, -295)), Inp(ss=('z', 'k'), vs=(-3, 1)), Inp(ss=('z', 'k'), vs=(21, 28)), Inp(ss=('z', 'k'), vs=(-272, -291)), Inp(ss=('z', 'k'), vs=(14, 13)), Inp(ss=('z', 'k'), vs=(4, -12)), Inp(ss=('z', 'k'), vs=(293, 282)), Inp(ss=('z', 'k'), vs=(-4, 12)), Inp(ss=('z', 'k'), vs=(272, -12)), Inp(ss=('z', 'k'), vs=(23, -6)), Inp(ss=('z', 'k'), vs=(14, 272)), Inp(ss=('z', 'k'), vs=(-298, 279)), Inp(ss=('z', 'k'), vs=(-273, 6)), Inp(ss=('z', 'k'), vs=(2, 271)), Inp(ss=('z', 'k'), vs=(-282, 277)), Inp(ss=('z', 'k'), vs=(26, 271)), Inp(ss=('z', 'k'), vs=(-15, 4)), Inp(ss=('z', 'k'), vs=(10, -26)), Inp(ss=('z', 'k'), vs=(-6, 8)), Inp(ss=('z', 'k'), vs=(290, 11)), Inp(ss=('z', 'k'), vs=(-14, 297)), Inp(ss=('z', 'k'), vs=(3, 2)), Inp(ss=('z', 'k'), vs=(-30, -289)), Inp(ss=('z', 'k'), vs=(-279, -285)), Inp(ss=('z', 'k'), vs=(-21, -1)), Inp(ss=('z', 'k'), vs=(-300, 284)), Inp(ss=('z', 'k'), vs=(-2, -9)), Inp(ss=('z', 'k'), vs=(-287, -3)), Inp(ss=('z', 'k'), vs=(-15, 24)), Inp(ss=('z', 'k'), vs=(289, 1)), Inp(ss=('z', 'k'), vs=(14, 292)), Inp(ss=('z', 'k'), vs=(11, 11)), Inp(ss=('z', 'k'), vs=(21, -9)), Inp(ss=('z', 'k'), vs=(295, -288)), Inp(ss=('z', 'k'), vs=(274, -16)), Inp(ss=('z', 'k'), vs=(-288, 1)), Inp(ss=('z', 'k'), vs=(8, 4)), Inp(ss=('z', 'k'), vs=(-30, -29)), Inp(ss=('z', 'k'), vs=(-30, -5)), Inp(ss=('z', 'k'), vs=(6, -4)), Inp(ss=('z', 'k'), vs=(1, 27)), Inp(ss=('z', 'k'), vs=(-8, 14)), Inp(ss=('z', 'k'), vs=(286, 11)), Inp(ss=('z', 'k'), vs=(-7, -5)), Inp(ss=('z', 'k'), vs=(279, 0)), Inp(ss=('z', 'k'), vs=(0, -293)), Inp(ss=('z', 'k'), vs=(13, 11)), Inp(ss=('z', 'k'), vs=(-3, -290)), Inp(ss=('z', 'k'), vs=(-20, 270)), Inp(ss=('z', 'k'), vs=(283, -8)), Inp(ss=('z', 'k'), vs=(-296, -273)), Inp(ss=('z', 'k'), vs=(279, -288)), Inp(ss=('z', 'k'), vs=(270, 14)), Inp(ss=('z', 'k'), vs=(-287, -29)), Inp(ss=('z', 'k'), vs=(-13, -1)), Inp(ss=('z', 'k'), vs=(278, -10)), Inp(ss=('z', 'k'), vs=(1, 8)), Inp(ss=('z', 'k'), vs=(-3, -284)), Inp(ss=('z', 'k'), vs=(-5, 0)), Inp(ss=('z', 'k'), vs=(285, 295)), Inp(ss=('z', 'k'), vs=(-6, -11)), Inp(ss=('z', 'k'), vs=(-14, -20)), Inp(ss=('z', 'k'), vs=(-4, 272)), Inp(ss=('z', 'k'), vs=(-13, 283)), Inp(ss=('z', 'k'), vs=(2, 19)), Inp(ss=('z', 'k'), vs=(28, -9)), Inp(ss=('z', 'k'), vs=(-2, 299)), Inp(ss=('z', 'k'), vs=(29, -297)), Inp(ss=('z', 'k'), vs=(294, -8)), Inp(ss=('z', 'k'), vs=(9, -15)), Inp(ss=('z', 'k'), vs=(28, 3)), Inp(ss=('z', 'k'), vs=(10, -294)), Inp(ss=('z', 'k'), vs=(-4, 11)), Inp(ss=('z', 'k'), vs=(10, 21)), Inp(ss=('z', 'k'), vs=(-10, -23)), Inp(ss=('z', 'k'), vs=(-9, 0)), Inp(ss=('z', 'k'), vs=(-6, -273)), Inp(ss=('z', 'k'), vs=(-272, 11))})
+analysis:600:INFO (verify) - dg: defaultdict(<class 'list'>, {})
+analysis:601:INFO (verify) - label_d: defaultdict(<class 'str'>, {-2 >= x*z + -1*y*z + c + -1*k + -1*x: 'c_0', Not(x >= 1): 'c_1'})
+analysis:602:INFO (verify) - rev_label_d: {'c_0': -2 >= x*z + -1*y*z + c + -1*k + -1*x, 'c_1': Not(x >= 1)}
+analysis:605:INFO (verify) - loop_cond_label: c_0
+analysis:609:INFO (verify) - mds_labels: set()
+analysis:610:INFO (verify) - mds: ZConj()
+lib:54:DEBUG (get_traces_from_inps) - inp_decls: I z, I k
+lib:55:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_17': (Symb(name='z', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace2_17': (Symb(name='z', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace3_17': (Symb(name='z', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 0.31ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 260.23ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 261.11ms
+lib:54:DEBUG (get_traces_from_inps) - inp_decls: I z, I k
+lib:55:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_17': (Symb(name='z', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace2_17': (Symb(name='z', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace3_17': (Symb(name='z', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 0.27ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 566.32ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 567.23ms
+utils.profiling:31:DEBUG (timed) - verify: 1581.63ms
+analysis:630:DEBUG (strengthen) - base_term_inps: 57
+analysis:631:DEBUG (strengthen) - term_inps: [Inp(ss=('z', 'k'), vs=(28, 7)), Inp(ss=('z', 'k'), vs=(-298, 4)), Inp(ss=('z', 'k'), vs=(279, 9)), Inp(ss=('z', 'k'), vs=(6, 29)), Inp(ss=('z', 'k'), vs=(6, 6)), Inp(ss=('z', 'k'), vs=(9, 16)), Inp(ss=('z', 'k'), vs=(287, 279)), Inp(ss=('z', 'k'), vs=(289, 10)), Inp(ss=('z', 'k'), vs=(-9, 13)), Inp(ss=('z', 'k'), vs=(23, 4)), Inp(ss=('z', 'k'), vs=(26, 18)), Inp(ss=('z', 'k'), vs=(-22, 3)), Inp(ss=('z', 'k'), vs=(12, 272)), Inp(ss=('z', 'k'), vs=(-287, 5)), Inp(ss=('z', 'k'), vs=(-8, 12)), Inp(ss=('z', 'k'), vs=(271, 25)), Inp(ss=('z', 'k'), vs=(1, 295)), Inp(ss=('z', 'k'), vs=(-10, 27)), Inp(ss=('z', 'k'), vs=(17, 7)), Inp(ss=('z', 'k'), vs=(5, 4)), Inp(ss=('z', 'k'), vs=(3, 6)), Inp(ss=('z', 'k'), vs=(-30, 279)), Inp(ss=('z', 'k'), vs=(-16, 25)), Inp(ss=('z', 'k'), vs=(-8, 5)), Inp(ss=('z', 'k'), vs=(12, 295)), Inp(ss=('z', 'k'), vs=(-9, 297)), Inp(ss=('z', 'k'), vs=(-7, 25)), Inp(ss=('z', 'k'), vs=(-1, 3)), Inp(ss=('z', 'k'), vs=(284, 9)), Inp(ss=('z', 'k'), vs=(-285, 277)), Inp(ss=('z', 'k'), vs=(279, 296)), Inp(ss=('z', 'k'), vs=(16, 286)), Inp(ss=('z', 'k'), vs=(-6, 10)), Inp(ss=('z', 'k'), vs=(-3, 19)), Inp(ss=('z', 'k'), vs=(-30, 274)), Inp(ss=('z', 'k'), vs=(286, 13)), Inp(ss=('z', 'k'), vs=(12, 291)), Inp(ss=('z', 'k'), vs=(-290, 280)), Inp(ss=('z', 'k'), vs=(15, 11)), Inp(ss=('z', 'k'), vs=(5, 288)), Inp(ss=('z', 'k'), vs=(-3, 295)), Inp(ss=('z', 'k'), vs=(-284, 290)), Inp(ss=('z', 'k'), vs=(-274, 21)), Inp(ss=('z', 'k'), vs=(271, 8)), Inp(ss=('z', 'k'), vs=(1, 6)), Inp(ss=('z', 'k'), vs=(-281, 3)), Inp(ss=('z', 'k'), vs=(-3, 9)), Inp(ss=('z', 'k'), vs=(-13, 282)), Inp(ss=('z', 'k'), vs=(-292, 5)), Inp(ss=('z', 'k'), vs=(-16, 275)), Inp(ss=('z', 'k'), vs=(281, 278))]
+analysis:632:DEBUG (strengthen) - mayloop_inps: 0
+analysis:633:DEBUG (strengthen) - rcs: ZConj({-2 >= x*z + -1*y*z + c + -1*k + -1*x, Not(x >= 1)})
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_17]: 0
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_17]: 0
+lib:254:DEBUG (infer_from_traces) - invs: 
+analysis:637:DEBUG (strengthen) - mayloop_invs: ZConj()
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_17]: 200
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_17]: 200
+*** 'None', 0 locs, 0 invs (), 0 traces, 0 inps, time 0.06s, rand seed 1589472074.22, test 80 61:
+
+lib:254:DEBUG (infer_from_traces) - invs: vtrace2_17 (2 invs):
+1. -c <= -1
+2. -c - k <= -5
+analysis:641:DEBUG (strengthen) - term_invs: ZConj({-1*c + -1*k <= -5, c >= 1})
+utils.profiling:31:DEBUG (timed) - strengthen: 3785.19ms
+analysis:630:DEBUG (strengthen) - base_term_inps: 60
+analysis:631:DEBUG (strengthen) - term_inps: [Inp(ss=('z', 'k'), vs=(3, 290)), Inp(ss=('z', 'k'), vs=(-6, 8)), Inp(ss=('z', 'k'), vs=(-294, 18)), Inp(ss=('z', 'k'), vs=(290, 11)), Inp(ss=('z', 'k'), vs=(285, 295)), Inp(ss=('z', 'k'), vs=(3, 2)), Inp(ss=('z', 'k'), vs=(-8, 14)), Inp(ss=('z', 'k'), vs=(290, 4)), Inp(ss=('z', 'k'), vs=(-14, 297)), Inp(ss=('z', 'k'), vs=(1, 27)), Inp(ss=('z', 'k'), vs=(21, 28)), Inp(ss=('z', 'k'), vs=(286, 11)), Inp(ss=('z', 'k'), vs=(-4, 272)), Inp(ss=('z', 'k'), vs=(-293, 16)), Inp(ss=('z', 'k'), vs=(-13, 283)), Inp(ss=('z', 'k'), vs=(-300, 284)), Inp(ss=('z', 'k'), vs=(14, 13)), Inp(ss=('z', 'k'), vs=(2, 19)), Inp(ss=('z', 'k'), vs=(-8, 12)), Inp(ss=('z', 'k'), vs=(-4, 12)), Inp(ss=('z', 'k'), vs=(-299, 7)), Inp(ss=('z', 'k'), vs=(293, 282)), Inp(ss=('z', 'k'), vs=(13, 11)), Inp(ss=('z', 'k'), vs=(-2, 299)), Inp(ss=('z', 'k'), vs=(-14, 279)), Inp(ss=('z', 'k'), vs=(-15, 24)), Inp(ss=('z', 'k'), vs=(-20, 270)), Inp(ss=('z', 'k'), vs=(-273, 6)), Inp(ss=('z', 'k'), vs=(270, 14)), Inp(ss=('z', 'k'), vs=(-4, 11)), Inp(ss=('z', 'k'), vs=(14, 272)), Inp(ss=('z', 'k'), vs=(14, 292)), Inp(ss=('z', 'k'), vs=(28, 3)), Inp(ss=('z', 'k'), vs=(-2, 18)), Inp(ss=('z', 'k'), vs=(-298, 279)), Inp(ss=('z', 'k'), vs=(11, 11)), Inp(ss=('z', 'k'), vs=(2, 271)), Inp(ss=('z', 'k'), vs=(10, 21)), Inp(ss=('z', 'k'), vs=(-15, 4)), Inp(ss=('z', 'k'), vs=(8, 4)), Inp(ss=('z', 'k'), vs=(1, 8)), Inp(ss=('z', 'k'), vs=(270, 285)), Inp(ss=('z', 'k'), vs=(23, 10)), Inp(ss=('z', 'k'), vs=(-282, 277)), Inp(ss=('z', 'k'), vs=(-23, 12)), Inp(ss=('z', 'k'), vs=(8, 294)), Inp(ss=('z', 'k'), vs=(26, 271)), Inp(ss=('z', 'k'), vs=(-272, 11))]
+analysis:632:DEBUG (strengthen) - mayloop_inps: 0
+analysis:633:DEBUG (strengthen) - rcs: ZConj({-2 >= x*z + -1*y*z + c + -1*k + -1*x, Not(x >= 1)})
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_17]: 0
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_17]: 0
+*** 'None', 1 locs, 2 invs (2 Oct), 400 traces, 0 inps, time 3.70s, rand seed 1589472074.22, test 80 61:
+vtrace2_17 (2 invs):
+1. -c <= -1
+2. -c - k <= -5
+lib:254:DEBUG (infer_from_traces) - invs: 
+analysis:637:DEBUG (strengthen) - mayloop_invs: ZConj()
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_17]: 200
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_17]: 200
+*** 'None', 0 locs, 0 invs (), 0 traces, 0 inps, time 0.02s, rand seed 1589472074.22, test 80 61:
+
+lib:254:DEBUG (infer_from_traces) - invs: vtrace2_17 (4 invs):
+1. c - k <= -1
+2. -k <= -3
+3. -c <= -1
+4. -c - k <= -4
+analysis:641:DEBUG (strengthen) - term_invs: ZConj({c + -1*k <= -1, -1*c + -1*k <= -4, k >= 3, c >= 1})
+utils.profiling:31:DEBUG (timed) - strengthen: 1597.93ms
+analysis:702:DEBUG (_stat_candidate_rcs) - stat (44 total): defaultdict(<class 'int'>, {1: 34, 2: 10})
+analysis:729:DEBUG (prove_nonterm_vloop) - PROVE_NT DEPTH 1: ZConj({Not(0 >= c + -1*y), -2 >= x*z + -1*y*z + c + -1*k + -1*x})
+analysis:505:DEBUG (verify) - loop_transrel: And(And(z0 == z, k0 == k, x0 == x, y0 == y, c0 == c),
+    And(z1 == z,
+        k1 == k,
+        x1 == 1 + x*z,
+        y1 == y*z,
+        c1 == 1 + c))
+analysis:506:DEBUG (verify) - loop_cond: -2 >= x*z + -1*y*z + c + -1*k + -1*x
+analysis:507:DEBUG (verify) - rcs: ZConj({Not(0 >= c + -1*y), -2 >= x*z + -1*y*z + c + -1*k + -1*x})
+analysis:521:DEBUG (verify) - labeled_rcs: ZConj({-2 >= x*z + -1*y*z + c + -1*k + -1*x:c_1, Not(0 >= c + -1*y):c_0})
+analysis:528:DEBUG (verify) - transrel_rcs: ZConj({-2 >= x0*z0 + -1*y0*z0 + c0 + -1*k0 + -1*x0:c_1, Not(0 >= c0 + -1*y0):c_0, And(And(z0 == z, k0 == k, x0 == x, y0 == y, c0 == c),
+    And(z1 == z,
+        k1 == k,
+        x1 == 1 + x*z,
+        y1 == y*z,
+        c1 == 1 + c))})
+analysis:533:DEBUG (verify) - init_transrel_rcs: ZConj({Not(0 >= c0 + -1*y0):c_0, And(z == X_z, k == X_k, 1 == x, 1 == y, 1 == c), -2 >= x0*z0 + -1*y0*z0 + c0 + -1*k0 + -1*x0:c_1, And(And(z0 == z, k0 == k, x0 == x, y0 == y, c0 == c),
+    And(z1 == z,
+        k1 == k,
+        x1 == 1 + x*z,
+        y1 == y*z,
+        c1 == 1 + c)), True})
+analysis:542:DEBUG (_check) - rc: Not(0 >= c + -1*y):c_0
+analysis:547:DEBUG (_check) - rc_r: Not(0 >= c1 + -1*y1)
+analysis:548:DEBUG (_check) - f: ZConj({Not(Not(0 >= c1 + -1*y1)), Not(0 >= c0 + -1*y0):c_0, -2 >= x0*z0 + -1*y0*z0 + c0 + -1*k0 + -1*x0:c_1, And(And(z0 == z, k0 == k, x0 == x, y0 == y, c0 == c),
+    And(z1 == z,
+        k1 == k,
+        x1 == 1 + x*z,
+        y1 == y*z,
+        c1 == 1 + c))})
+*** 'None', 1 locs, 4 invs (4 Oct), 400 traces, 0 inps, time 1.53s, rand seed 1589472074.22, test 80 61:
+vtrace2_17 (4 invs):
+1. c - k <= -1
+2. -k <= -3
+3. -c <= -1
+4. -c - k <= -4
+analysis:563:DEBUG (_check) - rs: sat
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: Not(0 >= c0 + -1*y0)
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_0
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: -2 >= x0*z0 + -1*y0*z0 + c0 + -1*k0 + -1*x0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_1
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_0', Not(0 >= c0 + -1*y0))]
+analysis:570:DEBUG (_check) - init_f: ZConj({Not(0 >= c0 + -1*y0):c_0, -2 >= x0*z0 + -1*y0*z0 + c0 + -1*k0 + -1*x0:c_1, And(z == X_z, k == X_k, 1 == x, 1 == y, 1 == c), Not(Not(0 >= c1 + -1*y1)), And(And(z0 == z, k0 == k, x0 == x, y0 == y, c0 == c),
+    And(z1 == z,
+        k1 == k,
+        x1 == 1 + x*z,
+        y1 == y*z,
+        c1 == 1 + c)), True})
+analysis:571:DEBUG (_check) - init_rs: False
+analysis:586:DEBUG (_check) - init_models: sat (0 models)
+lib:38:DEBUG (gen_rand_inps) - inps (0): Inps()
+lib:43:DEBUG (gen_rand_inps) - gen 108/100 random inps
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_jtmv6lua/symexe/freire1-both-t_mainQ.c.mainQ_555.straces'
+data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_jtmv6lua/symexe/freire1-both-t_mainQ.c.mainQ_556.straces'
+data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_jtmv6lua/symexe/freire1-both-t_mainQ.c.mainQ_557.straces'
+data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_jtmv6lua/symexe/freire1-both-t_mainQ.c.mainQ_558.straces'
+data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_jtmv6lua/symexe/freire1-both-t_mainQ.c.mainQ_559.straces'
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 559
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 564
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 569
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 574
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 579
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 584
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 589
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 594
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 599
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 604
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 609
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 614
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 619
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 624
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 629
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 634
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 639
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 644
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 649
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 654
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 659
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 664
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 669
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 674
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 679
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 684
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 689
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 694
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 699
+
+EJK TIMER: 400.000186
+

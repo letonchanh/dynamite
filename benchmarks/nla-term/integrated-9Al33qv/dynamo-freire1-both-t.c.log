@@ -1,0 +1,496 @@
+__main__:102:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:103:INFO (<module>) - Dig's logger_level: WARNING
+__main__:104:INFO (<module>) - Timeout: 400s
+__main__:106:INFO (<module>) - 2020-05-14 10:47:54.025781: dynamo.py --timeout=400 /home/exp/eric/dynamo/benchmarks/nla-term/freire1-both-t.c
+/home/exp/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:72:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_jtmv6lua
+analysis:80:DEBUG (__init__) - trans_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /home/exp/eric/dynamo/benchmarks/nla-term/freire1-both-t.c --out=/var/tmp/Dig_jtmv6lua/freire1-both-t.c --bnd=500
+analysis:87:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_32': ['exit'], 'mainQ': ['vloop_32'], 'main': ['mainQ']})
+analysis:98:DEBUG (__init__) - postorder_vloop_ids: ['vloop_32']
+analysis:107:DEBUG (__init__) - inp_decls (<class 'data.prog.Symbs'>): I a, I k
+analysis:108:DEBUG (__init__) - inv_decls (<class 'data.prog.DSymbs'>): {'vtrace1_32': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace2_32': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace3_32': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I'))}
+__main__:152:DEBUG (<module>) - prove_process: 27159
+lib:38:DEBUG (gen_rand_inps) - inps (0): Inps()
+lib:38:DEBUG (gen_rand_inps) - inps (36): Inps({Inp(ss=('a', 'k'), vs=(1, -19)), Inp(ss=('a', 'k'), vs=(295, 5)), Inp(ss=('a', 'k'), vs=(9, -297)), Inp(ss=('a', 'k'), vs=(-8, 11)), Inp(ss=('a', 'k'), vs=(5, 27)), Inp(ss=('a', 'k'), vs=(-25, -296)), Inp(ss=('a', 'k'), vs=(-273, 7)), Inp(ss=('a', 'k'), vs=(-4, 274)), Inp(ss=('a', 'k'), vs=(297, -29)), Inp(ss=('a', 'k'), vs=(280, -272)), Inp(ss=('a', 'k'), vs=(277, -4)), Inp(ss=('a', 'k'), vs=(-8, 29)), Inp(ss=('a', 'k'), vs=(-273, 11)), Inp(ss=('a', 'k'), vs=(-280, -293)), Inp(ss=('a', 'k'), vs=(23, 283)), Inp(ss=('a', 'k'), vs=(275, 23)), Inp(ss=('a', 'k'), vs=(-4, -274)), Inp(ss=('a', 'k'), vs=(10, 5)), Inp(ss=('a', 'k'), vs=(-1, 10)), Inp(ss=('a', 'k'), vs=(6, -2)), Inp(ss=('a', 'k'), vs=(-285, -20)), Inp(ss=('a', 'k'), vs=(-15, -12)), Inp(ss=('a', 'k'), vs=(-21, -22)), Inp(ss=('a', 'k'), vs=(-8, -10)), Inp(ss=('a', 'k'), vs=(279, 286)), Inp(ss=('a', 'k'), vs=(1, 291)), Inp(ss=('a', 'k'), vs=(-282, -5)), Inp(ss=('a', 'k'), vs=(3, -17)), Inp(ss=('a', 'k'), vs=(-10, -12)), Inp(ss=('a', 'k'), vs=(28, -272)), Inp(ss=('a', 'k'), vs=(16, 19)), Inp(ss=('a', 'k'), vs=(-286, 299)), Inp(ss=('a', 'k'), vs=(-13, 4)), Inp(ss=('a', 'k'), vs=(0, 0)), Inp(ss=('a', 'k'), vs=(9, -5)), Inp(ss=('a', 'k'), vs=(-6, 277))})
+lib:43:DEBUG (gen_rand_inps) - gen 108/100 random inps
+utils.profiling:31:DEBUG (timed) - gen_rand_inps: 433.12ms
+lib:54:DEBUG (get_traces_from_inps) - inp_decls: I a, I k
+lib:55:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_32': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace2_32': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace3_32': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 433.89ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 653.06ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 1087.71ms
+analysis:1147:DEBUG (prove) - Analysing vloop_32
+analysis:1149:DEBUG (prove) - base_term_inps: 54
+analysis:1150:DEBUG (prove) - term_inps: 0
+analysis:1151:DEBUG (prove) - mayloop_inps: 54
+analysis:1171:DEBUG (prove) - Proving Termination: vloop_32
+analysis:1040:DEBUG (prove_term_vloop) - classify_inps: vloop_32
+analysis:1043:DEBUG (prove_term_vloop) - itraces: 0
+analysis:1045:DEBUG (prove_term_vloop) - base_term_inps: 0
+analysis:1046:DEBUG (prove_term_vloop) - term_inps: 0
+analysis:1047:DEBUG (prove_term_vloop) - mayloop_inps: 0
+analysis:857:DEBUG (infer_ranking_functions) - vloop: vloop_32
+analysis:858:DEBUG (infer_ranking_functions) - term_itraces: 0
+utils.profiling:31:DEBUG (timed) - infer_ranking_functions: 0.15ms
+analysis:1061:DEBUG (prove_term_vloop) - validate_ranking_functions: vloop_32
+analysis:988:DEBUG (validate_ranking_functions) - ranks_str: 
+validate:120:DEBUG (gen_validate_file) - validate_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/eric/dynamo/benchmarks/nla-term/freire1-both-t.c --out=/var/tmp/Dig_jtmv6lua/vloop_32/par/validate/freire1-both-t.c --pos=32 --ranks=""
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/CPAchecker-1.9-unix/scripts/cpa.sh -spec /home/exp/tools/reachability.prp -predicateAnalysis -setprop counterexample.export.compressWitness=false /var/tmp/Dig_jtmv6lua/vloop_32/par/validate/freire1-both-t.c
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_jtmv6lua/vloop_32/par/uatm --witness-name witness.graphml --file /var/tmp/Dig_jtmv6lua/vloop_32/par/validate/freire1-both-t.c
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UTaipan-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_jtmv6lua/vloop_32/par/utp --witness-name witness.graphml --file /var/tmp/Dig_jtmv6lua/vloop_32/par/validate/freire1-both-t.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /home/exp/tools/CPAchecker-1.9-unix/scripts/cpa.sh -spec /home/exp/tools/reachability.prp -witnessValidation -witness /var/tmp/Dig_jtmv6lua/vloop_32/par/cpa/output/Counterexample.1.graphml /var/tmp/Dig_jtmv6lua/vloop_32/par/validate/freire1-both-t.c
+validate:283:DEBUG (mk_trans_cex) - dcex: defaultdict(<class 'dict'>, {3: {'a': 0, 'c': 0, 'k': 0, 'r': 0, 'x': 0}, 4: {'r': 1, 'x': 0}})
+validate:296:DEBUG (mk_trans_cex) - trans_cex: None
+validate:318:DEBUG (mk_var_map_from_smtlib) - vmap: defaultdict(<class 'dict'>, {'a': {3: 'main::a@3'}, 'x': {3: 'main::x@3', 4: 'main::x@4'}, 'r': {3: 'main::r@3', 4: 'main::r@4'}, 'c': {3: 'main::c@3'}, 'k': {3: 'main::k@3'}})
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex.trans_cex: None
+validate:46:DEBUG (prove_reach) - res: None
+validate:46:DEBUG (prove_reach) - res: None
+validate:250:DEBUG (prove_reach) - wrs: []
+utils.profiling:31:DEBUG (timed) - prove_reach: 11160.03ms
+analysis:1001:DEBUG (validate_ranking_functions) - r: None
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 11376.26ms
+analysis:1063:DEBUG (prove_term_vloop) - Termination result (vloop_32): None ([])
+utils.profiling:31:DEBUG (timed) - prove_term_vloop: 11377.07ms
+analysis:1179:DEBUG (prove) - Proving Non-Termination: vloop_32
+analysis:239:DEBUG (_get_stem_from_symstates) - vloop.preloop_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 29
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 34
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 39
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 44
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 49
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 54
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 59
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 64
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 69
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 74
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 79
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 84
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 89
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 94
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 99
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 104
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 109
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 114
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 119
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exanalysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_46
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 68545.08ms
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 116396.97ms
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 157892.41ms
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 192090.51ms
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 204970.74ms
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 211295.75ms
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 217265.40ms
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 222449.61ms
+analysis:225:DEBUG (_get_stem_from_ss) - preloop_fst_symstate: loc: vtrace1_46
+pc: And(1 == X_A%2,
+    -1 >= (-1 + X_R)**2 + -1*X_A,
+    0 >= (1 + 2*X_R)**2 + -4*X_R**2 + -4*X_R + -1*X_kk,
+    -3 <= (1 + 2*X_R)**2 + -4*X_R**2 + -4*X_R)
+slocal: And(A == X_A,
+    u == 1 + 2*X_R,
+    1 == v,
+    r == X_R**2 + -1*X_A,
+    0 == c,
+    k == -5)
+analysis:228:DEBdata.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 134
+data.symstates:317:WARNING (compute) - cannot obtain symbolianalysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_46
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 122109.52ms
+analysis:280:DEBUG (_get_loop_from_symstates) - vloop inp_decls: I A, I u, I v, I r, I c, I k
+analysis:281:DEBUG (_get_loop_from_symstates) - vloop inv_decls: {'vtrace1_33': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='cc', typ='I'), Symb(name='kk', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace2_33': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='cc', typ='I'), Symb(name='kk', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace3_33': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='cc', typ='I'), Symb(name='kk', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace1_46': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace2_46': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace3_46': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace1_38': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace2_38': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace3_38': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I'))}
+analysis:282:DEBUG (_get_loop_from_symstates) - vloop init_symvars: I X_A, I X_u, I X_v, I X_r, I X_c, I X_k
+analysis:314:DEBUG (_get_loop_from_symstates) - inloop_fst_slocal: And(A0 == X_A,
+    u0 == X_u,
+    v0 == X_v,
+    r0 == X_r,
+    c0 == X_c,
+    k0 == X_k)
+analysis:315:DEBUG (_get_loop_from_symstates) - inloop_snd_slocal: And(A1 == X_A,
+    u1 == 2 + X_u,
+    v1 == X_v,
+    r1 == X_r + X_u,
+    c1 == 1 + X_c,
+    k1 == X_k)
+analysis:327:DEBUG (_get_loop_from_symstates) - loop_transrel: And(And(A0 == A,
+        u0 == u,
+        v0 == v,
+        r0 == r,
+        c0 == c,
+        k0 == k),
+    And(A1 == A,
+        u1 == 2 + u,
+        v1 == v,
+        r1 == r + u,
+        c1 == 1 + c,
+        k1 == k))
+analysis:329:DEBUG (_get_loop_from_symstates) - inloop_fst_symstate: pc: 0 <=
+X_u**2 +
+X_v**2 +
+-4*X_A +
+-1*X_c +
+X_k +
+-4*X_r +
+2*X_u +
+-2*X_v
+analysis:330:DEBUG (_get_loop_from_symstates) - inloop_fst_symstate: slocal: And(A == X_A,
+    u == X_u,
+    v == X_v,
+    r == X_r,
+    c == X_c,
+    k == X_k)
+analysis:334:DEBUG (_get_loop_from_symstates) - loop_cond: 0 <= u**2 + v**2 + -4*A + -1*c + k + -4*r + 2*u + -2*v
+analysis:337:DEBUG (_get_loop_from_symstates) - terms: [0, u**2, v**2, -4*A, -1*c, k, -4*r, 2*u, -2*v]
+analysis:338:DEBUG (_get_loop_from_symstates) - nonlinear_terms: [u**2, v**2]
+utils.profiling:31:DEBUG (timed) - _get_loopinfo_from_symstates: 344661.28ms
+analysis:399:DEBUG (get_loopinfo) - stem: <utils.loop.Stem object at 0x7fb5e4d9c5f8>
+analysis:400:DEBUG (get_loopinfo) - loop: <utils.loop.Loop object at 0x7fb5de0d26a0>
+utils.profiling:31:DEBUG (timed) - get_loopinfo: 344661.41ms
+analysis:702:DEBUG (_stat_candidate_rcs) - stat (1 total): defaultdict(<class 'int'>, {0: 1})
+analysis:729:DEBUG (prove_nonterm_vloop) - PROVE_NT DEPTH 0: ZConj({0 <= u**2 + v**2 + -4*A + -1*c + k + -4*r + 2*u + -2*v})
+analysis:505:DEBUG (verify) - loop_transrel: And(And(A0 == A,
+        u0 == u,
+        v0 == v,
+        r0 == r,
+        c0 == c,
+        k0 == k),
+    And(A1 == A,
+        u1 == 2 + u,
+        v1 == v,
+        r1 == r + u,
+        c1 == 1 + c,
+        k1 == k))
+analysis:506:DEBUG (verify) - loop_cond: 0 <= u**2 + v**2 + -4*A + -1*c + k + -4*r + 2*u + -2*v
+analysis:507:DEBUG (verify) - rcs: ZConj({0 <= u**2 + v**2 + -4*A + -1*c + k + -4*r + 2*u + -2*v})
+analysis:521:DEBUG (verify) - labeled_rcs: ZConj({0 <= u**2 + v**2 + -4*A + -1*c + k + -4*r + 2*u + -2*v:c_0})
+analysis:528:DEBUG (verify) - transrel_rcs: ZConj({And(And(A0 == A,
+        u0 == u,
+        v0 == v,
+        r0 == r,
+        c0 == c,
+        k0 == k),
+    And(A1 == A,
+        u1 == 2 + u,
+        v1 == v,
+        r1 == r + u,
+        c1 == 1 + c,
+        k1 == k)), 0 <=
+u0**2 + v0**2 + -4*A0 + -1*c0 + k0 + -4*r0 + 2*u0 + -2*v0:c_0})
+analysis:533:DEBUG (verify) - init_transrel_rcs: ZConj({And(And(A0 == A,
+        u0 == u,
+        v0 == v,
+        r0 == r,
+        c0 == c,
+        k0 == k),
+    And(A1 == A,
+        u1 == 2 + u,
+        v1 == v,
+        r1 == r + u,
+        c1 == 1 + c,
+        k1 == k)), And(A == X_A,
+    u == 1 + 2*X_R,
+    1 == v,
+    r == X_R**2 + -1*X_A,
+    0 == c,
+    k == -5), 0 <=
+u0**2 + v0**2 + -4*A0 + -1*c0 + k0 + -4*r0 + 2*u0 + -2*v0:c_0, And(1 == X_A%2,
+    -1 >= (-1 + X_R)**2 + -1*X_A,
+    0 >= (1 + 2*X_R)**2 + -4*X_R**2 + -4*X_R + -1*X_kk,
+    -3 <= (1 + 2*X_R)**2 + -4*X_R**2 + -4*X_R)})
+analysis:542:DEBUG (_check) - rc: 0 <= u**2 + v**2 + -4*A + -1*c + k + -4*r + 2*u + -2*v:c_0
+analysis:547:DEBUG (_check) - rc_r: 0 <=
+u1**2 + v1**2 + -4*A1 + -1*c1 + k1 + -4*r1 + 2*u1 + -2*v1
+analysis:548:DEBUG (_check) - f: ZConj({And(And(A0 == A,
+        u0 == u,
+        v0 == v,
+        r0 == r,
+        c0 == c,
+        k0 == k),
+    And(A1 == A,
+        u1 == 2 + u,
+        v1 == v,
+        r1 == r + u,
+        c1 == 1 + c,
+        k1 == k)), 0 <=
+u0**2 + v0**2 + -4*A0 + -1*c0 + k0 + -4*r0 + 2*u0 + -2*v0:c_0, Not(0 <=
+    u1**2 +
+    v1**2 +
+    -4*A1 +
+    -1*c1 +
+   data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 189
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 194
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 199
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 204
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 209
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 214
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 219
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 224
+
+EJK TIMER: 400.000238
+

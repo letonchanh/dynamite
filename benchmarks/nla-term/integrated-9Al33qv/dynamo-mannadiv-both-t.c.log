@@ -1,0 +1,561 @@
+__main__:102:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:103:INFO (<module>) - Dig's logger_level: WARNING
+__main__:104:INFO (<module>) - Timeout: 400s
+__main__:106:INFO (<module>) - 2020-05-14 11:41:21.571584: dynamo.py --timeout=400 /home/exp/eric/dynamo/benchmarks/nla-term/mannadiv-both-t.c
+/home/exp/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:72:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_exwpkt39
+analysis:80:DEBUG (__init__) - trans_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /home/exp/eric/dynamo/benchmarks/nla-term/mannadiv-both-t.c --out=/var/tmp/Dig_exwpkt39/mannadiv-both-t.c --bnd=500
+analysis:87:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_26': ['exit'], 'mainQ': ['vloop_26'], 'main': ['mainQ']})
+analysis:98:DEBUG (__init__) - postorder_vloop_ids: ['vloop_26']
+analysis:107:DEBUG (__init__) - inp_decls (<class 'data.prog.Symbs'>): I x1, I x2
+analysis:108:DEBUG (__init__) - inv_decls (<class 'data.prog.DSymbs'>): {'vtrace1_26': (Symb(name='x1', typ='I'), Symb(name='x2', typ='I'), Symb(name='y1', typ='I'), Symb(name='y2', typ='I'), Symb(name='y3', typ='I')), 'vtrace2_26': (Symb(name='x1', typ='I'), Symb(name='x2', typ='I'), Symb(name='y1', typ='I'), Symb(name='y2', typ='I'), Symb(name='y3', typ='I')), 'vtrace3_26': (Symb(name='x1', typ='I'), Symb(name='x2', typ='I'), Symb(name='y1', typ='I'), Symb(name='y2', typ='I'), Symb(name='y3', typ='I'))}
+__main__:152:DEBUG (<module>) - prove_process: 10866
+lib:38:DEBUG (gen_rand_inps) - inps (0): Inps()
+lib:38:DEBUG (gen_rand_inps) - inps (17): Inps({Inp(ss=('x1', 'x2'), vs=(5, 17)), Inp(ss=('x1', 'x2'), vs=(11, 6)), Inp(ss=('x1', 'x2'), vs=(283, 22)), Inp(ss=('x1', 'x2'), vs=(277, -298)), Inp(ss=('x1', 'x2'), vs=(274, -8)), Inp(ss=('x1', 'x2'), vs=(7, -2)), Inp(ss=('x1', 'x2'), vs=(276, 295)), Inp(ss=('x1', 'x2'), vs=(14, -4)), Inp(ss=('x1', 'x2'), vs=(1, -283)), Inp(ss=('x1', 'x2'), vs=(23, 10)), Inp(ss=('x1', 'x2'), vs=(26, 296)), Inp(ss=('x1', 'x2'), vs=(27, -281)), Inp(ss=('x1', 'x2'), vs=(17, -19)), Inp(ss=('x1', 'x2'), vs=(272, -9)), Inp(ss=('x1', 'x2'), vs=(5, -10)), Inp(ss=('x1', 'x2'), vs=(3, 272)), Inp(ss=('x1', 'x2'), vs=(292, 10))})
+lib:43:DEBUG (gen_rand_inps) - gen 100/100 random inps
+utils.profiling:31:DEBUG (timed) - gen_rand_inps: 414.34ms
+lib:54:DEBUG (get_traces_from_inps) - inp_decls: I x1, I x2
+lib:55:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_26': (Symb(name='x1', typ='I'), Symb(name='x2', typ='I'), Symb(name='y1', typ='I'), Symb(name='y2', typ='I'), Symb(name='y3', typ='I')), 'vtrace2_26': (Symb(name='x1', typ='I'), Symb(name='x2', typ='I'), Symb(name='y1', typ='I'), Symb(name='y2', typ='I'), Symb(name='y3', typ='I')), 'vtrace3_26': (Symb(name='x1', typ='I'), Symb(name='x2', typ='I'), Symb(name='y1', typ='I'), Symb(name='y2', typ='I'), Symb(name='y3', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 536.28ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 415.34ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 952.44ms
+analysis:1147:DEBUG (prove) - Analysing vloop_26
+analysis:1149:DEBUG (prove) - base_term_inps: 0
+analysis:1150:DEBUG (prove) - term_inps: 99
+analysis:1151:DEBUG (prove) - mayloop_inps: 0
+analysis:1171:DEBUG (prove) - Proving Termination: vloop_26
+analysis:1040:DEBUG (prove_term_vloop) - classify_inps: vloop_26
+analysis:1043:DEBUG (prove_term_vloop) - itraces: 99
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 277), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 20), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 23), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 7), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 12), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 272), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 28), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 290), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 12), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 279), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 20), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 11), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 17), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 25), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 276), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 8), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 14), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 1), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 13), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 6), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 9), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 14), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 281), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 279), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 276), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 284), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 10), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 28), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 13), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 283), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 278), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 10), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 272), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 271), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 12), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 11), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 275), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 298), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 21), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 11), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 11), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 17), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 9), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 21), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 281), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 6), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 1), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 13), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 273), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 11), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 11), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 1), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 276), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 298), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 14), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 13), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 279), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 282), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 4), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 271), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 272), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 24), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 9), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 24), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 24), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 299), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 12), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 1), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 14), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 11), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 9), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 27), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 14), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 291), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 29), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 293), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 274), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 14), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 272), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 271), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 281), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 1), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 292), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 280), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 26), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 7), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 274), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 291), ('vtrace3_26', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_26', 1), ('vtrace2_26', 12), ('vtrace3_26', 1)]
+analysis:1045:DEBUG (prove_term_vloop) - base_term_inps: 0
+analysis:1046:DEBUG (prove_term_vloop) - term_inps: 99
+analysis:1047:DEBUG (prove_term_vloop) - mayloop_inps: 0
+analysis:857:DEBUG (infer_ranking_functions) - vloop: vloop_26
+analysis:858:DEBUG (infer_ranking_functions) - term_itraces: 99
+analysis:905:DEBUG (infer_ranking_functions) - train_rand_trans: 1774
+analysis:912:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): uk_1*x1 + uk_2*x2 + uk_3*y1 + uk_4*y2 + uk_5*y3 + uk_0
+analysis:913:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3, uk_4, uk_5]
+analysis:937:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1774
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0, uk_5 = 1, uk_4 = 0, uk_3 = 0, uk_2 = 0, uk_0 = 0]
+analysis:948:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 12*uk_1 + -16*uk_2 + uk_4 + 11*uk_5
+analysis:949:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 12*uk_1 + -16*uk_2 + 6*uk_4 + 6*uk_5
+analysis:950:DEBUG (_infer_ranking_functions_from_trans) - rf: y3
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:980:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [y3]
+utils.profiling:31:DEBUG (timed) - infer_ranking_functions: 24525.35ms
+analysis:1061:DEBUG (prove_term_vloop) - validate_ranking_functions: vloop_26
+analysis:988:DEBUG (validate_ranking_functions) - ranks_str: y3
+validate:120:DEBUG (gen_validate_file) - validate_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/eric/dynamo/benchmarks/nla-term/mannadiv-both-t.c --out=/var/tmp/Dig_exwpkt39/vloop_26/par/validate/mannadiv-both-t.c --pos=26 --ranks="y3"
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/CPAchecker-1.9-unix/scripts/cpa.sh -spec /home/exp/tools/reachability.prp -predicateAnalysis -setprop counterexample.export.compressWitness=false /var/tmp/Dig_exwpkt39/vloop_26/par/validate/mannadiv-both-t.c
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_exwpkt39/vloop_26/par/uatm --witness-name witness.graphml --file /var/tmp/Dig_exwpkt39/vloop_26/par/validate/mannadiv-both-t.c
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UTaipan-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_exwpkt39/vloop_26/par/utp --witness-name witness.graphml --file /var/tmp/Dig_exwpkt39/vloop_26/par/validate/mannadiv-both-t.c
+                                                                                                                                                                                                                                                                                                                                                                                                                                   validate:46:DEBUG (prove_reach) - res: None
+validate:46:DEBUG (prove_reach) - res: None
+validate:46:DEBUG (prove_reach) - res: None
+validate:250:DEBUG (prove_reach) - wrs: []
+utils.profiling:31:DEBUG (timed) - prove_reach: 359869.79ms
+analysis:1001:DEBUG (validate_ranking_functions) - r: None
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 359988.28ms
+analysis:1063:DEBUG (prove_term_vloop) - Termination result (vloop_25): None ([x, y])
+utils.profiling:31:DEBUG (timed) - prove_term_vloop: 401522.92ms
+analysis:1179:DEBUG (prove) - Proving Non-Termination: vloop_25
+analysis:239:DEBUG (_get_stem_from_symstates) - vloop.preloop_loc: vtrace1_25
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_25
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 13404.58ms
+analysis:225:DEBUG (_get_stem_from_ss) - preloop_fst_symstate: loc: vtrace1_25
+pc: And(65535 >= X_a, 65535 >= X_b, 1 <= X_a, 1 <= X_b)
+slocal: And(a == X_a,
+    b == X_b,
+    x == X_a,
+    y == X_b,
+    u == X_b,
+    v == X_a)
+analysis:228:DEBUG (_get_stem_from_ss) - mainQ init_symvars: I X_a, I X_b
+analysis:231:DEBUG (_get_stem_from_ss) - stem_cond (<class 'z3.z3.BoolRef'>): And(65535 >= X_a, 65535 >= X_b, 1 <= X_a, 1 <= X_b)
+analysis:232:DEBUG (_get_stem_from_ss) - stem_transrel (<class 'z3.z3.BoolRef'>): And(a == X_a,
+    b == X_b,
+    x == X_a,
+    y == X_b,
+    u == X_b,
+    v == X_a)
+analysis:269:DEBUG (_get_loop_from_symstates) - Create C source for vloop_25: /var/tmp/Dig_ydu0z9rj
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_25
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 6199.97ms
+analysis:280:DEBUG (_get_loop_from_symstates) - vloop inp_decls: I a, I b, I x, I y, I u, I v
+analysis:281:DEBUG (_get_loop_from_symstates) - vloop inv_decls: {'vtrace1_25': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace2_25': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace3_25': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'))}
+analysis:282:DEBUG (_get_loop_from_symstates) - vloop init_symvars: I X_a, I X_b, I X_x, I X_y, I X_u, I X_v
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_25
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 11510.37ms
+analysis:314:DEBUG (_get_loop_from_symstates) - inloop_fst_slocal: And(a0 == X_a,
+    b0 == X_b,
+    x0 == X_x,
+    y0 == X_y,
+    u0 == X_u,
+    v0 == X_v)
+analysis:315:DEBUG (_get_loop_from_symstates) - inloop_snd_slocal: And(a1 == X_a,
+    b1 == X_b,
+    x1 == X_x + -1*X_y,
+    y1 == X_y,
+    u1 == X_u,
+    v1 == X_u + X_v)
+analysis:327:DEBUG (_get_loop_from_symstates) - loop_transrel: And(And(a0 == a,
+        b0 == b,
+        x0 == x,
+        y0 == y,
+        u0 == u,
+        v0 == v),
+    And(a1 == a,
+        b1 == b,
+        x1 == x + -1*y,
+        y1 == y,
+        u1 == u,
+        v1 == u + v))
+analysis:329:DEBUG (_get_loop_from_symstates) - inloop_fst_symstate: pc: Not(0 == 2*X_a*X_b + -1*X_u*X_x + -1*X_v*X_y + X_x + -1*X_y)
+analysis:330:DEBUG (_get_loop_from_symstates) - inloop_fst_symstate: slocal: And(a == X_a,
+    b == X_b,
+    x == X_x,
+    y == X_y,
+    u == X_u,
+    v == X_v)
+analysis:334:DEBUG (_get_loop_from_symstates) - loop_cond: Not(0 == 2*a*b + -1*u*x + -1*v*y + x + -1*y)
+analysis:337:DEBUG (_get_loop_from_symstates) - terms: [0, 2*a*b, -1*u*x, -1*v*y, x, -1*y]
+analysis:338:DEBUG (_get_loop_from_symstates) - nonlinear_terms: [2*a*b, -1*u*x, -1*v*y]
+utils.profiling:31:DEBUG (timed) - _get_loopinfo_from_symstates: 31350.38ms
+analysis:399:DEBUG (get_loopinfo) - stem: <utils.loop.Stem object at 0x7fed34c6e7b8>
+analysis:400:DEBUG (get_loopinfo) - loop: <utils.loop.Loop object at 0x7fed34a89978>
+utils.profiling:31:DEBUG (timed) - get_loopinfo: 31350.78ms
+analysis:702:DEBUG (_stat_candidate_rcs) - stat (1 total): defaultdict(<class 'int'>, {0: 1})
+analysis:729:DEBUG (prove_nonterm_vloop) - PROVE_NT DEPTH 0: ZConj({Not(0 == 2*a*b + -1*u*x + -1*v*y + x + -1*y)})
+analysis:505:DEBUG (verify) - loop_transrel: And(And(a0 == a,
+        b0 == b,
+        x0 == x,
+        y0 == y,
+        u0 == u,
+        v0 == v),
+    And(a1 == a,
+        b1 == b,
+        x1 == x + -1*y,
+        y1 == y,
+        u1 == u,
+        v1 == u + v))
+analysis:506:DEBUG (verify) - loop_cond: Not(0 == 2*a*b + -1*u*x + -1*v*y + x + -1*y)
+analysis:507:DEBUG (verify) - rcs: ZConj({Not(0 == 2*a*b + -1*u*x + -1*v*y + x + -1*y)})
+analysis:521:DEBUG (verify) - labeled_rcs: ZConj({Not(0 == 2*a*b + -1*u*x + -1*v*y + x + -1*y):c_0})
+analysis:528:DEBUG (verify) - transrel_rcs: ZConj({And(And(a0 == a,
+        b0 == b,
+        x0 == x,
+        y0 == y,
+        u0 == u,
+        v0 == v),
+    And(a1 == a,
+        b1 == b,
+        x1 == x + -1*y,
+        y1 == y,
+        u1 == u,
+        v1 == u + v)), Not(0 == 2*a0*b0 + -1*u0*x0 + -1*v0*y0 + x0 + -1*y0):c_0})
+analysis:533:DEBUG (verify) - init_transrel_rcs: ZConj({And(And(a0 == a,
+        b0 == b,
+        x0 == x,
+        y0 == y,
+        u0 == u,
+        v0 == v),
+    And(a1 == a,
+        b1 == b,
+        x1 == x + -1*y,
+        y1 == y,
+        u1 == u,
+        v1 == u + v)), And(a == X_a,
+    b == X_b,
+    x == X_a,
+    y == X_b,
+    u == X_b,
+    v == X_a), And(65535 >= X_a, 65535 >= X_b, 1 <= X_a, 1 <= X_b), Not(0 == 2*a0*b0 + -1*u0*x0 + -1*v0*y0 + x0 + -1*y0):c_0})
+analysis:542:DEBUG (_check) - rc: Not(0 == 2*a*b + -1*u*x + -1*v*y + x + -1*y):c_0
+analysis:547:DEBUG (_check) - rc_r: Not(0 == 2*a1*b1 + -1*u1*x1 + -1*v1*y1 + x1 + -1*y1)
+analysis:548:DEBUG (_check) - f: ZConj({Not(Not(0 == 2*a1*b1 + -1*u1*x1 + -1*v1*y1 + x1 + -1*y1)), And(And(a0 == a,
+        b0 == b,
+        x0 == x,
+        y0 == y,
+        u0 == u,
+        v0 == v),
+    And(a1 == a,
+        b1 == b,
+        x1 == x + -1*y,
+        y1 == y,
+        u1 == u,
+        v1 == u + v)), Not(0 == 2*a0*b0 + -1*u0*x0 + -1*v0*y0 + x0 + -1*y0):c_0})
+analysis:563:DEBUG (_check) - rs: sat
+Solver 0 (cvc4) finished first, saying True
+Solver 0 (cvc4) finished first, saying True
+analysis:570:DEBUG (_check) - init_f: ZConj({Not(0 == 2*a0*b0 + -1*u0*x0 + -1*v0*y0 + x0 + -1*y0):c_0, And(And(a0 == a,
+        b0 == b,
+        x0 == x,
+        y0 == y,
+        u0 == u,
+        v0 == v),
+    And(a1 == a,
+        b1 == b,
+        x1 == x + -1*y,
+        y1 == y,
+        u1 == u,
+        v1 == u + v)), And(a == X_a,
+    b == X_b,
+    x == X_a,
+    y == X_b,
+    u == X_b,
+    v == X_a), Not(Not(0 == 2*a1*b1 + -1*u1*x1 + -1*v1*y1 + x1 + -1*y1)), And(65535 >= X_a, 65535 >= X_b, 1 <= X_a, 1 <= X_b)})
+analysis:571:DEBUG (_check) - init_rs: [[('X_a', 2), ('X_b', 1), ('v1', 3), ('u1', 1), ('y1', 1), ('x1', 1), ('b1', 1), ('a1', 2), ('v0', 2), ('v', 2), ('u0', 1), ('u', 1), ('y0', 1), ('y', 1), ('x0', 2), ('x', 2), ('b0', 1), ('b', 1), ('a0', 2), ('a', 2)], [('X_a', 30), ('X_b', 15), ('v1', 45), ('u1', 15), ('y1', 15), ('x1', 15), ('b1', 15), ('a1', 30), ('v0', 30), ('v', 30), ('u0', 15), ('u', 15), ('y0', 15), ('y', 15), ('x0', 30), ('x', 30), ('b0', 15), ('b', 15), ('a0', 30), ('a', 30)], [('X_a', 14), ('X_b', 7), ('v1', 21), ('u1', 7), ('y1', 7), ('x1', 7), ('b1', 7), ('a1', 14), ('v0', 14), ('v', 14), ('u0', 7), ('u', 7), ('y0', 7), ('y', 7), ('x0', 14), ('x', 14), ('b0', 7), ('b', 7), ('a0', 14), ('a', 14)], [('X_a', 28), ('X_b', 14), ('v1', 42), ('u1', 14), ('y1', 14), ('x1', 14), ('b1', 14), ('a1', 28), ('v0', 28), ('v', 28), ('u0', 14), ('u', 14), ('y0', 14), ('y', 14), ('x0', 28), ('x', 28), ('b0', 14), ('b', 14), ('a0', 28), ('a', 28)], [('a0', 4), ('a', 4), ('b0', 2), ('b', 2), ('x0', 4), ('x', 4), ('y0', 2), ('y', 2), ('u0', 2), ('u', 2), ('v0', 4), ('v', 4), ('a1', 4), ('b1', 2), ('x1', 2), ('y1', 2), ('u1', 2), ('v1', 6), ('X_a', 4), ('X_b', 2)], [('X_b', 17361), ('X_a', 34722), ('v1', 52083), ('u1', 17361), ('y1', 17361), ('x1', 17361), ('b1', 17361), ('a1', 34722), ('v', 34722), ('v0', 34722), ('u', 17361), ('u0', 17361), ('y', 17361), ('y0', 17361), ('x', 34722), ('x0', 34722), ('b', 17361), ('b0', 17361), ('a', 34722), ('a0', 34722)], [('X_b', 826), ('X_a', 1652), ('v1', 2478), ('u1', 826), ('y1', 826), ('x1', 826), ('b1', 826), ('a1', 1652), ('v', 1652), ('v0', 1652), ('u', 826), ('u0', 826), ('y', 826), ('y0', 826), ('x', 1652), ('x0', 1652), ('b', 826), ('b0', 826), ('a', 1652), ('a0', 1652)], [('X_b', 16384), ('X_a', 32768), ('v1', 49152), ('u1', 16384), ('y1', 16384), ('x1', 16384), ('b1', 16384), ('a1', 32768), ('v', 32768), ('v0', 32768), ('u', 16384), ('u0', 16384), ('y', 16384), ('y0', 16384), ('x', 32768), ('x0', 32768), ('b', 16384), ('b0', 16384), ('a', 32768), ('a0', 32768)], [('X_b', 11772), ('X_a', 23544), ('v1', 35316), ('u1', 11772), ('y1', 11772), ('x1', 11772), ('b1', 11772), ('a1', 23544), ('v', 23544), ('v0', 23544), ('u', 11772), ('u0', 11772), ('y', 11772), ('y0', 11772), ('x', 23544), ('x0', 23544), ('b', 11772), ('b0', 11772), ('a', 23544), ('a0', 23544)], [('X_b', 5760), ('X_a', 11520), ('v1', 17280), ('u1', 5760), ('y1', 5760), ('x1', 5760), ('b1', 5760), ('a1', 11520), ('v', 11520), ('v0', 11520), ('u', 5760), ('u0', 5760), ('y', 5760), ('y0', 5760), ('x', 11520), ('x0', 11520), ('b', 5760), ('b0', 5760), ('a', 11520), ('a0', 11520)], [('X_b', 16413), ('X_a', 32826), ('v1', 49239), ('u1', 16413), ('y1', 16413), ('x1', 16413), ('b1', 16413), ('a1', 32826), ('v', 32826), ('v0', 32826), ('u', 16413), ('u0', 16413), ('y', 16413), ('y0', 16413), ('x', 32826), ('x0', 32826), ('b', 16413), ('b0', 16413), ('a', 32826), ('a0', 32826)], [('X_b', 19460), ('X_a', 38920), ('v1', 58380), ('u1', 19460), ('y1', 19460), ('x1', 19460), ('b1', 19460), ('a1', 38920), ('v', 38920), ('v0', 38920), ('u', 19460), ('u0', 19460), ('y', 19460), ('y0', 19460), ('x', 38920), ('x0', 38920), ('b', 19460), ('b0', 19460), ('a', 38920), ('a0', 38920)], [('X_b', 20504), ('X_a', 41008), ('v1', 61512), ('u1', 20504), ('y1', 20504), ('x1', 20504), ('b1', 20504), ('a1', 41008), ('v', 41008), ('v0', 41008), ('u', 20504), ('u0', 20504), ('y', 20504), ('y0', 20504), ('x', 41008), ('x0', 41008), ('b', 20504), ('b0', 20504), ('a', 41008), ('a0', 41008)], [('X_b', 18304), ('X_a', 36608), ('v1', 54912), ('u1', 18304), ('y1', 18304), ('x1', 18304), ('b1', 18304), ('a1', 36608), ('v', 36608), ('v0', 36608), ('u', 18304), ('u0', 18304), ('y', 18304), ('y0', 18304), ('x', 36608), ('x0', 36608), ('b', 18304), ('b0', 18304), ('a', 36608), ('a0', 36608)], [('X_b', 8197), ('X_a', 16394), ('v1', 24591), ('u1', 8197), ('y1', 8197), ('x1', 8197), ('b1', 8197), ('a1', 16394), ('v', 16394), ('v0', 16394), ('u', 8197), ('u0', 8197), ('y', 8197), ('y0', 8197), ('x', 16394), ('x0', 16394), ('b', 8197), ('b0', 8197), ('a', 16394), ('a0', 16394)], [('X_b', 5768), ('X_a', 11536), ('v1', 17304), ('u1', 5768), ('y1', 5768), ('x1', 5768), ('b1', 5768), ('a1', 11536), ('v', 11536), ('v0', 11536), ('u', 5768), ('u0', 5768), ('y', 5768), ('y0', 5768), ('x', 11536), ('x0', 11536), ('b', 5768), ('b0', 5768), ('a', 11536), ('a0', 11536)], [('X_b', 20954), ('X_a', 41908), ('v1', 62862), ('u1', 20954), ('y1', 20954), ('x1', 20954), ('b1', 20954), ('a1', 41908), ('v', 41908), ('v0', 41908), ('u', 20954), ('u0', 20954), ('y', 20954), ('y0', 20954), ('x', 41908), ('x0', 41908), ('b', 20954), ('b0', 20954), ('a', 41908), ('a0', 41908)], [('X_b', 6042), ('X_a', 12084), ('v1', 18126), ('u1', 6042), ('y1', 6042), ('x1', 6042), ('b1', 6042), ('a1', 12084), ('v', 12084), ('v0', 12084), ('u', 6042), ('u0', 6042), ('y', 6042), ('y0', 6042), ('x', 12084), ('x0', 12084), ('b', 6042), ('b0', 6042), ('a', 12084), ('a0', 12084)], [('X_b', 20446), ('X_a', 40892), ('v1', 61338), ('u1', 20446), ('y1', 20446), ('x1', 20446), ('b1', 20446), ('a1', 40892), ('v', 40892), ('v0', 40892), ('u', 20446), ('u0', 20446), ('y', 20446), ('y0', 20446), ('x', 40892), ('x0', 40892), ('b', 20446), ('b0', 20446), ('a', 40892), ('a0', 40892)], [('X_b', 21390), ('X_a', 42780), ('v1', 64170), ('u1', 21390), ('y1', 21390), ('x1', 21390), ('b1', 21390), ('a1', 42780), ('v', 42780), ('v0', 42780), ('u', 21390), ('u0', 21390), ('y', 21390), ('y0', 21390), ('x', 42780), ('x0', 42780), ('b', 21390), ('b0', 21390), ('a', 42780), ('a0', 42780)], [('X_b', 16023), ('X_a', 32046), ('v1', 48069), ('u1', 16023), ('y1', 16023), ('x1', 16023), ('b1', 16023), ('a1', 32046), ('v', 32046), ('v0', 32046), ('u', 16023), ('u0', 16023), ('y', 16023), ('y0', 16023), ('x', 32046), ('x0', 32046), ('b', 16023), ('b0', 16023), ('a', 32046), ('a0', 32046)], [('X_b', 17983), ('X_a', 35966), ('v1', 53949), ('u1', 17983), ('y1', 17983), ('x1', 17983), ('b1', 17983), ('a1', 35966), ('v', 35966), ('v0', 35966), ('u', 17983), ('u0', 17983), ('y', 17983), ('y0', 17983), ('x', 35966), ('x0', 35966), ('b', 17983), ('b0', 17983), ('a', 35966), ('a0', 35966)], [('X_b', 6346), ('X_a', 12692), ('v1', 19038), ('u1', 6346), ('y1', 6346), ('x1', 6346), ('b1', 6346), ('a1', 12692), ('v', 12692), ('v0', 12692), ('u', 6346), ('u0', 6346), ('y', 6346), ('y0', 6346), ('x', 12692), ('x0', 12692), ('b', 6346), ('b0', 6346), ('a', 12692), ('a0', 12692)], [('X_b', 18432), ('X_a', 36864), ('v1', 55296), ('u1', 18432), ('y1', 18432), ('x1', 18432), ('b1', 18432), ('a1', 36864), ('v', 36864), ('v0', 36864), ('u', 18432), ('u0', 18432), ('y', 18432), ('y0', 18432), ('x', 36864), ('x0', 36864), ('b', 18432), ('b0', 18432), ('a', 36864), ('a0', 36864)], [('X_b', 16385), ('X_a', 32770), ('v1', 49155), ('u1', 16385), ('y1', 16385), ('x1', 16385), ('b1', 16385), ('a1', 32770), ('v', 32770), ('v0', 32770), ('u', 16385), ('u0', 16385), ('y', 16385), ('y0', 16385), ('x', 32770), ('x0', 32770), ('b', 16385), ('b0', 16385), ('a', 32770), ('a0', 32770)], [('X_b', 17426), ('X_a', 34852), ('v1', 52278), ('u1', 17426), ('y1', 17426), ('x1', 17426), ('b1', 17426), ('a1', 34852), ('v', 34852), ('v0', 34852), ('u', 17426), ('u0', 17426), ('y', 17426), ('y0', 17426), ('x', 34852), ('x0', 34852), ('b', 17426), ('b0', 17426), ('a', 34852), ('a0', 34852)], [('X_b', 19302), ('X_a', 38604), ('v1', 57906), ('u1', 19302), ('y1', 19302), ('x1', 19302), ('b1', 19302), ('a1', 38604), ('v', 38604), ('v0', 38604), ('u', 19302), ('u0', 19302), ('y', 19302), ('y0', 19302), ('x', 38604), ('x0', 38604), ('b', 19302), ('b0', 19302), ('a', 38604), ('a0', 38604)], [('X_b', 3296), ('X_a', 6592), ('v1', 9888), ('u1', 3296), ('y1', 3296), ('x1', 3296), ('b1', 3296), ('a1', 6592), ('v', 6592), ('v0', 6592), ('u', 3296), ('u0', 3296), ('y', 3296), ('y0', 3296), ('x', 6592), ('x0', 6592), ('b', 3296), ('b0', 3296), ('a', 6592), ('a0', 6592)], [('X_b', 8832), ('X_a', 17664), ('v1', 26496), ('u1', 8832), ('y1', 8832), ('x1', 8832), ('b1', 8832), ('a1', 17664), ('v', 17664), ('v0', 17664), ('u', 8832), ('u0', 8832), ('y', 8832), ('y0', 8832), ('x', 17664), ('x0', 17664), ('b', 8832), ('b0', 8832), ('a', 17664), ('a0', 17664)], [('X_b', 16614), ('X_a', 33228), ('v1', 49842), ('u1', 16614), ('y1', 16614), ('x1', 16614), ('b1', 16614), ('a1', 33228), ('v', 33228), ('v0', 33228), ('u', 16614), ('u0', 16614), ('y', 16614), ('y0', 16614), ('x', 33228), ('x0', 33228), ('b', 16614), ('b0', 16614), ('a', 33228), ('a0', 33228)], [('X_b', 8154), ('X_a', 16308), ('v1', 24462), ('u1', 8154), ('y1', 8154), ('x1', 8154), ('b1', 8154), ('a1', 16308), ('v', 16308), ('v0', 16308), ('u', 8154), ('u0', 8154), ('y', 8154), ('y0', 8154), ('x', 16308), ('x0', 16308), ('b', 8154), ('b0', 8154), ('a', 16308), ('a0', 16308)], [('X_b', 17165), ('X_a', 34330), ('v1', 51495), ('u1', 17165), ('y1', 17165), ('x1', 17165), ('b1', 17165), ('a1', 34330), ('v', 34330), ('v0', 34330), ('u', 17165), ('u0', 17165), ('y', 17165), ('y0', 17165), ('x', 34330), ('x0', 34330), ('b', 17165), ('b0', 17165), ('a', 34330), ('a0', 34330)], [('X_b', 10987), ('X_a', 21974), ('v1', 32961), ('u1', 10987), ('y1', 10987), ('x1', 10987), ('b1', 10987), ('a1', 21974), ('v', 21974), ('v0', 21974), ('u', 10987), ('u0', 10987), ('y', 10987), ('y0', 10987), ('x', 21974), ('x0', 21974), ('b', 10987), ('b0', 10987), ('a', 21974), ('a0', 21974)], [('X_b', 8798), ('X_a', 17596), ('v1', 26394), ('u1', 8798), ('y1', 8798), ('x1', 8798), ('b1', 8798), ('a1', 17596), ('v', 17596), ('v0', 17596), ('u', 8798), ('u0', 8798), ('y', 8798), ('y0', 8798), ('x', 17596), ('x0', 17596), ('b', 8798), ('b0', 8798), ('a', 17596), ('a0', 17596)], [('X_b', 18071), ('X_a', 36142), ('v1', 54213), ('u1', 18071), ('y1', 18071), ('x1', 18071), ('b1', 18071), ('a1', 36142), ('v', 36142), ('v0', 36142), ('u', 18071), ('u0', 18071), ('y', 18071), ('y0', 18071), ('x', 36142), ('x0', 36142), ('b', 18071), ('b0', 18071), ('a', 36142), ('a0', 36142)], [('X_b', 5627), ('X_a', 11254), ('v1', 16881), ('u1', 5627), ('y1', 5627), ('x1', 5627), ('b1', 5627), ('a1', 11254), ('v', 11254), ('v0', 11254), ('u', 5627), ('u0', 5627), ('y', 5627), ('y0', 5627), ('x', 11254), ('x0', 11254), ('b', 5627), ('b0', 5627), ('a', 11254), ('a0', 11254)], [('X_b', 6835), ('X_a', 13670), ('v1', 20505), ('u1', 6835), ('y1', 6835), ('x1', 6835), ('b1', 6835), ('a1', 13670), ('v', 13670), ('v0', 13670), ('u', 6835), ('u0', 6835), ('y', 6835), ('y0', 6835), ('x', 13670), ('x0', 13670), ('b', 6835), ('b0', 6835), ('a', 13670), ('a0', 13670)], [('X_b', 3252), ('X_a', 6504), ('v1', 9756), ('u1', 3252), ('y1', 3252), ('x1', 3252), ('b1', 3252), ('a1', 6504), ('v', 6504), ('v0', 6504), ('u', 3252), ('u0', 3252), ('y', 3252), ('y0', 3252), ('x', 6504), ('x0', 6504), ('b', 3252), ('b0', 3252), ('a', 6504), ('a0', 6504)], [('X_b', 131), ('X_a', 262), ('v1', 393), ('u1', 131), ('y1', 131), ('x1', 131), ('b1', 131), ('a1', 262), ('v', 262), ('v0', 262), ('u', 131), ('u0', 131), ('y', 131), ('y0', 131), ('x', 262), ('x0', 262), ('b', 131), ('b0', 131), ('a', 262), ('a0', 262)], [('X_b', 15139), ('X_a', 30278), ('v1', 45417), ('u1', 15139), ('y1', 15139), ('x1', 15139), ('b1', 15139), ('a1', 30278), ('v', 30278), ('v0', 30278), ('u', 15139), ('u0', 15139), ('y', 15139), ('y0', 15139), ('x', 30278), ('x0', 30278), ('b', 15139), ('b0', 15139), ('a', 30278), ('a0', 30278)], [('X_b', 16860), ('X_a', 33720), ('v1', 50580), ('u1', 16860), ('y1', 16860), ('x1', 16860), ('b1', 16860), ('a1', 33720), ('v', 33720), ('v0', 33720), ('u', 16860), ('u0', 16860), ('y', 16860), ('y0', 16860), ('x', 33720), ('x0', 33720), ('b', 16860), ('b0', 16860), ('a', 33720), ('a0', 33720)], [('X_b', 8100), ('X_a', 16200), ('v1', 24300), ('u1', 8100), ('y1', 8100), ('x1', 8100), ('b1', 8100), ('a1', 16200), ('v', 16200), ('v0', 16200), ('u', 8100), ('u0', 8100), ('y', 8100), ('y0', 8100), ('x', 16200), ('x0', 16200), ('b', 8100), ('b0', 8100), ('a', 16200), ('a0', 16200)], [('X_b', 9290), ('X_a', 18580), ('v1', 27870), ('u1', 9290), ('y1', 9290), ('x1', 9290), ('b1', 9290), ('a1', 18580), ('v', 18580), ('v0', 18580), ('u', 9290), ('u0', 9290), ('y', 9290), ('y0', 9290), ('x', 18580), ('x0', 18580), ('b', 9290), ('b0', 9290), ('a', 18580), ('a0', 18580)], [('X_b', 5687), ('X_a', 11374), ('v1', 17061), ('u1', 5687), ('y1', 5687), ('x1', 5687), ('b1', 5687), ('a1', 11374), ('v', 11374), ('v0', 11374), ('u', 5687), ('u0', 5687), ('y', 5687), ('y0', 5687), ('x', 11374), ('x0', 11374), ('b', 5687), ('b0', 5687), ('a', 11374), ('a0', 11374)], [('X_b', 21304), ('X_a', 42608), ('v1', 63912), ('u1', 21304), ('y1', 21304), ('x1', 21304), ('b1', 21304), ('a1', 42608), ('v', 42608), ('v0', 42608), ('u', 21304), ('u0', 21304), ('y', 21304), ('y0', 21304), ('x', 42608), ('x0', 42608), ('b', 21304), ('b0', 21304), ('a', 42608), ('a0', 42608)], [('X_b', 4828), ('X_a', 9656), ('v1', 14484), ('u1', 4828), ('y1', 4828), ('x1', 4828), ('b1', 4828), ('a1', 9656), ('v', 9656), ('v0', 9656), ('u', 4828), ('u0', 4828), ('y', 4828), ('y0', 4828), ('x', 9656), ('x0', 9656), ('b', 4828), ('b0', 4828), ('a', 9656), ('a0', 9656)], [('X_b', 8231), ('X_a', 16462), ('v1', 24693), ('u1', 8231), ('y1', 8231), ('x1', 8231), ('b1', 8231), ('a1', 16462), ('v', 16462), ('v0', 16462), ('u', 8231), ('u0', 8231), ('y', 8231), ('y0', 8231), ('x', 16462), ('x0', 16462), ('b', 8231), ('b0', 8231), ('a', 16462), ('a0', 16462)], [('X_b', 18689), ('X_a', 37378), ('v1', 56067), ('u1', 18689), ('y1', 18689), ('x1', 18689), ('b1', 18689), ('a1', 37378), ('v', 37378), ('v0', 37378), ('u', 18689), ('u0', 18689), ('y', 18689), ('y0', 18689), ('x', 37378), ('x0', 37378), ('b', 18689), ('b0', 18689), ('a', 37378), ('a0', 37378)], [('X_b', 20495), ('X_a', 40990), ('v1', 61485), ('u1', 20495), ('y1', 20495), ('x1', 20495), ('b1', 20495), ('a1', 40990), ('v', 40990), ('v0', 40990), ('u', 20495), ('u0', 20495), ('y', 20495), ('y0', 20495), ('x', 40990), ('x0', 40990), ('b', 20495), ('b0', 20495), ('a', 40990), ('a0', 40990)], [('X_b', 1447), ('X_a', 2894), ('v1', 4341), ('u1', 1447), ('y1', 1447), ('x1', 1447), ('b1', 1447), ('a1', 2894), ('v', 2894), ('v0', 2894), ('u', 1447), ('u0', 1447), ('y', 1447), ('y0', 1447), ('x', 2894), ('x0', 2894), ('b', 1447), ('b0', 1447), ('a', 2894), ('a0', 2894)], [('X_b', 305), ('X_a', 610), ('v1', 915), ('u1', 305), ('y1', 305), ('x1', 305), ('b1', 305), ('a1', 610), ('v', 610), ('v0', 610), ('u', 305), ('u0', 305), ('y', 305), ('y0', 305), ('x', 610), ('x0', 610), ('b', 305), ('b0', 305), ('a', 610), ('a0', 610)], [('X_b', 18439), ('X_a', 36878), ('v1', 55317), ('u1', 18439), ('y1', 18439), ('x1', 18439), ('b1', 18439), ('a1', 36878), ('v', 36878), ('v0', 36878), ('u', 18439), ('u0', 18439), ('y', 18439), ('y0', 18439), ('x', 36878), ('x0', 36878), ('b', 18439), ('b0', 18439), ('a', 36878), ('a0', 36878)], [('X_b', 15311), ('X_a', 30622), ('v1', 45933), ('u1', 15311), ('y1', 15311), ('x1', 15311), ('b1', 15311), ('a1', 30622), ('v', 30622), ('v0', 30622), ('u', 15311), ('u0', 15311), ('y', 15311), ('y0', 15311), ('x', 30622), ('x0', 30622), ('b', 15311), ('b0', 15311), ('a', 30622), ('a0', 30622)], [('X_b', 8203), ('X_a', 16406), ('v1', 24609), ('u1', 8203), ('y1', 8203), ('x1', 8203), ('b1', 8203), ('a1', 16406), ('v', 16406), ('v0', 16406), ('u', 8203), ('u0', 8203), ('y', 8203), ('y0', 8203), ('x', 16406), ('x0', 16406), ('b', 8203), ('b0', 8203), ('a', 16406), ('a0', 16406)], [('X_b', 10843), ('X_a', 21686), ('v1', 32529), ('u1', 10843), ('y1', 10843), ('x1', 10843), ('b1', 10843), ('a1', 21686), ('v', 21686), ('v0', 21686), ('u', 10843), ('u0', 10843), ('y', 10843), ('y0', 10843), ('x', 21686), ('x0', 21686), ('b', 10843), ('b0', 10843), ('a', 21686), ('a0', 21686)], [('X_b', 21224), ('X_a', 42448), ('v1', 63672), ('u1', 21224), ('y1', 21224), ('x1', 21224), ('b1', 21224), ('a1', 42448), ('v', 42448), ('v0', 42448), ('u', 21224), ('u0', 21224), ('y', 21224), ('y0', 21224), ('x', 42448), ('x0', 42448), ('b', 21224), ('b0', 21224), ('a', 42448), ('a0', 42448)], [('X_b', 19617), ('X_a', 39234), ('v1', 58851), ('u1', 19617), ('y1', 19617), ('x1', 19617), ('b1', 19617), ('a1', 39234), ('v', 39234), ('v0', 39234), ('u', 19617), ('u0', 19617), ('y', 19617), ('y0', 19617), ('x', 39234), ('x0', 39234), ('b', 19617), ('b0', 19617), ('a', 39234), ('a0', 39234)], [('X_b', 16311), ('X_a', 32622), ('v1', 48933), ('u1', 16311), ('y1', 16311), ('x1', 16311), ('b1', 16311), ('a1', 32622), ('v', 32622), ('v0', 32622), ('u', 16311), ('u0', 16311), ('y', 16311), ('y0', 16311), ('x', 32622), ('x0', 32622), ('b', 16311), ('b0', 16311), ('a', 32622), ('a0', 32622)], [('X_b', 1529), ('X_a', 3058), ('v1', 4587), ('u1', 1529), ('y1', 1529), ('x1', 1529), ('b1', 1529), ('a1', 3058), ('v', 3058), ('v0', 3058), ('u', 1529), ('u0', 1529), ('y', 1529), ('y0', 1529), ('x', 3058), ('x0', 3058), ('b', 1529), ('b0', 1529), ('a', 3058), ('a0', 3058)], [('X_b', 6341), ('X_a', 12682), ('v1', 19023), ('u1', 6341), ('y1', 6341), ('x1', 6341), ('b1', 6341), ('a1', 12682), ('v', 12682), ('v0', 12682), ('u', 6341), ('u0', 6341), ('y', 6341), ('y0', 6341), ('x', 12682), ('x0', 12682), ('b', 6341), ('b0', 6341), ('a', 12682), ('a0', 12682)], [('X_b', 18715), ('X_a', 37430), ('v1', 56145), ('u1', 18715), ('y1', 18715), ('x1', 18715), ('b1', 18715), ('a1', 37430), ('v', 37430), ('v0', 37430), ('u', 18715), ('u0', 18715), ('y', 18715), ('y0', 18715), ('x', 37430), ('x0', 37430), ('b', 18715), ('b0', 18715), ('a', 37430), ('a0', 37430)], [('X_b', 2564), ('X_a', 5128), ('v1', 7692), ('u1', 2564), ('y1', 2564), ('x1', 2564), ('b1', 2564), ('a1', 5128), ('v', 5128), ('v0', 5128), ('u', 2564), ('u0', 2564), ('y', 2564), ('y0', 2564), ('x', 5128), ('x0', 5128), ('b', 2564), ('b0', 2564), ('a', 5128), ('a0', 5128)], [('X_b', 7463), ('X_a', 14926), ('v1', 22389), ('u1', 7463), ('y1', 7463), ('x1', 7463), ('b1', 7463), ('a1', 14926), ('v', 14926), ('v0', 14926), ('u', 7463), ('u0', 7463), ('y', 7463), ('y0', 7463), ('x', 14926), ('x0', 14926), ('b', 7463), ('b0', 7463), ('a', 14926), ('a0', 14926)], [('X_b', 6131), ('X_a', 12262), ('v1', 18393), ('u1', 6131), ('y1', 6131), ('x1', 6131), ('b1', 6131), ('a1', 12262), ('v', 12262), ('v0', 12262), ('u', 6131), ('u0', 6131), ('y', 6131), ('y0', 6131), ('x', 12262), ('x0', 12262), ('b', 6131), ('b0', 6131), ('a', 12262), ('a0', 12262)], [('X_b', 18873), ('X_a', 37746), ('v1', 56619), ('u1', 18873), ('y1', 18873), ('x1', 18873), ('b1', 18873), ('a1', 37746), ('v', 37746), ('v0', 37746), ('u', 18873), ('u0', 18873), ('y', 18873), ('y0', 18873), ('x', 37746), ('x0', 37746), ('b', 18873), ('b0', 18873), ('a', 37746), ('a0', 37746)], [('X_b', 19221), ('X_a', 38442), ('v1', 57663), ('u1', 19221), ('y1', 19221), ('x1', 19221), ('b1', 19221), ('a1', 38442), ('v', 38442), ('v0', 38442), ('u', 19221), ('u0', 19221), ('y', 19221), ('y0', 19221), ('x', 38442), ('x0', 38442), ('b', 19221), ('b0', 19221), ('a', 38442), ('a0', 38442)], [('X_b', 16613), ('X_a', 33226), ('v1', 49839), ('u1', 16613), ('y1', 16613), ('x1', 16613), ('b1', 16613), ('a1', 33226), ('v', 33226), ('v0', 33226), ('u', 16613), ('u0', 16613), ('y', 16613), ('y0', 16613), ('x', 33226), ('x0', 33226), ('b', 16613), ('b0', 16613), ('a', 33226), ('a0', 33226)], [('X_b', 14634), ('X_a', 29268), ('v1', 43902), ('u1', 14634), ('y1', 14634), ('x1', 14634), ('b1', 14634), ('a1', 29268), ('v', 29268), ('v0', 29268), ('u', 14634), ('u0', 14634), ('y', 14634), ('y0', 14634), ('x', 29268), ('x0', 29268), ('b', 14634), ('b0', 14634), ('a', 29268), ('a0', 29268)], [('X_b', 15342), ('X_a', 30684), ('v1', 46026), ('u1', 15342), ('y1', 15342), ('x1', 15342), ('b1', 15342), ('a1', 30684), ('v', 30684), ('v0', 30684), ('u', 15342), ('u0', 15342), ('y', 15342), ('y0', 15342), ('x', 30684), ('x0', 30684), ('b', 15342), ('b0', 15342), ('a', 30684), ('a0', 30684)], [('X_b', 9607), ('X_a', 19214), ('v1', 28821), ('u1', 9607), ('y1', 9607), ('x1', 9607), ('b1', 9607), ('a1', 19214), ('v', 19214), ('v0', 19214), ('u', 9607), ('u0', 9607), ('y', 9607), ('y0', 9607), ('x', 19214), ('x0', 19214), ('b', 9607), ('b0', 9607), ('a', 19214), ('a0', 19214)], [('X_b', 873), ('X_a', 1746), ('v1', 2619), ('u1', 873), ('y1', 873), ('x1', 873), ('b1', 873), ('a1', 1746), ('v', 1746), ('v0', 1746), ('u', 873), ('u0', 873), ('y', 873), ('y0', 873), ('x', 1746), ('x0', 1746), ('b', 873), ('b0', 873), ('a', 1746), ('a0', 1746)], [('X_b', 13785), ('X_a', 27570), ('v1', 41355), ('u1', 13785), ('y1', 13785), ('x1', 13785), ('b1', 13785), ('a1', 27570), ('v', 27570), ('v0', 27570), ('u', 13785), ('u0', 13785), ('y', 13785), ('y0', 13785), ('x', 27570), ('x0', 27570), ('b', 13785), ('b0', 13785), ('a', 27570), ('a0', 27570)], [('X_b', 15872), ('X_a', 31744), ('v1', 47616), ('u1', 15872), ('y1', 15872), ('x1', 15872), ('b1', 15872), ('a1', 31744), ('v', 31744), ('v0', 31744), ('u', 15872), ('u0', 15872), ('y', 15872), ('y0', 15872), ('x', 31744), ('x0', 31744), ('b', 15872), ('b0', 15872), ('a', 31744), ('a0', 31744)], [('X_b', 9537), ('X_a', 19074), ('v1', 28611), ('u1', 9537), ('y1', 9537), ('x1', 9537), ('b1', 9537), ('a1', 19074), ('v', 19074), ('v0', 19074), ('u', 9537), ('u0', 9537), ('y', 9537), ('y0', 9537), ('x', 19074), ('x0', 19074), ('b', 9537), ('b0', 9537), ('a', 19074), ('a0', 19074)], [('X_b', 16750), ('X_a', 33500), ('v1', 50250), ('u1', 16750), ('y1', 16750), ('x1', 16750), ('b1', 16750), ('a1', 33500), ('v', 33500), ('v0', 33500), ('u', 16750), ('u0', 16750), ('y', 16750), ('y0', 16750), ('x', 33500), ('x0', 33500), ('b', 16750), ('b0', 16750), ('a', 33500), ('a0', 33500)], [('X_b', 4176), ('X_a', 8352), ('v1', 12528), ('u1', 4176), ('y1', 4176), ('x1', 4176), ('b1', 4176), ('a1', 8352), ('v', 8352), ('v0', 8352), ('u', 4176), ('u0', 4176), ('y', 4176), ('y0', 4176), ('x', 8352), ('x0', 8352), ('b', 4176), ('b0', 4176), ('a', 8352), ('a0', 8352)], [('X_b', 15077), ('X_a', 30154), ('v1', 45231), ('u1', 15077), ('y1', 15077), ('x1', 15077), ('b1', 15077), ('a1', 30154), ('v', 30154), ('v0', 30154), ('u', 15077), ('u0', 15077), ('y', 15077), ('y0', 15077), ('x', 30154), ('x0', 30154), ('b', 15077), ('b0', 15077), ('a', 30154), ('a0', 30154)], [('X_b', 5595), ('X_a', 11190), ('v1', 16785), ('u1', 5595), ('y1', 5595), ('x1', 5595), ('b1', 5595), ('a1', 11190), ('v', 11190), ('v0', 11190), ('u', 5595), ('u0', 5595), ('y', 5595), ('y0', 5595), ('x', 11190), ('x0', 11190), ('b', 5595), ('b0', 5595), ('a', 11190), ('a0', 11190)], [('X_b', 8193), ('X_a', 16386), ('v1', 24579), ('u1', 8193), ('y1', 8193), ('x1', 8193), ('b1', 8193), ('a1', 16386), ('v', 16386), ('v0', 16386), ('u', 8193), ('u0', 8193), ('y', 8193), ('y0', 8193), ('x', 16386), ('x0', 16386), ('b', 8193), ('b0', 8193), ('a', 16386), ('a0', 16386)], [('X_b', 15108), ('X_a', 30216), ('v1', 45324), ('u1', 15108), ('y1', 15108), ('x1', 15108), ('b1', 15108), ('a1', 30216), ('v', 30216), ('v0', 30216), ('u', 15108), ('u0', 15108), ('y', 15108), ('y0', 15108), ('x', 30216), ('x0', 30216), ('b', 15108), ('b0', 15108), ('a', 30216), ('a0', 30216)], [('X_b', 3593), ('X_a', 7186), ('v1', 10779), ('u1', 3593), ('y1', 3593), ('x1', 3593), ('b1', 3593), ('a1', 7186), ('v', 7186), ('v0', 7186), ('u', 3593), ('u0', 3593), ('y', 3593), ('y0', 3593), ('x', 7186), ('x0', 7186), ('b', 3593), ('b0', 3593), ('a', 7186), ('a0', 7186)], [('X_b', 15267), ('X_a', 30534), ('v1', 45801), ('u1', 15267), ('y1', 15267), ('x1', 15267), ('b1', 15267), ('a1', 30534), ('v', 30534), ('v0', 30534), ('u', 15267), ('u0', 15267), ('y', 15267), ('y0', 15267), ('x', 30534), ('x0', 30534), ('b', 15267), ('b0', 15267), ('a', 30534), ('a0', 30534)], [('X_b', 1763), ('X_a', 3526), ('v1', 5289), ('u1', 1763), ('y1', 1763), ('x1', 1763), ('b1', 1763), ('a1', 3526), ('v', 3526), ('v0', 3526), ('u', 1763), ('u0', 1763), ('y', 1763), ('y0', 1763), ('x', 3526), ('x0', 3526), ('b', 1763), ('b0', 1763), ('a', 3526), ('a0', 3526)], [('X_b', 4035), ('X_a', 8070), ('v1', 12105), ('u1', 4035), ('y1', 4035), ('x1', 4035), ('b1', 4035), ('a1', 8070), ('v', 8070), ('v0', 8070), ('u', 4035), ('u0', 4035), ('y', 4035), ('y0', 4035), ('x', 8070), ('x0', 8070), ('b', 4035), ('b0', 4035), ('a', 8070), ('a0', 8070)], [('X_b', 11813), ('X_a', 23626), ('v1', 35439), ('u1', 11813), ('y1', 11813), ('x1', 11813), ('b1', 11813), ('a1', 23626), ('v', 23626), ('v0', 23626), ('u', 11813), ('u0', 11813), ('y', 11813), ('y0', 11813), ('x', 23626), ('x0', 23626), ('b', 11813), ('b0', 11813), ('a', 23626), ('a0', 23626)], [('X_b', 210), ('X_a', 420), ('v1', 630), ('u1', 210), ('y1', 210), ('x1', 210), ('b1', 210), ('a1', 420), ('v', 420), ('v0', 420), ('u', 210), ('u0', 210), ('y', 210), ('y0', 210), ('x', 420), ('x0', 420), ('b', 210), ('b0', 210), ('a', 420), ('a0', 420)], [('X_b', 10177), ('X_a', 20354), ('v1', 30531), ('u1', 10177), ('y1', 10177), ('x1', 10177), ('b1', 10177), ('a1', 20354), ('v', 20354), ('v0', 20354), ('u', 10177), ('u0', 10177), ('y', 10177), ('y0', 10177), ('x', 20354), ('x0', 20354), ('b', 10177), ('b0', 10177), ('a', 20354), ('a0', 20354)], [('X_b', 12607), ('X_a', 25214), ('v1', 37821), ('u1', 12607), ('y1', 12607), ('x1', 12607), ('b1', 12607), ('a1', 25214), ('v', 25214), ('v0', 25214), ('u', 12607), ('u0', 12607), ('y', 12607), ('y0', 12607), ('x', 25214), ('x0', 25214), ('b', 12607), ('b0', 12607), ('a', 25214), ('a0', 25214)], [('X_b', 16128), ('X_a', 32256), ('v1', 48384), ('u1', 16128), ('y1', 16128), ('x1', 16128), ('b1', 16128), ('a1', 32256), ('v', 32256), ('v0', 32256), ('u', 16128), ('u0', 16128), ('y', 16128), ('y0', 16128), ('x', 32256), ('x0', 32256), ('b', 16128), ('b0', 16128), ('a', 32256), ('a0', 32256)], [('X_b', 16765), ('X_a', 33530), ('v1', 50295), ('u1', 16765), ('y1', 16765), ('x1', 16765), ('b1', 16765), ('a1', 33530), ('v', 33530), ('v0', 33530), ('u', 16765), ('u0', 16765), ('y', 16765), ('y0', 16765), ('x', 33530), ('x0', 33530), ('b', 16765), ('b0', 16765), ('a', 33530), ('a0', 33530)], [('X_b', 13153), ('X_a', 26306), ('v1', 39459), ('u1', 13153), ('y1', 13153), ('x1', 13153), ('b1', 13153), ('a1', 26306), ('v', 26306), ('v0', 26306), ('u', 13153), ('u0', 13153), ('y', 13153), ('y0', 13153), ('x', 26306), ('x0', 26306), ('b', 13153), ('b0', 13153), ('a', 26306), ('a0', 26306)], [('X_b', 20096), ('X_a', 40192), ('v1', 60288), ('u1', 20096), ('y1', 20096), ('x1', 20096), ('b1', 20096), ('a1', 40192), ('v', 40192), ('v0', 40192), ('u', 20096), ('u0', 20096), ('y', 20096), ('y0', 20096), ('x', 40192), ('x0', 40192), ('b', 20096), ('b0', 20096), ('a', 40192), ('a0', 40192)], [('X_b', 16769), ('X_a', 33538), ('v1', 50307), ('u1', 16769), ('y1', 16769), ('x1', 16769), ('b1', 16769), ('a1', 33538), ('v', 33538), ('v0', 33538), ('u', 16769), ('u0', 16769), ('y', 16769), ('y0', 16769), ('x', 33538), ('x0', 33538), ('b', 16769), ('b0', 16769), ('a', 33538), ('a0', 33538)], [('X_b', 6513), ('X_a', 13026), ('v1', 19539), ('u1', 6513), ('y1', 6513), ('x1', 6513), ('b1', 6513), ('a1', 13026), ('v', 13026), ('v0', 13026), ('u', 6513), ('u0', 6513), ('y', 6513), ('y0', 6513), ('x', 13026), ('x0', 13026), ('b', 6513), ('b0', 6513), ('a', 13026), ('a0', 13026)], [('X_b', 8930), ('X_a', 17860), ('v1', 26790), ('u1', 8930), ('y1', 8930), ('x1', 8930), ('b1', 8930), ('a1', 17860), ('v', 17860), ('v0', 17860), ('u', 8930), ('u0', 8930), ('y', 8930), ('y0', 8930), ('x', 17860), ('x0', 17860), ('b', 8930), ('b0', 8930), ('a', 17860), ('a0', 17860)], [('X_b', 17156), ('X_a', 34312), ('v1', 51468), ('u1', 17156), ('y1', 17156), ('x1', 17156), ('b1', 17156), ('a1', 34312), ('v', 34312), ('v0', 34312), ('u', 17156), ('u0', 17156), ('y', 17156), ('y0', 17156), ('x', 34312), ('x0', 34312), ('b', 17156), ('b0', 17156), ('a', 34312), ('a0', 34312)], [('X_b', 17159), ('X_a', 34318), ('v1', 51477), ('u1', 17159), ('y1', 17159), ('x1', 17159), ('b1', 17159), ('a1', 34318), ('v', 34318), ('v0', 34318), ('u', 17159), ('u0', 17159), ('y', 17159), ('y0', 17159), ('x', 34318), ('x0', 34318), ('b', 17159), ('b0', 17159), ('a', 34318), ('a0', 34318)], [('X_b', 19236), ('X_a', 38472), ('v1', 57708), ('u1', 19236), ('y1', 19236), ('x1', 19236), ('b1', 19236), ('a1', 38472), ('v', 38472), ('v0', 38472), ('u', 19236), ('u0', 19236), ('y', 19236), ('y0', 19236), ('x', 38472), ('x0', 38472), ('b', 19236), ('b0', 19236), ('a', 38472), ('a0', 38472)], [('X_b', 1024), ('X_a', 2048), ('v1', 3072), ('u1', 1024), ('y1', 1024), ('x1', 1024), ('b1', 1024), ('a1', 2048), ('v', 2048), ('v0', 2048), ('u', 1024), ('u0', 1024), ('y', 1024), ('y0', 1024), ('x', 2048), ('x0', 2048), ('b', 1024), ('b0', 1024), ('a', 2048), ('a0', 2048)], [('X_b', 11607), ('X_a', 23214), ('v1', 34821), ('u1', 11607), ('y1', 11607), ('x1', 11607), ('b1', 11607), ('a1', 23214), ('v', 23214), ('v0', 23214), ('u', 11607), ('u0', 11607), ('y', 11607), ('y0', 11607), ('x', 23214), ('x0', 23214), ('b', 11607), ('b0', 11607), ('a', 23214), ('a0', 23214)]]
+analysis:586:DEBUG (_check) - init_models: sat (100 models)
+analysis:591:DEBUG (_check) - inps: Inps({Inp(ss=('a', 'b'), vs=(37746, 18873)), Inp(ss=('a', 'b'), vs=(32826, 16413)), Inp(ss=('a', 'b'), vs=(34722, 17361)), Inp(ss=('a', 'b'), vs=(11520, 5760)), Inp(ss=('a', 'b'), vs=(25214, 12607)), Inp(ss=('a', 'b'), vs=(17664, 8832)), Inp(ss=('a', 'b'), vs=(40192, 20096)), Inp(ss=('a', 'b'), vs=(23214, 11607)), Inp(ss=('a', 'b'), vs=(33530, 16765)), Inp(ss=('a', 'b'), vs=(610, 305)), Inp(ss=('a', 'b'), vs=(41008, 20504)), Inp(ss=('a', 'b'), vs=(18580, 9290)), Inp(ss=('a', 'b'), vs=(34330, 17165)), Inp(ss=('a', 'b'), vs=(262, 131)), Inp(ss=('a', 'b'), vs=(32770, 16385)), Inp(ss=('a', 'b'), vs=(16386, 8193)), Inp(ss=('a', 'b'), vs=(2, 1)), Inp(ss=('a', 'b'), vs=(23544, 11772)), Inp(ss=('a', 'b'), vs=(32622, 16311)), Inp(ss=('a', 'b'), vs=(16200, 8100)), Inp(ss=('a', 'b'), vs=(13670, 6835)), Inp(ss=('a', 'b'), vs=(38604, 19302)), Inp(ss=('a', 'b'), vs=(19214, 9607)), Inp(ss=('a', 'b'), vs=(9656, 4828)), Inp(ss=('a', 'b'), vs=(30216, 15108)), Inp(ss=('a', 'b'), vs=(34312, 17156)), Inp(ss=('a', 'b'), vs=(13026, 6513)), Inp(ss=('a', 'b'), vs=(17596, 8798)), Inp(ss=('a', 'b'), vs=(19074, 9537)), Inp(ss=('a', 'b'), vs=(30622, 15311)), Inp(ss=('a', 'b'), vs=(41908, 20954)), Inp(ss=('a', 'b'), vs=(16308, 8154)), Inp(ss=('a', 'b'), vs=(12262, 6131)), Inp(ss=('a', 'b'), vs=(32256, 16128)), Inp(ss=('a', 'b'), vs=(4, 2)), Inp(ss=('a', 'b'), vs=(21974, 10987)), Inp(ss=('a', 'b'), vs=(33226, 16613)), Inp(ss=('a', 'b'), vs=(30154, 15077)), Inp(ss=('a', 'b'), vs=(33538, 16769)), Inp(ss=('a', 'b'), vs=(3058, 1529)), Inp(ss=('a', 'b'), vs=(38472, 19236)), Inp(ss=('a', 'b'), vs=(34318, 17159)), Inp(ss=('a', 'b'), vs=(30278, 15139)), Inp(ss=('a', 'b'), vs=(32046, 16023)), Inp(ss=('a', 'b'), vs=(36142, 18071)), Inp(ss=('a', 'b'), vs=(1652, 826)), Inp(ss=('a', 'b'), vs=(42780, 21390)), Inp(ss=('a', 'b'), vs=(6592, 3296)), Inp(ss=('a', 'b'), vs=(14926, 7463)), Inp(ss=('a', 'b'), vs=(20354, 10177)), Inp(ss=('a', 'b'), vs=(21686, 10843)), Inp(ss=('a', 'b'), vs=(36608, 18304)), Inp(ss=('a', 'b'), vs=(35966, 17983)), Inp(ss=('a', 'b'), vs=(16394, 8197)), Inp(ss=('a', 'b'), vs=(3526, 1763)), Inp(ss=('a', 'b'), vs=(26306, 13153)), Inp(ss=('a', 'b'), vs=(11254, 5627)), Inp(ss=('a', 'b'), vs=(37378, 18689)), Inp(ss=('a', 'b'), vs=(30, 15)), Inp(ss=('a', 'b'), vs=(34852, 17426)), Inp(ss=('a', 'b'), vs=(40990, 20495)), Inp(ss=('a', 'b'), vs=(11536, 5768)), Inp(ss=('a', 'b'), vs=(12084, 6042)), Inp(ss=('a', 'b'), vs=(30684, 15342)), Inp(ss=('a', 'b'), vs=(29268, 14634)), Inp(ss=('a', 'b'), vs=(30534, 15267)), Inp(ss=('a', 'b'), vs=(33720, 16860)), Inp(ss=('a', 'b'), vs=(5128, 2564)), Inp(ss=('a', 'b'), vs=(38920, 19460)), Inp(ss=('a', 'b'), vs=(28, 14)), Inp(ss=('a', 'b'), vs=(23626, 11813)), Inp(ss=('a', 'b'), vs=(7186, 3593)), Inp(ss=('a', 'b'), vs=(2894, 1447)), Inp(ss=('a', 'b'), vs=(8070, 4035)), Inp(ss=('a', 'b'), vs=(420, 210)), Inp(ss=('a', 'b'), vs=(38442, 19221)), Inp(ss=('a', 'b'), vs=(11190, 5595)), Inp(ss=('a', 'b'), vs=(32768, 16384)), Inp(ss=('a', 'b'), vs=(36864, 18432)), Inp(ss=('a', 'b'), vs=(31744, 15872)), Inp(ss=('a', 'b'), vs=(2048, 1024)), Inp(ss=('a', 'b'), vs=(42608, 21304)), Inp(ss=('a', 'b'), vs=(42448, 21224)), Inp(ss=('a', 'b'), vs=(12692, 6346)), Inp(ss=('a', 'b'), vs=(6504, 3252)), Inp(ss=('a', 'b'), vs=(37430, 18715)), Inp(ss=('a', 'b'), vs=(11374, 5687)), Inp(ss=('a', 'b'), vs=(33500, 16750)), Inp(ss=('a', 'b'), vs=(12682, 6341)), Inp(ss=('a', 'b'), vs=(33228, 16614)), Inp(ss=('a', 'b'), vs=(1746, 873)), Inp(ss=('a', 'b'), vs=(14, 7)), Inp(ss=('a', 'b'), vs=(36878, 18439)), Inp(ss=('a', 'b'), vs=(39234, 19617)), Inp(ss=('a', 'b'), vs=(8352, 4176)), Inp(ss=('a', 'b'), vs=(27570, 13785)), Inp(ss=('a', 'b'), vs=(17860, 8930)), Inp(ss=('a', 'b'), vs=(16406, 8203)), Inp(ss=('a', 'b'), vs=(16462, 8231)), Inp(ss=('a', 'b'), vs=(40892, 20446))})
+analysis:600:INFO (verify) - dg: defaultdict(<class 'list'>, {})
+analysis:601:INFO (verify) - label_d: defaultdict(<class 'str'>, {Not(0 == 2*a*b + -1*u*x + -1*v*y + x + -1*y): 'c_0'})
+analysis:602:INFO (verify) - rev_label_d: {'c_0': Not(0 == 2*a*b + -1*u*x + -1*v*y + x + -1*y)}
+analysis:605:INFO (verify) - loop_cond_label: c_0
+analysis:609:INFO (verify) - mds_labels: set()
+analysis:610:INFO (verify) - mds: ZConj()
+lib:54:DEBUG (get_traces_from_inps) - inp_decls: I a, I b
+lib:55:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_25': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace2_25': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace3_25': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 183.25ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 88.59ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 272.36ms
+utils.profiling:31:DEBUG (timed) - verify: 74392.36ms
+analysis:630:DEBUG (strengthen) - base_term_inps: 0
+analysis:631:DEBUG (strengthen) - term_inps: [Inp(ss=('a', 'b'), vs=(37746, 18873)), Inp(ss=('a', 'b'), vs=(13670, 6835)), Inp(ss=('a', 'b'), vs=(38472, 19236)), Inp(ss=('a', 'b'), vs=(40990, 20495)), Inp(ss=('a', 'b'), vs=(2048, 1024)), Inp(ss=('a', 'b'), vs=(32826, 16413)), Inp(ss=('a', 'b'), vs=(38604, 19302)), Inp(ss=('a', 'b'), vs=(34318, 17159)), Inp(ss=('a', 'b'), vs=(11536, 5768)), Inp(ss=('a', 'b'), vs=(42608, 21304)), Inp(ss=('a', 'b'), vs=(34722, 17361)), Inp(ss=('a', 'b'), vs=(19214, 9607)), Inp(ss=('a', 'b'), vs=(30278, 15139)), Inp(ss=('a', 'b'), vs=(12084, 6042)), Inp(ss=('a', 'b'), vs=(42448, 21224)), Inp(ss=('a', 'b'), vs=(11520, 5760)), Inp(ss=('a', 'b'), vs=(9656, 4828)), Inp(ss=('a', 'b'), vs=(32046, 16023)), Inp(ss=('a', 'b'), vs=(30684, 15342)), Inp(ss=('a', 'b'), vs=(12692, 6346)), Inp(ss=('a', 'b'), vs=(25214, 12607)), Inp(ss=('a', 'b'), vs=(30216, 15108)), Inp(ss=('a', 'b'), vs=(36142, 18071)), Inp(ss=('a', 'b'), vs=(29268, 14634)), Inp(ss=('a', 'b'), vs=(6504, 3252)), Inp(ss=('a', 'b'), vs=(17664, 8832)), Inp(ss=('a', 'b'), vs=(34312, 17156)), Inp(ss=('a', 'b'), vs=(1652, 826)), Inp(ss=('a', 'b'), vs=(30534, 15267)), Inp(ss=('a', 'b'), vs=(37430, 18715)), Inp(ss=('a', 'b'), vs=(40192, 20096)), Inp(ss=('a', 'b'), vs=(13026, 6513)), Inp(ss=('a', 'b'), vs=(42780, 21390)), Inp(ss=('a', 'b'), vs=(33720, 16860)), Inp(ss=('a', 'b'), vs=(11374, 5687)), Inp(ss=('a', 'b'), vs=(23214, 11607)), Inp(ss=('a', 'b'), vs=(17596, 8798)), Inp(ss=('a', 'b'), vs=(6592, 3296)), Inp(ss=('a', 'b'), vs=(5128, 2564)), Inp(ss=('a', 'b'), vs=(33500, 16750)), Inp(ss=('a', 'b'), vs=(33530, 16765)), Inp(ss=('a', 'b'), vs=(19074, 9537)), Inp(ss=('a', 'b'), vs=(14926, 7463)), Inp(ss=('a', 'b'), vs=(38920, 19460)), Inp(ss=('a', 'b'), vs=(12682, 6341)), Inp(ss=('a', 'b'), vs=(610, 305)), Inp(ss=('a', 'b'), vs=(30622, 15311)), Inp(ss=('a', 'b'), vs=(20354, 10177)), Inp(ss=('a', 'b'), vs=(28, 14)), Inp(ss=('a', 'b'), vs=(33228, 16614)), Inp(ss=('a', 'b'), vs=(41008, 20504)), Inp(ss=('a', 'b'), vs=(41908, 20954)), Inp(ss=('a', 'b'), vs=(21686, 10843)), Inp(ss=('a', 'b'), vs=(23626, 11813)), Inp(ss=('a', 'b'), vs=(1746, 873)), Inp(ss=('a', 'b'), vs=(18580, 9290)), Inp(ss=('a', 'b'), vs=(16308, 8154)), Inp(ss=('a', 'b'), vs=(36608, 18304)), Inp(ss=('a', 'b'), vs=(7186, 3593)), Inp(ss=('a', 'b'), vs=(14, 7)), Inp(ss=('a', 'b'), vs=(34330, 17165)), Inp(ss=('a', 'b'), vs=(12262, 6131)), Inp(ss=('a', 'b'), vs=(35966, 17983)), Inp(ss=('a', 'b'), vs=(2894, 1447)), Inp(ss=('a', 'b'), vs=(36878, 18439)), Inp(ss=('a', 'b'), vs=(262, 131)), Inp(ss=('a', 'b'), vs=(32256, 16128)), Inp(ss=('a', 'b'), vs=(16394, 8197)), Inp(ss=('a', 'b'), vs=(8070, 4035)), Inp(ss=('a', 'b'), vs=(39234, 19617)), Inp(ss=('a', 'b'), vs=(32770, 16385)), Inp(ss=('a', 'b'), vs=(4, 2)), Inp(ss=('a', 'b'), vs=(3526, 1763)), Inp(ss=('a', 'b'), vs=(420, 210)), Inp(ss=('a', 'b'), vs=(8352, 4176)), Inp(ss=('a', 'b'), vs=(16386, 8193)), Inp(ss=('a', 'b'), vs=(21974, 10987)), Inp(ss=('a', 'b'), vs=(26306, 13153)), Inp(ss=('a', 'b'), vs=(38442, 19221)), Inp(ss=('a', 'b'), vs=(27570, 13785)), Inp(ss=('a', 'b'), vs=(2, 1)), Inp(ss=('a', 'b'), vs=(33226, 16613)), Inp(ss=('a', 'b'), vs=(11254, 5627)), Inp(ss=('a', 'b'), vs=(11190, 5595)), Inp(ss=('a', 'b'), vs=(17860, 8930)), Inp(ss=('a', 'b'), vs=(23544, 11772)), Inp(ss=('a', 'b'), vs=(30154, 15077)), Inp(ss=('a', 'b'), vs=(37378, 18689)), Inp(ss=('a', 'b'), vs=(32768, 16384)), Inp(ss=('a', 'b'), vs=(16406, 8203)), Inp(ss=('a', 'b'), vs=(32622, 16311)), Inp(ss=('a', 'b'), vs=(33538, 16769)), Inp(ss=('a', 'b'), vs=(30, 15)), Inp(ss=('a', 'b'), vs=(36864, 18432)), Inp(ss=('a', 'b'), vs=(16462, 8231)), Inp(ss=('a', 'b'), vs=(16200, 8100)), Inp(ss=('a', 'b'), vs=(3058, 1529)), Inp(ss=('a', 'b'), vs=(34852, 17426)), Inp(ss=('a', 'b'), vs=(31744, 15872)), Inp(ss=('a', 'b'), vs=(40892, 20446))]
+analysis:632:DEBUG (strengthen) - mayloop_inps: 0
+analysis:633:DEBUG (strengthen) - rcs: ZConj({Not(0 == 2*a*b + -1*u*x + -1*v*y + x + -1*y)})
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_25]: 0
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_25]: 0
+lib:254:DEBUG (infer_from_traces) - invs: 
+analysis:637:DEBUG (strengthen) - mayloop_invs: ZConj()
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_25]: 80
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_25]: 20
+*** 'None', 0 locs, 0 invs (), 0 traces, 0 inps, time 0.01s, rand seed 1589474081.47, test 25 47:
+
+lib:254:DEBUG (infer_from_traces) - invs: vtrace2_25 (47 invs):
+1. x - 2*y == 0
+2. v - 2*y == 0
+3. u - y == 0
+4. b - y == 0
+5. a - 2*y == 0
+6. v - x <= 0
+7. u - y <= 0
+8. u - x <= -1
+9. u - v <= -1
+10. b - y <= 0
+11. b - x <= -1
+12. b - v <= -1
+13. b - u <= 0
+14. a - x <= 0
+15. a - v <= 0
+16. -y <= -1
+17. -x <= -2
+18. -x - y <= -3
+19. -x + y <= -1
+20. -v <= -2
+21. -v - y <= -3
+22. -v - x <= -4
+23. -v + y <= -1
+24. -v + x <= 0
+25. -u <= -1
+26. -u - y <= -2
+27. -u - x <= -3
+28. -u - v <= -3
+29. -u + y <= 0
+30. -b <= -1
+31. -b - y <= -2
+32. -b - x <= -3
+33. -b - v <= -3
+34. -b - u <= -2
+35. -b + y <= 0
+36. -b + u <= 0
+37. -a <= -2
+38. -a - y <= -3
+39. -a - x <= -4
+40. -a - v <= -4
+41. -a - u <= -3
+42. -a - b <= -3
+43. -a + y <= -1
+44. -a + x <= 0
+45. -a + v <= 0
+46. -a + u <= -1
+47. -a + b <= -1
+analysis:641:DEBUG (strengthen) - term_invs: ZConj({-1*a + y <= -1, -1*x + y <= -1, -1*a + u <= -1, 0 >= -1*a + v, 0 == a + -2*y, 0 >= -1*u + y, -1*b + -1*v <= -3, -1*b + -1*u <= -2, 0 >= a + -1*x, -1*v + y <= -1, 0 >= -1*a + x, u + -1*v <= -1, u >= 1, -1*b + -1*x <= -3, v >= 2, y >= 1, b + -1*v <= -1, 0 >= -1*b + u, u + -1*x <= -1, -1*a + -1*u <= -3, 0 >= -1*b + y, -1*a + -1*v <= -4, 0 >= -1*v + x, b + -1*x <= -1, -1*b + -1*y <= -2, 0 >= b + -1*y, -1*u + -1*v <= -3, -1*a + -1*x <= -4, x >= 2, 0 == v + -2*y, 0 == b + -1*y, -1*a + -1*b <= -3, -1*u + -1*x <= -3, -1*a + -1*y <= -3, -1*a + b <= -1, 0 >= v + -1*x, 0 >= b + -1*u, -1*x + -1*y <= -3, -1*v + -1*x <= -4, b >= 1, -1*u + -1*y <= -2, a >= 2, -1*v + -1*y <= -3, 0 >= u + -1*y, 0 == x + -2*y, 0 >= a + -1*v, 0 == u + -1*y})
+utils.profiling:31:DEBUG (timed) - strengthen: 3709.36ms
+analysis:702:DEBUG (_stat_candidate_rcs) - stat (47 total): defaultdict(<class 'int'>, {1: 47})
+analysis:729:DEBUG (prove_nonterm_vloop) - PROVE_NT DEPTH 1: ZConj({Not(-1*a + y <= -1), Not(0 == 2*a*b + -1*u*x + -1*v*y + x + -1*y)})
+analysis:505:DEBUG (verify) - loop_transrel: And(And(a0 == a,
+        b0 == b,
+        x0 == x,
+        y0 == y,
+        u0 == u,
+        v0 == v),
+    And(a1 == a,
+        b1 == b,
+        x1 == x + -1*y,
+        y1 == y,
+        u1 == u,
+        v1 == u + v))
+analysis:506:DEBUG (verify) - loop_cond: Not(0 == 2*a*b + -1*u*x + -1*v*y + x + -1*y)
+analysis:507:DEBUG (verify) - rcs: ZConj({Not(-1*a + y <= -1), Not(0 == 2*a*b + -1*u*x + -1*v*y + x + -1*y)})
+analysis:521:DEBUG (verify) - labeled_rcs: ZConj({Not(0 == 2*a*b + -1*u*x + -1*v*y + x + -1*y):c_1, Not(-1*a + y <= -1):c_0})
+analysis:528:DEBUG (verify) - transrel_rcs: ZConj({Not(-1*a0 + y0 <= -1):c_0, And(And(a0 == a,
+        b0 == b,
+        x0 == x,
+        y0 == y,
+        u0 == u,
+        v0 == v),
+    And(a1 == a,
+        b1 == b,
+        x1 == x + -1*y,
+        y1 == y,
+        u1 == u,
+        v1 == u + v)), Not(0 == 2*a0*b0 + -1*u0*x0 + -1*v0*y0 + x0 + -1*y0):c_1})
+analysis:533:DEBUG (verify) - init_transrel_rcs: ZConj({Not(0 == 2*a0*b0 + -1*u0*x0 + -1*v0*y0 + x0 + -1*y0):c_1, And(And(a0 == a,
+        b0 == b,
+        x0 == x,
+        y0 == y,
+        u0 == u,
+        v0 == v),
+    And(a1 == a,
+        b1 == b,
+        x1 == x + -1*y,
+        y1 == y,
+        u1 == u,
+        v1 == u + v)), And(a == X_a,
+    b == X_b,
+    x == X_a,
+    y == X_b,
+    u == X_b,
+    v == X_a), And(65535 >= X_a, 65535 >= X_b, 1 <= X_a, 1 <= X_b), Not(-1*a0 + y0 <= -1):c_0})
+analysis:542:DEBUG (_check) - rc: Not(-1*a + y <= -1):c_0
+analysis:547:DEBUG (_check) - rc_r: Not(-1*a1 + y1 <= -1)
+analysis:548:DEBUG (_check) - f: ZConj({Not(Not(-1*a1 + y1 <= -1)), Not(0 == 2*a0*b0 + -1*u0*x0 + -1*v0*y0 + x0 + -1*y0):c_1, And(And(a0 == a,
+        b0 == b,
+        x0 == x,
+        y0 == y,
+        u0 == u,
+        v0 == v),
+    And(a1 == a,
+        b1 == b,
+        x1 == x + -1*y,
+        y1 == y,
+        u1 == u,
+        v1 == u + v)), Not(-1*a0 + y0 <= -1):c_0})
+*** 'None', 1 locs, 47 invs (5 Eqt, 42 Oct), 100 traces, 0 inps, time 2.93s, rand seed 1589474081.47, test 25 47:
+vtrace2_25 (47 invs):
+1. x - 2*y == 0
+2. v - 2*y == 0
+3. u - y == 0
+4. b - y == 0
+5. a - 2*y == 0
+6. v - x <= 0
+7. u - y <= 0
+8. u - x <= -1
+9. u - v <= -1
+10. b - y <= 0
+11. b - x <= -1
+12. b - v <= -1
+13. b - u <= 0
+14. a - x <= 0
+15. a - v <= 0
+16. -y <= -1
+17. -x <= -2
+18. -x - y <= -3
+19. -x + y <= -1
+20. -v <= -2
+21. -v - y <= -3
+22. -v - x <= -4
+23. -v + y <= -1
+24. -v + x <= 0
+25. -u <= -1
+26. -u - y <= -2
+27. -u - x <= -3
+28. -u - v <= -3
+29. -u + y <= 0
+30. -b <= -1
+31. -b - y <= -2
+32. -b - x <= -3
+33. -b - v <= -3
+34. -b - u <= -2
+35. -b + y <= 0
+36. -b + u <= 0
+37. -a <= -2
+38. -a - y <= -3
+39. -a - x <= -4
+40. -a - v <= -4
+41. -a - u <= -3
+42. -a - b <= -3
+43. -a + y <= -1
+44. -a + x <= 0
+45. -a + v <= 0
+46. -a + u <= -1
+47. -a + b <= -1
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: Not(0 == 2*a0*b0 + -1*u0*x0 + -1*v0*y0 + x0 + -1*y0)
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_1
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: Not(-1*a0 + y0 <= -1)
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_0
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_0', Not(-1*a0 + y0 <= -1))]
+analysis:556:DEBUG (_check) - rs: unsat
+analysis:557:DEBUG (_check) - unsat_core: ['c_0']
+analysis:542:DEBUG (_check) - rc: Not(0 == 2*a*b + -1*u*x + -1*v*y + x + -1*y):c_1
+analysis:547:DEBUG (_check) - rc_r: Not(0 == 2*a1*b1 + -1*u1*x1 + -1*v1*y1 + x1 + -1*y1)
+analysis:548:DEBUG (_check) - f: ZConj({Not(Not(0 == 2*a1*b1 + -1*u1*x1 + -1*v1*y1 + x1 + -1*y1)), Not(0 == 2*a0*b0 + -1*u0*x0 + -1*v0*y0 + x0 + -1*y0):c_1, And(And(a0 == a,
+        b0 == b,
+        x0 == x,
+        y0 == y,
+        u0 == u,
+        v0 == v),
+    And(a1 == a,
+        b1 == b,
+        x1 == x + -1*y,
+        y1 == y,
+        u1 == u,
+        v1 == u + v)), Not(-1*a0 + y0 <= -1):c_0})
+analysis:563:DEBUG (_check) - rs: sat
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: Not(0 == 2*a0*b0 + -1*u0*x0 + -1*v0*y0 + x0 + -1*y0)
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_1
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: Not(-1*a0 + y0 <= -1)
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_0
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_0', Not(-1*a0 + y0 <= -1))]
+analysis:570:DEBUG (_check) - init_f: ZConj({And(And(a0 == a,
+        b0 == b,
+        x0 == x,
+        y0 == y,
+        u0 == u,
+        v0 == v),
+    And(a1 == a,
+        b1 == b,
+        x1 == x + -1*y,
+        y1 == y,
+        u1 == u,
+        v1 == u + v)), And(a == X_a,
+    b == X_b,
+    x == X_a,
+    y == X_b,
+    u == X_b,
+    v == X_a), Not(0 == 2*a0*b0 + -1*u0*x0 + -1*v0*y0 + x0 + -1*y0):c_1, Not(Not(0 == 2*a1*b1 + -1*u1*x1 + -1*v1*y1 + x1 + -1*y1)), And(65535 >= X_a, 65535 >= X_b, 1 <= X_a, 1 <= X_b), Not(-1*a0 + y0 <= -1):c_0})
+analysis:571:DEBUG (_check) - init_rs: False
+analysis:586:DEBUG (_check) - init_models: sat (0 models)
+lib:38:DEBUG (gen_rand_inps) - inps (0): Inps()
+lib:43:DEBUG (gen_rand_inps) - gen 106/100 random inps
+analysis:591:DEBUG (_check) - inps: Inps({Inp(ss=('a', 'b'), vs=(291, 297)), Inp(ss=('a', 'b'), vs=(20, 14)), Inp(ss=('a', 'b'), vs=(287, 1)), Inp(ss=('a', 'b'), vs=(5, 293)), Inp(ss=('a', 'b'), vs=(8, 7)), Inp(ss=('a', 'b'), vs=(275, 292)), Inp(ss=('a', 'b'), vs=(9, 280)), Inp(ss=('a', 'b'), vs=(27, 271)), Inp(ss=('a', 'b'), vs=(288, 11)), Inp(ss=('a', 'b'), vs=(273, 17)), Inp(ss=('a', 'b'), vs=(0, 19)), Inp(ss=('a', 'b'), vs=(23, 5)), Inp(ss=('a', 'b'), vs=(10, 283)), Inp(ss=('a', 'b'), vs=(6, 277)), Inp(ss=('a', 'b'), vs=(12, 288)), Inp(ss=('a', 'b'), vs=(0, 15)), Inp(ss=('a', 'b'), vs=(0, 29)), Inp(ss=('a', 'b'), vs=(273, 5)), Inp(ss=('a', 'b'), vs=(18, 293)), Inp(ss=('a', 'b'), vs=(29, 6)), Inp(ss=('a', 'b'), vs=(28, 13)), Inp(ss=('a', 'b'), vs=(25, 281)), Inp(ss=('a', 'b'), vs=(283, 9)), Inp(ss=('a', 'b'), vs=(276, 289)), Inp(ss=('a', 'b'), vs=(12, 4)), Inp(ss=('a', 'b'), vs=(5, 12)), Inp(ss=('a', 'b'), vs=(9, 26)), Inp(ss=('a', 'b'), vs=(275, 12)), Inp(ss=('a', 'b'), vs=(21, 29)), Inp(ss=('a', 'b'), vs=(3, 291)), Inp(ss=('a', 'b'), vs=(276, 2)), Inp(ss=('a', 'b'), vs=(4, 2)), Inp(ss=('a', 'b'), vs=(20, 23)), Inp(ss=('a', 'b'), vs=(14, 14)), Inp(ss=('a', 'b'), vs=(281, 2)), Inp(ss=('a', 'b'), vs=(276, 288)), Inp(ss=('a', 'b'), vs=(4, 16)), Inp(ss=('a', 'b'), vs=(6, 3)), Inp(ss=('a', 'b'), vs=(286, 10)), Inp(ss=('a', 'b'), vs=(0, 281)), Inp(ss=('a', 'b'), vs=(28, 284)), Inp(ss=('a', 'b'), vs=(2, 7)), Inp(ss=('a', 'b'), vs=(294, 280)), Inp(ss=('a', 'b'), vs=(5, 287)), Inp(ss=('a', 'b'), vs=(29, 2)), Inp(ss=('a', 'b'), vs=(9, 0)), Inp(ss=('a', 'b'), vs=(1, 10)), Inp(ss=('a', 'b'), vs=(18, 284)), Inp(ss=('a', 'b'), vs=(289, 7)), Inp(ss=('a', 'b'), vs=(272, 15)), Inp(ss=('a', 'b'), vs=(12, 274)), Inp(ss=('a', 'b'), vs=(4, 287)), Inp(ss=('a', 'b'), vs=(295, 293)), Inp(ss=('a', 'b'), vs=(298, 11)), Inp(ss=('a', 'b'), vs=(14, 1)), Inp(ss=('a', 'b'), vs=(11, 293)), Inp(ss=('a', 'b'), vs=(3, 278)), Inp(ss=('a', 'b'), vs=(1, 6)), Inp(ss=('a', 'b'), vs=(9, 289)), Inp(ss=('a', 'b'), vs=(10, 25)), Inp(ss=('a', 'b'), vs=(277, 282)), Inp(ss=('a', 'b'), vs=(10, 7)), Inp(ss=('a', 'b'), vs=(298, 284)), Inp(ss=('a', 'b'), vs=(285, 5)), Inp(ss=('a', 'b'), vs=(288, 0)), Inp(ss=('a', 'b'), vs=(23, 283)), Inp(ss=('a', 'b'), vs=(4, 3)), Inp(ss=('a', 'b'), vs=(26, 13)), Inp(ss=('a', 'b'), vs=(19, 7)), Inp(ss=('a', 'b'), vs=(290, 4)), Inp(ss=('a', 'b'), vs=(0, 271)), Inp(ss=('a', 'b'), vs=(7, 9)), Inp(ss=('a', 'b'), vs=(19, 3)), Inp(ss=('a', 'b'), vs=(292, 278)), Inp(ss=('a', 'b'), vs=(10, 29)), Inp(ss=('a', 'b'), vs=(13, 6)), Inp(ss=('a', 'b'), vs=(8, 8)), Inp(ss=('a', 'b'), vs=(289, 8)), Inp(ss=('a', 'b'), vs=(13, 3)), Inp(ss=('a', 'b'), vs=(279, 28)), Inp(ss=('a', 'b'), vs=(293, 3)), Inp(ss=('a', 'b'), vs=(279, 0)), Inp(ss=('a', 'b'), vs=(288, 5)), Inp(ss=('a', 'b'), vs=(10, 26)), Inp(ss=('a', 'b'), vs=(285, 297)), Inp(ss=('a', 'b'), vs=(0, 0)), Inp(ss=('a', 'b'), vs=(9, 297)), Inp(ss=('a', 'b'), vs=(298, 274)), Inp(ss=('a', 'b'), vs=(277, 287)), Inp(ss=('a', 'b'), vs=(11, 4)), Inp(ss=('a', 'b'), vs=(22, 3)), Inp(ss=('a', 'b'), vs=(276, 9)), Inp(ss=('a', 'b'), vs=(29, 0)), Inp(ss=('a', 'b'), vs=(3, 12)), Inp(ss=('a', 'b'), vs=(14, 28)), Inp(ss=('a', 'b'), vs=(14, 11)), Inp(ss=('a', 'b'), vs=(10, 21)), Inp(ss=('a', 'b'), vs=(13, 270)), Inp(ss=('a', 'b'), vs=(7, 279)), Inp(ss=('a', 'b'), vs=(279, 10)), Inp(ss=('a', 'b'), vs=(293, 7)), Inp(ss=('a', 'b'), vs=(292, 10)), Inp(ss=('a', 'b'), vs=(11, 16)), Inp(ss=('a', 'b'), vs=(18, 1)), Inp(ss=('a', 'b'), vs=(23, 23)), Inp(ss=('a', 'b'), vs=(21, 277))})
+analysis:600:INFO (verify) - dg: defaultdict(<class 'list'>, {'c_0': ['c_0']})
+analysis:601:INFO (verify) - label_d: defaultdict(<class 'str'>, {Not(-1*a + y <= -1): 'c_0', Not(0 == 2*a*b + -1*u*x + -1*v*y + x + -1*y): 'c_1'})
+analysis:602:INFO (verify) - rev_label_d: {'c_0': Not(-1*a + y <= -1), 'c_1': Not(0 == 2*a*b + -1*u*x + -1*v*y + x + -1*y)}
+analysis:605:INFO (verify) - loop_cond_label: c_1
+analysis:609:INFO (verify) - mds_labels: set()
+analysis:610:INFO (verify) - mds: ZConj()
+lib:54:DEBUG (get_traces_from_inps) - inp_decls: I a, I b
+lib:55:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_25': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace2_25': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace3_25': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 247.92ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 163.31ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 411.88ms
+utils.profiling:31:DEBUG (timed) - verify: 925.99ms
+analysis:630:DEBUG (strengthen) - base_term_inps: 3
+analysis:631:DEBUG (strengthen) - term_inps: [Inp(ss=('a', 'b'), vs=(9, 280)), Inp(ss=('a', 'b'), vs=(9, 26)), Inp(ss=('a', 'b'), vs=(1, 10)), Inp(ss=('a', 'b'), vs=(4, 3)), Inp(ss=('a', 'b'), vs=(9, 297)), Inp(ss=('a', 'b'), vs=(27, 271)), Inp(ss=('a', 'b'), vs=(275, 12)), Inp(ss=('a', 'b'), vs=(18, 284)), Inp(ss=('a', 'b'), vs=(26, 13)), Inp(ss=('a', 'b'), vs=(298, 274)), Inp(ss=('a', 'b'), vs=(288, 11)), Inp(ss=('a', 'b'), vs=(21, 29)), Inp(ss=('a', 'b'), vs=(289, 7)), Inp(ss=('a', 'b'), vs=(19, 7)), Inp(ss=('a', 'b'), vs=(277, 287)), Inp(ss=('a', 'b'), vs=(273, 17)), Inp(ss=('a', 'b'), vs=(3, 291)), Inp(ss=('a', 'b'), vs=(272, 15)), Inp(ss=('a', 'b'), vs=(290, 4)), Inp(ss=('a', 'b'), vs=(11, 4)), Inp(ss=('a', 'b'), vs=(276, 2)), Inp(ss=('a', 'b'), vs=(12, 274)), Inp(ss=('a', 'b'), vs=(22, 3)), Inp(ss=('a', 'b'), vs=(23, 5)), Inp(ss=('a', 'b'), vs=(4, 2)), Inp(ss=('a', 'b'), vs=(4, 287)), Inp(ss=('a', 'b'), vs=(7, 9)), Inp(ss=('a', 'b'), vs=(276, 9)), Inp(ss=('a', 'b'), vs=(10, 283)), Inp(ss=('a', 'b'), vs=(20, 23)), Inp(ss=('a', 'b'), vs=(295, 293)), Inp(ss=('a', 'b'), vs=(19, 3)), Inp(ss=('a', 'b'), vs=(6, 277)), Inp(ss=('a', 'b'), vs=(298, 11)), Inp(ss=('a', 'b'), vs=(292, 278)), Inp(ss=('a', 'b'), vs=(3, 12)), Inp(ss=('a', 'b'), vs=(12, 288)), Inp(ss=('a', 'b'), vs=(281, 2)), Inp(ss=('a', 'b'), vs=(14, 1)), Inp(ss=('a', 'b'), vs=(10, 29)), Inp(ss=('a', 'b'), vs=(14, 28)), Inp(ss=('a', 'b'), vs=(275, 292)), Inp(ss=('a', 'b'), vs=(5, 12)), Inp(ss=('a', 'b'), vs=(23, 283)), Inp(ss=('a', 'b'), vs=(21, 277)), Inp(ss=('a', 'b'), vs=(4, 16)), Inp(ss=('a', 'b'), vs=(3, 278)), Inp(ss=('a', 'b'), vs=(10, 21)), Inp(ss=('a', 'b'), vs=(276, 288)), Inp(ss=('a', 'b'), vs=(11, 293)), Inp(ss=('a', 'b'), vs=(13, 6)), Inp(ss=('a', 'b'), vs=(14, 11)), Inp(ss=('a', 'b'), vs=(18, 293)), Inp(ss=('a', 'b'), vs=(286, 10)), Inp(ss=('a', 'b'), vs=(9, 289)), Inp(ss=('a', 'b'), vs=(13, 3)), Inp(ss=('a', 'b'), vs=(7, 279)), Inp(ss=('a', 'b'), vs=(29, 6)), Inp(ss=('a', 'b'), vs=(10, 25)), Inp(ss=('a', 'b'), vs=(279, 28)), Inp(ss=('a', 'b'), vs=(279, 10)), Inp(ss=('a', 'b'), vs=(291, 297)), Inp(ss=('a', 'b'), vs=(28, 13)), Inp(ss=('a', 'b'), vs=(28, 284)), Inp(ss=('a', 'b'), vs=(277, 282)), Inp(ss=('a', 'b'), vs=(293, 3)), Inp(ss=('a', 'b'), vs=(293, 7)), Inp(ss=('a', 'b'), vs=(20, 14)), Inp(ss=('a', 'b'), vs=(25, 281)), Inp(ss=('a', 'b'), vs=(2, 7)), Inp(ss=('a', 'b'), vs=(10, 7)), Inp(ss=('a', 'b'), vs=(292, 10)), Inp(ss=('a', 'b'), vs=(287, 1)), Inp(ss=('a', 'b'), vs=(283, 9)), Inp(ss=('a', 'b'), vs=(294, 280)), Inp(ss=('a', 'b'), vs=(298, 284)), Inp(ss=('a', 'b'), vs=(288, 5)), Inp(ss=('a', 'b'), vs=(11, 16)), Inp(ss=('a', 'b'), vs=(5, 293)), Inp(ss=('a', 'b'), vs=(276, 289)), Inp(ss=('a', 'b'), vs=(5, 287)), Inp(ss=('a', 'b'), vs=(285, 5)), Inp(ss=('a', 'b'), vs=(10, 26)), Inp(ss=('a', 'b'), vs=(18, 1)), Inp(ss=('a', 'b'), vs=(8, 7)), Inp(ss=('a', 'b'), vs=(12, 4)), Inp(ss=('a', 'b'), vs=(29, 2)), Inp(ss=('a', 'b'), vs=(285, 297)), Inp(ss=('a', 'b'), vs=(273, 5)), Inp(ss=('a', 'b'), vs=(6, 3)), Inp(ss=('a', 'b'), vs=(1, 6)), Inp(ss=('a', 'b'), vs=(289, 8)), Inp(ss=('a', 'b'), vs=(13, 270))]
+analysis:632:DEBUG (strengthen) - mayloop_inps: 0
+
+EJK TIMER: 400.000187
+

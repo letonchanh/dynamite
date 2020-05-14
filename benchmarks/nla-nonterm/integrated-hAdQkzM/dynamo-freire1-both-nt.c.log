@@ -1,0 +1,718 @@
+__main__:102:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:103:INFO (<module>) - Dig's logger_level: WARNING
+__main__:104:INFO (<module>) - Timeout: 400s
+__main__:106:INFO (<module>) - 2020-05-14 15:44:45.217098: dynamo.py --timeout=400 /home/exp/eric/dynamo/benchmarks/nla-nonterm/freire1-both-nt.c
+/home/exp/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:72:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_lgtuxxao
+analysis:80:DEBUG (__init__) - trans_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /home/exp/eric/dynamo/benchmarks/nla-nonterm/freire1-both-nt.c --out=/var/tmp/Dig_lgtuxxao/freire1-both-nt.c --bnd=500
+analysis:87:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_31': ['exit'], 'mainQ': ['vloop_31'], 'main': ['mainQ']})
+analysis:98:DEBUG (__init__) - postorder_vloop_ids: ['vloop_31']
+analysis:107:DEBUG (__init__) - inp_decls (<class 'data.prog.Symbs'>): I a
+analysis:108:DEBUG (__init__) - inv_decls (<class 'data.prog.DSymbs'>): {'vtrace1_31': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I')), 'vtrace2_31': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I')), 'vtrace3_31': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I'))}
+lib:38:DEBUG (gen_rand_inps) - inps (0): Inps()
+__main__:152:DEBUG (<module>) - prove_process: 17859
+lib:38:DEBUG (gen_rand_inps) - inps (5): Inps({Inp(ss=('a',), vs=(-5,)), Inp(ss=('a',), vs=(2,)), Inp(ss=('a',), vs=(288,)), Inp(ss=('a',), vs=(-288,)), Inp(ss=('a',), vs=(-29,))})
+lib:38:DEBUG (gen_rand_inps) - inps (65): Inps({Inp(ss=('a',), vs=(-4,)), Inp(ss=('a',), vs=(-297,)), Inp(ss=('a',), vs=(1,)), Inp(ss=('a',), vs=(288,)), Inp(ss=('a',), vs=(7,)), Inp(ss=('a',), vs=(-296,)), Inp(ss=('a',), vs=(-22,)), Inp(ss=('a',), vs=(292,)), Inp(ss=('a',), vs=(-286,)), Inp(ss=('a',), vs=(-27,)), Inp(ss=('a',), vs=(-283,)), Inp(ss=('a',), vs=(284,)), Inp(ss=('a',), vs=(-18,)), Inp(ss=('a',), vs=(-274,)), Inp(ss=('a',), vs=(-13,)), Inp(ss=('a',), vs=(-294,)), Inp(ss=('a',), vs=(-300,)), Inp(ss=('a',), vs=(-17,)), Inp(ss=('a',), vs=(-26,)), Inp(ss=('a',), vs=(274,)), Inp(ss=('a',), vs=(-299,)), Inp(ss=('a',), vs=(-290,)), Inp(ss=('a',), vs=(-8,)), Inp(ss=('a',), vs=(-29,)), Inp(ss=('a',), vs=(-285,)), Inp(ss=('a',), vs=(10,)), Inp(ss=('a',), vs=(13,)), Inp(ss=('a',), vs=(287,)), Inp(ss=('a',), vs=(-272,)), Inp(ss=('a',), vs=(-293,)), Inp(ss=('a',), vs=(2,)), Inp(ss=('a',), vs=(5,)), Inp(ss=('a',), vs=(279,)), Inp(ss=('a',), vs=(270,)), Inp(ss=('a',), vs=(14,)), Inp(ss=('a',), vs=(-24,)), Inp(ss=('a',), vs=(-280,)), Inp(ss=('a',), vs=(-6,)), Inp(ss=('a',), vs=(-3,)), Inp(ss=('a',), vs=(-12,)), Inp(ss=('a',), vs=(271,)), Inp(ss=('a',), vs=(-7,)), Inp(ss=('a',), vs=(-288,)), Inp(ss=('a',), vs=(-11,)), Inp(ss=('a',), vs=(-276,)), Inp(ss=('a',), vs=(-2,)), Inp(ss=('a',), vs=(-1,)), Inp(ss=('a',), vs=(-15,)), Inp(ss=('a',), vs=(3,)), Inp(ss=('a',), vs=(298,)), Inp(ss=('a',), vs=(-10,)), Inp(ss=('a',), vs=(-5,)), Inp(ss=('a',), vs=(290,)), Inp(ss=('a',), vs=(-287,)), Inp(ss=('a',), vs=(8,)), Inp(ss=('a',), vs=(282,)), Inp(ss=('a',), vs=(285,)), Inp(ss=('a',), vs=(294,)), Inp(ss=('a',), vs=(0,)), Inp(ss=('a',), vs=(277,)), Inp(ss=('a',), vs=(-25,)), Inp(ss=('a',), vs=(-281,)), Inp(ss=('a',), vs=(273,)), Inp(ss=('a',), vs=(4,)), Inp(ss=('a',), vs=(9,))})
+lib:38:DEBUG (gen_rand_inps) - inps (80): Inps({Inp(ss=('a',), vs=(1,)), Inp(ss=('a',), vs=(296,)), Inp(ss=('a',), vs=(288,)), Inp(ss=('a',), vs=(-22,)), Inp(ss=('a',), vs=(-9,)), Inp(ss=('a',), vs=(-13,)), Inp(ss=('a',), vs=(-17,)), Inp(ss=('a',), vs=(-290,)), Inp(ss=('a',), vs=(13,)), Inp(ss=('a',), vs=(-293,)), Inp(ss=('a',), vs=(270,)), Inp(ss=('a',), vs=(-24,)), Inp(ss=('a',), vs=(-6,)), Inp(ss=('a',), vs=(-12,)), Inp(ss=('a',), vs=(271,)), Inp(ss=('a',), vs=(-7,)), Inp(ss=('a',), vs=(-11,)), Inp(ss=('a',), vs=(-15,)), Inp(ss=('a',), vs=(282,)), Inp(ss=('a',), vs=(294,)), Inp(ss=('a',), vs=(-281,)), Inp(ss=('a',), vs=(273,)), Inp(ss=('a',), vs=(291,)), Inp(ss=('a',), vs=(7,)), Inp(ss=('a',), vs=(-296,)), Inp(ss=('a',), vs=(-275,)), Inp(ss=('a',), vs=(292,)), Inp(ss=('a',), vs=(297,)), Inp(ss=('a',), vs=(-283,)), Inp(ss=('a',), vs=(-18,)), Inp(ss=('a',), vs=(-26,)), Inp(ss=('a',), vs=(-29,)), Inp(ss=('a',), vs=(10,)), Inp(ss=('a',), vs=(-272,)), Inp(ss=('a',), vs=(5,)), Inp(ss=('a',), vs=(-2,)), Inp(ss=('a',), vs=(-1,)), Inp(ss=('a',), vs=(-28,)), Inp(ss=('a',), vs=(-23,)), Inp(ss=('a',), vs=(-5,)), Inp(ss=('a',), vs=(8,)), Inp(ss=('a',), vs=(286,)), Inp(ss=('a',), vs=(-4,)), Inp(ss=('a',), vs=(-297,)), Inp(ss=('a',), vs=(-286,)), Inp(ss=('a',), vs=(284,)), Inp(ss=('a',), vs=(-273,)), Inp(ss=('a',), vs=(-299,)), Inp(ss=('a',), vs=(2,)), Inp(ss=('a',), vs=(14,)), Inp(ss=('a',), vs=(-280,)), Inp(ss=('a',), vs=(-288,)), Inp(ss=('a',), vs=(11,)), Inp(ss=('a',), vs=(-10,)), Inp(ss=('a',), vs=(293,)), Inp(ss=('a',), vs=(0,)), Inp(ss=('a',), vs=(-25,)), Inp(ss=('a',), vs=(9,)), Inp(ss=('a',), vs=(-27,)), Inp(ss=('a',), vs=(-274,)), Inp(ss=('a',), vs=(-294,)), Inp(ss=('a',), vs=(-300,)), Inp(ss=('a',), vs=(-282,)), Inp(ss=('a',), vs=(274,)), Inp(ss=('a',), vs=(-8,)), Inp(ss=('a',), vs=(-285,)), Inp(ss=('a',), vs=(287,)), Inp(ss=('a',), vs=(-16,)), Inp(ss=('a',), vs=(279,)), Inp(ss=('a',), vs=(-3,)), Inp(ss=('a',), vs=(6,)), Inp(ss=('a',), vs=(-276,)), Inp(ss=('a',), vs=(3,)), Inp(ss=('a',), vs=(298,)), Inp(ss=('a',), vs=(-279,)), Inp(ss=('a',), vs=(290,)), Inp(ss=('a',), vs=(-287,)), Inp(ss=('a',), vs=(285,)), Inp(ss=('a',), vs=(277,)), Inp(ss=('a',), vs=(4,))})
+lib:38:DEBUG (gen_rand_inps) - inps (86): Inps({Inp(ss=('a',), vs=(1,)), Inp(ss=('a',), vs=(296,)), Inp(ss=('a',), vs=(288,)), Inp(ss=('a',), vs=(-22,)), Inp(ss=('a',), vs=(-30,)), Inp(ss=('a',), vs=(-9,)), Inp(ss=('a',), vs=(-13,)), Inp(ss=('a',), vs=(-17,)), Inp(ss=('a',), vs=(-290,)), Inp(ss=('a',), vs=(13,)), Inp(ss=('a',), vs=(-298,)), Inp(ss=('a',), vs=(-293,)), Inp(ss=('a',), vs=(270,)), Inp(ss=('a',), vs=(-24,)), Inp(ss=('a',), vs=(-6,)), Inp(ss=('a',), vs=(-12,)), Inp(ss=('a',), vs=(271,)), Inp(ss=('a',), vs=(-7,)), Inp(ss=('a',), vs=(-11,)), Inp(ss=('a',), vs=(-15,)), Inp(ss=('a',), vs=(-292,)), Inp(ss=('a',), vs=(282,)), Inp(ss=('a',), vs=(294,)), Inp(ss=('a',), vs=(-281,)), Inp(ss=('a',), vs=(273,)), Inp(ss=('a',), vs=(291,)), Inp(ss=('a',), vs=(7,)), Inp(ss=('a',), vs=(-296,)), Inp(ss=('a',), vs=(-275,)), Inp(ss=('a',), vs=(292,)), Inp(ss=('a',), vs=(297,)), Inp(ss=('a',), vs=(-283,)), Inp(ss=('a',), vs=(-18,)), Inp(ss=('a',), vs=(-26,)), Inp(ss=('a',), vs=(-29,)), Inp(ss=('a',), vs=(10,)), Inp(ss=('a',), vs=(-272,)), Inp(ss=('a',), vs=(5,)), Inp(ss=('a',), vs=(-2,)), Inp(ss=('a',), vs=(-1,)), Inp(ss=('a',), vs=(-28,)), Inp(ss=('a',), vs=(-23,)), Inp(ss=('a',), vs=(-5,)), Inp(ss=('a',), vs=(8,)), Inp(ss=('a',), vs=(286,)), Inp(ss=('a',), vs=(-4,)), Inp(ss=('a',), vs=(-297,)), Inp(ss=('a',), vs=(-286,)), Inp(ss=('a',), vs=(284,)), Inp(ss=('a',), vs=(-291,)), Inp(ss=('a',), vs=(-273,)), Inp(ss=('a',), vs=(-299,)), Inp(ss=('a',), vs=(295,)), Inp(ss=('a',), vs=(2,)), Inp(ss=('a',), vs=(14,)), Inp(ss=('a',), vs=(-280,)), Inp(ss=('a',), vs=(-288,)), Inp(ss=('a',), vs=(11,)), Inp(ss=('a',), vs=(-10,)), Inp(ss=('a',), vs=(293,)), Inp(ss=('a',), vs=(0,)), Inp(ss=('a',), vs=(12,)), Inp(ss=('a',), vs=(-25,)), Inp(ss=('a',), vs=(9,)), Inp(ss=('a',), vs=(-27,)), Inp(ss=('a',), vs=(-274,)), Inp(ss=('a',), vs=(-294,)), Inp(ss=('a',), vs=(-300,)), Inp(ss=('a',), vs=(-282,)), Inp(ss=('a',), vs=(274,)), Inp(ss=('a',), vs=(-8,)), Inp(ss=('a',), vs=(-285,)), Inp(ss=('a',), vs=(287,)), Inp(ss=('a',), vs=(-16,)), Inp(ss=('a',), vs=(279,)), Inp(ss=('a',), vs=(-3,)), Inp(ss=('a',), vs=(6,)), Inp(ss=('a',), vs=(-276,)), Inp(ss=('a',), vs=(3,)), Inp(ss=('a',), vs=(298,)), Inp(ss=('a',), vs=(-279,)), Inp(ss=('a',), vs=(290,)), Inp(ss=('a',), vs=(-287,)), Inp(ss=('a',), vs=(285,)), Inp(ss=('a',), vs=(277,)), Inp(ss=('a',), vs=(4,))})
+lib:38:DEBUG (gen_rand_inps) - inps (87): Inps({Inp(ss=('a',), vs=(1,)), Inp(ss=('a',), vs=(296,)), Inp(ss=('a',), vs=(288,)), Inp(ss=('a',), vs=(-22,)), Inp(ss=('a',), vs=(-30,)), Inp(ss=('a',), vs=(-9,)), Inp(ss=('a',), vs=(-13,)), Inp(ss=('a',), vs=(-17,)), Inp(ss=('a',), vs=(-290,)), Inp(ss=('a',), vs=(13,)), Inp(ss=('a',), vs=(-298,)), Inp(ss=('a',), vs=(-293,)), Inp(ss=('a',), vs=(270,)), Inp(ss=('a',), vs=(-24,)), Inp(ss=('a',), vs=(-6,)), Inp(ss=('a',), vs=(-12,)), Inp(ss=('a',), vs=(271,)), Inp(ss=('a',), vs=(-7,)), Inp(ss=('a',), vs=(-11,)), Inp(ss=('a',), vs=(-15,)), Inp(ss=('a',), vs=(-292,)), Inp(ss=('a',), vs=(282,)), Inp(ss=('a',), vs=(294,)), Inp(ss=('a',), vs=(299,)), Inp(ss=('a',), vs=(-281,)), Inp(ss=('a',), vs=(273,)), Inp(ss=('a',), vs=(291,)), Inp(ss=('a',), vs=(7,)), Inp(ss=('a',), vs=(-296,)), Inp(ss=('a',), vs=(-275,)), Inp(ss=('a',), vs=(292,)), Inp(ss=('a',), vs=(297,)), Inp(ss=('a',), vs=(-283,)), Inp(ss=('a',), vs=(-18,)), Inp(ss=('a',), vs=(-26,)), Inp(ss=('a',), vs=(-29,)), Inp(ss=('a',), vs=(10,)), Inp(ss=('a',), vs=(-272,)), Inp(ss=('a',), vs=(5,)), Inp(ss=('a',), vs=(-2,)), Inp(ss=('a',), vs=(-1,)), Inp(ss=('a',), vs=(-28,)), Inp(ss=('a',), vs=(-23,)), Inp(ss=('a',), vs=(-5,)), Inp(ss=('a',), vs=(8,)), Inp(ss=('a',), vs=(286,)), Inp(ss=('a',), vs=(-4,)), Inp(ss=('a',), vs=(-297,)), Inp(ss=('a',), vs=(-286,)), Inp(ss=('a',), vs=(284,)), Inp(ss=('a',), vs=(-291,)), Inp(ss=('a',), vs=(-273,)), Inp(ss=('a',), vs=(-299,)), Inp(ss=('a',), vs=(295,)), Inp(ss=('a',), vs=(2,)), Inp(ss=('a',), vs=(14,)), Inp(ss=('a',), vs=(-280,)), Inp(ss=('a',), vs=(-288,)), Inp(ss=('a',), vs=(11,)), Inp(ss=('a',), vs=(-10,)), Inp(ss=('a',), vs=(293,)), Inp(ss=('a',), vs=(0,)), Inp(ss=('a',), vs=(12,)), Inp(ss=('a',), vs=(-25,)), Inp(ss=('a',), vs=(9,)), Inp(ss=('a',), vs=(-27,)), Inp(ss=('a',), vs=(-274,)), Inp(ss=('a',), vs=(-294,)), Inp(ss=('a',), vs=(-300,)), Inp(ss=('a',), vs=(-282,)), Inp(ss=('a',), vs=(274,)), Inp(ss=('a',), vs=(-8,)), Inp(ss=('a',), vs=(-285,)), Inp(ss=('a',), vs=(287,)), Inp(ss=('a',), vs=(-16,)), Inp(ss=('a',), vs=(279,)), Inp(ss=('a',), vs=(-3,)), Inp(ss=('a',), vs=(6,)), Inp(ss=('a',), vs=(-276,)), Inp(ss=('a',), vs=(3,)), Inp(ss=('a',), vs=(298,)), Inp(ss=('a',), vs=(-279,)), Inp(ss=('a',), vs=(290,)), Inp(ss=('a',), vs=(-287,)), Inp(ss=('a',), vs=(285,)), Inp(ss=('a',), vs=(277,)), Inp(ss=('a',), vs=(4,))})
+lib:38:DEBUG (gen_rand_inps) - inps (88): Inps({Inp(ss=('a',), vs=(1,)), Inp(ss=('a',), vs=(296,)), Inp(ss=('a',), vs=(288,)), Inp(ss=('a',), vs=(-22,)), Inp(ss=('a',), vs=(-30,)), Inp(ss=('a',), vs=(-9,)), Inp(ss=('a',), vs=(-13,)), Inp(ss=('a',), vs=(-17,)), Inp(ss=('a',), vs=(-290,)), Inp(ss=('a',), vs=(13,)), Inp(ss=('a',), vs=(-298,)), Inp(ss=('a',), vs=(-293,)), Inp(ss=('a',), vs=(270,)), Inp(ss=('a',), vs=(-24,)), Inp(ss=('a',), vs=(-6,)), Inp(ss=('a',), vs=(-12,)), Inp(ss=('a',), vs=(271,)), Inp(ss=('a',), vs=(-7,)), Inp(ss=('a',), vs=(-11,)), Inp(ss=('a',), vs=(-15,)), Inp(ss=('a',), vs=(-292,)), Inp(ss=('a',), vs=(282,)), Inp(ss=('a',), vs=(294,)), Inp(ss=('a',), vs=(299,)), Inp(ss=('a',), vs=(-281,)), Inp(ss=('a',), vs=(273,)), Inp(ss=('a',), vs=(291,)), Inp(ss=('a',), vs=(7,)), Inp(ss=('a',), vs=(-296,)), Inp(ss=('a',), vs=(-275,)), Inp(ss=('a',), vs=(292,)), Inp(ss=('a',), vs=(297,)), Inp(ss=('a',), vs=(-283,)), Inp(ss=('a',), vs=(-18,)), Inp(ss=('a',), vs=(-26,)), Inp(ss=('a',), vs=(-29,)), Inp(ss=('a',), vs=(10,)), Inp(ss=('a',), vs=(-272,)), Inp(ss=('a',), vs=(5,)), Inp(ss=('a',), vs=(-2,)), Inp(ss=('a',), vs=(-1,)), Inp(ss=('a',), vs=(-28,)), Inp(ss=('a',), vs=(-23,)), Inp(ss=('a',), vs=(-5,)), Inp(ss=('a',), vs=(8,)), Inp(ss=('a',), vs=(286,)), Inp(ss=('a',), vs=(-4,)), Inp(ss=('a',), vs=(-297,)), Inp(ss=('a',), vs=(-286,)), Inp(ss=('a',), vs=(284,)), Inp(ss=('a',), vs=(-291,)), Inp(ss=('a',), vs=(-273,)), Inp(ss=('a',), vs=(-299,)), Inp(ss=('a',), vs=(295,)), Inp(ss=('a',), vs=(2,)), Inp(ss=('a',), vs=(14,)), Inp(ss=('a',), vs=(-280,)), Inp(ss=('a',), vs=(-288,)), Inp(ss=('a',), vs=(11,)), Inp(ss=('a',), vs=(-10,)), Inp(ss=('a',), vs=(293,)), Inp(ss=('a',), vs=(0,)), Inp(ss=('a',), vs=(12,)), Inp(ss=('a',), vs=(-25,)), Inp(ss=('a',), vs=(9,)), Inp(ss=('a',), vs=(-27,)), Inp(ss=('a',), vs=(-274,)), Inp(ss=('a',), vs=(-294,)), Inp(ss=('a',), vs=(-300,)), Inp(ss=('a',), vs=(-282,)), Inp(ss=('a',), vs=(274,)), Inp(ss=('a',), vs=(-8,)), Inp(ss=('a',), vs=(-285,)), Inp(ss=('a',), vs=(287,)), Inp(ss=('a',), vs=(-16,)), Inp(ss=('a',), vs=(279,)), Inp(ss=('a',), vs=(-3,)), Inp(ss=('a',), vs=(6,)), Inp(ss=('a',), vs=(-276,)), Inp(ss=('a',), vs=(3,)), Inp(ss=('a',), vs=(298,)), Inp(ss=('a',), vs=(-279,)), Inp(ss=('a',), vs=(272,)), Inp(ss=('a',), vs=(290,)), Inp(ss=('a',), vs=(-287,)), Inp(ss=('a',), vs=(285,)), Inp(ss=('a',), vs=(277,)), Inp(ss=('a',), vs=(4,))})
+lib:38:DEBUG (gen_rand_inps) - inps (91): Inps({Inp(ss=('a',), vs=(1,)), Inp(ss=('a',), vs=(296,)), Inp(ss=('a',), vs=(288,)), Inp(ss=('a',), vs=(-22,)), Inp(ss=('a',), vs=(-30,)), Inp(ss=('a',), vs=(-9,)), Inp(ss=('a',), vs=(-13,)), Inp(ss=('a',), vs=(-17,)), Inp(ss=('a',), vs=(-290,)), Inp(ss=('a',), vs=(13,)), Inp(ss=('a',), vs=(-298,)), Inp(ss=('a',), vs=(-293,)), Inp(ss=('a',), vs=(270,)), Inp(ss=('a',), vs=(-24,)), Inp(ss=('a',), vs=(275,)), Inp(ss=('a',), vs=(-6,)), Inp(ss=('a',), vs=(-12,)), Inp(ss=('a',), vs=(271,)), Inp(ss=('a',), vs=(-7,)), Inp(ss=('a',), vs=(-11,)), Inp(ss=('a',), vs=(-15,)), Inp(ss=('a',), vs=(-292,)), Inp(ss=('a',), vs=(282,)), Inp(ss=('a',), vs=(276,)), Inp(ss=('a',), vs=(294,)), Inp(ss=('a',), vs=(299,)), Inp(ss=('a',), vs=(-281,)), Inp(ss=('a',), vs=(273,)), Inp(ss=('a',), vs=(291,)), Inp(ss=('a',), vs=(7,)), Inp(ss=('a',), vs=(-296,)), Inp(ss=('a',), vs=(-275,)), Inp(ss=('a',), vs=(292,)), Inp(ss=('a',), vs=(297,)), Inp(ss=('a',), vs=(-283,)), Inp(ss=('a',), vs=(-18,)), Inp(ss=('a',), vs=(-26,)), Inp(ss=('a',), vs=(-29,)), Inp(ss=('a',), vs=(10,)), Inp(ss=('a',), vs=(-272,)), Inp(ss=('a',), vs=(5,)), Inp(ss=('a',), vs=(-2,)), Inp(ss=('a',), vs=(-1,)), Inp(ss=('a',), vs=(-28,)), Inp(ss=('a',), vs=(-23,)), Inp(ss=('a',), vs=(-5,)), Inp(ss=('a',), vs=(8,)), Inp(ss=('a',), vs=(286,)), Inp(ss=('a',), vs=(-4,)), Inp(ss=('a',), vs=(-297,)), Inp(ss=('a',), vs=(-286,)), Inp(ss=('a',), vs=(284,)), Inp(ss=('a',), vs=(-291,)), Inp(ss=('a',), vs=(-273,)), Inp(ss=('a',), vs=(-299,)), Inp(ss=('a',), vs=(295,)), Inp(ss=('a',), vs=(2,)), Inp(ss=('a',), vs=(14,)), Inp(ss=('a',), vs=(-280,)), Inp(ss=('a',), vs=(-288,)), Inp(ss=('a',), vs=(11,)), Inp(ss=('a',), vs=(-10,)), Inp(ss=('a',), vs=(293,)), Inp(ss=('a',), vs=(0,)), Inp(ss=('a',), vs=(12,)), Inp(ss=('a',), vs=(-25,)), Inp(ss=('a',), vs=(9,)), Inp(ss=('a',), vs=(-19,)), Inp(ss=('a',), vs=(-27,)), Inp(ss=('a',), vs=(-274,)), Inp(ss=('a',), vs=(-294,)), Inp(ss=('a',), vs=(-300,)), Inp(ss=('a',), vs=(-282,)), Inp(ss=('a',), vs=(274,)), Inp(ss=('a',), vs=(-8,)), Inp(ss=('a',), vs=(-285,)), Inp(ss=('a',), vs=(287,)), Inp(ss=('a',), vs=(-16,)), Inp(ss=('a',), vs=(279,)), Inp(ss=('a',), vs=(-3,)), Inp(ss=('a',), vs=(6,)), Inp(ss=('a',), vs=(-276,)), Inp(ss=('a',), vs=(3,)), Inp(ss=('a',), vs=(298,)), Inp(ss=('a',), vs=(-279,)), Inp(ss=('a',), vs=(272,)), Inp(ss=('a',), vs=(290,)), Inp(ss=('a',), vs=(-287,)), Inp(ss=('a',), vs=(285,)), Inp(ss=('a',), vs=(277,)), Inp(ss=('a',), vs=(4,))})
+lib:38:DEBUG (gen_rand_inps) - inps (92): Inps({Inp(ss=('a',), vs=(1,)), Inp(ss=('a',), vs=(296,)), Inp(ss=('a',), vs=(288,)), Inp(ss=('a',), vs=(-22,)), Inp(ss=('a',), vs=(-30,)), Inp(ss=('a',), vs=(-9,)), Inp(ss=('a',), vs=(-13,)), Inp(ss=('a',), vs=(-17,)), Inp(ss=('a',), vs=(-290,)), Inp(ss=('a',), vs=(13,)), Inp(ss=('a',), vs=(-298,)), Inp(ss=('a',), vs=(-293,)), Inp(ss=('a',), vs=(270,)), Inp(ss=('a',), vs=(-24,)), Inp(ss=('a',), vs=(275,)), Inp(ss=('a',), vs=(-6,)), Inp(ss=('a',), vs=(-12,)), Inp(ss=('a',), vs=(271,)), Inp(ss=('a',), vs=(-7,)), Inp(ss=('a',), vs=(-11,)), Inp(ss=('a',), vs=(-15,)), Inp(ss=('a',), vs=(-292,)), Inp(ss=('a',), vs=(282,)), Inp(ss=('a',), vs=(276,)), Inp(ss=('a',), vs=(294,)), Inp(ss=('a',), vs=(299,)), Inp(ss=('a',), vs=(-281,)), Inp(ss=('a',), vs=(273,)), Inp(ss=('a',), vs=(291,)), Inp(ss=('a',), vs=(7,)), Inp(ss=('a',), vs=(-296,)), Inp(ss=('a',), vs=(-275,)), Inp(ss=('a',), vs=(292,)), Inp(ss=('a',), vs=(297,)), Inp(ss=('a',), vs=(-283,)), Inp(ss=('a',), vs=(-18,)), Inp(ss=('a',), vs=(-26,)), Inp(ss=('a',), vs=(-29,)), Inp(ss=('a',), vs=(10,)), Inp(ss=('a',), vs=(-272,)), Inp(ss=('a',), vs=(5,)), Inp(ss=('a',), vs=(-2,)), Inp(ss=('a',), vs=(-1,)), Inp(ss=('a',), vs=(-28,)), Inp(ss=('a',), vs=(-23,)), Inp(ss=('a',), vs=(-5,)), Inp(ss=('a',), vs=(8,)), Inp(ss=('a',), vs=(286,)), Inp(ss=('a',), vs=(283,)), Inp(ss=('a',), vs=(-4,)), Inp(ss=('a',), vs=(-297,)), Inp(ss=('a',), vs=(-286,)), Inp(ss=('a',), vs=(284,)), Inp(ss=('a',), vs=(-291,)), Inp(ss=('a',), vs=(-273,)), Inp(ss=('a',), vs=(-299,)), Inp(ss=('a',), vs=(295,)), Inp(ss=('a',), vs=(2,)), Inp(ss=('a',), vs=(14,)), Inp(ss=('a',), vs=(-280,)), Inp(ss=('a',), vs=(-288,)), Inp(ss=('a',), vs=(11,)), Inp(ss=('a',), vs=(-10,)), Inp(ss=('a',), vs=(293,)), Inp(ss=('a',), vs=(0,)), Inp(ss=('a',), vs=(12,)), Inp(ss=('a',), vs=(-25,)), Inp(ss=('a',), vs=(9,)), Inp(ss=('a',), vs=(-19,)), Inp(ss=('a',), vs=(-27,)), Inp(ss=('a',), vs=(-274,)), Inp(ss=('a',), vs=(-294,)), Inp(ss=('a',), vs=(-300,)), Inp(ss=('a',), vs=(-282,)), Inp(ss=('a',), vs=(274,)), Inp(ss=('a',), vs=(-8,)), Inp(ss=('a',), vs=(-285,)), Inp(ss=('a',), vs=(287,)), Inp(ss=('a',), vs=(-16,)), Inp(ss=('a',), vs=(279,)), Inp(ss=('a',), vs=(-3,)), Inp(ss=('a',), vs=(6,)), Inp(ss=('a',), vs=(-276,)), Inp(ss=('a',), vs=(3,)), Inp(ss=('a',), vs=(298,)), Inp(ss=('a',), vs=(-279,)), Inp(ss=('a',), vs=(272,)), Inp(ss=('a',), vs=(290,)), Inp(ss=('a',), vs=(-287,)), Inp(ss=('a',), vs=(285,)), Inp(ss=('a',), vs=(277,)), Inp(ss=('a',), vs=(4,))})
+lib:38:DEBUG (gen_rand_inps) - inps (93): Inps({Inp(ss=('a',), vs=(1,)), Inp(ss=('a',), vs=(296,)), Inp(ss=('a',), vs=(288,)), Inp(ss=('a',), vs=(-22,)), Inp(ss=('a',), vs=(-30,)), Inp(ss=('a',), vs=(-9,)), Inp(ss=('a',), vs=(-13,)), Inp(ss=('a',), vs=(-17,)), Inp(ss=('a',), vs=(-290,)), Inp(ss=('a',), vs=(13,)), Inp(ss=('a',), vs=(-298,)), Inp(ss=('a',), vs=(-293,)), Inp(ss=('a',), vs=(270,)), Inp(ss=('a',), vs=(-24,)), Inp(ss=('a',), vs=(275,)), Inp(ss=('a',), vs=(-6,)), Inp(ss=('a',), vs=(-12,)), Inp(ss=('a',), vs=(271,)), Inp(ss=('a',), vs=(-7,)), Inp(ss=('a',), vs=(-11,)), Inp(ss=('a',), vs=(-15,)), Inp(ss=('a',), vs=(-292,)), Inp(ss=('a',), vs=(282,)), Inp(ss=('a',), vs=(276,)), Inp(ss=('a',), vs=(294,)), Inp(ss=('a',), vs=(299,)), Inp(ss=('a',), vs=(-281,)), Inp(ss=('a',), vs=(273,)), Inp(ss=('a',), vs=(291,)), Inp(ss=('a',), vs=(7,)), Inp(ss=('a',), vs=(-296,)), Inp(ss=('a',), vs=(-275,)), Inp(ss=('a',), vs=(292,)), Inp(ss=('a',), vs=(297,)), Inp(ss=('a',), vs=(-283,)), Inp(ss=('a',), vs=(-18,)), Inp(ss=('a',), vs=(-26,)), Inp(ss=('a',), vs=(-29,)), Inp(ss=('a',), vs=(10,)), Inp(ss=('a',), vs=(-272,)), Inp(ss=('a',), vs=(5,)), Inp(ss=('a',), vs=(-2,)), Inp(ss=('a',), vs=(-1,)), Inp(ss=('a',), vs=(-28,)), Inp(ss=('a',), vs=(-23,)), Inp(ss=('a',), vs=(-5,)), Inp(ss=('a',), vs=(8,)), Inp(ss=('a',), vs=(286,)), Inp(ss=('a',), vs=(283,)), Inp(ss=('a',), vs=(-4,)), Inp(ss=('a',), vs=(-297,)), Inp(ss=('a',), vs=(-286,)), Inp(ss=('a',), vs=(284,)), Inp(ss=('a',), vs=(-291,)), Inp(ss=('a',), vs=(-273,)), Inp(ss=('a',), vs=(-299,)), Inp(ss=('a',), vs=(295,)), Inp(ss=('a',), vs=(2,)), Inp(ss=('a',), vs=(14,)), Inp(ss=('a',), vs=(-280,)), Inp(ss=('a',), vs=(-288,)), Inp(ss=('a',), vs=(11,)), Inp(ss=('a',), vs=(-10,)), Inp(ss=('a',), vs=(293,)), Inp(ss=('a',), vs=(0,)), Inp(ss=('a',), vs=(12,)), Inp(ss=('a',), vs=(-25,)), Inp(ss=('a',), vs=(9,)), Inp(ss=('a',), vs=(-19,)), Inp(ss=('a',), vs=(-27,)), Inp(ss=('a',), vs=(-274,)), Inp(ss=('a',), vs=(-294,)), Inp(ss=('a',), vs=(-300,)), Inp(ss=('a',), vs=(-282,)), Inp(ss=('a',), vs=(-277,)), Inp(ss=('a',), vs=(274,)), Inp(ss=('a',), vs=(-8,)), Inp(ss=('a',), vs=(-285,)), Inp(ss=('a',), vs=(287,)), Inp(ss=('a',), vs=(-16,)), Inp(ss=('a',), vs=(279,)), Inp(ss=('a',), vs=(-3,)), Inp(ss=('a',), vs=(6,)), Inp(ss=('a',), vs=(-276,)), Inp(ss=('a',), vs=(3,)), Inp(ss=('a',), vs=(298,)), Inp(ss=('a',), vs=(-279,)), Inp(ss=('a',), vs=(272,)), Inp(ss=('a',), vs=(290,)), Inp(ss=('a',), vs=(-287,)), Inp(ss=('a',), vs=(285,)), Inp(ss=('a',), vs=(277,)), Inp(ss=('a',), vs=(4,))})
+lib:38:DEBUG (gen_rand_inps) - inps (95): Inps({Inp(ss=('a',), vs=(1,)), Inp(ss=('a',), vs=(296,)), Inp(ss=('a',), vs=(288,)), Inp(ss=('a',), vs=(-22,)), Inp(ss=('a',), vs=(-30,)), Inp(ss=('a',), vs=(-9,)), Inp(ss=('a',), vs=(-13,)), Inp(ss=('a',), vs=(-17,)), Inp(ss=('a',), vs=(-290,)), Inp(ss=('a',), vs=(13,)), Inp(ss=('a',), vs=(-298,)), Inp(ss=('a',), vs=(-293,)), Inp(ss=('a',), vs=(270,)), Inp(ss=('a',), vs=(-24,)), Inp(ss=('a',), vs=(275,)), Inp(ss=('a',), vs=(-6,)), Inp(ss=('a',), vs=(-12,)), Inp(ss=('a',), vs=(271,)), Inp(ss=('a',), vs=(-7,)), Inp(ss=('a',), vs=(-11,)), Inp(ss=('a',), vs=(-15,)), Inp(ss=('a',), vs=(-292,)), Inp(ss=('a',), vs=(282,)), Inp(ss=('a',), vs=(276,)), Inp(ss=('a',), vs=(294,)), Inp(ss=('a',), vs=(299,)), Inp(ss=('a',), vs=(-281,)), Inp(ss=('a',), vs=(273,)), Inp(ss=('a',), vs=(291,)), Inp(ss=('a',), vs=(7,)), Inp(ss=('a',), vs=(-296,)), Inp(ss=('a',), vs=(-275,)), Inp(ss=('a',), vs=(292,)), Inp(ss=('a',), vs=(297,)), Inp(ss=('a',), vs=(-283,)), Inp(ss=('a',), vs=(-18,)), Inp(ss=('a',), vs=(289,)), Inp(ss=('a',), vs=(-26,)), Inp(ss=('a',), vs=(-29,)), Inp(ss=('a',), vs=(10,)), Inp(ss=('a',), vs=(-272,)), Inp(ss=('a',), vs=(5,)), Inp(ss=('a',), vs=(-2,)), Inp(ss=('a',), vs=(-1,)), Inp(ss=('a',), vs=(-28,)), Inp(ss=('a',), vs=(-23,)), Inp(ss=('a',), vs=(-5,)), Inp(ss=('a',), vs=(8,)), Inp(ss=('a',), vs=(286,)), Inp(ss=('a',), vs=(-289,)), Inp(ss=('a',), vs=(283,)), Inp(ss=('a',), vs=(-4,)), Inp(ss=('a',), vs=(-297,)), Inp(ss=('a',), vs=(-286,)), Inp(ss=('a',), vs=(284,)), Inp(ss=('a',), vs=(-291,)), Inp(ss=('a',), vs=(-273,)), Inp(ss=('a',), vs=(-299,)), Inp(ss=('a',), vs=(295,)), Inp(ss=('a',), vs=(2,)), Inp(ss=('a',), vs=(14,)), Inp(ss=('a',), vs=(-280,)), Inp(ss=('a',), vs=(-288,)), Inp(ss=('a',), vs=(11,)), Inp(ss=('a',), vs=(-10,)), Inp(ss=('a',), vs=(293,)), Inp(ss=('a',), vs=(0,)), Inp(ss=('a',), vs=(12,)), Inp(ss=('a',), vs=(-25,)), Inp(ss=('a',), vs=(9,)), Inp(ss=('a',), vs=(-19,)), Inp(ss=('a',), vs=(-27,)), Inp(ss=('a',), vs=(-validate:46:DEBUG (prove_reach) - res: None
+validate:46:DEBUG (prove_reach) - res: None
+validate:250:DEBUG (prove_reach) - wrs: []
+utils.profiling:31:DEBUG (timed) - prove_reach: 360464.90ms
+analysis:1001:DEBUG (validate_ranking_functions) - r: None
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 360979.56ms
+analysis:1063:DEBUG (prove_term_vloop) - Termination result (vloop_38): None ([-1*c + k])
+utils.profiling:31:DEBUG (timed) - prove_term_vloop: 395139.59ms
+analysis:1179:DEBUG (prove) - Proving Non-Termination: vloop_38
+analysis:239:DEBUG (_get_stem_from_symstates) - vloop.preloop_loc: vtrace1_38
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_spne8e8i/symexe/fermat3-both-nt_mainQ.c.mainQ_20.straces'
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_38
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_38
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 29
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_38
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 34
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_38
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 38181.22ms
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 63289.71ms
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 83322.74ms
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 94123.18ms
+analysis:225:DEBUG (_get_stem_from_ss) - preloop_fst_symstate: loc: vtrace1_38
+pc: And(1 == X_A%2,
+    -1 >= (-1 + X_R)**2 + -1*X_A,
+    0 >= (1 + 2*X_R)**2 + -4*X_R**2 + -4*X_R + -1*X_kk)
+slocal: And(A == X_A,
+    u == 1 + 2*X_R,
+    1 == v,
+    r == X_R**2 + -1*X_A,
+    0 == c,
+    k == -5)
+analysis:228:DEBUG (_get_stem_from_ss) - mainQ init_symvars: I X_A, I X_R, I X_kk, I X_k
+analysis:231:DEBUG (_get_stem_from_ss) - stem_cond (<class 'z3.z3.BoolRef'>): And(1 == X_A%2,
+    -1 >= (-1 + X_R)**2 + -1*X_A,
+    0 >= (1 + 2*X_R)**2 + -4*X_R**2 + -4*X_R + -1*X_kk)
+analysis:232:DEBUG (_get_stem_from_ss) - stem_transrel (<class 'z3.z3.BoolRef'>): And(A == X_A,
+    u == 1 + 2*X_R,
+    1 == v,
+    r == X_R**2 + -1*X_A,
+    0 == c,
+    k == -5)
+analysis:269:DEBUG (_get_loop_from_symstates) - Create C source for vloop_38: /var/tmp/Dig_ob0rzsx7
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 39
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_38
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 36270.66ms
+analysis:280:DEBUG (_get_loop_from_symstates) - vloop inp_decls: I A, I u, I v, I r, I c, I k
+analysis:281:DEBUG (_get_loop_from_symstates) - vloop inv_decls: {'vtrace1_33': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='cc', typ='I'), Symb(name='kk', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace2_33': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='cc', typ='I'), Symb(name='kk', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace3_33': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='cc', typ='I'), Symb(name='kk', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace1_46': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I')), 'vtrace2_46': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I')), 'vtrace3_46': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I')), 'vtrace1_38': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace2_38': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace3_38': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I'))}
+analysis:282:DEBUG (_get_loop_from_symstates) - vloop init_symvars: I X_A, I X_u, I X_v, I X_r, I X_c, I X_k
+analysis:314:DEBUG (_get_loop_from_symstates) - inloop_fst_slocal: And(A0 == X_A,
+    u0 == X_u,
+    v0 == X_v,
+    r0 == X_r,
+    c0 == X_c,
+    k0 == X_k)
+analysis:315:DEBUG (_get_loop_from_symstates) - inloop_snd_slocal: And(A1 == X_A,
+    u1 == X_u,
+    v1 == 2 + X_v,
+    r1 == X_r + -1*X_v,
+    c1 == 1 + X_c,
+    k1 == X_k)
+analysis:327:DEBUG (_get_loop_from_symstates) - loop_transrel: And(And(A0 == A,
+        u0 == u,
+        v0 == v,
+        r0 == r,
+        c0 == c,
+        k0 == k),
+    And(A1 == A,
+        u1 == u,
+        v1 == 2 + v,
+        r1 == r + -1*v,
+        c1 == 1 + c,
+        k1 == k))
+analysis:329:DEBUG (_get_loop_from_symstates) - inloop_fst_symstate: pc: 0 >=
+X_u**2 +
+-1*X_v**2 +
+-4*X_A +
+X_c +
+-1*X_k +
+-4*X_r +
+-2*X_u +
+2*X_v
+analysis:330:DEBUG (_get_loop_from_symstates) - inloop_fst_symstate: slocal: And(A == X_A,
+    u == X_u,
+    v == X_v,
+    r == X_r,
+    c == X_c,
+    k == X_k)
+analysis:334:DEBUG (_get_loop_from_symstates) - loop_cond: 0 >= u**2 + -1*v**2 + -4*A + c + -1*k + -4*r + -2*u + 2*v
+analysis:337:DEBUG (_get_loop_from_symstates) - terms: [0, u**2, -1*v**2, -4*A, c, -1*k, -4*r, -2*u, 2*v]
+analysis:338:DEBUG (_get_loop_from_symstates) - nonlinear_terms: [u**2, -1*v**2]
+utils.profiling:31:DEBUG (timed) - _get_loopinfo_from_symstates: 130840.63ms
+analysis:399:DEBUG (get_loopinfo) - stem: <utils.loop.Stem object at 0x7f6f112dfba8>
+analysis:400:DEBUG (get_loopinfo) - loop: <utils.loop.Loop object at 0x7f6f112dd940>
+utils.profiling:31:DEBUG (timed) - get_loopinfo: 130840.92ms
+analysis:702:DEBUG (_stat_candidate_rcs) - stat (1 total): defaultdict(<class 'int'>, {0: 1})
+analysis:729:DEBUG (prove_nonterm_vloop) - PROVE_NT DEPTH 0: ZConj({0 >= u**2 + -1*v**2 + -4*A + c + -1*k + -4*r + -2*u + 2*v})
+analysis:505:DEBUG (verify) - loop_transrel: And(And(A0 == A,
+        u0 == u,
+        v0 == v,
+        r0 == r,
+        c0 == c,
+        k0 == k),
+    And(A1 == A,
+        u1 == u,
+        v1 == 2 + v,
+        r1 == r + -1*v,
+        c1 == 1 + c,
+        k1 == k))
+analysis:506:DEBUG (verify) - loop_cond: 0 >= u**2 + -1*v**2 + -4*A + c + -1*k + -4*r + -2*u + 2*v
+analysis:507:DEBUG (verify) - rcs: ZConj({0 >= u**2 + -1*v**2 + -4*A + c + -1*k + -4*r + -2*u + 2*v})
+analysis:521:DEBUG (verify) - labeled_rcs: ZConj({0 >= u**2 + -1*v**2 + -4*A + c + -1*k + -4*r + -2*u + 2*v:c_0})
+analysis:528:DEBUG (verify) - transrel_rcs: ZConj({0 >=
+u0**2 + -1*v0**2 + -4*A0 + c0 + -1*k0 + -4*r0 + -2*u0 + 2*v0:c_0, And(And(A0 == A,
+        u0 == u,
+        v0 == v,
+        r0 == r,
+        c0 == c,
+        k0 == k),
+    And(A1 == A,
+        u1 == u,
+        v1 == 2 + v,
+        r1 == r + -1*v,
+        c1 == 1 + c,
+        k1 == k))})
+analysis:533:DEBUG (verify) - init_transrel_rcs: ZConj({And(A == X_A,
+    u == 1 + 2*X_R,
+    1 == v,
+    r == X_R**2 + -1*X_A,
+    0 == c,
+    k == -5), And(1 == X_A%2,
+    -1 >= (-1 + X_R)**2 + -1*X_A,
+    0 >= (1 + 2*X_R)**2 + -4*X_R**2 + -4*X_R + -1*X_kk), And(And(A0 == A,
+        u0 == u,
+        v0 == v,
+        r0 == r,
+        c0 == c,
+        k0 == k),
+    And(A1 == A,
+        u1 == u,
+        v1 == 2 + v,
+        r1 == r + -1*v,
+        c1 == 1 + c,
+        k1 == k)), 0 >=
+u0**2 + -1*v0**2 + -4*A0 + c0 + -1*k0 + -4*r0 + -2*u0 + 2*v0:c_0})
+analysis:542:DEBUG (_check) - rc: 0 >= u**2 + -1*v**2 + -4*A + c + -1*k + -4*r + -2*u + 2*v:c_0
+analysis:547:DEBUG (_check) - rc_r: 0 >=
+u1**2 + -1*v1**2 + -4*A1 + c1 + -1*k1 + -4*r1 + -2*u1 + 2*v1
+analysis:548:DEBUG (_check) - f: ZConj({0 >=
+u0**2 + -1*v0**2 + -4*A0 + c0 + -1*k0 + -4*r0 + -2*u0 + 2*v0:c_0, And(And(A0 == A,
+        u0 == u,
+        v0 == v,
+        r0 == r,
+        c0 == c,
+        k0 == k),
+    And(A1 == A,
+        u1 == u,
+        v1 == 2 + v,
+        r1 == r + -1*v,
+        c1 == 1 + c,
+        k1 == k)), Not(0 >=
+    u1**2 +
+    -1*v1**2 +
+    -4*A1 +
+    c1 +
+    -1*k1 +
+    -4*r1 +
+    -2*u1 +
+    2*v1)})
+analysis:563:DEBUG (_check) - rs: sat
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: 0 >=
+u0**2 + -1*v0**2 + -4*A0 + c0 + -1*k0 + -4*r0 + -2*u0 + 2*v0
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_0
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_0', 0 >=
+u0**2 + -1*v0**2 + -4*A0 + c0 + -1*k0 + -4*r0 + -2*u0 + 2*v0)]
+analysis:570:DEBUG (_check) - init_f: ZConj({0 >=
+u0**2 + -1*v0**2 + -4*A0 + c0 + -1*k0 + -4*r0 + -2*u0 + 2*v0:c_0, And(A == X_A,
+    u == 1 + 2*X_R,
+    1 == v,
+    r == X_R**2 + -1*X_A,
+    0 == c,
+    k == -5), And(1 == X_A%2,
+    -1 >= (-1 + X_R)**2 + -1*X_A,
+    0 >= (1 + 2*X_R)**2 + -4*X_R**2 + -4*X_R + -1*X_kk), And(And(A0 == A,
+        u0 == u,
+        v0 == v,
+        r0 == r,
+        c0 == c,
+        k0 == k),
+    And(A1 == A,
+        u1 == u,
+        v1 == 2 + v,
+        r1 == r + -1*v,
+        c1 == 1 + c,
+        k1 == k)), Not(0 >=
+    u1**2 +
+    -1*v1**2 +
+    -4*A1 +
+    c1 +
+    -1*k1 +
+    -4*r1 +
+    -2*u1 +
+    2*v1)})
+analysis:571:DEBUG (_check) - init_rs: False
+analysis:586:DEBUG (_check) - init_models: sat (0 models)
+lib:38:DEBUG (gen_rand_inps) - inps (0): Inps()
+lib:43:DEBUG (gen_rand_inps) - gen 186/100 random inps
+analysis:591:DEBUG (_check) - inps: Inps({Inp(ss=('A', 'R', 'kk', 'k'), vs=(286, 2, 287, -300)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(275, 10, -7, 296)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(299, 14, -1, 291)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(296, 7, 0, -5)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(286, -14, 297, 278)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(287, 13, -27, 17)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(20, 7, 6, -6)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(294, 1, 5, -272)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(284, -1, 1, -10)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(14, 8, 8, -276)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(272, 5, -4, 1)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(298, -14, -2, 291)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(276, 10, 14, 14)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(1, 7, -13, -28)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(282, -26, 2, -14)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(9, 11, 9, -10)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(1, 1, -5, 11)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(11, 0, 6, -4)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(297, 12, 1, -15)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(4, -11, 298, 276)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(3, 4, 284, -13)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(295, 9, 277, -10)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(278, 4, -4, -283)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(297, 4, 6, 2)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(1, 17, -11, 294)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(10, 2, 11, -297)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(19, -1, -10, -30)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(288, 3, -13, 21)), Inp(ss=('A', 'R', 'kk', 'k'), vs=data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_31
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 54
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_31
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 59
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_31
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 64
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_31
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 69
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_31
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 74
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_31
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 79
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_31
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 84
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_31
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 89
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_31
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 94
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_31
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 99
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_31
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 104
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_31
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 109
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_31
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 114
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_31
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 119
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_31
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 124
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_31
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 129
+'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='cc', typ='I'), Symb(name='kk', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace1_46': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I')), 'vtrace2_46': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I')), 'vtrace3_46': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I')), 'vtrace1_38': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace2_38': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace3_38': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 2240.72ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 1911.21ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 4152.75ms
+utils.profiling:31:DEBUG (timed) - verify: 7021.94ms
+analysis:630:DEBUG (strengthen) - base_term_inps: 0
+analysis:631:DEBUG (strengthen) - term_inps: [Inp(ss=('A', 'R', 'kk', 'k'), vs=(293, -4, 280, -8)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(297, -5, 8, -6)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(287, -2, 270, 289)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(273, -12, 21, 6)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(299, 0, 293, -279)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(17, 1, 11, 270)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(297, 9, 296, 21)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(277, -5, 270, -284)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(273, -7, 283, -1)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(291, -13, 3, -300)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(299, -4, 13, -8)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(273, -5, 2, -10)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(289, -12, 19, -29)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(297, 11, 288, -1)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(9, 3, 14, -1)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(297, 12, 1, -15)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(299, -14, 11, 0)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(27, 0, 4, -296)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(273, 11, 287, -12)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(279, -1, 12, -3)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(295, 9, 277, -10)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(11, 0, 6, -4)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(289, -12, 26, -292)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(277, -7, 6, 290)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(271, 8, 286, 15)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(289, 11, 25, -289)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(297, 4, 6, 2)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(275, 3, 8, -13)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(271, 8, 4, 28)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(287, 5, 8, 23)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(11, 2, 1, -4)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(295, 11, 281, -17))]
+analysis:632:DEBUG (strengthen) - mayloop_inps: 0
+analysis:633:DEBUG (strengthen) - rcs: ZConj({0 >= u**2 + -1*v**2 + -4*A + c + -1*k + -4*r + -2*u + 2*v})
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_38]: 0
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_38]: 0
+lib:254:DEBUG (infer_from_traces) - invs: 
+analysis:637:DEBUG (strengthen) - mayloop_invs: ZConj()
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_38]: 150
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_38]: 36
+*** 'None', 0 locs, 0 invs (), 0 traces, 0 inps, time 0.17s, rand seed 1589488685.24, test 23 82:
+
+data.traces:207:WARNING (merge) - trace A=289,u=-23,v=7,r=-154,c=3,k=5 exist
+data.traces:207:WARNING (merge) - trace A=289,u=-23,v=9,r=-161,c=4,k=5 exist
+data.traces:207:WARNING (merge) - trace A=289,u=-23,v=11,r=-170,c=5,k=5 exist
+data.traces:207:WARNING (merge) - trace A=289,u=-23,v=1,r=-145,c=0,k=5 exist
+data.traces:207:WARNING (merge) - trace A=289,u=-23,v=3,r=-146,c=1,k=5 exist
+data.traces:207:WARNING (merge) - trace A=289,u=-23,v=5,r=-149,c=2,k=5 exist
+lib:254:DEBUG (infer_from_traces) - invs: vtrace2_38 (34 invs):
+1. k - 5 == 0
+2. 2*c - v + 1 == 0
+3. r <= 0
+4. r - v <= -1
+5. r - u <= -7
+6. r + v <= 2
+7. r + u <= 7
+8. k <= 5
+9. k - v <= 4
+10. k + r <= 5
+11. c <= 5
+12. c - v <= -1
+13. c - k <= 0
+14. c + r <= 0
+15. c + k <= 10
+16. -v <= -1
+17. -k <= -5
+18. -k - v <= -6
+19. -k + v <= 6
+20. -k + r <= -5
+21. -c <= 0
+22. -c - v <= -1
+23. -c - k <= -5
+24. -c + v <= 6
+25. -c + r <= 0
+26. -c + k <= 5
+27. -A <= -9
+28. -A - v <= -10
+29. -A - c <= -9
+30. -A + v <= 2
+31. -A + u <= -2
+32. -A + r <= -9
+33. -A + k <= -4
+34. -A + c <= -4
+analysis:641:DEBUG (strengthen) - term_invs: ZConj({r + -1*v <= -1, -1*A + u <= -2, -1*A + -1*c <= -9, 0 >= c + r, 5 >= k + r, c >= 0, 2 >= -1*A + v, 6 >= -1*k + v, -1*A + -1*v <= -10, r + -1*u <= -7, 0 >= r, -1*A + c <= -4, -1*k + r <= -5, 5 >= c, 5 >= k, 0 >= c + -1*k, -1*A + r <= -9, -1 == 2*c + -1*v, 0 >= -1*c + r, 5 == k, 10 >= c + k, -1*A + k <= -4, -1*c + -1*v <= -1, 4 >= k + -1*v, A >= 9, k >= 5, -1*c + -1*k <= -5, 5 >= -1*c + k, -1*k + -1*v <= -6, v >= 1, c + -1*v <= -1, 7 >= r + u, 6 >= -1*c + v, 2 >= r + v})
+utils.profiling:31:DEBUG (timed) - strengthen: 10211.41ms
+analysis:702:DEBUG (_stat_candidate_rcs) - stat (34 total): defaultdict(<class 'int'>, {1: 34})
+analysis:729:DEBUG (prove_nonterm_vloop) - PROVE_NT DEPTH 1: ZConj({0 >= u**2 + -1*v**2 + -4*A + c + -1*k + -4*r + -2*u + 2*v, Not(r + -1*v <= -1)})
+analysis:505:DEBUG (verify) - loop_transrel: And(And(A0 == A,
+        u0 == u,
+        v0 == v,
+        r0 == r,
+        c0 == c,
+        k0 == k),
+    And(A1 == A,
+        u1 == u,
+        v1 == 2 + v,
+        r1 == r + -1*v,
+        c1 == 1 + c,
+        k1 == k))
+analysis:506:DEBUG (verify) - loop_cond: 0 >= u**2 + -1*v**2 + -4*A + c + -1*k + -4*r + -2*u + 2*v
+analysis:507:DEBUG (verify) - rcs: ZConj({0 >= u**2 + -1*v**2 + -4*A + c + -1*k + -4*r + -2*u + 2*v, Not(r + -1*v <= -1)})
+analysis:521:DEBUG (verify) - labeled_rcs: ZConj({Not(r + -1*v <= -1):c_1, 0 >= u**2 + -1*v**2 + -4*A + c + -1*k + -4*r + -2*u + 2*v:c_0})
+analysis:528:DEBUG (verify) - transrel_rcs: ZConj({0 >=
+u0**2 + -1*v0**2 + -4*A0 + c0 + -1*k0 + -4*r0 + -2*u0 + 2*v0:c_0, Not(r0 + -1*v0 <= -1):c_1, And(And(A0 == A,
+        u0 == u,
+        v0 == v,
+        r0 == r,
+        c0 == c,
+        k0 == k),
+    And(A1 == A,
+        u1 == u,
+        v1 == 2 + v,
+        r1 == r + -1*v,
+        c1 == 1 + c,
+        k1 == k))})
+analysis:533:DEBUG (verify) - init_transrel_rcs: ZConj({0 >=
+u0**2 + -1*v0**2 + -4*A0 + c0 + -1*k0 + -4*r0 + -2*u0 + 2*v0:c_0, Not(r0 + -1*v0 <= -1):c_1, And(A == X_A,
+    u == 1 + 2*X_R,
+    1 == v,
+    r == X_R**2 + -1*X_A,
+    0 == c,
+    k == -5), And(1 == X_A%2,
+    -1 >= (-1 + X_R)**2 + -1*X_A,
+    0 >= (1 + 2*X_R)**2 + -4*X_R**2 + -4*X_R + -1*X_kk), And(And(A0 == A,
+        u0 == u,
+        v0 == v,
+        r0 == r,
+        c0 == c,
+        k0 == k),
+    And(A1 == A,
+        u1 == u,
+        v1 == 2 + v,
+        r1 == r + -1*v,
+        c1 == 1 + c,
+        k1 == k))})
+analysis:542:DEBUG (_check) - rc: 0 >= u**2 + -1*v**2 + -4*A + c + -1*k + -4*r + -2*u + 2*v:c_0
+analysis:547:DEBUG (_check) - rc_r: 0 >=
+u1**2 + -1*v1**2 + -4*A1 + c1 + -1*k1 + -4*r1 + -2*u1 + 2*v1
+analysis:548:DEBUG (_check) - f: ZConj({Not(r0 + -1*v0 <= -1):c_1, And(And(A0 == A,
+        u0 == u,
+        v0 == v,
+        r0 == r,
+        c0 == c,
+        k0 == k),
+    And(A1 == A,
+        u1 == u,
+        v1 == 2 + v,
+        r1 == r + -1*v,
+        c1 == 1 + c,
+        k1 == k)), Not(0 >=
+    u1**2 +
+    -1*v1**2 +
+    -4*A1 +
+    c1 +
+    -1*k1 +
+    -4*r1 +
+    -2*u1 +
+    2*v1), 0 >=
+u0**2 + -1*v0**2 + -4*A0 + c0 + -1*k0 + -4*r0 + -2*u0 + 2*v0:c_0})
+*** 'None', 1 locs, 34 invs (2 Eqt, 32 Oct), 180 traces, 0 inps, time 7.50s, rand seed 1589488685.24, test 23 82:
+vtrace2_38 (34 invs):
+1. k - 5 == 0
+2. 2*c - v + 1 == 0
+3. r <= 0
+4. r - v <= -1
+5. r - u <= -7
+6. r + v <= 2
+7. r + u <= 7
+8. k <= 5
+9. k - v <= 4
+10. k + r <= 5
+11. c <= 5
+12. c - v <= -1
+13. c - k <= 0
+14. c + r <= 0
+15. c + k <= 10
+16. -v <= -1
+17. -k <= -5
+18. -k - v <= -6
+19. -k + v <= 6
+20. -k + r <= -5
+21. -c <= 0
+22. -c - v <= -1
+23. -c - k <= -5
+24. -c + v <= 6
+25. -c + r <= 0
+26. -c + k <= 5
+27. -A <= -9
+28. -A - v <= -10
+29. -A - c <= -9
+30. -A + v <= 2
+31. -A + u <= -2
+32. -A + r <= -9
+33. -A + k <= -4
+34. -A + c <= -4
+analysis:563:DEBUG (_check) - rs: sat
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: 0 >=
+u0**2 + -1*v0**2 + -4*A0 + c0 + -1*k0 + -4*r0 + -2*u0 + 2*v0
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_0
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: Not(r0 + -1*v0 <= -1)
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_1
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_0', 0 >=
+u0**2 + -1*v0**2 + -4*A0 + c0 + -1*k0 + -4*r0 + -2*u0 + 2*v0)]
+analysis:570:DEBUG (_check) - init_f: ZConj({0 >=
+u0**2 + -1*v0**2 + -4*A0 + c0 + -1*k0 + -4*r0 + -2*u0 + 2*v0:c_0, And(A == X_A,
+    u == 1 + 2*X_R,
+    1 == v,
+    r == X_R**2 + -1*X_A,
+    0 == c,
+    k == -5), Not(r0 + -1*v0 <= -1):c_1, And(1 == X_A%2,
+    -1 >= (-1 + X_R)**2 + -1*X_A,
+    0 >= (1 + 2*X_R)**2 + -4*X_R**2 + -4*X_R + -1*X_kk), And(And(A0 == A,
+        u0 == u,
+        v0 == v,
+        r0 == r,
+        c0 == c,
+        k0 == k),
+    And(A1 == A,
+        u1 == u,
+        v1 == 2 + v,
+        r1 == r + -1*v,
+        c1 == 1 + c,
+        k1 == k)), Not(0 >=
+    u1**2 +
+    -1*v1**2 +
+    -4*A1 +
+    c1 +
+    -1*k1 +
+    -4*r1 +
+    -2*u1 +
+    2*v1)})
+analysis:571:DEBUG (_check) - init_rs: False
+analysis:586:DEBUG (_check) - init_models: sat (0 models)
+lib:38:DEBUG (gen_rand_inps) - inps (0): Inps()
+lib:43:DEBUG (gen_rand_inps) - gen 186/100 random inps
+analysis:591:DEBUG (_check) - inps: Inps({Inp(ss=('A', 'R', 'kk', 'k'), vs=(6, 7, -3, 20)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(16, 1, -272, -15)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(282, -2, 23, -14)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(287, -14, 25, -292)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(278, -1, 11, 272)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(295, 11, -11, 4)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(13, 4, 7, -5)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(8, 13, 11, -24)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(271, -13, 28, -9)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(289, 7, 8, -28)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(15, -10, -276, -19)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(292, -5, 0, -299)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(17, 5, 4, 275)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(6, 1, 12, 23)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(273, 0, -8, -14)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(296, 0, 11, -298)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(298, -21, -289, 3)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(299, -2, 287, 1)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(279, -4, -15, 4)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(270, 2, -2, -5)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(298, 11, -8, 292)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(299, -12, -17, -296)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(295, 13, -3, -300)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(291, -14, 10, -1)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(1, 10, 3, -10)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(281, -11, -17, 277)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(278, -19, 294, 292)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(9, 0, -2, -10)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(286, 3, -14, 7)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(273, -12, 279, -5)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(296, 3, 271, -27)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(274, -26, 11, 5)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(26, 7, 281, -11)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(9, 0, 14, -14)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(26, 11, 1, 26)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(294, 23, -277, 2)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(20, -10, -294, -14)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(296, 5, -25, 10)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(275, -9, -11, 23)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(285, 27, -5, -13)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(0, 25, -17, 276)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(13, 1, -27, 279)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(285, -2, -290, -277)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(281, 7, -16, -8)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(13, 18, -8, 14)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(22, 11, 271, 17)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(292, -1, 6, 286)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(6, 9, 4, 281)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(294, -15, -277, -5)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(299, -15, -7, 11)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(20, -2, -1, -15)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(294, -5, 289, -13)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(286, 11, 8, -12)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(13, 11, -279, 13)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(280, -5, -10, 29)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(296, 3, 15, -272)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(24, 14, 5, 21)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(4, -5, -276, -30)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(13, 5, 287, 274)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(274, -17, 281, 284)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(297, -8, 7, -5)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(18, 4, 17, -3)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(272, -1, 277, 275)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(7, 14, 4, -13)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(270, 13, -299, -13)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(272, 13, 273, -11)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(297, 11, 7, -4)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(17, 11, 7, -2)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(5, -27, -285, -12)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(297, -12, 292, 298)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(285, 24, -11, 2)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(297, -13, 9, -274)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(294, 24, 0, -20)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(22, 23, -284, -2)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(290, -30, -275, -1)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(294, 7, -14, -3)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(278, -14, 298, -281)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(295, 8, 13, 11)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(26, 8, 292, 284)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(290, -4, -277, -282)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(273, 6, -10, 276)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(285, -5, 12, 275)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(4, 8, 22, -12)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(6, 4, 11, -280)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(29, 13, 283, 274)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(287, -8, 1, -1)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(295, -11, -300, -9)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(284, 21, 270, 8)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(297, -4, 14, -274)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(26, 13, -274, -11)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(291, 12, -281, 14)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(28, 8, 23, 23)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(28, 10, -290, -10)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(293, -12, 3, -24)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(273, 10, 21, -8)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(293, 13, -7, 8)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(286, -12, -293, 272)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(280, -11, 9, -15)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(3, 1, 14, -1)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(282, -11, 0, 17)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(7, 1, -8, 5)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(296, -19, 22, -22)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(5, 5, -11, -27)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(297, 21, 271, -2)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(279, 29, -14, 8)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(20, 28, 6, -1)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(22, -2, -14, -8)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(277, 9, -12, 4)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(19, 0, 0, 23)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(281, 10, -15, 274)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(4, 13, -281, 12)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(1, 1, -281, -272)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(272, 14, -3, -277)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(294, 29, -12, 288)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(13, 11, 2, 275)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(292, 4, 5, 13)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(288, -1, -1, -24)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(298, 8, 295, 294)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(291, -4, 14, 0)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(279, 4, -272, 4)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(282, 7, 279, -18)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(278, -9, 299, 10)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(280, 18, 287, -2)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(295, 15, -289, 13)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(285, 13, -7, -19)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(10, -12, 279, 297)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(291, -15, 4, -273)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(289, -20, -299, 12)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(287, -9, -4, -278)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(26, -22, 295, 275)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(275, -2, -289, -6)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(277, -3, 12, -1)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(285, 14, -294, -10)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(270, 6, -11, -279)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(271, 28, -13, 277)), Inp(ss=('A', 'R', 'kk', 'kanalysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 514
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 519
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 524
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 529
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 534
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 539
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 544
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 549
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 554
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 559
+184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 759
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 764
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 769
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 774
+, 'R', 'kk', 'k'), vs=(299, 13, -12, -14)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(19, 7, 15, 270)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(16, -1, -15, -8)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(14, -11, -13, -10)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(278, 5, 26, -276)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(284, 0, -28, 288)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(277, 9, 279, 14)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(276, 4, -8, -3)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(270, 8, -4, 13)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(14, 6, 2, -278)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(283, 6, 1, 1)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(292, 5, -273, -19)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(293, -8, -5, -11)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(4, 3, -24, 9)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(279, 9, 292, -29))})
+analysis:542:DEBUG (_check) - rc: Not(r + -1*v <= -1):c_1
+analysis:547:DEBUG (_check) - rc_r: Not(r1 + -1*v1 <= -1)
+analysis:548:DEBUG (_check) - f: ZConj({Not(r0 + -1*v0 <= -1):c_1, 0 >=
+u0**2 + -1*v0**2 + -4*A0 + c0 + -1*k0 + -4*r0 + -2*u0 + 2*v0:c_0, And(And(A0 == A,
+        u0 == u,
+        v0 == v,
+        r0 == r,
+        c0 == c,
+        k0 == k),
+    And(A1 == A,
+        u1 == u,
+        v1 == 2 + v,
+        r1 == r + -1*v,
+        c1 == 1 + c,
+        k1 == k)), Not(Not(r1 + -1*v1 <= -1))})
+analysis:563:DEBUG (_check) - rs: sat
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: 0 >=
+u0**2 + -1*v0**2 + -4*A0 + c0 + -1*k0 + -4*r0 + -2*u0 + 2*v0
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_0
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: Not(r0 + -1*v0 <= -1)
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_1
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_0', 0 >=
+u0**2 + -1*v0**2 + -4*A0 + c0 + -1*k0 + -4*r0 + -2*u0 + 2*v0)]
+analysis:570:DEBUG (_check) - init_f: ZConj({0 >=
+u0**2 + -1*v0**2 + -4*A0 + c0 + -1*k0 + -4*r0 + -2*u0 + 2*v0:c_0, Not(r0 + -1*v0 <= -1):c_1, And(A == X_A,
+    u == 1 + 2*X_R,
+    1 == v,
+    r == X_R**2 + -1*X_A,
+    0 == c,
+    k == -5), Not(Not(r1 + -1*v1 <= -1)), And(1 == X_A%2,
+    -1 >= (-1 + X_R)**2 + -1*X_A,
+    0 >= (1 + 2*X_R)**2 + -4*X_R**2 + -4*X_R + -1*X_kk), And(And(A0 == A,
+        u0 == u,
+        v0 == v,
+        r0 == r,
+        c0 == c,
+        k0 == k),
+    And(A1 == A,
+        u1 == u,
+        v1 == 2 + v,
+        r1 == r + -1*v,
+        c1 == 1 + c,
+        k1 == k))})
+analysis:571:DEBUG (_check) - init_rs: False
+analysis:586:DEBUG (_check) - init_models: sat (0 models)
+lib:38:DEBUG (gen_rand_inps) - inps (0): Inps()
+lib:43:DEBUG (gen_rand_inps) - gen 186/100 random inps
+analysis:591:DEBUG (_check) - inps: Inps({Inp(ss=('A', 'R', 'kk', 'k'), vs=(12, 8, 4, -8)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(296, -7, 11, 278)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(295, -8, 8, 277)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(21, 21, 294, 292)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(273, -19, 10, -20)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(25, -9, -286, -20)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(276, 0, -10, 1)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(274, -14, 20, 270)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(276, 5, 287, 282)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(11, 10, 11, -9)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(298, 0, -300, 10)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(299, -4, 26, 4)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(8, 13, 4, -297)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(283, 5, -2, 7)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(16, 18, 6, -1)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(282, -3, -291, -11)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(275, 6, -7, -288)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(28, 11, 11, 29)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(282, 29, -272, 4)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(279, -16, 15, -11)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(288, -12, 16, -30)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(287, -9, -284, -297)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(280, -2, -9, 18)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(281, 10, 2, 8)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(17, 14, -282, -6)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(283, 6, 11, -286)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(298, 14, 271, -25)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(15, 2, 1, 0)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(282, -15, 272, 290)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(273, 6, 294, 296)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(272, 8, -8, 10)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(296, 16, -8, 277)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(28, 3, 17, -22)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(298, 14, -10, 19)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(7, 7, -282, -276)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(297, -2, 1, 11)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(289, 9, 12, -277)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(17, 0, 4, 18)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(297, 20, 8, -4)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(273, 11, -4, 9)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(5, -29, 296, 284)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(280, -4, -11, -282)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(286, -5, -286, 273)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(270, 13, -288, -15)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(270, 21, -6, -12)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(286, -2, -286, -272)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(286, 10, -279, -14)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(24, 4, 1, -286)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(291, 0, -8, -4)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(280, 7, -293, -1)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(290, 27, -5, 11)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(24, -1, -1, -3)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(294, -7, 2, -9)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(12, 10, 10, 281)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(287, -13, 282, 284)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(298, -30, -13, 8)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(282, 6, 4, -3)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(270, 10, 282, -271)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(279, 22, 297, 6)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(282, -2, 283, 271)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(298, -11, -13, 24)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(2, 5, -13, 16)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(12, 10, 8, -18)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(1, 11, 3, -5)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(3, 13, 1, 279)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(279, -17, 24, 11)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(284, 11, -6, -290)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(19, 14, 4, -12)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(284, 16, -15, 8)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(22, 29, -295, -7)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(275, -18, 0, -3)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(3, 2, -299, 26)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(291, -15, -6, 21)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(280, -10, 8, 11)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(291, -8, 21, -9)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(5, 5, -21, 19)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(271, 0, 292, -4)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(9, 10, -289, -280)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(282, -10, -27, -2)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(291, 4, -300, 7)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(0, 13, 14, 19)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(273, -7, 292, 14)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(288, -7, 3, -13)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(289, -13, 286, -10)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(289, 14, -22, -283)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(287, 12, 7, 9)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(9, -14, -271, -27)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(273, 19, -3, 290)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(17, 9, -10, 288)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(279, 9, 299, -281)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(291, 23, 298, -24)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(288, 5, -30, 286)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(285, -8, 11, 10)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(280, -1, -282, 281)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(273, 12, 3, 5)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(286, 9, 29, -4)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(273, -7, 4, -10)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(293, 3, 298, 13)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(291, 3, -1, 298)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(277, -16, 10, -26)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(284, -9, 271, 276)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(293, 0, -277, 14)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(272, -4, -15, 3)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(5, -14, -6, -4)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(286, -4, -295, -2)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(296, 29, 271, -6)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(290, 29, -6, 274)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(274, -4, 4, 281)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(22, 8, -5, -24)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(23, 6, 12, 288)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(280, 1, -25, -8)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(6, 12, 27, 22)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(296, 13, -17, -29)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(13, -3, -284, -26)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(283, 13, 20, -271)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(288, -4, 8, -288)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(287, -27, 5, -2)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(293, -3, -1, -5)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(273, -27, 22, -15)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(24, 11, 21, -12)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(12, 27, 296, 270)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(9, 12, 279, 277)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(270, 2, 296, -6)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(284, 3, -5, -10)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(3, 15, -1, 280)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(298, -12, -26, -293)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(287, 16, 1, -1)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(280, -26, -276, 14)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(295, 10, 4, -12)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(287, -13, 275, -7)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(18, 28, 283, 291)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(21, -13, -13, -5)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(278, 1, -10, 10)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(293, 12, -300, -3)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(277, 27, -30, 11)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(270, -1, -281, 7)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(293, 22, -14, -21)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(22, 5, 290, -7)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(14, 21, -28, 276)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(277, 14, 10, 14)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(290, 10, -13, 9)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(12, 27, 287, 0)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(7, 4, 27, -277)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(297, 2, 5, -299)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(24, 9, -11, 289)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(18, 3, -2, -10)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(271, -17, 19, -278)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(22, 16, 276, 12)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(15, 17, 5, 20)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(287, -8, 12, -17)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(271, -12, -4, 292)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(298, 4, -4, -3)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(278, -10, -9, -23)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(298, -8, -289, -4)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(299, 11, 280, -13)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(15, 3, 12, -13)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(279, 0, -7, -21)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(272, 8, -5, -272)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(290, -12, 25, 2)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(10, 9, 7, -5)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(2, 0, -280, -1)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(0, 25, -5, 4)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(25, 16, 23, -11)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(286, 2, -23, 281)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(271, -1, 18, -293)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(12, 24, -3, 3)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(23, -9, -10, -5)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(5, 13, 294, -9)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(12, 2, -297, 3)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(22, -25, 281, 283)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(289, -2, 271, -280)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(283, -18, 6, -285)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(281, -14, -13, 3)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(276, -25, -6, -10)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(282, -9, 291, 8)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(19, 1, 29, 292)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(17, -18, -279, -22)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(293, -8, -2, 299)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(21, 5, 14, -29)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(295, -3, 0, -289)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(4, 20, -278, -4)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(273, 5, 12, -12)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(12, 4, 2, -298)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(293, -7, -271, -14)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(287, -25, 13, -298)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(286, -13, 279, -291))})
+analysis:600:INFO (verify) - dg: defaultdict(<class 'list'>, {})
+analysis:601:INFO (verify) - label_d: defaultdict(<class 'str'>, {0 >= u**2 + -1*v**2 + -4*A + c + -1*k + -4*r + -2*u + 2*v: 'c_0', Not(r + -1*v <= -1): 'c_1'})
+analysis:602:INFO (verify) - rev_label_d: {'c_0': 0 >= u**2 + -1*v**2 + -4*A + c + -1*k + -4*r + -2*u + 2*v, 'c_1': Not(r + -1*v <= -1)}
+analysis:605:INFO (verify) - loop_cond_label: c_0
+analysis:609:INFO (verify) - mds_labels: set()
+analysis:610:INFO (verify) - mds: ZConj()
+lib:54:DEBUG (get_traces_from_inps) - inp_decls: I A, I R, I kk, I k
+lib:55:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_33': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='cc', typ='I'), Symb(name='kk', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace2_33': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='cc', typ='I'), Symb(name='kk', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace3_33': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='cc', typ='I'), Symb(name='kk', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace1_46': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I')), 'vtrace2_46': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I')), 'vtrace3_46': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I')), 'vtrace1_38': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace2_38': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace3_38': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 1581.42ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 1465.74ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 3048.16ms
+lib:54:DEBUG (get_traces_from_inps) - inp_decls: I A, I R, I kk, I k
+lib:55:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_33': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='cc', typ='I'), Symb(name='kk', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace2_33': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='cc', typ='I'), Symb(name='kk', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace3_33': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='cc', typ='I'), Symb(name='kk', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace1_46': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I')), 'vtrace2_46': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I')), 'vtrace3_46': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I')), 'vtrace1_38': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace2_38': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace3_38': (Symb(name='A', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'), Symb(name='r', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 1846.92ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 2346.83ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 4213.55ms
+utils.profiling:31:DEBUG (timed) - verify: 11367.60ms
+analysis:630:DEBUG (strengthen) - base_term_inps: 0
+analysis:631:DEBUG (strengthen) - term_inps: [Inp(ss=('A', 'R', 'kk', 'k'), vs=(13, 4, 7, -5)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(297, 11, 7, -4)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(291, -15, 4, -273)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(289, 7, 8, -28)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(273, -12, 279, -5)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(297, -12, 292, 298)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(297, -13, 9, -274)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(277, -3, 12, -1)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(281, -3, 22, 18)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(271, -13, 28, -9)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(297, -4, 14, -274)), Inp(ss=('A', 'R', 'kk', 'k'), vs=(273, -6, 29, 24))analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 784
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 789
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 794
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 799
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 804
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 809
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 814
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 819
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 824
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 829
+
+EJK TIMER: 400.000595
+
