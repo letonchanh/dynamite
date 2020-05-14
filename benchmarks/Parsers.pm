@@ -169,6 +169,32 @@ my $b2desc = {
         "ps5" => "pow sum",
         "ps6" => "pow sum"
 };
+
+sub dynDetailTNT {
+    my ($tmpb,$logfn,$timedout,$overallt,$overallr,$expectedTNT) = @_;
+    open(F,"$logfn") or warn "file $logfn - $!";
+    my $d = { allt => tm2str($overallt), allr => $overallr,
+              guessr => '\rUNK', validr => '\rUNK', conclusion => '\rUNK',
+              guesst => tm2str(-1), validt => tm2str(-1), rf => '' };
+    while(<F>) {
+        $d->{conclusion} = 'T' if /TNT result: True/;
+        $d->{conclusion} = 'NT' if /TNT result: False/;
+        $d->{conclusion} = 'NT' if /TNT result: \(False/;
+        $d->{rf} = toTex($1) if /TNT result: \(False, \('vloop_\d+', \[([^\]]*)\]/; #  ZConj({-6 <= 6*n + -1*z}), [])]))/
+
+        $d->{rf} .= toTex($1) if /ranking_function_list: \[([^\]]+)\]/;
+        $d->{rf} .= toTex($1) if /\(simplified\) rcs: (.*)$/;
+    }
+    my $str = sprintf("\\texttt{%-10s} & %-5s & %-3s & \$%-42s\$ & %-8s  \\\\ \n", # & %-5s & %10s & %-5s & %10s
+                      $tmpb,
+                      $expectedTNT, $d->{conclusion},
+                      $d->{rf}, $overallt);
+          #$out->{guesst}, $out->{guessr});
+          #$out->{validt}, $out->{validr},
+          #$tm, $compare->{$tmpb}->{$tool}->{result},);
+    return ($d,$str);
+}
+
 sub dynDetail {
     my ($tmpb,$logfn,$timedout,$overallt,$overallr,$nonterm) = @_;
     open(F,"$logfn") or warn "file $logfn - $!";
@@ -184,6 +210,7 @@ sub dynDetail {
         if(/ranking_function_list: \[([^\]]+)\]/) {
             $d->{guessr} = '\rTRUE';
             $d->{rf} = toTex($1);
+            $d->{conclusion} = 'T';
         }
         ### RECURRENT SET STUFF
         $d->{validr} = '\rTRUE' if /Non-termination result: True/;
@@ -191,6 +218,7 @@ sub dynDetail {
         if(/\(simplified\) rcs: (.*)$/) { # -1 == x*z + -1*x + -1*y)
             $d->{guessr} = '\rTRUE';
             $d->{rf} = toTex($1);
+            $d->{conclusion} = 'NT';
         }
         $d->{validt} = tm2str($1) if /^verify: ((\d)*\.\d+)s/;
         $d->{guesst} = tm2str($1) if /^strengthen: ((\d)*\.\d+)s/;

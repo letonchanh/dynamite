@@ -13,7 +13,7 @@ my ($csvs,$bdir,$outdir) = @ARGV;
 my @bnames = ();
 #@bnames = @ARGV if $#ARGV > -1;
     
-my ($benchdir,@benches) = Parsers::find_benchmarks($bdir,\@bnames);
+my ($benchdir,@benches,$b2desc) = Parsers::find_benchmarks($bdir,\@bnames);
 
 ################### Filename for results
 use POSIX qw(strftime);
@@ -24,6 +24,7 @@ my $fn = strftime('%Y%m%d%H%M%S', gmtime($now));
 
 # /home/ejk/dynamo/benchmarks/svcomp-nla-digbench/out-C4SElYT/ultimate-bresenham-both-t.c-both-t.c.log
 
+my @integrated;
 my @dynDetail;
 my @skips;
 ################### Harvesting the results
@@ -39,9 +40,18 @@ foreach my $tool (@tools) {
       if (not (-e $logfn)) { push @skips, $logfn; next; }
       my $tmpb = $b; $tmpb =~ s/-both-n?t.c//;
       $compare->{$tmpb}->{$tool} = Parsers::parse($tool,$logfn);
-      if ($tool eq 'dynamo') {
+      my $tm = $compare->{$tmpb}->{$tool}->{time};
+      if ($outdir =~ /integrated/) {
+          my $expectedTNT = '???';
+          $expectedTNT = 'T' if $benchdir =~ /-term/;
+          $expectedTNT = 'NT' if $benchdir =~ /-nonterm/;
+          my ($d,$dstr) = Parsers::dynDetailTNT($tmpb,$logfn,
+                                                ($tm >= 900 ? 1 : 0),
+                                                $tm, $compare->{$tmpb}->{$tool}->{result},
+                                                $expectedTNT);
+          push @integrated, $dstr;
+      } elsif ($tool eq 'dynamo') {
           #die "can't get time at all: $b and $b2res{$tmpb}->{time}\n" unless $b2res{$b}->{time} > 0;
-          my $tm = $compare->{$tmpb}->{$tool}->{time};
           my ($d,$dstr) = Parsers::dynDetail($tmpb,$logfn,
                                               ($tm >= 900 ? 1 : 0),
                                              $tm, $compare->{$tmpb}->{$tool}->{result},
@@ -49,7 +59,7 @@ foreach my $tool (@tools) {
           push @dynDetail, $dstr;
           $compare->{$tmpb}->{dynamo}->{rf} = "";
           $compare->{$tmpb}->{dynamo}->{rf} .= $d->{rf};
-          $compare->{$tmpb}->{dynamo}->{$_} = $d->{$_} for qw/guesst guessr validt validr/;
+      $compare->{$tmpb}->{dynamo}->{$_} = $d->{$_} for qw/guesst guessr validt validr/;
       }
 
 
@@ -87,4 +97,8 @@ if($benchdir =~ /termination-crafted-lit/) {
     }
 }
 
+if($outdir =~ /integrated/) {
+    print "========= INTEGRATED ============\n";
+    print for @integrated;
+}
 print "You may now wish to:\n  git add ".(join(" ",@newfile))."\n  git commit -m \"results $fn\"\n" if $csvs eq 'csvs';
