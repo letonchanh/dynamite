@@ -26,9 +26,6 @@ sub find_benchmarks {
             next unless $fn ~~ @{$bnames};
         }
         if ($bdir =~ /nla-term/) {
-            #next unless $fn =~ m/^.*-ult-n?t\.c/;
-            #next unless $fn =~ m/\.c$/;
-            #next if $fn =~ m/-dyn/;
             next unless $fn =~ m/-both-t/;
         } elsif ($bdir =~ /termination-crafted-lit/) {
             # check to see if there is a YML file:

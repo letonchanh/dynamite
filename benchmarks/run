@@ -83,6 +83,7 @@ while ($ARGV[0] =~ /^--(.*)=(.+)$/) {
 }
 my @bnames = ();
 my ($bdir,$arg1,$ts,$bms) = @ARGV;
+$SPECFILE = $NT_SPECFILE if $bdir =~ /nontermination/;
 my @tools = split ',', $ts;
 @bnames = split ',', $bms if defined $bms;
 use Data::Dumper;
