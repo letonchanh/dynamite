@@ -35,7 +35,7 @@ class Execution(object):
         inp_decls = self.prog.inp_decls
         prev_len_inps = -1
         while prev_len_inps < len(inps) and len(inps) < n_inps:
-            mlog.debug("inps ({}): {}".format(len(inps), inps))
+            # mlog.debug("inps ({}): {}".format(len(inps), inps))
             prev_len_inps = len(inps)
             new_inps = self.prog.gen_rand_inps(n_needed=n_inps-len(inps))
             inps.merge(new_inps, inp_decls.names)
@@ -205,7 +205,7 @@ class Classification(object):
     @classmethod
     def print_inps(cls, itraces):
         for inp, dtraces in itraces.items():
-            mlog.debug('{}'.format(list(map(lambda k: (k, len(dtraces[k])), dtraces.keys()))))
+            mlog.debug('{}: {}'.format(inp, list(map(lambda k: (k, len(dtraces[k])), dtraces.keys()))))
 
 class Inference(object):
     def __init__(self, inv_decls, seed, tmpdir):

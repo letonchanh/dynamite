@@ -1,0 +1,2679 @@
+__main__:102:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:103:INFO (<module>) - Dig's logger_level: WARNING
+__main__:104:INFO (<module>) - Timeout: 400s
+__main__:106:INFO (<module>) - 2020-05-14 11:28:01.426272: dynamo.py --timeout=400 /home/exp/eric/dynamo/benchmarks/nla-term/lcm1-both-t.c
+/home/exp/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:72:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_m_bl_s23
+analysis:80:DEBUG (__init__) - trans_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /home/exp/eric/dynamo/benchmarks/nla-term/lcm1-both-t.c --out=/var/tmp/Dig_m_bl_s23/lcm1-both-t.c --bnd=500
+analysis:87:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_33': ['exit'], 'vloop_41': ['exit'], 'vloop_28': ['exit', 'vloop_33', 'vloop_41'], 'mainQ': ['vloop_28'], 'main': ['mainQ']})
+analysis:98:DEBUG (__init__) - postorder_vloop_ids: ['vloop_33', 'vloop_41', 'vloop_28']
+analysis:107:DEBUG (__init__) - inp_decls (<class 'data.prog.Symbs'>): I a, I b
+analysis:108:DEBUG (__init__) - inv_decls (<class 'data.prog.DSymbs'>): {'vtrace1_28': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace2_28': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace3_28': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace1_41': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace2_41': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace3_41': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace1_33': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace2_33': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace3_33': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'))}
+__main__:152:DEBUG (<module>) - prove_process: 26311
+lib:38:DEBUG (gen_rand_inps) - inps (0): Inps()
+lib:38:DEBUG (gen_rand_inps) - inps (7): Inps({Inp(ss=('a', 'b'), vs=(285, 13)), Inp(ss=('a', 'b'), vs=(4, 7)), Inp(ss=('a', 'b'), vs=(288, 1)), Inp(ss=('a', 'b'), vs=(11, 5)), Inp(ss=('a', 'b'), vs=(8, 279)), Inp(ss=('a', 'b'), vs=(273, 288)), Inp(ss=('a', 'b'), vs=(14, 4))})
+lib:43:DEBUG (gen_rand_inps) - gen 102/100 random inps
+utils.profiling:31:DEBUG (timed) - gen_rand_inps: 448.16ms
+lib:54:DEBUG (get_traces_from_inps) - inp_decls: I a, I b
+lib:55:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_28': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace2_28': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace3_28': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace1_41': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace2_41': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace3_41': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace1_33': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace2_33': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace3_33': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 586.86ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 291.49ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 879.26ms
+analysis:1147:DEBUG (prove) - Analysing vloop_33
+analysis:1149:DEBUG (prove) - base_term_inps: 10
+analysis:1150:DEBUG (prove) - term_inps: 76
+analysis:1151:DEBUG (prove) - mayloop_inps: 0
+analysis:1171:DEBUG (prove) - Proving Termination: vloop_33
+analysis:1040:DEBUG (prove_term_vloop) - classify_inps: vloop_33
+analysis:1043:DEBUG (prove_term_vloop) - itraces: 76
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace2_33', 37), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 1), ('vtrace3_41', 2), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 1), ('vtrace1_33', 1), ('vtrace2_33', 1), ('vtrace3_33', 1), ('vtrace1_41', 1), ('vtrace2_41', 1), ('vtrace3_41', 1), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace2_33', 4), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 70), ('vtrace3_41', 2), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 1), ('vtrace1_33', 1), ('vtrace2_33', 287), ('vtrace3_33', 1), ('vtrace1_41', 1), ('vtrace3_41', 1), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace2_33', 2), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 1), ('vtrace3_41', 2), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace2_33', 11), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 1), ('vtrace3_41', 2), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace2_33', 42), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 2), ('vtrace3_41', 2), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace2_33', 13), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 8), ('vtrace3_41', 2), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 1), ('vtrace1_33', 1), ('vtrace2_33', 280), ('vtrace3_33', 1), ('vtrace1_41', 1), ('vtrace3_41', 1), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 1), ('vtrace1_33', 1), ('vtrace2_33', 49), ('vtrace3_33', 1), ('vtrace1_41', 1), ('vtrace2_41', 5), ('vtrace3_41', 1), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace2_33', 25), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 3), ('vtrace3_41', 2), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 4), ('vtrace1_33', 4), ('vtrace3_33', 4), ('vtrace1_41', 4), ('vtrace2_41', 3), ('vtrace3_41', 4), ('vtrace2_33', 3), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 40), ('vtrace3_41', 2), ('vtrace2_33', 1), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace2_33', 13), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 4), ('vtrace3_41', 2), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 30), ('vtrace3_41', 2), ('vtrace2_33', 2), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 1), ('vtrace1_33', 1), ('vtrace2_33', 17), ('vtrace3_33', 1), ('vtrace1_41', 1), ('vtrace2_41', 15), ('vtrace3_41', 1), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 1), ('vtrace1_33', 1), ('vtrace2_33', 2), ('vtrace3_33', 1), ('vtrace1_41', 1), ('vtrace2_41', 9), ('vtrace3_41', 1), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 1), ('vtrace1_33', 1), ('vtrace2_33', 146), ('vtrace3_33', 1), ('vtrace1_41', 1), ('vtrace3_41', 1), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 1), ('vtrace1_33', 1), ('vtrace2_33', 3), ('vtrace3_33', 1), ('vtrace1_41', 1), ('vtrace3_41', 1), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 1), ('vtrace1_33', 1), ('vtrace2_33', 70), ('vtrace3_33', 1), ('vtrace1_41', 1), ('vtrace2_41', 1), ('vtrace3_41', 1), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 69), ('vtrace3_41', 2), ('vtrace2_33', 1), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace2_33', 62), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 1), ('vtrace3_41', 2), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 3), ('vtrace3_41', 2), ('vtrace2_33', 1), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 1), ('vtrace3_41', 2), ('vtrace2_33', 3), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 1), ('vtrace1_33', 1), ('vtrace2_33', 136), ('vtrace3_33', 1), ('vtrace1_41', 1), ('vtrace3_41', 1), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 1), ('vtrace1_33', 1), ('vtrace2_33', 2), ('vtrace3_33', 1), ('vtrace1_41', 1), ('vtrace3_41', 1), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace2_33', 13), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 5), ('vtrace3_41', 2), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 1), ('vtrace1_33', 1), ('vtrace2_33', 3), ('vtrace3_33', 1), ('vtrace1_41', 1), ('vtrace2_41', 1), ('vtrace3_41', 1), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 3), ('vtrace1_33', 3), ('vtrace3_33', 3), ('vtrace1_41', 3), ('vtrace2_41', 3), ('vtrace3_41', 3), ('vtrace2_33', 41), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 1), ('vtrace1_33', 1), ('vtrace2_33', 1), ('vtrace3_33', 1), ('vtrace1_41', 1), ('vtrace2_41', 134), ('vtrace3_41', 1), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace2_33', 75), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 1), ('vtrace3_41', 2), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 1), ('vtrace1_33', 1), ('vtrace2_33', 4), ('vtrace3_33', 1), ('vtrace1_41', 1), ('vtrace2_41', 2), ('vtrace3_41', 1), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 3), ('vtrace1_33', 3), ('vtrace3_33', 3), ('vtrace1_41', 3), ('vtrace2_41', 23), ('vtrace3_41', 3), ('vtrace2_33', 4), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 1), ('vtrace3_41', 2), ('vtrace2_33', 19), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 1), ('vtrace1_33', 1), ('vtrace2_33', 1), ('vtrace3_33', 1), ('vtrace1_41', 1), ('vtrace2_41', 1), ('vtrace3_41', 1), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 1), ('vtrace3_41', 2), ('vtrace2_33', 54), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace2_33', 60), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 2), ('vtrace3_41', 2), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 32), ('vtrace3_41', 2), ('vtrace2_33', 1), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace2_33', 3), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 2), ('vtrace3_41', 2), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace2_33', 4), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 3), ('vtrace3_41', 2), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace2_33', 32), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 1), ('vtrace3_41', 2), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace2_33', 5), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 1), ('vtrace3_41', 2), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 1), ('vtrace3_41', 2), ('vtrace2_33', 11), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace2_33', 6), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 1), ('vtrace3_41', 2), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 3), ('vtrace1_33', 3), ('vtrace2_33', 19), ('vtrace3_33', 3), ('vtrace1_41', 3), ('vtrace2_41', 2), ('vtrace3_41', 3), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace2_33', 43), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 3), ('vtrace3_41', 2), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 1), ('vtrace1_33', 1), ('vtrace2_33', 2), ('vtrace3_33', 1), ('vtrace1_41', 1), ('vtrace2_41', 4), ('vtrace3_41', 1), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 1), ('vtrace1_33', 1), ('vtrace2_33', 2), ('vtrace3_33', 1), ('vtrace1_41', 1), ('vtrace3_41', 1), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace2_33', 4), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 1), ('vtrace3_41', 2), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 3), ('vtrace1_33', 3), ('vtrace3_33', 3), ('vtrace1_41', 3), ('vtrace2_41', 5), ('vtrace3_41', 3), ('vtrace2_33', 17), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 23), ('vtrace3_41', 2), ('vtrace2_33', 4), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 3), ('vtrace1_33', 3), ('vtrace2_33', 3), ('vtrace3_33', 3), ('vtrace1_41', 3), ('vtrace2_41', 28), ('vtrace3_41', 3), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 1), ('vtrace1_33', 1), ('vtrace2_33', 24), ('vtrace3_33', 1), ('vtrace1_41', 1), ('vtrace2_41', 3), ('vtrace3_41', 1), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace2_33', 2), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 4), ('vtrace3_41', 2), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace2_33', 7), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 1), ('vtrace3_41', 2), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace2_33', 27), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 4), ('vtrace3_41', 2), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 1), ('vtrace3_41', 2), ('vtrace2_33', 12), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace2_33', 53), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 1), ('vtrace3_41', 2), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 3), ('vtrace1_33', 3), ('vtrace2_33', 4), ('vtrace3_33', 3), ('vtrace1_41', 3), ('vtrace2_41', 23), ('vtrace3_41', 3), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 3), ('vtrace1_33', 3), ('vtrace2_33', 7), ('vtrace3_33', 3), ('vtrace1_41', 3), ('vtrace2_41', 22), ('vtrace3_41', 3), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 1), ('vtrace3_41', 2), ('vtrace2_33', 7), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 3), ('vtrace1_33', 3), ('vtrace2_33', 7), ('vtrace3_33', 3), ('vtrace1_41', 3), ('vtrace2_41', 16), ('vtrace3_41', 3), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 3), ('vtrace1_33', 3), ('vtrace3_33', 3), ('vtrace1_41', 3), ('vtrace2_41', 3), ('vtrace3_41', 3), ('vtrace2_33', 4), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 3), ('vtrace1_33', 3), ('vtrace3_33', 3), ('vtrace1_41', 3), ('vtrace2_41', 5), ('vtrace3_41', 3), ('vtrace2_33', 18), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 32), ('vtrace3_41', 2), ('vtrace2_33', 1), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 2), ('vtrace3_41', 2), ('vtrace2_33', 6), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace2_33', 35), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 3), ('vtrace3_41', 2), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace2_33', 32), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 1), ('vtrace3_41', 2), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 2), ('vtrace3_41', 2), ('vtrace2_33', 1), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace2_33', 26), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 1), ('vtrace3_41', 2), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 98), ('vtrace3_41', 2), ('vtrace2_33', 1), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 3), ('vtrace3_41', 2), ('vtrace2_33', 1), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 5), ('vtrace3_41', 2), ('vtrace2_33', 18), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 40), ('vtrace3_41', 2), ('vtrace2_33', 3), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 2), ('vtrace1_33', 2), ('vtrace2_33', 17), ('vtrace3_33', 2), ('vtrace1_41', 2), ('vtrace2_41', 6), ('vtrace3_41', 2), ('vtrace3_28', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_28', 1), ('vtrace2_28', 3), ('vtrace1_33', 3), ('vtrace3_33', 3), ('vtrace1_41', 3), ('vtrace2_41', 4), ('vtrace3_41', 3), ('vtrace2_33', 40), ('vtrace3_28', 1)]
+analysis:1045:DEBUG (prove_term_vloop) - base_term_inps: 0
+analysis:1046:DEBUG (prove_term_vloop) - term_inps: 76
+analysis:1047:DEBUG (prove_term_vloop) - mayloop_inps: 0
+analysis:857:DEBUG (infer_ranking_functions) - vloop: vloop_33
+analysis:858:DEBUG (infer_ranking_functions) - term_itraces: 76
+analysis:905:DEBUG (infer_ranking_functions) - train_rand_trans: 1009
+analysis:912:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): a*uk_1 + b*uk_2 + u*uk_5 + uk_6*v + uk_3*x + uk_4*y + uk_0
+analysis:913:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3, uk_4, uk_5, uk_6]
+analysis:937:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1009
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1008
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1007
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1006
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1005
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1004
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1003
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1002
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1001
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1000
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 999
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 998
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 997
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 996
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 995
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 994
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 993
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 992
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 991
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 990
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 989
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 988
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 987
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 986
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 985
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 984
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 983
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 982
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 981
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 980
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 979
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 978
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 977
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 976
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 975
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 974
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 973
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 972
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 971
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 970
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 969
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 968
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 967
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 966
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 965
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 964
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 963
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 962
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 961
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 960
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 959
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 958
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 957
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 956
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 955
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 954
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 953
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 952
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 951
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 950
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 949
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 948
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 947
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 946
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 945
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 944
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 943
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 942
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 941
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 940
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 939
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 938
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 937
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 936
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 935
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 934
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 933
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 932
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 931
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 930
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 929
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 928
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 927
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 926
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 925
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 924
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 923
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 922
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 921
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 920
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 919
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 918
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 917
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 916
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 915
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 914
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 913
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 912
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 911
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 910
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 909
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 908
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 907
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 906
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 905
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 904
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 903
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 902
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 901
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 900
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 899
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 898
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 897
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 896
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 895
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 894
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 893
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 892
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 891
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 890
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 889
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 888
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 887
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 886
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 885
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 884
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 883
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 882
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 881
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 880
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 879
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 878
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 877
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 876
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 875
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 874
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 873
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 872
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 871
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 870
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 869
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 868
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 867
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 866
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 865
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 864
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 863
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 862
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 861
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 860
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 859
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 858
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 857
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 856
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 855
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 854
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 853
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 852
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 851
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 850
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 849
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 848
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 847
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 846
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 845
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 844
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 843
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 842
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 841
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 840
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 839
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 838
+analysis:944:analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_31
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 6923.99ms
+analysis:280:DEBUG (_get_loop_from_symstates) - vloop inp_decls: I s, I a, I r, I k, I q, I d, I t
+analysis:281:DEBUG (_get_loop_from_symstates) - vloop inv_decls: {'vtrace1_31': (Symb(name='s', typ='I'), Symb(name='a', typ='I'), Symb(name='r', typ='I'), Symb(name='k', typ='I'), Symb(name='q', typ='I'), Symb(name='d', typ='I'), Symb(name='t', typ='I')), 'vtrace2_31': (Symb(name='s', typ='I'), Symb(name='a', typ='I'), Symb(name='r', typ='I'), Symb(name='k', typ='I'), Symb(name='q', typ='I'), Symb(name='d', typ='I'), Symb(name='t', typ='I')), 'vtrace3_31': (Symb(name='s', typ='I'), Symb(name='a', typ='I'), Symb(name='r', typ='I'), Symb(name='k', typ='I'), Symb(name='q', typ='I'), Symb(name='d', typ='I'), Symb(name='t', typ='I'))}
+analysis:282:DEBUG (_get_loop_from_symstates) - vloop init_symvars: I X_s, I X_a, I X_r, I X_k, I X_q, I X_d, I X_t
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_31
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 7883.34ms
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 29
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_31
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 14437.20ms
+analysis:314:DEBUG (_get_loop_from_symstates) - inloop_fst_slocal: And(s0 == X_s,
+    a0 == X_a,
+    r0 == X_r,
+    k0 == X_k,
+    q0 == X_q,
+    d0 == X_d,
+    t0 == X_t)
+analysis:315:DEBUG (_get_loop_from_symstates) - inloop_snd_slocal: And(s1 == X_s,
+    a1 == X_a,
+    r1 == 2 + X_d + -1*X_k + X_q + 2*X_r,
+    k1 == X_r,
+    q1 == 4 + X_q,
+    d1 == 2 + X_d,
+    t1 == X_r)
+analysis:327:DEBUG (_get_loop_from_symstates) - loop_transrel: And(And(s0 == s,
+        a0 == a,
+        r0 == r,
+        k0 == k,
+        q0 == q,
+        d0 == d,
+        t0 == t),
+    And(s1 == s,
+        a1 == a,
+        r1 == 2 + d + -1*k + q + 2*r,
+        k1 == r,
+        q1 == 4 + q,
+        d1 == 2 + d,
+        t1 == r))
+analysis:329:DEBUG (_get_loop_from_symstates) - inloop_fst_symstate: pc: And(0 >=
+    X_a*X_k +
+    -1*X_a*X_t +
+    -1*X_d*X_k +
+    X_d*X_t +
+    X_d +
+    -1*X_s,
+    Not(0 == X_r))
+analysis:330:DEBUG (_get_loop_from_symstates) - inloop_fst_symstate: slocal: And(s == X_s,
+    a == X_a,
+    r == X_r,
+    k == X_k,
+    q == X_q,
+    d == X_d,
+    t == X_t)
+analysis:334:DEBUG (_get_loop_from_symstates) - loop_cond: And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r))
+analysis:337:DEBUG (_get_loop_from_symstates) - terms: [0, a*k, -1*a*t, -1*d*k, d*t, d, -1*s, 0, r]
+analysis:338:DEBUG (_get_loop_from_symstates) - nonlinear_terms: [a*k, -1*a*t, -1*d*k, d*t]
+utils.profiling:31:DEBUG (timed) - _get_loopinfo_from_symstates: 38728.48ms
+analysis:399:DEBUG (get_loopinfo) - stem: <utils.loop.Stem object at 0x7f2c3213d4a8>
+analysis:400:DEBUG (get_loopinfo) - loop: <utils.loop.Loop object at 0x7f2c3202e048>
+utils.profiling:31:DEBUG (timed) - get_loopinfo: 38728.69ms
+analysis:702:DEBUG (_stat_candidate_rcs) - stat (1 total): defaultdict(<class 'int'>, {0: 1})
+analysis:729:DEBUG (prove_nonterm_vloop) - PROVE_NT DEPTH 0: ZConj({And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r))})
+analysis:505:DEBUG (verify) - loop_transrel: And(And(s0 == s,
+        a0 == a,
+        r0 == r,
+        k0 == k,
+        q0 == q,
+        d0 == d,
+        t0 == t),
+    And(s1 == s,
+        a1 == a,
+        r1 == 2 + d + -1*k + q + 2*r,
+        k1 == r,
+        q1 == 4 + q,
+        d1 == 2 + d,
+        t1 == r))
+analysis:506:DEBUG (verify) - loop_cond: And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r))
+analysis:507:DEBUG (verify) - rcs: ZConj({And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r))})
+analysis:521:DEBUG (verify) - labeled_rcs: ZConj({And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r)):c_0})
+analysis:528:DEBUG (verify) - transrel_rcs: ZConj({And(0 >= a0*k0 + -1*a0*t0 + -1*d0*k0 + d0*t0 + d0 + -1*s0,
+    Not(0 == r0)):c_0, And(And(s0 == s,
+        a0 == a,
+        r0 == r,
+        k0 == k,
+        q0 == q,
+        d0 == d,
+        t0 == t),
+    And(s1 == s,
+        a1 == a,
+        r1 == 2 + d + -1*k + q + 2*r,
+        k1 == r,
+        q1 == 4 + q,
+        d1 == 2 + d,
+        t1 == r))})
+analysis:533:DEBUG (verify) - init_transrel_rcs: ZConj({And(0 >= a0*k0 + -1*a0*t0 + -1*d0*k0 + d0*t0 + d0 + -1*s0,
+    Not(0 == r0)):c_0, And(And(s0 == s,
+        a0 == a,
+        r0 == r,
+        k0 == k,
+        q0 == q,
+        d0 == d,
+        t0 == t),
+    And(s1 == s,
+        a1 == a,
+        r1 == 2 + d + -1*k + q + 2*r,
+        k1 == r,
+        q1 == 4 + q,
+        d1 == 2 + d,
+        t1 == r)), And(s == X_s,
+    a == X_a,
+    r == X_s**2%X_a,
+    k == X_s**2%(-2 + X_a),
+    q == 4*(X_s**2/(-2 + X_a)) + -4*(X_s**2/X_a),
+    d == X_a,
+    0 == t), And(8191 >= X_s, 3 <= X_a)})
+analysis:542:DEBUG (_check) - rc: And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r)):c_0
+analysis:547:DEBUG (_check) - rc_r: And(0 >= a1*k1 + -1*a1*t1 + -1*d1*k1 + d1*t1 + d1 + -1*s1,
+    Not(0 == r1))
+analysis:548:DEBUG (_check) - f: ZConj({And(0 >= a0*k0 + -1*a0*t0 + -1*d0*k0 + d0*t0 + d0 + -1*s0,
+    Not(0 == r0)):c_0, Not(And(0 >=
+        a1*k1 + -1*a1*t1 + -1*d1*k1 + d1*t1 + d1 + -1*s1,
+        Not(0 == r1))), And(And(s0 == s,
+        a0 == a,
+        r0 == r,
+        k0 == k,
+        q0 == q,
+        d0 == d,
+        t0 == t),
+    And(s1 == s,
+        a1 == a,
+        r1 == 2 + d + -1*k + q + 2*r,
+        k1 == r,
+        q1 == 4 + q,
+        d1 == 2 + d,
+        t1 == r))})
+analysis:563:DEBUG (_check) - rs: sat
+analysis:570:DEBUG (_check) - init_f: ZConj({And(0 >= a0*k0 + -1*a0*t0 + -1*d0*k0 + d0*t0 + d0 + -1*s0,
+    Not(0 == r0)):c_0, Not(And(0 >=
+        a1*k1 + -1*a1*t1 + -1*d1*k1 + d1*t1 + d1 + -1*s1,
+        Not(0 == r1))), And(s == X_s,
+    a == X_a,
+    r == X_s**2%X_a,
+    k == X_s**2%(-2 + X_a),
+    q == 4*(X_s**2/(-2 + X_a)) + -4*(X_s**2/X_a),
+    d == X_a,
+    0 == t), And(8191 >= X_s, 3 <= X_a), And(And(s0 == s,
+        a0 == a,
+        r0 == r,
+        k0 == k,
+        q0 == q,
+        d0 == d,
+        t0 == t),
+    And(s1 == s,
+        a1 == a,
+        r1 == 2 + d + -1*k + q + 2*r,
+        k1 == r,
+        q1 == 4 + q,
+        d1 == 2 + d,
+        t1 == r))})
+analysis:571:DEBUG (_check) - init_rs: [[('X_s', 4), ('k!2245', 5), ('X_a', 3), ('k!2248', 0), ('k!2247', 16), ('k!2246', 1), ('t1', 1), ('d1', 5), ('q1', 48), ('k1', 1), ('r1', 51), ('a1', 3), ('s1', 4), ('t0', 0), ('d0', 3), ('q0', 44), ('k0', 0), ('r0', 1), ('a0', 3), ('s0', 4), ('t', 0), ('d', 3), ('q', 44), ('k', 0), ('r', 1), ('a', 3), ('s', 4)], [('k!2245', 6), ('X_s', 5), ('X_a', 4), ('k!2248', 1), ('k!2247', 12), ('k!2246', 1), ('k!2246', 1), ('k!2247', 16), ('k!2248', 0), ('k!2245', 5), ('t1', 1), ('d1', 6), ('q1', 28), ('k1', 1), ('r1', 31), ('a1', 4), ('s1', 5), ('t0', 0), ('d0', 4), ('q0', 24), ('k0', 1), ('r0', 1), ('a0', 4), ('s0', 5), ('t', 0), ('d', 4), ('q', 24), ('k', 1), ('r', 1), ('a', 4), ('s', 5)], [('k!2245', 5), ('k!2247', -1), ('X_s', 4), ('X_a', 3), ('k!2248', 0), ('k!2245', 1), ('k!2247', 16), ('k!2248', -1), ('k!2246', 1), ('k!2246', 1), ('t1', 1), ('d1', 5), ('q1', 48), ('k1', 1), ('r1', 51), ('a1', 3), ('s1', 4), ('t0', 0), ('d0', 3), ('q0', 44), ('k0', 0), ('r0', 1), ('a0', 3), ('s0', 4), ('t', 0), ('d', 3), ('q', 44), ('k', 0), ('r', 1), ('a', 3), ('s', 4)], [('k!2245', 272), ('k!2247', 1), ('X_s', 271), ('X_a', 270), ('k!2248', 9), ('k!2245', -1), ('k!2247', 274), ('k!2248', -1), ('k!2246', 1), ('k!2246', 1), ('t1', 1), ('d1', 272), ('q1', 12), ('k1', 1), ('r1', 273), ('a1', 270), ('s1', 271), ('t0', 0), ('d0', 270), ('q0', 8), ('k0', 9), ('r0', 1), ('a0', 270), ('s0', 271), ('t', 0), ('d', 270), ('q', 8), ('k', 9), ('r', 1), ('a', 270), ('s', 271)], [('k!2245', 5), ('k!2247', 1), ('X_s', 4), ('X_a', 3), ('k!2248', 0), ('k!2245', -1), ('k!2247', 16), ('k!2248', 1), ('k!2246', 1), ('k!2246', 1), ('t1', 1), ('d1', 5), ('q1', 48), ('k1', 1), ('r1', 51), ('a1', 3), ('s1', 4), ('t0', 0), ('d0', 3), ('q0', 44), ('k0', 0), ('r0', 1), ('a0', 3), ('s0', 4), ('t', 0), ('d', 3), ('q', 44), ('k', 0), ('r', 1), ('a', 3), ('s', 4)], [('k!2245', 8191), ('k!2247', 1), ('X_s', 8190), ('X_a', 8189), ('k!2248', 9), ('k!2245', -1), ('k!2247', 8193), ('k!2248', -1), ('k!2246', 1), ('k!2246', 1), ('t1', 1), ('d1', 8191), ('q1', 12), ('k1', 1), ('r1', 8192), ('a1', 8189), ('s1', 8190), ('t0', 0), ('d0', 8189), ('q0', 8), ('k0', 9), ('r0', 1), ('a0', 8189), ('s0', 8190), ('t', 0), ('d', 8189), ('q', 8), ('k', 9), ('r', 1), ('a', 8189), ('s', 8190)], [('X_s', 8190), ('k!2245', 8191), ('X_a', 8189), ('k!2248', 9), ('k!2247', 8193), ('k!2246', 1), ('k!2246', 2), ('t1', 1), ('d1', 8191), ('q1', 12), ('k1', 1), ('r1', 8192), ('a1', 8189), ('s1', 8190), ('t0', 0), ('d0', 8189), ('q0', 8), ('k0', 9), ('r0', 1), ('a0', 8189), ('s0', 8190), ('t', 0), ('d', 8189), ('q', 8), ('k', 9), ('r', 1), ('a', 8189), ('s', 8190)], [('X_s', 8190), ('k!2245', 8191), ('X_a', 8189), ('k!2248', 9), ('k!2247', 8193), ('k!2246', 1), ('k!2246', 2), ('t1', 1), ('d1', 8191), ('q1', 12), ('k1', 1), ('r1', 8192), ('a1', 8189), ('s1', 8190), ('t0', 0), ('d0', 8189), ('q0', 8), ('k0', 9), ('r0', 1), ('a0', 8189), ('s0', 8190), ('t', 0), ('d', 8189), ('q', 8), ('k', 9), ('r', 1), ('a', 8189), ('s', 8190)], [('X_s', 8190), ('k!2245', 8191), ('X_a', 8189), ('k!2248', 9), ('k!2247', 8193), ('k!2246', 1), ('k!2246', 2), ('t1', 1), ('d1', 8191), ('q1', 12), ('k1', 1), ('r1', 8192), ('a1', 8189), ('s1', 8190), ('t0', 0), ('d0', 8189), ('q0', 8), ('k0', 9), ('r0', 1), ('a0', 8189), ('s0', 8190), ('t', 0), ('d', 8189), ('q', 8), ('k', 9), ('r', 1), ('a', 8189), ('s', 8190)], [('X_s', 8190), ('k!2245', 8191), ('X_a', 8189), ('k!2248', 9), ('k!2247', 8193), ('k!2246', 1), ('k!2246', 2), ('t1', 1), ('d1', 8191), ('q1', 12), ('k1', 1), ('r1', 8192), ('a1', 8189), ('s1', 8190), ('t0', 0), ('d0', 8189), ('q0', 8), ('k0', 9), ('r0', 1), ('a0', 8189), ('s0', 8190), ('t', 0), ('d', 8189), ('q', 8), ('k', 9), ('r', 1), ('a', 8189), ('s', 8190)], [('X_s', 8190), ('k!2245', 8191), ('X_a', 8189), ('k!2248', 9), ('k!2247', 8193), ('k!2246', 1), ('k!2246', 2), ('t1', 1), ('d1', 8191), ('q1', 12), ('k1', 1), ('r1', 8192), ('a1', 8189), ('s1', 8190), ('t0', 0), ('d0', 8189), ('q0', 8), ('k0', 9), ('r0', 1), ('a0', 8189), ('s0', 8190), ('t', 0), ('d', 8189), ('q', 8), ('k', 9), ('r', 1), ('a', 8189), ('s', 8190)]]
+analysis:586:DEBUG (_check) - init_models: sat (11 models)
+analysis:591:DEBUG (_check) - inps: Inps({Inp(ss=('s', 'a'), vs=(5, 4)), Inp(ss=('s', 'a'), vs=(271, 270)), Inp(ss=('s', 'a'), vs=(4, 3)), Inp(ss=('s', 'a'), vs=(8190, 8189))})
+analysis:600:INFO (verify) - dg: defaultdict(<class 'list'>, {})
+analysis:601:INFO (verify) - label_d: defaultdict(<class 'str'>, {And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r)): 'c_0'})
+analysis:602:INFO (verify) - rev_label_d: {'c_0': And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r))}
+analysis:605:INFO (verify) - loop_cond_label: c_0
+analysis:609:INFO (verify) - mds_labels: set()
+analysis:610:INFO (verify) - mds: ZConj()
+lib:54:DEBUG (get_traces_from_inps) - inp_decls: I s, I a
+lib:55:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_31': (Symb(name='s', typ='I'), Symb(name='a', typ='I'), Symb(name='r', typ='I'), Symb(name='k', typ='I'), Symb(name='q', typ='I'), Symb(name='d', typ='I'), Symb(name='t', typ='I')), 'vtrace2_31': (Symb(name='s', typ='I'), Symb(name='a', typ='I'), Symb(name='r', typ='I'), Symb(name='k', typ='I'), Symb(name='q', typ='I'), Symb(name='d', typ='I'), Symb(name='t', typ='I')), 'vtrace3_31': (Symb(name='s', typ='I'), Symb(name='a', typ='I'), Symb(name='r', typ='I'), Symb(name='k', typ='I'), Symb(name='q', typ='I'), Symb(name='d', typ='I'), Symb(name='t', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 39.70ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 28.66ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 69.08ms
+utils.profiling:31:DEBUG (timed) - verify: 1763.50ms
+analysis:630:DEBUG (strengthen) - base_term_inps: 0
+analysis:631:DEBUG (strengthen) - term_inps: [Inp(ss=('s', 'a'), vs=(5, 4)), Inp(ss=('s', 'a'), vs=(271, 270)), Inp(ss=('s', 'a'), vs=(4, 3)), Inp(ss=('s', 'a'), vs=(8190, 8189))]
+analysis:632:DEBUG (strengthen) - mayloop_inps: 0
+analysis:633:DEBUG (strengthen) - rcs: ZConj({And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r))})
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_31]: 0
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_31]: 0
+lib:254:DEBUG (infer_from_traces) - invs: 
+analysis:637:DEBUG (strengthen) - mayloop_invs: ZConj()
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_31]: 1
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_31]: 1
+*** 'None', 0 locs, 0 invs (), 0 traces, 0 inps, time 0.02s, rand seed 1589473281.51, test 33 38:
+
+data.traces:207:WARNING (merge) - trace s=0,a=0,r=0,k=0,q=0,d=0,t=0 exist
+lib:254:DEBUG (infer_from_traces) - invs: vtrace2_31 (98 invs):
+1. t <= 0
+2. s <= 0
+3. s - t <= 0
+4. s + t <= 0
+5. r <= 0
+6. r - t <= 0
+7. r - s <= 0
+8. r + t <= 0
+9. r + s <= 0
+10. q <= 0
+11. q - t <= 0
+12. q - s <= 0
+13. q - r <= 0
+14. q + t <= 0
+15. q + s <= 0
+16. q + r <= 0
+17. k <= 0
+18. k - t <= 0
+19. k - s <= 0
+20. k - r <= 0
+21. k - q <= 0
+22. k + t <= 0
+23. k + s <= 0
+24. k + r <= 0
+25. k + q <= 0
+26. d <= 0
+27. d - t <= 0
+28. d - s <= 0
+29. d - r <= 0
+30. d - q <= 0
+31. d - k <= 0
+32. d + t <= 0
+33. d + s <= 0
+34. d + r <= 0
+35. d + q <= 0
+36. d + k <= 0
+37. a <= 0
+38. a - t <= 0
+39. a - s <= 0
+40. a - r <= 0
+41. a - q <= 0
+42. a - k <= 0
+43. a - d <= 0
+44. a + t <= 0
+45. a + s <= 0
+46. a + r <= 0
+47. a + q <= 0
+48. a + k <= 0
+49. a + d <= 0
+50. -t <= 0
+51. -s <= 0
+52. -s - t <= 0
+53. -s + t <= 0
+54. -r <= 0
+55. -r - t <= 0
+56. -r - s <= 0
+57. -r + t <= 0
+58. -r + s <= 0
+59. -q <= 0
+60. -q - t <= 0
+61. -q - s <= 0
+62. -q - r <= 0
+63. -q + t <= 0
+64. -q + s <= 0
+65. -q + r <= 0
+66. -k <= 0
+67. -k - t <= 0
+68. -k - s <= 0
+69. -k - r <= 0
+70. -k - q <= 0
+71. -k + t <= 0
+72. -k + s <= 0
+73. -k + r <= 0
+74. -k + q <= 0
+75. -d <= 0
+76. -d - t <= 0
+77. -d - s <= 0
+78. -d - r <= 0
+79. -d - q <= 0
+80. -d - k <= 0
+81. -d + t <= 0
+82. -d + s <= 0
+83. -d + r <= 0
+84. -d + q <= 0
+85. -d + k <= 0
+86. -a <= 0
+87. -a - t <= 0
+88. -a - s <= 0
+89. -a - r <= 0
+90. -a - q <= 0
+91. -a - k <= 0
+92. -a - d <= 0
+93. -a + t <= 0
+94. -a + s <= 0
+95. -a + r <= 0
+96. -a + q <= 0
+97. -a + k <= 0
+98. -a + d <= 0
+analysis:641:DEBUG (strengthen) - term_invs: ZConj({0 >= a + s, 0 >= d, 0 >= -1*q + -1*t, 0 >= -1*d + -1*k, 0 >= -1*a + -1*t, 0 >= -1*d + -1*s, 0 >= -1*d + -1*q, 0 >= -1*d + t, 0 >= k + q, 0 >= a + d, 0 >= r + -1*t, 0 >= a + -1*d, r >= 0, a >= 0, 0 >= d + -1*r, 0 >= k + -1*q, 0 >= -1*q + s, 0 >= k + -1*s, 0 >= q + -1*t, 0 >= d + r, 0 >= a + -1*r, 0 >= -1*a + s, 0 >= -1*k + q, t >= 0, 0 >= k + t, 0 >= a + r, 0 >= r + s, 0 >= -1*a + -1*d, 0 >= -1*a + d, 0 >= d + k, s >= 0, 0 >= -1*k + -1*s, 0 >= -1*s + t, 0 >= -1*d + -1*t, 0 >= -1*k + -1*q, d >= 0, 0 >= -1*k + t, 0 >= a + k, 0 >= q + s, 0 >= s, 0 >= -1*q + -1*r, 0 >= -1*r + -1*s, 0 >= -1*a + -1*r, 0 >= -1*r + t, 0 >= -1*q + r, 0 >= t, q >= 0, 0 >= -1*a + r, 0 >= k + -1*t, 0 >= -1*d + s, 0 >= d + q, 0 >= a, 0 >= a + q, 0 >= q + -1*r, 0 >= -1*a + k, 0 >= -1*s + -1*t, 0 >= d + -1*k, 0 >= d + -1*q, 0 >= d + -1*s, 0 >= -1*k + -1*t, 0 >= q + r, 0 >= d + t, 0 >= k + s, 0 >= a + -1*k, 0 >= a + -1*q, 0 >= a + -1*s, 0 >= q, 0 >= a + t, 0 >= k, 0 >= -1*r + -1*t, 0 >= -1*d + -1*r, 0 >= -1*d + r, 0 >= -1*a + q, 0 >= -1*k + s, 0 >= s + t, 0 >= k + -1*r, 0 >= -1*a + -1*k, 0 >= -1*q + -1*s, 0 >= -1*d + k, 0 >= -1*r + s, 0 >= -1*a + -1*s, 0 >= -1*a + -1*q, 0 >= d + -1*t, 0 >= -1*q + t, 0 >= k + r, 0 >= r, 0 >= -1*a + t, 0 >= r + -1*s, 0 >= a + -1*t, 0 >= r + t, k >= 0, 0 >= -1*k + -1*r, 0 >= s + -1*t, 0 >= q + -1*s, 0 >= -1*k + r, 0 >= -1*d + q, 0 >= d + s, 0 >= q + t})
+utils.profiling:31:DEBUG (timed) - strengthen: 950.03ms
+analysis:702:DEBUG (_stat_candidate_rcs) - stat (98 total): defaultdict(<class 'int'>, {1: 98})
+analysis:729:DEBUG (prove_nonterm_vloop) - PROVE_NT DEPTH 1: ZConj({And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r)), Not(0 >= a + s)})
+analysis:505:DEBUG (verify) - loop_transrel: And(And(s0 == s,
+        a0 == a,
+        r0 == r,
+        k0 == k,
+        q0 == q,
+        d0 == d,
+        t0 == t),
+    And(s1 == s,
+        a1 == a,
+        r1 == 2 + d + -1*k + q + 2*r,
+        k1 == r,
+        q1 == 4 + q,
+        d1 == 2 + d,
+        t1 == r))
+analysis:506:DEBUG (verify) - loop_cond: And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r))
+analysis:507:DEBUG (verify) - rcs: ZConj({And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r)), Not(0 >= a + s)})
+analysis:521:DEBUG (verify) - labeled_rcs: ZConj({Not(0 >= a + s):c_1, And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r)):c_0})
+analysis:528:DEBUG (verify) - transrel_rcs: ZConj({Not(0 >= a0 + s0):c_1, And(0 >= a0*k0 + -1*a0*t0 + -1*d0*k0 + d0*t0 + d0 + -1*s0,
+    Not(0 == r0)):c_0, And(And(s0 == s,
+        a0 == a,
+        r0 == r,
+        k0 == k,
+        q0 == q,
+        d0 == d,
+        t0 == t),
+    And(s1 == s,
+        a1 == a,
+        r1 == 2 + d + -1*k + q + 2*r,
+        k1 == r,
+        q1 == 4 + q,
+        d1 == 2 + d,
+        t1 == r))})
+analysis:533:DEBUG (verify) - init_transrel_rcs: ZConj({And(0 >= a0*k0 + -1*a0*t0 + -1*d0*k0 + d0*t0 + d0 + -1*s0,
+    Not(0 == r0)):c_0, And(s == X_s,
+    a == X_a,
+    r == X_s**2%X_a,
+    k == X_s**2%(-2 + X_a),
+    q == 4*(X_s**2/(-2 + X_a)) + -4*(X_s**2/X_a),
+    d == X_a,
+    0 == t), And(8191 >= X_s, 3 <= X_a), Not(0 >= a0 + s0):c_1, And(And(s0 == s,
+        a0 == a,
+        r0 == r,
+        k0 == k,
+        q0 == q,
+        d0 == d,
+        t0 == t),
+    And(s1 == s,
+        a1 == a,
+        r1 == 2 + d + -1*k + q + 2*r,
+        k1 == r,
+        q1 == 4 + q,
+        d1 == 2 + d,
+        t1 == r))})
+analysis:542:DEBUG (_check) - rc: And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r)):c_0
+analysis:547:DEBUG (_check) - rc_r: And(0 >= a1*k1 + -1*a1*t1 + -1*d1*k1 + d1*t1 + d1 + -1*s1,
+    Not(0 == r1))
+analysis:548:DEBUG (_check) - f: ZConj({Not(0 >= a0 + s0):c_1, And(And(s0 == s,
+        a0 == a,
+        r0 == r,
+        k0 == k,
+        q0 == q,
+        d0 == d,
+        t0 == t),
+    And(s1 == s,
+        a1 == a,
+        r1 == 2 + d + -1*k + q + 2*r,
+        k1 == r,
+        q1 == 4 + q,
+        d1 == 2 + d,
+        t1 == r)), Not(And(0 >=
+        a1*k1 + -1*a1*t1 + -1*d1*k1 + d1*t1 + d1 + -1*s1,
+        Not(0 == r1))), And(0 >= a0*k0 + -1*a0*t0 + -1*d0*k0 + d0*t0 + d0 + -1*s0,
+    Not(0 == r0)):c_0})
+*** 'None', 1 locs, 98 invs (98 Oct), 1 traces, 0 inps, time 0.73s, rand seed 1589473281.51, test 33 38:
+vtrace2_31 (98 invs):
+1. t <= 0
+2. s <= 0
+3. s - t <= 0
+4. s + t <= 0
+5. r <= 0
+6. r - t <= 0
+7. r - s <= 0
+8. r + t <= 0
+9. r + s <= 0
+10. q <= 0
+11. q - t <= 0
+12. q - s <= 0
+13. q - r <= 0
+14. q + t <= 0
+15. q + s <= 0
+16. q + r <= 0
+17. k <= 0
+18. k - t <= 0
+19. k - s <= 0
+20. k - r <= 0
+21. k - q <= 0
+22. k + t <= 0
+23. k + s <= 0
+24. k + r <= 0
+25. k + q <= 0
+26. d <= 0
+27. d - t <= 0
+28. d - s <= 0
+29. d - r <= 0
+30. d - q <= 0
+31. d - k <= 0
+32. d + t <= 0
+33. d + s <= 0
+34. d + r <= 0
+35. d + q <= 0
+36. d + k <= 0
+37. a <= 0
+38. a - t <= 0
+39. a - s <= 0
+40. a - r <= 0
+41. a - q <= 0
+42. a - k <= 0
+43. a - d <= 0
+44. a + t <= 0
+45. a + s <= 0
+46. a + r <= 0
+47. a + q <= 0
+48. a + k <= 0
+49. a + d <= 0
+50. -t <= 0
+51. -s <= 0
+52. -s - t <= 0
+53. -s + t <= 0
+54. -r <= 0
+55. -r - t <= 0
+56. -r - s <= 0
+57. -r + t <= 0
+58. -r + s <= 0
+59. -q <= 0
+60. -q - t <= 0
+61. -q - s <= 0
+62. -q - r <= 0
+63. -q + t <= 0
+64. -q + s <= 0
+65. -q + r <= 0
+66. -k <= 0
+67. -k - t <= 0
+68. -k - s <= 0
+69. -k - r <= 0
+70. -k - q <= 0
+71. -k + t <= 0
+72. -k + s <= 0
+73. -k + r <= 0
+74. -k + q <= 0
+75. -d <= 0
+76. -d - t <= 0
+77. -d - s <= 0
+78. -d - r <= 0
+79. -d - q <= 0
+80. -d - k <= 0
+81. -d + t <= 0
+82. -d + s <= 0
+83. -d + r <= 0
+84. -d + q <= 0
+85. -d + k <= 0
+86. -a <= 0
+87. -a - t <= 0
+88. -a - s <= 0
+89. -a - r <= 0
+90. -a - q <= 0
+91. -a - k <= 0
+92. -a - d <= 0
+93. -a + t <= 0
+94. -a + s <= 0
+95. -a + r <= 0
+96. -a + q <= 0
+97. -a + k <= 0
+98. -a + d <= 0
+analysis:563:DEBUG (_check) - rs: sat
+analysis:570:DEBUG (_check) - init_f: ZConj({Not(And(0 >=
+        a1*k1 + -1*a1*t1 + -1*d1*k1 + d1*t1 + d1 + -1*s1,
+        Not(0 == r1))), And(0 >= a0*k0 + -1*a0*t0 + -1*d0*k0 + d0*t0 + d0 + -1*s0,
+    Not(0 == r0)):c_0, Not(0 >= a0 + s0):c_1, And(s == X_s,
+    a == X_a,
+    r == X_s**2%X_a,
+    k == X_s**2%(-2 + X_a),
+    q == 4*(X_s**2/(-2 + X_a)) + -4*(X_s**2/X_a),
+    d == X_a,
+    0 == t), And(8191 >= X_s, 3 <= X_a), And(And(s0 == s,
+        a0 == a,
+        r0 == r,
+        k0 == k,
+        q0 == q,
+        d0 == d,
+        t0 == t),
+    And(s1 == s,
+        a1 == a,
+        r1 == 2 + d + -1*k + q + 2*r,
+        k1 == r,
+        q1 == 4 + q,
+        d1 == 2 + d,
+        t1 == r))})
+analysis:571:DEBUG (_check) - init_rs: [[('k!2304', 1), ('X_s', 4), ('X_a', 3), ('k!2303', 5), ('k!2306', 0), ('k!2305', 16), ('t1', 1), ('d1', 5), ('q1', 48), ('k1', 1), ('r1', 51), ('a1', 3), ('s1', 4), ('t0', 0), ('d0', 3), ('q0', 44), ('k0', 0), ('r0', 1), ('a0', 3), ('s0', 4), ('t', 0), ('d', 3), ('q', 44), ('k', 0), ('r', 1), ('a', 3), ('s', 4)], [('k!2306', 9), ('k!2305', 274), ('k!2304', 1), ('X_s', 271), ('X_a', 270), ('k!2303', 272), ('k!2305', 16), ('k!2306', 0), ('k!2304', 1), ('k!2303', 5), ('t1', 1), ('d1', 272), ('q1', 12), ('k1', 1), ('r1', 273), ('a1', 270), ('s1', 271), ('t0', 0), ('d0', 270), ('q0', 8), ('k0', 9), ('r0', 1), ('a0', 270), ('s0', 271), ('t', 0), ('d', 270), ('q', 8), ('k', 9), ('r', 1), ('a', 270), ('s', 271)], [('k!2306', 0), ('k!2305', 16), ('k!2306', -1), ('k!2304', 1), ('X_s', 4), ('k!2305', -1), ('X_a', 3), ('k!2303', 5), ('k!2303', 1), ('k!2304', 1), ('t1', 1), ('d1', 5), ('q1', 48), ('k1', 1), ('r1', 51), ('a1', 3), ('s1', 4), ('t0', 0), ('d0', 3), ('q0', 44), ('k0', 0), ('r0', 1), ('a0', 3), ('s0', 4), ('t', 0), ('d', 3), ('q', 44), ('k', 0), ('r', 1), ('a', 3), ('s', 4)], [('k!2306', 0), ('k!2305', 16), ('k!2306', 1), ('k!2304', 1), ('X_s', 4), ('k!2305', 1), ('X_a', 3), ('k!2303', 5), ('k!2303', -1), ('k!2304', 1), ('t1', 1), ('d1', 5), ('q1', 48), ('k1', 1), ('r1', 51), ('a1', 3), ('s1', 4), ('t0', 0), ('d0', 3), ('q0', 44), ('k0', 0), ('r0', 1), ('a0', 3), ('s0', 4), ('t', 0), ('d', 3), ('q', 44), ('k', 0), ('r', 1), ('a', 3), ('s', 4)], [('k!2306', 0), ('k!2305', 16), ('k!2306', 1), ('k!2304', 1), ('X_s', 4), ('k!2305', 1), ('X_a', 3), ('k!2303', 5), ('k!2303', -1), ('k!2304', 1), ('t1', 1), ('d1', 5), ('q1', 48), ('k1', 1), ('r1', 51), ('a1', 3), ('s1', 4), ('t0', 0), ('d0', 3), ('q0', 44), ('k0', 0), ('r0', 1), ('a0', 3), ('s0', 4), ('t', 0), ('d', 3), ('q', 44), ('k', 0), ('r', 1), ('a', 3), ('s', 4)], [('k!2306', 9), ('k!2305', 8193), ('k!2306', -1), ('k!2304', 1), ('X_s', 8190), ('k!2305', 1), ('X_a', 8189), ('k!2303', 8191), ('k!2303', -1), ('k!2304', 1), ('t1', 1), ('d1', 8191), ('q1', 12), ('k1', 1), ('r1', 8192), ('a1', 8189), ('s1', 8190), ('t0', 0), ('d0', 8189), ('q0', 8), ('k0', 9), ('r0', 1), ('a0', 8189), ('s0', 8190), ('t', 0), ('d', 8189), ('q', 8), ('k', 9), ('r', 1), ('a', 8189), ('s', 8190)], [('k!2304', 1), ('X_s', 8190), ('X_a', 8189), ('k!2303', 8191), ('k!2306', 9), ('k!2305', 8193), ('k!2304', 2), ('t1', 1), ('d1', 8191), ('q1', 12), ('k1', 1), ('r1', 8192), ('a1', 8189), ('s1', 8190), ('t0', 0), ('d0', 8189), ('q0', 8), ('k0', 9), ('r0', 1), ('a0', 8189), ('s0', 8190), ('t', 0), ('d', 8189), ('q', 8), ('k', 9), ('r', 1), ('a', 8189), ('s', 8190)], [('k!2304', 1), ('X_s', 8190), ('X_a', 8189), ('k!2303', 8191), ('k!2306', 9), ('k!2305', 8193), ('k!2304', 2), ('t1', 1), ('d1', 8191), ('q1', 12), ('k1', 1), ('r1', 8192), ('a1', 8189), ('s1', 8190), ('t0', 0), ('d0', 8189), ('q0', 8), ('k0', 9), ('r0', 1), ('a0', 8189), ('s0', 8190), ('t', 0), ('d', 8189), ('q', 8), ('k', 9), ('r', 1), ('a', 8189), ('s', 8190)], [('k!2304', 1), ('X_s', 8190), ('X_a', 8189), ('k!2303', 8191), ('k!2306', 9), ('k!2305', 8193), ('k!2304', 2), ('t1', 1), ('d1', 8191), ('q1', 12), ('k1', 1), ('r1', 8192), ('a1', 8189), ('s1', 8190), ('t0', 0), ('d0', 8189), ('q0', 8), ('k0', 9), ('r0', 1), ('a0', 8189), ('s0', 8190), ('t', 0), ('d', 8189), ('q', 8), ('k', 9), ('r', 1), ('a', 8189), ('s', 8190)], [('k!2304', 1), ('X_s', 8190), ('X_a', 8189), ('k!2303', 8191), ('k!2306', 9), ('k!2305', 8193), ('k!2304', 2), ('t1', 1), ('d1', 8191), ('q1', 12), ('k1', 1), ('r1', 8192), ('a1', 8189), ('s1', 8190), ('t0', 0), ('d0', 8189), ('q0', 8), ('k0', 9), ('r0', 1), ('a0', 8189), ('s0', 8190), ('t', 0), ('d', 8189), ('q', 8), ('k', 9), ('r', 1), ('a', 8189), ('s', 8190)], [('k!2304', 1), ('X_s', 8190), ('X_a', 8189), ('k!2303', 8191), ('k!2306', 9), ('k!2305', 8193), ('k!2304', 2), ('t1', 1), ('d1', 8191), ('q1', 12), ('k1', 1), ('r1', 8192), ('a1', 8189), ('s1', 8190), ('t0', 0), ('d0', 8189), ('q0', 8), ('k0', 9), ('r0', 1), ('a0', 8189), ('s0', 8190), ('t', 0), ('d', 8189), ('q', 8), ('k', 9), ('r', 1), ('a', 8189), ('s', 8190)]]
+analysis:586:DEBUG (_check) - init_models: sat (11 models)
+analysis:591:DEBUG (_check) - inps: Inps({Inp(ss=('s', 'a'), vs=(271, 270)), Inp(ss=('s', 'a'), vs=(4, 3)), Inp(ss=('s', 'a'), vs=(8190, 8189))})
+analysis:542:DEBUG (_check) - rc: Not(0 >= a + s):c_1
+analysis:547:DEBUG (_check) - rc_r: Not(0 >= a1 + s1)
+analysis:548:DEBUG (_check) - f: ZConj({Not(Not(0 >= a1 + s1)), Not(0 >= a0 + s0):c_1, And(And(s0 == s,
+        a0 == a,
+        r0 == r,
+        k0 == k,
+        q0 == q,
+        d0 == d,
+        t0 == t),
+    And(s1 == s,
+        a1 == a,
+        r1 == 2 + d + -1*k + q + 2*r,
+        k1 == r,
+        q1 == 4 + q,
+        d1 == 2 + d,
+        t1 == r)), And(0 >= a0*k0 + -1*a0*t0 + -1*d0*k0 + d0*t0 + d0 + -1*s0,
+    Not(0 == r0)):c_0})
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: Not(0 >= a0 + s0)
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_1
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: And(0 >= a0*k0 + -1*a0*t0 + -1*d0*k0 + d0*t0 + d0 + -1*s0,
+    Not(0 == r0))
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_0
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_1', Not(0 >= a0 + s0))]
+analysis:556:DEBUG (_check) - rs: unsat
+analysis:557:DEBUG (_check) - unsat_core: ['c_1']
+analysis:600:INFO (verify) - dg: defaultdict(<class 'list'>, {'c_1': ['c_1']})
+analysis:601:INFO (verify) - label_d: defaultdict(<class 'str'>, {And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r)): 'c_0', Not(0 >= a + s): 'c_1'})
+analysis:602:INFO (verify) - rev_label_d: {'c_0': And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r)), 'c_1': Not(0 >= a + s)}
+analysis:605:INFO (verify) - loop_cond_label: c_0
+analysis:609:INFO (verify) - mds_labels: set()
+analysis:610:INFO (verify) - mds: ZConj()
+lib:54:DEBUG (get_traces_from_inps) - inp_decls: I s, I a
+lib:55:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_31': (Symb(name='s', typ='I'), Symb(name='a', typ='I'), Symb(name='r', typ='I'), Symb(name='k', typ='I'), Symb(name='q', typ='I'), Symb(name='d', typ='I'), Symb(name='t', typ='I')), 'vtrace2_31': (Symb(name='s', typ='I'), Symb(name='a', typ='I'), Symb(name='r', typ='I'), Symb(name='k', typ='I'), Symb(name='q', typ='I'), Symb(name='d', typ='I'), Symb(name='t', typ='I')), 'vtrace3_31': (Symb(name='s', typ='I'), Symb(name='a', typ='I'), Symb(name='r', typ='I'), Symb(name='k', typ='I'), Symb(name='q', typ='I'), Symb(name='d', typ='I'), Symb(name='t', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 0.07ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 16.32ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 16.79ms
+utils.profiling:31:DEBUG (timed) - verify: 1478.85ms
+analysis:630:DEBUG (strengthen) - base_term_inps: 0
+analysis:631:DEBUG (strengthen) - term_inps: [Inp(ss=('s', 'a'), vs=(271, 270)), Inp(ss=('s', 'a'), vs=(4, 3)), Inp(ss=('s', 'a'), vs=(8190, 8189))]
+analysis:632:DEBUG (strengthen) - mayloop_inps: 0
+analysis:633:DEBUG (strengthen) - rcs: ZConj({And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r)), Not(0 >= a + s)})
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_31]: 0
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_31]: 0
+lib:254:DEBUG (infer_from_traces) - invs: 
+analysis:637:DEBUG (strengthen) - mayloop_invs: ZConj()
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_31]: 1
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_31]: 1
+*** 'None', 0 locs, 0 invs (), 0 traces, 0 inps, time 0.01s, rand seed 1589473281.51, test 33 38:
+
+data.traces:207:WARNING (merge) - trace s=0,a=0,r=0,k=0,q=0,d=0,t=0 exist
+lib:254:DEBUG (infer_from_traces) - invs: vtrace2_31 (98 invs):
+1. t <= 0
+2. s <= 0
+3. s - t <= 0
+4. s + t <= 0
+5. r <= 0
+6. r - t <= 0
+7. r - s <= 0
+8. r + t <= 0
+9. r + s <= 0
+10. q <= 0
+11. q - t <= 0
+12. q - s <= 0
+13. q - r <= 0
+14. q + t <= 0
+15. q + s <= 0
+16. q + r <= 0
+17. k <= 0
+18. k - t <= 0
+19. k - s <= 0
+20. k - r <= 0
+21. k - q <= 0
+22. k + t <= 0
+23. k + s <= 0
+24. k + r <= 0
+25. k + q <= 0
+26. d <= 0
+27. d - t <= 0
+28. d - s <= 0
+29. d - r <= 0
+30. d - q <= 0
+31. d - k <= 0
+32. d + t <= 0
+33. d + s <= 0
+34. d + r <= 0
+35. d + q <= 0
+36. d + k <= 0
+37. a <= 0
+38. a - t <= 0
+39. a - s <= 0
+40. a - r <= 0
+41. a - q <= 0
+42. a - k <= 0
+43. a - d <= 0
+44. a + t <= 0
+45. a + s <= 0
+46. a + r <= 0
+47. a + q <= 0
+48. a + k <= 0
+49. a + d <= 0
+50. -t <= 0
+51. -s <= 0
+52. -s - t <= 0
+53. -s + t <= 0
+54. -r <= 0
+55. -r - t <= 0
+56. -r - s <= 0
+57. -r + t <= 0
+58. -r + s <= 0
+59. -q <= 0
+60. -q - t <= 0
+61. -q - s <= 0
+62. -q - r <= 0
+63. -q + t <= 0
+64. -q + s <= 0
+65. -q + r <= 0
+66. -k <= 0
+67. -k - t <= 0
+68. -k - s <= 0
+69. -k - r <= 0
+70. -k - q <= 0
+71. -k + t <= 0
+72. -k + s <= 0
+73. -k + r <= 0
+74. -k + q <= 0
+75. -d <= 0
+76. -d - t <= 0
+77. -d - s <= 0
+78. -d - r <= 0
+79. -d - q <= 0
+80. -d - k <= 0
+81. -d + t <= 0
+82. -d + s <= 0
+83. -d + r <= 0
+84. -d + q <= 0
+85. -d + k <= 0
+86. -a <= 0
+87. -a - t <= 0
+88. -a - s <= 0
+89. -a - r <= 0
+90. -a - q <= 0
+91. -a - k <= 0
+92. -a - d <= 0
+93. -a + t <= 0
+94. -a + s <= 0
+95. -a + r <= 0
+96. -a + q <= 0
+97. -a + k <= 0
+98. -a + d <= 0
+analysis:641:DEBUG (strengthen) - term_invs: ZConj({0 >= a + s, 0 >= d, 0 >= -1*q + -1*t, 0 >= -1*d + -1*k, 0 >= -1*a + -1*t, 0 >= -1*d + -1*s, 0 >= -1*d + -1*q, 0 >= -1*d + t, 0 >= k + q, 0 >= a + d, 0 >= r + -1*t, 0 >= a + -1*d, r >= 0, a >= 0, 0 >= d + -1*r, 0 >= k + -1*q, 0 >= -1*q + s, 0 >= k + -1*s, 0 >= q + -1*t, 0 >= d + r, 0 >= a + -1*r, 0 >= -1*a + s, 0 >= -1*k + q, t >= 0, 0 >= k + t, 0 >= a + r, 0 >= r + s, 0 >= -1*a + -1*d, 0 >= -1*a + d, 0 >= d + k, s >= 0, 0 >= -1*k + -1*s, 0 >= -1*s + t, 0 >= -1*d + -1*t, 0 >= -1*k + -1*q, d >= 0, 0 >= -1*k + t, 0 >= a + k, 0 >= q + s, 0 >= s, 0 >= -1*q + -1*r, 0 >= -1*r + -1*s, 0 >= -1*a + -1*r, 0 >= -1*r + t, 0 >= -1*q + r, 0 >= t, q >= 0, 0 >= -1*a + r, 0 >= k + -1*t, 0 >= -1*d + s, 0 >= d + q, 0 >= a, 0 >= a + q, 0 >= q + -1*r, 0 >= -1*a + k, 0 >= -1*s + -1*t, 0 >= d + -1*k, 0 >= d + -1*q, 0 >= d + -1*s, 0 >= -1*k + -1*t, 0 >= q + r, 0 >= d + t, 0 >= k + s, 0 >= a + -1*k, 0 >= a + -1*q, 0 >= a + -1*s, 0 >= q, 0 >= a + t, 0 >= k, 0 >= -1*r + -1*t, 0 >= -1*d + -1*r, 0 >= -1*d + r, 0 >= -1*a + q, 0 >= -1*k + s, 0 >= s + t, 0 >= k + -1*r, 0 >= -1*a + -1*k, 0 >= -1*q + -1*s, 0 >= -1*d + k, 0 >= -1*r + s, 0 >= -1*a + -1*s, 0 >= -1*a + -1*q, 0 >= d + -1*t, 0 >= -1*q + t, 0 >= k + r, 0 >= r, 0 >= -1*a + t, 0 >= r + -1*s, 0 >= a + -1*t, 0 >= r + t, k >= 0, 0 >= -1*k + -1*r, 0 >= s + -1*t, 0 >= q + -1*s, 0 >= -1*k + r, 0 >= -1*d + q, 0 >= d + s, 0 >= q + t})
+utils.profiling:31:DEBUG (timed) - strengthen: 826.94ms
+analysis:702:DEBUG (_stat_candidate_rcs) - stat (195 total): defaultdict(<class 'int'>, {1: 97, 2: 98})
+analysis:729:DEBUG (prove_nonterm_vloop) - PROVE_NT DEPTH 1: ZConj({And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r)), Not(0 >= d)})
+analysis:505:DEBUG (verify) - loop_transrel: And(And(s0 == s,
+        a0 == a,
+        r0 == r,
+        k0 == k,
+        q0 == q,
+        d0 == d,
+        t0 == t),
+    And(s1 == s,
+        a1 == a,
+        r1 == 2 + d + -1*k + q + 2*r,
+        k1 == r,
+        q1 == 4 + q,
+        d1 == 2 + d,
+        t1 == r))
+analysis:506:DEBUG (verify) - loop_cond: And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r))
+analysis:507:DEBUG (verify) - rcs: ZConj({And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r)), Not(0 >= d)})
+analysis:521:DEBUG (verify) - labeled_rcs: ZConj({And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r)):c_0, Not(0 >= d):c_1})
+analysis:528:DEBUG (verify) - transrel_rcs: ZConj({Not(0 >= d0):c_1, And(And(s0 == s,
+        a0 == a,
+        r0 == r,
+        k0 == k,
+        q0 == q,
+        d0 == d,
+        t0 == t),
+    And(s1 == s,
+        a1 == a,
+        r1 == 2 + d + -1*k + q + 2*r,
+        k1 == r,
+        q1 == 4 + q,
+        d1 == 2 + d,
+        t1 == r)), And(0 >= a0*k0 + -1*a0*t0 + -1*d0*k0 + d0*t0 + d0 + -1*s0,
+    Not(0 == r0)):c_0})
+analysis:533:DEBUG (verify) - init_transrel_rcs: ZConj({And(s == X_s,
+    a == X_a,
+    r == X_s**2%X_a,
+    k == X_s**2%(-2 + X_a),
+    q == 4*(X_s**2/(-2 + X_a)) + -4*(X_s**2/X_a),
+    d == X_a,
+    0 == t), And(0 >= a0*k0 + -1*a0*t0 + -1*d0*k0 + d0*t0 + d0 + -1*s0,
+    Not(0 == r0)):c_0, Not(0 >= d0):c_1, And(8191 >= X_s, 3 <= X_a), And(And(s0 == s,
+        a0 == a,
+        r0 == r,
+        k0 == k,
+        q0 == q,
+        d0 == d,
+        t0 == t),
+    And(s1 == s,
+        a1 == a,
+        r1 == 2 + d + -1*k + q + 2*r,
+        k1 == r,
+        q1 == 4 + q,
+        d1 == 2 + d,
+        t1 == r))})
+analysis:542:DEBUG (_check) - rc: And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r)):c_0
+analysis:547:DEBUG (_check) - rc_r: And(0 >= a1*k1 + -1*a1*t1 + -1*d1*k1 + d1*t1 + d1 + -1*s1,
+    Not(0 == r1))
+analysis:548:DEBUG (_check) - f: ZConj({Not(0 >= d0):c_1, And(0 >= a0*k0 + -1*a0*t0 + -1*d0*k0 + d0*t0 + d0 + -1*s0,
+    Not(0 == r0)):c_0, Not(And(0 >=
+        a1*k1 + -1*a1*t1 + -1*d1*k1 + d1*t1 + d1 + -1*s1,
+        Not(0 == r1))), And(And(s0 == s,
+        a0 == a,
+        r0 == r,
+        k0 == k,
+        q0 == q,
+        d0 == d,
+        t0 == t),
+    And(s1 == s,
+        a1 == a,
+        r1 == 2 + d + -1*k + q + 2*r,
+        k1 == r,
+        q1 == 4 + q,
+        d1 == 2 + d,
+        t1 == r))})
+*** 'None', 1 locs, 98 invs (98 Oct), 1 traces, 0 inps, time 0.69s, rand seed 1589473281.51, test 33 38:
+vtrace2_31 (98 invs):
+1. t <= 0
+2. s <= 0
+3. s - t <= 0
+4. s + t <= 0
+5. r <= 0
+6. r - t <= 0
+7. r - s <= 0
+8. r + t <= 0
+9. r + s <= 0
+10. q <= 0
+11. q - t <= 0
+12. q - s <= 0
+13. q - r <= 0
+14. q + t <= 0
+15. q + s <= 0
+16. q + r <= 0
+17. k <= 0
+18. k - t <= 0
+19. k - s <= 0
+20. k - r <= 0
+21. k - q <= 0
+22. k + t <= 0
+23. k + s <= 0
+24. k + r <= 0
+25. k + q <= 0
+26. d <= 0
+27. d - t <= 0
+28. d - s <= 0
+29. d - r <= 0
+30. d - q <= 0
+31. d - k <= 0
+32. d + t <= 0
+33. d + s <= 0
+34. d + r <= 0
+35. d + q <= 0
+36. d + k <= 0
+37. a <= 0
+38. a - t <= 0
+39. a - s <= 0
+40. a - r <= 0
+41. a - q <= 0
+42. a - k <= 0
+43. a - d <= 0
+44. a + t <= 0
+45. a + s <= 0
+46. a + r <= 0
+47. a + q <= 0
+48. a + k <= 0
+49. a + d <= 0
+50. -t <= 0
+51. -s <= 0
+52. -s - t <= 0
+53. -s + t <= 0
+54. -r <= 0
+55. -r - t <= 0
+56. -r - s <= 0
+57. -r + t <= 0
+58. -r + s <= 0
+59. -q <= 0
+60. -q - t <= 0
+61. -q - s <= 0
+62. -q - r <= 0
+63. -q + t <= 0
+64. -q + s <= 0
+65. -q + r <= 0
+66. -k <= 0
+67. -k - t <= 0
+68. -k - s <= 0
+69. -k - r <= 0
+70. -k - q <= 0
+71. -k + t <= 0
+72. -k + s <= 0
+73. -k + r <= 0
+74. -k + q <= 0
+75. -d <= 0
+76. -d - t <= 0
+77. -d - s <= 0
+78. -d - r <= 0
+79. -d - q <= 0
+80. -d - k <= 0
+81. -d + t <= 0
+82. -d + s <= 0
+83. -d + r <= 0
+84. -d + q <= 0
+85. -d + k <= 0
+86. -a <= 0
+87. -a - t <= 0
+88. -a - s <= 0
+89. -a - r <= 0
+90. -a - q <= 0
+91. -a - k <= 0
+92. -a - d <= 0
+93. -a + t <= 0
+94. -a + s <= 0
+95. -a + r <= 0
+96. -a + q <= 0
+97. -a + k <= 0
+98. -a + d <= 0
+analysis:563:DEBUG (_check) - rs: sat
+analysis:570:DEBUG (_check) - init_f: ZConj({Not(And(0 >=
+        a1*k1 + -1*a1*t1 + -1*d1*k1 + d1*t1 + d1 + -1*s1,
+        Not(0 == r1))), And(s == X_s,
+    a == X_a,
+    r == X_s**2%X_a,
+    k == X_s**2%(-2 + X_a),
+    q == 4*(X_s**2/(-2 + X_a)) + -4*(X_s**2/X_a),
+    d == X_a,
+    0 == t), And(8191 >= X_s, 3 <= X_a), Not(0 >= d0):c_1, And(And(s0 == s,
+        a0 == a,
+        r0 == r,
+        k0 == k,
+        q0 == q,
+        d0 == d,
+        t0 == t),
+    And(s1 == s,
+        a1 == a,
+        r1 == 2 + d + -1*k + q + 2*r,
+        k1 == r,
+        q1 == 4 + q,
+        d1 == 2 + d,
+        t1 == r)), And(0 >= a0*k0 + -1*a0*t0 + -1*d0*k0 + d0*t0 + d0 + -1*s0,
+    Not(0 == r0)):c_0})
+analysis:571:DEBUG (_check) - init_rs: [[('X_s', 4), ('k!2362', 1), ('X_a', 3), ('k!2361', 5), ('k!2364', 0), ('k!2363', 16), ('t1', 1), ('d1', 5), ('q1', 48), ('k1', 1), ('r1', 51), ('a1', 3), ('s1', 4), ('t0', 0), ('d0', 3), ('q0', 44), ('k0', 0), ('r0', 1), ('a0', 3), ('s0', 4), ('t', 0), ('d', 3), ('q', 44), ('k', 0), ('r', 1), ('a', 3), ('s', 4)], [('k!2362', 1), ('k!2361', 272), ('X_s', 271), ('X_a', 270), ('k!2364', 9), ('k!2363', 274), ('k!2363', 16), ('k!2364', 0), ('k!2361', 5), ('k!2362', 1), ('t1', 1), ('d1', 272), ('q1', 12), ('k1', 1), ('r1', 273), ('a1', 270), ('s1', 271), ('t0', 0), ('d0', 270), ('q0', 8), ('k0', 9), ('r0', 1), ('a0', 270), ('s0', 271), ('t', 0), ('d', 270), ('q', 8), ('k', 9), ('r', 1), ('a', 270), ('s', 271)], [('k!2362', 1), ('k!2364', -1), ('k!2361', 5), ('k!2363', -1), ('k!2361', 1), ('X_s', 4), ('X_a', 3), ('k!2364', 0), ('k!2363', 16), ('k!2362', 1), ('t1', 1), ('d1', 5), ('q1', 48), ('k1', 1), ('r1', 51), ('a1', 3), ('s1', 4), ('t0', 0), ('d0', 3), ('q0', 44), ('k0', 0), ('r0', 1), ('a0', 3), ('s0', 4), ('t', 0), ('d', 3), ('q', 44), ('k', 0), ('r', 1), ('a', 3), ('s', 4)], [('k!2362', 1), ('k!2364', 1), ('k!2361', 5), ('k!2363', 1), ('k!2361', -1), ('X_s', 4), ('X_a', 3), ('k!2364', 0), ('k!2363', 16), ('k!2362', 1), ('t1', 1), ('d1', 5), ('q1', 48), ('k1', 1), ('r1', 51), ('a1', 3), ('s1', 4), ('t0', 0), ('d0', 3), ('q0', 44), ('k0', 0), ('r0', 1), ('a0', 3), ('s0', 4), ('t', 0), ('d', 3), ('q', 44), ('k', 0), ('r', 1), ('a', 3), ('s', 4)], [('k!2362', 1), ('k!2364', 1), ('k!2361', 5), ('k!2363', 1), ('k!2361', -1), ('X_s', 4), ('X_a', 3), ('k!2364', 0), ('k!2363', 16), ('k!2362', 1), ('t1', 1), ('d1', 5), ('q1', 48), ('k1', 1), ('r1', 51), ('a1', 3), ('s1', 4), ('t0', 0), ('d0', 3), ('q0', 44), ('k0', 0), ('r0', 1), ('a0', 3), ('s0', 4), ('t', 0), ('d', 3), ('q', 44), ('k', 0), ('r', 1), ('a', 3), ('s', 4)], [('k!2362', 1), ('k!2364', -1), ('k!2361', 8191), ('k!2363', 1), ('k!2361', -1), ('X_s', 8190), ('X_a', 8189), ('k!2364', 9), ('k!2363', 8193), ('k!2362', 1), ('t1', 1), ('d1', 8191), ('q1', 12), ('k1', 1), ('r1', 8192), ('a1', 8189), ('s1', 8190), ('t0', 0), ('d0', 8189), ('q0', 8), ('k0', 9), ('r0', 1), ('a0', 8189), ('s0', 8190), ('t', 0), ('d', 8189), ('q', 8), ('k', 9), ('r', 1), ('a', 8189), ('s', 8190)], [('X_s', 8190), ('k!2362', 1), ('X_a', 8189), ('k!2361', 8191), ('k!2364', 9), ('k!2363', 8193), ('k!2362', 2), ('t1', 1), ('d1', 8191), ('q1', 12), ('k1', 1), ('r1', 8192), ('a1', 8189), ('s1', 8190), ('t0', 0), ('d0', 8189), ('q0', 8), ('k0', 9), ('r0', 1), ('a0', 8189), ('s0', 8190), ('t', 0), ('d', 8189), ('q', 8), ('k', 9), ('r', 1), ('a', 8189), ('s', 8190)], [('X_s', 8190), ('k!2362', 1), ('X_a', 8189), ('k!2361', 8191), ('k!2364', 9), ('k!2363', 8193), ('k!2362', 2), ('t1', 1), ('d1', 8191), ('q1', 12), ('k1', 1), ('r1', 8192), ('a1', 8189), ('s1', 8190), ('t0', 0), ('d0', 8189), ('q0', 8), ('k0', 9), ('r0', 1), ('a0', 8189), ('s0', 8190), ('t', 0), ('d', 8189), ('q', 8), ('k', 9), ('r', 1), ('a', 8189), ('s', 8190)], [('X_s', 8190), ('k!2362', 1), ('X_a', 8189), ('k!2361', 8191), ('k!2364', 9), ('k!2363', 8193), ('k!2362', 2), ('t1', 1), ('d1', 8191), ('q1', 12), ('k1', 1), ('r1', 8192), ('a1', 8189), ('s1', 8190), ('t0', 0), ('d0', 8189), ('q0', 8), ('k0', 9), ('r0', 1), ('a0', 8189), ('s0', 8190), ('t', 0), ('d', 8189), ('q', 8), ('k', 9), ('r', 1), ('a', 8189), ('s', 8190)], [('X_s', 8190), ('k!2362', 1), ('X_a', 8189), ('k!2361', 8191), ('k!2364', 9), ('k!2363', 8193), ('k!2362', 2), ('t1', 1), ('d1', 8191), ('q1', 12), ('k1', 1), ('r1', 8192), ('a1', 8189), ('s1', 8190), ('t0', 0), ('d0', 8189), ('q0', 8), ('k0', 9), ('r0', 1), ('a0', 8189), ('s0', 8190), ('t', 0), ('d', 8189), ('q', 8), ('k', 9), ('r', 1), ('a', 8189), ('s', 8190)], [('X_s', 8190), ('k!2362', 1), ('X_a', 8189), ('k!2361', 8191), ('k!2364', 9), ('k!2363', 8193), ('k!2362', 2), ('t1', 1), ('d1', 8191), ('q1', 12), ('k1', 1), ('r1', 8192), ('a1', 8189), ('s1', 8190), ('t0', 0), ('d0', 8189), ('q0', 8), ('k0', 9), ('r0', 1), ('a0', 8189), ('s0', 8190), ('t', 0), ('d', 8189), ('q', 8), ('k', 9), ('r', 1), ('a', 8189), ('s', 8190)]]
+analysis:586:DEBUG (_check) - init_models: sat (11 models)
+analysis:591:DEBUG (_check) - inps: Inps({Inp(ss=('s', 'a'), vs=(271, 270)), Inp(ss=('s', 'a'), vs=(4, 3)), Inp(ss=('s', 'a'), vs=(8190, 8189))})
+analysis:542:DEBUG (_check) - rc: Not(0 >= d):c_1
+analysis:547:DEBUG (_check) - rc_r: Not(0 >= d1)
+analysis:548:DEBUG (_check) - f: ZConj({Not(Not(0 >= d1)), Not(0 >= d0):c_1, And(And(s0 == s,
+        a0 == a,
+        r0 == r,
+        k0 == k,
+        q0 == q,
+        d0 == d,
+        t0 == t),
+    And(s1 == s,
+        a1 == a,
+        r1 == 2 + d + -1*k + q + 2*r,
+        k1 == r,
+        q1 == 4 + q,
+        d1 == 2 + d,
+        t1 == r)), And(0 >= a0*k0 + -1*a0*t0 + -1*d0*k0 + d0*t0 + d0 + -1*s0,
+    Not(0 == r0)):c_0})
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: Not(0 >= d0)
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_1
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: And(0 >= a0*k0 + -1*a0*t0 + -1*d0*k0 + d0*t0 + d0 + -1*s0,
+    Not(0 == r0))
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_0
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_1', Not(0 >= d0))]
+analysis:556:DEBUG (_check) - rs: unsat
+analysis:557:DEBUG (_check) - unsat_core: ['c_1']
+analysis:600:INFO (verify) - dg: defaultdict(<class 'list'>, {'c_1': ['c_1']})
+analysis:601:INFO (verify) - label_d: defaultdict(<class 'str'>, {And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r)): 'c_0', Not(0 >= d): 'c_1'})
+analysis:602:INFO (verify) - rev_label_d: {'c_0': And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r)), 'c_1': Not(0 >= d)}
+analysis:605:INFO (verify) - loop_cond_label: c_0
+analysis:609:INFO (verify) - mds_labels: set()
+analysis:610:INFO (verify) - mds: ZConj()
+lib:54:DEBUG (get_traces_from_inps) - inp_decls: I s, I a
+lib:55:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_31': (Symb(name='s', typ='I'), Symb(name='a', typ='I'), Symb(name='r', typ='I'), Symb(name='k', typ='I'), Symb(name='q', typ='I'), Symb(name='d', typ='I'), Symb(name='t', typ='I')), 'vtrace2_31': (Symb(name='s', typ='I'), Symb(name='a', typ='I'), Symb(name='r', typ='I'), Symb(name='k', typ='I'), Symb(name='q', typ='I'), Symb(name='d', typ='I'), Symb(name='t', typ='I')), 'vtrace3_31': (Symb(name='s', typ='I'), Symb(name='a', typ='I'), Symb(name='r', typ='I'), Symb(name='k', typ='I'), Symb(name='q', typ='I'), Symb(name='d', typ='I'), Symb(name='t', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 0.09ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 70.37ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 71.02ms
+utils.profiling:31:DEBUG (timed) - verify: 2197.22ms
+analysis:630:DEBUG (strengthen) - base_term_inps: 0
+analysis:631:DEBUG (strengthen) - term_inps: [Inp(ss=('s', 'a'), vs=(271, 270)), Inp(ss=('s', 'a'), vs=(4, 3)), Inp(ss=('s', 'a'), vs=(8190, 8189))]
+analysis:632:DEBUG (strengthen) - mayloop_inps: 0
+analysis:633:DEBUG (strengthen) - rcs: ZConj({And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r)), Not(0 >= d)})
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_31]: 0
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_31]: 0
+lib:254:DEBUG (infer_from_traces) - invs: 
+analysis:637:DEBUG (strengthen) - mayloop_invs: ZConj()
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_31]: 1
+lib:230:DEBUG (get_traces_by_id) - dtraces[vtrace2_31]: 1
+*** 'None', 0 locs, 0 invs (), 0 traces, 0 inps, time 0.06s, rand seed 1589473281.51, test 33 38:
+
+data.traces:207:WARNING (merge) - trace s=0,a=0,r=0,k=0,q=0,d=0,t=0 exist
+lib:254:DEBUG (infer_from_traces) - invs: vtrace2_31 (98 invs):
+1. t <= 0
+2. s <= 0
+3. s - t <= 0
+4. s + t <= 0
+5. r <= 0
+6. r - t <= 0
+7. r - s <= 0
+8. r + t <= 0
+9. r + s <= 0
+10. q <= 0
+11. q - t <= 0
+12. q - s <= 0
+13. q - r <= 0
+14. q + t <= 0
+15. q + s <= 0
+16. q + r <= 0
+17. k <= 0
+18. k - t <= 0
+19. k - s <= 0
+20. k - r <= 0
+21. k - q <= 0
+22. k + t <= 0
+23. k + s <= 0
+24. k + r <= 0
+25. k + q <= 0
+26. d <= 0
+27. d - t <= 0
+28. d - s <= 0
+29. d - r <= 0
+30. d - q <= 0
+31. d - k <= 0
+32. d + t <= 0
+33. d + s <= 0
+34. d + r <= 0
+35. d + q <= 0
+36. d + k <= 0
+37. a <= 0
+38. a - t <= 0
+39. a - s <= 0
+40. a - r <= 0
+41. a - q <= 0
+42. a - k <= 0
+43. a - d <= 0
+44. a + t <= 0
+45. a + s <= 0
+46. a + r <= 0
+47. a + q <= 0
+48. a + k <= 0
+49. a + d <= 0
+50. -t <= 0
+51. -s <= 0
+52. -s - t <= 0
+53. -s + t <= 0
+54. -r <= 0
+55. -r - t <= 0
+56. -r - s <= 0
+57. -r + t <= 0
+58. -r + s <= 0
+59. -q <= 0
+60. -q - t <= 0
+61. -q - s <= 0
+62. -q - r <= 0
+63. -q + t <= 0
+64. -q + s <= 0
+65. -q + r <= 0
+66. -k <= 0
+67. -k - t <= 0
+68. -k - s <= 0
+69. -k - r <= 0
+70. -k - q <= 0
+71. -k + t <= 0
+72. -k + s <= 0
+73. -k + r <= 0
+74. -k + q <= 0
+75. -d <= 0
+76. -d - t <= 0
+77. -d - s <= 0
+78. -d - r <= 0
+79. -d - q <= 0
+80. -d - k <= 0
+81. -d + t <= 0
+82. -d + s <= 0
+83. -d + r <= 0
+84. -d + q <= 0
+85. -d + k <= 0
+86. -a <= 0
+87. -a - t <= 0
+88. -a - s <= 0
+89. -a - r <= 0
+90. -a - q <= 0
+91. -a - k <= 0
+92. -a - d <= 0
+93. -a + t <= 0
+94. -a + s <= 0
+95. -a + r <= 0
+96. -a + q <= 0
+97. -a + k <= 0
+98. -a + d <= 0
+analysis:641:DEBUG (strengthen) - term_invs: ZConj({0 >= a + s, 0 >= d, 0 >= -1*q + -1*t, 0 >= -1*d + -1*k, 0 >= -1*a + -1*t, 0 >= -1*d + -1*s, 0 >= -1*d + -1*q, 0 >= -1*d + t, 0 >= k + q, 0 >= a + d, 0 >= r + -1*t, 0 >= a + -1*d, r >= 0, a >= 0, 0 >= d + -1*r, 0 >= k + -1*q, 0 >= -1*q + s, 0 >= k + -1*s, 0 >= q + -1*t, 0 >= d + r, 0 >= a + -1*r, 0 >= -1*a + s, 0 >= -1*k + q, t >= 0, 0 >= k + t, 0 >= a + r, 0 >= r + s, 0 >= -1*a + -1*d, 0 >= -1*a + d, 0 >= d + k, s >= 0, 0 >= -1*k + -1*s, 0 >= -1*s + t, 0 >= -1*d + -1*t, 0 >= -1*k + -1*q, d >= 0, 0 >= -1*k + t, 0 >= a + k, 0 >= q + s, 0 >= s, 0 >= -1*q + -1*r, 0 >= -1*r + -1*s, 0 >= -1*a + -1*r, 0 >= -1*r + t, 0 >= -1*q + r, 0 >= t, q >= 0, 0 >= -1*a + r, 0 >= k + -1*t, 0 >= -1*d + s, 0 >= d + q, 0 >= a, 0 >= a + q, 0 >= q + -1*r, 0 >= -1*a + k, 0 >= -1*s + -1*t, 0 >= d + -1*k, 0 >= d + -1*q, 0 >= d + -1*s, 0 >= -1*k + -1*t, 0 >= q + r, 0 >= d + t, 0 >= k + s, 0 >= a + -1*k, 0 >= a + -1*q, 0 >= a + -1*s, 0 >= q, 0 >= a + t, 0 >= k, 0 >= -1*r + -1*t, 0 >= -1*d + -1*r, 0 >= -1*d + r, 0 >= -1*a + q, 0 >= -1*k + s, 0 >= s + t, 0 >= k + -1*r, 0 >= -1*a + -1*k, 0 >= -1*q + -1*s, 0 >= -1*d + k, 0 >= -1*r + s, 0 >= -1*a + -1*s, 0 >= -1*a + -1*q, 0 >= d + -1*t, 0 >= -1*q + t, 0 >= k + r, 0 >= r, 0 >= -1*a + t, 0 >= r + -1*s, 0 >= a + -1*t, 0 >= r + t, k >= 0, 0 >= -1*k + -1*r, 0 >= s + -1*t, 0 >= q + -1*s, 0 >= -1*k + r, 0 >= -1*d + q, 0 >= d + s, 0 >= q + t})
+utils.profiling:31:DEBUG (timed) - strengthen: 1904.45ms
+analysis:702:DEBUG (_stat_candidate_rcs) - stat (292 total): defaultdict(<class 'int'>, {1: 96, 2: 196})
+analysis:729:DEBUG (prove_nonterm_vloop) - PROVE_NT DEPTH 1: ZConj({And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r)), Not(0 >= -1*q + -1*t)})
+analysis:505:DEBUG (verify) - loop_transrel: And(And(s0 == s,
+        a0 == a,
+        r0 == r,
+        k0 == k,
+        q0 == q,
+        d0 == d,
+        t0 == t),
+    And(s1 == s,
+        a1 == a,
+        r1 == 2 + d + -1*k + q + 2*r,
+        k1 == r,
+        q1 == 4 + q,
+        d1 == 2 + d,
+        t1 == r))
+analysis:506:DEBUG (verify) - loop_cond: And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r))
+analysis:507:DEBUG (verify) - rcs: ZConj({And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r)), Not(0 >= -1*q + -1*t)})
+analysis:521:DEBUG (verify) - labeled_rcs: ZConj({And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r)):c_0, Not(0 >= -1*q + -1*t):c_1})
+analysis:528:DEBUG (verify) - transrel_rcs: ZConj({And(And(s0 == s,
+        a0 == a,
+        r0 == r,
+        k0 == k,
+        q0 == q,
+        d0 == d,
+        t0 == t),
+    And(s1 == s,
+        a1 == a,
+        r1 == 2 + d + -1*k + q + 2*r,
+        k1 == r,
+        q1 == 4 + q,
+        d1 == 2 + d,
+        t1 == r)), And(0 >= a0*k0 + -1*a0*t0 + -1*d0*k0 + d0*t0 + d0 + -1*s0,
+    Not(0 == r0)):c_0, Not(0 >= -1*q0 + -1*t0):c_1})
+analysis:533:DEBUG (verify) - init_transrel_rcs: ZConj({And(0 >= a0*k0 + -1*a0*t0 + -1*d0*k0 + d0*t0 + d0 + -1*s0,
+    Not(0 == r0)):c_0, And(s == X_s,
+    a == X_a,
+    r == X_s**2%X_a,
+    k == X_s**2%(-2 + X_a),
+    q == 4*(X_s**2/(-2 + X_a)) + -4*(X_s**2/X_a),
+    d == X_a,
+    0 == t), And(8191 >= X_s, 3 <= X_a), Not(0 >= -1*q0 + -1*t0):c_1, And(And(s0 == s,
+        a0 == a,
+        r0 == r,
+        k0 == k,
+        q0 == q,
+        d0 == d,
+        t0 == t),
+    And(s1 == s,
+        a1 == a,
+        r1 == 2 + d + -1*k + q + 2*r,
+        k1 == r,
+        q1 == 4 + q,
+        d1 == 2 + d,
+        t1 == r))})
+analysis:542:DEBUG (_check) - rc: And(0 >= a*k + -1*a*t + -1*d*k + d*t + d + -1*s,
+    Not(0 == r)):c_0
+analysis:547:DEBUG (_check) - rc_r: And(0 >= a1*k1 + -1*a1*t1 + -1*d1*k1 + d1*t1 + d1 + -1*s1,
+    Not(0 == r1))
+analysis:548:DEBUG (_check) - f: ZConj({And(0 >= a0*k0 + -1*a0*t0 + -1*d0*k0 + d0*t0 + d0 + -1*s0,
+    Not(0 == r0)):c_0, Not(And(0 >=
+        a1*k1 + -1*a1*t1 + -1*d1*k1 + d1*t1 + d1 + -1*s1,
+        Not(0 == r1))), And(And(s0 == s,
+        a0 == a,
+        r0 == r,
+        k0 == k,
+        q0 == q,
+        d0 == d,
+        t0 == t),
+    And(s1 == s,
+        a1 == a,
+        r1 == 2 + d + -1*k + q + 2*r,
+        k1 == r,
+        q1 == 4 + q,
+        d1 == 2 + d,
+        t1 == r)), Not(0 >= -1*q0 + -1*t0):c_1})
+*** 'None', 1 locs, 98 invs (98 Oct), 1 traces, 0 inps, time 1.60s, rand seed 1589473281.51, test 33 38:
+vtrace2_31 (98 invs):
+1. t <= 0
+2. s <= 0
+3. s - t <= 0
+4. s + t <= 0
+5. r <= 0
+6. r - t <= 0
+7. r - s <= 0
+8. r + t <= 0
+9. r + s <= 0
+10. q <= 0
+11. q - t <= 0
+12. q - s <= 0
+13. q - r <= 0
+14. q + t <= 0
+15. q + s <= 0
+16. q + r <= 0
+17. k <= 0
+18. k - t <= 0
+19. k - s <= 0
+20. k - r <= 0
+21. k - q <= 0
+22. k + t <= 0
+23. k + s <= 0
+24. k + r <= 0
+25. k + q <= 0
+26. d <= 0
+27. d - t <= 0
+28. d - s <= 0
+29. d - r <= 0
+30. d - q <= 0
+31. d - k <= 0
+32. d + t <= 0
+33. d + s <= 0
+34. d + r <= 0
+35. d + q <= 0
+36. d + k <= 0
+37. a <= 0
+38. a - t <= 0
+39. a - s <= 0
+40. a - r <= 0
+41. a - q <= 0
+42. a - k <= 0
+43. a - d <= 0
+44. a + t <= 0
+45. a + s <= 0
+46. a + r <= 0
+47. a + q <= 0
+48. a + k <= 0
+49. a + d <= 0
+50. -t <= 0
+51. -s <= 0
+52. -s - t <= 0
+53. -s + t <= 0
+54. -r <= 0
+55. -r - t <= 0
+56. -r - s <= 0
+57. -r + t <= 0
+58. -r + s <= 0
+59. -q <= 0
+60. -q - t <= 0
+61. -q - s <= 0
+62. -q - r <= 0
+63. -q + t <= 0
+64. -q + s <= 0
+65. -q + r <= 0
+66. -k <= 0
+67. -k - t <= 0
+68. -k - s <= 0
+69. -k - r <= 0
+70. -k - q <= 0
+71. -k + t <= 0
+72. -k + s <= 0
+73. -k + r <= 0
+74. -k + q <= 0
+75. -d <= 0
+76. -d - t <= 0
+77. -d - s <= 0
+78. -d - r <= 0
+79. -d - q <= 0
+80. -d - k <= 0
+81. -d + t <= 0
+82. -d + s <= 0
+83. -d + r <= 0
+84. -d + q <= 0
+85. -d + k <= 0
+86. -a <= 0
+87. -a - t <= 0
+88. -a - s <= 0
+89. -a - r <= 0
+90. -a - q <= 0
+91. -a - k <= 0
+92. -a - d <= 0
+93. -a + t <= 0
+94. -a + s <= 0
+95. -a + r <= 0
+96. -a + q <= 0
+97. -a + k <= 0
+98. -a + d <= 0
+analysis:563:DEBUG (_check) - rs: sat
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: And(0 >= a0*k0 + -1*a0*t0 + -1*d0*k0 + d0*t0 + d0 + -1*s0,
+    Not(0 == r0))
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_0
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: Not(0 >= -1*q0 + -1*t0)
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_1
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_1', Not(0 >= -1*q0 + -1*t0))]
+analysis:570:DEBUG (_check) - init_f: ZConj({Not(And(0 >=
+        a1*k1 + -1*a1*t1 + -1*d1*k1 + d1*t1 + d1 + -1*s1,
+        Not(0 == r1))), And(s == X_s,
+    a == X_a,
+    r == X_s**2%X_a,
+    k == X_s**2%(-2 + X_a),
+    q == 4*(X_s**2/(-2 + X_a)) + -4*(X_s**2/X_a),
+    d == X_a,
+    0 == t), And(0 >= a0*k0 + -1*a0*t0 + -1*d0*k0 + d0*t0 + d0 + -1*s0,
+    Not(0 == r0)):c_0, And(8191 >= X_s, 3 <= X_a), Not(0 >= -1*q0 + -1*t0):c_1, And(And(s0 == s,
+        a0 == a,
+        r0 == r,
+        k0 == k,
+        q0 == q,
+        d0 == d,
+        t0 == t),
+    And(s1 == s,
+        a1 == a,
+        r1 == 2 + d + -1*k + q + 2*r,
+        k1 == r,
+        q1 == 4 + q,
+        d1 == 2 + d,
+        t1 == r))})
+analysis:571:DEBUG (_check) - init_rs: False
+analysis:586:DEBUG (_check) - init_models: sat (0 models)
+lib:38:DEBUG (gen_rand_inps) - inps (0): Inps()
+lib:43:DEBUG (gen_rand_inps) - gen 102/100 random inps
+analysis:591:DEBUG (_check) - inps: Inps({Inp(ss=('s', 'a'), vs=(278, 293)), Inp(ss=('s', 'a'), vs=(12, -15)), Inp(ss=('s', 'a'), vs=(26, 11)), Inp(ss=('s', 'a'), vs=(10, 1)), Inp(ss=('s', 'a'), vs=(299, 290)), Inp(ss=('s', 'a'), vs=(12, 5)), Inp(ss=('s', 'a'), vs=(2, -13)), Inp(ss=('s', 'a'), vs=(1, 296)), Inp(ss=('s', 'a'), vs=(6, -284)), Inp(ss=('s', 'a'), vs=(5, 294)), Inp(ss=('s', 'a'), vs=(2, -5)), Inp(ss=('s', 'a'), vs=(271, -279)), Inp(ss=('s', 'a'), vs=(1, -283)), Inp(ss=('s', 'a'), vs=(278, -9)), Inp(ss=('s', 'a'), vs=(292, 6)), Inp(ss=('s', 'a'), vs=(0, 16)), Inp(ss=('s', 'a'), vs=(14, 14)), Inp(ss=('s', 'a'), vs=(10, -284)), Inp(ss=('s', 'a'), vs=(286, 4)), Inp(ss=('s', 'a'), vs=(2, 14)), Inp(ss=('s', 'a'), vs=(12, -8)), Inp(ss=('s', 'a'), vs=(5, 4)), Inp(ss=('s', 'a'), vs=(296, -8)), Inp(ss=('s', 'a'), vs=(3, 23)), Inp(ss=('s', 'a'), vs=(1, 295)), Inp(ss=('s', 'a'), vs=(283, -25)), Inp(ss=('s', 'a'), vs=(3, -25)), Inp(ss=('s', 'a'), vs=(10, 0)), Inp(ss=('s', 'a'), vs=(3, -286)), Inp(ss=('s', 'a'), vs=(2, -15)), Inp(ss=('s', 'a'), vs=(21, 282)), Inp(ss=('s', 'a'), vs=(270, 272)), Inp(ss=('s', 'a'), vs=(7, -10)), Inp(ss=('s', 'a'), vs=(13, 16)), Inp(ss=('s', 'a'), vs=(14, 283)), Inp(ss=('s', 'a'), vs=(2, -1)), Inp(ss=('s', 'a'), vs=(286, 15)), Inp(ss=('s', 'a'), vs=(16, 283)), Inp(ss=('s', 'a'), vs=(3, 18)), Inp(ss=('s', 'a'), vs=(279, 8)), Inp(ss=('s', 'a'), vs=(10, -7)), Inp(ss=('s', 'a'), vs=(6, -19)), Inp(ss=('s', 'a'), vs=(291, -297)), Inp(ss=('s', 'a'), vs=(29, 3)), Inp(ss=('s', 'a'), vs=(13, 21)), Inp(ss=('s', 'a'), vs=(26, 274)), Inp(ss=('s', 'a'), vs=(8, -28)), Inp(ss=('s', 'a'), vs=(287, -4)), Inp(ss=('s', 'a'), vs=(296, -4)), Inp(ss=('s', 'a'), vs=(275, -6)), Inp(ss=('s', 'a'), vs=(11, -6)), Inp(ss=('s', 'a'), vs=(298, 10)), Inp(ss=('s', 'a'), vs=(9, -297)), Inp(ss=('s', 'a'), vs=(16, 276)), Inp(ss=('s', 'a'), vs=(293, -19)), Inp(ss=('s', 'a'), vs=(11, -300)), Inp(ss=('s', 'a'), vs=(10, 283)), Inp(ss=('s', 'a'), vs=(19, -14)), Inp(ss=('s', 'a'), vs=(289, -294)), Inp(ss=('s', 'a'), vs=(23, -6)), Inp(ss=('s', 'a'), vs=(15, -279)), Inp(ss=('s', 'a'), vs=(12, -281)), Inp(ss=('s', 'a'), vs=(7, 2)), Inp(ss=('s', 'a'), vs=(14, 291)), Inp(ss=('s', 'a'), vs=(278, 272)), Inp(ss=('s', 'a'), vs=(3, -13)), Inp(ss=('s', 'a'), vs=(2, -293)), Inp(ss=('s', 'a'), vs=(283, -16)), Inp(ss=('s', 'a'), vs=(11, -8)), Inp(ss=('s', 'a'), vs=(285, -9)), Inp(ss=('s', 'a'), vs=(17, -29)), Inp(ss=('s', 'a'), vs=(5, -282)), Inp(ss=('s', 'a'), vs=(14, -22)), Inp(ss=('s', 'a'), vs=(23, -14)), Inp(ss=('s', 'a'), vs=(12, -11)), Inp(ss=('s', 'a'), vs=(289, 292)), Inp(ss=('s', 'a'), vs=(288, 19)), Inp(ss=('s', 'a'), vs=(272, -14)), Inp(ss=('s', 'a'), vs=(10, 28)), Inp(ss=('s', 'a'), vs=(283, -10)), Inp(ss=('s', 'a'), vs=(292, 23)), Inp(ss=('s', 'a'), vs=(296, 2)), Inp(ss=('s', 'a'), vs=(280, -281)), Inp(ss=('s', 'a'), vs=(2, -14)), Inp(ss=('s', 'a'), vs=(283, 290)), Inp(ss=('s', 'a'), vs=(15, 7)), Inp(ss=('s', 'a'), vs=(0, 287)), Inp(ss=('s', 'a'), vs=(278, -294)), Inp(ss=('s', 'a'), vs=(282, 25)), Inp(ss=('s', 'a'), vs=(292, 17)), Inp(ss=('s', 'a'), vs=(3, 15)), Inp(ss=('s', 'a'), vs=(12, -19)), Inp(ss=('s', 'a'), vs=(9, -5)), Inp(ss=('s', 'a'), vs=(285, 3)), Inp(ss=('s', 'a'), vs=(285, -283)), Inp(ss=('s', 'a'), vs=(8, -284)), Inp(ss=('s', 'a'), vs=(13, -1)), Inp(ss=('s', 'a'), vs=(296, 10)), Inp(ss=('s', 'a'), vs=(276, -30)), Inp(ss=('s', 'a'), vs=(1, 274)), Inp(ss=('s', 'a'), vs=(0, -282)), Inp(ss=('s', 'a'), vs=(4, 9))})
+analysis:542:DEBUG (_check) - rc: Not(0 >= -1*q + -1*t):c_1
+analysis:547:DEBUG (_check) - rc_r: Not(0 >= -1*q1 + -1*t1)
+analysis:548:DEBUG (_check) - f: ZConj({And(0 >= a0*k0 + -1*a0*t0 + -1*d0*k0 + d0*t0 + d0 + -1*s0,
+    Not(0 == r0)):c_0, Not(0 >= -1*q0 + -1*t0):c_1, Not(Not(0 >= -1*q1 + -1*t1)), And(And(s0 == s,
+        a0 == a,
+        r0 == r,
+        k0 == k,
+        q0 == q,
+        d0 == d,
+        t0 == t),
+    And(s1 == s,
+        a1 == a,
+        r1 == 2 + d + -1*k + q + 2*r,
+        k1 == r,
+        q1 == 4 + q,
+        d1 == 2 + d,
+        t1 == r))})
+analysis:563:DEBUG (_check) - rs: sat
+rand_trans: 473
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 472
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 471
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 470
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 469
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 468
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 467
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 466
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 465
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 464
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 463
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 462
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 461
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 460
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 459
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 458
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 457
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 456
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 455
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 454
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 453
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 452
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 451
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 450
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 449
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 448
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 447
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 446
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 445
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 444
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 443
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 442
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 441
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 440
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 439
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 438
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 437
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 436
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 435
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 434
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 433
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 432
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 431
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 430
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 429
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 428
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 427
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 426
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 425
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 424
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 423
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 422
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 421
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 420
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 419
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 418
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 417
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 416
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 415
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 414
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 413
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 412
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 411
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 410
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 409
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 408
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 407
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 406
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 405
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 404
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 403
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 402
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 401
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 400
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 399
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 398
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 397
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 396
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 395
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 394
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 393
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 392
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 391
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 390
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 389
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 388
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 387
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 386
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 385
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 384
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 383
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 382
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 381
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 380
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 379
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 378
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 377
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 376
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 375
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 374
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 373
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 372
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 371
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 370
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 369
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 368
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 367
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 366
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 365
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 364
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 363
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 362
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 361
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 360
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 359
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 358
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 357
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 356
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 355
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 354
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 353
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 352
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 351
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 350
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 349
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 348
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 347
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 346
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 345
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 344
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 343
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 342
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 341
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 340
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 339
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 338
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 337
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 336
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 335
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 334
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 333
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 332
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 331
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 330
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 329
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 328
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 327
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 326
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 325
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 324
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 323
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 322
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 321
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 320
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 319
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 318
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 317
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 316
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 315
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 314
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 313
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 312
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 311
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 310
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 309
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 308
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 307
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 306
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 305
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 304
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 303
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 302
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 301
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 300
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 299
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 298
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 297
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 296
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 295
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 294
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 293
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 292
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 291
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 290
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 289
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 288
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 287
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 286
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 285
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 284
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 283
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 282
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 281
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 280
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 279
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 278
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 277
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 276
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 275
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 274
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 273
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 272
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 271
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 270
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 269
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 268
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 267
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 266
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 265
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 264
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 263
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 262
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 261
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 260
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 259
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 258
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 257
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 256
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 255
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 254
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 253
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 252
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 251
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 250
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 249
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 248
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 247
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 246
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 245
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 244
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 243
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 242
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 241
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 240
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 239
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 238
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 237
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 236
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 235
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 234
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 233
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 232
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 231
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 230
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 229
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 228
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 227
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 226
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 225
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 224
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 223
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 222
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 221
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 220
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 219
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 218
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 217
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 216
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 215
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 214
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 213
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 212
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 211
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 210
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 209
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 208
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 207
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 206
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 205
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 204
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 203
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 202
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 201
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 200
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 199
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 198
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 197
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 196
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 195
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 194
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 193
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 192
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 191
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 190
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 189
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 188
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 187
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 186
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 185
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 184
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 183
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 182
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 181
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 180
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 179
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 178
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 177
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 176
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 175
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 174
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 173
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 172
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 171
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 170
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 169
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 168
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 167
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 166
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 165
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 164
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 163
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 162
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 161
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 160
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 159
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 158
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 157
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 156
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 155
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 154
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 153
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 152
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 151
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 150
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 149
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 148
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 147
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 146
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 145
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 144
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 143
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 142
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 141
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 140
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 139
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 138
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 137
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 136
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 135
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 134
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 133
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 132
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 131
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 130
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 129
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 128
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 127
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 126
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 125
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 124
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 123
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 122
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 121
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 120
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 119
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 118
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 117
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 116
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 115
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 114
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 113
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 112
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 111
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 110
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 109
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 108
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 107
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 106
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 105
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 104
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 103
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 102
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 101
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 100
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 99
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 98
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 97
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 96
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 95
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 94
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 93
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 92
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 91
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 90
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 89
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 88
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 87
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 86
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 85
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 84
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 83
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 82
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 81
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 80
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 79
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 78
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 77
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 76
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 75
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 74
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 73
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 72
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 71
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 70
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 69
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 68
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 67
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 66
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 65
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 64
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 63
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 62
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 61
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 60
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 59
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 58
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 57
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 56
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 55
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 54
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 53
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 52
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 51
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 50
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 49
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 48
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 47
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 46
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 45
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 44
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 43
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 42
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 41
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 40
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 39
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 38
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 37
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 36
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 35
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 34
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 33
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 32
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 31
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 30
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 29
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 28
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 27
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 26
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 25
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 24
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 23
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 22
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 21
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 20
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 19
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 18
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 17
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 16
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 15
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 14
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 13
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 12
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 11
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 10
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 9
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 8
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 7
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 6
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 5
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 4
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 3
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 2
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:980:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: []
+utils.profiling:31:DEBUG (timed) - infer_ranking_functions: 13124.94ms
+analysis:1061:DEBUG (prove_term_vloop) - validate_ranking_functions: vloop_33
+analysis:988:DEBUG (validate_ranking_functions) - ranks_str: 
+validate:120:DEBUG (gen_validate_file) - validate_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/eric/dynamo/benchmarks/nla-term/lcm1-both-t.c --out=/var/tmp/Dig_m_bl_s23/vloop_33/par/validate/lcm1-both-t.c --pos=33 --ranks=""
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/CPAchecker-1.9-unix/scripts/cpa.sh -spec /home/exp/tools/reachability.prp -predicateAnalysis -setprop counterexample.export.compressWitness=false /var/tmp/Dig_m_bl_s23/vloop_33/par/validate/lcm1-both-t.c
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_m_bl_s23/vloop_33/par/uatm --witness-name witness.graphml --file /var/tmp/Dig_m_bl_s23/vloop_33/par/validate/lcm1-both-t.c
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UTaipan-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_m_bl_s23/vloop_33/par/utp --witness-name witness.graphml --file /var/tmp/Dig_m_bl_s23/vloop_33/par/validate/lcm1-both-t.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /home/exp/tools/CPAchecker-1.9-unix/scripts/cpa.sh -spec /home/exp/tools/reachability.prp -witnessValidation -witness /var/tmp/Dig_m_bl_s23/vloop_33/par/cpa/output/Counterexample.1.graphml /var/tmp/Dig_m_bl_s23/vloop_33/par/validate/lcm1-both-t.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /home/exp/tools/ultimate/releaseScripts/default/UTaipan-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --validate /var/tmp/Dig_m_bl_s23/vloop_33/par/utp/witness.graphml --file /var/tmp/Dig_m_bl_s23/vloop_33/par/validate/lcm1-both-t.c
+validate:283:DEBUG (mk_trans_cex) - dcex: defaultdict(<class 'dict'>, {3: {'a': 7, 'b': 2, 'u': 2, 'v': 0, 'x': 7, 'y': 2}, 4: {'v': 2, 'x': 5}})
+validate:296:DEBUG (mk_trans_cex) - trans_cex: None
+validate:318:DEBUG (mk_var_map_from_smtlib) - vmap: defaultdict(<class 'dict'>, {'a': {3: 'main::a@3'}, 'b': {3: 'main::b@3'}, 'x': {3: 'main::x@3', 4: 'main::x@4'}, 'y': {3: 'main::y@3'}, 'u': {3: 'main::u@3'}, 'v': {3: 'main::v@3', 4: 'main::v@4'}})
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex.trans_cex: None
+validate:358:DEBUG (mk_trans_cex) - trans_cex: None
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex.trans_cex: None
+
+EJK TIMER: 400.000336
+

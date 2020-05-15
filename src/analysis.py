@@ -627,8 +627,9 @@ class NonTerm(object):
     def strengthen(self, rcs, invalid_rc, itraces, vloop):
         _config = self._config
         base_term_inps, term_inps, mayloop_inps = vloop.cl.classify_inps(itraces)
+        Classification.print_inps(itraces)
         mlog.debug("base_term_inps: {}".format(len(base_term_inps)))
-        mlog.debug("term_inps: {}".format(term_inps))
+        mlog.debug("term_inps: {}".format(len(term_inps)))
         mlog.debug("mayloop_inps: {}".format(len(mayloop_inps)))
         mlog.debug("rcs: {}".format(rcs))
 
@@ -640,10 +641,11 @@ class NonTerm(object):
                             itraces, vloop.inloop_loc, term_inps, maxdeg=1))
         mlog.debug("term_invs: {}".format(term_invs))
 
-        term_traces = []
-        for term_inp in term_inps:
-            term_traces.append(itraces[term_inp])
-        self.tCexs.append((term_invs, term_traces))
+        # term_traces = []
+        # for term_inp in term_inps:
+        #     term_traces.append(itraces[term_inp])
+        term_itraces = {term_inp: itraces[term_inp] for term_inp in term_inps}
+        self.tCexs.append((term_invs, term_itraces))
         
         # term_cond = z3.Or(base_term_pre.expr(), term_invs.expr())
         # term_cond = term_invs.expr()
@@ -714,6 +716,7 @@ class NonTerm(object):
         vloop.stem = stem
         vloop.loop = loop
         valid_rcs = []
+        self.tCexs = []
 
         if vloop.stem is None or vloop.loop is None:
             mlog.debug("No loop information: stem={}, loop={}".format(self.stem, self.loop))
@@ -744,8 +747,9 @@ class NonTerm(object):
                         mlog.debug('new valid rcs: {}'.format(rcs))
                         if self.check_reachable_rcs(vloop, rcs):
                             valid_rcs.append((rcs, ancestors))
-                        # return the first valid rcs
-                        # return valid_rcs
+                            break
+                            # return the first valid rcs
+                            # return valid_rcs
                     elif sCexs is not None:
                         for invalid_rc, cexs in sCexs:
                             nrcs = self.strengthen(rcs, invalid_rc, cexs, vloop)
@@ -754,9 +758,11 @@ class NonTerm(object):
                                 nancestors = copy.deepcopy(ancestors)
                                 nancestors.append((depth, rcs))
                                 candidateRCS.append((nrc, depth+1, nancestors))
+            term_itraces_cex = {}
             for (tInvs, tTraces) in self.tCexs:
                 mlog.debug("tCex: {}".format(tInvs))
-            return valid_rcs
+                term_itraces_cex.update(tTraces)
+            return valid_rcs, term_itraces_cex
 
     def print_valid_rcs(self, valid_rcs):
         for rcs, ancestors in valid_rcs:
@@ -775,7 +781,7 @@ class NonTerm(object):
         _config = self._config
         res = None
         for vloop in _config.vloop_info:
-            valid_rcs = self.prove_nonterm_vloop(vloop)
+            valid_rcs, _ = self.prove_nonterm_vloop(vloop)
             if valid_rcs:
                 res = (False, vloop.vloop_id, valid_rcs)
                 break 
@@ -999,7 +1005,7 @@ class Term(object):
         validator.clean()
 
         mlog.debug('r: {}'.format(r))
-        if r is False:
+        if r is False and cex:
             mlog.debug('cex.trans_cex: {}'.format(cex.trans_cex))
 
         # if r is False and cex.trans_cex:
@@ -1024,7 +1030,7 @@ class Term(object):
         # else:
         #     return r, None
 
-        if r is False and cex.trans_cex:
+        if r is False and cex and cex.trans_cex:
             n_rfs = self._infer_ranking_functions_from_trans(vs, cex.trans_cex)
             mlog.debug("n_rfs: {}".format(n_rfs))
             # n_rfs \intersect rfs = \emptyset
@@ -1152,15 +1158,17 @@ class TNT(object):
 
             if len(mayloop_inps) > 4 * (len(base_term_inps) + len(term_inps)):
                 mlog.debug('Proving Non-Termination: {}'.format(vloop.vloop_id))
-                valid_rcs = self.nt_prover.prove_nonterm_vloop(vloop)
+                valid_rcs, term_itraces_cex = self.nt_prover.prove_nonterm_vloop(vloop)
                 if valid_rcs:
                     self.nt_prover.print_valid_rcs(valid_rcs)
                     res = (False, (vloop.vloop_id, valid_rcs))
                     break
                 else:
                     mlog.debug('Proving Termination: {}'.format(vloop.vloop_id))
+                    mlog.debug('term_itraces_cex: {}'.format(term_itraces_cex))
                     # term_traces = _config.get_traces_from_inps(Inps(set(term_inps)))
                     term_traces = {inp: itraces[inp] for inp in term_inps}
+                    term_traces.update(term_itraces_cex)
                     t_res, t_rfs = self.t_prover.prove_term_vloop(term_traces, vloop)
                     if not t_res:
                         res = None
@@ -1177,8 +1185,9 @@ class TNT(object):
                     res = t_res
                 else:
                     mlog.debug('Proving Non-Termination: {}'.format(vloop.vloop_id))
-                    valid_rcs = self.nt_prover.prove_nonterm_vloop(vloop)
+                    valid_rcs, _ = self.nt_prover.prove_nonterm_vloop(vloop)
                     if valid_rcs:
+                        # mlog.debug('valid_rcs: {}'.format(valid_rcs))
                         self.nt_prover.print_valid_rcs(valid_rcs)
                         res = (False, (vloop.vloop_id, valid_rcs))
                     else:

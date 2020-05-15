@@ -1,0 +1,143 @@
+__main__:102:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:103:INFO (<module>) - Dig's logger_level: WARNING
+__main__:104:INFO (<module>) - Timeout: 400s
+__main__:106:INFO (<module>) - 2020-05-14 11:57:15.041327: dynamo.py --timeout=400 /home/exp/eric/dynamo/benchmarks/nla-term/sqrt1-both-t.c
+/home/exp/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:72:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_adebkxrj
+analysis:80:DEBUG (__init__) - trans_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /home/exp/eric/dynamo/benchmarks/nla-term/sqrt1-both-t.c --out=/var/tmp/Dig_adebkxrj/sqrt1-both-t.c --bnd=500
+analysis:87:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_15': ['exit'], 'mainQ': ['vloop_15'], 'main': ['mainQ']})
+analysis:98:DEBUG (__init__) - postorder_vloop_ids: ['vloop_15']
+analysis:107:DEBUG (__init__) - inp_decls (<class 'data.prog.Symbs'>): I n, I k
+analysis:108:DEBUG (__init__) - inv_decls (<class 'data.prog.DSymbs'>): {'vtrace1_15': (Symb(name='a', typ='I'), Symb(name='s', typ='I'), Symb(name='t', typ='I'), Symb(name='k', typ='I'), Symb(name='c', typ='I')), 'vtrace2_15': (Symb(name='a', typ='I'), Symb(name='s', typ='I'), Symb(name='t', typ='I'), Symb(name='k', typ='I'), Symb(name='c', typ='I')), 'vtrace3_15': (Symb(name='a', typ='I'), Symb(name='s', typ='I'), Symb(name='t', typ='I'), Symb(name='k', typ='I'), Symb(name='c', typ='I'))}
+__main__:152:DEBUG (<module>) - prove_process: 21365
+lib:38:DEBUG (gen_rand_inps) - inps (0): Inps()
+lib:38:DEBUG (gen_rand_inps) - inps (36): Inps({Inp(ss=('n', 'k'), vs=(276, -271)), Inp(ss=('n', 'k'), vs=(10, -285)), Inp(ss=('n', 'k'), vs=(11, -15)), Inp(ss=('n', 'k'), vs=(291, 27)), Inp(ss=('n', 'k'), vs=(1, -287)), Inp(ss=('n', 'k'), vs=(7, 285)), Inp(ss=('n', 'k'), vs=(-276, -296)), Inp(ss=('n', 'k'), vs=(-2, -10)), Inp(ss=('n', 'k'), vs=(0, -12)), Inp(ss=('n', 'k'), vs=(-9, 278)), Inp(ss=('n', 'k'), vs=(6, -22)), Inp(ss=('n', 'k'), vs=(-27, -27)), Inp(ss=('n', 'k'), vs=(-6, 19)), Inp(ss=('n', 'k'), vs=(-9, 293)), Inp(ss=('n', 'k'), vs=(-10, -30)), Inp(ss=('n', 'k'), vs=(19, 13)), Inp(ss=('n', 'k'), vs=(-11, 12)), Inp(ss=('n', 'k'), vs=(26, -16)), Inp(ss=('n', 'k'), vs=(-14, 4)), Inp(ss=('n', 'k'), vs=(-2, -274)), Inp(ss=('n', 'k'), vs=(271, 280)), Inp(ss=('n', 'k'), vs=(276, -7)), Inp(ss=('n', 'k'), vs=(-11, 14)), Inp(ss=('n', 'k'), vs=(19, 293)), Inp(ss=('n', 'k'), vs=(-281, 5)), Inp(ss=('n', 'k'), vs=(10, 17)), Inp(ss=('n', 'k'), vs=(10, 15)), Inp(ss=('n', 'k'), vs=(-293, -11)), Inp(ss=('n', 'k'), vs=(299, 11)), Inp(ss=('n', 'k'), vs=(298, -25)), Inp(ss=('n', 'k'), vs=(-288, 290)), Inp(ss=('n', 'k'), vs=(-24, -4)), Inp(ss=('n', 'k'), vs=(-5, -286)), Inp(ss=('n', 'k'), vs=(-275, -23)), Inp(ss=('n', 'k'), vs=(-283, 1)), Inp(ss=('n', 'k'), vs=(8, 10))})
+lib:43:DEBUG (gen_rand_inps) - gen 108/100 random inps
+utils.profiling:31:DEBUG (timed) - gen_rand_inps: 104.42ms
+lib:54:DEBUG (get_traces_from_inps) - inp_decls: I n, I k
+lib:55:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_15': (Symb(name='a', typ='I'), Symb(name='s', typ='I'), Symb(name='t', typ='I'), Symb(name='k', typ='I'), Symb(name='c', typ='I')), 'vtrace2_15': (Symb(name='a', typ='I'), Symb(name='s', typ='I'), Symb(name='t', typ='I'), Symb(name='k', typ='I'), Symb(name='c', typ='I')), 'vtrace3_15': (Symb(name='a', typ='I'), Symb(name='s', typ='I'), Symb(name='t', typ='I'), Symb(name='k', typ='I'), Symb(name='c', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 115.85ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 91.33ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 207.75ms
+analysis:1147:DEBUG (prove) - Analysing vloop_15
+analysis:1149:DEBUG (prove) - base_term_inps: 54
+analysis:1150:DEBUG (prove) - term_inps: 54
+analysis:1151:DEBUG (prove) - mayloop_inps: 0
+analysis:1171:DEBUG (prove) - Proving Termination: vloop_15
+analysis:1040:DEBUG (prove_term_vloop) - classify_inps: vloop_15
+analysis:1043:DEBUG (prove_term_vloop) - itraces: 54
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 8), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 14), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 7), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 14), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 10), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 11), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 12), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 300), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 4), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 285), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 284), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 18), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 9), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 25), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 13), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 279), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 11), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 6), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 22), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 2), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 13), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 5), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 287), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 294), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 14), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 300), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 294), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 18), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 13), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 300), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 278), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 1), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 280), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 28), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 15), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 12), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 275), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 23), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 286), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 5), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 11), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 18), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 1), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 279), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 3), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 274), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 281), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 16), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 20), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 11), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 15), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 276), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 291), ('vtrace3_15', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_15', 1), ('vtrace2_15', 15), ('vtrace3_15', 1)]
+analysis:1045:DEBUG (prove_term_vloop) - base_term_inps: 0
+analysis:1046:DEBUG (prove_term_vloop) - term_inps: 54
+analysis:1047:DEBUG (prove_term_vloop) - mayloop_inps: 0
+analysis:857:DEBUG (infer_ranking_functions) - vloop: vloop_15
+analysis:858:DEBUG (infer_ranking_functions) - term_itraces: 54
+analysis:905:DEBUG (infer_ranking_functions) - train_rand_trans: 991
+analysis:912:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): a*uk_1 + s*uk_2 + t*uk_3 + k*uk_4 + c*uk_5 + uk_0
+analysis:913:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3, uk_4, uk_5]
+analysis:937:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 991
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_5 = -1,
+ uk_4 = 0,
+ uk_3 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:948:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + uk_2 + uk_3 + 14*uk_4
+analysis:949:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 11*uk_1 + 144*uk_2 + 23*uk_3 + 14*uk_4 + 11*uk_5
+analysis:950:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*c
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 874
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_5 = -1,
+ uk_4 = 1,
+ uk_3 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:948:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 8*uk_1 + 81*uk_2 + 17*uk_3 + 14*uk_4 + 8*uk_5
+analysis:949:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 9*uk_1 + 100*uk_2 + 19*uk_3 + 14*uk_4 + 9*uk_5
+analysis:950:DEBUG (_infer_ranking_functions_from_trans) - rf: k + -1*c
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:980:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [-1*c, k + -1*c]
+utils.profiling:31:DEBUG (timed) - infer_ranking_functions: 10078.98ms
+analysis:1061:DEBUG (prove_term_vloop) - validate_ranking_functions: vloop_15
+analysis:988:DEBUG (validate_ranking_functions) - ranks_str: -1*c|k + -1*c
+validate:120:DEBUG (gen_validate_file) - validate_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/eric/dynamo/benchmarks/nla-term/sqrt1-both-t.c --out=/var/tmp/Dig_adebkxrj/vloop_15/par/validate/sqrt1-both-t.c --pos=15 --ranks="-1*c|k + -1*c"
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/CPAchecker-1.9-unix/scripts/cpa.sh -spec /home/exp/tools/reachability.prp -predicateAnalysis -setprop counterexample.export.compressWitness=false /var/tmp/Dig_adebkxrj/vloop_15/par/validate/sqrt1-both-t.c
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_adebkxrj/vloop_15/par/uatm --witness-name witness.graphml --file /var/tmp/Dig_adebkxrj/vloop_15/par/validate/sqrt1-both-t.c
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UTaipan-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_adebkxrj/vloop_15/par/utp --witness-name witness.graphml --file /var/tmp/Dig_adebkxrj/vloop_15/par/validate/sqrt1-both-t.c
+validate:46:DEBUG (prove_reach) - res: True
+validate:250:DEBUG (prove_reach) - wrs: [('utp', (True, None))]
+validate:253:DEBUG (prove_reach) - Got result firstly from utp
+utils.profiling:31:DEBUG (timed) - prove_reach: 182687.06ms
+analysis:1001:DEBUG (validate_ranking_functions) - r: True
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 182827.88ms
+analysis:1063:DEBUG (prove_term_vloop) - Termination result (vloop_15): True ([-1*c, k + -1*c])
+utils.profiling:31:DEBUG (timed) - prove_term_vloop: 192910.42ms
+analysis:1176:DEBUG (prove) - vloop_15 terminates: [-1*c, k + -1*c]
+utils.profiling:31:DEBUG (timed) - prove: 193227.47ms
+TNT result: True
+Time log:
+gen_rand_inps: 0.104s
+_get_traces_mp: 0.116s
+_merge_traces: 0.091s
+get_traces_from_inps: 0.208s
+infer_ranking_functions: 10.079s
+prove_reach: 182.687s
+validate_ranking_functions: 182.828s
+prove_term_vloop: 192.910s
+
+EJK TIMER: 194.944453
+

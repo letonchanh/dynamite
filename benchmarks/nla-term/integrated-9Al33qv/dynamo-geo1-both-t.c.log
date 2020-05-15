@@ -1,0 +1,477 @@
+__main__:102:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:103:INFO (<module>) - Dig's logger_level: WARNING
+__main__:104:INFO (<module>) - Timeout: 400s
+__main__:106:INFO (<module>) - 2020-05-14 10:54:34.069911: dynamo.py --timeout=400 /home/exp/eric/dynamo/benchmarks/nla-term/geo1-both-t.c
+/home/exp/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:72:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_p_e2kanz
+analysis:80:DEBUG (__init__) - trans_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /home/exp/eric/dynamo/benchmarks/nla-term/geo1-both-t.c --out=/var/tmp/Dig_p_e2kanz/geo1-both-t.c --bnd=500
+analysis:87:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_18': ['exit'], 'mainQ': ['vloop_18'], 'main': ['mainQ']})
+analysis:98:DEBUG (__init__) - postorder_vloop_ids: ['vloop_18']
+analysis:107:DEBUG (__init__) - inp_decls (<class 'data.prog.Symbs'>): I z, I k
+analysis:108:DEBUG (__init__) - inv_decls (<class 'data.prog.DSymbs'>): {'vtrace1_18': (Symb(name='z', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace2_18': (Symb(name='z', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace3_18': (Symb(name='z', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I'))}
+__main__:152:DEBUG (<module>) - prove_process: 15131
+lib:38:DEBUG (gen_rand_inps) - inps (0): Inps()
+lib:38:DEBUG (gen_rand_inps) - inps (36): Inps({Inp(ss=('z', 'k'), vs=(-13, -13)), Inp(ss=('z', 'k'), vs=(-8, -271)), Inp(ss=('z', 'k'), vs=(-12, 3)), Inp(ss=('z', 'k'), vs=(-25, -16)), Inp(ss=('z', 'k'), vs=(281, 2)), Inp(ss=('z', 'k'), vs=(10, -13)), Inp(ss=('z', 'k'), vs=(16, 280)), Inp(ss=('z', 'k'), vs=(1, 5)), Inp(ss=('z', 'k'), vs=(-5, 20)), Inp(ss=('z', 'k'), vs=(9, -9)), Inp(ss=('z', 'k'), vs=(10, 7)), Inp(ss=('z', 'k'), vs=(5, 299)), Inp(ss=('z', 'k'), vs=(-6, -3)), Inp(ss=('z', 'k'), vs=(289, -8)), Inp(ss=('z', 'k'), vs=(-287, -23)), Inp(ss=('z', 'k'), vs=(-297, 12)), Inp(ss=('z', 'k'), vs=(8, 6)), Inp(ss=('z', 'k'), vs=(4, -8)), Inp(ss=('z', 'k'), vs=(294, 278)), Inp(ss=('z', 'k'), vs=(-295, 12)), Inp(ss=('z', 'k'), vs=(-8, 14)), Inp(ss=('z', 'k'), vs=(20, 0)), Inp(ss=('z', 'k'), vs=(3, -22)), Inp(ss=('z', 'k'), vs=(-291, 293)), Inp(ss=('z', 'k'), vs=(-21, 272)), Inp(ss=('z', 'k'), vs=(280, 20)), Inp(ss=('z', 'k'), vs=(5, -293)), Inp(ss=('z', 'k'), vs=(-7, 8)), Inp(ss=('z', 'k'), vs=(277, -279)), Inp(ss=('z', 'k'), vs=(8, -286)), Inp(ss=('z', 'k'), vs=(-274, -5)), Inp(ss=('z', 'k'), vs=(-6, 288)), Inp(ss=('z', 'k'), vs=(-12, -6)), Inp(ss=('z', 'k'), vs=(-288, -292)), Inp(ss=('z', 'k'), vs=(293, -18)), Inp(ss=('z', 'k'), vs=(-14, -290))})
+lib:43:DEBUG (gen_rand_inps) - gen 108/100 random inps
+utils.profiling:31:DEBUG (timed) - gen_rand_inps: 403.32ms
+lib:54:DEBUG (get_traces_from_inps) - inp_decls: I z, I k
+lib:55:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_18': (Symb(name='z', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace2_18': (Symb(name='z', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace3_18': (Symb(name='z', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 392.61ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 256.34ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 649.69ms
+analysis:1147:DEBUG (prove) - Analysing vloop_18
+analysis:1149:DEBUG (prove) - base_term_inps: 60
+analysis:1150:DEBUG (prove) - term_inps: 48
+analysis:1151:DEBUG (prove) - mayloop_inps: 0
+analysis:1171:DEBUG (prove) - Proving Termination: vloop_18
+analysis:1040:DEBUG (prove_term_vloop) - classify_inps: vloop_18
+analysis:1043:DEBUG (prove_term_vloop) - itraces: 48
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 4), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 2), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 19), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 297), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 11), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 279), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 6), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 298), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 22), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 292), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 285), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 2), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 282), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 5), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 10), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 4), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 13), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 287), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 11), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 2), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 277), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 282), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 12), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 8), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 291), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 18), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 17), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 6), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 26), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 19), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 272), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 1), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 10), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 271), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 269), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 17), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 279), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 26), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 1), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 295), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 13), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 298), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 286), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 7), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 11), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 15), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 4), ('vtrace3_18', 1)]
+lib:208:DEBUG (print_inps) - [('vtrace1_18', 1), ('vtrace2_18', 287), ('vtrace3_18', 1)]
+analysis:1045:DEBUG (prove_term_vloop) - base_term_inps: 0
+analysis:1046:DEBUG (prove_term_vloop) - term_inps: 48
+analysis:1047:DEBUG (prove_term_vloop) - mayloop_inps: 0
+analysis:857:DEBUG (infer_ranking_functions) - vloop: vloop_18
+analysis:858:DEBUG (infer_ranking_functions) - term_itraces: 48
+analysis:905:DEBUG (infer_ranking_functions) - train_rand_trans: 836
+analysis:912:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): k*uk_2 + c*uk_5 + uk_3*x + uk_4*y + uk_1*z + uk_0
+analysis:913:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3, uk_4, uk_5]
+analysis:937:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 836
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0, uk_5 = 0, uk_4 = 1, uk_3 = 0, uk_2 = 0, uk_0 = 0]
+analysis:948:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + -6*uk_1 + 288*uk_2 + -5*uk_3 + 36*uk_4 + 2*uk_5
+analysis:949:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + -6*uk_1 + 288*uk_2 + -1227133513*uk_3 + 138*uk_5
+analysis:950:DEBUG (_infer_ranking_functions_from_trans) - rf: y
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 607
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_5 = -1,
+ uk_4 = 0,
+ uk_3 = -1,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:948:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + -6*uk_1 + 288*uk_2 + -1227133513*uk_3 + 188*uk_5
+analysis:949:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + -6*uk_1 + 288*uk_2 + -1227133513*uk_3 + 258*uk_5
+analysis:950:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*c + -1*x
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 489
+analysis:944:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_5 = -1,
+ uk_4 = 0,
+ uk_3 = 0,
+ uk_2 = 1,
+ uk_0 = 0]
+analysis:948:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 22*uk_1 + 5*uk_2 + 23*uk_3 + 484*uk_4 + 2*uk_5
+analysis:949:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 22*uk_1 + 5*uk_2 + 507*uk_3 + 10648*uk_4 + 3*uk_5
+analysis:950:DEBUG (_infer_ranking_functions_from_trans) - rf: k + -1*c
+analysis:979:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:980:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [y, -1*c + -1*x, k + -1*c]
+utils.profiling:31:DEBUG (timed) - infer_ranking_functions: 23510.19ms
+analysis:1061:DEBUG (prove_term_vloop) - validate_ranking_functions: vloop_18
+analysis:988:DEBUG (validate_ranking_functions) - ranks_str: y|-1*c + -1*x|k + -1*c
+validate:120:DEBUG (gen_validate_file) - validate_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/eric/dynamo/benchmarks/nla-term/geo1-both-t.c --out=/var/tmp/Dig_p_e2kanz/vloop_18/par/validate/geo1-both-t.c --pos=18 --ranks="y|-1*c + -1*x|k + -1*c"
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/CPAchecker-1.9-unix/scripts/cpa.sh -spec /home/exp/tools/reachability.prp -predicateAnalysis -setprop counterexample.export.compressWitness=false /var/tmp/Dig_p_e2kanz/vloop_18/par/validate/geo1-both-t.c
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_p_e2kanz/vloop_18/par/uatm --witness-name witness.graphml --file /var/tmp/Dig_p_e2kanz/vloop_18/par/validate/geo1-both-t.c
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UTaipan-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_p_e2kanz/vloop_18/par/utp --witness-name witness.graphml --file /var/tmp/Dig_p_e2kanz/vloop_18/par/validate/geo1-both-t.c
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_jtmv6lua/symexe/freire1-both-t_mainQ.c.mainQ_228.straces'
+data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_jtmv6lua/symexe/freire1-both-t_mainQ.c.mainQ_229.straces'
+data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_jtmv6lua/symexe/freire1-both-t_mainQ.c.mainQ_227.straces'
+data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_jtmv6lua/symexe/freire1-both-t_mainQ.c.mainQ_225.straces'
+data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_jtmv6lua/symexe/freire1-both-t_mainQ.c.mainQ_226.straces'
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 229
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 234
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 239
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 244
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 249
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 254
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 259
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 264
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 269
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 274
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 279
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 284
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 289
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 294
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 299
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 304
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 309
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 314
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 319
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 324
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 329
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 334
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 339
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 344
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 349
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 354
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 359
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 364
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 369
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 374
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 379
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 384
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 389
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 394
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_32
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 399
+
+EJK TIMER: 400.000214
+
