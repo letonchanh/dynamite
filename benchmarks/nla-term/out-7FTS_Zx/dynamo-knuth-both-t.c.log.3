@@ -1,0 +1,24 @@
+__main__:102:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:103:INFO (<module>) - Dig's logger_level: WARNING
+__main__:104:INFO (<module>) - Timeout: 300s
+__main__:106:INFO (<module>) - 2020-05-15 01:54:10.057628: dynamo.py --timeout=300 /home/exp/eric/dynamo/benchmarks/nla-term/knuth-both-t.c -t
+/home/exp/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:72:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_zyvwtadv
+analysis:80:DEBUG (__init__) - trans_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /home/exp/eric/dynamo/benchmarks/nla-term/knuth-both-t.c --out=/var/tmp/Dig_zyvwtadv/knuth-both-t.c --bnd=500
+analysis:87:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {})
+Traceback (most recent call last):
+  File "dynamo.py", line 129, in <module>
+    config = Setup(seed, inp)
+  File "/home/exp/eric/dynamo/src/analysis.py", line 92, in __init__
+    src = c_src(Path(self.trans_inp), self.tmpdir)
+  File "/home/exp/eric/dynamo/deps/dig/src/helpers/src.py", line 138, in __init__
+    super().__init__(filename, tmpdir)
+  File "/home/exp/eric/dynamo/deps/dig/src/helpers/src.py", line 30, in __init__
+    assert not errmsg, "'{}': {}".format(cmd, errmsg)
+AssertionError: '/home/exp/eric/dynamo/deps/dig/src/ocaml/instr.native /var/tmp/Dig_zyvwtadv/knuth-both-t.c /var/tmp/Dig_zyvwtadv/symexe/knuth-both-t_mainQ.c /var/tmp/Dig_zyvwtadv/traces/knuth-both-t_mainQ.c mainQ': Error: fun 'mainQ' not in '/var/tmp/Dig_zyvwtadv/knuth-both-t.c'!
+Fatal error: exception Errormsg.Error
+
+
+EJK TIMER: 2.06365
+

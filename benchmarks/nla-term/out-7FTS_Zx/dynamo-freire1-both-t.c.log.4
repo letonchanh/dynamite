@@ -1,0 +1,171 @@
+__main__:102:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:103:INFO (<module>) - Dig's logger_level: WARNING
+__main__:104:INFO (<module>) - Timeout: 300s
+__main__:106:INFO (<module>) - 2020-05-15 01:18:46.611847: dynamo.py --timeout=300 /home/exp/eric/dynamo/benchmarks/nla-term/freire1-both-t.c -t
+/home/exp/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:72:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_6nwryw51
+analysis:80:DEBUG (__init__) - trans_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /home/exp/eric/dynamo/benchmarks/nla-term/freire1-both-t.c --out=/var/tmp/Dig_6nwryw51/freire1-both-t.c --bnd=500
+analysis:87:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_32': ['exit'], 'mainQ': ['vloop_32'], 'main': ['mainQ']})
+analysis:98:DEBUG (__init__) - postorder_vloop_ids: ['vloop_32']
+analysis:107:DEBUG (__init__) - inp_decls (<class 'data.prog.Symbs'>): I a, I k
+analysis:108:DEBUG (__init__) - inv_decls (<class 'data.prog.DSymbs'>): {'vtrace1_32': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace2_32': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace3_32': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I'))}
+__main__:152:DEBUG (<module>) - prove_process: 31795
+lib:43:DEBUG (gen_rand_inps) - gen 108/100 random inps
+utils.profiling:31:DEBUG (timed) - gen_rand_inps: 116.21ms
+lib:54:DEBUG (get_traces_from_inps) - inp_decls: I a, I k
+lib:55:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_32': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace2_32': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace3_32': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 134.74ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 290.25ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 425.50ms
+analysis:1101:DEBUG (prove) - itraces: 108
+analysis:1107:DEBUG (prove) - Analysing Termination vloop_32
+analysis:1046:DEBUG (prove_term_vloop) - classify_inps: vloop_32
+analysis:1049:DEBUG (prove_term_vloop) - itraces: 108
+lib:208:DEBUG (print_inps) - a=-284,k=-12: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=-9,k=9: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=2,k=-278: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=-283,k=-288: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=-297,k=-2: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=-278,k=278: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=14,k=26: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=-26,k=-20: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=-296,k=9: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=4,k=-296: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=-10,k=-292: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=16,k=296: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=-280,k=-11: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=2,k=12: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=-276,k=293: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=-11,k=-3: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=-28,k=28: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=16,k=-30: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=282,k=296: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=21,k=-9: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=273,k=-2: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=3,k=-7: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=-274,k=-294: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=19,k=293: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=271,k=11: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=-5,k=-25: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=-26,k=-10: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=0,k=6: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=279,k=-291: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=-10,k=9: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=4,k=-12: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=277,k=5: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=-13,k=-11: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=-25,k=12: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=10,k=-11: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=-7,k=14: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=291,k=18: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=12,k=-294: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=-26,k=-9: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=-22,k=-15: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=-284,k=25: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=1,k=11: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=-299,k=-9: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=-284,k=4: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=-300,k=295: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=12,k=-284: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=13,k=6: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=-279,k=27: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=298,k=-14: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=24,k=-295: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=-281,k=-294: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=-19,k=3: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=-3,k=3: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=-1,k=-4: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=-16,k=-277: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=-8,k=13: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=-5,k=2: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=-15,k=-293: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=18,k=-1: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=275,k=-273: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=286,k=-5: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=1,k=294: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=-21,k=-271: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=9,k=0: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=293,k=-279: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=-7,k=-13: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=11,k=273: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=20,k=-1: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=11,k=-10: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=-5,k=-300: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=296,k=-9: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=-298,k=-30: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=-23,k=19: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=13,k=279: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=-25,k=288: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=-15,k=279: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=-13,k=284: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=-28,k=289: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=26,k=28: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=-9,k=294: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=298,k=19: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=12,k=-1: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=0,k=-6: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=-22,k=-3: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=-285,k=-27: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=0,k=21: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=-2,k=-25: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=296,k=-18: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=-1,k=-15: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=-6,k=-292: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=282,k=-18: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=9,k=1: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=7,k=-291: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=289,k=271: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=7,k=-30: [('vtrace1_32', 1), ('vtrace3_32', 1)]
+lib:208:DEBUG (print_inps) - a=6,k=7: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=274,k=290: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=13,k=28: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=280,k=18: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=-16,k=273: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=280,k=11: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=-15,k=25: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=9,k=-1: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=-290,k=3: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=21,k=294: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=-30,k=13: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=6,k=8: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+lib:208:DEBUG (print_inps) - a=-283,k=5: [('vtrace1_32', 1), ('vtrace2_32', 500)]
+analysis:1051:DEBUG (prove_term_vloop) - base_term_inps: 53
+analysis:1052:DEBUG (prove_term_vloop) - term_inps: 0
+analysis:1053:DEBUG (prove_term_vloop) - mayloop_inps: 55
+analysis:863:DEBUG (infer_ranking_functions) - vloop: vloop_32
+analysis:864:DEBUG (infer_ranking_functions) - term_itraces: 0
+utils.profiling:31:DEBUG (timed) - infer_ranking_functions: 0.06ms
+analysis:1067:DEBUG (prove_term_vloop) - validate_ranking_functions: vloop_32
+analysis:994:DEBUG (validate_ranking_functions) - ranks_str: 
+validate:123:DEBUG (gen_validate_file) - validate_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/eric/dynamo/benchmarks/nla-term/freire1-both-t.c --out=/var/tmp/Dig_6nwryw51/vloop_32/par/validate/freire1-both-t.c --pos=32 --ranks=""
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/CPAchecker-1.9-unix/scripts/cpa.sh -spec /home/exp/tools/reachability.prp -predicateAnalysis -setprop counterexample.export.compressWitness=false /var/tmp/Dig_6nwryw51/vloop_32/par/validate/freire1-both-t.c
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_6nwryw51/vloop_32/par/uatm --witness-name witness.graphml --file /var/tmp/Dig_6nwryw51/vloop_32/par/validate/freire1-both-t.c
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UTaipan-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_6nwryw51/vloop_32/par/utp --witness-name witness.graphml --file /var/tmp/Dig_6nwryw51/vloop_32/par/validate/freire1-both-t.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /home/exp/tools/CPAchecker-1.9-unix/scripts/cpa.sh -spec /home/exp/tools/reachability.prp -witnessValidation -witness /var/tmp/Dig_6nwryw51/vloop_32/par/cpa/output/Counterexample.1.graphml /var/tmp/Dig_6nwryw51/vloop_32/par/validate/freire1-both-t.c
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex: None
+validate:253:DEBUG (prove_reach) - wrs: [('cpa', (False, None))]
+validate:256:DEBUG (prove_reach) - Got result firstly from cpa
+utils.profiling:31:DEBUG (timed) - prove_reach: 4379.24ms
+analysis:1007:DEBUG (validate_ranking_functions) - r: False
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 4509.13ms
+analysis:1069:DEBUG (prove_term_vloop) - Termination result (vloop_32): False ([])
+utils.profiling:31:DEBUG (timed) - prove_term_vloop: 4513.19ms
+utils.profiling:31:DEBUG (timed) - prove: 5069.96ms
+utils.profiling:31:DEBUG (timed) - prove: 5070.36ms
+Termination result: None
+Time log:
+gen_rand_inps: 0.116s
+_get_traces_mp: 0.135s
+_merge_traces: 0.290s
+get_traces_from_inps: 0.426s
+infer_ranking_functions: 0.000s
+prove_reach: 4.379s
+validate_ranking_functions: 4.509s
+prove_term_vloop: 4.513s
+prove: 5.070s
+
+EJK TIMER: 7.075964
+
