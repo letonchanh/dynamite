@@ -728,8 +728,9 @@ class NonTerm(object):
             while candidateRCS:
                 # mlog.debug("candidateRCS: {}".format(len(candidateRCS)))
                 self._stat_candidate_rcs(candidateRCS)
-                # use 0 for queue
-                rcs, depth, ancestors = candidateRCS.pop(0)
+                # use 0 for queue - BFS
+                # rcs, depth, ancestors = candidateRCS.pop(0)
+                rcs, depth, ancestors = candidateRCS.pop()
                 mlog.debug("PROVE_NT DEPTH {}: {}".format(depth, rcs))
                 if rcs.is_unsat():
                     continue
