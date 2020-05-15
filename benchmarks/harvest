@@ -13,7 +13,8 @@ my ($csvs,$bdir,$outdir) = @ARGV;
 my @bnames = ();
 #@bnames = @ARGV if $#ARGV > -1;
     
-my ($benchdir,@benches) = Parsers::find_benchmarks($bdir,\@bnames);
+my ($benchdir,$benchesref,$b2expected) = Parsers::find_benchmarks($bdir,\@bnames);
+my @benches = @{$benchesref};
 
 ################### Filename for results
 use POSIX qw(strftime);

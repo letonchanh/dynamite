@@ -42,7 +42,7 @@ sub find_benchmarks {
     }
     closedir $dh;
     print "\n";
-    return ($benchdir,@benches,\%b2expect);
+    return ($benchdir,\@benches,\%b2expect);
 }
 
 sub expected {
@@ -94,13 +94,13 @@ sub seahorn {
 sub dynamo {
     my ($logfn) = @_;
     open(F,"$logfn") or warn "file $logfn - $!";
-    my ($time,$result) = (-1,'UNK');
+    my ($time,$result) = (-1,'\rUNK');
     while (<F>) {
-        $result = 'TRUE' if /Termination result: True/;
-        $result = 'TRUE' if /Termination result: False/;
-        $result = 'FALSE' if /Non-termination result: True/;
-        $result = 'FALSE' if /Non-termination result: False/;
-        $result = 'UNKNOWN' if /Termination result: None/;
+        $result = '\rTRUE' if /Termination result: True/;
+        $result = '\rFALSE' if /Termination result: False/;
+        $result = '\rFALSE' if /Non-termination result: True/;
+        $result = '\rTRUE' if /Non-termination result: False/;
+        $result = '\rUNK' if /Termination result: None/;
 # Time log:
 #gen_rand_inps: 0.141s
 #_get_traces_mp: 0.158s
@@ -186,8 +186,8 @@ sub dynDetail {
             $d->{rf} = toTex($1);
         }
         ### RECURRENT SET STUFF
-        $d->{validr} = '\rTRUE' if /Non-termination result: True/;
-        $d->{validr} = '\rFALSE' if /Non-termination result: False/;
+        $d->{validr} = '\rFALSE' if /Non-termination result: True/;
+        $d->{validr} = '\rTRUE' if /Non-termination result: False/;
         if(/\(simplified\) rcs: (.*)$/) { # -1 == x*z + -1*x + -1*y)
             $d->{guessr} = '\rTRUE';
             $d->{rf} = toTex($1);
@@ -203,6 +203,7 @@ sub dynDetail {
         # decide when it timed out
         if ($d->{validt} > 800) { $d->{validt} = '\rTO'; }
     }
+    if ($d->{validt} > 875) { $d->{validt} = '\rTO'; }
     $d->{allr} = '\rSCD' if $nonterm and $d->{allr} eq 'FALSE';
 
     $logfn =~ s/^.*benchmarks//;
