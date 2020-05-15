@@ -1,6 +1,6 @@
 #!/bin/sh
 
-HOME="~/eric/dynamo/"
+HOME="/home/exp/eric/dynamo"
 TS=`date +%s`
 echo "$TS"
 

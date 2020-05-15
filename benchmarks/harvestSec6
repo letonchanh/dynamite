@@ -1,0 +1,42 @@
+#!/usr/bin/perl
+
+sub parse {
+    my $fn = $_[0];
+    open F, $fn or die $fn;
+    while (<F>) {
+	if (/utils.profiling:\d+:DEBUG \(timed\) - prove: (\d+\.\d+)ms/) {
+	    return $1 / 1000;
+	}
+    }
+    die "can't parse $fn";
+}
+
+for my $ex (qw/a b/) {
+    print "Example ".uc($ex)." ";
+    my $timeT;
+    for my $ph (qw/t nt tnt/) {
+	my $tm = parse("../paper-results/sec6".$ex.".c.$ph");
+	$timeT = $tm if $ph eq 't';
+	print "& $tm  ";
+	print "& ".($timeT + $tm)." " if $ph eq 'nt';
+    }
+    print "\n";
+}
+
+
+__DATA__
+$ grep prove: ../paper-results/sec6*
+../paper-results/sec6a.c.nt:utils.profiling:31:DEBUG (timed) - prove: 29507.07ms
+../paper-results/sec6a.c.nt:utils.profiling:31:DEBUG (timed) - prove: 29507.80ms
+../paper-results/sec6a.c.nt:prove: 29.507s
+../paper-results/sec6a.c.t:utils.profiling:31:DEBUG (timed) - prove: 5093.54ms
+../paper-results/sec6a.c.t:utils.profiling:31:DEBUG (timed) - prove: 5093.91ms
+../paper-results/sec6a.c.t:prove: 5.094s
+../paper-results/sec6a.c.tnt:utils.profiling:31:DEBUG (timed) - prove: 35621.99ms
+../paper-results/sec6b.c.nt:utils.profiling:31:DEBUG (timed) - prove: 10161.62ms
+../paper-results/sec6b.c.nt:utils.profiling:31:DEBUG (timed) - prove: 10161.76ms
+../paper-results/sec6b.c.nt:prove: 10.162s
+../paper-results/sec6b.c.t:utils.profiling:31:DEBUG (timed) - prove: 4405.99ms
+../paper-results/sec6b.c.t:utils.profiling:31:DEBUG (timed) - prove: 4406.39ms
+../paper-results/sec6b.c.t:prove: 4.406s
+../paper-results/sec6b.c.tnt:utils.profiling:31:DEBUG (timed) - prove: 13819.48ms
