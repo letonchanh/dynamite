@@ -10,7 +10,8 @@ int main() {
     int r, d, p, q;
     A = __VERIFIER_nondet_int();
     B = __VERIFIER_nondet_int();
-    assume_abort_if_not(B >= 1);
+    //assume_abort_if_not(B >= 1);
+    if (B < 1) return 0;
 
     r = A;
     d = B;

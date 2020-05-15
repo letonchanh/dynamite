@@ -1,7 +1,7 @@
 /* algorithm searching for a divisor for factorization, by Knuth */
 
 #include <limits.h>
-
+#include <math.h>
 extern unsigned __VERIFIER_nondet_unsigned_int(void);
 
 extern double sqrt(double);

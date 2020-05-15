@@ -8,11 +8,11 @@ int main() {
     y = __VERIFIER_nondet_int();
     //assume_abort_if_not(x >= 1);
     if (x<1) {
-	return x
+	return x;
     }
     //assume_abort_if_not(y >= 1);
     if (y < 1) {
-	return x
+	return x;
     }
 
     a = x;

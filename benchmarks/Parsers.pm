@@ -74,7 +74,6 @@ sub tm2str {
     return '\rUNK' if $t == -1;
     return '\rTO' if $t >= 900;
     my $out = sprintf("%0.1f", $t) if $t < 900;
-    warn "formatting, tm2str $t = $out\n";
     return $out;
     die "strange time: $t";
 }
@@ -114,7 +113,6 @@ sub dynamo {
             $time = $1;
         }
     }
-    warn "TM: $time, RES: $result\n";
     close F;
     return { time => tm2str($time), result => $result };
 }
@@ -169,6 +167,66 @@ my $b2desc = {
         "ps5" => "pow sum",
         "ps6" => "pow sum"
 };
+
+sub dynDetailTNT {
+    my ($tmpb,$logfn,$timedout,$overallt,$overallr,$expectedTNT) = @_;
+    open(F,"$logfn") or warn "file $logfn - $!";
+    my $d = { allt => tm2str($overallt), allr => $overallr,
+              guessr => '\rUNK', validr => '\rUNK', conclusion => '\rUNK',
+              guesst => '--', validt => tm2str(-1), rf => '', switches => 0 };
+    my $TNTs;
+    while(<F>) {
+        if (/postorder\_vloop\_ids: \[([^\]]*)\]$/) {
+            # 'vloop\_25', 'vloop\_32'
+            my @lids = split ',', $1;
+            $d->{loops} = 1+$#lids;
+        }
+        # count switches
+        if (/Proving Termination: vloop_(\d+)$/) {
+            my $loopid = $1;
+            $d->{switches} += 1 if $TNTs->{$loopid}->{NT} == 1;
+            $TNTs->{$loopid}->{T} = 1;
+        } elsif (/Proving Non-Termination: vloop_(\d+)$/) {
+            my $loopid = $1;
+            $d->{switches} += 1 if $TNTs->{$loopid}->{T} == 1;
+            $TNTs->{$loopid}->{NT} = 1;
+            #analysis:1171:DEBUG (prove) - Proving Termination: vloop\_32
+            #analysis:1179:DEBUG (prove) - Proving Non-Termination: vloop\_32
+        }
+
+        $d->{conclusion} = 'T' if /TNT result: True/;
+        $d->{conclusion} = 'NT' if /TNT result: False/;
+        $d->{conclusion} = 'NT' if /TNT result: \(False/;
+        $d->{rf} = toTex($1) if /TNT result: \(False, \('vloop_\d+', \[([^\]]*)\]/; #  ZConj({-6 <= 6*n + -1*z}), [])]))/
+
+        $d->{rf} .= toTex($1) if /ranking_function_list: \[([^\]]+)\]/;
+        $d->{rfQ} = '\gRF'    if /ranking_function_list: \[([^\]]+)\]/;
+        $d->{rf} .= toTex($1) if /\(simplified\) rcs: (.*)$/;
+        $d->{rsQ} = '\gRS'    if /\(simplified\) rcs: (.*)$/;
+        $d->{guesst} = tm2str($1) if /infer_ranking_functions: ((\d)*\.\d+)s/;
+        $d->{guesst} = tm2str(($1/1000)) if /^strengthen: ((\d)*\.\d+)ms/;
+    }
+    $overallt = '\rTO' if $overallt == 400.0;
+    $d->{switches} = '--' unless $d->{switches} > 0;
+    my $str = sprintf("\\texttt{%-10s} & %-5s & %-3s & \$%-42s\$ & %-8s  \\\\ \n", # & %-5s & %10s & %-5s & %10s
+                      $tmpb,
+                      $expectedTNT, $d->{conclusion},
+                      $d->{rf}, $overallt);
+    my $strconcise = sprintf("\\texttt{%-10s} & %s & %-2s & %-4s & %2s & %-8s & %6s \\\\ \n",
+                             $tmpb,
+                             $d->{loops},
+                             $expectedTNT,
+                             $d->{rfQ}||$d->{rsQ}||'--',
+                             #$d->{guesst},
+                             $d->{switches},
+                             $d->{conclusion},
+                             $overallt);
+          #$out->{guesst}, $out->{guessr});
+          #$out->{validt}, $out->{validr},
+          #$tm, $compare->{$tmpb}->{$tool}->{result},);
+    return ($d,$str,$strconcise);
+}
+
 sub dynDetail {
     my ($tmpb,$logfn,$timedout,$overallt,$overallr,$nonterm) = @_;
     open(F,"$logfn") or warn "file $logfn - $!";
@@ -184,6 +242,7 @@ sub dynDetail {
         if(/ranking_function_list: \[([^\]]+)\]/) {
             $d->{guessr} = '\rTRUE';
             $d->{rf} = toTex($1);
+            $d->{conclusion} = 'T';
         }
         ### RECURRENT SET STUFF
         $d->{validr} = '\rFALSE' if /Non-termination result: True/;
@@ -191,6 +250,7 @@ sub dynDetail {
         if(/\(simplified\) rcs: (.*)$/) { # -1 == x*z + -1*x + -1*y)
             $d->{guessr} = '\rTRUE';
             $d->{rf} = toTex($1);
+            $d->{conclusion} = 'NT';
         }
         $d->{validt} = tm2str($1) if /^verify: ((\d)*\.\d+)s/;
         $d->{guesst} = tm2str($1) if /^strengthen: ((\d)*\.\d+)s/;
