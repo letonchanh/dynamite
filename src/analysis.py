@@ -495,7 +495,7 @@ class NonTerm(object):
         _config = self._config
 
         if not rcs:
-            return True, None 
+            return False, None, None
         else:
             # assert rcs, rcs
             init_symvars_prefix = _config.init_symvars_prefix
@@ -616,7 +616,7 @@ class NonTerm(object):
                 sCexs = []
                 for rc, rs in chks:
                     if rs is None:
-                        return False, None  # unknown
+                        return False, None, None  # unknown
                     elif rs:  # sat
                         assert isinstance(rs, Inps), rs
                         assert len(rs) > 0
@@ -729,8 +729,8 @@ class NonTerm(object):
                 # mlog.debug("candidateRCS: {}".format(len(candidateRCS)))
                 self._stat_candidate_rcs(candidateRCS)
                 # use 0 for queue - BFS
-                # rcs, depth, ancestors = candidateRCS.pop(0)
-                rcs, depth, ancestors = candidateRCS.pop()
+                rcs, depth, ancestors = candidateRCS.pop(0)
+                # rcs, depth, ancestors = candidateRCS.pop()
                 mlog.debug("PROVE_NT DEPTH {}: {}".format(depth, rcs))
                 if rcs.is_unsat():
                     continue
