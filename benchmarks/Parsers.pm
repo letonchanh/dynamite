@@ -4,6 +4,8 @@ use warnings;
 use File::Basename;
 use Cwd qw/abs_path/;
 use YAML::Tiny;
+use Statistics::Basic;
+
 #use File::Temp qw/ tempfile tempdir /;
 
 our @EXPORT_OK = qw{ult find_benchmarks parse seahorn aprove expected};
@@ -71,6 +73,7 @@ properties:
 
 sub tm2str {
     my ($t) = @_;
+    die "tm2str: $t\n" unless defined $t;
     return '\rUNK' if $t == -1;
     return '\rTO' if $t >= 900;
     my $out = sprintf("%0.1f", $t) if $t < 900;
@@ -184,11 +187,11 @@ sub dynDetailTNT {
         # count switches
         if (/Proving Termination: vloop_(\d+)$/) {
             my $loopid = $1;
-            $d->{switches} += 1 if $TNTs->{$loopid}->{NT} == 1;
+            $d->{switches} += 1 if defined $TNTs->{$loopid}->{NT}; # == 1;
             $TNTs->{$loopid}->{T} = 1;
         } elsif (/Proving Non-Termination: vloop_(\d+)$/) {
             my $loopid = $1;
-            $d->{switches} += 1 if $TNTs->{$loopid}->{T} == 1;
+            $d->{switches} += 1 if defined $TNTs->{$loopid}->{T}; # == 1;
             $TNTs->{$loopid}->{NT} = 1;
             #analysis:1171:DEBUG (prove) - Proving Termination: vloop\_32
             #analysis:1179:DEBUG (prove) - Proving Non-Termination: vloop\_32
@@ -297,7 +300,7 @@ sub ult {
     while (<F>) {
         if (/TerminationAnalysisResult: Unable to decide termination/) {
             #$result = '"Unable to decide termination"';
-	    $result = 'UNK';
+            $result = 'UNK';
         }
         if (/RESULT: Ultimate proved your program to be correct/) {
             $result = 'TRUE';
@@ -332,12 +335,27 @@ sub aprove {
     close F;
     return { time => '99999', result => $res };
 }
+sub averageTimeResult {
+    my (@runs) = @_;
+    die "aTR: not enough runs\n" unless $#runs >= 0;
+    #print Statistics::Basic::stddev(map { $_->{time} } @runs);
+    return {
+        stddev => Statistics::Basic::stddev(map { $_->{time} } @runs),
+        mean   => Statistics::Basic::mean(map { $_->{time} } @runs),
+        time   => Statistics::Basic::mean(map { $_->{time} } @runs),
+        result => $runs[0]->{result}
+    };
+
+}
 sub parse {
-    my ($tool,$logfn) = @_;
-    return ult($logfn)     if $tool eq 'ultimate';
-    return aprove($logfn)  if $tool eq 'aprove';
-    return seahorn($logfn) if $tool eq 'seahorn';
-    return dynamo($logfn)  if $tool eq 'dynamo';
+    my ($tool,$logfn,$iters) = @_;
+    return averageTimeResult(map { dynamo($logfn.".".$_) } (1..$iters)) if $tool eq 'dynamo';
+
+    #return averageTimeResult(map { ult($logfn.".".$_)    } (1..$iters)) if $tool eq 'ultimate';
+    return ult($logfn); # for now, we don't iterate on ultimate
+
+    #return aprove($logfn)  if $tool eq 'aprove';
+    #return seahorn($logfn) if $tool eq 'seahorn';
     die "parse: unknown tool: $tool\n";
 }
 

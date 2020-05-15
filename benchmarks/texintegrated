@@ -1,6 +1,11 @@
 #!/bin/sh
 
-./harvest nocsvs nla-nonterm integrated-hAdQkzM | tail -n 39 > /tmp/all
-./harvest nocsvs nla-term    integrated-9Al33qv | tail -n 38 >> /tmp/all
+./harvest nocsvs nla-nonterm/integrated-hAdQkzM | tail -n 39 > /tmp/all
+./harvest nocsvs nla-term/integrated-XLisaoQ | tail -n 38 >> /tmp/all
 sort /tmp/all | head -n 39 > ~/dynamic-termination/draft/nlaintegrated3.tex
 sort /tmp/all | tail -n 38 > ~/dynamic-termination/draft/nlaintegrated3b.tex
+
+# old:   nla-term integrated-9Al33qv
+
+### Term crafted lit 
+./harvest --iters=5 nocsvs termination-crafted-lit/out-ttR_bdp | tail -n 66 > ~/dynamic-termination/draft/termcraftlit.tex
