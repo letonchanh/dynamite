@@ -4,6 +4,8 @@ use warnings;
 use File::Basename;
 use Cwd qw/abs_path/;
 use YAML::Tiny;
+use Statistics::Basic;
+
 #use File::Temp qw/ tempfile tempdir /;
 
 our @EXPORT_OK = qw{ult find_benchmarks parse seahorn aprove expected};
@@ -42,7 +44,7 @@ sub find_benchmarks {
     }
     closedir $dh;
     print "\n";
-    return ($benchdir,@benches,\%b2expect);
+    return ($benchdir,\@benches,\%b2expect);
 }
 
 sub expected {
@@ -71,10 +73,10 @@ properties:
 
 sub tm2str {
     my ($t) = @_;
+    die "tm2str: $t\n" unless defined $t;
     return '\rUNK' if $t == -1;
     return '\rTO' if $t >= 900;
     my $out = sprintf("%0.1f", $t) if $t < 900;
-    warn "formatting, tm2str $t = $out\n";
     return $out;
     die "strange time: $t";
 }
@@ -94,13 +96,13 @@ sub seahorn {
 sub dynamo {
     my ($logfn) = @_;
     open(F,"$logfn") or warn "file $logfn - $!";
-    my ($time,$result) = (-1,'UNK');
+    my ($time,$result) = (-1,'\rUNK');
     while (<F>) {
-        $result = 'TRUE' if /Termination result: True/;
-        $result = 'TRUE' if /Termination result: False/;
-        $result = 'FALSE' if /Non-termination result: True/;
-        $result = 'FALSE' if /Non-termination result: False/;
-        $result = 'UNKNOWN' if /Termination result: None/;
+        $result = '\rTRUE' if /Termination result: True/;
+        $result = '\rFALSE' if /Termination result: False/;
+        $result = '\rFALSE' if /Non-termination result: True/;
+        $result = '\rTRUE' if /Non-termination result: False/;
+        $result = '\rUNK' if /Termination result: None/;
 # Time log:
 #gen_rand_inps: 0.141s
 #_get_traces_mp: 0.158s
@@ -114,7 +116,6 @@ sub dynamo {
             $time = $1;
         }
     }
-    warn "TM: $time, RES: $result\n";
     close F;
     return { time => tm2str($time), result => $result };
 }
@@ -169,6 +170,66 @@ my $b2desc = {
         "ps5" => "pow sum",
         "ps6" => "pow sum"
 };
+
+sub dynDetailTNT {
+    my ($tmpb,$logfn,$timedout,$overallt,$overallr,$expectedTNT) = @_;
+    open(F,"$logfn") or warn "file $logfn - $!";
+    my $d = { allt => tm2str($overallt), allr => $overallr,
+              guessr => '\rUNK', validr => '\rUNK', conclusion => '\rUNK',
+              guesst => '--', validt => tm2str(-1), rf => '', switches => 0 };
+    my $TNTs;
+    while(<F>) {
+        if (/postorder\_vloop\_ids: \[([^\]]*)\]$/) {
+            # 'vloop\_25', 'vloop\_32'
+            my @lids = split ',', $1;
+            $d->{loops} = 1+$#lids;
+        }
+        # count switches
+        if (/Proving Termination: vloop_(\d+)$/) {
+            my $loopid = $1;
+            $d->{switches} += 1 if defined $TNTs->{$loopid}->{NT}; # == 1;
+            $TNTs->{$loopid}->{T} = 1;
+        } elsif (/Proving Non-Termination: vloop_(\d+)$/) {
+            my $loopid = $1;
+            $d->{switches} += 1 if defined $TNTs->{$loopid}->{T}; # == 1;
+            $TNTs->{$loopid}->{NT} = 1;
+            #analysis:1171:DEBUG (prove) - Proving Termination: vloop\_32
+            #analysis:1179:DEBUG (prove) - Proving Non-Termination: vloop\_32
+        }
+
+        $d->{conclusion} = 'T' if /TNT result: True/;
+        $d->{conclusion} = 'NT' if /TNT result: False/;
+        $d->{conclusion} = 'NT' if /TNT result: \(False/;
+        $d->{rf} = toTex($1) if /TNT result: \(False, \('vloop_\d+', \[([^\]]*)\]/; #  ZConj({-6 <= 6*n + -1*z}), [])]))/
+
+        $d->{rf} .= toTex($1) if /ranking_function_list: \[([^\]]+)\]/;
+        $d->{rfQ} = '\gRF'    if /ranking_function_list: \[([^\]]+)\]/;
+        $d->{rf} .= toTex($1) if /\(simplified\) rcs: (.*)$/;
+        $d->{rsQ} = '\gRS'    if /\(simplified\) rcs: (.*)$/;
+        $d->{guesst} = tm2str($1) if /infer_ranking_functions: ((\d)*\.\d+)s/;
+        $d->{guesst} = tm2str(($1/1000)) if /^strengthen: ((\d)*\.\d+)ms/;
+    }
+    $overallt = '\rTO' if $overallt == 400.0;
+    $d->{switches} = '--' unless $d->{switches} > 0;
+    my $str = sprintf("\\texttt{%-10s} & %-5s & %-3s & \$%-42s\$ & %-8s  \\\\ \n", # & %-5s & %10s & %-5s & %10s
+                      $tmpb,
+                      $expectedTNT, $d->{conclusion},
+                      $d->{rf}, $overallt);
+    my $strconcise = sprintf("\\texttt{%-10s} & %s & %-2s & %-4s & %2s & %-8s & %6s \\\\ \n",
+                             $tmpb,
+                             $d->{loops},
+                             $expectedTNT,
+                             $d->{rfQ}||$d->{rsQ}||'--',
+                             #$d->{guesst},
+                             $d->{switches},
+                             $d->{conclusion},
+                             $overallt);
+          #$out->{guesst}, $out->{guessr});
+          #$out->{validt}, $out->{validr},
+          #$tm, $compare->{$tmpb}->{$tool}->{result},);
+    return ($d,$str,$strconcise);
+}
+
 sub dynDetail {
     my ($tmpb,$logfn,$timedout,$overallt,$overallr,$nonterm) = @_;
     open(F,"$logfn") or warn "file $logfn - $!";
@@ -184,13 +245,15 @@ sub dynDetail {
         if(/ranking_function_list: \[([^\]]+)\]/) {
             $d->{guessr} = '\rTRUE';
             $d->{rf} = toTex($1);
+            $d->{conclusion} = 'T';
         }
         ### RECURRENT SET STUFF
-        $d->{validr} = '\rTRUE' if /Non-termination result: True/;
-        $d->{validr} = '\rFALSE' if /Non-termination result: False/;
+        $d->{validr} = '\rFALSE' if /Non-termination result: True/;
+        $d->{validr} = '\rTRUE' if /Non-termination result: False/;
         if(/\(simplified\) rcs: (.*)$/) { # -1 == x*z + -1*x + -1*y)
             $d->{guessr} = '\rTRUE';
             $d->{rf} = toTex($1);
+            $d->{conclusion} = 'NT';
         }
         $d->{validt} = tm2str($1) if /^verify: ((\d)*\.\d+)s/;
         $d->{guesst} = tm2str($1) if /^strengthen: ((\d)*\.\d+)s/;
@@ -203,6 +266,7 @@ sub dynDetail {
         # decide when it timed out
         if ($d->{validt} > 800) { $d->{validt} = '\rTO'; }
     }
+    if ($d->{validt} > 875) { $d->{validt} = '\rTO'; }
     $d->{allr} = '\rSCD' if $nonterm and $d->{allr} eq 'FALSE';
 
     $logfn =~ s/^.*benchmarks//;
@@ -236,7 +300,7 @@ sub ult {
     while (<F>) {
         if (/TerminationAnalysisResult: Unable to decide termination/) {
             #$result = '"Unable to decide termination"';
-	    $result = 'UNK';
+            $result = 'UNK';
         }
         if (/RESULT: Ultimate proved your program to be correct/) {
             $result = 'TRUE';
@@ -271,12 +335,27 @@ sub aprove {
     close F;
     return { time => '99999', result => $res };
 }
+sub averageTimeResult {
+    my (@runs) = @_;
+    die "aTR: not enough runs\n" unless $#runs >= 0;
+    #print Statistics::Basic::stddev(map { $_->{time} } @runs);
+    return {
+        stddev => Statistics::Basic::stddev(map { $_->{time} } @runs),
+        mean   => Statistics::Basic::mean(map { $_->{time} } @runs),
+        time   => Statistics::Basic::mean(map { $_->{time} } @runs),
+        result => $runs[0]->{result}
+    };
+
+}
 sub parse {
-    my ($tool,$logfn) = @_;
-    return ult($logfn)     if $tool eq 'ultimate';
-    return aprove($logfn)  if $tool eq 'aprove';
-    return seahorn($logfn) if $tool eq 'seahorn';
-    return dynamo($logfn)  if $tool eq 'dynamo';
+    my ($tool,$logfn,$iters) = @_;
+    return averageTimeResult(map { dynamo($logfn.".".$_) } (1..$iters)) if $tool eq 'dynamo';
+
+    #return averageTimeResult(map { ult($logfn.".".$_)    } (1..$iters)) if $tool eq 'ultimate';
+    return ult($logfn); # for now, we don't iterate on ultimate
+
+    #return aprove($logfn)  if $tool eq 'aprove';
+    #return seahorn($logfn) if $tool eq 'seahorn';
     die "parse: unknown tool: $tool\n";
 }
 

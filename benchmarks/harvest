@@ -6,14 +6,25 @@ use Data::Dumper;
 use lib '.';
 my @tools = qw/ultimate dynamo/; #ultimate aprove seahorn/;
 use Parsers qw{parse find_benchmarks};
-my $usage = "usage: ./harvest (csvs|nocsvs) <benchdir> <tmpdir>\n";
-die $usage unless $#ARGV >= 2;
-my ($csvs,$bdir,$outdir) = @ARGV;
+
+################### Arguments
+my $COMPARISON = 0; my $ITERS = 1;
+my $usage = "usage: ./harvest --iters=5 (csvs|nocsvs) <benchdir>/<tmpdir>\n";
+die $usage unless $#ARGV >= 1;
+while ($ARGV[0] =~ /^--(.*)=(.+)$/) {
+    my ($k,$v) = ($1,$2);
+    shift @ARGV;
+    $COMPARISON = 1 if $k eq 'compare';
+    $ITERS = $v if $k eq 'iters';
+}
+my ($csvs,$a3) = @ARGV;
+my ($bdir,$outdir) = split '/', $a3 or die $!;
 
 my @bnames = ();
 #@bnames = @ARGV if $#ARGV > -1;
     
-my ($benchdir,@benches) = Parsers::find_benchmarks($bdir,\@bnames);
+my ($benchdir,$benchesref,$b2expected) = Parsers::find_benchmarks($bdir,\@bnames);
+my @benches = @{$benchesref};
 
 ################### Filename for results
 use POSIX qw(strftime);
@@ -24,6 +35,8 @@ my $fn = strftime('%Y%m%d%H%M%S', gmtime($now));
 
 # /home/ejk/dynamo/benchmarks/svcomp-nla-digbench/out-C4SElYT/ultimate-bresenham-both-t.c-both-t.c.log
 
+my @integrated;
+my @integratedC;
 my @dynDetail;
 my @skips;
 ################### Harvesting the results
@@ -31,25 +44,35 @@ print "% Tool   Benchmark                     Time    Result\n";
 print "% ============================================\n";
 my @newfile;
 my $compare;
+@tools = ('dynamo') if $outdir =~ /integrated/;
 foreach my $tool (@tools) {
   foreach my $b (sort @benches) {
       mkdir("../results/$b") if (not (-e "../results/$b"));
       my $logfn = "$benchdir/$outdir/$tool-$b.log";
-      warn $logfn;
-      if (not (-e $logfn)) { push @skips, $logfn; next; }
+      #if (not (-e $logfn)) { push @skips, $logfn; next; }
       my $tmpb = $b; $tmpb =~ s/-both-n?t.c//;
-      $compare->{$tmpb}->{$tool} = Parsers::parse($tool,$logfn);
-      if ($tool eq 'dynamo') {
+      $compare->{$tmpb}->{$tool} = Parsers::parse($tool,$logfn,$ITERS);
+      my $tm = $compare->{$tmpb}->{$tool}->{time};
+      if ($outdir =~ /integrated/) {
+          my $expectedTNT = '???';
+          $expectedTNT = 'T' if $benchdir =~ /-term/;
+          $expectedTNT = 'NT' if $benchdir =~ /-nonterm/;
+          my ($d,$dstr,$dstrC) = Parsers::dynDetailTNT($tmpb,$logfn.".1",
+                                                ($tm >= 900 ? 1 : 0),
+                                                $tm, $compare->{$tmpb}->{$tool}->{result},
+                                                $expectedTNT,$ITERS);
+          push @integrated, $dstr;
+          push @integratedC, $dstrC;
+      } elsif ($tool eq 'dynamo') {
           #die "can't get time at all: $b and $b2res{$tmpb}->{time}\n" unless $b2res{$b}->{time} > 0;
-          my $tm = $compare->{$tmpb}->{$tool}->{time};
-          my ($d,$dstr) = Parsers::dynDetail($tmpb,$logfn,
+          my ($d,$dstr) = Parsers::dynDetail($tmpb,$logfn.".1",
                                               ($tm >= 900 ? 1 : 0),
                                              $tm, $compare->{$tmpb}->{$tool}->{result},
-                                             ($benchdir =~ /nonterm/ ? 1 : 0));
+                                             ($benchdir =~ /nonterm/ ? 1 : 0),$ITERS);
           push @dynDetail, $dstr;
           $compare->{$tmpb}->{dynamo}->{rf} = "";
           $compare->{$tmpb}->{dynamo}->{rf} .= $d->{rf};
-          $compare->{$tmpb}->{dynamo}->{$_} = $d->{$_} for qw/guesst guessr validt validr/;
+      $compare->{$tmpb}->{dynamo}->{$_} = $d->{$_} for qw/guesst guessr validt validr/;
       }
 
 
@@ -62,7 +85,7 @@ foreach my $tool (@tools) {
       push @newfile, "../results/$b/$tool.$fn.csv";
   }
 }
-print "Skipped These:\n   ".join("\n   ",@skips)."\n";
+#print "Skipped These:\n   ".join("\n   ",@skips)."\n";
 print "\n";
 print "========= DYN DETAIL ============\n";
 print for @dynDetail;
@@ -73,18 +96,25 @@ if($benchdir =~ /termination-crafted-lit/) {
     foreach my $b (sort keys %{$compare}) {
         my $trunc = substr($b,0,15);
         if ($trunc eq $prev) { $trunc .= "".($ctr++); } else { $prev = $trunc; $ctr = 2; };
-        printf("%-25s \& \$ %-15s \$ \& %-4s \& %-6s \& %-4s \& %-6s \& %5s \&   \\ULTIMATE{  %-5s \& %-6s } \\\\\n",
+        printf("%-25s \& \$ %-15s \$ \& %-4s \& %-6s \& %-4s \& %-6s \& %5s \& %5.1f \&   \\ULTIMATE{  %-5s \& %-6s } \\\\\n",
                $trunc,
                $compare->{$b}->{dynamo}->{rf}." ",
                $compare->{$b}->{dynamo}->{guesst},
                $compare->{$b}->{dynamo}->{guessr},
                $compare->{$b}->{dynamo}->{validt},
                $compare->{$b}->{dynamo}->{validr},
-               $compare->{$b}->{dynamo}->{time},
+               $compare->{$b}->{dynamo}->{mean},
+               $compare->{$b}->{dynamo}->{stddev},
                $compare->{$b}->{ultimate}->{time},
                '\r'.$compare->{$b}->{ultimate}->{result}
             );
     }
 }
 
+if($outdir =~ /integrated/) {
+    print "========= INTEGRATED ============\n";
+    print for @integrated;
+    print "========= INTEGRATED CONCISE ============\n";
+    print for @integratedC;
+}
 print "You may now wish to:\n  git add ".(join(" ",@newfile))."\n  git commit -m \"results $fn\"\n" if $csvs eq 'csvs';

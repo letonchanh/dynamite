@@ -1,0 +1,13 @@
+#!/bin/sh
+
+HOME="~/eric/dynamo/"
+TS=`date +%s`
+echo "$TS"
+
+cd ${HOME}/src
+python3 dynamo.py ../benchmarks/paper/sec6a.c 2>&1 | tee ${HOME}/paper-results/sec6a.c.tnt
+python3 dynamo.py ../benchmarks/paper/sec6a.c -t 2>&1 | tee ${HOME}/paper-results/sec6a.c.t
+python3 dynamo.py ../benchmarks/paper/sec6a.c -nt 2>&1 | tee ${HOME}/paper-results/sec6a.c.nt
+python3 dynamo.py ../benchmarks/paper/sec6b.c 2>&1 | tee ${HOME}/paper-results/sec6b.c.tnt
+python3 dynamo.py ../benchmarks/paper/sec6b.c -t 2>&1 | tee ${HOME}/paper-results/sec6b.c.t
+python3 dynamo.py ../benchmarks/paper/sec6b.c -nt 2>&1 | tee ${HOME}/paper-results/sec6b.c.nt
