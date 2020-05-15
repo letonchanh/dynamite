@@ -36,6 +36,7 @@ int main() {
         x = x + y;
         y = y + z;
         z = z + 6;
+        //c = c + 1;
     }
     /*
     __VERIFIER_assert(z == 6*n + 6);
