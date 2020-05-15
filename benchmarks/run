@@ -6,10 +6,13 @@ use warnings;
 use File::Temp qw/ tempfile tempdir /;
 use Time::Out qw(timeout) ;
 
+my $ITERS = 5;
 my $SPECFILE = qq{/tools/termination.prp};
 my $TIMEOUT  = 300;
 my @timedout;
 my $NT_SPECFILE = qq{/tools/nontermination.prp};
+my $pid = getpid();
+my $TMPFILE = "/tmp/dynamo.ejk.$pid.txt";
 
 my $hn = qx{hostname -A};
 $SPECFILE = '/home/exp'.$SPECFILE if $hn =~ /cse-tnguyen-02/;
@@ -27,14 +30,14 @@ my $CFG = {
         DIR => qq{/home/ejk/dynamo/src},
         CMD => sub { my $arg = ($SPECFILE =~ m/\/term/ ? '-t' : '-nt');
                      $t0 = [gettimeofday];
-                     return qq($KILL python3 dynamo.py --timeout=$TIMEOUT $_[0] $arg 2>\&1 | tee /tmp/dynamo.ejk.txt);
+                     return qq($KILL python3 dynamo.py --timeout=$TIMEOUT $_[0] $arg 2>\&1 | tee $TMPFILE);
         },
         FETCH => sub { my $elapsed = tv_interval($t0);
 		       my $tm = "EJK TIMER: $elapsed\n";
-		       open TM, ">>/tmp/dynamo.ejk.txt" or warn $!;
+		       open TM, ">>$TMPFILE" or warn $!;
 		       print TM "\n$tm\n";
 		       close TM;
-		       return qq(cp /tmp/dynamo.ejk.txt $_[0]); },
+		       return qq(cp $TMPFILE $_[0]); },
         PARSE => sub { return Parsers::dynamo($_[0]); },
     },
     ultimate => {
@@ -74,12 +77,14 @@ die "usage: ./run (options) <subdir> (list|run) [dynamo,ultimate,seahorn,aprove]
     "  (last argument is optional) \n".
     "  options:\n".
     "    --nt=1    # for non-termination".
+    "    --iters=1 ".
     "    --timeout=900\n" unless $#ARGV >= 1;
 while ($ARGV[0] =~ /^--(.*)=(.+)$/) {
     my ($k,$v) = ($1,$2);
     shift @ARGV;
     $TIMEOUT = $v if $k eq 'timeout';
     $SPECFILE = $NT_SPECFILE if $k eq 'nt';
+    $ITERS = $v if $k eq 'iters';
 }
 my @bnames = ();
 my ($bdir,$arg1,$ts,$bms) = @ARGV;
@@ -111,14 +116,15 @@ if ($arg1 eq 'run') {
         my %b2res;
         foreach my $b (@benches) {
             print "---[ Now running on: $b ]---\n";
-            chdir $CFG->{$tool}->{DIR} or die "can't CHDIR to $CFG->{$tool}->{DIR}: $!";
-            #my $SPECFILE = ($b =~ m/-nt\./ ? $NT_SPECFILE : $T_SPECFILE);
-            runc( $CFG->{$tool}->{CMD}->("$benchdir/$b") );
-            my $logfn = "$benchdir/$outdir/$tool-$b.log";
-            runc( $CFG->{$tool}->{FETCH}->($logfn) );
-            $b2res{$b} = $CFG->{$tool}->{PARSE}->($logfn);
-            print "$logfn - Time:$b2res{$b}->{time} - Result:$b2res{$b}->{result}\n";
-	    ++$ct; 
+            for my $iter (1..$ITERS) {
+                chdir $CFG->{$tool}->{DIR} or die "can't CHDIR to $CFG->{$tool}->{DIR}: $!";
+                #my $SPECFILE = ($b =~ m/-nt\./ ? $NT_SPECFILE : $T_SPECFILE);
+                runc( $CFG->{$tool}->{CMD}->("$benchdir/$b") );
+                my $logfn = "$benchdir/$outdir/$tool-$b.log.$iter";
+                runc( $CFG->{$tool}->{FETCH}->($logfn) );
+                #$b2res{$b} = $CFG->{$tool}->{PARSE}->($logfn);
+                #print "$logfn - Time:$b2res{$b}->{time} - Result:$b2res{$b}->{result}\n";
+            }
         }
     }
     print "you may now harvest the results:\n ./harvest nocsvs $bdir $outdir\n";
