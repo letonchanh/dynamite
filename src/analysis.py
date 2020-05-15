@@ -154,9 +154,10 @@ class Setup(object):
 
     # @timeit
     def get_traces_from_inps(self, inps):
+        if not self.inp_decls:
+            inps = Inps(set([Inp(tuple(), tuple()) for _ in range(self.n_inps)]))
         return self.exe.get_traces_from_inps(inps)
 
-    
     def _collect_vloops_in_postorder_from_main(self, cg):
         # Do not support mutual loops
         # https://github.com/sosy-lab/sv-benchmarks/blob/master/c/termination-numeric/twisted.c
@@ -1057,7 +1058,8 @@ class Term(object):
         #                 maxdeg=2))
         # mlog.debug("inloop_term_invs: {}".format(inloop_term_invs))
 
-        if not _config.inp_decls and not term_inps:
+        # if not _config.inp_decls and not term_inps:
+        if not term_inps:
             term_itraces = dict((mayloop_inp, itraces[mayloop_inp]) for mayloop_inp in mayloop_inps)
         else:
             term_itraces = dict((term_inp, itraces[term_inp]) for term_inp in term_inps)
@@ -1169,6 +1171,8 @@ class TNT(object):
                     # term_traces = _config.get_traces_from_inps(Inps(set(term_inps)))
                     term_traces = {inp: itraces[inp] for inp in term_inps}
                     term_traces.update(term_itraces_cex)
+                    if not term_traces:
+                        term_traces = {inp: itraces[inp] for inp in mayloop_inps}
                     t_res, t_rfs = self.t_prover.prove_term_vloop(term_traces, vloop)
                     if not t_res:
                         res = None
@@ -1179,6 +1183,8 @@ class TNT(object):
                 mlog.debug('Proving Termination: {}'.format(vloop.vloop_id))
                 # term_traces = _config.get_traces_from_inps(Inps(set(term_inps)))
                 term_traces = {inp: itraces[inp] for inp in term_inps}
+                if not term_traces:
+                    term_traces = {inp: itraces[inp] for inp in mayloop_inps}
                 t_res, t_rfs = self.t_prover.prove_term_vloop(term_traces, vloop)
                 if t_res:
                     mlog.debug('{} terminates: {}'.format(vloop.vloop_id, t_rfs))
