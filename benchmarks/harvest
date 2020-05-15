@@ -25,6 +25,7 @@ my $fn = strftime('%Y%m%d%H%M%S', gmtime($now));
 # /home/ejk/dynamo/benchmarks/svcomp-nla-digbench/out-C4SElYT/ultimate-bresenham-both-t.c-both-t.c.log
 
 my @integrated;
+my @integratedC;
 my @dynDetail;
 my @skips;
 ################### Harvesting the results
@@ -36,7 +37,6 @@ foreach my $tool (@tools) {
   foreach my $b (sort @benches) {
       mkdir("../results/$b") if (not (-e "../results/$b"));
       my $logfn = "$benchdir/$outdir/$tool-$b.log";
-      warn $logfn;
       if (not (-e $logfn)) { push @skips, $logfn; next; }
       my $tmpb = $b; $tmpb =~ s/-both-n?t.c//;
       $compare->{$tmpb}->{$tool} = Parsers::parse($tool,$logfn);
@@ -45,11 +45,12 @@ foreach my $tool (@tools) {
           my $expectedTNT = '???';
           $expectedTNT = 'T' if $benchdir =~ /-term/;
           $expectedTNT = 'NT' if $benchdir =~ /-nonterm/;
-          my ($d,$dstr) = Parsers::dynDetailTNT($tmpb,$logfn,
+          my ($d,$dstr,$dstrC) = Parsers::dynDetailTNT($tmpb,$logfn,
                                                 ($tm >= 900 ? 1 : 0),
                                                 $tm, $compare->{$tmpb}->{$tool}->{result},
                                                 $expectedTNT);
           push @integrated, $dstr;
+          push @integratedC, $dstrC;
       } elsif ($tool eq 'dynamo') {
           #die "can't get time at all: $b and $b2res{$tmpb}->{time}\n" unless $b2res{$b}->{time} > 0;
           my ($d,$dstr) = Parsers::dynDetail($tmpb,$logfn,
@@ -72,7 +73,7 @@ foreach my $tool (@tools) {
       push @newfile, "../results/$b/$tool.$fn.csv";
   }
 }
-print "Skipped These:\n   ".join("\n   ",@skips)."\n";
+#print "Skipped These:\n   ".join("\n   ",@skips)."\n";
 print "\n";
 print "========= DYN DETAIL ============\n";
 print for @dynDetail;
@@ -100,5 +101,7 @@ if($benchdir =~ /termination-crafted-lit/) {
 if($outdir =~ /integrated/) {
     print "========= INTEGRATED ============\n";
     print for @integrated;
+    print "========= INTEGRATED CONCISE ============\n";
+    print for @integratedC;
 }
 print "You may now wish to:\n  git add ".(join(" ",@newfile))."\n  git commit -m \"results $fn\"\n" if $csvs eq 'csvs';
