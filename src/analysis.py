@@ -154,8 +154,6 @@ class Setup(object):
 
     # @timeit
     def get_traces_from_inps(self, inps):
-        if not self.inp_decls:
-            inps = Inps(set([Inp(tuple(), tuple()) for _ in range(self.n_inps)]))
         return self.exe.get_traces_from_inps(inps)
 
     def _collect_vloops_in_postorder_from_main(self, cg):
