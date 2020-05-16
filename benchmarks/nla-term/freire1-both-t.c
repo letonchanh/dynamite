@@ -25,7 +25,7 @@ int main() {
     //double a, x;
     int x;
     int a = __VERIFIER_nondet_int();
-    x = a / 2.0;
+    x = a / 2;
     r = 0;
     int c = 0; int k = __VERIFIER_nondet_int(); // Added
     
