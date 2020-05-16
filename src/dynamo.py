@@ -52,6 +52,14 @@ if __name__ == "__main__":
         action="store_true",
         help="run non-termination analysis")
 
+    ag("--dfs", "-dfs",
+        action="store_true",
+        help="use DFS in non-termination analysis")
+
+    ag("--bfs", "-bfs",
+        action="store_false",
+        help="use BFS in non-termination analysis")
+
     # DIG settings
     ag("--dig_log_level", "-dig_log_level",
        type=int,
@@ -81,6 +89,9 @@ if __name__ == "__main__":
     settings.use_random_seed = not args.no_random_seed
     settings.prove_term = args.term
     settings.prove_nonterm = args.nonterm
+    settings.use_dfs = args.dfs
+    settings.use_bfs = args.bfs
+    
     if args.timeout:
         settings.timeout = int(args.timeout)
 

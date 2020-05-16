@@ -493,7 +493,7 @@ class NonTerm(object):
         _config = self._config
 
         if not rcs:
-            return True, None 
+            return False, None, None
         else:
             # assert rcs, rcs
             init_symvars_prefix = _config.init_symvars_prefix
@@ -614,7 +614,7 @@ class NonTerm(object):
                 sCexs = []
                 for rc, rs in chks:
                     if rs is None:
-                        return False, None  # unknown
+                        return False, None, None  # unknown
                     elif rs:  # sat
                         assert isinstance(rs, Inps), rs
                         assert len(rs) > 0
@@ -726,8 +726,11 @@ class NonTerm(object):
             while candidateRCS:
                 # mlog.debug("candidateRCS: {}".format(len(candidateRCS)))
                 self._stat_candidate_rcs(candidateRCS)
-                # use 0 for queue
-                rcs, depth, ancestors = candidateRCS.pop(0)
+                if settings.use_dfs:
+                    rcs, depth, ancestors = candidateRCS.pop()
+                else:
+                    # use 0 for queue - BFS
+                    rcs, depth, ancestors = candidateRCS.pop(0)
                 mlog.debug("PROVE_NT DEPTH {}: {}".format(depth, rcs))
                 if rcs.is_unsat():
                     continue
@@ -945,13 +948,13 @@ class Term(object):
         ranking_function_list = []
         while train_term_rand_trans:
             (t1, t2) = train_term_rand_trans.pop()
+            mlog.debug("t1: {}".format(t1))
+            mlog.debug("t2: {}".format(t2))
             model = self._infer_ranking_function_trans(t1, t2, opt)
             mlog.debug("model: {}".format(model))
             if model:
                 rf = model.evaluate(rnk_ztemplate)
                 ranking_function_list.append(rf)
-                mlog.debug("t1: {}".format(t1))
-                mlog.debug("t2: {}".format(t2))
                 mlog.debug("rf: {}".format(rf))
 
                 # start_time = timeit.default_timer()
