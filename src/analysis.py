@@ -190,7 +190,7 @@ class Setup(object):
         try:
             symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
         except SystemExit:
-            mlog.debug(traceback.format_exc())
+            # mlog.debug(traceback.format_exc())
             symstates.ss = {}
         # mlog.debug("symstates: {}".format(symstates.ss))
         mlog.debug('target_loc: {}'.format(target_loc))
@@ -312,9 +312,9 @@ class Setup(object):
                 inloop_snd_slocal = z3.substitute(inloop_snd_symstate.slocal, vloop.transrel_post_sst)
                 mlog.debug("inloop_fst_slocal: {}".format(inloop_fst_slocal))
                 mlog.debug("inloop_snd_slocal: {}".format(inloop_snd_slocal))
-                inloop_vars = Z3.get_vars(inloop_fst_symstate.slocal).union(Z3.get_vars(inloop_snd_symstate.slocal))
-                inloop_inv_vars = inv_decls[vloop.inloop_loc].exprs(settings.use_reals)
-                inloop_ex_vars = inloop_vars.difference(inloop_inv_vars)
+                # inloop_vars = Z3.get_vars(inloop_fst_symstate.slocal).union(Z3.get_vars(inloop_snd_symstate.slocal))
+                # inloop_inv_vars = inv_decls[vloop.inloop_loc].exprs(settings.use_reals)
+                # inloop_ex_vars = inloop_vars.difference(inloop_inv_vars)
                 # mlog.debug("inloop_ex_vars: {}".format(inloop_ex_vars))
                 # inloop_trans_f = z3.Exists(list(inloop_ex_vars), z3.And(inloop_fst_slocal, inloop_snd_slocal))
                 # loop_transrel = Z3.qe(inloop_trans_f)
