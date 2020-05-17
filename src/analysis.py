@@ -31,6 +31,70 @@ from utils.profiling import timeit
 
 mlog = dig_common_helpers.getLogger(__name__, settings.logger_level)
 
+class Stack(object):
+    def __init__(self):
+        self.store = []
+
+    def push(self, elem):
+        self.store.append(elem)
+
+    def pop(self):
+        if len(self.store) > 0:
+            return self.store.pop()
+        else:
+            return None
+
+    def dequeue(self):
+        if len(self.store) > 0:
+            return self.store.pop(0)
+        else:
+            return None
+
+    def items(self):
+        return self.store
+
+    def size(self):
+        return len(self.store)
+
+    def __repr__(self):
+        return self.store.__repr__()
+
+class DStack(object):
+    def __init__(self, key_of):
+        self.store = defaultdict(Stack)
+        self.min_key = 0
+        self.max_key = -1
+        self.key_of = key_of
+
+    def push(self, elem):
+        k = self.key_of(elem)
+        self.min_key = min(self.min_key, k)
+        self.max_key = max(self.max_key, k)
+        self.store[k].push(elem)
+
+    def pop(self):
+        max_store = self.store[self.max_key]
+        elem = max_store.pop()
+        if max_store.size() == 0:
+            self.store.pop(self.max_key)
+            self.max_key = self.max_key - 1
+        return elem
+
+    def dequeue(self):
+        min_store = self.store[self.min_key]
+        elem = min_store.dequeue()
+        mlog.debug('store: {}'.format(self.store))
+        if min_store.size() == 0:
+            self.store.pop(self.min_key)
+            self.min_key = self.min_key + 1
+        return elem
+
+    def items(self):
+        return [e for _, s in self.store.items() for e in s.items()]
+
+    def size(self):
+        return sum([s.size() for _, s in self.store.items()])
+
 class Setup(object):
     def __init__(self, seed, inp):
         self.seed = seed
@@ -698,11 +762,11 @@ class NonTerm(object):
 
     def _stat_candidate_rcs(self, rcs):
         stat = defaultdict(int)
-        for (_, d, _) in rcs:
+        for (_, d, _) in rcs.items():
             stat[d] += 1
-        mlog.debug("stat ({} total): {}".format(len(rcs), stat))
+        mlog.debug("stat ({} total): {}".format(rcs.size(), stat))
 
-    def check_reachable_rcs(self, vloop, rcs):
+    def is_reachable_rcs(self, vloop, rcs):
         init_transrel_rcs = ZFormula.substitue(rcs, vloop.transrel_pre_sst)
         init_transrel_rcs.add(vloop.stem.cond)
         init_transrel_rcs.add(vloop.stem.transrel)
@@ -722,15 +786,20 @@ class NonTerm(object):
             return []
         else:
             # candidate rcs, depth, ancestors
-            candidateRCS = [(ZConj([vloop.loop.cond]), 0, [])]
+            # candidateRCS = Stack()
+            candidateRCS = DStack(key_of=lambda rcs: rcs[1])
+            candidateRCS.push((ZConj([vloop.loop.cond]), 0, []))
             while candidateRCS:
                 # mlog.debug("candidateRCS: {}".format(len(candidateRCS)))
                 self._stat_candidate_rcs(candidateRCS)
                 if settings.use_dfs:
                     rcs, depth, ancestors = candidateRCS.pop()
+                elif settings.use_bfs:
+                    rcs, depth, ancestors = candidateRCS.dequeue()
                 else:
                     # use 0 for queue - BFS
-                    rcs, depth, ancestors = candidateRCS.pop(0)
+                    rcs, depth, ancestors = candidateRCS.dequeue()
+                
                 mlog.debug("PROVE_NT DEPTH {}: {}".format(depth, rcs))
                 if rcs.is_unsat():
                     continue
@@ -742,12 +811,12 @@ class NonTerm(object):
                         # mds is a valid recurrent set which is smaller (weaker) than rcs
                         nancestors = copy.deepcopy(ancestors)
                         nancestors.append((depth, rcs))
-                        if self.check_reachable_rcs(vloop, mds):
+                        if self.is_reachable_rcs(vloop, mds):
                             valid_rcs.append((mds, nancestors))
                     
                     if chk:
                         mlog.debug('new valid rcs: {}'.format(rcs))
-                        if self.check_reachable_rcs(vloop, rcs):
+                        if self.is_reachable_rcs(vloop, rcs):
                             valid_rcs.append((rcs, ancestors))
                             break
                             # return the first valid rcs
@@ -759,7 +828,8 @@ class NonTerm(object):
                             for nrc in nrcs:
                                 nancestors = copy.deepcopy(ancestors)
                                 nancestors.append((depth, rcs))
-                                candidateRCS.append((nrc, depth+1, nancestors))
+                                candidateRCS.push((nrc, depth+1, nancestors))
+            
             term_itraces_cex = {}
             for (tInvs, tTraces) in self.tCexs:
                 mlog.debug("tCex: {}".format(tInvs))
