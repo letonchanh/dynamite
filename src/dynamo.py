@@ -57,7 +57,7 @@ if __name__ == "__main__":
         help="use DFS in non-termination analysis")
 
     ag("--bfs", "-bfs",
-        action="store_false",
+        action="store_true",
         help="use BFS in non-termination analysis")
 
     # DIG settings

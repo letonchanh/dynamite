@@ -73,6 +73,16 @@ class DStack(object):
         self.store[k].push(elem)
 
     def pop(self):
+        if self.size() <= 0:
+            return None
+        
+        # while self.store[self.max_key].size() == 0:
+        #     self.store.pop(self.max_key)
+        #     self.max_key = self.max_key + 1
+
+        while self.max_key not in self.store:
+            self.max_key = self.max_key + 1
+        
         max_store = self.store[self.max_key]
         elem = max_store.pop()
         if max_store.size() == 0:
@@ -81,9 +91,18 @@ class DStack(object):
         return elem
 
     def dequeue(self):
+        if self.size() <= 0:
+            return None
+
+        # while self.store[self.min_key].size() == 0:
+        #     self.store.pop(self.min_key)
+        #     self.min_key = self.min_key + 1
+
+        while self.min_key not in self.store:
+            self.min_key = self.min_key + 1
+
         min_store = self.store[self.min_key]
         elem = min_store.dequeue()
-        mlog.debug('store: {}'.format(self.store))
         if min_store.size() == 0:
             self.store.pop(self.min_key)
             self.min_key = self.min_key + 1
@@ -785,56 +804,103 @@ class NonTerm(object):
             mlog.debug("No loop information: stem={}, loop={}".format(self.stem, self.loop))
             return []
         else:
+            mlog.debug('use_dfs: {}'.format(settings.use_dfs))
+            mlog.debug('use_bfs: {}'.format(settings.use_bfs))
             # candidate rcs, depth, ancestors
             # candidateRCS = Stack()
             candidateRCS = DStack(key_of=lambda rcs: rcs[1])
             candidateRCS.push((ZConj([vloop.loop.cond]), 0, []))
-            while candidateRCS:
+            while candidateRCS.size() > 0:
                 # mlog.debug("candidateRCS: {}".format(len(candidateRCS)))
                 self._stat_candidate_rcs(candidateRCS)
+                candidates = []
                 if settings.use_dfs:
-                    rcs, depth, ancestors = candidateRCS.pop()
+                    # rcs, depth, ancestors = candidateRCS.pop()
+                    candidate = candidateRCS.pop()
+                    candidates.append(candidate)
                 elif settings.use_bfs:
-                    rcs, depth, ancestors = candidateRCS.dequeue()
+                    # rcs, depth, ancestors = candidateRCS.dequeue()
+                    candidate = candidateRCS.dequeue()
+                    candidates.append(candidate)
                 else:
                     # use 0 for queue - BFS
-                    rcs, depth, ancestors = candidateRCS.dequeue()
-                
-                mlog.debug("PROVE_NT DEPTH {}: {}".format(depth, rcs))
-                if rcs.is_unsat():
-                    continue
+                    # rcs, depth, ancestors = candidateRCS.dequeue()
+                    fst_candidate = candidateRCS.dequeue()
+                    lst_candidate = candidateRCS.pop()
+                    candidates.append(fst_candidate)
+                    if lst_candidate:
+                        candidates.append(lst_candidate)
 
-                if depth < settings.max_nonterm_refinement_depth:
-                    chk, sCexs, mds = self.verify(rcs, vloop)
-                    # mlog.debug("sCexs: {}".format(sCexs))
-                    if mds and len(mds) < len(rcs):
-                        # mds is a valid recurrent set which is smaller (weaker) than rcs
-                        nancestors = copy.deepcopy(ancestors)
-                        nancestors.append((depth, rcs))
-                        if self.is_reachable_rcs(vloop, mds):
-                            valid_rcs.append((mds, nancestors))
-                    
-                    if chk:
-                        mlog.debug('new valid rcs: {}'.format(rcs))
-                        if self.is_reachable_rcs(vloop, rcs):
-                            valid_rcs.append((rcs, ancestors))
-                            break
-                            # return the first valid rcs
-                            # return valid_rcs
-                    elif sCexs is not None:
-                        for invalid_rc, cexs in sCexs:
-                            nrcs = self.strengthen(rcs, invalid_rc, cexs, vloop)
-                            # assert nrcs, nrcs
-                            for nrc in nrcs:
-                                nancestors = copy.deepcopy(ancestors)
-                                nancestors.append((depth, rcs))
-                                candidateRCS.push((nrc, depth+1, nancestors))
+                def _f(task):
+                    chk, rs = self.prove_rcs(vloop, *task)
+                    return (chk, rs)
+
+                if len(candidates) > 1:
+                    wrs = Miscs.run_mp_ex("prove_rcs", candidates, _f)
+                else:
+                    wrs = [_f(candidates[0])]
+                for chk, rs in wrs:
+                    if chk is True:
+                        valid_rcs.append(rs)
+                        return [rs], []
+                        # break
+                    elif chk is False:
+                        for r in rs:
+                            candidateRCS.push(r) 
+
+                # chk, rs = self.prove_rcs(vloop, *candidate)
+                # if chk is None:
+                #     continue
+                # elif chk is True:
+                #     valid_rcs.append(rs)
+                #     # break
+                # else:
+                #     for r in rs:
+                #         candidateRCS.push(r)
+                
             
             term_itraces_cex = {}
             for (tInvs, tTraces) in self.tCexs:
                 mlog.debug("tCex: {}".format(tInvs))
                 term_itraces_cex.update(tTraces)
             return valid_rcs, term_itraces_cex
+
+    def prove_rcs(self, vloop, rcs, depth, ancestors):
+        mlog.debug("PROVE_NT DEPTH {}: {}".format(depth, rcs))
+        if rcs.is_unsat():
+            return None, None
+
+        if depth < settings.max_nonterm_refinement_depth:
+            chk, sCexs, mds = self.verify(rcs, vloop)
+            # mlog.debug("sCexs: {}".format(sCexs))
+            if mds and len(mds) < len(rcs):
+                # mds is a valid recurrent set which is smaller (weaker) than rcs
+                nancestors = copy.deepcopy(ancestors)
+                nancestors.append((depth, rcs))
+                if self.is_reachable_rcs(vloop, mds):
+                    # valid_rcs.append((mds, nancestors))
+                    return True, (mds, nancestors)
+            
+            if chk:
+                mlog.debug('new valid rcs: {}'.format(rcs))
+                if self.is_reachable_rcs(vloop, rcs):
+                    # valid_rcs.append((rcs, ancestors))
+                    return True, (rcs, ancestors)
+                    # break
+                    # return the first valid rcs
+                    # return valid_rcs
+            elif sCexs is not None:
+                new_candidates  = []
+                for invalid_rc, cexs in sCexs:
+                    nrcs = self.strengthen(rcs, invalid_rc, cexs, vloop)
+                    # assert nrcs, nrcs
+                    for nrc in nrcs:
+                        nancestors = copy.deepcopy(ancestors)
+                        nancestors.append((depth, rcs))
+                        # candidateRCS.push((nrc, depth+1, nancestors))
+                        new_candidates.append((nrc, depth+1, nancestors))
+                return False, new_candidates
+        return None, None
 
     def print_valid_rcs(self, valid_rcs):
         for rcs, ancestors in valid_rcs:
