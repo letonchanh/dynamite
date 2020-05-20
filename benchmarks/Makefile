@@ -1,5 +1,6 @@
 termination-crafted-lit:
-	./run --ejkto=1 --iters=5 termination-crafted-lit dynamo
+#	./run --ejkto=1 --iters=5 termination-crafted-lit list dynamo CookSeeZuleger-TACAS2013-Fig8b.c 
+	./run --ejkto=1 --iters=5 termination-crafted-lit list dynamo
 	OUTDIR=`cat /tmp/dynamite.outdir`
 	./harvest --iters=5 nocsvs termination-crafted-lit/${OUTDIR}
 	echo "results are in: termination-crafted-lit/$OUTDIR"

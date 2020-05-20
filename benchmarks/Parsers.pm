@@ -272,13 +272,12 @@ sub dynDetail {
     $logfn =~ s/^.*benchmarks//;
     #$d->{allt} = sprintf("%.2f",$d->{allt});
     $d->{allt} = '\rTO' if $d->{allt} >= 900;
-    use Data::Dumper; print Dumper($d);
+    #use Data::Dumper; print Dumper($d);
     my $str = sprintf("\\texttt{%-10s} & %-10s & \$%-42s\$ & %-8s & %10s & %-5s & %10s  \\\\ \n",
-                   $tmpb, $b2desc->{$tmpb}, $d->{rf},
+                   $tmpb, $b2desc->{$tmpb}||'', $d->{rf},
                    $d->{guesst}, $d->{guessr},
                       $d->{validt}, $d->{validr});
     #$d->{allt}, $d->{allr});
-    warn "$str\n";
     return ($d,$str);
     #$tool, $tmpb, $b2res{$b}->{time}, $b2res{$b}->{result});
 
@@ -339,6 +338,7 @@ sub averageTimeResult {
     my (@runs) = @_;
     die "aTR: not enough runs\n" unless $#runs >= 0;
     #print Statistics::Basic::stddev(map { $_->{time} } @runs);
+    # map { print Dumper($_) } @runs;
     return {
         stddev => Statistics::Basic::stddev(map { $_->{time} } @runs),
         mean   => Statistics::Basic::mean(map { $_->{time} } @runs),
@@ -350,10 +350,7 @@ sub averageTimeResult {
 sub parse {
     my ($tool,$logfn,$iters) = @_;
     return averageTimeResult(map { dynamo($logfn.".".$_) } (1..$iters)) if $tool eq 'dynamo';
-
-    #return averageTimeResult(map { ult($logfn.".".$_)    } (1..$iters)) if $tool eq 'ultimate';
     return ult($logfn); # for now, we don't iterate on ultimate
-
     #return aprove($logfn)  if $tool eq 'aprove';
     #return seahorn($logfn) if $tool eq 'seahorn';
     die "parse: unknown tool: $tool\n";
