@@ -116,9 +116,13 @@ chdir $benchdir;
 
 ################### Running the benchmarks
 if ($arg1 eq 'run') {
-    my $t = File::Temp->newdir( "out-XXXXXXX", CLEANUP => 0 );
+    my $tmpl = ($INTEGRATED == 1 ? "integrated-XXXXXXX" : "out-XXXXXXX");
+    my $t = File::Temp->newdir( $tmpl, CLEANUP => 0 );
     my $outdir = $t->dirname;
     print "| Saving logs to: $benchdir/$outdir\n";
+    open TMP, ">/tmp/dynamite.outdir" or die $!;
+    print TMP $outdir;
+    close TMP;
     print "----------------\n\n";
     my $ct = 0;
     foreach my $tool (@tools) {

@@ -1,11 +1,10 @@
 #!/bin/sh
 
-### Term crafted lit 
-./harvest --iters=5 nocsvs termination-crafted-lit/out-ttR_bdp
-cp compare.tex ~/dynamic-termination/draft/termcraftlit.tex
-cp comparent.tex ~/dynamic-termination/draft/termcraftlitnt.tex
-cp comparesummary.tex ~/dynamic-termination/draft/termcraftlitsummary.tex
-cp naming.tex ~/dynamic-termination/draft/
+### SVCOMP terminartion-crafted-lit
+./run --ejkto=1 --iters=5 termination-crafted-lit dynamo
+OUTDIR=`cat /tmp/dynamite.out`
+./harvest --iters=5 nocsvs termination-crafted-lit/${OUTDIR}
+echo "less compare.tex comparent.tex comparesummary.tex naming.tex"
 
 ### NLA term
 ./harvest nocsvs nla-term/out-7FTS_Zx
