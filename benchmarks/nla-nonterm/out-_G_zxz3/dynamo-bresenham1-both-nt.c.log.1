@@ -1,0 +1,203 @@
+__main__:102:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:103:INFO (<module>) - Dig's logger_level: WARNING
+__main__:104:INFO (<module>) - Timeout: 900s
+__main__:106:INFO (<module>) - 2020-05-15 07:09:39.054935: dynamo.py --timeout=900 /home/exp/eric/dynamo/benchmarks/nla-nonterm/bresenham1-both-nt.c
+/home/exp/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:72:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig__hzdbqmm
+analysis:80:DEBUG (__init__) - trans_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /home/exp/eric/dynamo/benchmarks/nla-nonterm/bresenham1-both-nt.c --out=/var/tmp/Dig__hzdbqmm/bresenham1-both-nt.c --bnd=500
+analysis:87:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_29': ['exit'], 'mainQ': ['vloop_29'], 'main': ['mainQ']})
+analysis:98:DEBUG (__init__) - postorder_vloop_ids: ['vloop_29']
+analysis:107:DEBUG (__init__) - inp_decls (<class 'data.prog.Symbs'>): I X, I Y
+analysis:108:DEBUG (__init__) - inv_decls (<class 'data.prog.DSymbs'>): {'vtrace1_29': (Symb(name='X', typ='I'), Symb(name='Y', typ='I'), Symb(name='v', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace2_29': (Symb(name='X', typ='I'), Symb(name='Y', typ='I'), Symb(name='v', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace3_29': (Symb(name='X', typ='I'), Symb(name='Y', typ='I'), Symb(name='v', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I'))}
+__main__:152:DEBUG (<module>) - prove_process: 26974
+lib:43:DEBUG (gen_rand_inps) - gen 107/100 random inps
+utils.profiling:31:DEBUG (timed) - gen_rand_inps: 132.60ms
+lib:54:DEBUG (get_traces_from_inps) - inp_decls: I X, I Y
+lib:55:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_29': (Symb(name='X', typ='I'), Symb(name='Y', typ='I'), Symb(name='v', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace2_29': (Symb(name='X', typ='I'), Symb(name='Y', typ='I'), Symb(name='v', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace3_29': (Symb(name='X', typ='I'), Symb(name='Y', typ='I'), Symb(name='v', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 141.08ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 433.72ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 575.40ms
+analysis:1153:DEBUG (prove) - Analysing vloop_29
+analysis:1155:DEBUG (prove) - base_term_inps: 0
+analysis:1156:DEBUG (prove) - term_inps: 0
+analysis:1157:DEBUG (prove) - mayloop_inps: 107
+analysis:1160:DEBUG (prove) - Proving Non-Termination: vloop_29
+analysis:239:DEBUG (_get_stem_from_symstates) - vloop.preloop_loc: vtrace1_29
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_29
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 4530.63ms
+analysis:225:DEBUG (_get_stem_from_ss) - preloop_fst_symstate: loc: vtrace1_29
+pc: True
+slocal: And(X == X_X,
+    Y == X_Y,
+    v == -1*X_X + 2*X_Y,
+    0 == x,
+    0 == y,
+    0 == c)
+analysis:228:DEBUG (_get_stem_from_ss) - mainQ init_symvars: I X_X, I X_Y
+analysis:231:DEBUG (_get_stem_from_ss) - stem_cond (<class 'z3.z3.BoolRef'>): True
+analysis:232:DEBUG (_get_stem_from_ss) - stem_transrel (<class 'z3.z3.BoolRef'>): And(X == X_X,
+    Y == X_Y,
+    v == -1*X_X + 2*X_Y,
+    0 == x,
+    0 == y,
+    0 == c)
+analysis:269:DEBUG (_get_loop_from_symstates) - Create C source for vloop_29: /var/tmp/Dig_knngz1tu
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_29
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 4695.18ms
+analysis:280:DEBUG (_get_loop_from_symstates) - vloop inp_decls: I X, I Y, I v, I x, I y, I c
+analysis:281:DEBUG (_get_loop_from_symstates) - vloop inv_decls: {'vtrace1_29': (Symb(name='X', typ='I'), Symb(name='Y', typ='I'), Symb(name='v', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace2_29': (Symb(name='X', typ='I'), Symb(name='Y', typ='I'), Symb(name='v', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace3_29': (Symb(name='X', typ='I'), Symb(name='Y', typ='I'), Symb(name='v', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I'))}
+analysis:282:DEBUG (_get_loop_from_symstates) - vloop init_symvars: I X_X, I X_Y, I X_v, I X_x, I X_y, I X_c
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_29
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 4835.49ms
+analysis:314:DEBUG (_get_loop_from_symstates) - inloop_fst_slocal: And(X0 == X_X,
+    Y0 == X_Y,
+    v0 == X_v,
+    x0 == X_x,
+    y0 == X_y,
+    c0 == X_c)
+analysis:315:DEBUG (_get_loop_from_symstates) - inloop_snd_slocal: And(X1 == X_X,
+    Y1 == X_Y,
+    v1 == 2*X_Y + X_v,
+    x1 == 1 + X_x,
+    y1 == X_y,
+    c1 == 1 + X_c)
+analysis:327:DEBUG (_get_loop_from_symstates) - loop_transrel: And(And(X0 == X,
+        Y0 == Y,
+        v0 == v,
+        x0 == x,
+        y0 == y,
+        c0 == c),
+    And(X1 == X,
+        Y1 == Y,
+        v1 == 2*Y + v,
+        x1 == 1 + x,
+        y1 == y,
+        c1 == 1 + c))
+analysis:329:DEBUG (_get_loop_from_symstates) - inloop_fst_symstate: pc: And(0 ==
+    X_X*X_y + -1*((2*X_Y*X_x + -1*X_X + 2*X_Y + -1*X_v)/2),
+    0 == (2*X_Y*X_x + -1*X_X + 2*X_Y + -1*X_v)%2)
+analysis:330:DEBUG (_get_loop_from_symstates) - inloop_fst_symstate: slocal: And(X == X_X,
+    Y == X_Y,
+    v == X_v,
+    x == X_x,
+    y == X_y,
+    c == X_c)
+analysis:334:DEBUG (_get_loop_from_symstates) - loop_cond: And(0 == X*y + -1*((2*Y*x + -1*X + 2*Y + -1*v)/2),
+    0 == (2*Y*x + -1*X + 2*Y + -1*v)%2)
+analysis:337:DEBUG (_get_loop_from_symstates) - terms: [0, X*y, -1*((2*Y*x + -1*X + 2*Y + -1*v)/2), 0, (2*Y*x + -1*X + 2*Y + -1*v)%2]
+analysis:338:DEBUG (_get_loop_from_symstates) - nonlinear_terms: [X*y]
+utils.profiling:31:DEBUG (timed) - _get_loopinfo_from_symstates: 14179.52ms
+analysis:399:DEBUG (get_loopinfo) - stem: <utils.loop.Stem object at 0x7f6564ec8c18>
+analysis:400:DEBUG (get_loopinfo) - loop: <utils.loop.Loop object at 0x7f6564ee3198>
+utils.profiling:31:DEBUG (timed) - get_loopinfo: 14179.73ms
+analysis:704:DEBUG (_stat_candidate_rcs) - stat (1 total): defaultdict(<class 'int'>, {0: 1})
+analysis:732:DEBUG (prove_nonterm_vloop) - PROVE_NT DEPTH 0: ZConj({And(0 == X*y + -1*((2*Y*x + -1*X + 2*Y + -1*v)/2),
+    0 == (2*Y*x + -1*X + 2*Y + -1*v)%2)})
+analysis:505:DEBUG (verify) - loop_transrel: And(And(X0 == X,
+        Y0 == Y,
+        v0 == v,
+        x0 == x,
+        y0 == y,
+        c0 == c),
+    And(X1 == X,
+        Y1 == Y,
+        v1 == 2*Y + v,
+        x1 == 1 + x,
+        y1 == y,
+        c1 == 1 + c))
+analysis:506:DEBUG (verify) - loop_cond: And(0 == X*y + -1*((2*Y*x + -1*X + 2*Y + -1*v)/2),
+    0 == (2*Y*x + -1*X + 2*Y + -1*v)%2)
+analysis:507:DEBUG (verify) - rcs: ZConj({And(0 == X*y + -1*((2*Y*x + -1*X + 2*Y + -1*v)/2),
+    0 == (2*Y*x + -1*X + 2*Y + -1*v)%2)})
+analysis:521:DEBUG (verify) - labeled_rcs: ZConj({And(0 == X*y + -1*((2*Y*x + -1*X + 2*Y + -1*v)/2),
+    0 == (2*Y*x + -1*X + 2*Y + -1*v)%2):c_0})
+analysis:528:DEBUG (verify) - transrel_rcs: ZConj({And(And(X0 == X,
+        Y0 == Y,
+        v0 == v,
+        x0 == x,
+        y0 == y,
+        c0 == c),
+    And(X1 == X,
+        Y1 == Y,
+        v1 == 2*Y + v,
+        x1 == 1 + x,
+        y1 == y,
+        c1 == 1 + c)), And(0 == X0*y0 + -1*((2*Y0*x0 + -1*X0 + 2*Y0 + -1*v0)/2),
+    0 == (2*Y0*x0 + -1*X0 + 2*Y0 + -1*v0)%2):c_0})
+analysis:533:DEBUG (verify) - init_transrel_rcs: ZConj({And(And(X0 == X,
+        Y0 == Y,
+        v0 == v,
+        x0 == x,
+        y0 == y,
+        c0 == c),
+    And(X1 == X,
+        Y1 == Y,
+        v1 == 2*Y + v,
+        x1 == 1 + x,
+        y1 == y,
+        c1 == 1 + c)), True, And(0 == X0*y0 + -1*((2*Y0*x0 + -1*X0 + 2*Y0 + -1*v0)/2),
+    0 == (2*Y0*x0 + -1*X0 + 2*Y0 + -1*v0)%2):c_0, And(X == X_X,
+    Y == X_Y,
+    v == -1*X_X + 2*X_Y,
+    0 == x,
+    0 == y,
+    0 == c)})
+analysis:542:DEBUG (_check) - rc: And(0 == X*y + -1*((2*Y*x + -1*X + 2*Y + -1*v)/2),
+    0 == (2*Y*x + -1*X + 2*Y + -1*v)%2):c_0
+analysis:547:DEBUG (_check) - rc_r: And(0 == X1*y1 + -1*((2*Y1*x1 + -1*X1 + 2*Y1 + -1*v1)/2),
+    0 == (2*Y1*x1 + -1*X1 + 2*Y1 + -1*v1)%2)
+analysis:548:DEBUG (_check) - f: ZConj({And(And(X0 == X,
+        Y0 == Y,
+        v0 == v,
+        x0 == x,
+        y0 == y,
+        c0 == c),
+    And(X1 == X,
+        Y1 == Y,
+        v1 == 2*Y + v,
+        x1 == 1 + x,
+        y1 == y,
+        c1 == 1 + c)), Not(And(0 == X1*y1 + -1*((2*Y1*x1 + -1*X1 + 2*Y1 + -1*v1)/2),
+        0 == (2*Y1*x1 + -1*X1 + 2*Y1 + -1*v1)%2)), And(0 == X0*y0 + -1*((2*Y0*x0 + -1*X0 + 2*Y0 + -1*v0)/2),
+    0 == (2*Y0*x0 + -1*X0 + 2*Y0 + -1*v0)%2):c_0})
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_0', And(0 == X0*y0 + -1*((2*Y0*x0 + -1*X0 + 2*Y0 + -1*v0)/2),
+    0 == (2*Y0*x0 + -1*X0 + 2*Y0 + -1*v0)%2))]
+analysis:556:DEBUG (_check) - rs: unsat
+analysis:557:DEBUG (_check) - unsat_core: ['c_0']
+analysis:600:INFO (verify) - dg: defaultdict(<class 'list'>, {'c_0': ['c_0']})
+analysis:601:INFO (verify) - label_d: defaultdict(<class 'str'>, {And(0 == X*y + -1*((2*Y*x + -1*X + 2*Y + -1*v)/2),
+    0 == (2*Y*x + -1*X + 2*Y + -1*v)%2): 'c_0'})
+analysis:602:INFO (verify) - rev_label_d: {'c_0': And(0 == X*y + -1*((2*Y*x + -1*X + 2*Y + -1*v)/2),
+    0 == (2*Y*x + -1*X + 2*Y + -1*v)%2)}
+analysis:605:INFO (verify) - loop_cond_label: c_0
+analysis:609:INFO (verify) - mds_labels: {'c_0'}
+analysis:610:INFO (verify) - mds: ZConj({And(0 == X*y + -1*((2*Y*x + -1*X + 2*Y + -1*v)/2),
+    0 == (2*Y*x + -1*X + 2*Y + -1*v)%2)})
+utils.profiling:31:DEBUG (timed) - verify: 245.60ms
+analysis:747:DEBUG (prove_nonterm_vloop) - new valid rcs: ZConj({And(0 == X*y + -1*((2*Y*x + -1*X + 2*Y + -1*v)/2),
+    0 == (2*Y*x + -1*X + 2*Y + -1*v)%2)})
+utils.profiling:31:DEBUG (timed) - prove_nonterm_vloop: 14483.53ms
+analysis:770:INFO (print_valid_rcs) - rcs: ZConj({And(0 == X*y + -1*((2*Y*x + -1*X + 2*Y + -1*v)/2),
+    0 == (2*Y*x + -1*X + 2*Y + -1*v)%2)})
+analysis:771:INFO (print_valid_rcs) - (simplified) rcs: And(0 == (2*Y*x + -1*X + 2*Y + -1*v)%2,
+    0 == X*y + -1*((2*Y*x + -1*X + 2*Y + -1*v)/2))
+utils.profiling:31:DEBUG (timed) - prove: 15234.63ms
+TNT result: (False, ('vloop_29', [(ZConj({And(0 == X*y + -1*((2*Y*x + -1*X + 2*Y + -1*v)/2),
+    0 == (2*Y*x + -1*X + 2*Y + -1*v)%2)}), [])]))
+Time log:
+gen_rand_inps: 0.133s
+_get_traces_mp: 0.141s
+_merge_traces: 0.434s
+get_traces_from_inps: 0.575s
+_get_symstates_from_src: 14.061s
+_get_loopinfo_from_symstates: 14.180s
+get_loopinfo: 14.180s
+verify: 0.246s
+prove_nonterm_vloop: 14.484s
+
+EJK TIMER: 17.191395
+

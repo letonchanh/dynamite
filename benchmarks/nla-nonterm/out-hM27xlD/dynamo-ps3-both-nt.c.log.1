@@ -1,0 +1,101 @@
+__main__:102:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:103:INFO (<module>) - Dig's logger_level: WARNING
+__main__:104:INFO (<module>) - Timeout: 300s
+__main__:106:INFO (<module>) - 2020-05-12 23:02:24.744997: dynamo.py --timeout=300 /home/exp/eric/dynamo/benchmarks/nla-nonterm/ps3-both-nt.c -nt
+/home/exp/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:72:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_wdoo2rym
+analysis:80:DEBUG (__init__) - trans_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /home/exp/eric/dynamo/benchmarks/nla-nonterm/ps3-both-nt.c --out=/var/tmp/Dig_wdoo2rym/ps3-both-nt.c --bnd=500
+analysis:87:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_12': ['exit'], 'mainQ': ['vloop_12'], 'main': ['mainQ']})
+analysis:98:DEBUG (__init__) - postorder_vloop_ids: ['vloop_12']
+analysis:107:DEBUG (__init__) - inp_decls (<class 'data.prog.Symbs'>): I k
+analysis:108:DEBUG (__init__) - inv_decls (<class 'data.prog.DSymbs'>): {'vtrace1_12': (Symb(name='y', typ='I'), Symb(name='x', typ='I'), Symb(name='c', typ='I')), 'vtrace2_12': (Symb(name='y', typ='I'), Symb(name='x', typ='I'), Symb(name='c', typ='I')), 'vtrace3_12': (Symb(name='y', typ='I'), Symb(name='x', typ='I'), Symb(name='c', typ='I'))}
+__main__:149:DEBUG (<module>) - prove_process: 24432
+analysis:230:DEBUG (_get_stem_from_symstates) - vloop.preloop_loc: vtrace1_12
+analysis:175:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+analysis:188:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_12
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 3924.32ms
+analysis:216:DEBUG (_get_stem_from_ss) - preloop_fst_symstate: loc: vtrace1_12
+pc: True
+slocal: And(0 == y, 0 == x, 0 == c)
+analysis:219:DEBUG (_get_stem_from_ss) - mainQ init_symvars: I X_k
+analysis:222:DEBUG (_get_stem_from_ss) - stem_cond (<class 'z3.z3.BoolRef'>): True
+analysis:223:DEBUG (_get_stem_from_ss) - stem_transrel (<class 'z3.z3.BoolRef'>): And(0 == y, 0 == x, 0 == c)
+analysis:260:DEBUG (_get_loop_from_symstates) - Create C source for vloop_12: /var/tmp/Dig_wvp3i2e8
+analysis:175:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+analysis:188:DEBUG (_get_symstates_from_src) - target_loc: None
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 6136.16ms
+analysis:271:DEBUG (_get_loop_from_symstates) - vloop inp_decls: I y, I x, I c
+analysis:272:DEBUG (_get_loop_from_symstates) - vloop inv_decls: {'vtrace1_12': (Symb(name='y', typ='I'), Symb(name='x', typ='I'), Symb(name='c', typ='I')), 'vtrace2_12': (Symb(name='y', typ='I'), Symb(name='x', typ='I'), Symb(name='c', typ='I')), 'vtrace3_12': (Symb(name='y', typ='I'), Symb(name='x', typ='I'), Symb(name='c', typ='I'))}
+analysis:273:DEBUG (_get_loop_from_symstates) - vloop init_symvars: I X_y, I X_x, I X_c
+analysis:293:DEBUG (_get_loop_from_symstates) - inloop_fst_slocal: And(y0 == X_y, x0 == X_x, c0 == X_c)
+analysis:294:DEBUG (_get_loop_from_symstates) - inloop_snd_slocal: And(y1 == 1 + X_y, x1 == (1 + X_y)**2 + X_x, c1 == 1 + X_c)
+analysis:306:DEBUG (_get_loop_from_symstates) - loop_transrel: And(And(y0 == y, x0 == x, c0 == c),
+    And(y1 == 1 + y, x1 == (1 + y)**2 + x, c1 == 1 + c))
+analysis:308:DEBUG (_get_loop_from_symstates) - inloop_fst_symstate: pc: And(0 == X_y**3 + -1*((-3*X_y**2 + 6*X_x + -1*X_y)/2),
+    0 == (-3*X_y**2 + 6*X_x + -1*X_y)%2)
+analysis:309:DEBUG (_get_loop_from_symstates) - inloop_fst_symstate: slocal: And(y == X_y, x == X_x, c == X_c)
+analysis:313:DEBUG (_get_loop_from_symstates) - loop_cond: And(0 == y**3 + -1*((-3*y**2 + 6*x + -1*y)/2),
+    0 == (-3*y**2 + 6*x + -1*y)%2)
+analysis:316:DEBUG (_get_loop_from_symstates) - terms: [0, y**3, -1*((-3*y**2 + 6*x + -1*y)/2), 0, (-3*y**2 + 6*x + -1*y)%2]
+analysis:317:DEBUG (_get_loop_from_symstates) - nonlinear_terms: [y**3]
+utils.profiling:31:DEBUG (timed) - _get_loopinfo_from_symstates: 10119.34ms
+analysis:378:DEBUG (get_loopinfo) - stem: <utils.loop.Stem object at 0x7f3523894080>
+analysis:379:DEBUG (get_loopinfo) - loop: <utils.loop.Loop object at 0x7f352386c0b8>
+utils.profiling:31:DEBUG (timed) - get_loopinfo: 10119.48ms
+analysis:662:DEBUG (_stat_candidate_rcs) - stat (1 total): defaultdict(<class 'int'>, {0: 1})
+analysis:680:DEBUG (prove_vloop) - PROVE_NT DEPTH 0: ZConj({And(0 == y**3 + -1*((-3*y**2 + 6*x + -1*y)/2),
+    0 == (-3*y**2 + 6*x + -1*y)%2)})
+analysis:484:DEBUG (verify) - loop_transrel: And(And(y0 == y, x0 == x, c0 == c),
+    And(y1 == 1 + y, x1 == (1 + y)**2 + x, c1 == 1 + c))
+analysis:485:DEBUG (verify) - loop_cond: And(0 == y**3 + -1*((-3*y**2 + 6*x + -1*y)/2),
+    0 == (-3*y**2 + 6*x + -1*y)%2)
+analysis:486:DEBUG (verify) - rcs: ZConj({And(0 == y**3 + -1*((-3*y**2 + 6*x + -1*y)/2),
+    0 == (-3*y**2 + 6*x + -1*y)%2)})
+analysis:500:DEBUG (verify) - labeled_rcs: ZConj({And(0 == y**3 + -1*((-3*y**2 + 6*x + -1*y)/2),
+    0 == (-3*y**2 + 6*x + -1*y)%2):c_0})
+analysis:509:DEBUG (verify) - init_transrel_rcs: ZConj({True, And(And(y0 == y, x0 == x, c0 == c),
+    And(y1 == 1 + y, x1 == (1 + y)**2 + x, c1 == 1 + c)), And(0 == y0**3 + -1*((-3*y0**2 + 6*x0 + -1*y0)/2),
+    0 == (-3*y0**2 + 6*x0 + -1*y0)%2):c_0, And(0 == y, 0 == x, 0 == c)})
+analysis:518:DEBUG (_check) - rc: And(0 == y**3 + -1*((-3*y**2 + 6*x + -1*y)/2),
+    0 == (-3*y**2 + 6*x + -1*y)%2):c_0
+analysis:523:DEBUG (_check) - rc_r: And(0 == y1**3 + -1*((-3*y1**2 + 6*x1 + -1*y1)/2),
+    0 == (-3*y1**2 + 6*x1 + -1*y1)%2)
+analysis:524:DEBUG (_check) - init_f: ZConj({And(And(y0 == y, x0 == x, c0 == c),
+    And(y1 == 1 + y, x1 == (1 + y)**2 + x, c1 == 1 + c)), And(0 == y0**3 + -1*((-3*y0**2 + 6*x0 + -1*y0)/2),
+    0 == (-3*y0**2 + 6*x0 + -1*y0)%2):c_0, And(0 == y, 0 == x, 0 == c), Not(And(0 == y1**3 + -1*((-3*y1**2 + 6*x1 + -1*y1)/2),
+        0 == (-3*y1**2 + 6*x1 + -1*y1)%2)), True})
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: And(0 == y0**3 + -1*((-3*y0**2 + 6*x0 + -1*y0)/2),
+    0 == (-3*y0**2 + 6*x0 + -1*y0)%2)
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_0
+solver:212:DEBUG (_get_unsat_core) - approx: []
+analysis:532:DEBUG (_check) - rs: unsat
+analysis:533:DEBUG (_check) - unsat_core: []
+analysis:560:INFO (verify) - dg: defaultdict(<class 'list'>, {'c_0': []})
+analysis:561:INFO (verify) - label_d: defaultdict(<class 'str'>, {And(0 == y**3 + -1*((-3*y**2 + 6*x + -1*y)/2),
+    0 == (-3*y**2 + 6*x + -1*y)%2): 'c_0'})
+analysis:562:INFO (verify) - rev_label_d: {'c_0': And(0 == y**3 + -1*((-3*y**2 + 6*x + -1*y)/2),
+    0 == (-3*y**2 + 6*x + -1*y)%2)}
+analysis:565:INFO (verify) - loop_cond_label: c_0
+analysis:569:INFO (verify) - mds_labels: {'c_0'}
+analysis:570:INFO (verify) - mds: ZConj({And(0 == y**3 + -1*((-3*y**2 + 6*x + -1*y)/2),
+    0 == (-3*y**2 + 6*x + -1*y)%2)})
+utils.profiling:31:DEBUG (timed) - verify: 185.23ms
+utils.profiling:31:DEBUG (timed) - prove_vloop: 221.64ms
+analysis:727:INFO (prove) - rcs: ZConj({And(0 == y**3 + -1*((-3*y**2 + 6*x + -1*y)/2),
+    0 == (-3*y**2 + 6*x + -1*y)%2)})
+analysis:728:INFO (prove) - (simplified) rcs: And(0 == (-3*y**2 + 6*x + -1*y)%2,
+    0 == y**3 + -1*((-3*y**2 + 6*x + -1*y)/2))
+utils.profiling:31:DEBUG (timed) - prove: 10357.15ms
+utils.profiling:31:DEBUG (timed) - prove: 10357.31ms
+Non-termination result: False (vloop_12)
+Time log:
+_get_symstates_from_src: 10.060s
+_get_loopinfo_from_symstates: 10.119s
+get_loopinfo: 10.119s
+verify: 0.185s
+prove_vloop: 0.222s
+prove: 10.357s
+
+EJK TIMER: 12.068082
+

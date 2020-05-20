@@ -1,0 +1,506 @@
+__main__:102:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:103:INFO (<module>) - Dig's logger_level: WARNING
+__main__:104:INFO (<module>) - Timeout: 900s
+__main__:106:INFO (<module>) - 2020-05-15 07:44:17.550793: dynamo.py --timeout=900 /home/exp/eric/dynamo/benchmarks/nla-nonterm/dijkstra5-both-nt.c
+/home/exp/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:72:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_bgmaazlv
+analysis:80:DEBUG (__init__) - trans_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /home/exp/eric/dynamo/benchmarks/nla-nonterm/dijkstra5-both-nt.c --out=/var/tmp/Dig_bgmaazlv/dijkstra5-both-nt.c --bnd=500
+analysis:87:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_26': ['exit'], 'vloop_33': ['exit'], 'mainQ': ['vloop_26', 'vloop_33'], 'main': ['mainQ']})
+analysis:98:DEBUG (__init__) - postorder_vloop_ids: ['vloop_26', 'vloop_33']
+analysis:107:DEBUG (__init__) - inp_decls (<class 'data.prog.Symbs'>): I n
+analysis:108:DEBUG (__init__) - inv_decls (<class 'data.prog.DSymbs'>): {'vtrace1_33': (Symb(name='n', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='h', typ='I')), 'vtrace2_33': (Symb(name='n', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='h', typ='I')), 'vtrace3_33': (Symb(name='n', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='h', typ='I')), 'vtrace1_26': (Symb(name='n', typ='I'), Symb(name='q', typ='I')), 'vtrace2_26': (Symb(name='n', typ='I'), Symb(name='q', typ='I')), 'vtrace3_26': (Symb(name='n', typ='I'), Symb(name='q', typ='I'))}
+__main__:152:DEBUG (<module>) - prove_process: 30862
+lib:43:DEBUG (gen_rand_inps) - gen 96/100 random inps
+utils.profiling:31:DEBUG (timed) - gen_rand_inps: 357.84ms
+lib:54:DEBUG (get_traces_from_inps) - inp_decls: I n
+lib:55:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_33': (Symb(name='n', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='h', typ='I')), 'vtrace2_33': (Symb(name='n', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='h', typ='I')), 'vtrace3_33': (Symb(name='n', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='h', typ='I')), 'vtrace1_26': (Symb(name='n', typ='I'), Symb(name='q', typ='I')), 'vtrace2_26': (Symb(name='n', typ='I'), Symb(name='q', typ='I')), 'vtrace3_26': (Symb(name='n', typ='I'), Symb(name='q', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 1171.61ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 1066.21ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 2253.03ms
+analysis:1153:DEBUG (prove) - Analysing vloop_26
+analysis:1155:DEBUG (prove) - base_term_inps: 48
+analysis:1156:DEBUG (prove) - term_inps: 48
+analysis:1157:DEBUG (prove) - mayloop_inps: 0
+analysis:1179:DEBUG (prove) - Proving Termination: vloop_26
+analysis:1046:DEBUG (prove_term_vloop) - classify_inps: vloop_26
+analysis:1049:DEBUG (prove_term_vloop) - itraces: 48
+lib:208:DEBUG (print_inps) - n=18: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 4), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=25: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 4), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=16: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 4), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=26: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 4), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=273: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=28: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 4), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=9: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 3), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=287: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=11: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 3), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=24: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 4), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=21: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 4), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=283: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=274: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=6: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 3), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=271: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=298: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=276: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=2: [('vtrace1_26', 1), ('vtrace2_26', 1), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 500)]
+lib:208:DEBUG (print_inps) - n=291: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=295: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=296: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=7: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 3), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=286: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=19: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 4), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=4: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 3), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=293: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=284: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=299: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=1: [('vtrace1_26', 1), ('vtrace2_26', 1), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 500)]
+lib:208:DEBUG (print_inps) - n=297: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=20: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 4), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=22: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 4), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=5: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 3), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=15: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 3), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=29: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 4), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=14: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 3), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=294: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=17: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 4), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=282: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=12: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 3), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=3: [('vtrace1_26', 1), ('vtrace2_26', 1), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 500)]
+lib:208:DEBUG (print_inps) - n=280: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=288: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=27: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 4), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=8: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 3), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=292: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=290: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=13: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 3), ('vtrace3_33', 1)]
+analysis:1051:DEBUG (prove_term_vloop) - base_term_inps: 0
+analysis:1052:DEBUG (prove_term_vloop) - term_inps: 48
+analysis:1053:DEBUG (prove_term_vloop) - mayloop_inps: 0
+analysis:863:DEBUG (infer_ranking_functions) - vloop: vloop_26
+analysis:864:DEBUG (infer_ranking_functions) - term_itraces: 48
+analysis:911:DEBUG (infer_ranking_functions) - train_rand_trans: 429
+analysis:918:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): n*uk_1 + q*uk_2 + uk_0
+analysis:919:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2]
+analysis:943:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 429
+analysis:950:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 1, uk_2 = -1, uk_0 = 0]
+analysis:954:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 13*uk_1 + uk_2
+analysis:955:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 13*uk_1 + 4*uk_2
+analysis:956:DEBUG (_infer_ranking_functions_from_trans) - rf: n + -1*q
+analysis:985:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:986:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [n + -1*q]
+utils.profiling:31:DEBUG (timed) - infer_ranking_functions: 2296.49ms
+analysis:1067:DEBUG (prove_term_vloop) - validate_ranking_functions: vloop_26
+analysis:994:DEBUG (validate_ranking_functions) - ranks_str: n + -1*q
+validate:123:DEBUG (gen_validate_file) - validate_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/eric/dynamo/benchmarks/nla-nonterm/dijkstra5-both-nt.c --out=/var/tmp/Dig_bgmaazlv/vloop_26/par/validate/dijkstra5-both-nt.c --pos=26 --ranks="n + -1*q"
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/CPAchecker-1.9-unix/scripts/cpa.sh -spec /home/exp/tools/reachability.prp -predicateAnalysis -setprop counterexample.export.compressWitness=false /var/tmp/Dig_bgmaazlv/vloop_26/par/validate/dijkstra5-both-nt.c
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_bgmaazlv/vloop_26/par/uatm --witness-name witness.graphml --file /var/tmp/Dig_bgmaazlv/vloop_26/par/validate/dijkstra5-both-nt.c
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UTaipan-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_bgmaazlv/vloop_26/par/utp --witness-name witness.graphml --file /var/tmp/Dig_bgmaazlv/vloop_26/par/validate/dijkstra5-both-nt.c
+validate:46:DEBUG (prove_reach) - res: True
+validate:253:DEBUG (prove_reach) - wrs: [('uatm', (True, None))]
+validate:256:DEBUG (prove_reach) - Got result firstly from uatm
+utils.profiling:31:DEBUG (timed) - prove_reach: 10133.16ms
+analysis:1007:DEBUG (validate_ranking_functions) - r: True
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 10289.59ms
+analysis:1069:DEBUG (prove_term_vloop) - Termination result (vloop_26): True ([n + -1*q])
+utils.profiling:31:DEBUG (timed) - prove_term_vloop: 12592.80ms
+analysis:1184:DEBUG (prove) - vloop_26 terminates: [n + -1*q]
+analysis:1153:DEBUG (prove) - Analysing vloop_33
+analysis:1155:DEBUG (prove) - base_term_inps: 0
+analysis:1156:DEBUG (prove) - term_inps: 45
+analysis:1157:DEBUG (prove) - mayloop_inps: 51
+analysis:1179:DEBUG (prove) - Proving Termination: vloop_33
+analysis:1046:DEBUG (prove_term_vloop) - classify_inps: vloop_33
+analysis:1049:DEBUG (prove_term_vloop) - itraces: 45
+lib:208:DEBUG (print_inps) - n=18: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 4), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=25: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 4), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=16: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 4), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=26: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 4), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=273: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=28: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 4), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=9: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 3), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=287: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=11: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 3), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=24: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 4), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=21: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 4), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=283: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=274: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=6: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 3), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=271: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=298: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=276: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=291: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=295: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=296: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=7: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 3), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=286: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=19: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 4), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=4: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 3), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=293: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=284: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=299: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=297: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=20: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 4), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=22: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 4), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=5: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 3), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=15: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 3), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=29: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 4), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=14: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 3), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=294: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=17: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 4), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=282: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=12: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 3), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=280: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=288: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=27: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 4), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=8: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 3), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=292: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=290: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 6), ('vtrace3_33', 1)]
+lib:208:DEBUG (print_inps) - n=13: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace3_26', 1), ('vtrace1_33', 1), ('vtrace2_33', 3), ('vtrace3_33', 1)]
+analysis:1051:DEBUG (prove_term_vloop) - base_term_inps: 0
+analysis:1052:DEBUG (prove_term_vloop) - term_inps: 45
+analysis:1053:DEBUG (prove_term_vloop) - mayloop_inps: 0
+analysis:863:DEBUG (infer_ranking_functions) - vloop: vloop_33
+analysis:864:DEBUG (infer_ranking_functions) - term_itraces: 45
+analysis:911:DEBUG (infer_ranking_functions) - train_rand_trans: 616
+analysis:918:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): n*uk_1 + p*uk_2 + q*uk_3 + r*uk_4 + h*uk_5 + uk_0
+analysis:919:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3, uk_4, uk_5]
+analysis:943:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 616
+analysis:950:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_5 = -1,
+ uk_4 = 0,
+ uk_3 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:954:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 13*uk_1 + 16*uk_3 + 13*uk_4
+analysis:955:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 13*uk_1 + uk_2 + uk_4 + 3*uk_5
+analysis:956:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*h
+analysis:985:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 411
+analysis:950:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0, uk_5 = 0, uk_4 = 1, uk_3 = 0, uk_2 = 0, uk_0 = 0]
+analysis:954:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 13*uk_1 + 4*uk_2 + 4*uk_3 + 9*uk_4 + 4*uk_5
+analysis:955:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 13*uk_1 + 3*uk_2 + uk_3 + 4*uk_4 + 5*uk_5
+analysis:956:DEBUG (_infer_ranking_functions_from_trans) - rf: r
+analysis:985:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 234
+analysis:950:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0, uk_5 = 1, uk_4 = 0, uk_3 = 0, uk_2 = 0, uk_0 = 0]
+analysis:954:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 290*uk_1 + 64*uk_2 + 16*uk_3 + 34*uk_4 + 144*uk_5
+analysis:955:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 290*uk_1 + 32*uk_2 + 4*uk_3 + 34*uk_4 + 68*uk_5
+analysis:956:DEBUG (_infer_ranking_functions_from_trans) - rf: h
+analysis:985:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 38
+analysis:950:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0, uk_5 = 0, uk_4 = 0, uk_3 = 1, uk_2 = 0, uk_0 = 0]
+analysis:954:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 290*uk_1 + 256*uk_2 + 256*uk_3 + 34*uk_4 + 256*uk_5
+analysis:955:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 290*uk_1 + 128*uk_2 + 64*uk_3 + 34*uk_4 + 320*uk_5
+analysis:956:DEBUG (_infer_ranking_functions_from_trans) - rf: q
+analysis:985:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:986:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [-1*h, r, h, q]
+utils.profiling:31:DEBUG (timed) - infer_ranking_functions: 17362.24ms
+analysis:1067:DEBUG (prove_term_vloop) - validate_ranking_functions: vloop_33
+analysis:994:DEBUG (validate_ranking_functions) - ranks_str: -1*h|r|h|q
+validate:123:DEBUG (gen_validate_file) - validate_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/eric/dynamo/benchmarks/nla-nonterm/dijkstra5-both-nt.c --out=/var/tmp/Dig_bgmaazlv/vloop_33/par/validate/dijkstra5-both-nt.c --pos=33 --ranks="-1*h|r|h|q"
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/CPAchecker-1.9-unix/scripts/cpa.sh -spec /home/exp/tools/reachability.prp -predicateAnalysis -setprop counterexample.export.compressWitness=false /var/tmp/Dig_bgmaazlv/vloop_33/par/validate/dijkstra5-both-nt.c
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_bgmaazlv/vloop_33/par/uatm --witness-name witness.graphml --file /var/tmp/Dig_bgmaazlv/vloop_33/par/validate/dijkstra5-both-nt.c
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UTaipan-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_bgmaazlv/vloop_33/par/utp --witness-name witness.graphml --file /var/tmp/Dig_bgmaazlv/vloop_33/par/validate/dijkstra5-both-nt.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /home/exp/tools/CPAchecker-1.9-unix/scripts/cpa.sh -spec /home/exp/tools/reachability.prp -witnessValidation -witness /var/tmp/Dig_bgmaazlv/vloop_33/par/cpa/output/Counterexample.1.graphml /var/tmp/Dig_bgmaazlv/vloop_33/par/validate/dijkstra5-both-nt.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --validate /var/tmp/Dig_bgmaazlv/vloop_33/par/uatm/witness.graphml --file /var/tmp/Dig_bgmaazlv/vloop_33/par/validate/dijkstra5-both-nt.c
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex: None
+validate:253:DEBUG (prove_reach) - wrs: [('cpa', (False, None))]
+validate:256:DEBUG (prove_reach) - Got result firstly from cpa
+utils.profiling:31:DEBUG (timed) - prove_reach: 20681.50ms
+analysis:1007:DEBUG (validate_ranking_functions) - r: False
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 20839.69ms
+analysis:1069:DEBUG (prove_term_vloop) - Termination result (vloop_33): False ([-1*h, r, h, q])
+utils.profiling:31:DEBUG (timed) - prove_term_vloop: 38208.32ms
+analysis:1187:DEBUG (prove) - Proving Non-Termination: vloop_33
+analysis:239:DEBUG (_get_stem_from_symstates) - vloop.preloop_loc: vtrace1_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_33
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 13760.50ms
+analysis:225:DEBUG (_get_stem_from_ss) - preloop_fst_symstate: loc: vtrace1_33
+pc: 0 >= X_n
+slocal: And(n == X_n, 0 == p, 1 == q, r == X_n, 0 == h)
+analysis:228:DEBUG (_get_stem_from_ss) - mainQ init_symvars: I X_n
+analysis:231:DEBUG (_get_stem_from_ss) - stem_cond (<class 'z3.z3.BoolRef'>): 0 >= X_n
+analysis:232:DEBUG (_get_stem_from_ss) - stem_transrel (<class 'z3.z3.BoolRef'>): And(n == X_n, 0 == p, 1 == q, r == X_n, 0 == h)
+analysis:269:DEBUG (_get_loop_from_symstates) - Create C source for vloop_33: /var/tmp/Dig_079ruza8
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 29
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 34
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 39
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 44
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 49
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 54
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 59
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 64
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 69
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 74
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 79
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 84
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 89
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 94
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 99
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 104
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 109
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 114
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 119
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 124
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 129
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 134
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 139
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 144
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 149
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 154
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 159
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 164
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 169
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 174
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 179
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 184
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 189
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 194
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 199
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 204
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 209
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 214
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 219
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 224
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_ychfu_ru/symexe/dijkstra4-both-nt_vloop_33.c.vloop_33_277.straces'
+data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_ychfu_ru/symexe/dijkstra4-both-nt_vloop_33.c.vloop_33_278.straces'
+data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_ychfu_ru/symexe/dijkstra4-both-nt_vloop_33.c.vloop_33_279.straces'
+data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_ychfu_ru/symexe/dijkstra4-both-nt_vloop_33.c.vloop_33_276.straces'
+data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_ychfu_ru/symexe/dijkstra4-both-nt_vloop_33.c.vloop_33_275.straces'
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:194:DEBUG (_get_symstates_from_src) - Traceback (most recent call last):
+  File "/home/exp/eric/dynamo/src/analysis.py", line 192, in _get_symstates_from_src
+    symstates.compute(src.symexefile, src.mainQ_name, src.funname, src.symexedir)
+  File "/home/exp/eric/dynamo/deps/dig/src/data/symstates.py", line 319, in compute
+    sys.exit(0)
+SystemExit: 0
+
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 279
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 284
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 289
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 294
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 299
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 304
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 309
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 314
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 319
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 324
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 329
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 334
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 339
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 344
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 349
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 354
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 359
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 364
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 369
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 374
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 379
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 384
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 389
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 394
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 399
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 404
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 409
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 414
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 419
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 424
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 429
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 434
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 439
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 444
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 449
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 454
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 459
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 464
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 469
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 474
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 479
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 484
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 489
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 494
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 499
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 584
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 589
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 594
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 599
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 604
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 609
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 614
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 619
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 624
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 629
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 634
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 639
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 644
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 649
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 654
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 659
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 664
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 669
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 674
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 679
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 684
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 689
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 694
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 699
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 704
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 709
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 714
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 719
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 724
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 729
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 734
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 739
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 744
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 749
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 754
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 759
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 764
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 769
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 774
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 779
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 784
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 789
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 794
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 799
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 804
+analysis:197:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+analysis:184:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 809
+
+EJK TIMER: 900.000233
+

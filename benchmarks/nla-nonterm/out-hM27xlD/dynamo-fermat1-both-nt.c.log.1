@@ -1,0 +1,29 @@
+__main__:102:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:103:INFO (<module>) - Dig's logger_level: WARNING
+__main__:104:INFO (<module>) - Timeout: 300s
+__main__:106:INFO (<module>) - 2020-05-12 21:39:41.347914: dynamo.py --timeout=300 /home/exp/eric/dynamo/benchmarks/nla-nonterm/fermat1-both-nt.c -nt
+/home/exp/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:72:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_dk8b78v6
+analysis:80:DEBUG (__init__) - trans_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /home/exp/eric/dynamo/benchmarks/nla-nonterm/fermat1-both-nt.c --out=/var/tmp/Dig_dk8b78v6/fermat1-both-nt.c --bnd=500
+analysis:87:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_37': ['exit'], 'vloop_45': ['exit'], 'vloop_32': ['exit', 'vloop_37', 'vloop_45'], 'mainQ': ['__VERIFIER_nondet_double', '__VERIFIER_nondet_double', 'vloop_32'], 'main': ['mainQ']})
+Traceback (most recent call last):
+  File "dynamo.py", line 130, in <module>
+    config = Setup(seed, inp)
+  File "/home/exp/eric/dynamo/src/analysis.py", line 92, in __init__
+    src = c_src(Path(self.trans_inp), self.tmpdir)
+  File "/home/exp/eric/dynamo/deps/dig/src/helpers/src.py", line 138, in __init__
+    super().__init__(filename, tmpdir)
+  File "/home/exp/eric/dynamo/deps/dig/src/helpers/src.py", line 38, in __init__
+    self.compile_test(tracefile, tmpdir / "{}.exe".format(basename.stem))
+  File "/home/exp/eric/dynamo/deps/dig/src/helpers/src.py", line 155, in compile_test
+    assert not errmsg, "cmd: {} gives err:\n{}".format(cmd, errmsg)
+AssertionError: cmd: gcc /var/tmp/Dig_dk8b78v6/traces/fermat1-both-nt_mainQ.c -o /var/tmp/Dig_dk8b78v6/fermat1-both-nt_mainQ.exe gives err:
+/usr/bin/ld: /tmp/ccHcmD6R.o: in function `mainQ':
+fermat1-both-nt_mainQ.c:(.text+0x80a): undefined reference to `__VERIFIER_nondet_double'
+/usr/bin/ld: fermat1-both-nt_mainQ.c:(.text+0x817): undefined reference to `__VERIFIER_nondet_double'
+collect2: error: ld returned 1 exit status
+
+
+EJK TIMER: 1.96581
+

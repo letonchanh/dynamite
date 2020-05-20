@@ -1,0 +1,25 @@
+__main__:102:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:103:INFO (<module>) - Dig's logger_level: WARNING
+__main__:104:INFO (<module>) - Timeout: 300s
+__main__:106:INFO (<module>) - 2020-05-12 21:37:31.997306: dynamo.py --timeout=300 /home/exp/eric/dynamo/benchmarks/nla-nonterm/divbin1-both-nt.c -nt
+/home/exp/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:72:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_o28w35r7
+analysis:80:DEBUG (__init__) - trans_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /home/exp/eric/dynamo/benchmarks/nla-nonterm/divbin1-both-nt.c --out=/var/tmp/Dig_o28w35r7/divbin1-both-nt.c --bnd=500
+analysis:87:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_37': ['exit'], 'vloop_42': ['exit'], 'mainQ': ['vloop_37', 'vloop_42'], 'main': ['mainQ']})
+Traceback (most recent call last):
+  File "dynamo.py", line 130, in <module>
+    config = Setup(seed, inp)
+  File "/home/exp/eric/dynamo/src/analysis.py", line 92, in __init__
+    src = c_src(Path(self.trans_inp), self.tmpdir)
+  File "/home/exp/eric/dynamo/deps/dig/src/helpers/src.py", line 138, in __init__
+    super().__init__(filename, tmpdir)
+  File "/home/exp/eric/dynamo/deps/dig/src/helpers/src.py", line 30, in __init__
+    assert not errmsg, "'{}': {}".format(cmd, errmsg)
+AssertionError: '/home/exp/eric/dynamo/deps/dig/src/ocaml/instr.native /var/tmp/Dig_o28w35r7/divbin1-both-nt.c /var/tmp/Dig_o28w35r7/symexe/divbin1-both-nt_mainQ.c /var/tmp/Dig_o28w35r7/traces/divbin1-both-nt_mainQ.c mainQ': old type = TFun(TInt(unsigned int, ), , )
+new type = TFun(TInt(int, ), None, )
+divbin1-both-nt.c:55: Error: Declaration of __VERIFIER_nondet_unsigned_int does not match previous declaration from divbin1-both-nt.c:53 (different integer types).
+error in createGlobal(__VERIFIER_nondet_unsigned_int: divbin1-both-nt.c:55): Errormsg.Error
+
+EJK TIMER: 1.738158
+

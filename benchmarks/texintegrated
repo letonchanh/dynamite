@@ -1,5 +1,18 @@
 #!/bin/sh
 
+### Term crafted lit 
+./harvest --iters=5 nocsvs termination-crafted-lit/out-ttR_bdp
+cp compare.tex ~/dynamic-termination/draft/termcraftlit.tex
+cp comparent.tex ~/dynamic-termination/draft/termcraftlitnt.tex
+cp comparesummary.tex ~/dynamic-termination/draft/termcraftlitsummary.tex
+cp naming.tex ~/dynamic-termination/draft/
+
+### NLA term
+./harvest nocsvs nla-term/out-7FTS_Zx
+
+### NLA nonterm
+./harvest nocsvs nla-nonterm/out-_G_zxz3
+
 ./harvest nocsvs nla-nonterm/integrated-hAdQkzM | tail -n 39 > /tmp/all
 ./harvest nocsvs nla-term/integrated-XLisaoQ | tail -n 38 >> /tmp/all
 sort /tmp/all | head -n 39 > ~/dynamic-termination/draft/nlaintegrated3.tex
@@ -7,5 +20,7 @@ sort /tmp/all | tail -n 38 > ~/dynamic-termination/draft/nlaintegrated3b.tex
 
 # old:   nla-term integrated-9Al33qv
 
-### Term crafted lit 
-./harvest --iters=5 nocsvs termination-crafted-lit/out-ttR_bdp | tail -n 66 > ~/dynamic-termination/draft/termcraftlit.tex
+
+
+
+
