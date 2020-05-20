@@ -85,18 +85,44 @@ foreach my $tool (@tools) {
       push @newfile, "../results/$b/$tool.$fn.csv";
   }
 }
+
+sub TCLtrunc {
+    my ($nm) = @_;
+    return $nm if length $nm < 15;
+    my @secs = split '-', $nm;
+
+    if ($secs[0] =~ /^[A-Z][a-z]+/) {
+        my @auths = ($secs[0] =~ /([A-Z][a-z]+)/g);
+        #print "TRUNCATION: $nm  ==>  auths: ".join(',',@auths)."\n";
+        my $as = join '', map { substr($_,0,2) } @auths;
+        my $merged = join('-', ($as,@secs[1..$#secs]));
+        $merged =~ s/CarbonellRubio/CaRu/;
+        $merged =~ s/LockingExample/LockEx/;
+        $merged =~ s/modified/mod/;
+        $merged =~ s/Introduction/Intro/;
+        return $merged;
+    }
+}
+
+
 #print "Skipped These:\n   ".join("\n   ",@skips)."\n";
 print "\n";
 print "========= DYN DETAIL ============\n";
 print for @dynDetail;
 
+my %naming;
 if($benchdir =~ /termination-crafted-lit/) {
-    print "========= COMPARISON ============\n";
-    my $prev = ''; my $ctr = 2;
+    print "========= COMPARISON ============\n--> compare.tex\n--> comparent.tex\n--> naming.tex\n";
+    open CMP, ">compare.tex" or die $!;
+    open CMPNT, ">comparent.tex" or die $!;
+    open CMPSUM, ">comparesummary.tex" or die $!;
+    my $prev = ''; my $ctr = 1;
     foreach my $b (sort keys %{$compare}) {
-        my $trunc = substr($b,0,15);
-        if ($trunc eq $prev) { $trunc .= "".($ctr++); } else { $prev = $trunc; $ctr = 2; };
-        printf("%-25s \& \$ %-15s \$ \& %-4s \& %-6s \& %-4s \& %-6s \& %5s \& %5.1f \&   \\ULTIMATE{  %-5s \& %-6s } \\\\\n",
+        my $trunc = TCLtrunc($b);
+        $naming{$trunc} = $b;
+        #my $trunc = substr($b,0,15);
+        #if ($trunc eq $prev) { $trunc .= "".($ctr++); } else { $prev = $trunc; $ctr = 2; };
+        my $out = sprintf("%-35s \& \$ %-15s \$ \& %-4s \& %-6s \& %-4s \& %-6s \& %5s \& %5.1f \&   \\ULTIMATE{  %-5s \& %-6s } \\\\\n",
                $trunc,
                $compare->{$b}->{dynamo}->{rf}." ",
                $compare->{$b}->{dynamo}->{guesst},
@@ -108,7 +134,18 @@ if($benchdir =~ /termination-crafted-lit/) {
                $compare->{$b}->{ultimate}->{time},
                '\r'.$compare->{$b}->{ultimate}->{result}
             );
+        if ($b =~ /BradleyManna|ChenCookFuhs|HenzingerJala|Velroy|Urban.*Fig1\.c/) {
+            print CMPNT $out
+        } else {
+            print CMP $out;
+            print CMPSUM $out if $ctr++ % 4 == 0;
+        }
     }
+    close CMP;
+    close CMPNT;
+    open NM, ">naming.tex" or die $!;
+    map { print NM "\\textts{$_} & \\textts{$naming{$_}} \\\\\n" } (sort keys %naming) ;
+    close NM;
 }
 
 if($outdir =~ /integrated/) {

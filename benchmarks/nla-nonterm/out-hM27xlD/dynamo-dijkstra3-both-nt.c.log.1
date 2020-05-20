@@ -1,0 +1,497 @@
+__main__:102:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:103:INFO (<module>) - Dig's logger_level: WARNING
+__main__:104:INFO (<module>) - Timeout: 300s
+__main__:106:INFO (<module>) - 2020-05-12 21:35:47.480535: dynamo.py --timeout=300 /home/exp/eric/dynamo/benchmarks/nla-nonterm/dijkstra3-both-nt.c -nt
+/home/exp/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:72:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_5l2xg_fx
+analysis:80:DEBUG (__init__) - trans_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /home/exp/eric/dynamo/benchmarks/nla-nonterm/dijkstra3-both-nt.c --out=/var/tmp/Dig_5l2xg_fx/dijkstra3-both-nt.c --bnd=500
+analysis:87:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_26': ['exit'], 'vloop_33': ['exit'], 'mainQ': ['vloop_26', 'vloop_33'], 'main': ['mainQ']})
+analysis:98:DEBUG (__init__) - postorder_vloop_ids: ['vloop_26', 'vloop_33']
+analysis:107:DEBUG (__init__) - inp_decls (<class 'data.prog.Symbs'>): I n
+analysis:108:DEBUG (__init__) - inv_decls (<class 'data.prog.DSymbs'>): {'vtrace1_33': (Symb(name='n', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='h', typ='I')), 'vtrace2_33': (Symb(name='n', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='h', typ='I')), 'vtrace3_33': (Symb(name='n', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='h', typ='I')), 'vtrace1_26': (Symb(name='n', typ='I'), Symb(name='q', typ='I')), 'vtrace2_26': (Symb(name='n', typ='I'), Symb(name='q', typ='I')), 'vtrace3_26': (Symb(name='n', typ='I'), Symb(name='q', typ='I'))}
+__main__:149:DEBUG (<module>) - prove_process: 29775
+analysis:230:DEBUG (_get_stem_from_symstates) - vloop.preloop_loc: vtrace1_26
+analysis:175:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+analysis:188:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_26
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 6967.45ms
+analysis:216:DEBUG (_get_stem_from_ss) - preloop_fst_symstate: loc: vtrace1_26
+pc: True
+slocal: And(n == X_n, 1 == q)
+analysis:219:DEBUG (_get_stem_from_ss) - mainQ init_symvars: I X_n
+analysis:222:DEBUG (_get_stem_from_ss) - stem_cond (<class 'z3.z3.BoolRef'>): True
+analysis:223:DEBUG (_get_stem_from_ss) - stem_transrel (<class 'z3.z3.BoolRef'>): And(n == X_n, 1 == q)
+analysis:260:DEBUG (_get_loop_from_symstates) - Create C source for vloop_26: /var/tmp/Dig_8anv1j97
+analysis:175:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+analysis:188:DEBUG (_get_symstates_from_src) - target_loc: None
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 6589.39ms
+analysis:271:DEBUG (_get_loop_from_symstates) - vloop inp_decls: I n, I q
+analysis:272:DEBUG (_get_loop_from_symstates) - vloop inv_decls: {'vtrace1_33': (Symb(name='n', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='h', typ='I')), 'vtrace2_33': (Symb(name='n', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='h', typ='I')), 'vtrace3_33': (Symb(name='n', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='h', typ='I')), 'vtrace1_26': (Symb(name='n', typ='I'), Symb(name='q', typ='I')), 'vtrace2_26': (Symb(name='n', typ='I'), Symb(name='q', typ='I')), 'vtrace3_26': (Symb(name='n', typ='I'), Symb(name='q', typ='I'))}
+analysis:273:DEBUG (_get_loop_from_symstates) - vloop init_symvars: I X_n, I X_q
+analysis:293:DEBUG (_get_loop_from_symstates) - inloop_fst_slocal: And(n0 == X_n, q0 == X_q)
+analysis:294:DEBUG (_get_loop_from_symstates) - inloop_snd_slocal: And(n1 == X_n, q1 == 4*X_q)
+analysis:306:DEBUG (_get_loop_from_symstates) - loop_transrel: And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q))
+analysis:308:DEBUG (_get_loop_from_symstates) - inloop_fst_symstate: pc: 0 <= X_n + -1*X_q
+analysis:309:DEBUG (_get_loop_from_symstates) - inloop_fst_symstate: slocal: And(n == X_n, q == X_q)
+analysis:313:DEBUG (_get_loop_from_symstates) - loop_cond: 0 <= n + -1*q
+analysis:316:DEBUG (_get_loop_from_symstates) - terms: [0, n, -1*q]
+analysis:317:DEBUG (_get_loop_from_symstates) - nonlinear_terms: []
+utils.profiling:31:DEBUG (timed) - _get_loopinfo_from_symstates: 13602.48ms
+analysis:378:DEBUG (get_loopinfo) - stem: <utils.loop.Stem object at 0x7f547d901438>
+analysis:379:DEBUG (get_loopinfo) - loop: <utils.loop.Loop object at 0x7f547d8d6048>
+utils.profiling:31:DEBUG (timed) - get_loopinfo: 13602.68ms
+analysis:662:DEBUG (_stat_candidate_rcs) - stat (1 total): defaultdict(<class 'int'>, {0: 1})
+analysis:680:DEBUG (prove_vloop) - PROVE_NT DEPTH 0: ZConj({0 <= n + -1*q})
+analysis:484:DEBUG (verify) - loop_transrel: And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q))
+analysis:485:DEBUG (verify) - loop_cond: 0 <= n + -1*q
+analysis:486:DEBUG (verify) - rcs: ZConj({0 <= n + -1*q})
+analysis:500:DEBUG (verify) - labeled_rcs: ZConj({0 <= n + -1*q:c_0})
+analysis:509:DEBUG (verify) - init_transrel_rcs: ZConj({And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q)), And(n == X_n, 1 == q), True, 0 <= n0 + -1*q0:c_0})
+analysis:518:DEBUG (_check) - rc: 0 <= n + -1*q:c_0
+analysis:523:DEBUG (_check) - rc_r: 0 <= n1 + -1*q1
+analysis:524:DEBUG (_check) - init_f: ZConj({And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q)), And(n == X_n, 1 == q), 0 <= n0 + -1*q0:c_0, Not(0 <= n1 + -1*q1), True})
+analysis:548:DEBUG (_check) - init_rs: sat (3 models)
+analysis:560:INFO (verify) - dg: defaultdict(<class 'list'>, {})
+analysis:561:INFO (verify) - label_d: defaultdict(<class 'str'>, {0 <= n + -1*q: 'c_0'})
+analysis:562:INFO (verify) - rev_label_d: {'c_0': 0 <= n + -1*q}
+analysis:565:INFO (verify) - loop_cond_label: c_0
+analysis:569:INFO (verify) - mds_labels: set()
+analysis:570:INFO (verify) - mds: ZConj()
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 27.73ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 18.03ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 46.17ms
+utils.profiling:31:DEBUG (timed) - verify: 250.56ms
+analysis:590:DEBUG (strengthen) - base_term_inps: 0
+analysis:591:DEBUG (strengthen) - term_inps: 3
+analysis:592:DEBUG (strengthen) - mayloop_inps: 0
+analysis:593:DEBUG (strengthen) - rcs: ZConj({0 <= n + -1*q})
+lib:207:DEBUG (get_traces_by_id) - dtraces[vtrace2_26]: 0
+lib:207:DEBUG (get_traces_by_id) - dtraces[vtrace2_26]: 0
+lib:231:DEBUG (infer_from_traces) - invs: 
+analysis:597:DEBUG (strengthen) - mayloop_invs: ZConj()
+lib:207:DEBUG (get_traces_by_id) - dtraces[vtrace2_26]: 2
+lib:207:DEBUG (get_traces_by_id) - dtraces[vtrace2_26]: 1
+*** 'None', 0 locs, 0 invs (), 0 traces, 0 inps, time 0.01s, rand seed 1589337347.48, test 62 20:
+
+lib:231:DEBUG (infer_from_traces) - invs: vtrace2_26 (5 invs):
+1. q <= 1
+2. n <= 3
+3. n - q <= 2
+4. n + q <= 4
+5. -q <= -1
+analysis:601:DEBUG (strengthen) - term_invs: ZConj({2 >= n + -1*q, 4 >= n + q, 3 >= n, 1 >= q, q >= 1})
+utils.profiling:31:DEBUG (timed) - strengthen: 1509.57ms
+analysis:662:DEBUG (_stat_candidate_rcs) - stat (5 total): defaultdict(<class 'int'>, {1: 5})
+analysis:680:DEBUG (prove_vloop) - PROVE_NT DEPTH 1: ZConj({Not(2 >= n + -1*q), 0 <= n + -1*q})
+analysis:484:DEBUG (verify) - loop_transrel: And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q))
+analysis:485:DEBUG (verify) - loop_cond: 0 <= n + -1*q
+analysis:486:DEBUG (verify) - rcs: ZConj({Not(2 >= n + -1*q), 0 <= n + -1*q})
+analysis:500:DEBUG (verify) - labeled_rcs: ZConj({0 <= n + -1*q:c_1, Not(2 >= n + -1*q):c_0})
+analysis:509:DEBUG (verify) - init_transrel_rcs: ZConj({And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q)), And(n == X_n, 1 == q), 0 <= n0 + -1*q0:c_1, Not(2 >= n0 + -1*q0):c_0, True})
+analysis:518:DEBUG (_check) - rc: Not(2 >= n + -1*q):c_0
+analysis:523:DEBUG (_check) - rc_r: Not(2 >= n1 + -1*q1)
+analysis:524:DEBUG (_check) - init_f: ZConj({And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q)), And(n == X_n, 1 == q), 0 <= n0 + -1*q0:c_1, True, Not(2 >= n0 + -1*q0):c_0, Not(Not(2 >= n1 + -1*q1))})
+analysis:548:DEBUG (_check) - init_rs: sat (3 models)
+analysis:518:DEBUG (_check) - rc: 0 <= n + -1*q:c_1
+analysis:523:DEBUG (_check) - rc_r: 0 <= n1 + -1*q1
+analysis:524:DEBUG (_check) - init_f: ZConj({And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q)), And(n == X_n, 1 == q), Not(2 >= n0 + -1*q0):c_0, Not(0 <= n1 + -1*q1), True, 0 <= n0 + -1*q0:c_1})
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: Not(2 >= n0 + -1*q0)
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_0
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: 0 <= n0 + -1*q0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_1
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_0', Not(2 >= n0 + -1*q0))]
+analysis:532:DEBUG (_check) - rs: unsat
+analysis:533:DEBUG (_check) - unsat_core: ['c_0']
+analysis:560:INFO (verify) - dg: defaultdict(<class 'list'>, {'c_1': ['c_0']})
+analysis:561:INFO (verify) - label_d: defaultdict(<class 'str'>, {Not(2 >= n + -1*q): 'c_0', 0 <= n + -1*q: 'c_1'})
+analysis:562:INFO (verify) - rev_label_d: {'c_0': Not(2 >= n + -1*q), 'c_1': 0 <= n + -1*q}
+analysis:565:INFO (verify) - loop_cond_label: c_1
+analysis:569:INFO (verify) - mds_labels: set()
+analysis:570:INFO (verify) - mds: ZConj()
+*** 'None', 1 locs, 5 invs (5 Oct), 3 traces, 0 inps, time 1.49s, rand seed 1589337347.48, test 62 20:
+vtrace2_26 (5 invs):
+1. q <= 1
+2. n <= 3
+3. n - q <= 2
+4. n + q <= 4
+5. -q <= -1
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 24.63ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 19.40ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 44.52ms
+utils.profiling:31:DEBUG (timed) - verify: 197.99ms
+analysis:590:DEBUG (strengthen) - base_term_inps: 0
+analysis:591:DEBUG (strengthen) - term_inps: 3
+analysis:592:DEBUG (strengthen) - mayloop_inps: 0
+analysis:593:DEBUG (strengthen) - rcs: ZConj({Not(2 >= n + -1*q), 0 <= n + -1*q})
+lib:207:DEBUG (get_traces_by_id) - dtraces[vtrace2_26]: 0
+lib:207:DEBUG (get_traces_by_id) - dtraces[vtrace2_26]: 0
+lib:231:DEBUG (infer_from_traces) - invs: 
+analysis:597:DEBUG (strengthen) - mayloop_invs: ZConj()
+lib:207:DEBUG (get_traces_by_id) - dtraces[vtrace2_26]: 4
+lib:207:DEBUG (get_traces_by_id) - dtraces[vtrace2_26]: 2
+*** 'None', 0 locs, 0 invs (), 0 traces, 0 inps, time 0.01s, rand seed 1589337347.48, test 62 20:
+
+lib:231:DEBUG (infer_from_traces) - invs: vtrace2_26 (8 invs):
+1. q <= 4
+2. n <= 6
+3. n - q <= 5
+4. n + q <= 10
+5. -q <= -1
+6. -n <= -4
+7. -n - q <= -5
+8. -n + q <= 0
+analysis:601:DEBUG (strengthen) - term_invs: ZConj({n >= 4, 10 >= n + q, -1*n + -1*q <= -5, 4 >= q, 0 >= -1*n + q, 5 >= n + -1*q, 6 >= n, q >= 1})
+utils.profiling:31:DEBUG (timed) - strengthen: 1597.14ms
+analysis:662:DEBUG (_stat_candidate_rcs) - stat (12 total): defaultdict(<class 'int'>, {1: 4, 2: 8})
+analysis:680:DEBUG (prove_vloop) - PROVE_NT DEPTH 1: ZConj({Not(4 >= n + q), 0 <= n + -1*q})
+analysis:484:DEBUG (verify) - loop_transrel: And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q))
+analysis:485:DEBUG (verify) - loop_cond: 0 <= n + -1*q
+analysis:486:DEBUG (verify) - rcs: ZConj({Not(4 >= n + q), 0 <= n + -1*q})
+analysis:500:DEBUG (verify) - labeled_rcs: ZConj({0 <= n + -1*q:c_1, Not(4 >= n + q):c_0})
+analysis:509:DEBUG (verify) - init_transrel_rcs: ZConj({And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q)), And(n == X_n, 1 == q), Not(4 >= n0 + q0):c_0, 0 <= n0 + -1*q0:c_1, True})
+analysis:518:DEBUG (_check) - rc: Not(4 >= n + q):c_0
+analysis:523:DEBUG (_check) - rc_r: Not(4 >= n1 + q1)
+analysis:524:DEBUG (_check) - init_f: ZConj({And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q)), Not(Not(4 >= n1 + q1)), And(n == X_n, 1 == q), Not(4 >= n0 + q0):c_0, 0 <= n0 + -1*q0:c_1, True})
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: Not(4 >= n0 + q0)
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_0
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: 0 <= n0 + -1*q0
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_1
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_1', 0 <= n0 + -1*q0)]
+analysis:532:DEBUG (_check) - rs: unsat
+analysis:533:DEBUG (_check) - unsat_core: ['c_1']
+analysis:518:DEBUG (_check) - rc: 0 <= n + -1*q:c_1
+analysis:523:DEBUG (_check) - rc_r: 0 <= n1 + -1*q1
+analysis:524:DEBUG (_check) - init_f: ZConj({And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q)), True, And(n == X_n, 1 == q), Not(0 <= n1 + -1*q1), Not(4 >= n0 + q0):c_0, 0 <= n0 + -1*q0:c_1})
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: Not(4 >= n0 + q0)
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_0
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: 0 <= n0 + -1*q0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_1
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_0', Not(4 >= n0 + q0))]
+analysis:532:DEBUG (_check) - rs: unsat
+analysis:533:DEBUG (_check) - unsat_core: ['c_0']
+analysis:560:INFO (verify) - dg: defaultdict(<class 'list'>, {'c_0': ['c_1'], 'c_1': ['c_0']})
+analysis:561:INFO (verify) - label_d: defaultdict(<class 'str'>, {Not(4 >= n + q): 'c_0', 0 <= n + -1*q: 'c_1'})
+analysis:562:INFO (verify) - rev_label_d: {'c_0': Not(4 >= n + q), 'c_1': 0 <= n + -1*q}
+analysis:565:INFO (verify) - loop_cond_label: c_1
+analysis:569:INFO (verify) - mds_labels: {'c_1', 'c_0'}
+analysis:570:INFO (verify) - mds: ZConj({Not(4 >= n + q), 0 <= n + -1*q})
+utils.profiling:31:DEBUG (timed) - verify: 199.72ms
+analysis:662:DEBUG (_stat_candidate_rcs) - stat (11 total): defaultdict(<class 'int'>, {1: 3, 2: 8})
+analysis:680:DEBUG (prove_vloop) - PROVE_NT DEPTH 1: ZConj({0 <= n + -1*q, Not(3 >= n)})
+analysis:484:DEBUG (verify) - loop_transrel: And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q))
+analysis:485:DEBUG (verify) - loop_cond: 0 <= n + -1*q
+analysis:486:DEBUG (verify) - rcs: ZConj({0 <= n + -1*q, Not(3 >= n)})
+analysis:500:DEBUG (verify) - labeled_rcs: ZConj({Not(3 >= n):c_1, 0 <= n + -1*q:c_0})
+analysis:509:DEBUG (verify) - init_transrel_rcs: ZConj({And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q)), 0 <= n0 + -1*q0:c_0, And(n == X_n, 1 == q), Not(3 >= n0):c_1, True})
+analysis:518:DEBUG (_check) - rc: 0 <= n + -1*q:c_0
+analysis:523:DEBUG (_check) - rc_r: 0 <= n1 + -1*q1
+analysis:524:DEBUG (_check) - init_f: ZConj({And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q)), 0 <= n0 + -1*q0:c_0, And(n == X_n, 1 == q), Not(3 >= n0):c_1, Not(0 <= n1 + -1*q1), True})
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: 0 <= n0 + -1*q0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_0
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: Not(3 >= n0)
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_1
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_1', Not(3 >= n0))]
+analysis:532:DEBUG (_check) - rs: unsat
+analysis:533:DEBUG (_check) - unsat_core: ['c_1']
+analysis:518:DEBUG (_check) - rc: Not(3 >= n):c_1
+analysis:523:DEBUG (_check) - rc_r: Not(3 >= n1)
+analysis:524:DEBUG (_check) - init_f: ZConj({And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q)), 0 <= n0 + -1*q0:c_0, And(n == X_n, 1 == q), Not(Not(3 >= n1)), True, Not(3 >= n0):c_1})
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: 0 <= n0 + -1*q0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_0
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: Not(3 >= n0)
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_1
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_1', Not(3 >= n0))]
+analysis:532:DEBUG (_check) - rs: unsat
+analysis:533:DEBUG (_check) - unsat_core: ['c_1']
+analysis:560:INFO (verify) - dg: defaultdict(<class 'list'>, {'c_0': ['c_1'], 'c_1': ['c_1']})
+analysis:561:INFO (verify) - label_d: defaultdict(<class 'str'>, {0 <= n + -1*q: 'c_0', Not(3 >= n): 'c_1'})
+analysis:562:INFO (verify) - rev_label_d: {'c_0': 0 <= n + -1*q, 'c_1': Not(3 >= n)}
+analysis:565:INFO (verify) - loop_cond_label: c_0
+analysis:569:INFO (verify) - mds_labels: {'c_1', 'c_0'}
+analysis:570:INFO (verify) - mds: ZConj({0 <= n + -1*q, Not(3 >= n)})
+utils.profiling:31:DEBUG (timed) - verify: 152.38ms
+analysis:662:DEBUG (_stat_candidate_rcs) - stat (10 total): defaultdict(<class 'int'>, {1: 2, 2: 8})
+analysis:680:DEBUG (prove_vloop) - PROVE_NT DEPTH 1: ZConj({Not(1 >= q), 0 <= n + -1*q})
+analysis:484:DEBUG (verify) - loop_transrel: And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q))
+analysis:485:DEBUG (verify) - loop_cond: 0 <= n + -1*q
+analysis:486:DEBUG (verify) - rcs: ZConj({Not(1 >= q), 0 <= n + -1*q})
+analysis:500:DEBUG (verify) - labeled_rcs: ZConj({0 <= n + -1*q:c_1, Not(1 >= q):c_0})
+analysis:509:DEBUG (verify) - init_transrel_rcs: ZConj({And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q)), True, And(n == X_n, 1 == q), Not(1 >= q0):c_0, 0 <= n0 + -1*q0:c_1})
+utils.profiling:31:DEBUG (timed) - verify: 57.24ms
+analysis:662:DEBUG (_stat_candidate_rcs) - stat (9 total): defaultdict(<class 'int'>, {1: 1, 2: 8})
+analysis:680:DEBUG (prove_vloop) - PROVE_NT DEPTH 1: ZConj({Not(q >= 1), 0 <= n + -1*q})
+analysis:484:DEBUG (verify) - loop_transrel: And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q))
+analysis:485:DEBUG (verify) - loop_cond: 0 <= n + -1*q
+analysis:486:DEBUG (verify) - rcs: ZConj({Not(q >= 1), 0 <= n + -1*q})
+analysis:500:DEBUG (verify) - labeled_rcs: ZConj({0 <= n + -1*q:c_1, Not(q >= 1):c_0})
+analysis:509:DEBUG (verify) - init_transrel_rcs: ZConj({And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q)), And(n == X_n, 1 == q), Not(q0 >= 1):c_0, 0 <= n0 + -1*q0:c_1, True})
+utils.profiling:31:DEBUG (timed) - verify: 62.51ms
+analysis:662:DEBUG (_stat_candidate_rcs) - stat (8 total): defaultdict(<class 'int'>, {2: 8})
+analysis:680:DEBUG (prove_vloop) - PROVE_NT DEPTH 2: ZConj({Not(2 >= n + -1*q), Not(n >= 4), 0 <= n + -1*q})
+analysis:484:DEBUG (verify) - loop_transrel: And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q))
+analysis:485:DEBUG (verify) - loop_cond: 0 <= n + -1*q
+analysis:486:DEBUG (verify) - rcs: ZConj({Not(2 >= n + -1*q), Not(n >= 4), 0 <= n + -1*q})
+analysis:500:DEBUG (verify) - labeled_rcs: ZConj({Not(n >= 4):c_1, Not(2 >= n + -1*q):c_0, 0 <= n + -1*q:c_2})
+analysis:509:DEBUG (verify) - init_transrel_rcs: ZConj({And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q)), Not(n0 >= 4):c_1, And(n == X_n, 1 == q), 0 <= n0 + -1*q0:c_2, Not(2 >= n0 + -1*q0):c_0, True})
+utils.profiling:31:DEBUG (timed) - verify: 60.77ms
+analysis:662:DEBUG (_stat_candidate_rcs) - stat (7 total): defaultdict(<class 'int'>, {2: 7})
+analysis:680:DEBUG (prove_vloop) - PROVE_NT DEPTH 2: ZConj({Not(2 >= n + -1*q), Not(10 >= n + q), 0 <= n + -1*q})
+analysis:484:DEBUG (verify) - loop_transrel: And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q))
+analysis:485:DEBUG (verify) - loop_cond: 0 <= n + -1*q
+analysis:486:DEBUG (verify) - rcs: ZConj({Not(2 >= n + -1*q), Not(10 >= n + q), 0 <= n + -1*q})
+analysis:500:DEBUG (verify) - labeled_rcs: ZConj({0 <= n + -1*q:c_2, Not(2 >= n + -1*q):c_0, Not(10 >= n + q):c_1})
+analysis:509:DEBUG (verify) - init_transrel_rcs: ZConj({And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q)), And(n == X_n, 1 == q), Not(2 >= n0 + -1*q0):c_0, 0 <= n0 + -1*q0:c_2, True, Not(10 >= n0 + q0):c_1})
+analysis:518:DEBUG (_check) - rc: Not(2 >= n + -1*q):c_0
+analysis:523:DEBUG (_check) - rc_r: Not(2 >= n1 + -1*q1)
+analysis:524:DEBUG (_check) - init_f: ZConj({And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q)), 0 <= n0 + -1*q0:c_2, And(n == X_n, 1 == q), Not(2 >= n0 + -1*q0):c_0, Not(10 >= n0 + q0):c_1, True, Not(Not(2 >= n1 + -1*q1))})
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_2: 0 <= n0 + -1*q0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_2
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: Not(2 >= n0 + -1*q0)
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_0
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: Not(10 >= n0 + q0)
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_1
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_1', Not(10 >= n0 + q0))]
+analysis:532:DEBUG (_check) - rs: unsat
+analysis:533:DEBUG (_check) - unsat_core: ['c_1']
+analysis:518:DEBUG (_check) - rc: Not(10 >= n + q):c_1
+analysis:523:DEBUG (_check) - rc_r: Not(10 >= n1 + q1)
+analysis:524:DEBUG (_check) - init_f: ZConj({And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q)), Not(2 >= n0 + -1*q0):c_0, True, And(n == X_n, 1 == q), Not(Not(10 >= n1 + q1)), 0 <= n0 + -1*q0:c_2, Not(10 >= n0 + q0):c_1})
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: Not(2 >= n0 + -1*q0)
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_0
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_2: 0 <= n0 + -1*q0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_2
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: Not(10 >= n0 + q0)
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_1
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_1', Not(10 >= n0 + q0))]
+analysis:532:DEBUG (_check) - rs: unsat
+analysis:533:DEBUG (_check) - unsat_core: ['c_1']
+analysis:518:DEBUG (_check) - rc: 0 <= n + -1*q:c_2
+analysis:523:DEBUG (_check) - rc_r: 0 <= n1 + -1*q1
+analysis:524:DEBUG (_check) - init_f: ZConj({And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q)), Not(10 >= n0 + q0):c_1, And(n == X_n, 1 == q), Not(2 >= n0 + -1*q0):c_0, Not(0 <= n1 + -1*q1), True, 0 <= n0 + -1*q0:c_2})
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: Not(10 >= n0 + q0)
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_1
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: Not(2 >= n0 + -1*q0)
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_0
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_2: 0 <= n0 + -1*q0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_2
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_0', Not(2 >= n0 + -1*q0))]
+analysis:532:DEBUG (_check) - rs: unsat
+analysis:533:DEBUG (_check) - unsat_core: ['c_0']
+analysis:560:INFO (verify) - dg: defaultdict(<class 'list'>, {'c_0': ['c_1'], 'c_1': ['c_1'], 'c_2': ['c_0']})
+analysis:561:INFO (verify) - label_d: defaultdict(<class 'str'>, {Not(2 >= n + -1*q): 'c_0', Not(10 >= n + q): 'c_1', 0 <= n + -1*q: 'c_2'})
+analysis:562:INFO (verify) - rev_label_d: {'c_0': Not(2 >= n + -1*q), 'c_1': Not(10 >= n + q), 'c_2': 0 <= n + -1*q}
+analysis:565:INFO (verify) - loop_cond_label: c_2
+analysis:569:INFO (verify) - mds_labels: {'c_2', 'c_1', 'c_0'}
+analysis:570:INFO (verify) - mds: ZConj({Not(2 >= n + -1*q), Not(10 >= n + q), 0 <= n + -1*q})
+utils.profiling:31:DEBUG (timed) - verify: 162.88ms
+analysis:662:DEBUG (_stat_candidate_rcs) - stat (6 total): defaultdict(<class 'int'>, {2: 6})
+analysis:680:DEBUG (prove_vloop) - PROVE_NT DEPTH 2: ZConj({Not(-1*n + -1*q <= -5), Not(2 >= n + -1*q), 0 <= n + -1*q})
+analysis:484:DEBUG (verify) - loop_transrel: And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q))
+analysis:485:DEBUG (verify) - loop_cond: 0 <= n + -1*q
+analysis:486:DEBUG (verify) - rcs: ZConj({Not(-1*n + -1*q <= -5), Not(2 >= n + -1*q), 0 <= n + -1*q})
+analysis:500:DEBUG (verify) - labeled_rcs: ZConj({Not(-1*n + -1*q <= -5):c_0, 0 <= n + -1*q:c_2, Not(2 >= n + -1*q):c_1})
+analysis:509:DEBUG (verify) - init_transrel_rcs: ZConj({And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q)), True, Not(-1*n0 + -1*q0 <= -5):c_0, And(n == X_n, 1 == q), 0 <= n0 + -1*q0:c_2, Not(2 >= n0 + -1*q0):c_1})
+utils.profiling:31:DEBUG (timed) - verify: 64.14ms
+analysis:662:DEBUG (_stat_candidate_rcs) - stat (5 total): defaultdict(<class 'int'>, {2: 5})
+analysis:680:DEBUG (prove_vloop) - PROVE_NT DEPTH 2: ZConj({Not(4 >= q), Not(2 >= n + -1*q), 0 <= n + -1*q})
+analysis:484:DEBUG (verify) - loop_transrel: And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q))
+analysis:485:DEBUG (verify) - loop_cond: 0 <= n + -1*q
+analysis:486:DEBUG (verify) - rcs: ZConj({Not(4 >= q), Not(2 >= n + -1*q), 0 <= n + -1*q})
+analysis:500:DEBUG (verify) - labeled_rcs: ZConj({Not(4 >= q):c_0, 0 <= n + -1*q:c_2, Not(2 >= n + -1*q):c_1})
+analysis:509:DEBUG (verify) - init_transrel_rcs: ZConj({Not(2 >= n0 + -1*q0):c_1, And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q)), And(n == X_n, 1 == q), Not(4 >= q0):c_0, 0 <= n0 + -1*q0:c_2, True})
+utils.profiling:31:DEBUG (timed) - verify: 64.21ms
+analysis:662:DEBUG (_stat_candidate_rcs) - stat (4 total): defaultdict(<class 'int'>, {2: 4})
+analysis:680:DEBUG (prove_vloop) - PROVE_NT DEPTH 2: ZConj({Not(2 >= n + -1*q), Not(0 >= -1*n + q), 0 <= n + -1*q})
+analysis:662:DEBUG (_stat_candidate_rcs) - stat (3 total): defaultdict(<class 'int'>, {2: 3})
+analysis:680:DEBUG (prove_vloop) - PROVE_NT DEPTH 2: ZConj({Not(5 >= n + -1*q), Not(2 >= n + -1*q), 0 <= n + -1*q})
+analysis:484:DEBUG (verify) - loop_transrel: And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q))
+analysis:485:DEBUG (verify) - loop_cond: 0 <= n + -1*q
+analysis:486:DEBUG (verify) - rcs: ZConj({Not(5 >= n + -1*q), Not(2 >= n + -1*q), 0 <= n + -1*q})
+analysis:500:DEBUG (verify) - labeled_rcs: ZConj({Not(2 >= n + -1*q):c_1, Not(5 >= n + -1*q):c_0, 0 <= n + -1*q:c_2})
+analysis:509:DEBUG (verify) - init_transrel_rcs: ZConj({And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q)), Not(5 >= n0 + -1*q0):c_0, And(n == X_n, 1 == q), Not(2 >= n0 + -1*q0):c_1, 0 <= n0 + -1*q0:c_2, True})
+analysis:518:DEBUG (_check) - rc: Not(5 >= n + -1*q):c_0
+analysis:523:DEBUG (_check) - rc_r: Not(5 >= n1 + -1*q1)
+analysis:524:DEBUG (_check) - init_f: ZConj({And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q)), And(n == X_n, 1 == q), Not(Not(5 >= n1 + -1*q1)), Not(5 >= n0 + -1*q0):c_0, 0 <= n0 + -1*q0:c_2, True, Not(2 >= n0 + -1*q0):c_1})
+analysis:548:DEBUG (_check) - init_rs: sat (3 models)
+analysis:518:DEBUG (_check) - rc: Not(2 >= n + -1*q):c_1
+analysis:523:DEBUG (_check) - rc_r: Not(2 >= n1 + -1*q1)
+analysis:524:DEBUG (_check) - init_f: ZConj({And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q)), 0 <= n0 + -1*q0:c_2, And(n == X_n, 1 == q), Not(2 >= n0 + -1*q0):c_1, Not(5 >= n0 + -1*q0):c_0, True, Not(Not(2 >= n1 + -1*q1))})
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_2: 0 <= n0 + -1*q0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_2
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: Not(2 >= n0 + -1*q0)
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_1
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: Not(5 >= n0 + -1*q0)
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_0
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_0', Not(5 >= n0 + -1*q0))]
+analysis:532:DEBUG (_check) - rs: unsat
+analysis:533:DEBUG (_check) - unsat_core: ['c_0']
+analysis:518:DEBUG (_check) - rc: 0 <= n + -1*q:c_2
+analysis:523:DEBUG (_check) - rc_r: 0 <= n1 + -1*q1
+analysis:524:DEBUG (_check) - init_f: ZConj({And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q)), Not(2 >= n0 + -1*q0):c_1, And(n == X_n, 1 == q), Not(0 <= n1 + -1*q1), Not(5 >= n0 + -1*q0):c_0, 0 <= n0 + -1*q0:c_2, True})
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: Not(2 >= n0 + -1*q0)
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_1
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: Not(5 >= n0 + -1*q0)
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_0
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_2: 0 <= n0 + -1*q0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_2
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_0', Not(5 >= n0 + -1*q0))]
+analysis:532:DEBUG (_check) - rs: unsat
+analysis:533:DEBUG (_check) - unsat_core: ['c_0']
+analysis:560:INFO (verify) - dg: defaultdict(<class 'list'>, {'c_1': ['c_0'], 'c_2': ['c_0']})
+analysis:561:INFO (verify) - label_d: defaultdict(<class 'str'>, {Not(5 >= n + -1*q): 'c_0', Not(2 >= n + -1*q): 'c_1', 0 <= n + -1*q: 'c_2'})
+analysis:562:INFO (verify) - rev_label_d: {'c_0': Not(5 >= n + -1*q), 'c_1': Not(2 >= n + -1*q), 'c_2': 0 <= n + -1*q}
+analysis:565:INFO (verify) - loop_cond_label: c_2
+analysis:569:INFO (verify) - mds_labels: set()
+analysis:570:INFO (verify) - mds: ZConj()
+*** 'None', 1 locs, 8 invs (8 Oct), 6 traces, 0 inps, time 1.57s, rand seed 1589337347.48, test 62 20:
+vtrace2_26 (8 invs):
+1. q <= 4
+2. n <= 6
+3. n - q <= 5
+4. n + q <= 10
+5. -q <= -1
+6. -n <= -4
+7. -n - q <= -5
+8. -n + q <= 0
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 29.80ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 21.94ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 52.26ms
+utils.profiling:31:DEBUG (timed) - verify: 385.51ms
+analysis:590:DEBUG (strengthen) - base_term_inps: 0
+analysis:591:DEBUG (strengthen) - term_inps: 3
+analysis:592:DEBUG (strengthen) - mayloop_inps: 0
+analysis:593:DEBUG (strengthen) - rcs: ZConj({Not(5 >= n + -1*q), Not(2 >= n + -1*q), 0 <= n + -1*q})
+lib:207:DEBUG (get_traces_by_id) - dtraces[vtrace2_26]: 0
+lib:207:DEBUG (get_traces_by_id) - dtraces[vtrace2_26]: 0
+lib:231:DEBUG (infer_from_traces) - invs: 
+analysis:597:DEBUG (strengthen) - mayloop_invs: ZConj()
+lib:207:DEBUG (get_traces_by_id) - dtraces[vtrace2_26]: 4
+lib:207:DEBUG (get_traces_by_id) - dtraces[vtrace2_26]: 2
+*** 'None', 0 locs, 0 invs (), 0 traces, 0 inps, time 0.01s, rand seed 1589337347.48, test 62 20:
+
+lib:231:DEBUG (infer_from_traces) - invs: vtrace2_26 (7 invs):
+1. q <= 4
+2. n <= 9
+3. n - q <= 8
+4. -q <= -1
+5. -n <= -7
+6. -n - q <= -8
+7. -n + q <= -3
+analysis:601:DEBUG (strengthen) - term_invs: ZConj({9 >= n, -1*n + q <= -3, n >= 7, 4 >= q, -1*n + -1*q <= -8, q >= 1, 8 >= n + -1*q})
+utils.profiling:31:DEBUG (timed) - strengthen: 1586.28ms
+analysis:662:DEBUG (_stat_candidate_rcs) - stat (9 total): defaultdict(<class 'int'>, {2: 2, 3: 7})
+analysis:680:DEBUG (prove_vloop) - PROVE_NT DEPTH 2: ZConj({Not(2 >= n + -1*q), Not(6 >= n), 0 <= n + -1*q})
+analysis:484:DEBUG (verify) - loop_transrel: And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q))
+analysis:485:DEBUG (verify) - loop_cond: 0 <= n + -1*q
+analysis:486:DEBUG (verify) - rcs: ZConj({Not(2 >= n + -1*q), Not(6 >= n), 0 <= n + -1*q})
+analysis:500:DEBUG (verify) - labeled_rcs: ZConj({Not(6 >= n):c_1, Not(2 >= n + -1*q):c_0, 0 <= n + -1*q:c_2})
+analysis:509:DEBUG (verify) - init_transrel_rcs: ZConj({And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q)), And(n == X_n, 1 == q), Not(6 >= n0):c_1, True, 0 <= n0 + -1*q0:c_2, Not(2 >= n0 + -1*q0):c_0})
+analysis:518:DEBUG (_check) - rc: Not(2 >= n + -1*q):c_0
+analysis:523:DEBUG (_check) - rc_r: Not(2 >= n1 + -1*q1)
+analysis:524:DEBUG (_check) - init_f: ZConj({And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q)), Not(6 >= n0):c_1, Not(2 >= n0 + -1*q0):c_0, And(n == X_n, 1 == q), 0 <= n0 + -1*q0:c_2, True, Not(Not(2 >= n1 + -1*q1))})
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: Not(6 >= n0)
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_1
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: Not(2 >= n0 + -1*q0)
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_0
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_2: 0 <= n0 + -1*q0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_2
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_1', Not(6 >= n0))]
+analysis:532:DEBUG (_check) - rs: unsat
+analysis:533:DEBUG (_check) - unsat_core: ['c_1']
+analysis:518:DEBUG (_check) - rc: Not(6 >= n):c_1
+analysis:523:DEBUG (_check) - rc_r: Not(6 >= n1)
+analysis:524:DEBUG (_check) - init_f: ZConj({And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q)), Not(2 >= n0 + -1*q0):c_0, And(n == X_n, 1 == q), Not(6 >= n0):c_1, 0 <= n0 + -1*q0:c_2, Not(Not(6 >= n1)), True})
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: Not(2 >= n0 + -1*q0)
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_0
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: Not(6 >= n0)
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_1
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_2: 0 <= n0 + -1*q0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_2
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_1', Not(6 >= n0))]
+analysis:532:DEBUG (_check) - rs: unsat
+analysis:533:DEBUG (_check) - unsat_core: ['c_1']
+analysis:518:DEBUG (_check) - rc: 0 <= n + -1*q:c_2
+analysis:523:DEBUG (_check) - rc_r: 0 <= n1 + -1*q1
+analysis:524:DEBUG (_check) - init_f: ZConj({And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q)), 0 <= n0 + -1*q0:c_2, And(n == X_n, 1 == q), Not(6 >= n0):c_1, Not(0 <= n1 + -1*q1), Not(2 >= n0 + -1*q0):c_0, True})
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_2: 0 <= n0 + -1*q0
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_2
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_1: Not(6 >= n0)
+solver:210:DEBUG (_get_unsat_core) - unsat: removing c_1
+solver:201:DEBUG (_get_unsat_core) - testing soft constraint c_0: Not(2 >= n0 + -1*q0)
+solver:207:DEBUG (_get_unsat_core) - sat: keeping c_0
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_0', Not(2 >= n0 + -1*q0))]
+analysis:532:DEBUG (_check) - rs: unsat
+analysis:533:DEBUG (_check) - unsat_core: ['c_0']
+analysis:560:INFO (verify) - dg: defaultdict(<class 'list'>, {'c_0': ['c_1'], 'c_1': ['c_1'], 'c_2': ['c_0']})
+analysis:561:INFO (verify) - label_d: defaultdict(<class 'str'>, {Not(2 >= n + -1*q): 'c_0', Not(6 >= n): 'c_1', 0 <= n + -1*q: 'c_2'})
+analysis:562:INFO (verify) - rev_label_d: {'c_0': Not(2 >= n + -1*q), 'c_1': Not(6 >= n), 'c_2': 0 <= n + -1*q}
+analysis:565:INFO (verify) - loop_cond_label: c_2
+analysis:569:INFO (verify) - mds_labels: {'c_2', 'c_1', 'c_0'}
+analysis:570:INFO (verify) - mds: ZConj({Not(2 >= n + -1*q), Not(6 >= n), 0 <= n + -1*q})
+utils.profiling:31:DEBUG (timed) - verify: 245.09ms
+analysis:662:DEBUG (_stat_candidate_rcs) - stat (8 total): defaultdict(<class 'int'>, {2: 1, 3: 7})
+analysis:680:DEBUG (prove_vloop) - PROVE_NT DEPTH 2: ZConj({Not(q >= 1), Not(2 >= n + -1*q), 0 <= n + -1*q})
+analysis:484:DEBUG (verify) - loop_transrel: And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q))
+analysis:485:DEBUG (verify) - loop_cond: 0 <= n + -1*q
+analysis:486:DEBUG (verify) - rcs: ZConj({Not(q >= 1), Not(2 >= n + -1*q), 0 <= n + -1*q})
+analysis:500:DEBUG (verify) - labeled_rcs: ZConj({Not(2 >= n + -1*q):c_1, 0 <= n + -1*q:c_2, Not(q >= 1):c_0})
+analysis:509:DEBUG (verify) - init_transrel_rcs: ZConj({And(And(n0 == n, q0 == q), And(n1 == n, q1 == 4*q)), True, And(n == X_n, 1 == q), 0 <= n0 + -1*q0:c_2, Not(2 >= n0 + -1*q0):c_1, Not(q0 >= 1):c_0})
+utils.profiling:31:DEBUG (timed) - verify: 107.15ms
+analysis:662:DEBUG (_stat_candidate_rcs) - stat (7 total): defaultdict(<class 'int'>, {3: 7})
+analysis:680:DEBUG (prove_vloop) - PROVE_NT DEPTH 3: ZConj({Not(2 >= n + -1*q), 0 <= n + -1*q, Not(5 >= n + -1*q), Not(9 >= n)})
+analysis:662:DEBUG (_stat_candidate_rcs) - stat (6 total): defaultdict(<class 'int'>, {3: 6})
+analysis:680:DEBUG (prove_vloop) - PROVE_NT DEPTH 3: ZConj({Not(2 >= n + -1*q), 0 <= n + -1*q, Not(-1*n + q <= -3), Not(5 >= n + -1*q)})
+analysis:662:DEBUG (_stat_candidate_rcs) - stat (5 total): defaultdict(<class 'int'>, {3: 5})
+analysis:680:DEBUG (prove_vloop) - PROVE_NT DEPTH 3: ZConj({Not(n >= 7), Not(2 >= n + -1*q), 0 <= n + -1*q, Not(5 >= n + -1*q)})
+analysis:662:DEBUG (_stat_candidate_rcs) - stat (4 total): defaultdict(<class 'int'>, {3: 4})
+analysis:680:DEBUG (prove_vloop) - PROVE_NT DEPTH 3: ZConj({Not(4 >= q), Not(2 >= n + -1*q), 0 <= n + -1*q, Not(5 >= n + -1*q)})
+analysis:662:DEBUG (_stat_candidate_rcs) - stat (3 total): defaultdict(<class 'int'>, {3: 3})
+analysis:680:DEBUG (prove_vloop) - PROVE_NT DEPTH 3: ZConj({Not(2 >= n + -1*q), 0 <= n + -1*q, Not(-1*n + -1*q <= -8), Not(5 >= n + -1*q)})
+analysis:662:DEBUG (_stat_candidate_rcs) - stat (2 total): defaultdict(<class 'int'>, {3: 2})
+analysis:680:DEBUG (prove_vloop) - PROVE_NT DEPTH 3: ZConj({Not(q >= 1), Not(2 >= n + -1*q), 0 <= n + -1*q, Not(5 >= n + -1*q)})
+analysis:662:DEBUG (_stat_candidate_rcs) - stat (1 total): defaultdict(<class 'int'>, {3: 1})
+analysis:680:DEBUG (prove_vloop) - PROVE_NT DEPTH 3: ZConj({Not(2 >= n + -1*q), 0 <= n + -1*q, Not(8 >= n + -1*q), Not(5 >= n + -1*q)})
+analysis:706:DEBUG (prove_vloop) - tCex: ZConj({2 >= n + -1*q, 4 >= n + q, 3 >= n, 1 >= q, q >= 1})
+analysis:706:DEBUG (prove_vloop) - tCex: ZConj({n >= 4, 10 >= n + q, -1*n + -1*q <= -5, 4 >= q, 0 >= -1*n + q, 5 >= n + -1*q, 6 >= n, q >= 1})
+analysis:706:DEBUG (prove_vloop) - tCex: ZConj({9 >= n, -1*n + q <= -3, n >= 7, 4 >= q, -1*n + -1*q <= -8, q >= 1, 8 >= n + -1*q})
+utils.profiling:31:DEBUG (timed) - prove_vloop: 7219.22ms
+analysis:727:INFO (prove) - rcs: ZConj({Not(4 >= n + q), 0 <= n + -1*q})
+analysis:728:INFO (prove) - (simplified) rcs: And(Not(4 >= n + q), 0 <= n + -1*q)
+analysis:734:INFO (prove) - ancestor 0: 0 <= n + -1*q
+analysis:727:INFO (prove) - rcs: ZConj({0 <= n + -1*q, Not(3 >= n)})
+analysis:728:INFO (prove) - (simplified) rcs: And(0 <= n + -1*q, Not(3 >= n))
+analysis:734:INFO (prove) - ancestor 0: 0 <= n + -1*q
+analysis:727:INFO (prove) - rcs: ZConj({Not(2 >= n + -1*q), Not(10 >= n + q), 0 <= n + -1*q})
+analysis:728:INFO (prove) - (simplified) rcs: And(Not(2 >= n + -1*q), Not(10 >= n + q))
+analysis:734:INFO (prove) - ancestor 0: 0 <= n + -1*q
+analysis:734:INFO (prove) - ancestor 1: Not(2 >= n + -1*q)
+analysis:727:INFO (prove) - rcs: ZConj({Not(2 >= n + -1*q), Not(6 >= n), 0 <= n + -1*q})
+analysis:728:INFO (prove) - (simplified) rcs: And(Not(2 >= n + -1*q), Not(6 >= n))
+analysis:734:INFO (prove) - ancestor 0: 0 <= n + -1*q
+analysis:734:INFO (prove) - ancestor 1: Not(2 >= n + -1*q)
+utils.profiling:31:DEBUG (timed) - prove: 20903.23ms
+utils.profiling:31:DEBUG (timed) - prove: 20903.58ms
+*** 'None', 1 locs, 7 invs (7 Oct), 6 traces, 0 inps, time 1.55s, rand seed 1589337347.48, test 62 20:
+vtrace2_26 (7 invs):
+1. q <= 4
+2. n <= 9
+3. n - q <= 8
+4. -q <= -1
+5. -n <= -7
+6. -n - q <= -8
+7. -n + q <= -3
+Non-termination result: False (vloop_26)
+Time log:
+_get_symstates_from_src: 13.557s
+_get_loopinfo_from_symstates: 13.602s
+get_loopinfo: 13.603s
+_get_traces_mp: 0.082s
+_merge_traces: 0.059s
+get_traces_from_inps: 0.143s
+verify: 2.010s
+strengthen: 4.693s
+prove_vloop: 7.219s
+prove: 20.903s
+
+EJK TIMER: 23.131542
+

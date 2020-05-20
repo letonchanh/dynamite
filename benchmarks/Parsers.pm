@@ -273,11 +273,11 @@ sub dynDetail {
     #$d->{allt} = sprintf("%.2f",$d->{allt});
     $d->{allt} = '\rTO' if $d->{allt} >= 900;
     use Data::Dumper; print Dumper($d);
-    my $str = sprintf("\\texttt{%-10s} & %-10s & \$%-42s\$ & %-8s & %10s & %-5s & %10s & %-5s & %10s \\\\ \n",
+    my $str = sprintf("\\texttt{%-10s} & %-10s & \$%-42s\$ & %-8s & %10s & %-5s & %10s  \\\\ \n",
                    $tmpb, $b2desc->{$tmpb}, $d->{rf},
                    $d->{guesst}, $d->{guessr},
-                   $d->{validt}, $d->{validr},
-                      $d->{allt}, $d->{allr});
+                      $d->{validt}, $d->{validr});
+    #$d->{allt}, $d->{allr});
     warn "$str\n";
     return ($d,$str);
     #$tool, $tmpb, $b2res{$b}->{time}, $b2res{$b}->{result});

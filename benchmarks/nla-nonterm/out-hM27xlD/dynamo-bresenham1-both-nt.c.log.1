@@ -1,0 +1,67 @@
+__main__:102:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:103:INFO (<module>) - Dig's logger_level: WARNING
+__main__:104:INFO (<module>) - Timeout: 300s
+__main__:106:INFO (<module>) - 2020-05-12 21:33:35.858407: dynamo.py --timeout=300 /home/exp/eric/dynamo/benchmarks/nla-nonterm/bresenham1-both-nt.c -nt
+/home/exp/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:72:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_43hhlydd
+analysis:80:DEBUG (__init__) - trans_cmd: /home/exp/eric/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /home/exp/eric/dynamo/benchmarks/nla-nonterm/bresenham1-both-nt.c --out=/var/tmp/Dig_43hhlydd/bresenham1-both-nt.c --bnd=500
+analysis:87:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_29': ['exit'], 'mainQ': ['vloop_29'], 'main': ['mainQ']})
+analysis:98:DEBUG (__init__) - postorder_vloop_ids: ['vloop_29']
+analysis:107:DEBUG (__init__) - inp_decls (<class 'data.prog.Symbs'>): I X, I Y
+analysis:108:DEBUG (__init__) - inv_decls (<class 'data.prog.DSymbs'>): {'vtrace1_29': (Symb(name='X', typ='I'), Symb(name='Y', typ='I'), Symb(name='v', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace2_29': (Symb(name='X', typ='I'), Symb(name='Y', typ='I'), Symb(name='v', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace3_29': (Symb(name='X', typ='I'), Symb(name='Y', typ='I'), Symb(name='v', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I'))}
+__main__:149:DEBUG (<module>) - prove_process: 12608
+analysis:230:DEBUG (_get_stem_from_symstates) - vloop.preloop_loc: vtrace1_29
+analysis:175:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+analysis:188:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_29
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 6172.05ms
+analysis:216:DEBUG (_get_stem_from_ss) - preloop_fst_symstate: loc: vtrace1_29
+pc: True
+slocal: And(X == X_X,
+    Y == X_Y,
+    v == -1*X_X + 2*X_Y,
+    0 == x,
+    0 == y,
+    0 == c)
+analysis:219:DEBUG (_get_stem_from_ss) - mainQ init_symvars: I X_X, I X_Y
+analysis:222:DEBUG (_get_stem_from_ss) - stem_cond (<class 'z3.z3.BoolRef'>): True
+analysis:223:DEBUG (_get_stem_from_ss) - stem_transrel (<class 'z3.z3.BoolRef'>): And(X == X_X,
+    Y == X_Y,
+    v == -1*X_X + 2*X_Y,
+    0 == x,
+    0 == y,
+    0 == c)
+analysis:260:DEBUG (_get_loop_from_symstates) - Create C source for vloop_29: /var/tmp/Dig_inr48qxs
+analysis:175:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+analysis:188:DEBUG (_get_symstates_from_src) - target_loc: None
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 6217.23ms
+analysis:271:DEBUG (_get_loop_from_symstates) - vloop inp_decls: I X, I Y, I v, I x, I y, I c
+analysis:272:DEBUG (_get_loop_from_symstates) - vloop inv_decls: {'vtrace1_29': (Symb(name='X', typ='I'), Symb(name='Y', typ='I'), Symb(name='v', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace2_29': (Symb(name='X', typ='I'), Symb(name='Y', typ='I'), Symb(name='v', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace3_29': (Symb(name='X', typ='I'), Symb(name='Y', typ='I'), Symb(name='v', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I'))}
+analysis:273:DEBUG (_get_loop_from_symstates) - vloop init_symvars: I X_X, I X_Y, I X_v, I X_x, I X_y, I X_c
+utils.profiling:31:DEBUG (timed) - _get_loopinfo_from_symstates: 12424.25ms
+analysis:378:DEBUG (get_loopinfo) - stem: <utils.loop.Stem object at 0x7efb436e14e0>
+analysis:379:DEBUG (get_loopinfo) - loop: None
+Process Process-1:
+Traceback (most recent call last):
+  File "/home/exp/tools/SageMath/local/lib/python3.7/multiprocessing/process.py", line 297, in _bootstrap
+    self.run()
+  File "/home/exp/tools/SageMath/local/lib/python3.7/multiprocessing/process.py", line 99, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/exp/eric/dynamo/src/utils/profiling.py", line 23, in timed
+    result = method(*args, **kw)
+  File "dynamo.py", line 136, in prove
+    nt_prover.prove()
+  File "/home/exp/eric/dynamo/src/utils/profiling.py", line 23, in timed
+    result = method(*args, **kw)
+  File "/home/exp/eric/dynamo/src/analysis.py", line 714, in prove
+    stem, loop = _config.get_loopinfo(vloop)
+  File "/home/exp/eric/dynamo/src/utils/profiling.py", line 23, in timed
+    result = method(*args, **kw)
+  File "/home/exp/eric/dynamo/src/analysis.py", line 381, in get_loopinfo
+    stem, loop = self._get_loopinfo_from_traces()
+  File "/home/exp/eric/dynamo/src/analysis.py", line 340, in _get_loopinfo_from_traces
+    raise NotImplementedError
+NotImplementedError
+
+EJK TIMER: 14.448426
+
