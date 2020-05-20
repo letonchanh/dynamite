@@ -1,18 +1,18 @@
 #!/usr/bin/perl
 
-#use local::lib;
+use local::lib;
 use strict;
 use warnings;
 use File::Temp qw/ tempfile tempdir /;
 use Time::Out qw(timeout) ;
 
-my $ITERS = 5;
+my $ITERS = 1;
 my $SPECFILE = qq{/tools/termination.prp};
 my $TIMEOUT  = 300;
 my $INTEGRATED = 0;
 my @timedout;
 my $NT_SPECFILE = qq{/tools/nontermination.prp};
-my $pid = getpid();
+my $pid = getppid();
 my $TMPFILE = "/tmp/dynamo.ejk.$pid.txt";
 
 my $hn = qx{hostname -A};
