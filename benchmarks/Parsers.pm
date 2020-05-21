@@ -15,8 +15,8 @@ sub find_benchmarks {
     my $scriptfn = Cwd::abs_path($0);
     my $benchdir = dirname($scriptfn)."/".$bdir;
     my @benches; my %b2expect;
-    print "| Directory: $benchdir\n";
-    print "| Benchmarks: ";
+    print "    Directory   : $benchdir\n";
+    print "    Benchmarks  : ";
     opendir(my $dh, $benchdir) || die "Can't open $benchdir: $!";
     while (readdir $dh) {
         my $fn = $_;
@@ -39,7 +39,8 @@ sub find_benchmarks {
                 next if $expect eq 'IGNORE';
             }
         }
-        print "  $benchdir/$fn  (expect: $b2expect{$fn})\n";
+        #print "  $benchdir/$fn  (expect: $b2expect{$fn})\n";
+        print " $fn (expect: $b2expect{$fn})";
         push @benches, "$fn";
     }
     closedir $dh;
@@ -59,17 +60,6 @@ sub expected {
     #warn "could not parse $fn\n";
     return 'IGNORE';
 }
-my $ex = "format_version: '1.0'
-
-# old file name: cstrlen_true-termination_true-no-overflow.c
-input_files: 'cstrlen.c'
-
-properties:
-  - property_file: ../properties/no-overflow.prp
-    expected_verdict: true
-  - property_file: ../properties/termination.prp
-  expected_verdict: true
-    ";
 
 sub tm2str {
     my ($t) = @_;
@@ -103,28 +93,18 @@ sub dynamo {
         $result = '\rFALSE' if /Non-termination result: True/;
         $result = '\rTRUE' if /Non-termination result: False/;
         $result = '\rUNK' if /Termination result: None/;
-# Time log:
-#gen_rand_inps: 0.141s
-#_get_traces_mp: 0.158s
-#_merge_traces: 0.121s
-#get_traces_from_inps: 0.280s
-#infer_ranking_functions: 10.530s
-#prove_reach: 16.663s
-#validate_ranking_functions: 16.807s
-#prove: 27.762s
-        if (/EJK TIMER: (\d+\.\d+)$/) {
-            $time = $1;
-        }
+        $time   = $1 if /HARD TIMER: (\d+\.\d+)$/;
     }
     close F;
     return { time => tm2str($time), result => $result };
 }
 
-sub toTex { my $t = shift @_;
-            $t =~ s/\*\*(\d)/^{$1} /g;
-            $t =~ s/-1\*/-/g;
-            $t =~ s/\*/\\cdot /g;
-            $t =~ s/%/\\%/g;
+sub toTex {
+    my $t = shift @_;
+    $t =~ s/\*\*(\d)/^{$1} /g;
+    $t =~ s/-1\*/-/g;
+    $t =~ s/\*/\\cdot /g;
+    $t =~ s/%/\\%/g;
     return $t;
 }
 
@@ -224,9 +204,6 @@ sub dynDetailTNT {
                              $d->{switches},
                              $d->{conclusion},
                              $overallt);
-          #$out->{guesst}, $out->{guessr});
-          #$out->{validt}, $out->{validr},
-          #$tm, $compare->{$tmpb}->{$tool}->{result},);
     return ($d,$str,$strconcise);
 }
 
@@ -237,6 +214,7 @@ sub dynDetail {
               guessr => '\rUNK', validr => '\rUNK',
               guesst => tm2str(-1), validt => tm2str(-1) };
     while(<F>) {
+        ### PARSE RANKING FUNCTION DATA
         $d->{validt} = tm2str($1) if /validate_ranking_functions: ((\d)*\.\d+)s/;
         $d->{guesst} = tm2str($1) if /infer_ranking_functions: ((\d)*\.\d+)s/;
         $d->{validr} = '\rTRUE' if /Termination result: True/;
@@ -247,7 +225,7 @@ sub dynDetail {
             $d->{rf} = toTex($1);
             $d->{conclusion} = 'T';
         }
-        ### RECURRENT SET STUFF
+        ### PARSE RECURRENT SET DATA
         $d->{validr} = '\rFALSE' if /Non-termination result: True/;
         $d->{validr} = '\rTRUE' if /Non-termination result: False/;
         if(/\(simplified\) rcs: (.*)$/) { # -1 == x*z + -1*x + -1*y)
@@ -270,9 +248,7 @@ sub dynDetail {
     $d->{allr} = '\rSCD' if $nonterm and $d->{allr} eq 'FALSE';
 
     $logfn =~ s/^.*benchmarks//;
-    #$d->{allt} = sprintf("%.2f",$d->{allt});
     $d->{allt} = '\rTO' if $d->{allt} >= 900;
-    #use Data::Dumper; print Dumper($d);
     my $str = sprintf("\\texttt{%-10s} & %-10s & \$%-42s\$ & %-8s & %10s & %-5s & %10s  \\\\ \n",
                    $tmpb, $b2desc->{$tmpb}||'', $d->{rf},
                    $d->{guesst}, $d->{guessr},
