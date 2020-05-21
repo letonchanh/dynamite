@@ -4,7 +4,7 @@ RUN \
   apt-get update -y \
   apt-get upgrade -y \
   apt-get install -y curl python git maven zip \
-  apt-get install -y libpng-dev libfreetype6
+  apt-get install -y openjdk-8-jdk libpng-dev libfreetype6
   
 RUN mkdir /tools
 ENV WORKDIR=/tools
