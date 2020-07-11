@@ -20,12 +20,14 @@ int __VERIFIER_nondet_pos() {
 }
 
 int main() {
-    	int x, y;
+    	int x, y, z;
 	x = __VERIFIER_nondet_int();
 	y = __VERIFIER_nondet_int();
+	z = __VERIFIER_nondet_int();
 	while (x >= y) {
 		if (__VERIFIER_nondet_int()) {
-			x = x - 1 - __VERIFIER_nondet_pos();
+			x = x + z - __VERIFIER_nondet_pos();
+			z = z - 1 - __VERIFIER_nondet_pos();
     		} else {
 	    		y = y + 1 + __VERIFIER_nondet_pos();
 		}

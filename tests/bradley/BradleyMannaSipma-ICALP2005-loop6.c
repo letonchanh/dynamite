@@ -20,14 +20,18 @@ int __VERIFIER_nondet_pos() {
 }
 
 int main() {
-    	int x, y;
+    	int x, y, N;
 	x = __VERIFIER_nondet_int();
 	y = __VERIFIER_nondet_int();
-	while (x >= y) {
-		if (__VERIFIER_nondet_int()) {
-			x = x - 1 - __VERIFIER_nondet_pos();
-    		} else {
-	    		y = y + 1 + __VERIFIER_nondet_pos();
+	N = __VERIFIER_nondet_int();
+	if (x + y >= 0) {
+		while (x <= N) {
+			if (__VERIFIER_nondet_int()) {
+				x = 2*x + y;// + __VERIFIER_nondet_pos();
+				y = y + 1;// + __VERIFIER_nondet_pos();
+    			} else {
+	    			x = x + 1;// + __VERIFIER_nondet_pos();
+			}
 		}
 	}
 	return 0;
