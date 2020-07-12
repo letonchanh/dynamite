@@ -1,11 +1,4 @@
-/*
- * Program from Fig.1 of
- * 2005ICALP - Bradley,Manna,Sipma - The Polyranking Principle
- *
- * Date: 12.12.2013
- * Author: heizmann@informatik.uni-freiburg.de
- *
- */
+
 
 typedef enum {false, true} bool;
 

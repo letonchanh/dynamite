@@ -61,10 +61,11 @@ class Validator(object):
         mlog.debug("vcmd: {}".format(vcmd))
         v_rmsg, v_errmsg = CM.vcmd(vcmd)
         # assert not v_errmsg, "'{}': {}".format(vcmd, v_errmsg)
-        # mlog.debug("v_rmsg: {}".format(v_rmsg))
-        # mlog.debug("v_errmsg: {}".format(v_errmsg))
+        mlog.debug("v_rmsg: {}".format(v_rmsg))
+        mlog.debug("v_errmsg: {}".format(v_errmsg))
         v_res = self.parse_rmsg(v_rmsg)
-        if v_res:
+        mlog.debug("v_res: {}".format(v_res))
+        if v_res is not None:
             assert v_res is expected_result, v_res
 
             cex = self.mk_cex(vs)
@@ -263,7 +264,10 @@ class Counterexample(object):
         self.vs = vs # inp_decls
         self.trans_cex = None
         self.symb_cex = None
-        self.imap = None 
+        self.imap = None
+
+    def __repr__(self):
+        return str(self.trans_cex)
 
 class CpaCex(Counterexample):
     def mk_trans_cex(self, cex_file):

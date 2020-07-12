@@ -1,11 +1,3 @@
-/*
- * Program from Fig.1 of
- * 2005ICALP - Bradley,Manna,Sipma - The Polyranking Principle
- *
- * Date: 12.12.2013
- * Author: heizmann@informatik.uni-freiburg.de
- *
- */
 
 typedef enum {false, true} bool;
 
@@ -27,10 +19,10 @@ int main() {
 	if (x + y >= 0) {
 		while (x <= N) {
 			if (__VERIFIER_nondet_int()) {
-				x = 2*x + y;// + __VERIFIER_nondet_pos();
-				y = y + 1;// + __VERIFIER_nondet_pos();
+				x = 2*x + y; // + __VERIFIER_nondet_pos();
+				y = y + 1; // + __VERIFIER_nondet_pos();
     			} else {
-	    			x = x + 1;// + __VERIFIER_nondet_pos();
+	    			x = x + 1; // + __VERIFIER_nondet_pos();
 			}
 		}
 	}

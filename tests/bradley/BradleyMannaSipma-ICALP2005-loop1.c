@@ -19,7 +19,7 @@ int main() {
 	bn = __VERIFIER_nondet_int();
 	while ((an >= i && bn >= j) || (an >= i && bn <= j) || (an <= i && bn >= j)) {
 		if (an >= i && bn >= j) {
-			if (__VERIFIER_nondet_int() != 0) {
+			if (__VERIFIER_nondet_int()) {
 				j = j + 1;
 			} else {
 				i = i + 1;

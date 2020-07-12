@@ -957,14 +957,14 @@ class Term(object):
         # mlog.debug("z3: {}".format(elapsed * 1000000))
         
         # start_time = timeit.default_timer()
-        st1 = (str(t1)).replace("\n", "") 
-        st2 = (str(t2)).replace("\n", "")
+        st1 = (str(t1)).replace("\n", " ") + " "
+        st2 = (str(t2)).replace("\n", " ") + " "
         for d in model.decls():
             v = model[d]
             sv = v.as_string()
             dn = d.name()
-            st1 = st1.replace(dn, sv)
-            st2 = st2.replace(dn, sv)
+            st1 = st1.replace(dn + " ", sv)
+            st2 = st2.replace(dn + " ", sv)
         # mlog.debug('st1:\n{}'.format(repr(st1)))
         # mlog.debug('st2:\n{}'.format(repr(st2)))
         vt1 = eval(st1)
@@ -1135,9 +1135,9 @@ class Term(object):
         
         validate_tmpdir = _config.tmpdir / vloop.vloop_id
         # validator = CPAchecker(validate_tmpdir)
-        # validator = UAutomizer(validate_tmpdir)
+        validator = UAutomizer(validate_tmpdir)
         # validator = UTaipan(validate_tmpdir)
-        validator = Portfolio(validate_tmpdir)
+        # validator = Portfolio(validate_tmpdir)
         validate_outf = validator.gen_validate_file(_config.inp, vloop_pos, ranks_str)
         r, cex = validator.prove_reach(vs, validate_outf)
         validator.clean()
