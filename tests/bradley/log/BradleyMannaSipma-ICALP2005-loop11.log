@@ -1,0 +1,1143 @@
+__main__:113:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:114:INFO (<module>) - Dig's logger_level: WARNING
+__main__:115:INFO (<module>) - Timeout: 300s
+__main__:117:INFO (<module>) - 2020-07-12 16:54:48.858173: dynamo.py ../tests/bradley/BradleyMannaSipma-ICALP2005-loop11.c -t
+/home/exp/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:155:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_wq5d0kni
+analysis:163:DEBUG (__init__) - trans_cmd: /home/exp/tools/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /home/exp/tools/dynamo/tests/bradley/BradleyMannaSipma-ICALP2005-loop11.c --out=/var/tmp/Dig_wq5d0kni/BradleyMannaSipma-ICALP2005-loop11.c --bnd=500
+analysis:170:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_31': ['exit'], 'mainQ': ['vloop_31'], 'main': ['mainQ']})
+analysis:181:DEBUG (__init__) - postorder_vloop_ids: ['vloop_31']
+analysis:190:DEBUG (__init__) - inp_decls (<class 'data.prog.Symbs'>): I p, I q, I n, I N, I e
+analysis:191:DEBUG (__init__) - inv_decls (<class 'data.prog.DSymbs'>): {'vtrace1_31': (Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='n', typ='I'), Symb(name='N', typ='I'), Symb(name='e', typ='I')), 'vtrace2_31': (Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='n', typ='I'), Symb(name='N', typ='I'), Symb(name='e', typ='I')), 'vtrace3_31': (Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='n', typ='I'), Symb(name='N', typ='I'), Symb(name='e', typ='I'))}
+__main__:163:DEBUG (<module>) - prove_process: 27301
+lib:49:DEBUG (gen_rand_inps) - gen 124/100 random inps
+utils.profiling:31:DEBUG (timed) - gen_rand_inps: 1150.10ms
+lib:60:DEBUG (get_traces_from_inps) - inp_decls: I p, I q, I n, I N, I e
+lib:61:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_31': (Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='n', typ='I'), Symb(name='N', typ='I'), Symb(name='e', typ='I')), 'vtrace2_31': (Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='n', typ='I'), Symb(name='N', typ='I'), Symb(name='e', typ='I')), 'vtrace3_31': (Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='n', typ='I'), Symb(name='N', typ='I'), Symb(name='e', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 0.30ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 99.61ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 100.47ms
+analysis:1240:DEBUG (prove) - itraces: 124
+analysis:1246:DEBUG (prove) - Analysing Termination vloop_31
+analysis:1184:DEBUG (prove_term_vloop) - classify_inps: vloop_31
+analysis:1187:DEBUG (prove_term_vloop) - itraces: 124
+lib:214:DEBUG (print_inps) - p=26,q=270,n=286,N=14,e=17: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=273,q=21,n=-7,N=14,e=20: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=287,q=294,n=-30,N=21,e=28: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=291,q=8,n=5,N=272,e=278: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=23,q=275,n=-278,N=14,e=-9: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=29,q=286,n=16,N=276,e=-8: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=279,q=293,n=12,N=27,e=-9: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=283,q=298,n=-277,N=273,e=-297: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=9,q=299,n=-14,N=16,e=276: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=9,q=13,n=298,N=273,e=-300: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=26,q=292,n=-13,N=24,e=-290: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=15,q=19,n=293,N=9,e=21: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=297,q=26,n=4,N=20,e=4: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=296,q=17,n=-1,N=25,e=-11: [('vtrace1_31', 1), ('vtrace2_31', 2), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=3,q=25,n=282,N=2,e=-27: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=275,q=296,n=18,N=282,e=274: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=274,q=284,n=15,N=7,e=10: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=276,q=27,n=-8,N=28,e=-298: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=22,q=24,n=0,N=24,e=-27: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=10,q=11,n=2,N=29,e=-285: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=286,q=293,n=286,N=16,e=-279: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=273,q=293,n=15,N=292,e=-300: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=9,q=280,n=-292,N=280,e=2: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=19,q=16,n=-7,N=270,e=22: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=281,q=18,n=285,N=271,e=16: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=6,q=26,n=297,N=277,e=0: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=294,q=270,n=289,N=14,e=291: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=276,q=23,n=7,N=24,e=290: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=29,q=290,n=-281,N=287,e=-21: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=28,q=280,n=4,N=28,e=19: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=278,q=277,n=-286,N=6,e=-11: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=290,q=287,n=295,N=3,e=-2: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=9,q=29,n=-297,N=276,e=299: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=271,q=278,n=279,N=273,e=-296: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=299,q=9,n=2,N=20,e=-4: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=296,q=277,n=-298,N=12,e=20: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=22,q=274,n=294,N=22,e=289: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=281,q=274,n=23,N=288,e=-10: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=3,q=2,n=-10,N=271,e=-23: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=0,q=8,n=-300,N=273,e=1: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=2,q=279,n=290,N=17,e=-18: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=271,q=277,n=-10,N=14,e=-288: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=297,q=6,n=281,N=11,e=282: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=21,q=12,n=-282,N=20,e=-297: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=285,q=25,n=291,N=6,e=-275: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=276,q=298,n=281,N=2,e=29: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=10,q=1,n=14,N=278,e=-289: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=18,q=275,n=24,N=25,e=-272: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=289,q=1,n=298,N=14,e=-22: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=273,q=279,n=-23,N=290,e=-23: [('vtrace1_31', 1), ('vtrace2_31', 2), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=3,q=7,n=17,N=278,e=5: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=12,q=283,n=-275,N=4,e=-284: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=25,q=270,n=5,N=276,e=28: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=273,q=29,n=-3,N=4,e=284: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=7,q=272,n=283,N=273,e=289: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=1,q=21,n=-297,N=9,e=21: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=3,q=271,n=-284,N=1,e=270: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=5,q=296,n=-28,N=6,e=-5: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=28,q=18,n=286,N=17,e=284: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=289,q=293,n=-2,N=1,e=-30: [('vtrace1_31', 1), ('vtrace2_31', 6), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=279,q=11,n=-1,N=274,e=285: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=26,q=279,n=-25,N=280,e=273: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=297,q=295,n=292,N=273,e=271: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=6,q=283,n=287,N=2,e=-290: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=26,q=294,n=0,N=27,e=-4: [('vtrace1_31', 1), ('vtrace2_31', 2), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=295,q=295,n=-271,N=26,e=298: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=279,q=7,n=-292,N=3,e=275: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=19,q=4,n=-11,N=5,e=20: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=298,q=21,n=-297,N=279,e=275: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=0,q=285,n=29,N=15,e=283: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=11,q=280,n=26,N=275,e=-284: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=22,q=24,n=19,N=20,e=288: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=9,q=13,n=-1,N=5,e=-300: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=3,q=298,n=-8,N=270,e=-280: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=21,q=18,n=-274,N=275,e=-287: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=276,q=15,n=-276,N=282,e=29: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=14,q=16,n=-284,N=278,e=-14: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=297,q=289,n=-28,N=20,e=270: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=29,q=295,n=-4,N=12,e=8: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=17,q=292,n=24,N=272,e=290: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=14,q=293,n=296,N=282,e=12: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=291,q=27,n=-300,N=2,e=-297: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=282,q=7,n=13,N=287,e=-296: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=14,q=285,n=-27,N=293,e=-1: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=292,q=8,n=280,N=278,e=-283: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=293,q=273,n=-22,N=293,e=287: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=6,q=24,n=-276,N=2,e=-18: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=270,q=27,n=17,N=290,e=25: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=279,q=25,n=291,N=27,e=28: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=279,q=299,n=-273,N=6,e=-283: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=299,q=273,n=-274,N=298,e=27: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=295,q=21,n=-23,N=275,e=2: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=27,q=294,n=-284,N=288,e=272: [('vtrace1_31', 1), ('vtrace2_31', 2), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=293,q=9,n=-22,N=285,e=-25: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=18,q=289,n=-276,N=271,e=-300: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=26,q=22,n=-20,N=276,e=293: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=286,q=14,n=24,N=295,e=-17: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=286,q=294,n=280,N=290,e=-7: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=273,q=286,n=-281,N=273,e=-29: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=278,q=18,n=299,N=272,e=280: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=25,q=18,n=4,N=286,e=-17: [('vtrace1_31', 1), ('vtrace2_31', 2), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=288,q=27,n=-16,N=284,e=-296: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=289,q=284,n=-19,N=280,e=21: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=21,q=285,n=-8,N=279,e=27: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=28,q=271,n=270,N=285,e=-8: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=299,q=295,n=-288,N=295,e=294: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=295,q=20,n=4,N=3,e=-296: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=287,q=2,n=-298,N=289,e=-288: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=9,q=295,n=-298,N=5,e=16: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=17,q=2,n=277,N=283,e=286: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=17,q=16,n=-4,N=11,e=-1: [('vtrace1_31', 1), ('vtrace2_31', 2), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=5,q=274,n=299,N=279,e=-284: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=296,q=288,n=2,N=26,e=-283: [('vtrace1_31', 1), ('vtrace2_31', 2), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=281,q=282,n=294,N=278,e=2: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=2,q=5,n=294,N=296,e=-16: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=5,q=26,n=3,N=298,e=299: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=280,q=279,n=3,N=17,e=281: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=290,q=7,n=-290,N=17,e=-28: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=16,q=4,n=293,N=10,e=-278: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=282,q=272,n=22,N=290,e=9: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=278,q=297,n=-19,N=294,e=-298: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=289,q=22,n=270,N=291,e=-22: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=298,q=12,n=-276,N=24,e=5: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+lib:214:DEBUG (print_inps) - p=3,q=11,n=15,N=12,e=29: [('vtrace1_31', 1), ('vtrace2_31', 1), ('vtrace3_31', 1)]
+analysis:1189:DEBUG (prove_term_vloop) - base_term_inps: 0
+analysis:1190:DEBUG (prove_term_vloop) - term_inps: 124
+analysis:1191:DEBUG (prove_term_vloop) - mayloop_inps: 0
+analysis:1001:DEBUG (infer_ranking_functions) - vloop: vloop_31
+analysis:1002:DEBUG (infer_ranking_functions) - term_itraces: 124
+analysis:1049:DEBUG (infer_ranking_functions) - train_rand_trans: 131
+analysis:1056:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): p*uk_1 + q*uk_2 + n*uk_5 + N*uk_6 + e*uk_7 + uk_3*x + uk_4*y + uk_0
+analysis:1057:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3, uk_4, uk_5, uk_6, uk_7]
+analysis:1081:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 131
+analysis:1087:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 299*uk_1 + 9*uk_2 + 2*uk_5 + 20*uk_6 + -4*uk_7
+analysis:1088:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 +
+299*uk_1 +
+9*uk_2 +
+uk_3 +
+5*uk_4 +
+uk_5 +
+20*uk_6 +
+-3*uk_7
+analysis:1090:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = 0,
+ uk_7 = -1,
+ uk_3 = 0,
+ uk_4 = 0,
+ uk_5 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:1094:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*e
+analysis:1123:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 55
+analysis:1087:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 298*uk_1 + 12*uk_2 + -276*uk_5 + 24*uk_6 + 5*uk_7
+analysis:1088:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 +
+298*uk_1 +
+12*uk_2 +
+uk_3 +
+5*uk_4 +
+uk_5 +
+24*uk_6 +
+-3*uk_7
+analysis:1090:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = 0,
+ uk_7 = 1,
+ uk_3 = 0,
+ uk_4 = 0,
+ uk_5 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:1094:DEBUG (_infer_ranking_functions_from_trans) - rf: e
+analysis:1123:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 7
+analysis:1087:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 +
+287*uk_1 +
+73*uk_2 +
+uk_3 +
+5*uk_4 +
+-5*uk_5 +
+uk_6 +
+uk_7
+analysis:1088:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 +
+285*uk_1 +
+18*uk_2 +
+uk_3 +
+5*uk_4 +
+3*uk_5 +
+uk_6 +
+2*uk_7
+analysis:1090:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = 0,
+ uk_7 = 0,
+ uk_3 = 0,
+ uk_5 = -1,
+ uk_4 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:1094:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*n
+analysis:1123:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 2
+analysis:1087:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 +
+289*uk_1 +
+293*uk_2 +
+uk_3 +
+5*uk_4 +
+uk_5 +
+uk_6 +
+-3*uk_7
+analysis:1088:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 +
+286*uk_1 +
+36*uk_2 +
+uk_3 +
+5*uk_4 +
+-2*uk_5 +
+uk_6 +
+-4*uk_7
+analysis:1090:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = 0,
+ uk_7 = 0,
+ uk_3 = 0,
+ uk_5 = 1,
+ uk_4 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:1094:DEBUG (_infer_ranking_functions_from_trans) - rf: n
+analysis:1123:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:1124:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [-1*e, e, -1*n, n]
+utils.profiling:31:DEBUG (timed) - infer_ranking_functions: 1644.30ms
+analysis:1206:DEBUG (prove_term_vloop) - validate_ranking_functions: vloop_31
+analysis:1132:DEBUG (validate_ranking_functions) - ranks_str: -1*e|e|-1*n|n
+validate:124:DEBUG (gen_validate_file) - validate_cmd: /home/exp/tools/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/tools/dynamo/tests/bradley/BradleyMannaSipma-ICALP2005-loop11.c --out=/var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c --pos=31 --ranks="-1*e|e|-1*n|n"
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_wq5d0kni/vloop_31/uatm --witness-name witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --validate /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:64:DEBUG (validate_witness) - v_rmsg: Checking for ERROR reachability
+Using default analysis
+Version 6641879a
+Calling Ultimate with: /home/exp/tools/jdk8u252-b09/bin/java -Dosgi.configuration.area=/home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data/config -Xmx12G -Xms1G -jar /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/plugins/org.eclipse.equinox.launcher_1.3.100.v20150511-1540.jar -data @noDefault -ultimatedata /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data -tc /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/AutomizerReachWitnessValidation.xml -i /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml -s /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/svcomp-Reach-32bit-Automizer_Default.epf --cacsl2boogietranslator.entry.function main --traceabstraction.compute.hoare.annotation.of.negated.interpolant.automaton,.abstraction.and.cfg false
+....................................................................................................................................................................................................................................................................................................................................................
+Execution finished normally
+Writing output log to file Ultimate.log
+Writing human readable error path to file UltimateCounterExample.errorpath
+Result:
+FALSE
+
+validate:65:DEBUG (validate_witness) - v_errmsg: 
+validate:67:DEBUG (validate_witness) - v_res: False
+validate:354:DEBUG (mk_trans_cex) - dcex: {'__cil_tmp24': '-1', '__cil_tmp25': '-1', '__cil_tmp26': '1', '__cil_tmp27': '1', '__cil_tmp28': '-1', '__cil_tmp29': '-2', '__cil_tmp30': '1', '__cil_tmp31': '2', '__cil_tmp32': '2', '__cil_tmp_e': '1', '__cil_tmp_n': '1', '__cil_tmp_N': '4', '__cil_tmp_p': '1', '__cil_tmp_q': '1', '__cil_tmp_x': '0', '__cil_tmp_y': '0', 'dup': '1', 'e': '1', 'n': '2', 'N': '4', 'p': '1', 'q': '1', 'te': '1', 'tN': '4', 'tn': '1', 'tp': '1', 'tq': '1', 'tx': '0', 'ty': '0', 'x': '2', 'y': '2'}
+validate:365:DEBUG (mk_trans_cex) - trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 1, 0, 0, 1, 4, 1)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 1, 2, 2, 2, 4, 1)))]
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 1, 0, 0, 1, 4, 1)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 1, 2, 2, 2, 4, 1)))]
+analysis:1145:DEBUG (validate_ranking_functions) - r: False
+analysis:1147:DEBUG (validate_ranking_functions) - cex.trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 1, 0, 0, 1, 4, 1)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 1, 2, 2, 2, 4, 1)))]
+analysis:1056:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): p*uk_1 + q*uk_2 + n*uk_5 + N*uk_6 + e*uk_7 + uk_3*x + uk_4*y + uk_0
+analysis:1057:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3, uk_4, uk_5, uk_6, uk_7]
+analysis:1081:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1
+analysis:1087:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + uk_1 + uk_2 + uk_5 + 4*uk_6 + uk_7
+analysis:1088:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 +
+uk_1 +
+uk_2 +
+2*uk_3 +
+2*uk_4 +
+2*uk_5 +
+4*uk_6 +
+uk_7
+analysis:1090:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = 0,
+ uk_7 = 0,
+ uk_3 = 0,
+ uk_5 = 0,
+ uk_4 = -1,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:1094:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*y
+analysis:1123:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:1124:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [-1*y]
+analysis:1173:DEBUG (validate_ranking_functions) - n_rfs: [-1*y]
+analysis:1132:DEBUG (validate_ranking_functions) - ranks_str: -1*e|e|-1*n|n|-1*y
+validate:124:DEBUG (gen_validate_file) - validate_cmd: /home/exp/tools/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/tools/dynamo/tests/bradley/BradleyMannaSipma-ICALP2005-loop11.c --out=/var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c --pos=31 --ranks="-1*e|e|-1*n|n|-1*y"
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_wq5d0kni/vloop_31/uatm --witness-name witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --validate /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:64:DEBUG (validate_witness) - v_rmsg: Checking for ERROR reachability
+Using default analysis
+Version 6641879a
+Calling Ultimate with: /home/exp/tools/jdk8u252-b09/bin/java -Dosgi.configuration.area=/home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data/config -Xmx12G -Xms1G -jar /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/plugins/org.eclipse.equinox.launcher_1.3.100.v20150511-1540.jar -data @noDefault -ultimatedata /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data -tc /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/AutomizerReachWitnessValidation.xml -i /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml -s /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/svcomp-Reach-32bit-Automizer_Default.epf --cacsl2boogietranslator.entry.function main --traceabstraction.compute.hoare.annotation.of.negated.interpolant.automaton,.abstraction.and.cfg false
+...................................................................................................................................................................................................................................................................................................................................................
+Execution finished normally
+Writing output log to file Ultimate.log
+Writing human readable error path to file UltimateCounterExample.errorpath
+Result:
+FALSE
+
+validate:65:DEBUG (validate_witness) - v_errmsg: 
+validate:67:DEBUG (validate_witness) - v_res: False
+validate:354:DEBUG (mk_trans_cex) - dcex: {'__cil_tmp24': '1', '__cil_tmp25': '1', '__cil_tmp26': '-1', '__cil_tmp27': '-1', '__cil_tmp28': '-1', '__cil_tmp29': '-2', '__cil_tmp30': '1', '__cil_tmp31': '2', '__cil_tmp32': '0', '__cil_tmp33': '0', '__cil_tmp34': '1', '__cil_tmp_e': '-1', '__cil_tmp_n': '1', '__cil_tmp_N': '3', '__cil_tmp_p': '1', '__cil_tmp_q': '4', '__cil_tmp_x': '0', '__cil_tmp_y': '0', 'dup': '1', 'e': '-1', 'N': '3', 'n': '2', 'p': '1', 'q': '4', 'te': '-1', 'tN': '3', 'tn': '1', 'tp': '1', 'tq': '4', 'tx': '0', 'ty': '0', 'x': '3', 'y': '0'}
+validate:365:DEBUG (mk_trans_cex) - trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 4, 0, 0, 1, 3, -1)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 4, 3, 0, 2, 3, -1)))]
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 4, 0, 0, 1, 3, -1)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 4, 3, 0, 2, 3, -1)))]
+analysis:1145:DEBUG (validate_ranking_functions) - r: False
+analysis:1147:DEBUG (validate_ranking_functions) - cex.trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 4, 0, 0, 1, 3, -1)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 4, 3, 0, 2, 3, -1)))]
+analysis:1056:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): p*uk_1 + q*uk_2 + n*uk_5 + N*uk_6 + e*uk_7 + uk_3*x + uk_4*y + uk_0
+analysis:1057:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3, uk_4, uk_5, uk_6, uk_7]
+analysis:1081:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1
+analysis:1087:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + uk_1 + 4*uk_2 + uk_5 + 3*uk_6 + -1*uk_7
+analysis:1088:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + uk_1 + 4*uk_2 + 3*uk_3 + 2*uk_5 + 3*uk_6 + -1*uk_7
+analysis:1090:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = 0,
+ uk_7 = 0,
+ uk_3 = -1,
+ uk_5 = 0,
+ uk_4 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:1094:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*x
+analysis:1123:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:1124:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [-1*x]
+analysis:1173:DEBUG (validate_ranking_functions) - n_rfs: [-1*x]
+analysis:1132:DEBUG (validate_ranking_functions) - ranks_str: -1*e|e|-1*n|n|-1*y|-1*x
+validate:124:DEBUG (gen_validate_file) - validate_cmd: /home/exp/tools/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/tools/dynamo/tests/bradley/BradleyMannaSipma-ICALP2005-loop11.c --out=/var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c --pos=31 --ranks="-1*e|e|-1*n|n|-1*y|-1*x"
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_wq5d0kni/vloop_31/uatm --witness-name witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --validate /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:64:DEBUG (validate_witness) - v_rmsg: Checking for ERROR reachability
+Using default analysis
+Version 6641879a
+Calling Ultimate with: /home/exp/tools/jdk8u252-b09/bin/java -Dosgi.configuration.area=/home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data/config -Xmx12G -Xms1G -jar /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/plugins/org.eclipse.equinox.launcher_1.3.100.v20150511-1540.jar -data @noDefault -ultimatedata /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data -tc /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/AutomizerReachWitnessValidation.xml -i /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml -s /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/svcomp-Reach-32bit-Automizer_Default.epf --cacsl2boogietranslator.entry.function main --traceabstraction.compute.hoare.annotation.of.negated.interpolant.automaton,.abstraction.and.cfg false
+.................................................................................................................................................................................................................................................................................................................................................................
+Execution finished normally
+Writing output log to file Ultimate.log
+Writing human readable error path to file UltimateCounterExample.errorpath
+Result:
+FALSE
+
+validate:65:DEBUG (validate_witness) - v_errmsg: 
+validate:67:DEBUG (validate_witness) - v_res: False
+validate:354:DEBUG (mk_trans_cex) - dcex: {'__cil_tmp24': '-1', '__cil_tmp25': '-1', '__cil_tmp26': '1', '__cil_tmp27': '1', '__cil_tmp28': '-1', '__cil_tmp29': '-2', '__cil_tmp30': '1', '__cil_tmp31': '2', '__cil_tmp32': '0', '__cil_tmp33': '0', '__cil_tmp34': '0', '__cil_tmp35': '0', '__cil_tmp36': '1', '__cil_tmp_e': '1', '__cil_tmp_N': '2', '__cil_tmp_n': '1', '__cil_tmp_p': '1', '__cil_tmp_q': '1', '__cil_tmp_x': '0', '__cil_tmp_y': '0', 'dup': '1', 'e': '1', 'N': '2', 'n': '2', 'p': '1', 'q': '1', 'te': '1', 'tN': '2', 'tn': '1', 'tp': '1', 'tq': '1', 'tx': '0', 'ty': '0', 'x': '0', 'y': '0'}
+validate:365:DEBUG (mk_trans_cex) - trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 1, 0, 0, 1, 2, 1)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 1, 0, 0, 2, 2, 1)))]
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 1, 0, 0, 1, 2, 1)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 1, 0, 0, 2, 2, 1)))]
+analysis:1145:DEBUG (validate_ranking_functions) - r: False
+analysis:1147:DEBUG (validate_ranking_functions) - cex.trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 1, 0, 0, 1, 2, 1)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 1, 0, 0, 2, 2, 1)))]
+analysis:1056:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): p*uk_1 + q*uk_2 + n*uk_5 + N*uk_6 + e*uk_7 + uk_3*x + uk_4*y + uk_0
+analysis:1057:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3, uk_4, uk_5, uk_6, uk_7]
+analysis:1081:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1
+analysis:1087:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + uk_1 + uk_2 + uk_5 + 2*uk_6 + uk_7
+analysis:1088:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + uk_1 + uk_2 + 2*uk_5 + 2*uk_6 + uk_7
+analysis:1090:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = 0,
+ uk_7 = 1,
+ uk_3 = 0,
+ uk_5 = -1,
+ uk_4 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:1094:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*n + e
+analysis:1123:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:1124:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [-1*n + e]
+analysis:1173:DEBUG (validate_ranking_functions) - n_rfs: [-1*n + e]
+analysis:1132:DEBUG (validate_ranking_functions) - ranks_str: -1*e|e|-1*n|n|-1*y|-1*x|-1*n + e
+validate:124:DEBUG (gen_validate_file) - validate_cmd: /home/exp/tools/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/tools/dynamo/tests/bradley/BradleyMannaSipma-ICALP2005-loop11.c --out=/var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c --pos=31 --ranks="-1*e|e|-1*n|n|-1*y|-1*x|-1*n + e"
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_wq5d0kni/vloop_31/uatm --witness-name witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --validate /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:64:DEBUG (validate_witness) - v_rmsg: Checking for ERROR reachability
+Using default analysis
+Version 6641879a
+Calling Ultimate with: /home/exp/tools/jdk8u252-b09/bin/java -Dosgi.configuration.area=/home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data/config -Xmx12G -Xms1G -jar /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/plugins/org.eclipse.equinox.launcher_1.3.100.v20150511-1540.jar -data @noDefault -ultimatedata /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data -tc /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/AutomizerReachWitnessValidation.xml -i /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml -s /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/svcomp-Reach-32bit-Automizer_Default.epf --cacsl2boogietranslator.entry.function main --traceabstraction.compute.hoare.annotation.of.negated.interpolant.automaton,.abstraction.and.cfg false
+.................................................................................................................................................................................................................................................................................................................................................................
+Execution finished normally
+Writing output log to file Ultimate.log
+Writing human readable error path to file UltimateCounterExample.errorpath
+Result:
+FALSE
+
+validate:65:DEBUG (validate_witness) - v_errmsg: 
+validate:67:DEBUG (validate_witness) - v_res: False
+validate:354:DEBUG (mk_trans_cex) - dcex: {'__cil_tmp24': '-1', '__cil_tmp25': '-2', '__cil_tmp26': '1', '__cil_tmp27': '2', '__cil_tmp28': '1', '__cil_tmp29': '1', '__cil_tmp30': '-1', '__cil_tmp31': '-1', '__cil_tmp32': '0', '__cil_tmp33': '0', '__cil_tmp34': '0', '__cil_tmp35': '0', '__cil_tmp36': '2', '__cil_tmp37': '3', '__cil_tmp38': '1', '__cil_tmp_e': '1', '__cil_tmp_N': '0', '__cil_tmp_n': '-1', '__cil_tmp_p': '1', '__cil_tmp_q': '1', '__cil_tmp_x': '0', '__cil_tmp_y': '0', 'dup': '1', 'e': '2', 'n': '-1', 'N': '0', 'p': '1', 'q': '1', 'te': '1', 'tN': '0', 'tn': '-1', 'tp': '1', 'tq': '1', 'tx': '0', 'ty': '0', 'x': '0', 'y': '0'}
+validate:365:DEBUG (mk_trans_cex) - trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 1, 0, 0, -1, 0, 1)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 1, 0, 0, -1, 0, 2)))]
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 1, 0, 0, -1, 0, 1)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 1, 0, 0, -1, 0, 2)))]
+analysis:1145:DEBUG (validate_ranking_functions) - r: False
+analysis:1147:DEBUG (validate_ranking_functions) - cex.trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 1, 0, 0, -1, 0, 1)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 1, 0, 0, -1, 0, 2)))]
+analysis:1056:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): p*uk_1 + q*uk_2 + n*uk_5 + N*uk_6 + e*uk_7 + uk_3*x + uk_4*y + uk_0
+analysis:1057:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3, uk_4, uk_5, uk_6, uk_7]
+analysis:1081:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1
+analysis:1087:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + uk_1 + uk_2 + -1*uk_5 + uk_7
+analysis:1088:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + uk_1 + uk_2 + -1*uk_5 + 2*uk_7
+analysis:1090:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_7 = -1,
+ uk_6 = 0,
+ uk_3 = 0,
+ uk_5 = -1,
+ uk_4 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:1094:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*n + -1*e
+analysis:1123:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:1124:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [-1*n + -1*e]
+analysis:1173:DEBUG (validate_ranking_functions) - n_rfs: [-1*n + -1*e]
+analysis:1132:DEBUG (validate_ranking_functions) - ranks_str: -1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e
+validate:124:DEBUG (gen_validate_file) - validate_cmd: /home/exp/tools/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/tools/dynamo/tests/bradley/BradleyMannaSipma-ICALP2005-loop11.c --out=/var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c --pos=31 --ranks="-1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e"
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_wq5d0kni/vloop_31/uatm --witness-name witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --validate /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:64:DEBUG (validate_witness) - v_rmsg: Checking for ERROR reachability
+Using default analysis
+Version 6641879a
+Calling Ultimate with: /home/exp/tools/jdk8u252-b09/bin/java -Dosgi.configuration.area=/home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data/config -Xmx12G -Xms1G -jar /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/plugins/org.eclipse.equinox.launcher_1.3.100.v20150511-1540.jar -data @noDefault -ultimatedata /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data -tc /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/AutomizerReachWitnessValidation.xml -i /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml -s /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/svcomp-Reach-32bit-Automizer_Default.epf --cacsl2boogietranslator.entry.function main --traceabstraction.compute.hoare.annotation.of.negated.interpolant.automaton,.abstraction.and.cfg false
+...........................................................................................................................................................................................................................................................................................................................................................................
+Execution finished normally
+Writing output log to file Ultimate.log
+Writing human readable error path to file UltimateCounterExample.errorpath
+Result:
+FALSE
+
+validate:65:DEBUG (validate_witness) - v_errmsg: 
+validate:67:DEBUG (validate_witness) - v_res: False
+validate:354:DEBUG (mk_trans_cex) - dcex: {'__cil_tmp24': '-5', '__cil_tmp25': '-6', '__cil_tmp26': '5', '__cil_tmp27': '6', '__cil_tmp28': '4', '__cil_tmp29': '4', '__cil_tmp30': '-4', '__cil_tmp31': '-4', '__cil_tmp32': '0', '__cil_tmp33': '1', '__cil_tmp34': '0', '__cil_tmp35': '0', '__cil_tmp36': '9', '__cil_tmp37': '10', '__cil_tmp38': '-1', '__cil_tmp39': '-2', '__cil_tmp40': '4', '__cil_tmp_e': '5', '__cil_tmp_N': '4', '__cil_tmp_n': '-4', '__cil_tmp_p': '1', '__cil_tmp_q': '6', '__cil_tmp_x': '0', '__cil_tmp_y': '0', 'dup': '1', 'e': '6', 'n': '-4', 'N': '4', 'p': '1', 'q': '6', 'te': '5', 'tN': '4', 'tn': '-4', 'tp': '1', 'tq': '6', 'tx': '0', 'ty': '0', 'x': '0', 'y': '-1'}
+validate:365:DEBUG (mk_trans_cex) - trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 6, 0, 0, -4, 4, 5)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 6, 0, -1, -4, 4, 6)))]
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 6, 0, 0, -4, 4, 5)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 6, 0, -1, -4, 4, 6)))]
+analysis:1145:DEBUG (validate_ranking_functions) - r: False
+analysis:1147:DEBUG (validate_ranking_functions) - cex.trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 6, 0, 0, -4, 4, 5)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 6, 0, -1, -4, 4, 6)))]
+analysis:1056:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): p*uk_1 + q*uk_2 + n*uk_5 + N*uk_6 + e*uk_7 + uk_3*x + uk_4*y + uk_0
+analysis:1057:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3, uk_4, uk_5, uk_6, uk_7]
+analysis:1081:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1
+analysis:1087:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + uk_1 + 6*uk_2 + -4*uk_5 + 4*uk_6 + 5*uk_7
+analysis:1088:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + uk_1 + 6*uk_2 + -1*uk_4 + -4*uk_5 + 4*uk_6 + 6*uk_7
+analysis:1090:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = 0,
+ uk_7 = 0,
+ uk_3 = 0,
+ uk_4 = 1,
+ uk_5 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:1094:DEBUG (_infer_ranking_functions_from_trans) - rf: y
+analysis:1123:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:1124:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [y]
+analysis:1173:DEBUG (validate_ranking_functions) - n_rfs: [y]
+analysis:1132:DEBUG (validate_ranking_functions) - ranks_str: -1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e|y
+validate:124:DEBUG (gen_validate_file) - validate_cmd: /home/exp/tools/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/tools/dynamo/tests/bradley/BradleyMannaSipma-ICALP2005-loop11.c --out=/var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c --pos=31 --ranks="-1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e|y"
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_wq5d0kni/vloop_31/uatm --witness-name witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --validate /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:64:DEBUG (validate_witness) - v_rmsg: Checking for ERROR reachability
+Using default analysis
+Version 6641879a
+Calling Ultimate with: /home/exp/tools/jdk8u252-b09/bin/java -Dosgi.configuration.area=/home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data/config -Xmx12G -Xms1G -jar /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/plugins/org.eclipse.equinox.launcher_1.3.100.v20150511-1540.jar -data @noDefault -ultimatedata /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data -tc /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/AutomizerReachWitnessValidation.xml -i /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml -s /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/svcomp-Reach-32bit-Automizer_Default.epf --cacsl2boogietranslator.entry.function main --traceabstraction.compute.hoare.annotation.of.negated.interpolant.automaton,.abstraction.and.cfg false
+.............................................................................................................................................................................................................................................................................................................................................................................
+Execution finished normally
+Writing output log to file Ultimate.log
+Writing human readable error path to file UltimateCounterExample.errorpath
+Result:
+FALSE
+
+validate:65:DEBUG (validate_witness) - v_errmsg: 
+validate:67:DEBUG (validate_witness) - v_res: False
+validate:354:DEBUG (mk_trans_cex) - dcex: {'__cil_tmp24': '-2', '__cil_tmp25': '-3', '__cil_tmp26': '2', '__cil_tmp27': '3', '__cil_tmp28': '1', '__cil_tmp29': '1', '__cil_tmp30': '-1', '__cil_tmp31': '-1', '__cil_tmp32': '0', '__cil_tmp33': '0', '__cil_tmp34': '0', '__cil_tmp35': '0', '__cil_tmp36': '3', '__cil_tmp37': '4', '__cil_tmp38': '-1', '__cil_tmp39': '-2', '__cil_tmp40': '0', '__cil_tmp41': '0', '__cil_tmp42': '4', '__cil_tmp_e': '2', '__cil_tmp_n': '-1', '__cil_tmp_N': '4', '__cil_tmp_p': '1', '__cil_tmp_q': '2', '__cil_tmp_x': '0', '__cil_tmp_y': '0', 'dup': '1', 'e': '3', 'n': '-1', 'N': '4', 'p': '1', 'q': '2', 'te': '2', 'tn': '-1', 'tN': '4', 'tp': '1', 'tq': '2', 'tx': '0', 'ty': '0', 'x': '0', 'y': '0'}
+validate:365:DEBUG (mk_trans_cex) - trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 2, 0, 0, -1, 4, 2)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 2, 0, 0, -1, 4, 3)))]
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 2, 0, 0, -1, 4, 2)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 2, 0, 0, -1, 4, 3)))]
+analysis:1145:DEBUG (validate_ranking_functions) - r: False
+analysis:1147:DEBUG (validate_ranking_functions) - cex.trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 2, 0, 0, -1, 4, 2)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 2, 0, 0, -1, 4, 3)))]
+analysis:1056:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): p*uk_1 + q*uk_2 + n*uk_5 + N*uk_6 + e*uk_7 + uk_3*x + uk_4*y + uk_0
+analysis:1057:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3, uk_4, uk_5, uk_6, uk_7]
+analysis:1081:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1
+analysis:1087:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + uk_1 + 2*uk_2 + -1*uk_5 + 4*uk_6 + 2*uk_7
+analysis:1088:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + uk_1 + 2*uk_2 + -1*uk_5 + 4*uk_6 + 3*uk_7
+analysis:1090:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = 1,
+ uk_7 = -1,
+ uk_3 = 0,
+ uk_5 = 0,
+ uk_4 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:1094:DEBUG (_infer_ranking_functions_from_trans) - rf: N + -1*e
+analysis:1123:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:1124:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [N + -1*e]
+analysis:1173:DEBUG (validate_ranking_functions) - n_rfs: [N + -1*e]
+analysis:1132:DEBUG (validate_ranking_functions) - ranks_str: -1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e|y|N + -1*e
+validate:124:DEBUG (gen_validate_file) - validate_cmd: /home/exp/tools/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/tools/dynamo/tests/bradley/BradleyMannaSipma-ICALP2005-loop11.c --out=/var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c --pos=31 --ranks="-1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e|y|N + -1*e"
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_wq5d0kni/vloop_31/uatm --witness-name witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --validate /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:64:DEBUG (validate_witness) - v_rmsg: Checking for ERROR reachability
+Using default analysis
+Version 6641879a
+Calling Ultimate with: /home/exp/tools/jdk8u252-b09/bin/java -Dosgi.configuration.area=/home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data/config -Xmx12G -Xms1G -jar /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/plugins/org.eclipse.equinox.launcher_1.3.100.v20150511-1540.jar -data @noDefault -ultimatedata /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data -tc /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/AutomizerReachWitnessValidation.xml -i /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml -s /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/svcomp-Reach-32bit-Automizer_Default.epf --cacsl2boogietranslator.entry.function main --traceabstraction.compute.hoare.annotation.of.negated.interpolant.automaton,.abstraction.and.cfg false
+..................................................................................................................................................................................................................................................................................................................................................................................
+Execution finished normally
+Writing output log to file Ultimate.log
+Writing human readable error path to file UltimateCounterExample.errorpath
+Result:
+FALSE
+
+validate:65:DEBUG (validate_witness) - v_errmsg: 
+validate:67:DEBUG (validate_witness) - v_res: False
+validate:354:DEBUG (mk_trans_cex) - dcex: {'__cil_tmp24': '-1', '__cil_tmp25': '-2', '__cil_tmp26': '1', '__cil_tmp27': '2', '__cil_tmp28': '-2', '__cil_tmp29': '-2', '__cil_tmp30': '2', '__cil_tmp31': '2', '__cil_tmp32': '0', '__cil_tmp33': '0', '__cil_tmp34': '0', '__cil_tmp35': '0', '__cil_tmp36': '-1', '__cil_tmp37': '0', '__cil_tmp38': '-3', '__cil_tmp39': '-4', '__cil_tmp40': '0', '__cil_tmp41': '0', '__cil_tmp42': '-1', '__cil_tmp43': '-2', '__cil_tmp44': '1', '__cil_tmp_e': '1', '__cil_tmp_N': '0', '__cil_tmp_n': '2', '__cil_tmp_p': '1', '__cil_tmp_q': '2', '__cil_tmp_x': '0', '__cil_tmp_y': '0', 'dup': '1', 'e': '2', 'N': '0', 'n': '2', 'p': '1', 'q': '2', 'te': '1', 'tN': '0', 'tn': '2', 'tp': '1', 'tq': '2', 'tx': '0', 'ty': '0', 'x': '0', 'y': '0'}
+validate:365:DEBUG (mk_trans_cex) - trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 2, 0, 0, 2, 0, 1)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 2, 0, 0, 2, 0, 2)))]
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 2, 0, 0, 2, 0, 1)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 2, 0, 0, 2, 0, 2)))]
+analysis:1145:DEBUG (validate_ranking_functions) - r: False
+analysis:1147:DEBUG (validate_ranking_functions) - cex.trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 2, 0, 0, 2, 0, 1)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 2, 0, 0, 2, 0, 2)))]
+analysis:1056:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): p*uk_1 + q*uk_2 + n*uk_5 + N*uk_6 + e*uk_7 + uk_3*x + uk_4*y + uk_0
+analysis:1057:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3, uk_4, uk_5, uk_6, uk_7]
+analysis:1081:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1
+analysis:1087:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + uk_1 + 2*uk_2 + 2*uk_5 + uk_7
+analysis:1088:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + uk_1 + 2*uk_2 + 2*uk_5 + 2*uk_7
+analysis:1090:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_7 = -1,
+ uk_6 = 0,
+ uk_3 = 0,
+ uk_5 = 1,
+ uk_4 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:1094:DEBUG (_infer_ranking_functions_from_trans) - rf: n + -1*e
+analysis:1123:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:1124:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [n + -1*e]
+analysis:1173:DEBUG (validate_ranking_functions) - n_rfs: [n + -1*e]
+analysis:1132:DEBUG (validate_ranking_functions) - ranks_str: -1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e|y|N + -1*e|n + -1*e
+validate:124:DEBUG (gen_validate_file) - validate_cmd: /home/exp/tools/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/tools/dynamo/tests/bradley/BradleyMannaSipma-ICALP2005-loop11.c --out=/var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c --pos=31 --ranks="-1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e|y|N + -1*e|n + -1*e"
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_wq5d0kni/vloop_31/uatm --witness-name witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --validate /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:64:DEBUG (validate_witness) - v_rmsg: Checking for ERROR reachability
+Using default analysis
+Version 6641879a
+Calling Ultimate with: /home/exp/tools/jdk8u252-b09/bin/java -Dosgi.configuration.area=/home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data/config -Xmx12G -Xms1G -jar /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/plugins/org.eclipse.equinox.launcher_1.3.100.v20150511-1540.jar -data @noDefault -ultimatedata /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data -tc /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/AutomizerReachWitnessValidation.xml -i /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml -s /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/svcomp-Reach-32bit-Automizer_Default.epf --cacsl2boogietranslator.entry.function main --traceabstraction.compute.hoare.annotation.of.negated.interpolant.automaton,.abstraction.and.cfg false
+.............................................................................................................................................................................................................................................................................................................................................................................................
+Execution finished normally
+Writing output log to file Ultimate.log
+Writing human readable error path to file UltimateCounterExample.errorpath
+Result:
+FALSE
+
+validate:65:DEBUG (validate_witness) - v_errmsg: 
+validate:67:DEBUG (validate_witness) - v_res: False
+validate:354:DEBUG (mk_trans_cex) - dcex: {'__cil_tmp24': '-2', '__cil_tmp25': '-3', '__cil_tmp26': '2', '__cil_tmp27': '3', '__cil_tmp28': '-1', '__cil_tmp29': '-2', '__cil_tmp30': '1', '__cil_tmp31': '2', '__cil_tmp32': '0', '__cil_tmp33': '0', '__cil_tmp34': '0', '__cil_tmp35': '0', '__cil_tmp36': '1', '__cil_tmp37': '1', '__cil_tmp38': '-3', '__cil_tmp39': '-5', '__cil_tmp40': '0', '__cil_tmp41': '0', '__cil_tmp42': '-2', '__cil_tmp43': '-3', '__cil_tmp44': '-1', '__cil_tmp45': '-1', '__cil_tmp46': '-1', '__cil_tmp_e': '2', '__cil_tmp_N': '0', '__cil_tmp_n': '1', '__cil_tmp_p': '2', '__cil_tmp_q': '2', '__cil_tmp_x': '0', '__cil_tmp_y': '0', 'dup': '1', 'e': '3', 'n': '2', 'N': '0', 'p': '2', 'q': '2', 'te': '2', 'tN': '0', 'tn': '1', 'tp': '2', 'tq': '2', 'tx': '0', 'ty': '0', 'x': '0', 'y': '0'}
+validate:365:DEBUG (mk_trans_cex) - trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(2, 2, 0, 0, 1, 0, 2)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(2, 2, 0, 0, 2, 0, 3)))]
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(2, 2, 0, 0, 1, 0, 2)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(2, 2, 0, 0, 2, 0, 3)))]
+analysis:1145:DEBUG (validate_ranking_functions) - r: False
+analysis:1147:DEBUG (validate_ranking_functions) - cex.trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(2, 2, 0, 0, 1, 0, 2)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(2, 2, 0, 0, 2, 0, 3)))]
+analysis:1056:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): p*uk_1 + q*uk_2 + n*uk_5 + N*uk_6 + e*uk_7 + uk_3*x + uk_4*y + uk_0
+analysis:1057:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3, uk_4, uk_5, uk_6, uk_7]
+analysis:1081:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1
+analysis:1087:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 2*uk_1 + 2*uk_2 + uk_5 + 2*uk_7
+analysis:1088:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 2*uk_1 + 2*uk_2 + 2*uk_5 + 3*uk_7
+analysis:1090:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = 0,
+ uk_7 = -1,
+ uk_3 = 0,
+ uk_5 = 0,
+ uk_4 = 0,
+ uk_2 = 1,
+ uk_0 = 0]
+analysis:1094:DEBUG (_infer_ranking_functions_from_trans) - rf: q + -1*e
+analysis:1123:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:1124:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [q + -1*e]
+analysis:1173:DEBUG (validate_ranking_functions) - n_rfs: [q + -1*e]
+analysis:1132:DEBUG (validate_ranking_functions) - ranks_str: -1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e|y|N + -1*e|n + -1*e|q + -1*e
+validate:124:DEBUG (gen_validate_file) - validate_cmd: /home/exp/tools/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/tools/dynamo/tests/bradley/BradleyMannaSipma-ICALP2005-loop11.c --out=/var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c --pos=31 --ranks="-1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e|y|N + -1*e|n + -1*e|q + -1*e"
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_wq5d0kni/vloop_31/uatm --witness-name witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --validate /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:64:DEBUG (validate_witness) - v_rmsg: Checking for ERROR reachability
+Using default analysis
+Version 6641879a
+Calling Ultimate with: /home/exp/tools/jdk8u252-b09/bin/java -Dosgi.configuration.area=/home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data/config -Xmx12G -Xms1G -jar /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/plugins/org.eclipse.equinox.launcher_1.3.100.v20150511-1540.jar -data @noDefault -ultimatedata /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data -tc /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/AutomizerReachWitnessValidation.xml -i /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml -s /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/svcomp-Reach-32bit-Automizer_Default.epf --cacsl2boogietranslator.entry.function main --traceabstraction.compute.hoare.annotation.of.negated.interpolant.automaton,.abstraction.and.cfg false
+.........................................................................................................................................................................................................................................................................................................................................................................................................
+Execution finished normally
+Writing output log to file Ultimate.log
+Writing human readable error path to file UltimateCounterExample.errorpath
+Result:
+FALSE
+
+validate:65:DEBUG (validate_witness) - v_errmsg: 
+validate:67:DEBUG (validate_witness) - v_res: False
+validate:354:DEBUG (mk_trans_cex) - dcex: {'__cil_tmp24': '-1', '__cil_tmp25': '-1', '__cil_tmp26': '1', '__cil_tmp27': '1', '__cil_tmp28': '-2', '__cil_tmp29': '-3', '__cil_tmp30': '2', '__cil_tmp31': '3', '__cil_tmp32': '0', '__cil_tmp33': '0', '__cil_tmp34': '0', '__cil_tmp35': '0', '__cil_tmp36': '-1', '__cil_tmp37': '-2', '__cil_tmp38': '-3', '__cil_tmp39': '-4', '__cil_tmp40': '0', '__cil_tmp41': '0', '__cil_tmp42': '-1', '__cil_tmp43': '-1', '__cil_tmp44': '1', '__cil_tmp45': '2', '__cil_tmp46': '1', '__cil_tmp47': '1', '__cil_tmp48': '1', '__cil_tmp_e': '1', '__cil_tmp_n': '2', '__cil_tmp_N': '0', '__cil_tmp_p': '1', '__cil_tmp_q': '2', '__cil_tmp_x': '0', '__cil_tmp_y': '0', 'dup': '1', 'e': '1', 'n': '3', 'N': '0', 'p': '1', 'q': '2', 'te': '1', 'tn': '2', 'tN': '0', 'tp': '1', 'tq': '2', 'tx': '0', 'ty': '0', 'x': '0', 'y': '0'}
+validate:365:DEBUG (mk_trans_cex) - trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 2, 0, 0, 2, 0, 1)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 2, 0, 0, 3, 0, 1)))]
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 2, 0, 0, 2, 0, 1)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 2, 0, 0, 3, 0, 1)))]
+analysis:1145:DEBUG (validate_ranking_functions) - r: False
+analysis:1147:DEBUG (validate_ranking_functions) - cex.trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 2, 0, 0, 2, 0, 1)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 2, 0, 0, 3, 0, 1)))]
+analysis:1056:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): p*uk_1 + q*uk_2 + n*uk_5 + N*uk_6 + e*uk_7 + uk_3*x + uk_4*y + uk_0
+analysis:1057:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3, uk_4, uk_5, uk_6, uk_7]
+analysis:1081:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1
+analysis:1087:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + uk_1 + 2*uk_2 + 2*uk_5 + uk_7
+analysis:1088:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + uk_1 + 2*uk_2 + 3*uk_5 + uk_7
+analysis:1090:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = 0,
+ uk_7 = 0,
+ uk_3 = 0,
+ uk_5 = -1,
+ uk_4 = 0,
+ uk_2 = 1,
+ uk_0 = 0]
+analysis:1094:DEBUG (_infer_ranking_functions_from_trans) - rf: q + -1*n
+analysis:1123:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:1124:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [q + -1*n]
+analysis:1173:DEBUG (validate_ranking_functions) - n_rfs: [q + -1*n]
+analysis:1132:DEBUG (validate_ranking_functions) - ranks_str: -1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e|y|N + -1*e|n + -1*e|q + -1*e|q + -1*n
+validate:124:DEBUG (gen_validate_file) - validate_cmd: /home/exp/tools/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/tools/dynamo/tests/bradley/BradleyMannaSipma-ICALP2005-loop11.c --out=/var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c --pos=31 --ranks="-1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e|y|N + -1*e|n + -1*e|q + -1*e|q + -1*n"
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_wq5d0kni/vloop_31/uatm --witness-name witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --validate /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:64:DEBUG (validate_witness) - v_rmsg: Checking for ERROR reachability
+Using default analysis
+Version 6641879a
+Calling Ultimate with: /home/exp/tools/jdk8u252-b09/bin/java -Dosgi.configuration.area=/home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data/config -Xmx12G -Xms1G -jar /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/plugins/org.eclipse.equinox.launcher_1.3.100.v20150511-1540.jar -data @noDefault -ultimatedata /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data -tc /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/AutomizerReachWitnessValidation.xml -i /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml -s /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/svcomp-Reach-32bit-Automizer_Default.epf --cacsl2boogietranslator.entry.function main --traceabstraction.compute.hoare.annotation.of.negated.interpolant.automaton,.abstraction.and.cfg false
+.....................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+Execution finished normally
+Writing output log to file Ultimate.log
+Writing human readable error path to file UltimateCounterExample.errorpath
+Result:
+FALSE
+
+validate:65:DEBUG (validate_witness) - v_errmsg: 
+validate:67:DEBUG (validate_witness) - v_res: False
+validate:354:DEBUG (mk_trans_cex) - dcex: {'__cil_tmp24': '2', '__cil_tmp25': '7', '__cil_tmp26': '-2', '__cil_tmp27': '-7', '__cil_tmp28': '1', '__cil_tmp29': '6', '__cil_tmp30': '-1', '__cil_tmp31': '-6', '__cil_tmp32': '-3', '__cil_tmp33': '-3', '__cil_tmp34': '-5', '__cil_tmp35': '-5', '__cil_tmp36': '-1', '__cil_tmp37': '-1', '__cil_tmp38': '3', '__cil_tmp39': '13', '__cil_tmp40': '3', '__cil_tmp41': '3', '__cil_tmp42': '9', '__cil_tmp43': '14', '__cil_tmp44': '1', '__cil_tmp45': '1', '__cil_tmp46': '11', '__cil_tmp47': '11', '__cil_tmp48': '10', '__cil_tmp49': '10', '__cil_tmp50': '1', '__cil_tmp_e': '-2', '__cil_tmp_n': '-1', '__cil_tmp_N': '7', '__cil_tmp_p': '1', '__cil_tmp_q': '9', '__cil_tmp_x': '5', '__cil_tmp_y': '3', 'dup': '1', 'e': '-7', 'N': '7', 'n': '-6', 'p': '0', 'q': '4', 'te': '-2', 'tN': '7', 'tn': '-1', 'tp': '1', 'tq': '9', 'tx': '5', 'ty': '3', 'x': '5', 'y': '3'}
+validate:365:DEBUG (mk_trans_cex) - trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 9, 5, 3, -1, 7, -2)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(0, 4, 5, 3, -6, 7, -7)))]
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 9, 5, 3, -1, 7, -2)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(0, 4, 5, 3, -6, 7, -7)))]
+analysis:1145:DEBUG (validate_ranking_functions) - r: False
+analysis:1147:DEBUG (validate_ranking_functions) - cex.trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 9, 5, 3, -1, 7, -2)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(0, 4, 5, 3, -6, 7, -7)))]
+analysis:1056:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): p*uk_1 + q*uk_2 + n*uk_5 + N*uk_6 + e*uk_7 + uk_3*x + uk_4*y + uk_0
+analysis:1057:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3, uk_4, uk_5, uk_6, uk_7]
+analysis:1081:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1
+analysis:1087:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 +
+uk_1 +
+9*uk_2 +
+5*uk_3 +
+3*uk_4 +
+-1*uk_5 +
+7*uk_6 +
+-2*uk_7
+analysis:1088:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 4*uk_2 + 5*uk_3 + 3*uk_4 + -6*uk_5 + 7*uk_6 + -7*uk_7
+analysis:1090:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = 0,
+ uk_7 = 0,
+ uk_3 = 0,
+ uk_5 = 0,
+ uk_4 = 0,
+ uk_2 = 1,
+ uk_0 = 0]
+analysis:1094:DEBUG (_infer_ranking_functions_from_trans) - rf: q
+analysis:1123:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:1124:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [q]
+analysis:1173:DEBUG (validate_ranking_functions) - n_rfs: [q]
+analysis:1132:DEBUG (validate_ranking_functions) - ranks_str: -1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e|y|N + -1*e|n + -1*e|q + -1*e|q + -1*n|q
+validate:124:DEBUG (gen_validate_file) - validate_cmd: /home/exp/tools/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/tools/dynamo/tests/bradley/BradleyMannaSipma-ICALP2005-loop11.c --out=/var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c --pos=31 --ranks="-1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e|y|N + -1*e|n + -1*e|q + -1*e|q + -1*n|q"
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_wq5d0kni/vloop_31/uatm --witness-name witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --validate /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:64:DEBUG (validate_witness) - v_rmsg: Checking for ERROR reachability
+Using default analysis
+Version 6641879a
+Calling Ultimate with: /home/exp/tools/jdk8u252-b09/bin/java -Dosgi.configuration.area=/home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data/config -Xmx12G -Xms1G -jar /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/plugins/org.eclipse.equinox.launcher_1.3.100.v20150511-1540.jar -data @noDefault -ultimatedata /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data -tc /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/AutomizerReachWitnessValidation.xml -i /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml -s /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/svcomp-Reach-32bit-Automizer_Default.epf --cacsl2boogietranslator.entry.function main --traceabstraction.compute.hoare.annotation.of.negated.interpolant.automaton,.abstraction.and.cfg false
+......................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+Execution finished normally
+Writing output log to file Ultimate.log
+Writing human readable error path to file UltimateCounterExample.errorpath
+Result:
+FALSE
+
+validate:65:DEBUG (validate_witness) - v_errmsg: 
+validate:67:DEBUG (validate_witness) - v_res: False
+validate:354:DEBUG (mk_trans_cex) - dcex: {'__cil_tmp24': '-4', '__cil_tmp25': '-4', '__cil_tmp26': '4', '__cil_tmp27': '4', '__cil_tmp28': '-6', '__cil_tmp29': '-7', '__cil_tmp30': '6', '__cil_tmp31': '7', '__cil_tmp32': '-1', '__cil_tmp33': '-2', '__cil_tmp34': '-1', '__cil_tmp35': '-1', '__cil_tmp36': '-2', '__cil_tmp37': '-3', '__cil_tmp38': '-10', '__cil_tmp39': '-11', '__cil_tmp40': '1', '__cil_tmp41': '2', '__cil_tmp42': '-1', '__cil_tmp43': '-1', '__cil_tmp44': '2', '__cil_tmp45': '3', '__cil_tmp46': '1', '__cil_tmp47': '1', '__cil_tmp48': '-1', '__cil_tmp49': '-2', '__cil_tmp50': '5', '__cil_tmp51': '5', '__cil_tmp52': '1', '__cil_tmp_e': '4', '__cil_tmp_n': '6', '__cil_tmp_N': '3', '__cil_tmp_p': '1', '__cil_tmp_q': '5', '__cil_tmp_x': '1', '__cil_tmp_y': '1', 'dup': '1', 'e': '4', 'n': '7', 'N': '3', 'p': '1', 'q': '5', 'te': '4', 'tN': '3', 'tn': '6', 'tp': '1', 'tq': '5', 'tx': '1', 'ty': '1', 'x': '1', 'y': '2'}
+validate:365:DEBUG (mk_trans_cex) - trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 5, 1, 1, 6, 3, 4)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 5, 1, 2, 7, 3, 4)))]
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 5, 1, 1, 6, 3, 4)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 5, 1, 2, 7, 3, 4)))]
+analysis:1145:DEBUG (validate_ranking_functions) - r: False
+analysis:1147:DEBUG (validate_ranking_functions) - cex.trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 5, 1, 1, 6, 3, 4)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 5, 1, 2, 7, 3, 4)))]
+analysis:1056:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): p*uk_1 + q*uk_2 + n*uk_5 + N*uk_6 + e*uk_7 + uk_3*x + uk_4*y + uk_0
+analysis:1057:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3, uk_4, uk_5, uk_6, uk_7]
+analysis:1081:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1
+analysis:1087:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 +
+uk_1 +
+5*uk_2 +
+uk_3 +
+uk_4 +
+6*uk_5 +
+3*uk_6 +
+4*uk_7
+analysis:1088:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 +
+uk_1 +
+5*uk_2 +
+uk_3 +
+2*uk_4 +
+7*uk_5 +
+3*uk_6 +
+4*uk_7
+analysis:1090:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = 0,
+ uk_7 = 1,
+ uk_3 = 0,
+ uk_5 = 0,
+ uk_4 = -1,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:1094:DEBUG (_infer_ranking_functions_from_trans) - rf: e + -1*y
+analysis:1123:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:1124:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [e + -1*y]
+analysis:1173:DEBUG (validate_ranking_functions) - n_rfs: [e + -1*y]
+analysis:1132:DEBUG (validate_ranking_functions) - ranks_str: -1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e|y|N + -1*e|n + -1*e|q + -1*e|q + -1*n|q|e + -1*y
+validate:124:DEBUG (gen_validate_file) - validate_cmd: /home/exp/tools/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/tools/dynamo/tests/bradley/BradleyMannaSipma-ICALP2005-loop11.c --out=/var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c --pos=31 --ranks="-1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e|y|N + -1*e|n + -1*e|q + -1*e|q + -1*n|q|e + -1*y"
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_wq5d0kni/vloop_31/uatm --witness-name witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --validate /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:64:DEBUG (validate_witness) - v_rmsg: Checking for ERROR reachability
+Using default analysis
+Version 6641879a
+Calling Ultimate with: /home/exp/tools/jdk8u252-b09/bin/java -Dosgi.configuration.area=/home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data/config -Xmx12G -Xms1G -jar /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/plugins/org.eclipse.equinox.launcher_1.3.100.v20150511-1540.jar -data @noDefault -ultimatedata /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data -tc /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/AutomizerReachWitnessValidation.xml -i /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml -s /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/svcomp-Reach-32bit-Automizer_Default.epf --cacsl2boogietranslator.entry.function main --traceabstraction.compute.hoare.annotation.of.negated.interpolant.automaton,.abstraction.and.cfg false
+...................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+Execution finished normally
+Writing output log to file Ultimate.log
+Writing human readable error path to file UltimateCounterExample.errorpath
+Result:
+FALSE
+
+validate:65:DEBUG (validate_witness) - v_errmsg: 
+validate:67:DEBUG (validate_witness) - v_res: False
+validate:354:DEBUG (mk_trans_cex) - dcex: {'__cil_tmp24': '-5', '__cil_tmp25': '-6', '__cil_tmp26': '5', '__cil_tmp27': '6', '__cil_tmp28': '4', '__cil_tmp29': '4', '__cil_tmp30': '-4', '__cil_tmp31': '-4', '__cil_tmp32': '1', '__cil_tmp33': '1', '__cil_tmp34': '-1', '__cil_tmp35': '-4', '__cil_tmp36': '9', '__cil_tmp37': '10', '__cil_tmp38': '-1', '__cil_tmp39': '-2', '__cil_tmp40': '-1', '__cil_tmp41': '-1', '__cil_tmp42': '-2', '__cil_tmp43': '-3', '__cil_tmp44': '-9', '__cil_tmp45': '-10', '__cil_tmp46': '-1', '__cil_tmp47': '-2', '__cil_tmp48': '8', '__cil_tmp49': '8', '__cil_tmp50': '4', '__cil_tmp51': '4', '__cil_tmp52': '6', '__cil_tmp53': '7', '__cil_tmp54': '1', '__cil_tmp_e': '5', '__cil_tmp_N': '3', '__cil_tmp_n': '-4', '__cil_tmp_p': '1', '__cil_tmp_q': '4', '__cil_tmp_x': '1', '__cil_tmp_y': '-1', 'dup': '1', 'e': '6', 'n': '-4', 'N': '3', 'p': '1', 'q': '4', 'te': '5', 'tN': '3', 'tn': '-4', 'tp': '1', 'tq': '4', 'tx': '1', 'ty': '-1', 'x': '4', 'y': '-1'}
+validate:365:DEBUG (mk_trans_cex) - trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 4, 1, -1, -4, 3, 5)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 4, 4, -1, -4, 3, 6)))]
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 4, 1, -1, -4, 3, 5)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 4, 4, -1, -4, 3, 6)))]
+analysis:1145:DEBUG (validate_ranking_functions) - r: False
+analysis:1147:DEBUG (validate_ranking_functions) - cex.trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 4, 1, -1, -4, 3, 5)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 4, 4, -1, -4, 3, 6)))]
+analysis:1056:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): p*uk_1 + q*uk_2 + n*uk_5 + N*uk_6 + e*uk_7 + uk_3*x + uk_4*y + uk_0
+analysis:1057:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3, uk_4, uk_5, uk_6, uk_7]
+analysis:1081:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1
+analysis:1087:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 +
+uk_1 +
+4*uk_2 +
+uk_3 +
+-1*uk_4 +
+-4*uk_5 +
+3*uk_6 +
+5*uk_7
+analysis:1088:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 +
+uk_1 +
+4*uk_2 +
+4*uk_3 +
+-1*uk_4 +
+-4*uk_5 +
+3*uk_6 +
+6*uk_7
+analysis:1090:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = 0,
+ uk_7 = 1,
+ uk_3 = -1,
+ uk_4 = 0,
+ uk_5 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:1094:DEBUG (_infer_ranking_functions_from_trans) - rf: e + -1*x
+analysis:1123:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:1124:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [e + -1*x]
+analysis:1173:DEBUG (validate_ranking_functions) - n_rfs: [e + -1*x]
+analysis:1132:DEBUG (validate_ranking_functions) - ranks_str: -1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e|y|N + -1*e|n + -1*e|q + -1*e|q + -1*n|q|e + -1*y|e + -1*x
+validate:124:DEBUG (gen_validate_file) - validate_cmd: /home/exp/tools/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/tools/dynamo/tests/bradley/BradleyMannaSipma-ICALP2005-loop11.c --out=/var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c --pos=31 --ranks="-1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e|y|N + -1*e|n + -1*e|q + -1*e|q + -1*n|q|e + -1*y|e + -1*x"
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_wq5d0kni/vloop_31/uatm --witness-name witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --validate /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:64:DEBUG (validate_witness) - v_rmsg: Checking for ERROR reachability
+Using default analysis
+Version 6641879a
+Calling Ultimate with: /home/exp/tools/jdk8u252-b09/bin/java -Dosgi.configuration.area=/home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data/config -Xmx12G -Xms1G -jar /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/plugins/org.eclipse.equinox.launcher_1.3.100.v20150511-1540.jar -data @noDefault -ultimatedata /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data -tc /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/AutomizerReachWitnessValidation.xml -i /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml -s /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/svcomp-Reach-32bit-Automizer_Default.epf --cacsl2boogietranslator.entry.function main --traceabstraction.compute.hoare.annotation.of.negated.interpolant.automaton,.abstraction.and.cfg false
+..................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+Execution finished normally
+Writing output log to file Ultimate.log
+Writing human readable error path to file UltimateCounterExample.errorpath
+Result:
+FALSE
+
+validate:65:DEBUG (validate_witness) - v_errmsg: 
+validate:67:DEBUG (validate_witness) - v_res: False
+validate:354:DEBUG (mk_trans_cex) - dcex: {'__cil_tmp24': '-4', '__cil_tmp25': '-5', '__cil_tmp26': '4', '__cil_tmp27': '5', '__cil_tmp28': '-1', '__cil_tmp29': '-1', '__cil_tmp30': '1', '__cil_tmp31': '1', '__cil_tmp32': '4', '__cil_tmp33': '4', '__cil_tmp34': '-5', '__cil_tmp35': '-6', '__cil_tmp36': '3', '__cil_tmp37': '4', '__cil_tmp38': '-5', '__cil_tmp39': '-6', '__cil_tmp40': '-4', '__cil_tmp41': '-4', '__cil_tmp42': '-2', '__cil_tmp43': '-3', '__cil_tmp44': '-3', '__cil_tmp45': '-4', '__cil_tmp46': '-1', '__cil_tmp47': '-2', '__cil_tmp48': '2', '__cil_tmp49': '2', '__cil_tmp50': '3', '__cil_tmp51': '3', '__cil_tmp52': '8', '__cil_tmp53': '9', '__cil_tmp54': '-1', '__cil_tmp55': '-1', '__cil_tmp56': '1', '__cil_tmp_e': '4', '__cil_tmp_n': '1', '__cil_tmp_N': '2', '__cil_tmp_p': '1', '__cil_tmp_q': '3', '__cil_tmp_x': '5', '__cil_tmp_y': '-4', 'dup': '1', 'e': '5', 'n': '1', 'N': '2', 'p': '1', 'q': '3', 'te': '4', 'tN': '2', 'tn': '1', 'tp': '1', 'tq': '3', 'tx': '5', 'ty': '-4', 'x': '6', 'y': '-4'}
+validate:365:DEBUG (mk_trans_cex) - trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 3, 5, -4, 1, 2, 4)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 3, 6, -4, 1, 2, 5)))]
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 3, 5, -4, 1, 2, 4)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 3, 6, -4, 1, 2, 5)))]
+analysis:1145:DEBUG (validate_ranking_functions) - r: False
+analysis:1147:DEBUG (validate_ranking_functions) - cex.trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 3, 5, -4, 1, 2, 4)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 3, 6, -4, 1, 2, 5)))]
+analysis:1056:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): p*uk_1 + q*uk_2 + n*uk_5 + N*uk_6 + e*uk_7 + uk_3*x + uk_4*y + uk_0
+analysis:1057:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3, uk_4, uk_5, uk_6, uk_7]
+analysis:1081:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1
+analysis:1087:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 +
+uk_1 +
+3*uk_2 +
+5*uk_3 +
+-4*uk_4 +
+uk_5 +
+2*uk_6 +
+4*uk_7
+analysis:1088:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 +
+uk_1 +
+3*uk_2 +
+6*uk_3 +
+-4*uk_4 +
+uk_5 +
+2*uk_6 +
+5*uk_7
+analysis:1090:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = 0,
+ uk_7 = -1,
+ uk_3 = 0,
+ uk_4 = -1,
+ uk_5 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:1094:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*e + -1*y
+analysis:1123:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:1124:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [-1*e + -1*y]
+analysis:1173:DEBUG (validate_ranking_functions) - n_rfs: [-1*e + -1*y]
+analysis:1132:DEBUG (validate_ranking_functions) - ranks_str: -1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e|y|N + -1*e|n + -1*e|q + -1*e|q + -1*n|q|e + -1*y|e + -1*x|-1*e + -1*y
+validate:124:DEBUG (gen_validate_file) - validate_cmd: /home/exp/tools/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/tools/dynamo/tests/bradley/BradleyMannaSipma-ICALP2005-loop11.c --out=/var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c --pos=31 --ranks="-1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e|y|N + -1*e|n + -1*e|q + -1*e|q + -1*n|q|e + -1*y|e + -1*x|-1*e + -1*y"
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_wq5d0kni/vloop_31/uatm --witness-name witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --validate /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:64:DEBUG (validate_witness) - v_rmsg: Checking for ERROR reachability
+Using default analysis
+Version 6641879a
+Calling Ultimate with: /home/exp/tools/jdk8u252-b09/bin/java -Dosgi.configuration.area=/home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data/config -Xmx12G -Xms1G -jar /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/plugins/org.eclipse.equinox.launcher_1.3.100.v20150511-1540.jar -data @noDefault -ultimatedata /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data -tc /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/AutomizerReachWitnessValidation.xml -i /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml -s /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/svcomp-Reach-32bit-Automizer_Default.epf --cacsl2boogietranslator.entry.function main --traceabstraction.compute.hoare.annotation.of.negated.interpolant.automaton,.abstraction.and.cfg false
+.......................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+Execution finished normally
+Writing output log to file Ultimate.log
+Writing human readable error path to file UltimateCounterExample.errorpath
+Result:
+FALSE
+
+validate:65:DEBUG (validate_witness) - v_errmsg: 
+validate:67:DEBUG (validate_witness) - v_res: False
+validate:354:DEBUG (mk_trans_cex) - dcex: {'__cil_tmp24': '-5', '__cil_tmp25': '-7', '__cil_tmp26': '5', '__cil_tmp27': '7', '__cil_tmp28': '-3', '__cil_tmp29': '-3', '__cil_tmp30': '3', '__cil_tmp31': '3', '__cil_tmp32': '4', '__cil_tmp33': '4', '__cil_tmp34': '-6', '__cil_tmp35': '-7', '__cil_tmp36': '2', '__cil_tmp37': '4', '__cil_tmp38': '-8', '__cil_tmp39': '-10', '__cil_tmp40': '-4', '__cil_tmp41': '-4', '__cil_tmp42': '-2', '__cil_tmp43': '-4', '__cil_tmp44': '-2', '__cil_tmp45': '-4', '__cil_tmp46': '-1', '__cil_tmp47': '-3', '__cil_tmp48': '1', '__cil_tmp49': '1', '__cil_tmp50': '4', '__cil_tmp51': '4', '__cil_tmp52': '9', '__cil_tmp53': '11', '__cil_tmp54': '-1', '__cil_tmp55': '0', '__cil_tmp56': '-1', '__cil_tmp57': '-3', '__cil_tmp58': '1', '__cil_tmp_e': '5', '__cil_tmp_n': '3', '__cil_tmp_N': '3', '__cil_tmp_p': '14', '__cil_tmp_q': '4', '__cil_tmp_x': '6', '__cil_tmp_y': '-4', 'dup': '1', 'e': '7', 'N': '3', 'n': '3', 'p': '14', 'q': '4', 'te': '5', 'tN': '3', 'tn': '3', 'tp': '14', 'tq': '4', 'tx': '6', 'ty': '-4', 'x': '7', 'y': '-4'}
+validate:365:DEBUG (mk_trans_cex) - trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(14, 4, 6, -4, 3, 3, 5)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(14, 4, 7, -4, 3, 3, 7)))]
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(14, 4, 6, -4, 3, 3, 5)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(14, 4, 7, -4, 3, 3, 7)))]
+analysis:1145:DEBUG (validate_ranking_functions) - r: False
+analysis:1147:DEBUG (validate_ranking_functions) - cex.trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(14, 4, 6, -4, 3, 3, 5)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(14, 4, 7, -4, 3, 3, 7)))]
+analysis:1056:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): p*uk_1 + q*uk_2 + n*uk_5 + N*uk_6 + e*uk_7 + uk_3*x + uk_4*y + uk_0
+analysis:1057:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3, uk_4, uk_5, uk_6, uk_7]
+analysis:1081:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1
+analysis:1087:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 +
+14*uk_1 +
+4*uk_2 +
+6*uk_3 +
+-4*uk_4 +
+3*uk_5 +
+3*uk_6 +
+5*uk_7
+analysis:1088:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 +
+14*uk_1 +
+4*uk_2 +
+7*uk_3 +
+-4*uk_4 +
+3*uk_5 +
+3*uk_6 +
+7*uk_7
+analysis:1090:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = 0,
+ uk_7 = -1,
+ uk_3 = 1,
+ uk_4 = 0,
+ uk_5 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:1094:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*e + x
+analysis:1123:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:1124:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [-1*e + x]
+analysis:1173:DEBUG (validate_ranking_functions) - n_rfs: [-1*e + x]
+analysis:1132:DEBUG (validate_ranking_functions) - ranks_str: -1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e|y|N + -1*e|n + -1*e|q + -1*e|q + -1*n|q|e + -1*y|e + -1*x|-1*e + -1*y|-1*e + x
+validate:124:DEBUG (gen_validate_file) - validate_cmd: /home/exp/tools/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/tools/dynamo/tests/bradley/BradleyMannaSipma-ICALP2005-loop11.c --out=/var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c --pos=31 --ranks="-1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e|y|N + -1*e|n + -1*e|q + -1*e|q + -1*n|q|e + -1*y|e + -1*x|-1*e + -1*y|-1*e + x"
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_wq5d0kni/vloop_31/uatm --witness-name witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --validate /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:64:DEBUG (validate_witness) - v_rmsg: Checking for ERROR reachability
+Using default analysis
+Version 6641879a
+Calling Ultimate with: /home/exp/tools/jdk8u252-b09/bin/java -Dosgi.configuration.area=/home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data/config -Xmx12G -Xms1G -jar /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/plugins/org.eclipse.equinox.launcher_1.3.100.v20150511-1540.jar -data @noDefault -ultimatedata /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data -tc /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/AutomizerReachWitnessValidation.xml -i /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml -s /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/svcomp-Reach-32bit-Automizer_Default.epf --cacsl2boogietranslator.entry.function main --traceabstraction.compute.hoare.annotation.of.negated.interpolant.automaton,.abstraction.and.cfg false
+...................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+Execution finished normally
+Writing output log to file Ultimate.log
+Writing human readable error path to file UltimateCounterExample.errorpath
+Result:
+FALSE
+
+validate:65:DEBUG (validate_witness) - v_errmsg: 
+validate:67:DEBUG (validate_witness) - v_res: False
+validate:354:DEBUG (mk_trans_cex) - dcex: {'__cil_tmp24': '-7', '__cil_tmp25': '-8', '__cil_tmp26': '7', '__cil_tmp27': '8', '__cil_tmp28': '-5', '__cil_tmp29': '-5', '__cil_tmp30': '5', '__cil_tmp31': '5', '__cil_tmp32': '-3', '__cil_tmp33': '-3', '__cil_tmp34': '-1', '__cil_tmp35': '-2', '__cil_tmp36': '2', '__cil_tmp37': '3', '__cil_tmp38': '-12', '__cil_tmp39': '-13', '__cil_tmp40': '3', '__cil_tmp41': '3', '__cil_tmp42': '-2', '__cil_tmp43': '-3', '__cil_tmp44': '-2', '__cil_tmp45': '-3', '__cil_tmp46': '-1', '__cil_tmp47': '-2', '__cil_tmp48': '1', '__cil_tmp49': '1', '__cil_tmp50': '6', '__cil_tmp51': '6', '__cil_tmp52': '4', '__cil_tmp53': '5', '__cil_tmp54': '6', '__cil_tmp55': '6', '__cil_tmp56': '-10', '__cil_tmp57': '-11', '__cil_tmp58': '-6', '__cil_tmp59': '-6', '__cil_tmp60': '1', '__cil_tmp_e': '7', '__cil_tmp_n': '5', '__cil_tmp_N': '5', '__cil_tmp_p': '1', '__cil_tmp_q': '6', '__cil_tmp_x': '1', '__cil_tmp_y': '3', 'dup': '1', 'e': '8', 'N': '5', 'n': '5', 'p': '1', 'q': '6', 'te': '7', 'tn': '5', 'tN': '5', 'tp': '1', 'tq': '6', 'tx': '1', 'ty': '3', 'x': '2', 'y': '3'}
+validate:365:DEBUG (mk_trans_cex) - trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 6, 1, 3, 5, 5, 7)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 6, 2, 3, 5, 5, 8)))]
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 6, 1, 3, 5, 5, 7)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 6, 2, 3, 5, 5, 8)))]
+analysis:1145:DEBUG (validate_ranking_functions) - r: False
+analysis:1147:DEBUG (validate_ranking_functions) - cex.trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 6, 1, 3, 5, 5, 7)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 6, 2, 3, 5, 5, 8)))]
+analysis:1056:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): p*uk_1 + q*uk_2 + n*uk_5 + N*uk_6 + e*uk_7 + uk_3*x + uk_4*y + uk_0
+analysis:1057:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3, uk_4, uk_5, uk_6, uk_7]
+analysis:1081:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1
+analysis:1087:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 +
+uk_1 +
+6*uk_2 +
+uk_3 +
+3*uk_4 +
+5*uk_5 +
+5*uk_6 +
+7*uk_7
+analysis:1088:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 +
+uk_1 +
+6*uk_2 +
+2*uk_3 +
+3*uk_4 +
+5*uk_5 +
+5*uk_6 +
+8*uk_7
+analysis:1090:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = 1,
+ uk_7 = 0,
+ uk_3 = -1,
+ uk_4 = 0,
+ uk_5 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:1094:DEBUG (_infer_ranking_functions_from_trans) - rf: N + -1*x
+analysis:1123:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:1124:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [N + -1*x]
+analysis:1173:DEBUG (validate_ranking_functions) - n_rfs: [N + -1*x]
+analysis:1132:DEBUG (validate_ranking_functions) - ranks_str: -1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e|y|N + -1*e|n + -1*e|q + -1*e|q + -1*n|q|e + -1*y|e + -1*x|-1*e + -1*y|-1*e + x|N + -1*x
+validate:124:DEBUG (gen_validate_file) - validate_cmd: /home/exp/tools/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/tools/dynamo/tests/bradley/BradleyMannaSipma-ICALP2005-loop11.c --out=/var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c --pos=31 --ranks="-1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e|y|N + -1*e|n + -1*e|q + -1*e|q + -1*n|q|e + -1*y|e + -1*x|-1*e + -1*y|-1*e + x|N + -1*x"
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_wq5d0kni/vloop_31/uatm --witness-name witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --validate /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:64:DEBUG (validate_witness) - v_rmsg: Checking for ERROR reachability
+Using default analysis
+Version 6641879a
+Calling Ultimate with: /home/exp/tools/jdk8u252-b09/bin/java -Dosgi.configuration.area=/home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data/config -Xmx12G -Xms1G -jar /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/plugins/org.eclipse.equinox.launcher_1.3.100.v20150511-1540.jar -data @noDefault -ultimatedata /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data -tc /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/AutomizerReachWitnessValidation.xml -i /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml -s /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/svcomp-Reach-32bit-Automizer_Default.epf --cacsl2boogietranslator.entry.function main --traceabstraction.compute.hoare.annotation.of.negated.interpolant.automaton,.abstraction.and.cfg false
+..................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+Execution finished normally
+Writing output log to file Ultimate.log
+Writing human readable error path to file UltimateCounterExample.errorpath
+Result:
+FALSE
+
+validate:65:DEBUG (validate_witness) - v_errmsg: 
+validate:67:DEBUG (validate_witness) - v_res: False
+validate:354:DEBUG (mk_trans_cex) - dcex: {'__cil_tmp24': '-4', '__cil_tmp25': '-4', '__cil_tmp26': '4', '__cil_tmp27': '4', '__cil_tmp28': '-9', '__cil_tmp29': '-10', '__cil_tmp30': '9', '__cil_tmp31': '10', '__cil_tmp32': '-5', '__cil_tmp33': '-6', '__cil_tmp34': '-3', '__cil_tmp35': '-3', '__cil_tmp36': '-5', '__cil_tmp37': '-6', '__cil_tmp38': '-13', '__cil_tmp39': '-14', '__cil_tmp40': '5', '__cil_tmp41': '6', '__cil_tmp42': '5', '__cil_tmp43': '5', '__cil_tmp44': '5', '__cil_tmp45': '6', '__cil_tmp46': '4', '__cil_tmp47': '4', '__cil_tmp48': '-1', '__cil_tmp49': '-2', '__cil_tmp50': '8', '__cil_tmp51': '8', '__cil_tmp52': '-1', '__cil_tmp53': '-2', '__cil_tmp54': '1', '__cil_tmp55': '1', '__cil_tmp56': '-9', '__cil_tmp57': '-10', '__cil_tmp58': '-1', '__cil_tmp59': '-1', '__cil_tmp60': '6', '__cil_tmp61': '6', '__cil_tmp62': '1', '__cil_tmp_e': '4', '__cil_tmp_N': '9', '__cil_tmp_n': '9', '__cil_tmp_p': '1', '__cil_tmp_q': '8', '__cil_tmp_x': '3', '__cil_tmp_y': '5', 'dup': '1', 'e': '4', 'N': '9', 'n': '10', 'p': '1', 'q': '8', 'te': '4', 'tn': '9', 'tN': '9', 'tp': '1', 'tq': '8', 'tx': '3', 'ty': '5', 'x': '3', 'y': '6'}
+validate:365:DEBUG (mk_trans_cex) - trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 8, 3, 5, 9, 9, 4)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 8, 3, 6, 10, 9, 4)))]
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 8, 3, 5, 9, 9, 4)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 8, 3, 6, 10, 9, 4)))]
+analysis:1145:DEBUG (validate_ranking_functions) - r: False
+analysis:1147:DEBUG (validate_ranking_functions) - cex.trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 8, 3, 5, 9, 9, 4)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 8, 3, 6, 10, 9, 4)))]
+analysis:1056:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): p*uk_1 + q*uk_2 + n*uk_5 + N*uk_6 + e*uk_7 + uk_3*x + uk_4*y + uk_0
+analysis:1057:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3, uk_4, uk_5, uk_6, uk_7]
+analysis:1081:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1
+analysis:1087:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 +
+uk_1 +
+8*uk_2 +
+3*uk_3 +
+5*uk_4 +
+9*uk_5 +
+9*uk_6 +
+4*uk_7
+analysis:1088:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 +
+uk_1 +
+8*uk_2 +
+3*uk_3 +
+6*uk_4 +
+10*uk_5 +
+9*uk_6 +
+4*uk_7
+analysis:1090:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = 1,
+ uk_7 = 0,
+ uk_3 = 0,
+ uk_5 = -1,
+ uk_4 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:1094:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*n + N
+analysis:1123:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:1124:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [-1*n + N]
+analysis:1173:DEBUG (validate_ranking_functions) - n_rfs: [-1*n + N]
+analysis:1132:DEBUG (validate_ranking_functions) - ranks_str: -1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e|y|N + -1*e|n + -1*e|q + -1*e|q + -1*n|q|e + -1*y|e + -1*x|-1*e + -1*y|-1*e + x|N + -1*x|-1*n + N
+validate:124:DEBUG (gen_validate_file) - validate_cmd: /home/exp/tools/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/tools/dynamo/tests/bradley/BradleyMannaSipma-ICALP2005-loop11.c --out=/var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c --pos=31 --ranks="-1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e|y|N + -1*e|n + -1*e|q + -1*e|q + -1*n|q|e + -1*y|e + -1*x|-1*e + -1*y|-1*e + x|N + -1*x|-1*n + N"
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_wq5d0kni/vloop_31/uatm --witness-name witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --validate /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:64:DEBUG (validate_witness) - v_rmsg: Checking for ERROR reachability
+Using default analysis
+Version 6641879a
+Calling Ultimate with: /home/exp/tools/jdk8u252-b09/bin/java -Dosgi.configuration.area=/home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data/config -Xmx12G -Xms1G -jar /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/plugins/org.eclipse.equinox.launcher_1.3.100.v20150511-1540.jar -data @noDefault -ultimatedata /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data -tc /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/AutomizerReachWitnessValidation.xml -i /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml -s /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/svcomp-Reach-32bit-Automizer_Default.epf --cacsl2boogietranslator.entry.function main --traceabstraction.compute.hoare.annotation.of.negated.interpolant.automaton,.abstraction.and.cfg false
+......................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+Execution finished normally
+Writing output log to file Ultimate.log
+Writing human readable error path to file UltimateCounterExample.errorpath
+Result:
+FALSE
+
+validate:65:DEBUG (validate_witness) - v_errmsg: 
+validate:67:DEBUG (validate_witness) - v_res: False
+validate:354:DEBUG (mk_trans_cex) - dcex: {'__cil_tmp24': '-2', '__cil_tmp25': '-2', '__cil_tmp26': '2', '__cil_tmp27': '2', '__cil_tmp28': '-7', '__cil_tmp29': '-8', '__cil_tmp30': '7', '__cil_tmp31': '8', '__cil_tmp32': '-3', '__cil_tmp33': '-4', '__cil_tmp34': '-1', '__cil_tmp35': '-1', '__cil_tmp36': '-5', '__cil_tmp37': '-6', '__cil_tmp38': '-9', '__cil_tmp39': '-10', '__cil_tmp40': '3', '__cil_tmp41': '4', '__cil_tmp42': '3', '__cil_tmp43': '3', '__cil_tmp44': '5', '__cil_tmp45': '6', '__cil_tmp46': '4', '__cil_tmp47': '4', '__cil_tmp48': '-1', '__cil_tmp49': '-2', '__cil_tmp50': '6', '__cil_tmp51': '6', '__cil_tmp52': '-1', '__cil_tmp53': '-2', '__cil_tmp54': '1', '__cil_tmp55': '1', '__cil_tmp56': '-5', '__cil_tmp57': '-6', '__cil_tmp58': '-1', '__cil_tmp59': '-1', '__cil_tmp60': '4', '__cil_tmp61': '4', '__cil_tmp62': '-2', '__cil_tmp63': '-3', '__cil_tmp64': '1', '__cil_tmp_e': '2', '__cil_tmp_n': '7', '__cil_tmp_N': '5', '__cil_tmp_p': '1', '__cil_tmp_q': '6', '__cil_tmp_x': '1', '__cil_tmp_y': '3', 'dup': '1', 'e': '2', 'N': '5', 'n': '8', 'p': '1', 'q': '6', 'te': '2', 'tN': '5', 'tn': '7', 'tp': '1', 'tq': '6', 'tx': '1', 'ty': '3', 'x': '1', 'y': '4'}
+validate:365:DEBUG (mk_trans_cex) - trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 6, 1, 3, 7, 5, 2)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 6, 1, 4, 8, 5, 2)))]
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 6, 1, 3, 7, 5, 2)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 6, 1, 4, 8, 5, 2)))]
+analysis:1145:DEBUG (validate_ranking_functions) - r: False
+analysis:1147:DEBUG (validate_ranking_functions) - cex.trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 6, 1, 3, 7, 5, 2)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(1, 6, 1, 4, 8, 5, 2)))]
+analysis:1056:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): p*uk_1 + q*uk_2 + n*uk_5 + N*uk_6 + e*uk_7 + uk_3*x + uk_4*y + uk_0
+analysis:1057:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3, uk_4, uk_5, uk_6, uk_7]
+analysis:1081:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1
+analysis:1087:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 +
+uk_1 +
+6*uk_2 +
+uk_3 +
+3*uk_4 +
+7*uk_5 +
+5*uk_6 +
+2*uk_7
+analysis:1088:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 +
+uk_1 +
+6*uk_2 +
+uk_3 +
+4*uk_4 +
+8*uk_5 +
+5*uk_6 +
+2*uk_7
+analysis:1090:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = 1,
+ uk_7 = 0,
+ uk_3 = 0,
+ uk_5 = 0,
+ uk_4 = -1,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:1094:DEBUG (_infer_ranking_functions_from_trans) - rf: N + -1*y
+analysis:1123:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:1124:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [N + -1*y]
+analysis:1173:DEBUG (validate_ranking_functions) - n_rfs: [N + -1*y]
+analysis:1132:DEBUG (validate_ranking_functions) - ranks_str: -1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e|y|N + -1*e|n + -1*e|q + -1*e|q + -1*n|q|e + -1*y|e + -1*x|-1*e + -1*y|-1*e + x|N + -1*x|-1*n + N|N + -1*y
+validate:124:DEBUG (gen_validate_file) - validate_cmd: /home/exp/tools/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/tools/dynamo/tests/bradley/BradleyMannaSipma-ICALP2005-loop11.c --out=/var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c --pos=31 --ranks="-1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e|y|N + -1*e|n + -1*e|q + -1*e|q + -1*n|q|e + -1*y|e + -1*x|-1*e + -1*y|-1*e + x|N + -1*x|-1*n + N|N + -1*y"
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_wq5d0kni/vloop_31/uatm --witness-name witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --validate /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+validate:64:DEBUG (validate_witness) - v_rmsg: Checking for ERROR reachability
+Using default analysis
+Version 6641879a
+Calling Ultimate with: /home/exp/tools/jdk8u252-b09/bin/java -Dosgi.configuration.area=/home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data/config -Xmx12G -Xms1G -jar /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/plugins/org.eclipse.equinox.launcher_1.3.100.v20150511-1540.jar -data @noDefault -ultimatedata /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/data -tc /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/AutomizerReachWitnessValidation.xml -i /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c /var/tmp/Dig_wq5d0kni/vloop_31/uatm/witness.graphml -s /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/config/svcomp-Reach-32bit-Automizer_Default.epf --cacsl2boogietranslator.entry.function main --traceabstraction.compute.hoare.annotation.of.negated.interpolant.automaton,.abstraction.and.cfg false
+............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+Execution finished normally
+Writing output log to file Ultimate.log
+Writing human readable error path to file UltimateCounterExample.errorpath
+Result:
+FALSE
+
+validate:65:DEBUG (validate_witness) - v_errmsg: 
+validate:67:DEBUG (validate_witness) - v_res: False
+validate:354:DEBUG (mk_trans_cex) - dcex: {'__cil_tmp24': '-8', '__cil_tmp25': '-10', '__cil_tmp26': '8', '__cil_tmp27': '10', '__cil_tmp28': '-1', '__cil_tmp29': '-1', '__cil_tmp30': '1', '__cil_tmp31': '1', '__cil_tmp32': '2', '__cil_tmp33': '2', '__cil_tmp34': '-1', '__cil_tmp35': '-2', '__cil_tmp36': '7', '__cil_tmp37': '9', '__cil_tmp38': '-9', '__cil_tmp39': '-11', '__cil_tmp40': '-2', '__cil_tmp41': '-2', '__cil_tmp42': '-8', '__cil_tmp43': '-10', '__cil_tmp44': '-7', '__cil_tmp45': '-9', '__cil_tmp46': '-1', '__cil_tmp47': '-3', '__cil_tmp48': '6', '__cil_tmp49': '6', '__cil_tmp50': '7', '__cil_tmp51': '7', '__cil_tmp52': '10', '__cil_tmp53': '12', '__cil_tmp54': '7', '__cil_tmp55': '8', '__cil_tmp56': '-6', '__cil_tmp57': '-8', '__cil_tmp58': '-7', '__cil_tmp59': '-8', '__cil_tmp60': '-1', '__cil_tmp61': '-2', '__cil_tmp62': '-1', '__cil_tmp63': '-1', '__cil_tmp64': '2', '__cil_tmp65': '2', '__cil_tmp66': '1', '__cil_tmp_e': '8', '__cil_tmp_n': '1', '__cil_tmp_N': '0', '__cil_tmp_p': '2', '__cil_tmp_q': '7', '__cil_tmp_x': '1', '__cil_tmp_y': '-2', 'dup': '1', 'e': '10', 'N': '0', 'n': '1', 'p': '2', 'q': '7', 'te': '8', 'tN': '0', 'tn': '1', 'tp': '2', 'tq': '7', 'tx': '1', 'ty': '-2', 'x': '2', 'y': '-2'}
+validate:365:DEBUG (mk_trans_cex) - trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(2, 7, 1, -2, 1, 0, 8)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(2, 7, 2, -2, 1, 0, 10)))]
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(2, 7, 1, -2, 1, 0, 8)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(2, 7, 2, -2, 1, 0, 10)))]
+analysis:1145:DEBUG (validate_ranking_functions) - r: False
+analysis:1147:DEBUG (validate_ranking_functions) - cex.trans_cex: [(Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(2, 7, 1, -2, 1, 0, 8)), Trace(ss=('p', 'q', 'x', 'y', 'n', 'N', 'e'), vs=(2, 7, 2, -2, 1, 0, 10)))]
+analysis:1056:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): p*uk_1 + q*uk_2 + n*uk_5 + N*uk_6 + e*uk_7 + uk_3*x + uk_4*y + uk_0
+analysis:1057:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3, uk_4, uk_5, uk_6, uk_7]
+analysis:1081:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1
+analysis:1087:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 2*uk_1 + 7*uk_2 + uk_3 + -2*uk_4 + uk_5 + 8*uk_7
+analysis:1088:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 2*uk_1 + 7*uk_2 + 2*uk_3 + -2*uk_4 + uk_5 + 10*uk_7
+analysis:1090:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_6 = 0,
+ uk_7 = 0,
+ uk_3 = -1,
+ uk_4 = 0,
+ uk_5 = 1,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:1094:DEBUG (_infer_ranking_functions_from_trans) - rf: n + -1*x
+analysis:1123:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:1124:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [n + -1*x]
+analysis:1173:DEBUG (validate_ranking_functions) - n_rfs: [n + -1*x]
+analysis:1132:DEBUG (validate_ranking_functions) - ranks_str: -1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e|y|N + -1*e|n + -1*e|q + -1*e|q + -1*n|q|e + -1*y|e + -1*x|-1*e + -1*y|-1*e + x|N + -1*x|-1*n + N|N + -1*y|n + -1*x
+validate:124:DEBUG (gen_validate_file) - validate_cmd: /home/exp/tools/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/tools/dynamo/tests/bradley/BradleyMannaSipma-ICALP2005-loop11.c --out=/var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c --pos=31 --ranks="-1*e|e|-1*n|n|-1*y|-1*x|-1*n + e|-1*n + -1*e|y|N + -1*e|n + -1*e|q + -1*e|q + -1*n|q|e + -1*y|e + -1*x|-1*e + -1*y|-1*e + x|N + -1*x|-1*n + N|N + -1*y|n + -1*x"
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_wq5d0kni/vloop_31/uatm --witness-name witness.graphml --file /var/tmp/Dig_wq5d0kni/vloop_31/uatm/validate/BradleyMannaSipma-ICALP2005-loop11.c
+Error in atexit._run_exitfuncs:
+Traceback (most recent call last):
+  File "/home/exp/tools/SageMath/local/lib/python3.7/multiprocessing/popen_fork.py", line 28, in poll
+    pid, sts = os.waitpid(self.pid, flag)
+  File "src/cysignals/signals.pyx", line 320, in cysignals.signals.python_check_interrupt
+KeyboardInterrupt
+analysis:1145:DEBUG (validate_ranking_functions) - r: None
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 99606.35ms
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 174646.02ms
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 301921.08ms
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 342505.30ms
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 383241.11ms
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 487533.04ms
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 518952.97ms
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 544773.68ms
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 575274.48ms
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 605639.08ms
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 613339.77ms
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 621104.30ms
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 628599.82ms
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 636147.80ms
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 643633.06ms
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 650620.13ms
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 658109.45ms
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 665154.44ms
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 672552.36ms
+analysis:1208:DEBUG (prove_term_vloop) - Termination result (vloop_31): None ([-1*e, e, -1*n, n, -1*y, -1*x, -1*n + e, -1*n + -1*e, y, N + -1*e, n + -1*e, q + -1*e, q + -1*n, q, e + -1*y, e + -1*x, -1*e + -1*y, -1*e + x, N + -1*x, -1*n + N, N + -1*y, n + -1*x])
+utils.profiling:31:DEBUG (timed) - prove_term_vloop: 674217.43ms
+utils.profiling:31:DEBUG (timed) - prove: 675468.40ms
+utils.profiling:31:DEBUG (timed) - prove: 675468.66ms
+Termination result: None
+Time log:
+gen_rand_inps: 1.150s
+_get_traces_mp: 0.000s
+_merge_traces: 0.100s
+get_traces_from_inps: 0.100s
+infer_ranking_functions: 1.644s
+validate_ranking_functions: 9823.354s
+prove_term_vloop: 674.217s
+prove: 675.468s
