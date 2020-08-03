@@ -73,8 +73,8 @@ COPY ./deps/pysmt $TOOLSDIR/pysmt
 WORKDIR $TOOLSDIR/pysmt
 RUN pip3 install wheel
 RUN \
-  python3 install.py --cvc4 && \
-  python3 install.py --yices
+  python3 install.py --confirm-agreement --cvc4 && \
+  python3 install.py --confirm-agreement --yices
 
 ENV PYSMT=$TOOLSDIR/pysmt
 ENV PYTHONPATH=$SAGE_ROOT/local/lib/python3.7/site-packages:$Z3/build/python:$PYSMT:$PYTHONPATH
