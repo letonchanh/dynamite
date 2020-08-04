@@ -1,16 +1,20 @@
 # Overview
 
-# Getting Started Guide
+# Getting Started
 
 The Dynamite project is hosted at the Github repository https://github.com/letonchanh/dynamite which is actively being developed. The artifact for the paper "DynamiTe: Dynamic Termination and Non-termination Proofs" is available to download at 
 
 ## Setup instructions
 
-The simplest way to setup Dynamite is building its Docker image using the provided Dockerfile and running Dynamite within the image with the following steps:
+We provide two different ways to setup and run Dynamite. We suggest the simplest **Option 1 (Using Docker)** for the kick-the-tires phase so that you can quickly setup the tool and try it on some simple examples. Because Dynamite takes advantage of multicore systems (e.g., our evaluation in the paper uses a 20-core machine), we suggest **Option 2 (Installing on native Debian/Ubuntu)** to fully reproduce our results.
+
+### Option 1: Using Docker
+
+The following steps show how to build Dynamite's Docker image via the provided Dockerfile and run it
 
 0. Install Docker
 
-    Follow the instructions on https://docs.docker.com/install/. You may need to run docker commands with `sudo` or similar privileges.
+    Follow the instructions on https://docs.docker.com/install/. You may need to run `docker` commands with `sudo` or similar privileges.
 
 1. Build the Dynamite's Docker image
     ```
@@ -25,6 +29,10 @@ The simplest way to setup Dynamite is building its Docker image using the provid
     ```
     docker run -it dynamite bash
     ```
+
+### Option 2: Installing on native Debian/Ubuntu
+
+You can follow the instructions in INSTALL.md to setup Dynamite on a Debian/Ubuntu machine. The instructions have been tested on a *Debian GNU/Linux 10 (buster)* system.
 
 ## Basic testing of the artifact
 
