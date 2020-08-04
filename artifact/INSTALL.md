@@ -141,7 +141,7 @@
     make
     ```
     
- 10. Other Python and Perl packages
+10. Other Python and Perl packages
     ```
     pip3 install lark-parser
     
