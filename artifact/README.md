@@ -1,11 +1,34 @@
 # Overview
 
-## Getting Started Guide
+# Getting Started Guide
 
-- Setup instructions
-- Basic testing of the artifact
+The Dynamite project is hosted at the Github repository https://github.com/letonchanh/dynamite which is actively being developed. The artifact for the paper "DynamiTe: Dynamic Termination and Non-termination Proofs" is available to download at 
 
-## Step-by-Step Instructions
+## Setup instructions
+
+The simplest way to setup Dynamite is building its Docker image using the provided Dockerfile and running Dynamite within the image with the following steps:
+
+0. Install Docker
+
+    Follow the instructions on https://docs.docker.com/install/. You may need to run docker commands with `sudo` or similar privileges.
+
+1. Build the Dynamite's Docker image
+    ```
+    docker build -t dynamite .
+    ```
+    The image is built upon the pre-built base image `letonchanh/dynamite:base` on Docker Hub. The base image contains all dependencies to run Dynamite and it can also be built offline with the following command
+    ```
+    docker build -f Dockerfile.base -t dynamite_base .
+    ```
+    
+2. Run the Docker image
+    ```
+    docker run -it dynamite bash
+    ```
+
+## Basic testing of the artifact
+
+# Step-by-Step Instructions
 
 - How to reproduce any experiments or other activities that support the conclusions in the paper.
 
