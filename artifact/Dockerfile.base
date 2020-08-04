@@ -33,7 +33,7 @@ RUN \
   python scripts/mk_make.py --python && \
   cd build; make
 
-ENV Z3=/tools/z3
+ENV Z3=$TOOLSDIR/z3
 ENV PATH=$SAGE_ROOT/local/bin:$Z3/build:$PATH
 ENV PYTHONPATH=$SAGE_ROOT/local/lib/python3.7/site-packages:$Z3/build/python:$PYTHONPATH
 ENV LD_LIBRARY_PATH=$SAGE_ROOT/local/lib:$Z3/build:$LD_LIBRARY_PATH

@@ -1,4 +1,21 @@
-- Install Ubuntu packages
+# Instructions to setup Dynamite on Debian/Ubuntu
+
+## Install Prerequisite Packages
+
+- Install Java JDK 8 and its build systems
+    ```
+    sudo apt-get install -y openjdk-8-jdk maven ant
+    ```
+    If the package `openjdk-8-jdk` is not available, you can download its prebuilt binaries from https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u252-b09/OpenJDK8U-jdk_x64_linux_hotspot_8u252b09.tar.gz and uncompress it to a folder (e.g `/usr/lib/jvm/java-8-openjdk-amd64`).
+
+- Install other packages
+    ```
+    sudo apt-get install -y curl python git zip make cmake binutils build-essential opam m4 swig psmisc
+    sudo apt-get install -y libpng-dev libfreetype6 libgmp-dev
+  
+    ```
+
+
     ```
     sudo apt-get install python ant binutils make unzip bubblewrap m4 gcc-5 g++-5
     ```
