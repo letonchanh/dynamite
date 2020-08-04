@@ -1172,7 +1172,10 @@ class Term(object):
             n_rfs = self._infer_ranking_functions_from_trans(vs, cex.trans_cex)
             mlog.debug("n_rfs: {}".format(n_rfs))
             # n_rfs \intersect rfs = \emptyset
-            return self.validate_ranking_functions(vloop, vs, rfs + n_rfs) 
+            if n_rfs:
+                return self.validate_ranking_functions(vloop, vs, rfs + n_rfs) 
+            else:
+                return r, rfs
         else:
             return r, rfs
 
