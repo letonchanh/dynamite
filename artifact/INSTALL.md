@@ -1,187 +1,152 @@
 # Instructions to setup Dynamite on Debian/Ubuntu
 
-## Install Prerequisite Packages
+## Setup Prerequisite Packages
 
-- Install Java JDK 8 and its build systems
+1. Install Java JDK 8 and its build systems
     ```
     sudo apt-get install -y openjdk-8-jdk maven ant
     ```
-    If the package `openjdk-8-jdk` is not available, you can download its prebuilt binaries from https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u252-b09/OpenJDK8U-jdk_x64_linux_hotspot_8u252b09.tar.gz and uncompress it to a folder (e.g `/usr/lib/jvm/java-8-openjdk-amd64`).
+    If the package `openjdk-8-jdk` is not available, you can download its prebuilt binaries from https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u252-b09/OpenJDK8U-jdk_x64_linux_hotspot_8u252b09.tar.gz and extract the file to a folder (e.g `/usr/lib/jvm/java-8-openjdk-amd64`).
 
-- Install other packages
+2. Set Java JDK 8 main folder (e.g `/usr/lib/jvm/java-8-openjdk-amd64`) to `PATH`
+    ```
+    export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+    export PATH=$JAVA_HOME/bin:$PATH
+    ```
+    
+3. Install other packages
     ```
     sudo apt-get install -y curl python git zip make cmake binutils build-essential opam m4 swig psmisc
     sudo apt-get install -y libpng-dev libfreetype6 libgmp-dev
-  
     ```
 
+## Setup Dependencies
+    
+- We recommend to install the following dependencies in the same folder (e.g `/tools`) and use an environment variable (e.g `TOOLSDIR`) to refer to it.
+    ```
+    export TOOLSDIR=/tools
+    ```
 
+1. SageMath 9.0
     ```
-    sudo apt-get install python ant binutils make unzip bubblewrap m4 gcc-5 g++-5
-    ```
-    
-- Install Java JDK 8
-    ```
-    sudo apt install openjdk-8-jdk
-    ```
-  or download its prebuilt binaries from
-    ```
-    wget https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u252-b09/OpenJDK8U-jdk_x64_linux_hotspot_8u252b09.tar.gz
-    ```
-    
-- NOTE: Every following step is started at `~/tools` folder
-    
-- Clone Dynamo
-    ```
-    git clone --recurse-submodules https://github.com/letonchanh/dynamo.git
-    ```
-    
-- Install SageMath
-    ```
-    wget http://mirrors.mit.edu/sage/linux/64bit/sage-9.0-Ubuntu_18.04-x86_64.tar.bz2
+    curl -O http://mirrors.mit.edu/sage/linux/64bit/sage-9.0-Ubuntu_18.04-x86_64.tar.bz2
     tar xvf sage-9.0-Ubuntu_18.04-x86_64.tar.bz2
-    cd SageMath
-    ./sage
-    ```
+    SageMath/sage
     
-- Install `lark-parser`
+    export SAGE_ROOT=$TOOLSDIR/SageMath
+    export PATH=$SAGE_ROOT/local/bin:$PATH
+    export PYTHONPATH=$SAGE_ROOT/local/lib/python3.7/site-packages:$PYTHONPATH
+    export LD_LIBRARY_PATH=$SAGE_ROOT/local/lib:$LD_LIBRARY_PATH
     ```
-    pip3 install lark-parser
-    ```
-    
-- Install Z3 with Python3 from source
+ 
+2. Z3 4.8.7
     ```
     git clone https://github.com/Z3Prover/z3.git
     cd z3
     git checkout z3-4.8.7
     python scripts/mk_make.py --python
-    sudo make install
+    cd build; make
+    
+    export Z3=$TOOLSDIR/z3
+    export PATH=$SAGE_ROOT/local/bin:$Z3/build:$PATH
+    export PYTHONPATH=$SAGE_ROOT/local/lib/python3.7/site-packages:$Z3/build/python:$PYTHONPATH
+    export LD_LIBRARY_PATH=$SAGE_ROOT/local/lib:$Z3/build:$LD_LIBRARY_PATH
     ```
     
-- Install CVC4 (optional)
+3. PySMT and other SMT provers (CVC4, Yices)
     ```
-    git clone https://github.com/CVC4/CVC4.git
-    cd CVC4
-    ./contrib/get-antlr-3.4
-    CC=/tools/SageMath/local/bin/gcc CXX=/tools/SageMath/local/bin/g++ ./configure.sh --language-bindings=python --python3
-    cd build
-    make
-    ```
-    
-- Install `pysmt` and solvers (CVC4, Yices):
-    ```
-    git clone git@github.com:letonchanh/pysmt.git
-    apt-get install -y swig
+    cp $TOOLSDIR/dynamite/deps/pysmt $TOOLSDIR/pysmt
+    cd $TOOLSDIR/pysmt
     pip3 install wheel
-    CC=/tools/SageMath/local/bin/gcc CXX=/tools/SageMath/local/bin/g++ python3 install.py --cvc4
-    python3 install.py --yices
+    python3 install.py --confirm-agreement --cvc4
+    python3 install.py --confirm-agreement --yices
+
+    export PYSMT=$TOOLSDIR/pysmt
+    export PYTHONPATH=$PYTHONPATH:$PYSMT
     ```
     
-- Install Ultimate
+4. Ultimate 0.1.25
     ```
-    apt-get install maven zip
     git clone https://github.com/ultimate-pa/ultimate.git
-    cd ultimate/
+    cd ultimate
     git checkout v0.1.25
+    mv trunk/examples/Automata/regression/nwa/operations/buchiComplement/ba/LowNondeterminismBüchiInterpolantAutomaton.ats trunk/examples/Automata/regression/nwa/operations/buchiComplement/ba/LowNondeterminismBuchiInterpolantAutomaton.ats
     cd releaseScripts/default/
     ./makeFresh.sh
-    ```
-    If the build fails, try
-    ```
-    mv ../../trunk/examples/Automata/regression/nwa/operations/buchiComplement/ba/LowNondeterminismBüchiInterpolantAutomaton.ats ../../trunk/examples/Automata/regression/nwa/operations/buchiComplement/ba/LowNondeterminismBuchiInterpolantAutomaton.ats
+    
+    cp $TOOLSDIR/dynamite/reachability.prp $TOOLSDIR
+    
+    export ULT_HOME=$TOOLSDIR/ultimate
     ```
     
-- Install CPAchecker
+5. CPAchecker 1.9 (the SV-COMP 2020 pre-built version)
     ```
-    wget https://gitlab.com/sosy-lab/sv-comp/archives-2020/-/raw/master/2020/cpa-seq.zip
+    curl -O https://gitlab.com/sosy-lab/sv-comp/archives-2020/-/raw/master/2020/cpa-seq.zip
     unzip cpa-seq.zip
+
+    export CPA_HOME=$TOOLSDIR/CPAchecker-1.9-unix
+    ```
+  
+6. CIVL 1.20.5259
+    ```
+    curl -O http://vsl.cis.udel.edu:8080/lib/sw/civl/1.20/r5259/release/CIVL-1.20_5259.tgz
+    tar xvf CIVL-1.20_5259.tgz
+    java -jar CIVL-1.20_5259/lib/civl-1.20_5259.jar config
+    
+    export CIVL_HOME=$TOOLSDIR/CIVL-1.20_5259
     ```
     
-- Install JavaPathFinder (optional)
+ 7. Java Pathfinder (JPF)
     ```
-    mkdir jpf; cd jpf
+    mkdir $TOOLSDIR/jpf
+    cd $TOOLSDIR/jpf
     git clone https://github.com/javapathfinder/jpf-core
     git clone https://github.com/SymbolicPathFinder/jpf-symbc
     mkdir ~/jpf
-    echo 'jpf-core = ~/tools/jpf/jpf-core' >> ~/jpf/site.properties
-    echo 'jpf-symbc = ~/tools/jpf/jpf-symbc' >> ~/jpf/site.properties
+    echo 'jpf-core = /tools/jpf/jpf-core' >> ~/jpf/site.properties
+    echo 'jpf-symbc = /tools/jpf/jpf-symbc' >> ~/jpf/site.properties
     echo 'extensions=${jpf-core},${jpf-symbc}' >> ~/jpf/site.properties
-    cp ../dig/src/java/InvariantListenerVu.java jpf-symbc/src/main/gov/nasa/jpf/symbc/
-    cd jpf-core/
+    cp $TOOLSDIR/dynamite/deps/dig/src/java/InvariantListenerVu.java $TOOLSDIR/jpf/jpf-symbc/src/main/gov/nasa/jpf/symbc/
+    
+    cd $TOOLSDIR/jpf/jpf-core
     git checkout java-8
     ant
-    cd ../jpf-symbc/
+    
+    cd $TOOLSDIR/jpf/jpf-symbc
     ant
+    
+    export JPF_HOME=$TOOLSDIR/jpf
     ```
     
-- Install CIVL
+8. OCaml 4.05.0 and prerequisite libraries via Opam
     ```
-    wget http://vsl.cis.udel.edu:8080/lib/sw/civl/1.20/r5259/release/CIVL-1.20_5259.tgz
-    tar xvf CIVL-1.20_5259.tgz
-    java -jar lib/civl-1.20_5259.jar config
-    ```
-    
-- Install LLDB (optional)
-    ```
-    sudo apt-get install cmake ninja-build build-essential subversion swig libedit-dev libncurses5-dev
-    git clone https://github.com/llvm/llvm-project.git
-    git checkout llvmorg-9.0.1
-    cd llvm-project
-    mkdir build
-    cd build
-    cmake -G Ninja -DLLVM_ENABLE_PROJECTS="clang;lldb" -DPYTHON_EXECUTABLE="~/tools/SageMath/local/bin/python3" -DLLDB_CAN_USE_LLDB_SERVER=True -DCMAKE_INSTALL_PREFIX=~/tools/llvm -DCMAKE_BUILD_TYPE=Release ../llvm
-    ninja lldb
-    ninja lldb-server
+    curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh | sh /dev/stdin
+    opam init -y
+    opam switch -y 4.05.0
+    opam install -y oasis cil camlp4
     ```
     
-- Install Omega (optional, https://github.com/davewathaverford/the-omega-project, http://www.cs.umd.edu/projects/omega/)
+9. Instrumentation tools
     ```
-    apt install g++-5 gcc-5
-    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 50
-    update-alternatives --config g++
-    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 50
-    update-alternatives --config gcc
-    PATH=/usr/bin:$PATH make (oc|all)
+    cd $TOOLSDIR/dynamite/deps/dynamite-instr/src/cil
+    eval `opam config env`
+    ./configure
+    make
     ```
-    
-- Install OCaml and build instrumentation tools
+
     ```
-    sh <(curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)
-    opam init
-    opam switch create 4.05.0
-    opam install oasis cil camlp4
-    ```
-    
-    ```
-    cd dynamo/deps/dig/src/ocaml
+    cd $TOOLSDIR/dynamite/deps/dig/src/ocaml
+    eval `opam config env`
     oasis setup
     make
     ```
     
+ 10. Other Python and Perl packages
     ```
-    cd dynamo/deps/dynamo-instr/src/cil
-    ./configure
-    make
-    ```
+    pip3 install lark-parser
     
-- Config in `bashrc`
-    ```
-    export SAGE_ROOT=/tools/SageMath
-    export Z3=/tools/z3
-    export LLVM=/tools/llvm-project/build
-    export JPF_HOME=/tools/jpf
-    export CIVL_HOME=/tools/civl
-    export CPA_HOME=/tools/CPAchecker-1.9-unix
-    export ULT_HOME=/tools/ultimate
-    export PYSMT=/tools/pysmt
-    export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-    export PATH=$SAGE_ROOT/local/bin:$LLVM/bin:$Z3/build:$PATH
-    export PYTHONPATH=$SAGE_ROOT/local/lib/python3.7/site-packages:$LLVM/lib/python3.7/site-packages:$Z3/build/python:$PYSMT:$PYTHONPATH
-    export LD_LIBRARY_PATH=$SAGE_ROOT/local/lib:$JPF_HOME/jpf-symbc/lib:$Z3/build:$LD_LIBRARY_PATH
-    ```
-    
-- Run Dynamo
-    ```
-    cd dynamo/src
-    python3 dynamo.py path_to_C_Java_or_Binary_example
+    cpan install local::lib
+    cpan install Time::Out
+    cpan install YAML::Tiny
+    cpan install Statistics::Basic
     ```
