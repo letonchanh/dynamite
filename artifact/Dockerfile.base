@@ -99,7 +99,7 @@ WORKDIR $TOOLSDIR/jpf/jpf-symbc
 RUN ant
 ENV JPF_HOME=$TOOLSDIR/jpf
 
-WORKDIR $TOOLSDIR/dynamite/deps/dynamo-instr/src/cil
+WORKDIR $TOOLSDIR/dynamite/deps/dynamite-instr/src/cil
 RUN \
   eval `opam config env` && \
   ./configure && \
