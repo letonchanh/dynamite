@@ -8,7 +8,7 @@ The DynamiTe project is hosted at the Github repository https://github.com/leton
 
 ## Setup instructions
 
-We provide two different ways to setup and run Dynamite. We suggest the simplest **Option 1 (Using Docker)** for the kick-the-tires phase so that you can quickly setup the tool and try it on some simple examples. Because DynamiTe takes advantage of multicore systems (e.g., our evaluation in the paper uses a 20-core machine), we suggest **Option 2 (Installing on native Debian/Ubuntu)** to fully reproduce our results.
+We provide two different ways to setup and run DynamiTe. We suggest the simplest **Option 1 (Using Docker)** for the kick-the-tires phase so that you can quickly setup the tool and try it on some simple examples. Because DynamiTe takes advantage of multicore systems (e.g., our evaluation in the paper uses a 20-core machine), we suggest **Option 2 (Installing on native Debian/Ubuntu)** to fully reproduce our results.
 
 ### Option 1: Using Docker
 
