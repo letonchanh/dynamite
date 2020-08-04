@@ -1,26 +1,28 @@
 # Overview
 
+DynamiTe is an analysis system for searching termination and non-termination proofs of imperative non-linear programs. The system combines *dynamic* strategies for discovering invariants and sampling transitive closure with *static* refinement into an overall framework for proving termination or nontermination of those programs. For termination, the tool infers ranking functions from concrete transitive closures, and, for non-termination, the tool iteratively collects executions and dynamically learns conditions to refine recurrent sets. These two strategies can mutually inform each other, taking counterexamples from a failed validation in one endeavor and crossing both the static/dynamic and term./non-term. lines, to create new execution samples for the other one.
+
 # Getting Started
 
-The Dynamite project is hosted at the Github repository https://github.com/letonchanh/dynamite which is actively being developed. The artifact for the paper "DynamiTe: Dynamic Termination and Non-termination Proofs" is available to download at 
+The DynamiTe project is hosted at the Github repository https://github.com/letonchanh/dynamite which is actively being developed. The artifact for the paper "DynamiTe: Dynamic Termination and Non-termination Proofs" is available to download at 
 
 ## Setup instructions
 
-We provide two different ways to setup and run Dynamite. We suggest the simplest **Option 1 (Using Docker)** for the kick-the-tires phase so that you can quickly setup the tool and try it on some simple examples. Because Dynamite takes advantage of multicore systems (e.g., our evaluation in the paper uses a 20-core machine), we suggest **Option 2 (Installing on native Debian/Ubuntu)** to fully reproduce our results.
+We provide two different ways to setup and run Dynamite. We suggest the simplest **Option 1 (Using Docker)** for the kick-the-tires phase so that you can quickly setup the tool and try it on some simple examples. Because DynamiTe takes advantage of multicore systems (e.g., our evaluation in the paper uses a 20-core machine), we suggest **Option 2 (Installing on native Debian/Ubuntu)** to fully reproduce our results.
 
 ### Option 1: Using Docker
 
-The following steps show how to build Dynamite's Docker image via the provided Dockerfile and run it
+The following steps show how to build DynamiTe's Docker image via the provided Dockerfile and run it
 
 0. Install Docker
 
     Follow the instructions on https://docs.docker.com/install/. You may need to run `docker` commands with `sudo` or similar privileges.
 
-1. Build the Dynamite's Docker image
+1. Build the DynamiTe's Docker image
     ```
     docker build -t dynamite .
     ```
-    The image is built upon the pre-built base image `letonchanh/dynamite:base` on Docker Hub. The base image contains all dependencies to run Dynamite and it can also be built offline with the following command
+    The image is built upon the pre-built base image `letonchanh/dynamite:base` on Docker Hub. The base image contains all dependencies to run DynamiTe and it can also be built offline with the following command
     ```
     docker build -f Dockerfile.base -t dynamite_base .
     ```
@@ -32,7 +34,7 @@ The following steps show how to build Dynamite's Docker image via the provided D
 
 ### Option 2: Installing on native Debian/Ubuntu
 
-You can follow the instructions in INSTALL.md to setup Dynamite on a Debian/Ubuntu machine. The instructions have been tested on a *Debian GNU/Linux 10 (buster)* system.
+You can follow the instructions in INSTALL.md to setup DynamiTe on a Debian/Ubuntu machine. The instructions have been tested on a *Ubuntu 18.04* system and a *Debian GNU/Linux 10 (buster)* system.
 
 ## Basic testing of the artifact
 
