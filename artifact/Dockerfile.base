@@ -19,11 +19,13 @@ WORKDIR $TOOLSDIR
 RUN curl -O http://mirrors.mit.edu/sage/linux/64bit/sage-9.0-Ubuntu_18.04-x86_64.tar.bz2
 RUN tar xvf sage-9.0-Ubuntu_18.04-x86_64.tar.bz2
 RUN SageMath/sage
-  
+
 ENV SAGE_ROOT=$TOOLSDIR/SageMath
 ENV PATH=$SAGE_ROOT/local/bin:$PATH
 ENV PYTHONPATH=$SAGE_ROOT/local/lib/python3.7/site-packages:$PYTHONPATH
 ENV LD_LIBRARY_PATH=$SAGE_ROOT/local/lib:$LD_LIBRARY_PATH
+
+RUN ln -s $SAGE_ROOT/local/bin/python3 $SAGE_ROOT/local/bin/python3.6
 
 # Install Z3
 WORKDIR $TOOLSDIR
