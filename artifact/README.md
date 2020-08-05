@@ -4,7 +4,7 @@ DynamiTe is an analysis system for searching termination and non-termination pro
 
 # Getting Started
 
-The DynamiTe project is hosted at the Github repository https://github.com/letonchanh/dynamite which is actively being developed. The artifact for the paper "DynamiTe: Dynamic Termination and Non-termination Proofs" is available to download at 
+The DynamiTe project is hosted at the Github repository https://github.com/letonchanh/dynamite, which is actively being developed. The artifact for the paper "DynamiTe: Dynamic Termination and Non-termination Proofs" is available to download at 
 
 ## Setup instructions
 
@@ -40,7 +40,23 @@ You can follow the instructions in INSTALL.md to setup DynamiTe on a Debian/Ubun
 
 # Step-by-Step Instructions
 
+## Benchmarks
+
+The folder `dynamite/benchmarks` contains 4 benchmarks:
+- `termination-crafted-lit`: terminating linear programs in the SV-COMP's `termination-crafted-lit` benchmark, which was used in Figure 6.
+- `nontermination-crafted-lit`: non-terminating linear programs in the SV-COMP's `termination-crafted-lit` benchmark, which was used in Figure 7.
+- `nla-term`: terminating non-linear programs used in Figure 8.
+- `nla-nonterm`: non-terminating non-linear programs used in Figure 9.
+
 ## Reproducing the Results
+
+To reproduce the results in Figures 6, 7, 8, and 9, in the folder `dynamite/benchmarks`, run `make BENCH_NAME` where `BENCH_NAME` is the name of the corresponding benchmark of a figure. For example,
+
+- To reproduce Table 6, run
+    ```
+    make termination-crafted-lit
+    ```
+    It took about ??? minutes for DynamiTe to run the whole benchmark on the Docker images.
 
 - How to reproduce any experiments or other activities that support the conclusions in the paper.
 
