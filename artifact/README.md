@@ -62,7 +62,7 @@ To reproduce the results in Figures 6, 7, 8, and 9, in the folder `dynamite/benc
     ```
     make nla-term
     ```
-    It took about ??? minutes for DynamiTe to run the whole benchmark on the Docker images.
+    It took about 150 minutes for DynamiTe to run the whole benchmark on the Docker images.
 
 - How to reproduce any experiments or other activities that support the conclusions in the paper.
 
