@@ -1,0 +1,153 @@
+#!/usr/bin/perl
+
+use local::lib;
+
+###############################################################
+
+die "must set DYNAMITE_HOME\n   e.g.  export DYNAMITE_HOME=~/dynamo\n" unless $ENV{DYNAMITE_HOME};
+die "must set DYNAMITE_DEPS\n   e.g.  export DYNAMITE_DEPS=~/tools\n" unless $ENV{DYNAMITE_DEPS};
+my $DYNAMITE_HOME = $ENV{DYNAMITE_HOME};
+my $DYNAMITE_DEPS = $ENV{DYNAMITE_DEPS};
+my $SPECFILE = qq{$DYNAMITE_DEPS/termination.prp};
+my $NT_SPECFILE = qq{$DYNAMITE_DEPS/nontermination.prp};
+
+###############################################################
+use strict;
+use warnings;
+use File::Temp qw/ tempfile tempdir /;
+use Time::Out qw(timeout) ;
+use Time::HiRes qw(gettimeofday tv_interval);
+
+my $ITERS = 1;
+my $TIMEOUT  = 300;
+my $INTEGRATED = 0;
+my @timedout;
+my $pid = getppid();
+my $TMPFILE = "/tmp/dynamo.$pid.txt";
+my $KILL = "killall java; killall z3;";
+my $HARD_TIMEOUT = 0; # hard force timeout
+###############################################################
+use lib '.';
+use Parsers qw{ult dynamo};
+
+my $t0;
+my $CFG = {
+    dynamo => {
+        DIR => qq{$DYNAMITE_HOME/src},
+        CMD => sub { my $arg = ($SPECFILE =~ m/\/term/ ? '-t' : '-nt');
+		     $arg = '' if $INTEGRATED == 1;
+                     $t0 = [gettimeofday];
+                     return qq($KILL python3 dynamo.py --timeout=$TIMEOUT $_[0] $arg 2>\&1 | tee $TMPFILE);
+        },
+        FETCH => sub { my $elapsed = tv_interval($t0);
+		       my $tm = "HARD TIMER: $elapsed\n";
+		       open TM, ">>$TMPFILE" or warn $!;
+		       print TM "\n$tm\n";
+		       close TM;
+		       return qq(cp $TMPFILE $_[0]); },
+        PARSE => sub { return Parsers::dynamo($_[0]); },
+    },
+    ultimate => {
+        DIR    => qq{$DYNAMITE_DEPS/ultimate/releaseScripts/default/UAutomizer-linux},
+        CMD    => sub { return qq($KILL timeout ${TIMEOUT}s ./Ultimate.py --file $_[0]  --spec $SPECFILE --architecture 32bit); },
+        FETCH  => sub { return qq(cp Ultimate.log $_[0]); },
+        PARSE  => sub { return Parsers::ult($_[0]); },
+    },
+    aprove => {
+        DIR    => qq{$DYNAMITE_DEPS/aprove},
+        CMD    => sub { return qq(./AProVE.sh $_[0] > aprove.log); },
+        FETCH  => sub { return qq(cp aprove.log $_[0]); },
+        PARSE  => sub { return Parsers::aprove($_[0]); }
+    },
+    seahorn => {
+        DIR    => qq{$DYNAMITE_DEPS/seahorn/build/run/bin},
+        CMD    => sub { return qq($DYNAMITE_DEPS/seahorn/build/run/bin/sea_svcomp --cpu=10 --cex=error-witness.graphml -m64 --spec=$SPECFILE $_[0] > /tmp/seahorn.log); },
+        FETCH  => sub { return qq(mv /tmp/seahorn.log $_[0]); },
+        PARSE  => sub { return Parsers::seahorn($_[0]); }
+    }
+};
+    
+###############################################################
+#### Utilities
+sub runc { my ($cmd) = @_; print "+ $cmd\n(with timeout of $TIMEOUT s)\n";
+	   if ($HARD_TIMEOUT == 1) {
+	       timeout $TIMEOUT => sub { print qx{$cmd}; };
+	       if ($@) {  push @timedout, $cmd; }
+	   } else {
+	       print qx{$cmd};
+	   }
+}	   
+
+###############################################################
+#### Arguments parsing
+die "usage: ./run (options) <subdir> (list|run) [dynamo,ultimate,seahorn,aprove] (geo1-both-t,cohencu2-both-t,...)\n".
+    "  (last argument is optional) \n".
+    "  options:\n".
+    "    --nt=1         # for non-termination\n".
+    "    --integrated=1 # for integrated\n".
+    "    --hardtimeout=1      # hard force timeout\n".
+    "    --iters=1 ".
+    "    --timeout=900\n" unless $#ARGV >= 1;
+while ($ARGV[0] =~ /^--(.*)=(.+)$/) {
+    my ($k,$v) = ($1,$2);
+    shift @ARGV;
+    $TIMEOUT = $v if $k eq 'timeout';
+    $SPECFILE = $NT_SPECFILE if $k eq 'nt';
+    $INTEGRATED = 1 if $k eq 'integrated';
+    $HARD_TIMEOUT = 1 if $k eq 'hardtimeout';
+    $ITERS = $v if $k eq 'iters';
+}
+my @bnames = ();
+my ($bdir,$arg1,$ts,$bms) = @ARGV;
+$SPECFILE = $NT_SPECFILE if $bdir =~ /nontermination/;
+my @tools = split ',', $ts;
+@bnames = split ',', $bms if defined $bms;
+use Data::Dumper;
+print "*\n";
+print "* DynamiTe Benchmarking\n";
+print "*\n";
+print "* Paper: DynamiTe: Dynamic Termination and Non-termination Proofs\n";
+print "* Authors: (omitted for blind)\n";
+print "*\n";
+print "* Configuration:\n";
+print "    Filter to   : ".join(' ',@bnames)."\n" if $#bnames >= 0;
+print "    Tools       : $ts\n";
+
+use Parsers qw/find_benchmarks/;
+my ($benchdir,$benchesref,$b2expected) = Parsers::find_benchmarks($bdir,\@bnames);
+my @benches = sort @{$benchesref}; # [50..158];
+print "    Total files : ".($#benches+1)."\n";
+exit if ($arg1 eq 'list');
+
+chdir $benchdir;
+
+################### Running the benchmarks
+if ($arg1 eq 'run') {
+    my $tmpl = ($INTEGRATED == 1 ? "integrated-XXXXXXX" : "out-XXXXXXX");
+    my $t = File::Temp->newdir( $tmpl, CLEANUP => 0 );
+    my $outdir = $t->dirname;
+    print "*   Saving logs to: $benchdir/$outdir\n";
+    open TMP, ">/tmp/dynamite.outdir" or die $!;
+    print TMP $outdir;
+    close TMP;
+    print "*\n*\n";
+    my $ct = 0;
+    foreach my $tool (@tools) {
+        my %b2res;
+        foreach my $b (@benches) {
+            print "* --- Now executing DynamiTe on benchmark: $b ---\n";
+            for my $iter (1..$ITERS) {
+                chdir $CFG->{$tool}->{DIR} or die "can't CHDIR to $CFG->{$tool}->{DIR}: $!";
+                #my $SPECFILE = ($b =~ m/-nt\./ ? $NT_SPECFILE : $T_SPECFILE);
+                runc( $CFG->{$tool}->{CMD}->("$benchdir/$b") );
+                my $logfn = "$benchdir/$outdir/$tool-$b.log.$iter";
+                runc( $CFG->{$tool}->{FETCH}->($logfn) );
+                #$b2res{$b} = $CFG->{$tool}->{PARSE}->($logfn);
+                #print "$logfn - Time:$b2res{$b}->{time} - Result:$b2res{$b}->{result}\n";
+            }
+        }
+    }
+    print "*\n* you may now harvest the results:\n ./harvest nocsvs $bdir $outdir\n*\n";
+    print "Timedout:  \n".join("\n   ",@timedout)."\n" if $#timedout >= 0;
+}
+

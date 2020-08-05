@@ -1,0 +1,175 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use Data::Dumper;
+use lib '.';
+my @tools = qw/ultimate dynamo/; #ultimate aprove seahorn/;
+use Parsers qw{parse find_benchmarks};
+
+################### Arguments
+my $COMPARISON = 0; my $ITERS = 1; my $PROVETNT = 0;
+my $usage = "usage: ./harvest [options] (csvs|nocsvs) <benchdir>/<tmpdir>\n".
+    "  where options are: --iters=5 --compare=1 --integrated=1\n";
+die $usage unless $#ARGV >= 1;
+while ($ARGV[0] =~ /^--(.*)=(.+)$/) {
+    my ($k,$v) = ($1,$2);
+    shift @ARGV;
+    $COMPARISON = 1 if $k eq 'compare';
+    $ITERS = $v if $k eq 'iters';
+    $PROVETNT = 1 if $k eq 'integrated'
+}
+my ($csvs,$a3) = @ARGV;
+my ($bdir,$outdir) = split '/', $a3 or die $!;
+
+#########################################################
+
+print "*\n";
+print "* DynamiTe Benchmarking -- Harvest Results\n";
+print "*\n";
+print "* Paper: DynamiTe: Dynamic Termination and Non-termination Proofs\n";
+print "* Authors: (omitted for blind)\n";
+print "*\n";
+print "* Configuration:\n";
+
+my @bnames = ();
+my ($benchdir,$benchesref,$b2expected) = Parsers::find_benchmarks($bdir,\@bnames);
+my @benches = @{$benchesref};
+print "*\n\n";
+
+################### Filename for results
+use POSIX qw(strftime);
+my $now = time();
+my $fn = strftime('%Y%m%d%H%M%S', gmtime($now));
+
+my @integrated;
+my @integratedC;
+my @dynDetail;
+my @dynHtml;
+my @skips;
+################### Harvesting the results
+my @newfile;
+my $compare;
+@tools = ('dynamo') if $PROVETNT == 1;
+foreach my $tool (@tools) {
+  foreach my $b (sort @benches) {
+      mkdir("../results/$b") if (not (-e "../results/$b"));
+      my $logfn = "$benchdir/$outdir/$tool-$b.log"; 
+      if (not (-e $logfn.".1")) { push @skips, $logfn; next; }
+      my $tmpb = $b; $tmpb =~ s/-both-n?t.c//;
+      # Step 1: General parsing that all tools/variants support
+      $compare->{$tmpb}->{$tool} = Parsers::parse($tool,$logfn,$ITERS);
+      my $tm = $compare->{$tmpb}->{$tool}->{time};
+      # Step 2: If this was a ProveTNT run, get details accordingly
+      if ($PROVETNT == 1) {
+          my $expectedTNT = '???';
+          $expectedTNT = 'T' if $benchdir =~ /-term/;
+          $expectedTNT = 'NT' if $benchdir =~ /-nonterm/;
+          my ($d,$dstr,$dstrC) = Parsers::dynDetailTNT($tmpb,$logfn.".1",
+                                                ($tm >= 900 ? 1 : 0),
+                                                $tm, $compare->{$tmpb}->{$tool}->{result},
+                                                $expectedTNT,$ITERS);
+          push @integrated, $dstr;
+          push @integratedC, $dstrC;
+      # Step 3: Otherwise, if it is dynamo (ProveT or ProveNT)
+      } elsif ($tool eq 'dynamo') {
+            #die "can't get time at all: $b and $b2res{$tmpb}->{time}\n" unless $b2res{$b}->{time} > 0;
+            my ($d,$dstr,$html) = Parsers::dynDetail($tmpb,$logfn.".1",
+                                              ($tm >= 900 ? 1 : 0),
+                                             $tm, $compare->{$tmpb}->{$tool}->{result},
+                                             ($benchdir =~ /nonterm/ ? 1 : 0),$ITERS);
+            push @dynDetail, $dstr;
+            push @dynHtml, $html;
+            $compare->{$tmpb}->{dynamo}->{rf} = "";
+            $compare->{$tmpb}->{dynamo}->{rf} .= $d->{rf};
+            $compare->{$tmpb}->{dynamo}->{$_} = $d->{$_} for qw/guesst guessr validt validr/;
+      }
+
+
+      if ($csvs eq 'csvs') {
+          my $ln = sprintf("%s,%s,%.2f\n", $b, $compare->{$tmpb}->{$tool}->{result},  $compare->{$tmpb}->{$tool}->{time});
+          open CHANH, ">../results/$b/$tool.$fn.csv" or die $!;
+          print CHANH $ln;
+          close CHANH;
+      }
+      push @newfile, "../results/$b/$tool.$fn.csv";
+  }
+}
+
+sub TCLtrunc {
+    my ($nm) = @_;
+    return $nm if length $nm < 15;
+    my @secs = split '-', $nm;
+
+    if ($secs[0] =~ /^[A-Z][a-z]+/) {
+        my @auths = ($secs[0] =~ /([A-Z][a-z]+)/g);
+        #print "TRUNCATION: $nm  ==>  auths: ".join(',',@auths)."\n";
+        my $as = join '', map { substr($_,0,2) } @auths;
+        my $merged = join('-', ($as,@secs[1..$#secs]));
+        $merged =~ s/CarbonellRubio/CaRu/;
+        $merged =~ s/LockingExample/LockEx/;
+        $merged =~ s/modified/mod/;
+        $merged =~ s/Introduction/Intro/;
+        return $merged;
+    }
+}
+
+my %naming;
+#print "Skipped These:\n   ".join("\n   ",@skips)."\n";
+if($COMPARISON == 1 && $benchdir =~ /termination-crafted-lit/) {
+    print "========= COMPARISON WITH ULTIMATE ============\n";
+    print "\n\n   Note: only valid if you also ran Ultimate and the logs are also in $outdir\n\n";
+    print "--> compare.tex\n--> comparent.tex\n--> naming.tex\n";
+    open CMP, ">compare.tex" or die $!;
+    open CMPNT, ">comparent.tex" or die $!;
+    open CMPSUM, ">comparesummary.tex" or die $!;
+    my $prev = ''; my $ctr = 1;
+    foreach my $b (sort keys %{$compare}) {
+        my $trunc = TCLtrunc($b);
+        $naming{$trunc} = $b;
+        #my $trunc = substr($b,0,15);
+        #if ($trunc eq $prev) { $trunc .= "".($ctr++); } else { $prev = $trunc; $ctr = 2; };
+        my $out = sprintf("%-35s \& \$ %-15s \$ \& %-4s \& %-6s \& %-4s \& %-6s \& %5s \& %5.1f \&   \\ULTIMATE{  %-5s \& %-6s } \\\\\n",
+               $trunc,
+               $compare->{$b}->{dynamo}->{rf}." ",
+               $compare->{$b}->{dynamo}->{guesst},
+               $compare->{$b}->{dynamo}->{guessr},
+               $compare->{$b}->{dynamo}->{validt},
+               $compare->{$b}->{dynamo}->{validr},
+               $compare->{$b}->{dynamo}->{mean},
+               $compare->{$b}->{dynamo}->{stddev},
+               $compare->{$b}->{ultimate}->{time},
+               '\r'.$compare->{$b}->{ultimate}->{result}
+            );
+        if ($b =~ /BradleyManna|ChenCookFuhs|HenzingerJala|Velroy|Urban.*Fig1\.c/) {
+            print CMPNT $out
+        } else {
+            print CMP $out;
+            print CMPSUM $out if $ctr++ % 4 == 0;
+        }
+    }
+    close CMP;
+    close CMPNT;
+    open NM, ">naming.tex" or die $!;
+    map { print NM "\\textts{$_} & \\textts{$naming{$_}} \\\\\n" } (sort keys %naming) ;
+    close NM;
+}
+
+if($PROVETNT == 1) {
+    print "========= DETAILED RESULTS OF DYNAMITE - ProveTNT ============\n";
+    print for @integrated;
+    print "\n\n========= DETAILED RESULTS OF DYNAMITE (concise) ============\n";
+    print for @integratedC;
+} else {
+    print "========= DETAILED RESULTS OF DYNAMITE - ProveT or ProveNT ============\n";
+    print for @dynDetail;
+    print for @dynHtml;
+    open my $HTML, ">", "$benchdir.$outdir.html" or die $!;
+    print $HTML "<html><head><style> table { width:100\%; } table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { padding: 15px; text-align: center; } tr:nth-child(even) { background-color: \#eee; } tr:nth-child(odd) { background-color: \#fff; } </style></head><body><h2>Experimental Results of DynamiTe on the benchmark $benchdir</h2><table style=\"border: 1pt solid black;\"><tr><th rowspan=\"2\">Benchmark</th><th rowspan=\"2\">Desc.</th><th>DynamiTe</th><th colspan=\"2\">Learning</th><th colspan=\"2\">Validation</th></tr><tr><th>Learned Ranking Fns.</th><th>Time</th><th>Res</th><th>Time</th><th>Res</th></tr>\n";
+    print $HTML @dynHtml;
+    print $HTML "</body></html>";
+    close $HTML;
+    print "Experimental Results of DynamiTe on the benchmark $benchdir was written to $benchdir.$outdir.html";
+}
+print "\n\n\n";
+print "You may now wish to:\n  git add ".(join(" ",@newfile))."\n  git commit -m \"results $fn\"\n" if $csvs eq 'csvs';
