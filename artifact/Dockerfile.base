@@ -3,7 +3,7 @@ FROM ubuntu:18.04
 RUN apt-get update -y
 RUN apt-get upgrade -y
 RUN apt-get install -y openjdk-8-jdk maven ant
-RUN apt-get install -y curl python git zip make cmake binutils build-essential opam m4 swig psmisc
+RUN apt-get install -y curl python git zip lynx make cmake binutils build-essential opam m4 swig psmisc
 RUN apt-get install -y libpng-dev libfreetype6 libgmp-dev
   
 RUN mkdir /tools
