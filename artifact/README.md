@@ -4,11 +4,11 @@ DynamiTe is an analysis system for searching termination and non-termination pro
 
 # Getting Started
 
-The DynamiTe project is hosted at the Github repository https://github.com/letonchanh/dynamite, which is actively being developed. The artifact for the paper "DynamiTe: Dynamic Termination and Non-termination Proofs" is available to download at 
+The DynamiTe project is open source and hosted at https://github.com/letonchanh/dynamite. The artifact for the paper "DynamiTe: Dynamic Termination and Non-termination Proofs" is available to download at ???.
 
 ## Setup instructions
 
-We provide two different ways to setup and run DynamiTe. We suggest the easiest **Option 1 (Using Docker)** for the kick-the-tires phase so that you can quickly setup the tool and try it on some simple examples. Because DynamiTe takes advantage of multicore systems (e.g., our evaluation in the paper uses a 20-core machine), we recommend **Option 2 (Installing on native Debian/Ubuntu)** to fully reproduce our results.
+We provide two different ways to setup and run DynamiTe. For the kick-the-tires phase, we suggest the easiest **Option 1 (Using Docker)** for you to quickly setup the tool and try it on some simple examples. Because DynamiTe takes advantage of multicore systems (e.g., our evaluation in the paper uses a 20-core machine), we recommend **Option 2 (Installing on native Debian/Ubuntu)** to fully reproduce our results.
 
 ### Option 1: Using Docker
 
@@ -97,7 +97,7 @@ DynamiTe was mainly developed in Python 3, but its program instrumentation was i
     - `lib.py`: Utilities for snapshots, including collecting and classifying them, or inferring invariants from them.
     - `utils/`: Other utilities, such as timing, setting values.
 - `deps/`: Dependencies of DynamiTe
-    - `dig/`: The [DIG](https://github.com/unsat/dig) tool for dynamically inferring program invariants
+    - `dig/`: The [DIG](https://github.com/unsat/dig) tool for dynamically inferring program invariants.
     - `dynamite-instr`: The DynamiTe's transformations, which are implemented as CIL extensions.
         - `src/cil/src/ext/transform`: The program transformation to collect dynamic snapshots.
         - `src/cil/src/ext/validate`: The program instrumentation to validate the list of ranking functions of a loop.
