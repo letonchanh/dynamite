@@ -82,7 +82,7 @@ DynamiTe was mainly developed in Python 3, but its program instrumentation was i
     - `dynamo.py`: The main driver of DynamiTe.
     - `analysis.py`: The main algorithms of DynamiTe.
         - `class Setup`: Pre-processing of the analysis, such as executing the programs to collect snapshots and loop information (loop conditions, stems, and lassos), setting up external tools (e.g the dynamic inference tool DIG) and SMT solvers (e.g z3, CVC4).
-        - `class Term`: Implementation of the termination algorithm in Figure 2, whose the main method `prove` aims to prove termination of every loop in the program.
+        - `class Term`: Implementation of the termination algorithm in Figure 2, whose the main method `prove` aims to prove termination of every loop in the program. Below is the list of auxiliary procedures and their corresponding names (in round brackets) in Figure 2.
             - `prove_term_vloop`: Proving termination of a loop in the program (`ProveT`).
             - `infer_ranking_functions`: Inferring a list of ranking functions from collected snapshots (`InferRF`).
             - `validate_ranking_functions`: Validating the inferred ranking functions (`ValidateRFs`).
