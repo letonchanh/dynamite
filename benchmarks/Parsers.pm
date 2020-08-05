@@ -252,9 +252,13 @@ sub dynDetail {
     my $str = sprintf("\\texttt{%-10s} & %-10s & \$%-42s\$ & %-8s & %10s & %-5s & %10s  \\\\ \n",
                    $tmpb, $b2desc->{$tmpb}||'', $d->{rf},
                    $d->{guesst}, $d->{guessr},
-                      $d->{validt}, $d->{validr});
+                   $d->{validt}, $d->{validr});
+    my $html = sprintf("<tr><td>%-10s</td><td>%-10s</td><td>%-42s</td><td>%-8s</td><td>%10s</td><td>%-5s</td><td>%10s</td></tr>\n",
+                   $tmpb, $b2desc->{$tmpb}||'', $d->{rf},
+                   $d->{guesst}, $d->{guessr},
+                   $d->{validt}, $d->{validr});
     #$d->{allt}, $d->{allr});
-    return ($d,$str);
+    return ($d,$str,$html);
     #$tool, $tmpb, $b2res{$b}->{time}, $b2res{$b}->{result});
 
     # Time log:

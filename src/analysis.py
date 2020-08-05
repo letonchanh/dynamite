@@ -1135,9 +1135,9 @@ class Term(object):
         
         validate_tmpdir = _config.tmpdir / vloop.vloop_id
         # validator = CPAchecker(validate_tmpdir)
-        validator = UAutomizer(validate_tmpdir)
+        # validator = UAutomizer(validate_tmpdir)
         # validator = UTaipan(validate_tmpdir)
-        # validator = Portfolio(validate_tmpdir)
+        validator = Portfolio(validate_tmpdir)
         validate_outf = validator.gen_validate_file(_config.inp, vloop_pos, ranks_str)
         r, cex = validator.prove_reach(vs, validate_outf)
         validator.clean()
