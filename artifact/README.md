@@ -57,6 +57,12 @@ To reproduce the results in Figures 6, 7, 8, and 9, in the folder `dynamite/benc
     make termination-crafted-lit
     ```
     It took about ??? minutes for DynamiTe to run the whole benchmark on the Docker images.
+    
+- To reproduce Table 8, run
+    ```
+    make nla-term
+    ```
+    It took about ??? minutes for DynamiTe to run the whole benchmark on the Docker images.
 
 - How to reproduce any experiments or other activities that support the conclusions in the paper.
 
