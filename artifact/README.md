@@ -8,7 +8,7 @@ The DynamiTe project is open source and hosted at https://github.com/letonchanh/
 
 ## Setup instructions
 
-We provide two different ways to setup and run DynamiTe. For the kick-the-tires phase, we suggest the easiest **Option 1 (Using Docker)** for you to quickly setup the tool and try it on some simple examples. Because DynamiTe takes advantage of multicore systems (e.g., our evaluation in the paper uses a 20-core machine), we recommend **Option 2 (Installing on native Debian/Ubuntu)** to fully reproduce our results.
+We provide two different ways to setup and run DynamiTe. For the kick-the-tires phase, we recommend the easiest **Option 1 (Using Docker)** for you to quickly setup the tool and try it on some simple examples. Because DynamiTe takes advantage of multicore systems (e.g., our evaluation in the paper uses a 20-core machine), we suggest **Option 2 (Installing on native Debian/Ubuntu)** to fully reproduce our results.
 
 ### Option 1: Using Docker
 
@@ -50,19 +50,25 @@ The folder `dynamite/benchmarks` contains 4 benchmarks:
 
 ## Reproducing the Results
 
-To reproduce the results in Figures 6, 7, 8, and 9, in the folder `dynamite/benchmarks`, run `make BENCH_NAME` where `BENCH_NAME` is the name of the corresponding benchmark of a figure. For example,
+To reproduce the results in Figures 6, 7, 8, and 9, in the folder `dynamite/benchmarks`, run `make BENCH_NAME` where `BENCH_NAME` is the name of the corresponding benchmark to a figure. The details are as follows:
 
 - To reproduce Table 6, run
     ```
     make termination-crafted-lit
     ```
-    It took about ??? minutes for DynamiTe to run the whole benchmark on the Docker images.
+    It took about ??? minutes for DynamiTe to run the whole benchmark on the Docker image.
     
 - To reproduce Table 8, run
     ```
     make nla-term
     ```
-    It took about ??? minutes for DynamiTe to run the whole benchmark on the Docker images.
+    It took about 150 minutes for DynamiTe to run the entire 38 benchmarks on the Docker image.
+    
+- To reproduce Table 9, run
+    ```
+    make nla-nonterm
+    ```
+    It took about 45 minutes for DynamiTe to run the entire 39 benchmarks on the Docker image.
 
 - How to reproduce any experiments or other activities that support the conclusions in the paper.
 
@@ -82,7 +88,7 @@ DynamiTe was mainly developed in Python 3, but its program instrumentation was i
     - `dynamo.py`: The main driver of DynamiTe.
     - `analysis.py`: The main algorithms of DynamiTe.
         - `class Setup`: Pre-processing of the analysis, such as executing the programs to collect snapshots and loop information (loop conditions, stems, and lassos), setting up external tools (e.g the dynamic inference tool DIG) and SMT solvers (e.g z3, CVC4).
-        - `class Term`: Implementation of the termination algorithm in Figure 2, whose the main method `prove` aims to prove termination of every loop in the program.
+        - `class Term`: Implementation of the termination algorithm in Figure 2, whose the main method `prove` aims to prove termination of every loop in the program. Below is the list of auxiliary procedures and their corresponding names (in round brackets) in Figure 2.
             - `prove_term_vloop`: Proving termination of a loop in the program (`ProveT`).
             - `infer_ranking_functions`: Inferring a list of ranking functions from collected snapshots (`InferRF`).
             - `validate_ranking_functions`: Validating the inferred ranking functions (`ValidateRFs`).
