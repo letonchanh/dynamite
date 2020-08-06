@@ -781,9 +781,9 @@ class NonTerm(object):
 
     def _stat_candidate_rcs(self, rcs):
         stat = defaultdict(int)
-        for (_, d, _) in rcs.items():
+        for (_, d, _) in rcs:
             stat[d] += 1
-        mlog.debug("stat ({} total): {}".format(rcs.size(), stat))
+        mlog.debug("stat ({} total): {}".format(len(rcs), stat))
 
     def is_reachable_rcs(self, vloop, rcs):
         init_transrel_rcs = ZFormula.substitue(rcs, vloop.transrel_pre_sst)
@@ -866,7 +866,7 @@ class NonTerm(object):
                     # break
                 else:
                     for r in rs:
-                        candidateRCS.push(r)
+                        candidateRCS.append(r)
 
             term_itraces_cex = {}
             for (tInvs, tTraces) in self.tCexs:
