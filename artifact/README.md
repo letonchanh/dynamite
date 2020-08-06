@@ -50,19 +50,25 @@ The folder `dynamite/benchmarks` contains 4 benchmarks:
 
 ## Reproducing the Results
 
-To reproduce the results in Figures 6, 7, 8, and 9, in the folder `dynamite/benchmarks`, run `make BENCH_NAME` where `BENCH_NAME` is the name of the corresponding benchmark of a figure. For example,
+To reproduce the results in Figures 6, 7, 8, and 9, in the folder `dynamite/benchmarks`, run `make BENCH_NAME` where `BENCH_NAME` is the name of the corresponding benchmark to a figure. The details are as follows:
 
 - To reproduce Table 6, run
     ```
     make termination-crafted-lit
     ```
-    It took about ??? minutes for DynamiTe to run the whole benchmark on the Docker images.
+    It took about ??? minutes for DynamiTe to run the whole benchmark on the Docker image.
     
 - To reproduce Table 8, run
     ```
     make nla-term
     ```
-    It took about 150 minutes for DynamiTe to run the whole benchmark on the Docker images.
+    It took about 150 minutes for DynamiTe to run the entire 38 benchmarks on the Docker image.
+    
+- To reproduce Table 9, run
+    ```
+    make nla-nonterm
+    ```
+    It took about 45 minutes for DynamiTe to run the entire 39 benchmarks on the Docker image.
 
 - How to reproduce any experiments or other activities that support the conclusions in the paper.
 
