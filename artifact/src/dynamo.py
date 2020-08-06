@@ -56,9 +56,9 @@ if __name__ == "__main__":
         action="store_true",
         help="use DFS in non-termination analysis")
 
-    ag("--bfs", "-bfs",
-        action="store_true",
-        help="use BFS in non-termination analysis")
+    # ag("--bfs", "-bfs",
+    #     action="store_true",
+    #     help="use BFS in non-termination analysis")
 
     # DIG settings
     ag("--dig_log_level", "-dig_log_level",
@@ -90,7 +90,7 @@ if __name__ == "__main__":
     settings.prove_term = args.term
     settings.prove_nonterm = args.nonterm
     settings.use_dfs = args.dfs
-    settings.use_bfs = args.bfs
+    # settings.use_bfs = args.bfs
     
     if args.timeout:
         settings.timeout = int(args.timeout)

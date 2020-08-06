@@ -136,8 +136,8 @@ class Setup(object):
         self.tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
         self.symstates = None
         # self.solver = ZSolver(self.tmpdir)
-        # self.solver = PySMT() 
-        self.solver = Z3Py()
+        self.solver = PySMT() 
+        # self.solver = Z3Py()
                 
         self.init_symvars_prefix = None
         if self.is_binary_inp:
