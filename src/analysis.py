@@ -136,8 +136,8 @@ class Setup(object):
         self.tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
         self.symstates = None
         # self.solver = ZSolver(self.tmpdir)
-        self.solver = PySMT() 
-        # self.solver = Z3Py()
+        # self.solver = PySMT() 
+        self.solver = Z3Py()
                 
         self.init_symvars_prefix = None
         if self.is_binary_inp:
@@ -807,58 +807,67 @@ class NonTerm(object):
             mlog.debug('use_dfs: {}'.format(settings.use_dfs))
             mlog.debug('use_bfs: {}'.format(settings.use_bfs))
             # candidate rcs, depth, ancestors
-            # candidateRCS = Stack()
-            candidateRCS = DStack(key_of=lambda rcs: rcs[1])
-            candidateRCS.push((ZConj([vloop.loop.cond]), 0, []))
-            while candidateRCS.size() > 0:
+            
+            # candidateRCS = DStack(key_of=lambda rcs: rcs[1])
+            # candidateRCS.push((ZConj([vloop.loop.cond]), 0, []))
+            # while candidateRCS.size() > 0:
+            #     # mlog.debug("candidateRCS: {}".format(len(candidateRCS)))
+            #     self._stat_candidate_rcs(candidateRCS)
+            #     candidates = []
+            #     if settings.use_dfs:
+            #         # rcs, depth, ancestors = candidateRCS.pop()
+            #         candidate = candidateRCS.pop()
+            #         candidates.append(candidate)
+            #     elif settings.use_bfs:
+            #         # rcs, depth, ancestors = candidateRCS.dequeue()
+            #         candidate = candidateRCS.dequeue()
+            #         candidates.append(candidate)
+            #     else:
+            #         # use 0 for queue - BFS
+            #         # rcs, depth, ancestors = candidateRCS.dequeue()
+            #         fst_candidate = candidateRCS.dequeue()
+            #         lst_candidate = candidateRCS.pop()
+            #         candidates.append(fst_candidate)
+            #         if lst_candidate:
+            #             candidates.append(lst_candidate)
+
+            #     def _f(task):
+            #         chk, rs = self.prove_rcs(vloop, *task)
+            #         return (chk, rs)
+
+            #     if len(candidates) > 1:
+            #         wrs = Miscs.run_mp_ex("prove_rcs", candidates, _f)
+            #     else:
+            #         wrs = [_f(candidates[0])]
+            #     for chk, rs in wrs:
+            #         if chk is True:
+            #             valid_rcs.append(rs)
+            #             return [rs], []
+            #             # break
+            #         elif chk is False:
+            #             for r in rs:
+            #                 candidateRCS.push(r)
+
+            candidateRCS = [(ZConj([vloop.loop.cond]), 0, [])]
+            while candidateRCS:
                 # mlog.debug("candidateRCS: {}".format(len(candidateRCS)))
                 self._stat_candidate_rcs(candidateRCS)
-                candidates = []
                 if settings.use_dfs:
-                    # rcs, depth, ancestors = candidateRCS.pop()
-                    candidate = candidateRCS.pop()
-                    candidates.append(candidate)
-                elif settings.use_bfs:
-                    # rcs, depth, ancestors = candidateRCS.dequeue()
-                    candidate = candidateRCS.dequeue()
-                    candidates.append(candidate)
+                    candidate = candidateRCS.pop() # rcs, depth, ancestors
                 else:
                     # use 0 for queue - BFS
-                    # rcs, depth, ancestors = candidateRCS.dequeue()
-                    fst_candidate = candidateRCS.dequeue()
-                    lst_candidate = candidateRCS.pop()
-                    candidates.append(fst_candidate)
-                    if lst_candidate:
-                        candidates.append(lst_candidate)
+                    candidate = candidateRCS.pop(0) # rcs, depth, ancestors
 
-                def _f(task):
-                    chk, rs = self.prove_rcs(vloop, *task)
-                    return (chk, rs)
-
-                if len(candidates) > 1:
-                    wrs = Miscs.run_mp_ex("prove_rcs", candidates, _f)
+                chk, rs = self.prove_rcs(vloop, *candidate)
+                if chk is None:
+                    continue
+                elif chk is True:
+                    valid_rcs.append(rs)
+                    # break
                 else:
-                    wrs = [_f(candidates[0])]
-                for chk, rs in wrs:
-                    if chk is True:
-                        valid_rcs.append(rs)
-                        return [rs], []
-                        # break
-                    elif chk is False:
-                        for r in rs:
-                            candidateRCS.push(r) 
+                    for r in rs:
+                        candidateRCS.push(r)
 
-                # chk, rs = self.prove_rcs(vloop, *candidate)
-                # if chk is None:
-                #     continue
-                # elif chk is True:
-                #     valid_rcs.append(rs)
-                #     # break
-                # else:
-                #     for r in rs:
-                #         candidateRCS.push(r)
-                
-            
             term_itraces_cex = {}
             for (tInvs, tTraces) in self.tCexs:
                 mlog.debug("tCex: {}".format(tInvs))
