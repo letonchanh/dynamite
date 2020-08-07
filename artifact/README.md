@@ -68,7 +68,7 @@ To reproduce the results in Figures 6, 7, 8, and 9, in the folder `dynamite/benc
     ```
     make nla-nonterm
     ```
-    It took about 120 minutes for DynamiTe to run the entire 39 benchmarks on the Docker image. The result can be found [here](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/results/nla-nonterm/nla-nonterm.out-_8ejxcU.html), whose log files are in the folder [results/nla-nonterm/out-_8ejxcU](results/nla-term/out-_8ejxcU). The result is better than the result reported in Figure 9, thank to an improvement in the symbolic execution. The improved symbolic execution can capture more precise transition relations of the loops, that helps to successfully validate more candidate recurrent sets.
+    It took about 120 minutes for DynamiTe to run the entire 39 benchmarks on the Docker image. The result can be found [here](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/results/nla-nonterm/nla-nonterm.out-_8ejxcU.html), whose log files are in the folder [results/nla-nonterm/out-_8ejxcU](results/nla-nonterm/out-_8ejxcU). The result is better than the result reported in Figure 9, thank to an improvement in the symbolic execution. The improved symbolic execution can capture more precise transition relations of the loops, that helps to successfully validate more candidate recurrent sets.
 
 - How to reproduce any experiments or other activities that support the conclusions in the paper.
 
