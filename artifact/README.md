@@ -50,21 +50,21 @@ The folder `dynamite/benchmarks` contains 4 benchmarks:
 
 ## Reproducing the Results
 
-To reproduce the results in Figures 6, 7, 8, and 9, in the folder `dynamite/benchmarks`, run `make BENCH_NAME` where `BENCH_NAME` is the name of the corresponding benchmark to a figure. The details are as follows:
+To reproduce the results in Figures 6, 7, 8, and 9, in the folder `dynamite/benchmarks`, run `make BENCH_NAME` where `BENCH_NAME` is the name of the corresponding benchmark to a figure. The default timeout is **300s** for each benchmark program. The details are as follows:
 
-- To reproduce Table 6, run
+- To reproduce Figure 6, run
     ```
     make termination-crafted-lit
     ```
     It took about ??? minutes for DynamiTe to run the whole benchmark on the Docker image.
     
-- To reproduce Table 8, run
+- To reproduce Figure 8, run
     ```
     make nla-term
     ```
-    It took about 150 minutes for DynamiTe to run the entire 38 benchmarks on the Docker image. The result can be found [here](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/results/nla-term/nla-term.out-ZL8GkEB.html)
+    It took about 150 minutes for DynamiTe to run the entire 38 benchmarks on the Docker image. The result can be found [here](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/results/nla-term/nla-term.out-ZL8GkEB.html). Note that the learned ranking functions of some examples (e.g `bresenham1`, `cohencu1`) that can be verified in Figure 8 now cannot be verified before the timeout due to the limited resources in the Docker image.
     
-- To reproduce Table 9, run
+- To reproduce Figure 9, run
     ```
     make nla-nonterm
     ```
