@@ -223,10 +223,21 @@ sub dynDetail {
         $d->{validr} = '\rTRUE' if /Termination result: True/;
         $d->{validr} = '\rFALSE' if /Termination result: False/;
         $d->{validr} = '\rUNK' if /Termination result: None/;
+
+        $h->{validt} = tm2str($1) if /validate_ranking_functions: ((\d)*\.\d+)s/;
+        $h->{guesst} = tm2str($1) if /infer_ranking_functions: ((\d)*\.\d+)s/;
+        $h->{validr} = 'TRUE' if /Termination result: True/;
+        $h->{validr} = 'FALSE' if /Termination result: False/;
+        $h->{validr} = 'UNK' if /Termination result: None/;
+
         if(/ranking_function_list: \[([^\]]+)\]/) {
             $d->{guessr} = '\rTRUE';
             $d->{rf} = toTex($1);
             $d->{conclusion} = 'T';
+
+            $h->{guessr} = 'TRUE';
+            $h->{rf} = $1;
+            $h->{conclusion} = 'T';
         }
         ### PARSE RECURRENT SET DATA
         $d->{validr} = '\rFALSE' if /Non-termination result: True/;
