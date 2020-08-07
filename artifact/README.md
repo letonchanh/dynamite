@@ -22,7 +22,7 @@ The following steps show how to build DynamiTe's Docker image via the provided D
     ```
     docker build -t dynamite .
     ```
-    The image is built upon the pre-built base image `letonchanh/dynamite:base` on Docker Hub. The base image contains all dependencies to run DynamiTe and it can also be built offline with the following command
+    The image is built on top of the pre-built base image [`letonchanh/dynamite:base`](https://hub.docker.com/r/letonchanh/dynamite) on Docker Hub. The base image contains all dependencies to run DynamiTe and it can also be built offline with the following command
     ```
     docker build -f Dockerfile.base -t dynamite_base .
     ```
