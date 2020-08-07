@@ -50,7 +50,7 @@ The folder `dynamite/benchmarks` contains 4 benchmarks:
 
 ## Reproducing the Results
 
-To reproduce the results in Figures 6, 7, 8, and 9, in the folder `dynamite/benchmarks`, run `make BENCH_NAME` where `BENCH_NAME` is the name of the corresponding benchmark to a figure. The default timeout is **300s** for each benchmark program. The details are as follows:
+To reproduce the results in Figures 6, 7, 8, 9, and 10, in the folder `dynamite/benchmarks`, run `make BENCH_NAME` where `BENCH_NAME` is the name of the corresponding benchmark to a figure, `integrated` for Figure 10. The default timeout is **300s** for each benchmark program. The details are as follows:
 
 - To reproduce Figure 6, run
     ```
