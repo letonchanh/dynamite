@@ -1,0 +1,215 @@
+__main__:113:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:114:INFO (<module>) - Dig's logger_level: WARNING
+__main__:115:INFO (<module>) - Timeout: 300s
+__main__:117:INFO (<module>) - 2020-08-07 11:54:24.186390: dynamo.py --timeout=300 /tools/dynamite/benchmarks/nla-nonterm/lcm1-both-nt.c -nt
+/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:155:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig__it1pv4v
+analysis:163:DEBUG (__init__) - trans_cmd: /tools/dynamite/deps/dynamite-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /tools/dynamite/benchmarks/nla-nonterm/lcm1-both-nt.c --out=/var/tmp/Dig__it1pv4v/lcm1-both-nt.c --bnd=500
+analysis:170:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_33': ['exit'], 'vloop_41': ['exit'], 'vloop_28': ['exit', 'vloop_33', 'vloop_41'], 'mainQ': ['vloop_28'], 'main': ['mainQ']})
+analysis:181:DEBUG (__init__) - postorder_vloop_ids: ['vloop_33', 'vloop_41', 'vloop_28']
+analysis:190:DEBUG (__init__) - inp_decls (<class 'data.prog.Symbs'>): I a, I b
+analysis:191:DEBUG (__init__) - inv_decls (<class 'data.prog.DSymbs'>): {'vtrace1_28': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace2_28': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace3_28': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace4_28': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace1_41': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace2_41': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace3_41': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace4_41': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace1_33': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace2_33': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace3_33': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace4_33': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'))}
+__main__:163:DEBUG (<module>) - prove_process: 4600
+analysis:990:DEBUG (prove) - Analysing vloop_33
+analysis:321:DEBUG (_get_stem_from_symstates) - vloop.preloop_loc: vtrace1_33
+analysis:266:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+data.symstates:368:WARNING (merge) - vtrace1_28: no symbolic states at depth 23
+data.symstates:368:WARNING (merge) - vtrace1_28: no symbolic states at depth 21
+data.symstates:368:WARNING (merge) - vtrace1_28: no symbolic states at depth 22
+data.symstates:368:WARNING (merge) - vtrace1_28: no symbolic states at depth 24
+data.symstates:368:WARNING (merge) - vtrace2_28: no symbolic states at depth 23
+data.symstates:368:WARNING (merge) - vtrace2_28: no symbolic states at depth 24
+analysis:279:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_33
+analysis:266:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+data.symstates:368:WARNING (merge) - vtrace1_28: no symbolic states at depth 29
+data.symstates:368:WARNING (merge) - vtrace1_28: no symbolic states at depth 27
+data.symstates:368:WARNING (merge) - vtrace1_28: no symbolic states at depth 28
+data.symstates:368:WARNING (merge) - vtrace1_28: no symbolic states at depth 26
+data.symstates:368:WARNING (merge) - vtrace2_28: no symbolic states at depth 29
+data.symstates:368:WARNING (merge) - vtrace2_28: no symbolic states at depth 27
+data.symstates:368:WARNING (merge) - vtrace2_28: no symbolic states at depth 28
+data.symstates:368:WARNING (merge) - vtrace2_28: no symbolic states at depth 26
+analysis:279:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_33
+analysis:266:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 29
+data.symstates:368:WARNING (merge) - vtrace1_28: no symbolic states at depth 31
+data.symstates:368:WARNING (merge) - vtrace1_28: no symbolic states at depth 34
+data.symstates:368:WARNING (merge) - vtrace1_28: no symbolic states at depth 33
+data.symstates:368:WARNING (merge) - vtrace1_28: no symbolic states at depth 32
+data.symstates:368:WARNING (merge) - vtrace2_28: no symbolic states at depth 31
+data.symstates:368:WARNING (merge) - vtrace2_28: no symbolic states at depth 34
+data.symstates:368:WARNING (merge) - vtrace2_28: no symbolic states at depth 33
+data.symstates:368:WARNING (merge) - vtrace2_28: no symbolic states at depth 32
+data.symstates:368:WARNING (merge) - vtrace1_33: no symbolic states at depth 31
+data.symstates:368:WARNING (merge) - vtrace1_33: no symbolic states at depth 34
+data.symstates:368:WARNING (merge) - vtrace1_33: no symbolic states at depth 33
+data.symstates:368:WARNING (merge) - vtrace1_33: no symbolic states at depth 32
+data.symstates:368:WARNING (merge) - vtrace2_33: no symbolic states at depth 34
+analysis:279:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_33
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 4572.80ms
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 9039.27ms
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 13519.25ms
+analysis:307:DEBUG (_get_stem_from_ss) - preloop_fst_symstate: loc: vtrace1_33
+pc: And(65535 >= X_a, 65535 >= X_b, 1 <= X_a, 1 <= X_b)
+slocal: And(a == X_a,
+    b == X_b,
+    x == X_a,
+    y == X_b,
+    u == X_b,
+    0 == v)
+analysis:310:DEBUG (_get_stem_from_ss) - mainQ init_symvars: I X_a, I X_b
+analysis:313:DEBUG (_get_stem_from_ss) - stem_cond (<class 'z3.z3.BoolRef'>): And(65535 >= X_a, 65535 >= X_b, 1 <= X_a, 1 <= X_b)
+analysis:314:DEBUG (_get_stem_from_ss) - stem_transrel (<class 'z3.z3.BoolRef'>): And(a == X_a,
+    b == X_b,
+    x == X_a,
+    y == X_b,
+    u == X_b,
+    0 == v)
+analysis:351:DEBUG (_get_loop_from_symstates) - Create C source for vloop_33: /var/tmp/Dig_pz2jpnvx
+analysis:266:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 34
+data.symstates:368:WARNING (merge) - vtrace1_33: no symbolic states at depth 32
+data.symstates:368:WARNING (merge) - vtrace1_33: no symbolic states at depth 33
+data.symstates:368:WARNING (merge) - vtrace1_33: no symbolic states at depth 31
+data.symstates:368:WARNING (merge) - vtrace1_33: no symbolic states at depth 34
+data.symstates:368:WARNING (merge) - vtrace2_33: no symbolic states at depth 32
+data.symstates:368:WARNING (merge) - vtrace2_33: no symbolic states at depth 33
+data.symstates:368:WARNING (merge) - vtrace2_33: no symbolic states at depth 34
+data.symstates:368:WARNING (merge) - vtrace4_33: no symbolic states at depth 33
+data.symstates:368:WARNING (merge) - vtrace4_33: no symbolic states at depth 31
+data.symstates:368:WARNING (merge) - vtrace4_33: no symbolic states at depth 34
+data.symstates:368:WARNING (merge) - vtrace3_33: no symbolic states at depth 32
+data.symstates:368:WARNING (merge) - vtrace3_33: no symbolic states at depth 33
+data.symstates:368:WARNING (merge) - vtrace3_33: no symbolic states at depth 31
+data.symstates:368:WARNING (merge) - vtrace3_33: no symbolic states at depth 34
+analysis:279:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_33
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 5753.52ms
+analysis:362:DEBUG (_get_loop_from_symstates) - vloop inp_decls: I a, I b, I x, I y, I u, I v
+analysis:363:DEBUG (_get_loop_from_symstates) - vloop inv_decls: {'vtrace1_28': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace2_28': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace3_28': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace4_28': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace1_41': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace2_41': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace3_41': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace4_41': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace1_33': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace2_33': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace3_33': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I')), 'vtrace4_33': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='u', typ='I'), Symb(name='v', typ='I'))}
+analysis:364:DEBUG (_get_loop_from_symstates) - vloop init_symvars: I X_a, I X_b, I X_x, I X_y, I X_u, I X_v
+analysis:461:DEBUG (_get_loop_from_symstates) - inloop_symstate: loc: vtrace2_33
+pc: 0 == X_a*X_b + -1*X_u*X_x + -1*X_v*X_y
+slocal: And(a == X_a,
+    b == X_b,
+    x == X_x,
+    y == X_y,
+    u == X_u,
+    v == X_v)
+analysis:462:DEBUG (_get_loop_from_symstates) - transrel_symstate: loc: vtrace4_33
+pc: 0 == X_a*X_b + -1*X_u*X_x + -1*X_v*X_y
+slocal: And(a == X_a,
+    b == X_b,
+    x == X_x + -1*X_y,
+    y == X_y,
+    u == X_u,
+    v == X_u + X_v)
+analysis:468:DEBUG (_get_loop_from_symstates) - loop_cond: 0 == a*b + -1*u*x + -1*v*y
+analysis:475:DEBUG (_get_loop_from_symstates) - loop_transrel: And(And(a0 == a,
+        b0 == b,
+        x0 == x,
+        y0 == y,
+        u0 == u,
+        v0 == v),
+    And(a1 == a,
+        b1 == b,
+        x1 == x + -1*y,
+        y1 == y,
+        u1 == u,
+        v1 == u + v),
+    0 == a*b + -1*u*x + -1*v*y)
+utils.profiling:31:DEBUG (timed) - _get_loopinfo_from_symstates: 19323.23ms
+analysis:537:DEBUG (get_loopinfo) - stem: <utils.loop.Stem object at 0x7fe4d40496a0>
+analysis:538:DEBUG (get_loopinfo) - loop: <utils.loop.Loop object at 0x7fe4c2bca358>
+utils.profiling:31:DEBUG (timed) - get_loopinfo: 19323.36ms
+analysis:863:DEBUG (prove_nonterm_vloop) - use_dfs: False
+analysis:864:DEBUG (prove_nonterm_vloop) - use_bfs: True
+analysis:842:DEBUG (_stat_candidate_rcs) - stat (1 total): defaultdict(<class 'int'>, {0: 1})
+analysis:934:DEBUG (prove_rcs) - PROVE_NT DEPTH 0: ZConj({0 == a*b + -1*u*x + -1*v*y})
+analysis:643:DEBUG (verify) - loop_transrel: And(And(a0 == a,
+        b0 == b,
+        x0 == x,
+        y0 == y,
+        u0 == u,
+        v0 == v),
+    And(a1 == a,
+        b1 == b,
+        x1 == x + -1*y,
+        y1 == y,
+        u1 == u,
+        v1 == u + v),
+    0 == a*b + -1*u*x + -1*v*y)
+analysis:644:DEBUG (verify) - loop_cond: 0 == a*b + -1*u*x + -1*v*y
+analysis:645:DEBUG (verify) - rcs: ZConj({0 == a*b + -1*u*x + -1*v*y})
+analysis:659:DEBUG (verify) - labeled_rcs: ZConj({0 == a*b + -1*u*x + -1*v*y:c_0})
+analysis:666:DEBUG (verify) - transrel_rcs: ZConj({0 == a0*b0 + -1*u0*x0 + -1*v0*y0:c_0, And(And(a0 == a,
+        b0 == b,
+        x0 == x,
+        y0 == y,
+        u0 == u,
+        v0 == v),
+    And(a1 == a,
+        b1 == b,
+        x1 == x + -1*y,
+        y1 == y,
+        u1 == u,
+        v1 == u + v),
+    0 == a*b + -1*u*x + -1*v*y)})
+analysis:671:DEBUG (verify) - init_transrel_rcs: ZConj({And(And(a0 == a,
+        b0 == b,
+        x0 == x,
+        y0 == y,
+        u0 == u,
+        v0 == v),
+    And(a1 == a,
+        b1 == b,
+        x1 == x + -1*y,
+        y1 == y,
+        u1 == u,
+        v1 == u + v),
+    0 == a*b + -1*u*x + -1*v*y), And(65535 >= X_a, 65535 >= X_b, 1 <= X_a, 1 <= X_b), And(a == X_a,
+    b == X_b,
+    x == X_a,
+    y == X_b,
+    u == X_b,
+    0 == v), 0 == a0*b0 + -1*u0*x0 + -1*v0*y0:c_0})
+analysis:680:DEBUG (_check) - rc: 0 == a*b + -1*u*x + -1*v*y:c_0
+analysis:685:DEBUG (_check) - rc_r: 0 == a1*b1 + -1*u1*x1 + -1*v1*y1
+analysis:686:DEBUG (_check) - f: ZConj({Not(0 == a1*b1 + -1*u1*x1 + -1*v1*y1), And(And(a0 == a,
+        b0 == b,
+        x0 == x,
+        y0 == y,
+        u0 == u,
+        v0 == v),
+    And(a1 == a,
+        b1 == b,
+        x1 == x + -1*y,
+        y1 == y,
+        u1 == u,
+        v1 == u + v),
+    0 == a*b + -1*u*x + -1*v*y), 0 == a0*b0 + -1*u0*x0 + -1*v0*y0:c_0})
+solver:212:DEBUG (_get_unsat_core) - approx: []
+analysis:694:DEBUG (_check) - rs: unsat
+analysis:695:DEBUG (_check) - unsat_core: []
+analysis:738:INFO (verify) - dg: defaultdict(<class 'list'>, {'c_0': []})
+analysis:739:INFO (verify) - label_d: defaultdict(<class 'str'>, {0 == a*b + -1*u*x + -1*v*y: 'c_0'})
+analysis:740:INFO (verify) - rev_label_d: {'c_0': 0 == a*b + -1*u*x + -1*v*y}
+analysis:743:INFO (verify) - loop_cond_label: c_0
+analysis:747:INFO (verify) - mds_labels: {'c_0'}
+analysis:748:INFO (verify) - mds: ZConj({0 == a*b + -1*u*x + -1*v*y})
+utils.profiling:31:DEBUG (timed) - verify: 137.55ms
+analysis:950:DEBUG (prove_rcs) - new valid rcs: ZConj({0 == a*b + -1*u*x + -1*v*y})
+utils.profiling:31:DEBUG (timed) - prove_nonterm_vloop: 19495.26ms
+analysis:973:INFO (print_valid_rcs) - rcs: ZConj({0 == a*b + -1*u*x + -1*v*y})
+analysis:974:INFO (print_valid_rcs) - (simplified) rcs: 0 == a*b + -1*u*x + -1*v*y
+utils.profiling:31:DEBUG (timed) - prove: 19503.48ms
+utils.profiling:31:DEBUG (timed) - prove: 19503.64ms
+Non-termination result: False (vloop_33)
+Time log:
+_get_symstates_from_src: 32.885s
+_get_loopinfo_from_symstates: 19.323s
+get_loopinfo: 19.323s
+verify: 0.138s
+prove_nonterm_vloop: 19.495s
+prove: 19.503s
+
+HARD TIMER: 21.317506
+

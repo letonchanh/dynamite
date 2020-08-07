@@ -213,6 +213,9 @@ sub dynDetail {
     my $d = { allt => tm2str($overallt), allr => $overallr,
               guessr => '\rUNK', validr => '\rUNK',
               guesst => tm2str(-1), validt => tm2str(-1) };
+    my $h = { allt => tm2str($overallt), allr => $overallr,
+              guessr => 'UNK', validr => 'UNK',
+              guesst => '-', validt => '-' };
     while(<F>) {
         ### PARSE RANKING FUNCTION DATA
         $d->{validt} = tm2str($1) if /validate_ranking_functions: ((\d)*\.\d+)s/;
@@ -228,23 +231,36 @@ sub dynDetail {
         ### PARSE RECURRENT SET DATA
         $d->{validr} = '\rFALSE' if /Non-termination result: True/;
         $d->{validr} = '\rTRUE' if /Non-termination result: False/;
+        $h->{validr} = 'FALSE' if /Non-termination result: True/;
+        $h->{validr} = 'TRUE' if /Non-termination result: False/;
         if(/\(simplified\) rcs: (.*)$/) { # -1 == x*z + -1*x + -1*y)
             $d->{guessr} = '\rTRUE';
             $d->{rf} = toTex($1);
             $d->{conclusion} = 'NT';
+
+            $h->{guessr} = 'TRUE';
+            $h->{rf} = $1;
+            $h->{conclusion} = 'NT';
         }
         $d->{validt} = tm2str($1) if /^verify: ((\d)*\.\d+)s/;
         $d->{guesst} = tm2str($1) if /^strengthen: ((\d)*\.\d+)s/;
         $d->{allt}   = tm2str($1) if /^prove: ((\d)*\.\d+)s/;
+
+
+        $h->{validt} = tm2str($1) if /^verify: ((\d)*\.\d+)s/;
+        $h->{guesst} = tm2str($1) if /^strengthen: ((\d)*\.\d+)s/;
+        $h->{allt}   = tm2str($1) if /^prove: ((\d)*\.\d+)s/;
+
         if(/AssertionError/ or /AttributeError/) {
             $d->{$_} = '\rAF' for qw/guesst guessr validt validr allt allr/;
+            $h->{$_} = 'ERROR' for qw/guesst guessr validt validr allt allr/;
         }
     }
     if($timedout and $d->{validt} > 0) {
         # decide when it timed out
-        if ($d->{validt} > 800) { $d->{validt} = '\rTO'; }
+        if ($d->{validt} > 800) { $d->{validt} = '\rTO'; $h->{validt} = 'TO'; }
     }
-    if ($d->{validt} > 875) { $d->{validt} = '\rTO'; }
+    if ($d->{validt} > 875) { $d->{validt} = '\rTO'; $h->{validt} = 'TO'; }
     $d->{allr} = '\rSCD' if $nonterm and $d->{allr} eq 'FALSE';
 
     $logfn =~ s/^.*benchmarks//;
@@ -254,9 +270,9 @@ sub dynDetail {
                    $d->{guesst}, $d->{guessr},
                    $d->{validt}, $d->{validr});
     my $html = sprintf("<tr><td>%-10s</td><td>%-10s</td><td>%-42s</td><td>%-8s</td><td>%10s</td><td>%-5s</td><td>%10s</td></tr>\n",
-                   $tmpb, $b2desc->{$tmpb}||'', $d->{rf},
-                   $d->{guesst}, $d->{guessr},
-                   $d->{validt}, $d->{validr});
+                   $tmpb, $b2desc->{$tmpb}||'', $h->{rf},
+                   $h->{guesst}, $h->{guessr},
+                   $h->{validt}, $h->{validr});
     #$d->{allt}, $d->{allr});
     return ($d,$str,$html);
     #$tool, $tmpb, $b2res{$b}->{time}, $b2res{$b}->{result});

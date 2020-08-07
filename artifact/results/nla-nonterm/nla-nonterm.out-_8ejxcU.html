@@ -1,0 +1,41 @@
+<html><head><style> table { width:100%; } table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { padding: 15px; text-align: center; } tr:nth-child(even) { background-color: #eee; } tr:nth-child(odd) { background-color: #fff; } </style></head><body><h2>Experimental Results of DynamiTe on the benchmark /tools/dynamite/benchmarks/nla-nonterm</h2><table style="border: 1pt solid black;"><tr><th rowspan="2">Benchmark</th><th rowspan="2">Desc.</th><th>DynamiTe</th><th colspan="2">Learning</th><th colspan="2">Validation</th></tr><tr><th>Learned Ranking Fns.</th><th>Time</th><th>Res</th><th>Time</th><th>Res</th></tr>
+<tr><td>bresenham1</td><td>          </td><td>And(0 == X*y + -1*((2*Y*x + -1*X + 2*Y + -1*v)/2), 0 == (2*Y*x + -1*X + 2*Y + -1*v)%2)</td><td>-       </td><td>      TRUE</td><td>0.2  </td><td>      TRUE</td></tr>
+<tr><td>cohencu1  </td><td>cubic sum </td><td>-6 <= 6*n + -1*z                          </td><td>-       </td><td>      TRUE</td><td>0.1  </td><td>      TRUE</td></tr>
+<tr><td>cohencu2  </td><td>cubic sum </td><td>And(0 == n**2 + -1*((-1 + -3*n + y)/3), 0 == (2 + -3*n + y)%3, -6 == 6*n + -1*z)</td><td>4.3     </td><td>      TRUE</td><td>12.3 </td><td>      TRUE</td></tr>
+<tr><td>cohencu3  </td><td>cubic sum </td><td>And(n >= 1, 6 == y*z + -18*x + -12*y + 2*z, 5 >= -1*y + z, -6 == 6*n + -1*z, -12 == z**2 + -12*y + -6*z)</td><td>3.7     </td><td>      TRUE</td><td>4.8  </td><td>      TRUE</td></tr>
+<tr><td>cohencu4  </td><td>cubic sum </td><td>And(-12 == z**2 + -12*y + -6*z, 6 == y*z + -18*x + -12*y + 2*z)</td><td>4.0     </td><td>      TRUE</td><td>8.4  </td><td>      TRUE</td></tr>
+<tr><td>cohencu5  </td><td>cubic sum </td><td>-12 == z**2 + -12*y + -6*z                </td><td>-       </td><td>      TRUE</td><td>0.1  </td><td>      TRUE</td></tr>
+<tr><td>dijkstra1 </td><td>square root</td><td>And(Not(q >= 1), 0 <= n + -1*q)           </td><td>10.4    </td><td>      TRUE</td><td>2.6  </td><td>      TRUE</td></tr>
+<tr><td>dijkstra2 </td><td>square root</td><td>And(Not(n >= 1), 0 <= n + -1*q)           </td><td>7.4     </td><td>      TRUE</td><td>2.3  </td><td>      TRUE</td></tr>
+<tr><td>dijkstra3 </td><td>square root</td><td>And(Not(n >= 1), 0 <= n + -1*q)           </td><td>1.1     </td><td>      TRUE</td><td>0.3  </td><td>      TRUE</td></tr>
+<tr><td>dijkstra4 </td><td>square root</td><td>And(Not(n >= 1), 0 <= n + -1*q)           </td><td>1.1     </td><td>      TRUE</td><td>0.3  </td><td>      TRUE</td></tr>
+<tr><td>dijkstra5 </td><td>square root</td><td>And(0 <= n + -1*q, Not(n >= 1))           </td><td>6.5     </td><td>      TRUE</td><td>2.0  </td><td>      TRUE</td></tr>
+<tr><td>dijkstra6 </td><td>square root</td><td>And(Not(q >= 1), 0 <= n + -1*q)           </td><td>9.0     </td><td>      TRUE</td><td>2.6  </td><td>      TRUE</td></tr>
+<tr><td>divbin1   </td><td>int div   </td><td>And(0 >= b + -1*r, Not(-1*b + -1*r <= -2))</td><td>1.1     </td><td>      TRUE</td><td>2.4  </td><td>      TRUE</td></tr>
+<tr><td>egcd      </td><td>gcd       </td><td>0 == q*x + s*y + -1*b                     </td><td>-       </td><td>      TRUE</td><td>0.1  </td><td>      TRUE</td></tr>
+<tr><td>egcd2     </td><td>gcd       </td><td>0 == p*x + r*y + -1*a                     </td><td>-       </td><td>      TRUE</td><td>0.1  </td><td>      TRUE</td></tr>
+<tr><td>egcd3     </td><td>gcd       </td><td>0 == q*x + s*y + -1*b                     </td><td>-       </td><td>      TRUE</td><td>0.1  </td><td>      TRUE</td></tr>
+<tr><td>fermat1   </td><td>product   </td><td>0 == u**2 + -1*v**2 + -4*A + -4*r + -2*u + 2*v</td><td>-       </td><td>      TRUE</td><td>0.2  </td><td>      TRUE</td></tr>
+<tr><td>fermat2   </td><td>divisor   </td><td>0 == u**2 + -1*v**2 + -4*A + -4*r + -2*u + 2*v</td><td>-       </td><td>      TRUE</td><td>0.2  </td><td>      TRUE</td></tr>
+<tr><td>fermat3   </td><td>          </td><td>0 == u**2 + -1*v**2 + -4*A + -4*r + -2*u + 2*v</td><td>-       </td><td>      TRUE</td><td>0.2  </td><td>      TRUE</td></tr>
+<tr><td>freire1   </td><td>square root</td><td>0 == r**2 + -1*a + -1*r + 2*x             </td><td>-       </td><td>      TRUE</td><td>0.1  </td><td>      TRUE</td></tr>
+<tr><td>geo1      </td><td>geo series</td><td>-1 == x*z + -1*x + -1*y                   </td><td>-       </td><td>      TRUE</td><td>0.1  </td><td>      TRUE</td></tr>
+<tr><td>geo2      </td><td>geo series</td><td>-1 == x*z + -1*y*z + -1*x                 </td><td>-       </td><td>      TRUE</td><td>0.1  </td><td>      TRUE</td></tr>
+<tr><td>geo3      </td><td>geo series</td><td>0 == a*y*z + -1*x*z + -1*a + x            </td><td>-       </td><td>      TRUE</td><td>0.1  </td><td>      TRUE</td></tr>
+<tr><td>hard      </td><td>int div   </td><td>0 == B*p + -1*d                           </td><td>-       </td><td>      TRUE</td><td>0.1  </td><td>      TRUE</td></tr>
+<tr><td>hard2     </td><td>int div   </td><td>0 == B*p + -1*d                           </td><td>-       </td><td>      TRUE</td><td>0.1  </td><td>      TRUE</td></tr>
+<tr><td>knuth     </td><td>product   </td><td>                                          </td><td>ERROR   </td><td>     ERROR</td><td>ERROR</td><td>     ERROR</td></tr>
+<tr><td>knuth-nosqrt</td><td>          </td><td>0 == a*k + -1*a*t + -1*d*k + d*t          </td><td>-       </td><td>      TRUE</td><td>0.2  </td><td>      TRUE</td></tr>
+<tr><td>lcm1      </td><td>divisor   </td><td>0 == a*b + -1*u*x + -1*v*y                </td><td>-       </td><td>      TRUE</td><td>0.1  </td><td>      TRUE</td></tr>
+<tr><td>lcm2      </td><td>divisor   </td><td>And(0 == a*b + -1*((u*x + v*y)/2), 0 == (u*x + v*y)%2)</td><td>-       </td><td>      TRUE</td><td>0.2  </td><td>      TRUE</td></tr>
+<tr><td>mannadiv  </td><td>          </td><td>0 == x2*y1 + -1*x1 + y2 + y3              </td><td>-       </td><td>      TRUE</td><td>0.1  </td><td>      TRUE</td></tr>
+<tr><td>prod4br   </td><td>gcd, lcm  </td><td>0 == a*b*p + -1*x*y + q                   </td><td>-       </td><td>      TRUE</td><td>0.1  </td><td>      TRUE</td></tr>
+<tr><td>prodbin   </td><td>gcd, lcm  </td><td>0 == a*b + -1*x*y + -1*z                  </td><td>-       </td><td>      TRUE</td><td>0.2  </td><td>      TRUE</td></tr>
+<tr><td>ps2       </td><td>pow sum   </td><td>0 == y**2 + -2*x + y                      </td><td>-       </td><td>      TRUE</td><td>0.1  </td><td>      TRUE</td></tr>
+<tr><td>ps3       </td><td>pow sum   </td><td>And(0 == y**3 + -1*((-3*y**2 + 6*x + -1*y)/2), 0 == (-3*y**2 + 6*x + -1*y)%2)</td><td>-       </td><td>      TRUE</td><td>0.5  </td><td>      TRUE</td></tr>
+<tr><td>ps4       </td><td>pow sum   </td><td>0 == y**4 + y**2*(1 + 2*y) + -4*x         </td><td>-       </td><td>      TRUE</td><td>0.1  </td><td>      TRUE</td></tr>
+<tr><td>ps5       </td><td>pow sum   </td><td>And(0 == y**5 + -1*((-1*y**3*(10 + 15*y) + 30*x + y)/6), 0 == (-1*y**3*(10 + 15*y) + 30*x + y)%6)</td><td>-       </td><td>      TRUE</td><td>0.5  </td><td>      TRUE</td></tr>
+<tr><td>ps6       </td><td>pow sum   </td><td>And(0 == (-1*y**2*(-1 + y**2*(5 + 6*y)) + 12*x)%2, 0 == y**6 + -1*((-1*y**2*(-1 + y**2*(5 + 6*y)) + 12*x)/2))</td><td>-       </td><td>      TRUE</td><td>0.6  </td><td>      TRUE</td></tr>
+<tr><td>sqrt1     </td><td>square root</td><td>-1 == t**2 + -4*s + 2*t                   </td><td>-       </td><td>      TRUE</td><td>0.1  </td><td>      TRUE</td></tr>
+<tr><td>sqrt2     </td><td>          </td><td>                                          </td><td>-       </td><td>       UNK</td><td>-    </td><td>       UNK</td></tr>
+</body></html>

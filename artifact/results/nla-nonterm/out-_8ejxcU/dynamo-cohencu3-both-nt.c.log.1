@@ -1,0 +1,474 @@
+__main__:113:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:114:INFO (<module>) - Dig's logger_level: WARNING
+__main__:115:INFO (<module>) - Timeout: 300s
+__main__:117:INFO (<module>) - 2020-08-07 11:09:22.203567: dynamo.py --timeout=300 /tools/dynamite/benchmarks/nla-nonterm/cohencu3-both-nt.c -nt
+/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:155:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_37qlw4on
+analysis:163:DEBUG (__init__) - trans_cmd: /tools/dynamite/deps/dynamite-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /tools/dynamite/benchmarks/nla-nonterm/cohencu3-both-nt.c --out=/var/tmp/Dig_37qlw4on/cohencu3-both-nt.c --bnd=500
+analysis:170:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_27': ['exit'], 'mainQ': ['vloop_27'], 'main': ['mainQ']})
+analysis:181:DEBUG (__init__) - postorder_vloop_ids: ['vloop_27']
+analysis:190:DEBUG (__init__) - inp_decls (<class 'data.prog.Symbs'>): I a
+analysis:191:DEBUG (__init__) - inv_decls (<class 'data.prog.DSymbs'>): {'vtrace1_27': (Symb(name='n', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='z', typ='I')), 'vtrace2_27': (Symb(name='n', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='z', typ='I')), 'vtrace3_27': (Symb(name='n', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='z', typ='I')), 'vtrace4_27': (Symb(name='n', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='z', typ='I'))}
+__main__:163:DEBUG (<module>) - prove_process: 3176
+analysis:990:DEBUG (prove) - Analysing vloop_27
+analysis:321:DEBUG (_get_stem_from_symstates) - vloop.preloop_loc: vtrace1_27
+analysis:266:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+data.symstates:368:WARNING (merge) - vtrace1_27: no symbolic states at depth 21
+data.symstates:368:WARNING (merge) - vtrace1_27: no symbolic states at depth 24
+data.symstates:368:WARNING (merge) - vtrace1_27: no symbolic states at depth 23
+data.symstates:368:WARNING (merge) - vtrace1_27: no symbolic states at depth 22
+data.symstates:368:WARNING (merge) - vtrace2_27: no symbolic states at depth 21
+data.symstates:368:WARNING (merge) - vtrace2_27: no symbolic states at depth 24
+data.symstates:368:WARNING (merge) - vtrace2_27: no symbolic states at depth 22
+data.symstates:368:WARNING (merge) - vtrace4_27: no symbolic states at depth 21
+data.symstates:368:WARNING (merge) - vtrace4_27: no symbolic states at depth 23
+data.symstates:368:WARNING (merge) - vtrace4_27: no symbolic states at depth 22
+analysis:279:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_27
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 4099.70ms
+analysis:307:DEBUG (_get_stem_from_ss) - preloop_fst_symstate: loc: vtrace1_27
+pc: True
+slocal: And(0 == n, 0 == x, 1 == y, 6 == z)
+analysis:310:DEBUG (_get_stem_from_ss) - mainQ init_symvars: I X_a
+analysis:313:DEBUG (_get_stem_from_ss) - stem_cond (<class 'z3.z3.BoolRef'>): True
+analysis:314:DEBUG (_get_stem_from_ss) - stem_transrel (<class 'z3.z3.BoolRef'>): And(0 == n, 0 == x, 1 == y, 6 == z)
+analysis:351:DEBUG (_get_loop_from_symstates) - Create C source for vloop_27: /var/tmp/Dig_uqg1nywq
+analysis:266:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+data.symstates:368:WARNING (merge) - vtrace1_27: no symbolic states at depth 21
+data.symstates:368:WARNING (merge) - vtrace1_27: no symbolic states at depth 22
+data.symstates:368:WARNING (merge) - vtrace1_27: no symbolic states at depth 23
+data.symstates:368:WARNING (merge) - vtrace1_27: no symbolic states at depth 24
+data.symstates:368:WARNING (merge) - vtrace2_27: no symbolic states at depth 21
+data.symstates:368:WARNING (merge) - vtrace2_27: no symbolic states at depth 22
+data.symstates:368:WARNING (merge) - vtrace2_27: no symbolic states at depth 24
+data.symstates:368:WARNING (merge) - vtrace4_27: no symbolic states at depth 21
+data.symstates:368:WARNING (merge) - vtrace4_27: no symbolic states at depth 22
+data.symstates:368:WARNING (merge) - vtrace4_27: no symbolic states at depth 23
+data.symstates:368:WARNING (merge) - vtrace3_27: no symbolic states at depth 21
+data.symstates:368:WARNING (merge) - vtrace3_27: no symbolic states at depth 23
+data.symstates:368:WARNING (merge) - vtrace3_27: no symbolic states at depth 24
+analysis:279:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_27
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 5935.03ms
+analysis:362:DEBUG (_get_loop_from_symstates) - vloop inp_decls: I n, I x, I y, I z
+analysis:363:DEBUG (_get_loop_from_symstates) - vloop inv_decls: {'vtrace1_27': (Symb(name='n', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='z', typ='I')), 'vtrace2_27': (Symb(name='n', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='z', typ='I')), 'vtrace3_27': (Symb(name='n', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='z', typ='I')), 'vtrace4_27': (Symb(name='n', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='z', typ='I'))}
+analysis:364:DEBUG (_get_loop_from_symstates) - vloop init_symvars: I X_n, I X_x, I X_y, I X_z
+analysis:461:DEBUG (_get_loop_from_symstates) - inloop_symstate: loc: vtrace2_27
+pc: 0 == X_n**3 + -1*X_x
+slocal: And(n == X_n, x == X_x, y == X_y, z == X_z)
+analysis:462:DEBUG (_get_loop_from_symstates) - transrel_symstate: loc: vtrace4_27
+pc: 0 == X_n**3 + -1*X_x
+slocal: And(n == 1 + X_n,
+    x == X_x + X_y,
+    y == X_y + X_z,
+    z == 6 + X_z)
+analysis:468:DEBUG (_get_loop_from_symstates) - loop_cond: 0 == n**3 + -1*x
+analysis:475:DEBUG (_get_loop_from_symstates) - loop_transrel: And(And(n0 == n, x0 == x, y0 == y, z0 == z),
+    And(n1 == 1 + n, x1 == x + y, y1 == y + z, z1 == 6 + z),
+    0 == n**3 + -1*x)
+utils.profiling:31:DEBUG (timed) - _get_loopinfo_from_symstates: 10070.05ms
+analysis:537:DEBUG (get_loopinfo) - stem: <utils.loop.Stem object at 0x7fd100d900f0>
+analysis:538:DEBUG (get_loopinfo) - loop: <utils.loop.Loop object at 0x7fd0ffe9af98>
+utils.profiling:31:DEBUG (timed) - get_loopinfo: 10070.18ms
+analysis:863:DEBUG (prove_nonterm_vloop) - use_dfs: False
+analysis:864:DEBUG (prove_nonterm_vloop) - use_bfs: True
+analysis:842:DEBUG (_stat_candidate_rcs) - stat (1 total): defaultdict(<class 'int'>, {0: 1})
+analysis:934:DEBUG (prove_rcs) - PROVE_NT DEPTH 0: ZConj({0 == n**3 + -1*x})
+analysis:643:DEBUG (verify) - loop_transrel: And(And(n0 == n, x0 == x, y0 == y, z0 == z),
+    And(n1 == 1 + n, x1 == x + y, y1 == y + z, z1 == 6 + z),
+    0 == n**3 + -1*x)
+analysis:644:DEBUG (verify) - loop_cond: 0 == n**3 + -1*x
+analysis:645:DEBUG (verify) - rcs: ZConj({0 == n**3 + -1*x})
+analysis:659:DEBUG (verify) - labeled_rcs: ZConj({0 == n**3 + -1*x:c_0})
+analysis:666:DEBUG (verify) - transrel_rcs: ZConj({0 == n0**3 + -1*x0:c_0, And(And(n0 == n, x0 == x, y0 == y, z0 == z),
+    And(n1 == 1 + n, x1 == x + y, y1 == y + z, z1 == 6 + z),
+    0 == n**3 + -1*x)})
+analysis:671:DEBUG (verify) - init_transrel_rcs: ZConj({True, 0 == n0**3 + -1*x0:c_0, And(0 == n, 0 == x, 1 == y, 6 == z), And(And(n0 == n, x0 == x, y0 == y, z0 == z),
+    And(n1 == 1 + n, x1 == x + y, y1 == y + z, z1 == 6 + z),
+    0 == n**3 + -1*x)})
+analysis:680:DEBUG (_check) - rc: 0 == n**3 + -1*x:c_0
+analysis:685:DEBUG (_check) - rc_r: 0 == n1**3 + -1*x1
+analysis:686:DEBUG (_check) - f: ZConj({0 == n0**3 + -1*x0:c_0, Not(0 == n1**3 + -1*x1), And(And(n0 == n, x0 == x, y0 == y, z0 == z),
+    And(n1 == 1 + n, x1 == x + y, y1 == y + z, z1 == 6 + z),
+    0 == n**3 + -1*x)})
+analysis:701:DEBUG (_check) - rs: sat
+solver:212:DEBUG (_get_unsat_core) - approx: []
+analysis:708:DEBUG (_check) - init_f: ZConj({And(0 == n, 0 == x, 1 == y, 6 == z), Not(0 == n1**3 + -1*x1), 0 == n0**3 + -1*x0:c_0, And(And(n0 == n, x0 == x, y0 == y, z0 == z),
+    And(n1 == 1 + n, x1 == x + y, y1 == y + z, z1 == 6 + z),
+    0 == n**3 + -1*x), True})
+analysis:709:DEBUG (_check) - init_rs: False
+analysis:724:DEBUG (_check) - init_models: sat (0 models)
+lib:49:DEBUG (gen_rand_inps) - gen 97/100 random inps
+analysis:729:DEBUG (_check) - inps: Inps({Inp(ss=('a',), vs=(18,)), Inp(ss=('a',), vs=(13,)), Inp(ss=('a',), vs=(-287,)), Inp(ss=('a',), vs=(282,)), Inp(ss=('a',), vs=(277,)), Inp(ss=('a',), vs=(-14,)), Inp(ss=('a',), vs=(-20,)), Inp(ss=('a',), vs=(4,)), Inp(ss=('a',), vs=(16,)), Inp(ss=('a',), vs=(15,)), Inp(ss=('a',), vs=(296,)), Inp(ss=('a',), vs=(281,)), Inp(ss=('a',), vs=(-23,)), Inp(ss=('a',), vs=(-28,)), Inp(ss=('a',), vs=(19,)), Inp(ss=('a',), vs=(29,)), Inp(ss=('a',), vs=(14,)), Inp(ss=('a',), vs=(8,)), Inp(ss=('a',), vs=(-290,)), Inp(ss=('a',), vs=(-278,)), Inp(ss=('a',), vs=(278,)), Inp(ss=('a',), vs=(-13,)), Inp(ss=('a',), vs=(-3,)), Inp(ss=('a',), vs=(17,)), Inp(ss=('a',), vs=(12,)), Inp(ss=('a',), vs=(-286,)), Inp(ss=('a',), vs=(-292,)), Inp(ss=('a',), vs=(-15,)), Inp(ss=('a',), vs=(-19,)), Inp(ss=('a',), vs=(286,)), Inp(ss=('a',), vs=(-288,)), Inp(ss=('a',), vs=(3,)), Inp(ss=('a',), vs=(287,)), Inp(ss=('a',), vs=(290,)), Inp(ss=('a',), vs=(-7,)), Inp(ss=('a',), vs=(-12,)), Inp(ss=('a',), vs=(24,)), Inp(ss=('a',), vs=(23,)), Inp(ss=('a',), vs=(1,)), Inp(ss=('a',), vs=(-274,)), Inp(ss=('a',), vs=(-280,)), Inp(ss=('a',), vs=(-295,)), Inp(ss=('a',), vs=(299,)), Inp(ss=('a',), vs=(274,)), Inp(ss=('a',), vs=(-10,)), Inp(ss=('a',), vs=(26,)), Inp(ss=('a',), vs=(11,)), Inp(ss=('a',), vs=(7,)), Inp(ss=('a',), vs=(291,)), Inp(ss=('a',), vs=(-293,)), Inp(ss=('a',), vs=(272,)), Inp(ss=('a',), vs=(271,)), Inp(ss=('a',), vs=(-6,)), Inp(ss=('a',), vs=(-25,)), Inp(ss=('a',), vs=(-279,)), Inp(ss=('a',), vs=(-284,)), Inp(ss=('a',), vs=(5,)), Inp(ss=('a',), vs=(289,)), Inp(ss=('a',), vs=(275,)), Inp(ss=('a',), vs=(285,)), Inp(ss=('a',), vs=(-273,)), Inp(ss=('a',), vs=(-22,)), Inp(ss=('a',), vs=(-27,)), Inp(ss=('a',), vs=(22,)), Inp(ss=('a',), vs=(2,)), Inp(ss=('a',), vs=(-300,)), Inp(ss=('a',), vs=(273,)), Inp(ss=('a',), vs=(-289,)), Inp(ss=('a',), vs=(-8,)), Inp(ss=('a',), vs=(297,)), Inp(ss=('a',), vs=(-5,)), Inp(ss=('a',), vs=(292,)), Inp(ss=('a',), vs=(-9,)), Inp(ss=('a',), vs=(6,)), Inp(ss=('a',), vs=(0,)), Inp(ss=('a',), vs=(-275,)), Inp(ss=('a',), vs=(-296,)), Inp(ss=('a',), vs=(9,)), Inp(ss=('a',), vs=(298,)), Inp(ss=('a',), vs=(293,)), Inp(ss=('a',), vs=(-297,)), Inp(ss=('a',), vs=(-21,)), Inp(ss=('a',), vs=(276,)), Inp(ss=('a',), vs=(-11,)), Inp(ss=('a',), vs=(-26,)), Inp(ss=('a',), vs=(-1,)), Inp(ss=('a',), vs=(-2,)), Inp(ss=('a',), vs=(10,)), Inp(ss=('a',), vs=(28,)), Inp(ss=('a',), vs=(-294,)), Inp(ss=('a',), vs=(-299,)), Inp(ss=('a',), vs=(-285,)), Inp(ss=('a',), vs=(280,)), Inp(ss=('a',), vs=(279,)), Inp(ss=('a',), vs=(-4,)), Inp(ss=('a',), vs=(-18,)), Inp(ss=('a',), vs=(-24,))})
+analysis:738:INFO (verify) - dg: defaultdict(<class 'list'>, {})
+analysis:739:INFO (verify) - label_d: defaultdict(<class 'str'>, {0 == n**3 + -1*x: 'c_0'})
+analysis:740:INFO (verify) - rev_label_d: {'c_0': 0 == n**3 + -1*x}
+analysis:743:INFO (verify) - loop_cond_label: c_0
+analysis:747:INFO (verify) - mds_labels: set()
+analysis:748:INFO (verify) - mds: ZConj()
+lib:60:DEBUG (get_traces_from_inps) - inp_decls: I a
+lib:61:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_27': (Symb(name='n', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='z', typ='I')), 'vtrace2_27': (Symb(name='n', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='z', typ='I')), 'vtrace3_27': (Symb(name='n', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='z', typ='I')), 'vtrace4_27': (Symb(name='n', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='z', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 138.86ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 508.66ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 648.03ms
+utils.profiling:31:DEBUG (timed) - verify: 873.71ms
+lib:214:DEBUG (print_inps) - a=8: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=23: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=289: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=9: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=277: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=12: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-10: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=2: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-26: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-278: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-274: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=285: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=293: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=13: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-13: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-295: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-22: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-21: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-287: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-3: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=299: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-27: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=276: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=18: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=278: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-280: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-273: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-297: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=282: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=17: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=274: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=22: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-11: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-290: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=1: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=275: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=298: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-20: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-292: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=11: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=273: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-2: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=4: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-15: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=7: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-289: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=10: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-14: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-286: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=26: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-300: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-1: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=281: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=3: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=271: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=292: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-285: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=16: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-19: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=291: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-8: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=28: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=296: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-288: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=272: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-5: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-299: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=15: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=286: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-293: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=297: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-294: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-28: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=290: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-25: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=6: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=279: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-23: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=287: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-6: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-9: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=280: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=29: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-12: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-284: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-275: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-18: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=19: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-7: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-279: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=0: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-4: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=14: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=24: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=5: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-296: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+lib:214:DEBUG (print_inps) - a=-24: [('vtrace1_27', 1), ('vtrace2_27', 500), ('vtrace4_27', 500)]
+analysis:769:DEBUG (strengthen) - base_term_inps: 0
+analysis:770:DEBUG (strengthen) - term_inps: 0
+analysis:771:DEBUG (strengthen) - mayloop_inps: 97
+analysis:772:DEBUG (strengthen) - rcs: ZConj({0 == n**3 + -1*x})
+lib:236:DEBUG (get_traces_by_id) - dtraces[vtrace2_27]: 200
+lib:236:DEBUG (get_traces_by_id) - dtraces[vtrace2_27]: 200
+data.traces:207:WARNING (merge) - trace n=104,x=1124864,y=32761,z=630 exist
+data.traces:207:WARNING (merge) - trace n=232,x=12487168,y=162169,z=1398 exist
+data.traces:207:WARNING (merge) - trace n=483,x=112678587,y=701317,z=2904 exist
+data.traces:207:WARNING (merge) - trace n=111,x=1367631,y=37297,z=672 exist
+data.traces:207:WARNING (merge) - trace n=22,x=10648,y=1519,z=138 exist
+data.traces:207:WARNING (merge) - trace n=160,x=4096000,y=77281,z=966 exist
+data.traces:207:WARNING (merge) - trace n=198,x=7762392,y=118207,z=1194 exist
+data.traces:207:WARNING (merge) - trace n=97,x=912673,y=28519,z=588 exist
+data.traces:207:WARNING (merge) - trace n=68,x=314432,y=14077,z=414 exist
+data.traces:207:WARNING (merge) - trace n=338,x=38614472,y=343747,z=2034 exist
+data.traces:207:WARNING (merge) - trace n=175,x=5359375,y=92401,z=1056 exist
+data.traces:207:WARNING (merge) - trace n=287,x=23639903,y=247969,z=1728 exist
+data.traces:207:WARNING (merge) - trace n=105,x=1157625,y=33391,z=636 exist
+data.traces:207:WARNING (merge) - trace n=221,x=10793861,y=147187,z=1332 exist
+data.traces:207:WARNING (merge) - trace n=387,x=57960603,y=450469,z=2328 exist
+data.traces:207:WARNING (merge) - trace n=298,x=26463592,y=267307,z=1794 exist
+data.traces:207:WARNING (merge) - trace n=57,x=185193,y=9919,z=348 exist
+data.traces:207:WARNING (merge) - trace n=426,x=77308776,y=545707,z=2562 exist
+data.traces:207:WARNING (merge) - trace n=1,x=1,y=7,z=12 exist
+data.traces:207:WARNING (merge) - trace n=255,x=16581375,y=195841,z=1536 exist
+data.traces:207:WARNING (merge) - trace n=306,x=28652616,y=281827,z=1842 exist
+data.traces:207:WARNING (merge) - trace n=268,x=19248832,y=216277,z=1614 exist
+data.traces:207:WARNING (merge) - trace n=412,x=69934528,y=510469,z=2478 exist
+data.traces:207:WARNING (merge) - trace n=204,x=8489664,y=125461,z=1230 exist
+data.traces:207:WARNING (merge) - trace n=76,x=438976,y=17557,z=462 exist
+data.traces:207:WARNING (merge) - trace n=158,x=3944312,y=75367,z=954 exist
+data.traces:207:WARNING (merge) - trace n=208,x=8998912,y=130417,z=1254 exist
+data.traces:207:WARNING (merge) - trace n=496,x=122023936,y=739537,z=2982 exist
+data.traces:207:WARNING (merge) - trace n=30,x=27000,y=2791,z=186 exist
+data.traces:207:WARNING (merge) - trace n=41,x=68921,y=5167,z=252 exist
+data.traces:207:WARNING (merge) - trace n=354,x=44361864,y=377011,z=2130 exist
+data.traces:207:WARNING (merge) - trace n=399,x=63521199,y=478801,z=2400 exist
+data.traces:207:WARNING (merge) - trace n=373,x=51895117,y=418507,z=2244 exist
+data.traces:207:WARNING (merge) - trace n=238,x=13481272,y=170647,z=1434 exist
+data.traces:207:WARNING (merge) - trace n=494,x=120553784,y=733591,z=2970 exist
+data.traces:207:WARNING (merge) - trace n=274,x=20570824,y=226051,z=1650 exist
+data.traces:207:WARNING (merge) - trace n=444,x=87528384,y=592741,z=2670 exist
+data.traces:207:WARNING (merge) - trace n=433,x=81182737,y=563767,z=2604 exist
+data.traces:207:WARNING (merge) - trace n=64,x=262144,y=12481,z=390 exist
+data.traces:207:WARNING (merge) - trace n=75,x=421875,y=17101,z=456 exist
+data.traces:207:WARNING (merge) - trace n=453,x=92959677,y=616987,z=2724 exist
+data.traces:207:WARNING (merge) - trace n=385,x=57066625,y=445831,z=2316 exist
+data.traces:207:WARNING (merge) - trace n=265,x=18609625,y=211471,z=1596 exist
+data.traces:207:WARNING (merge) - trace n=375,x=52734375,y=423001,z=2256 exist
+data.traces:207:WARNING (merge) - trace n=227,x=11697083,y=155269,z=1368 exist
+data.traces:207:WARNING (merge) - trace n=346,x=41421736,y=360187,z=2082 exist
+data.traces:207:WARNING (merge) - trace n=250,x=15625000,y=188251,z=1506 exist
+data.traces:207:WARNING (merge) - trace n=90,x=729000,y=24571,z=546 exist
+data.traces:207:WARNING (merge) - trace n=48,x=110592,y=7057,z=294 exist
+data.traces:207:WARNING (merge) - trace n=215,x=9938375,y=139321,z=1296 exist
+data.traces:207:WARNING (merge) - trace n=235,x=12977875,y=166381,z=1416 exist
+data.traces:207:WARNING (merge) - trace n=292,x=24897088,y=256669,z=1758 exist
+data.traces:207:WARNING (merge) - trace n=372,x=51478848,y=416269,z=2238 exist
+data.traces:207:WARNING (merge) - trace n=447,x=89314623,y=600769,z=2688 exist
+data.traces:207:WARNING (merge) - trace n=182,x=6028568,y=99919,z=1098 exist
+data.traces:207:WARNING (merge) - trace n=205,x=8615125,y=126691,z=1236 exist
+data.traces:207:WARNING (merge) - trace n=2,x=8,y=19,z=18 exist
+data.traces:207:WARNING (merge) - trace n=458,x=96071912,y=630667,z=2754 exist
+data.traces:207:WARNING (merge) - trace n=467,x=101847563,y=655669,z=2808 exist
+data.traces:207:WARNING (merge) - trace n=404,x=65939264,y=490861,z=2430 exist
+data.traces:207:WARNING (merge) - trace n=40,x=64000,y=4921,z=246 exist
+data.traces:207:WARNING (merge) - trace n=347,x=41781923,y=362269,z=2088 exist
+data.traces:207:WARNING (merge) - trace n=178,x=5639752,y=95587,z=1074 exist
+data.traces:207:WARNING (merge) - trace n=168,x=4741632,y=85177,z=1014 exist
+data.traces:207:WARNING (merge) - trace n=16,x=4096,y=817,z=102 exist
+data.traces:207:WARNING (merge) - trace n=470,x=103823000,y=664111,z=2826 exist
+data.traces:207:WARNING (merge) - trace n=112,x=1404928,y=37969,z=678 exist
+data.traces:207:WARNING (merge) - trace n=342,x=40001688,y=351919,z=2058 exist
+data.traces:207:WARNING (merge) - trace n=225,x=11390625,y=152551,z=1356 exist
+data.traces:207:WARNING (merge) - trace n=133,x=2352637,y=53467,z=804 exist
+data.traces:207:WARNING (merge) - trace n=237,x=13312053,y=169219,z=1428 exist
+data.traces:207:WARNING (merge) - trace n=63,x=250047,y=12097,z=384 exist
+data.traces:207:WARNING (merge) - trace n=280,x=21952000,y=236041,z=1686 exist
+data.traces:207:WARNING (merge) - trace n=411,x=69426531,y=507997,z=2472 exist
+data.traces:207:WARNING (merge) - trace n=35,x=42875,y=3781,z=216 exist
+data.traces:207:WARNING (merge) - trace n=47,x=103823,y=6769,z=288 exist
+data.traces:207:WARNING (merge) - trace n=469,x=103161709,y=661291,z=2820 exist
+data.traces:207:WARNING (merge) - trace n=448,x=89915392,y=603457,z=2694 exist
+data.traces:207:WARNING (merge) - trace n=192,x=7077888,y=111169,z=1158 exist
+data.traces:207:WARNING (merge) - trace n=331,x=36264691,y=329677,z=1992 exist
+data.traces:207:WARNING (merge) - trace n=159,x=4019679,y=76321,z=960 exist
+data.traces:207:WARNING (merge) - trace n=233,x=12649337,y=163567,z=1404 exist
+data.traces:207:WARNING (merge) - trace n=407,x=67419143,y=498169,z=2448 exist
+lib:260:DEBUG (infer_from_traces) - invs: vtrace2_27 (12 invs):
+1. z^2 - 12*y - 6*z + 12 == 0
+2. y*z - 18*x - 12*y + 2*z - 6 == 0
+3. 6*n - z + 6 == 0
+4. n - y <= -6
+5. n - x <= 0
+6. -y <= -7
+7. -y + z <= 5
+8. -x <= -1
+9. -x - y <= -8
+10. -n <= -1
+11. -n - y <= -8
+12. -n - x <= -2
+analysis:776:DEBUG (strengthen) - mayloop_invs: ZConj({-1*n + -1*y <= -8, 6 == y*z + -18*x + -12*y + 2*z, x >= 1, 0 >= n + -1*x, -1*n + -1*x <= -2, n >= 1, -1*x + -1*y <= -8, 5 >= -1*y + z, -12 == z**2 + -12*y + -6*z, y >= 7, n + -1*y <= -6, -6 == 6*n + -1*z})
+lib:236:DEBUG (get_traces_by_id) - dtraces[vtrace2_27]: 0
+lib:236:DEBUG (get_traces_by_id) - dtraces[vtrace2_27]: 0
+*** 'None', 1 locs, 12 invs (3 Eqt, 9 Oct), 317 traces, 0 inps, time 3.08s, rand seed 1596798562.2, test 93 58:
+vtrace2_27 (12 invs):
+1. z^2 - 12*y - 6*z + 12 == 0
+2. y*z - 18*x - 12*y + 2*z - 6 == 0
+3. 6*n - z + 6 == 0
+4. n - y <= -6
+5. n - x <= 0
+6. -y <= -7
+7. -y + z <= 5
+8. -x <= -1
+9. -x - y <= -8
+10. -n <= -1
+11. -n - y <= -8
+12. -n - x <= -2
+lib:260:DEBUG (infer_from_traces) - invs: 
+analysis:780:DEBUG (strengthen) - term_invs: ZConj()
+utils.profiling:31:DEBUG (timed) - strengthen: 3699.89ms
+analysis:842:DEBUG (_stat_candidate_rcs) - stat (1 total): defaultdict(<class 'int'>, {1: 1})
+analysis:934:DEBUG (prove_rcs) - PROVE_NT DEPTH 1: ZConj({-1*n + -1*y <= -8, 6 == y*z + -18*x + -12*y + 2*z, x >= 1, 0 >= n + -1*x, -1*n + -1*x <= -2, n >= 1, -1*x + -1*y <= -8, 5 >= -1*y + z, -12 == z**2 + -12*y + -6*z, y >= 7, n + -1*y <= -6, -6 == 6*n + -1*z})
+analysis:643:DEBUG (verify) - loop_transrel: And(And(n0 == n, x0 == x, y0 == y, z0 == z),
+    And(n1 == 1 + n, x1 == x + y, y1 == y + z, z1 == 6 + z),
+    0 == n**3 + -1*x)
+analysis:644:DEBUG (verify) - loop_cond: 0 == n**3 + -1*x
+analysis:645:DEBUG (verify) - rcs: ZConj({-1*n + -1*y <= -8, 6 == y*z + -18*x + -12*y + 2*z, x >= 1, 0 >= n + -1*x, -1*n + -1*x <= -2, n >= 1, -1*x + -1*y <= -8, 5 >= -1*y + z, -12 == z**2 + -12*y + -6*z, y >= 7, n + -1*y <= -6, -6 == 6*n + -1*z})
+analysis:659:DEBUG (verify) - labeled_rcs: ZConj({-1*n + -1*x <= -2:c_4, x >= 1:c_2, -1*x + -1*y <= -8:c_6, 0 >= n + -1*x:c_3, n >= 1:c_5, 6 == y*z + -18*x + -12*y + 2*z:c_1, -1*n + -1*y <= -8:c_0, -6 == 6*n + -1*z:c_11, n + -1*y <= -6:c_10, -12 == z**2 + -12*y + -6*z:c_8, y >= 7:c_9, 5 >= -1*y + z:c_7})
+analysis:666:DEBUG (verify) - transrel_rcs: ZConj({0 >= n0 + -1*x0:c_3, x0 >= 1:c_2, -6 == 6*n0 + -1*z0:c_11, -1*x0 + -1*y0 <= -8:c_6, -12 == z0**2 + -12*y0 + -6*z0:c_8, y0 >= 7:c_9, n0 >= 1:c_5, -1*n0 + -1*y0 <= -8:c_0, 6 == y0*z0 + -18*x0 + -12*y0 + 2*z0:c_1, -1*n0 + -1*x0 <= -2:c_4, 5 >= -1*y0 + z0:c_7, And(And(n0 == n, x0 == x, y0 == y, z0 == z),
+    And(n1 == 1 + n, x1 == x + y, y1 == y + z, z1 == 6 + z),
+    0 == n**3 + -1*x), n0 + -1*y0 <= -6:c_10})
+analysis:671:DEBUG (verify) - init_transrel_rcs: ZConj({n0 + -1*y0 <= -6:c_10, x0 >= 1:c_2, -6 == 6*n0 + -1*z0:c_11, And(0 == n, 0 == x, 1 == y, 6 == z), 6 == y0*z0 + -18*x0 + -12*y0 + 2*z0:c_1, True, n0 >= 1:c_5, -1*x0 + -1*y0 <= -8:c_6, 0 >= n0 + -1*x0:c_3, -12 == z0**2 + -12*y0 + -6*z0:c_8, 5 >= -1*y0 + z0:c_7, -1*n0 + -1*x0 <= -2:c_4, And(And(n0 == n, x0 == x, y0 == y, z0 == z),
+    And(n1 == 1 + n, x1 == x + y, y1 == y + z, z1 == 6 + z),
+    0 == n**3 + -1*x), y0 >= 7:c_9, -1*n0 + -1*y0 <= -8:c_0})
+analysis:680:DEBUG (_check) - rc: -1*n + -1*y <= -8:c_0
+analysis:685:DEBUG (_check) - rc_r: -1*n1 + -1*y1 <= -8
+analysis:686:DEBUG (_check) - f: ZConj({0 >= n0 + -1*x0:c_3, 5 >= -1*y0 + z0:c_7, -1*n0 + -1*x0 <= -2:c_4, Not(-1*n1 + -1*y1 <= -8), x0 >= 1:c_2, -1*n0 + -1*y0 <= -8:c_0, n0 + -1*y0 <= -6:c_10, And(And(n0 == n, x0 == x, y0 == y, z0 == z),
+    And(n1 == 1 + n, x1 == x + y, y1 == y + z, z1 == 6 + z),
+    0 == n**3 + -1*x), n0 >= 1:c_5, 6 == y0*z0 + -18*x0 + -12*y0 + 2*z0:c_1, -12 == z0**2 + -12*y0 + -6*z0:c_8, -1*x0 + -1*y0 <= -8:c_6, y0 >= 7:c_9, -6 == 6*n0 + -1*z0:c_11})
+*** 'None', 0 locs, 0 invs (), 0 traces, 0 inps, time 0.01s, rand seed 1596798562.2, test 93 58:
+
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_6', -1*x0 + -1*y0 <= -8), ('c_9', y0 >= 7), ('c_11', -6 == 6*n0 + -1*z0)]
+analysis:694:DEBUG (_check) - rs: unsat
+analysis:695:DEBUG (_check) - unsat_core: ['c_6', 'c_9', 'c_11']
+analysis:680:DEBUG (_check) - rc: 6 == y*z + -18*x + -12*y + 2*z:c_1
+analysis:685:DEBUG (_check) - rc_r: 6 == y1*z1 + -18*x1 + -12*y1 + 2*z1
+analysis:686:DEBUG (_check) - f: ZConj({n0 + -1*y0 <= -6:c_10, -1*x0 + -1*y0 <= -8:c_6, -12 == z0**2 + -12*y0 + -6*z0:c_8, 0 >= n0 + -1*x0:c_3, -1*n0 + -1*y0 <= -8:c_0, -1*n0 + -1*x0 <= -2:c_4, -6 == 6*n0 + -1*z0:c_11, n0 >= 1:c_5, 6 == y0*z0 + -18*x0 + -12*y0 + 2*z0:c_1, x0 >= 1:c_2, And(And(n0 == n, x0 == x, y0 == y, z0 == z),
+    And(n1 == 1 + n, x1 == x + y, y1 == y + z, z1 == 6 + z),
+    0 == n**3 + -1*x), y0 >= 7:c_9, 5 >= -1*y0 + z0:c_7, Not(6 == y1*z1 + -18*x1 + -12*y1 + 2*z1)})
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_8', -12 == z0**2 + -12*y0 + -6*z0), ('c_1', 6 == y0*z0 + -18*x0 + -12*y0 + 2*z0)]
+analysis:694:DEBUG (_check) - rs: unsat
+analysis:695:DEBUG (_check) - unsat_core: ['c_8', 'c_1']
+analysis:680:DEBUG (_check) - rc: x >= 1:c_2
+analysis:685:DEBUG (_check) - rc_r: x1 >= 1
+analysis:686:DEBUG (_check) - f: ZConj({-12 == z0**2 + -12*y0 + -6*z0:c_8, y0 >= 7:c_9, 5 >= -1*y0 + z0:c_7, Not(x1 >= 1), -6 == 6*n0 + -1*z0:c_11, -1*n0 + -1*x0 <= -2:c_4, -1*x0 + -1*y0 <= -8:c_6, -1*n0 + -1*y0 <= -8:c_0, n0 + -1*y0 <= -6:c_10, 0 >= n0 + -1*x0:c_3, x0 >= 1:c_2, And(And(n0 == n, x0 == x, y0 == y, z0 == z),
+    And(n1 == 1 + n, x1 == x + y, y1 == y + z, z1 == 6 + z),
+    0 == n**3 + -1*x), 6 == y0*z0 + -18*x0 + -12*y0 + 2*z0:c_1, n0 >= 1:c_5})
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_10', n0 + -1*y0 <= -6), ('c_5', n0 >= 1)]
+analysis:694:DEBUG (_check) - rs: unsat
+analysis:695:DEBUG (_check) - unsat_core: ['c_10', 'c_5']
+analysis:680:DEBUG (_check) - rc: 0 >= n + -1*x:c_3
+analysis:685:DEBUG (_check) - rc_r: 0 >= n1 + -1*x1
+analysis:686:DEBUG (_check) - f: ZConj({n0 >= 1:c_5, Not(0 >= n1 + -1*x1), x0 >= 1:c_2, n0 + -1*y0 <= -6:c_10, -6 == 6*n0 + -1*z0:c_11, 5 >= -1*y0 + z0:c_7, -1*n0 + -1*y0 <= -8:c_0, 6 == y0*z0 + -18*x0 + -12*y0 + 2*z0:c_1, -1*n0 + -1*x0 <= -2:c_4, And(And(n0 == n, x0 == x, y0 == y, z0 == z),
+    And(n1 == 1 + n, x1 == x + y, y1 == y + z, z1 == 6 + z),
+    0 == n**3 + -1*x), -12 == z0**2 + -12*y0 + -6*z0:c_8, -1*x0 + -1*y0 <= -8:c_6, y0 >= 7:c_9, 0 >= n0 + -1*x0:c_3})
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_9', y0 >= 7), ('c_3', 0 >= n0 + -1*x0)]
+analysis:694:DEBUG (_check) - rs: unsat
+analysis:695:DEBUG (_check) - unsat_core: ['c_9', 'c_3']
+analysis:680:DEBUG (_check) - rc: -1*n + -1*x <= -2:c_4
+analysis:685:DEBUG (_check) - rc_r: -1*n1 + -1*x1 <= -2
+analysis:686:DEBUG (_check) - f: ZConj({n0 >= 1:c_5, -12 == z0**2 + -12*y0 + -6*z0:c_8, 0 >= n0 + -1*x0:c_3, y0 >= 7:c_9, 6 == y0*z0 + -18*x0 + -12*y0 + 2*z0:c_1, x0 >= 1:c_2, Not(-1*n1 + -1*x1 <= -2), -1*n0 + -1*x0 <= -2:c_4, -1*x0 + -1*y0 <= -8:c_6, -6 == 6*n0 + -1*z0:c_11, 5 >= -1*y0 + z0:c_7, And(And(n0 == n, x0 == x, y0 == y, z0 == z),
+    And(n1 == 1 + n, x1 == x + y, y1 == y + z, z1 == 6 + z),
+    0 == n**3 + -1*x), -1*n0 + -1*y0 <= -8:c_0, n0 + -1*y0 <= -6:c_10})
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_4', -1*n0 + -1*x0 <= -2), ('c_10', n0 + -1*y0 <= -6)]
+analysis:694:DEBUG (_check) - rs: unsat
+analysis:695:DEBUG (_check) - unsat_core: ['c_4', 'c_10']
+analysis:680:DEBUG (_check) - rc: n >= 1:c_5
+analysis:685:DEBUG (_check) - rc_r: n1 >= 1
+analysis:686:DEBUG (_check) - f: ZConj({n0 + -1*y0 <= -6:c_10, 0 >= n0 + -1*x0:c_3, y0 >= 7:c_9, -1*n0 + -1*y0 <= -8:c_0, -1*x0 + -1*y0 <= -8:c_6, x0 >= 1:c_2, -12 == z0**2 + -12*y0 + -6*z0:c_8, 6 == y0*z0 + -18*x0 + -12*y0 + 2*z0:c_1, -6 == 6*n0 + -1*z0:c_11, Not(n1 >= 1), n0 >= 1:c_5, 5 >= -1*y0 + z0:c_7, And(And(n0 == n, x0 == x, y0 == y, z0 == z),
+    And(n1 == 1 + n, x1 == x + y, y1 == y + z, z1 == 6 + z),
+    0 == n**3 + -1*x), -1*n0 + -1*x0 <= -2:c_4})
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_4', -1*n0 + -1*x0 <= -2)]
+analysis:694:DEBUG (_check) - rs: unsat
+analysis:695:DEBUG (_check) - unsat_core: ['c_4']
+analysis:680:DEBUG (_check) - rc: -1*x + -1*y <= -8:c_6
+analysis:685:DEBUG (_check) - rc_r: -1*x1 + -1*y1 <= -8
+analysis:686:DEBUG (_check) - f: ZConj({-6 == 6*n0 + -1*z0:c_11, 5 >= -1*y0 + z0:c_7, -1*n0 + -1*x0 <= -2:c_4, 0 >= n0 + -1*x0:c_3, x0 >= 1:c_2, -1*n0 + -1*y0 <= -8:c_0, n0 + -1*y0 <= -6:c_10, 6 == y0*z0 + -18*x0 + -12*y0 + 2*z0:c_1, And(And(n0 == n, x0 == x, y0 == y, z0 == z),
+    And(n1 == 1 + n, x1 == x + y, y1 == y + z, z1 == 6 + z),
+    0 == n**3 + -1*x), Not(-1*x1 + -1*y1 <= -8), n0 >= 1:c_5, -12 == z0**2 + -12*y0 + -6*z0:c_8, y0 >= 7:c_9, -1*x0 + -1*y0 <= -8:c_6})
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_8', -12 == z0**2 + -12*y0 + -6*z0), ('c_6', -1*x0 + -1*y0 <= -8)]
+analysis:694:DEBUG (_check) - rs: unsat
+analysis:695:DEBUG (_check) - unsat_core: ['c_8', 'c_6']
+analysis:680:DEBUG (_check) - rc: 5 >= -1*y + z:c_7
+analysis:685:DEBUG (_check) - rc_r: 5 >= -1*y1 + z1
+analysis:686:DEBUG (_check) - f: ZConj({n0 + -1*y0 <= -6:c_10, 0 >= n0 + -1*x0:c_3, y0 >= 7:c_9, -1*n0 + -1*x0 <= -2:c_4, x0 >= 1:c_2, -1*x0 + -1*y0 <= -8:c_6, -1*n0 + -1*y0 <= -8:c_0, 5 >= -1*y0 + z0:c_7, 6 == y0*z0 + -18*x0 + -12*y0 + 2*z0:c_1, And(And(n0 == n, x0 == x, y0 == y, z0 == z),
+    And(n1 == 1 + n, x1 == x + y, y1 == y + z, z1 == 6 + z),
+    0 == n**3 + -1*x), Not(5 >= -1*y1 + z1), -12 == z0**2 + -12*y0 + -6*z0:c_8, n0 >= 1:c_5, -6 == 6*n0 + -1*z0:c_11})
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_8', -12 == z0**2 + -12*y0 + -6*z0)]
+analysis:694:DEBUG (_check) - rs: unsat
+analysis:695:DEBUG (_check) - unsat_core: ['c_8']
+analysis:680:DEBUG (_check) - rc: -12 == z**2 + -12*y + -6*z:c_8
+analysis:685:DEBUG (_check) - rc_r: -12 == z1**2 + -12*y1 + -6*z1
+analysis:686:DEBUG (_check) - f: ZConj({y0 >= 7:c_9, 0 >= n0 + -1*x0:c_3, -6 == 6*n0 + -1*z0:c_11, x0 >= 1:c_2, n0 >= 1:c_5, 6 == y0*z0 + -18*x0 + -12*y0 + 2*z0:c_1, -1*n0 + -1*x0 <= -2:c_4, n0 + -1*y0 <= -6:c_10, -1*x0 + -1*y0 <= -8:c_6, -1*n0 + -1*y0 <= -8:c_0, 5 >= -1*y0 + z0:c_7, Not(-12 == z1**2 + -12*y1 + -6*z1), And(And(n0 == n, x0 == x, y0 == y, z0 == z),
+    And(n1 == 1 + n, x1 == x + y, y1 == y + z, z1 == 6 + z),
+    0 == n**3 + -1*x), -12 == z0**2 + -12*y0 + -6*z0:c_8})
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_8', -12 == z0**2 + -12*y0 + -6*z0)]
+analysis:694:DEBUG (_check) - rs: unsat
+analysis:695:DEBUG (_check) - unsat_core: ['c_8']
+analysis:680:DEBUG (_check) - rc: y >= 7:c_9
+analysis:685:DEBUG (_check) - rc_r: y1 >= 7
+analysis:686:DEBUG (_check) - f: ZConj({-6 == 6*n0 + -1*z0:c_11, -12 == z0**2 + -12*y0 + -6*z0:c_8, -1*n0 + -1*x0 <= -2:c_4, 5 >= -1*y0 + z0:c_7, -1*n0 + -1*y0 <= -8:c_0, Not(y1 >= 7), n0 >= 1:c_5, x0 >= 1:c_2, 0 >= n0 + -1*x0:c_3, 6 == y0*z0 + -18*x0 + -12*y0 + 2*z0:c_1, -1*x0 + -1*y0 <= -8:c_6, And(And(n0 == n, x0 == x, y0 == y, z0 == z),
+    And(n1 == 1 + n, x1 == x + y, y1 == y + z, z1 == 6 + z),
+    0 == n**3 + -1*x), y0 >= 7:c_9, n0 + -1*y0 <= -6:c_10})
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_1', 6 == y0*z0 + -18*x0 + -12*y0 + 2*z0), ('c_6', -1*x0 + -1*y0 <= -8), ('c_10', n0 + -1*y0 <= -6)]
+analysis:694:DEBUG (_check) - rs: unsat
+analysis:695:DEBUG (_check) - unsat_core: ['c_1', 'c_6', 'c_10']
+analysis:680:DEBUG (_check) - rc: n + -1*y <= -6:c_10
+analysis:685:DEBUG (_check) - rc_r: n1 + -1*y1 <= -6
+analysis:686:DEBUG (_check) - f: ZConj({-12 == z0**2 + -12*y0 + -6*z0:c_8, y0 >= 7:c_9, n0 >= 1:c_5, 6 == y0*z0 + -18*x0 + -12*y0 + 2*z0:c_1, Not(n1 + -1*y1 <= -6), -1*n0 + -1*y0 <= -8:c_0, -1*x0 + -1*y0 <= -8:c_6, 0 >= n0 + -1*x0:c_3, -1*n0 + -1*x0 <= -2:c_4, 5 >= -1*y0 + z0:c_7, x0 >= 1:c_2, And(And(n0 == n, x0 == x, y0 == y, z0 == z),
+    And(n1 == 1 + n, x1 == x + y, y1 == y + z, z1 == 6 + z),
+    0 == n**3 + -1*x), n0 + -1*y0 <= -6:c_10, -6 == 6*n0 + -1*z0:c_11})
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_2', x0 >= 1), ('c_10', n0 + -1*y0 <= -6), ('c_11', -6 == 6*n0 + -1*z0)]
+analysis:694:DEBUG (_check) - rs: unsat
+analysis:695:DEBUG (_check) - unsat_core: ['c_2', 'c_10', 'c_11']
+analysis:680:DEBUG (_check) - rc: -6 == 6*n + -1*z:c_11
+analysis:685:DEBUG (_check) - rc_r: -6 == 6*n1 + -1*z1
+analysis:686:DEBUG (_check) - f: ZConj({-1*n0 + -1*x0 <= -2:c_4, n0 + -1*y0 <= -6:c_10, x0 >= 1:c_2, Not(-6 == 6*n1 + -1*z1), -6 == 6*n0 + -1*z0:c_11, -1*x0 + -1*y0 <= -8:c_6, -12 == z0**2 + -12*y0 + -6*z0:c_8, n0 >= 1:c_5, 0 >= n0 + -1*x0:c_3, And(And(n0 == n, x0 == x, y0 == y, z0 == z),
+    And(n1 == 1 + n, x1 == x + y, y1 == y + z, z1 == 6 + z),
+    0 == n**3 + -1*x), 6 == y0*z0 + -18*x0 + -12*y0 + 2*z0:c_1, 5 >= -1*y0 + z0:c_7, y0 >= 7:c_9, -1*n0 + -1*y0 <= -8:c_0})
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_8', -12 == z0**2 + -12*y0 + -6*z0), ('c_1', 6 == y0*z0 + -18*x0 + -12*y0 + 2*z0)]
+analysis:694:DEBUG (_check) - rs: unsat
+analysis:695:DEBUG (_check) - unsat_core: ['c_8', 'c_1']
+analysis:738:INFO (verify) - dg: defaultdict(<class 'list'>, {'c_0': ['c_6', 'c_9', 'c_11'], 'c_1': ['c_8', 'c_1'], 'c_2': ['c_10', 'c_5'], 'c_3': ['c_9', 'c_3'], 'c_4': ['c_4', 'c_10'], 'c_5': ['c_4'], 'c_6': ['c_8', 'c_6'], 'c_7': ['c_8'], 'c_8': ['c_8'], 'c_9': ['c_1', 'c_6', 'c_10'], 'c_10': ['c_2', 'c_10', 'c_11'], 'c_11': ['c_8', 'c_1']})
+analysis:739:INFO (verify) - label_d: defaultdict(<class 'str'>, {-1*n + -1*y <= -8: 'c_0', 6 == y*z + -18*x + -12*y + 2*z: 'c_1', x >= 1: 'c_2', 0 >= n + -1*x: 'c_3', -1*n + -1*x <= -2: 'c_4', n >= 1: 'c_5', -1*x + -1*y <= -8: 'c_6', 5 >= -1*y + z: 'c_7', -12 == z**2 + -12*y + -6*z: 'c_8', y >= 7: 'c_9', n + -1*y <= -6: 'c_10', -6 == 6*n + -1*z: 'c_11'})
+analysis:740:INFO (verify) - rev_label_d: {'c_0': -1*n + -1*y <= -8, 'c_1': 6 == y*z + -18*x + -12*y + 2*z, 'c_2': x >= 1, 'c_3': 0 >= n + -1*x, 'c_4': -1*n + -1*x <= -2, 'c_5': n >= 1, 'c_6': -1*x + -1*y <= -8, 'c_7': 5 >= -1*y + z, 'c_8': -12 == z**2 + -12*y + -6*z, 'c_9': y >= 7, 'c_10': n + -1*y <= -6, 'c_11': -6 == 6*n + -1*z}
+analysis:743:INFO (verify) - loop_cond_label: 
+analysis:747:INFO (verify) - mds_labels: set()
+analysis:748:INFO (verify) - mds: ZConj()
+utils.profiling:31:DEBUG (timed) - verify: 3929.74ms
+analysis:950:DEBUG (prove_rcs) - new valid rcs: ZConj({-1*n + -1*y <= -8, 6 == y*z + -18*x + -12*y + 2*z, x >= 1, 0 >= n + -1*x, -1*n + -1*x <= -2, n >= 1, -1*x + -1*y <= -8, 5 >= -1*y + z, -12 == z**2 + -12*y + -6*z, y >= 7, n + -1*y <= -6, -6 == 6*n + -1*z})
+analysis:929:DEBUG (prove_nonterm_vloop) - tCex: ZConj()
+utils.profiling:31:DEBUG (timed) - prove_nonterm_vloop: 18704.84ms
+analysis:973:INFO (print_valid_rcs) - rcs: ZConj({-1*n + -1*y <= -8, 6 == y*z + -18*x + -12*y + 2*z, x >= 1, 0 >= n + -1*x, -1*n + -1*x <= -2, n >= 1, -1*x + -1*y <= -8, 5 >= -1*y + z, -12 == z**2 + -12*y + -6*z, y >= 7, n + -1*y <= -6, -6 == 6*n + -1*z})
+analysis:974:INFO (print_valid_rcs) - (simplified) rcs: And(n >= 1, 6 == y*z + -18*x + -12*y + 2*z, 5 >= -1*y + z, -6 == 6*n + -1*z, -12 == z**2 + -12*y + -6*z)
+analysis:980:INFO (print_valid_rcs) - ancestor 0: 0 == n**3 + -1*x
+utils.profiling:31:DEBUG (timed) - prove: 18839.61ms
+utils.profiling:31:DEBUG (timed) - prove: 18839.78ms
+Non-termination result: False (vloop_27)
+Time log:
+_get_symstates_from_src: 10.035s
+_get_loopinfo_from_symstates: 10.070s
+get_loopinfo: 10.070s
+_get_traces_mp: 0.139s
+_merge_traces: 0.509s
+get_traces_from_inps: 0.648s
+verify: 4.803s
+strengthen: 3.700s
+prove_nonterm_vloop: 18.705s
+prove: 18.840s
+
+HARD TIMER: 20.678126
+
