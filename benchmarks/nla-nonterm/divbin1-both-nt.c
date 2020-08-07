@@ -43,14 +43,15 @@ int main() {
       // __VERIFIER_assert(A == q * b + r);
         //if (!(b != B)) break;
 
-        q = 2 * q;
-        b = b / 2;
-        if (r >= b) {
-            q = q + 1;
-            r = r - b;
+        if (2 * (b / 2) == b) {
+            q = 2 * q;
+            b = b / 2;
+            if (r >= b) {
+                q = q + 1;
+                r = r - b;
+            }
         }
     }
-
     //__VERIFIER_assert(A == q * b + r);
     return 0;
 }

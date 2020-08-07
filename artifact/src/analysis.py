@@ -128,6 +128,11 @@ class Setup(object):
         dig_settings.DO_MINMAXPLUS = False
 
         self.n_inps = settings.n_inps
+        # self.preloop_loc = dig_settings.TRACE_INDICATOR + '1' # vtrace1
+        # self.inloop_loc = dig_settings.TRACE_INDICATOR + '2' # vtrace2
+        # self.postloop_loc = dig_settings.TRACE_INDICATOR + '3' # vtrace3
+        # self.transrel_loc = dig_settings.TRACE_INDICATOR + '4' # vtrace4
+        # self.refinement_depth = 1
         self.tmpdir = Path(tempfile.mkdtemp(dir=dig_settings.tmpdir, prefix="Dig_"))
         self.symstates = None
         # self.solver = ZSolver(self.tmpdir)
@@ -195,8 +200,36 @@ class Setup(object):
             self.init_inp_decls = Symbs([Symb(self.init_symvars_prefix + s.name, s.typ) 
                                          for s in self.inp_decls])
 
+        # self.transrel_pre_inv_decls, self.transrel_pre_sst, \
+        #     self.transrel_post_sst, transrel_inv_decls = self.gen_transrel_sst()
+        # self.inv_decls[self.transrel_loc] = transrel_inv_decls
+        # mlog.debug("transrel_pre_inv_decls: {}".format(self.transrel_pre_inv_decls))
+        # mlog.debug("transrel_pre_sst: {}".format(self.transrel_pre_sst))
+        # mlog.debug("transrel_post_sst: {}".format(self.transrel_post_sst))
+
+        # if settings.prove_nonterm:
+        #     try:
+        #         mlog.debug("Get symstates for proving NonTerm (prove_nonterm={})".format(settings.prove_nonterm))
+        #         self.symstates = self._get_symstates_from_src(self.src)
+        #     except Exception as e:
+        #         mlog.debug("Get symstates for proving NonTerm: {}".format(e))
+        #         raise e
+        #     # ss = self.symstates.ss
+        #     # for loc in ss:
+        #         # for depth in ss[loc]:
+        #             # pcs = ss[loc][depth]
+        #             # mlog.debug("DEPTH {}".format(depth))
+        #             # mlog.debug("pcs ({}):\n{}".format(len(pcs.lst), pcs))
+        # else:
+        #     pass
+
         self.exe = Execution(prog)
         self.dig = Inference(self.inv_decls, self.seed, self.tmpdir)
+
+        # mlog.debug("generate random inputs")
+        # rand_inps = self.exe.gen_rand_inps(self.n_inps)
+        # mlog.debug("get traces from random inputs")
+        # self.rand_itraces = self.exe.get_traces_from_inps(rand_inps)  # itraces: input to dtraces
 
     @timeit
     def gen_rand_inps(self):
@@ -408,6 +441,39 @@ class Setup(object):
 
     def _get_loopinfo_from_traces(self):
         raise NotImplementedError
+        # old_do_ieqs = dig_settings.DO_IEQS
+        # # dig_settings.DO_IEQS = False
+        # transrel_itraces = {}
+        # inloop_loc = self.inloop_loc
+        # postloop_loc = self.postloop_loc
+        # for inp, dtraces in self.rand_itraces.items():
+        #     if inloop_loc in dtraces:
+        #         inloop_traces = dtraces[inloop_loc]
+        #         transrel_traces = []
+        #         if len(inloop_traces) >= 1:
+        #             if postloop_loc in dtraces:
+        #                 inloop_zip_traces = zip(inloop_traces, inloop_traces[1:] + [dtraces[postloop_loc][0]])
+        #             else:
+        #                 inloop_zip_traces = zip(inloop_traces[:-1], inloop_traces[1:])
+        #         else:
+        #             inloop_zip_traces = []
+        #         for transrel_pre, transrel_post in inloop_zip_traces:
+        #             ss = tuple(list(map(lambda s: s + '0', transrel_pre.ss)) + 
+        #                        list(map(lambda s: s + '1', transrel_post.ss)))
+        #             vs = transrel_pre.vs + transrel_post.vs
+        #             transrel_traces.append(Trace.parse(ss, vs))
+        #         transrel_itraces[inp] = {self.transrel_loc: transrel_traces}
+        # # mlog.debug("transrel_itraces: {}".format(transrel_itraces))
+        # transrel_invs = self.dig.infer_from_traces(transrel_itraces, self.transrel_loc)
+        # # transrel_invs = self.dig.infer_from_traces(self.rand_itraces, self.transrel_loc)
+        # mlog.debug("transrel_invs: {}".format(transrel_invs))
+        # dig_settings.DO_IEQS = old_do_ieqs
+
+        # transrel_invs = ZConj(transrel_invs)
+        # if transrel_invs.is_unsat():
+        #     return None
+        # transrel_expr = transrel_invs.expr()
+        # return transrel_expr
 
     @timeit
     def get_loopinfo(self, vloop):
@@ -448,6 +514,47 @@ class Setup(object):
                 src.symexefile, src.mainQ_name,
                 src.funname, src.symexedir)
             ss = symstates.ss
+            # mlog.debug("SymStates ({}): {}".format(type(ss), ss))
+            # for loc, depthss in ss.items():
+            #     for depth, states in depthss.items():
+            #         for s in states.lst:
+            #             mlog.debug("SymState ({}, {}):\n{}\n{}".format(type(s), s in states, s, s.expr))
+
+            # rand_inps = exe.gen_rand_inps(self.n_inps)
+            # rand_itraces = exe.get_traces_from_inps(rand_inps)
+            # loop_cond = None
+            # no_inloop_invs = False
+            # no_postloop_invs = False
+
+            # while loop_cond is None:
+            #     postloop_invs = ZConj(dig.infer_from_traces(rand_itraces, self.postloop_loc))
+            #     inloop_invs = ZConj(dig.infer_from_traces(rand_itraces, self.inloop_loc))
+            #     mlog.debug("postloop_invs: {}".format(postloop_invs))
+            #     mlog.debug("inloop_invs: {}".format(inloop_invs))
+            #     if not inloop_invs and no_inloop_invs:
+            #         loop_cond = postloop_invs.negate()
+            #     else:
+            #         if not inloop_invs:
+            #             no_inloop_invs = True
+            #         covered_f = z3.Or(postloop_invs.expr(), inloop_invs.expr())
+            #         uncovered_f = z3.Not(covered_f)
+            #         models, _ = ZSolver.get_models(uncovered_f, 
+            #                                        self.n_inps, self.tmpdir, 
+            #                                        settings.use_random_seed)
+            #         mlog.debug("uncovered models: {}".format(models))
+            #         if isinstance(models, list) and models:
+            #             n_inps = ZSolver.mk_inps_from_models(models, self.inp_decls.exprs((settings.use_reals)), exe)
+            #             mlog.debug("uncovered inps: {}".format(n_inps))
+            #             mlog.debug("Starting get_traces")
+            #             nitraces = exe.get_traces_from_inps(n_inps)
+            #             mlog.debug("get_traces stopped")
+            #             # mlog.debug("uncovered rand_itraces: {}".format(nitraces))
+            #             rand_itraces.update(nitraces)
+            #         else:
+            #             loop_cond = inloop_invs
+            
+            # mlog.debug("loop_cond: {}".format(loop_cond))
+            # return loop_cond
 
     def is_binary(self, fn):
         import subprocess
@@ -457,6 +564,9 @@ class Setup(object):
 class NonTerm(object):
     def __init__(self, config):
         self._config = config
+        # loopinfo = config.get_loopinfo()
+        # self.stem = loopinfo.stem
+        # self.loop = loopinfo.loop
         self.tCexs = []
 
     @timeit
@@ -606,7 +716,7 @@ class NonTerm(object):
         mlog.debug("rcs: {}".format(rcs))
 
         mayloop_invs = ZConj(_config.dig.infer_from_traces(
-                                itraces, vloop.inloop_loc, mayloop_inps))
+                                itraces, vloop.inloop_loc, mayloop_inps, maxdeg=3))
         mlog.debug("mayloop_invs: {}".format(mayloop_invs))
 
         term_invs = ZConj(_config.dig.infer_from_traces(
@@ -618,6 +728,15 @@ class NonTerm(object):
         #     term_traces.append(itraces[term_inp])
         term_itraces = {term_inp: itraces[term_inp] for term_inp in term_inps}
         self.tCexs.append((term_invs, term_itraces))
+        
+        # term_cond = z3.Or(base_term_pre.expr(), term_invs.expr())
+        # term_cond = term_invs.expr()
+        # simplified_term_cond = Z3.simplify(term_cond)
+        # cnf_term_cond = Z3.to_cnf(simplified_term_cond)
+        # mlog.debug("simplified_term_cond: {}".format(simplified_term_cond))
+        # mlog.debug("cnf_term_cond: {}".format(cnf_term_cond))
+        # dnf_neg_term_cond = Z3.to_nnf(z3.Not(cnf_term_cond))
+        # mlog.debug("dnf_neg_term_cond: {}".format(dnf_neg_term_cond))
 
         candidate_nrcs = []
 
@@ -634,6 +753,14 @@ class NonTerm(object):
         # from this mayloop_invs. That set will be a valid rcs.
         if mayloop_invs:
             candidate_nrcs.append(mayloop_invs)
+        
+        # if invalid_rc is not None:
+        #     nrcs = copy.deepcopy(rcs)
+        #     nrcs.remove(invalid_rc)
+        #     mlog.debug("invalid_rc: {}".format(invalid_rc))
+        #     mlog.debug("nrcs: {}".format(nrcs))
+        #     if nrcs:
+        #         candidate_nrcs.append(nrcs)
         
         return candidate_nrcs
 
@@ -654,9 +781,9 @@ class NonTerm(object):
 
     def _stat_candidate_rcs(self, rcs):
         stat = defaultdict(int)
-        for (_, d, _) in rcs.items():
+        for (_, d, _) in rcs:
             stat[d] += 1
-        mlog.debug("stat ({} total): {}".format(rcs.size(), stat))
+        mlog.debug("stat ({} total): {}".format(len(rcs), stat))
 
     def is_reachable_rcs(self, vloop, rcs):
         init_transrel_rcs = ZFormula.substitue(rcs, vloop.transrel_pre_sst)
@@ -680,47 +807,67 @@ class NonTerm(object):
             mlog.debug('use_dfs: {}'.format(settings.use_dfs))
             mlog.debug('use_bfs: {}'.format(settings.use_bfs))
             # candidate rcs, depth, ancestors
-            # candidateRCS = Stack()
-            candidateRCS = DStack(key_of=lambda rcs: rcs[1])
-            candidateRCS.push((ZConj([vloop.loop.cond]), 0, []))
-            while candidateRCS.size() > 0:
+            
+            # candidateRCS = DStack(key_of=lambda rcs: rcs[1])
+            # candidateRCS.push((ZConj([vloop.loop.cond]), 0, []))
+            # while candidateRCS.size() > 0:
+            #     # mlog.debug("candidateRCS: {}".format(len(candidateRCS)))
+            #     self._stat_candidate_rcs(candidateRCS)
+            #     candidates = []
+            #     if settings.use_dfs:
+            #         # rcs, depth, ancestors = candidateRCS.pop()
+            #         candidate = candidateRCS.pop()
+            #         candidates.append(candidate)
+            #     elif settings.use_bfs:
+            #         # rcs, depth, ancestors = candidateRCS.dequeue()
+            #         candidate = candidateRCS.dequeue()
+            #         candidates.append(candidate)
+            #     else:
+            #         # use 0 for queue - BFS
+            #         # rcs, depth, ancestors = candidateRCS.dequeue()
+            #         fst_candidate = candidateRCS.dequeue()
+            #         lst_candidate = candidateRCS.pop()
+            #         candidates.append(fst_candidate)
+            #         if lst_candidate:
+            #             candidates.append(lst_candidate)
+
+            #     def _f(task):
+            #         chk, rs = self.prove_rcs(vloop, *task)
+            #         return (chk, rs)
+
+            #     if len(candidates) > 1:
+            #         wrs = Miscs.run_mp_ex("prove_rcs", candidates, _f)
+            #     else:
+            #         wrs = [_f(candidates[0])]
+            #     for chk, rs in wrs:
+            #         if chk is True:
+            #             valid_rcs.append(rs)
+            #             return [rs], []
+            #             # break
+            #         elif chk is False:
+            #             for r in rs:
+            #                 candidateRCS.push(r)
+
+            candidateRCS = [(ZConj([vloop.loop.cond]), 0, [])]
+            while candidateRCS:
                 # mlog.debug("candidateRCS: {}".format(len(candidateRCS)))
                 self._stat_candidate_rcs(candidateRCS)
-                candidates = []
                 if settings.use_dfs:
-                    # rcs, depth, ancestors = candidateRCS.pop()
-                    candidate = candidateRCS.pop()
-                    candidates.append(candidate)
-                elif settings.use_bfs:
-                    # rcs, depth, ancestors = candidateRCS.dequeue()
-                    candidate = candidateRCS.dequeue()
-                    candidates.append(candidate)
+                    candidate = candidateRCS.pop() # rcs, depth, ancestors
                 else:
                     # use 0 for queue - BFS
-                    # rcs, depth, ancestors = candidateRCS.dequeue()
-                    fst_candidate = candidateRCS.dequeue()
-                    lst_candidate = candidateRCS.pop()
-                    candidates.append(fst_candidate)
-                    if lst_candidate:
-                        candidates.append(lst_candidate)
+                    candidate = candidateRCS.pop(0) # rcs, depth, ancestors
 
-                def _f(task):
-                    chk, rs = self.prove_rcs(vloop, *task)
-                    return (chk, rs)
-
-                if len(candidates) > 1:
-                    wrs = Miscs.run_mp_ex("prove_rcs", candidates, _f)
+                chk, rs = self.prove_rcs(vloop, *candidate)
+                if chk is None:
+                    continue
+                elif chk is True:
+                    valid_rcs.append(rs)
+                    # break
                 else:
-                    wrs = [_f(candidates[0])]
-                for chk, rs in wrs:
-                    if chk is True:
-                        valid_rcs.append(rs)
-                        return [rs], []
-                        # break
-                    elif chk is False:
-                        for r in rs:
-                            candidateRCS.push(r) 
-            
+                    for r in rs:
+                        candidateRCS.append(r)
+
             term_itraces_cex = {}
             for (tInvs, tTraces) in self.tCexs:
                 mlog.debug("tCex: {}".format(tInvs))
@@ -839,6 +986,12 @@ class Term(object):
 
     def _infer_ranking_function_trans(self, t1, t2, opt):
         opt.push()
+        # desc_scond = str(sage.all.operator.gt(t1, t2))
+        # bnd_scond = str(sage.all.operator.ge(t1, 0))
+        # desc_zcond = eval(desc_scond)
+        # bnd_zcond = eval(bnd_scond)
+        # desc_zcond = Z3.parse(desc_scond, False)
+        # bnd_zcond = Z3.parse(bnd_scond, False)
         opt.add(t1 > t2)
         opt.add(t1 >= 0)
 
@@ -949,8 +1102,31 @@ class Term(object):
                 ranking_function_list.append(rf)
                 mlog.debug("rf: {}".format(rf))
 
+                # start_time = timeit.default_timer()
+                # l_train_rand_trans = [(t1, t2) for (t1, t2) in train_term_rand_trans 
+                #                               if not (self._check_ranking_function_trans(t1, t2, model))]
+                # elapsed = timeit.default_timer() - start_time
+                # mlog.debug("l_train_rand_trans: {}".format(elapsed * 1000000))
+                
+                # start_time = timeit.default_timer()
                 invalid_train_term_rand_trans = itertools.filterfalse(lambda t: (self._check_ranking_function_trans(*t, model)),
                                                                       train_term_rand_trans)
+                # def f(tasks):
+                #     r = itertools.filterfalse(lambda t: (self._check_ranking_function_trans(*t, model)), tasks)
+                #     return list(r)
+
+                # invalid_train_term_rand_trans = Miscs.run_mp("filterfalse", train_term_rand_trans, f)
+
+                # elapsed = timeit.default_timer() - start_time
+                # mlog.debug("invalid_train_term_rand_trans: {}".format(elapsed * 1000000))
+
+                # arr_train_rand_trans = np.asarray(train_term_rand_trans)
+                # start_time = timeit.default_timer()
+                # f_check = lambda t: not (self._check_ranking_function_trans(*t, model))
+                # bool_index = np.apply_along_axis(f_check, 1, arr_train_rand_trans)
+                # arr_train_rand_trans = arr_train_rand_trans[bool_index]
+                # elapsed = timeit.default_timer() - start_time
+                # mlog.debug("a_train_rand_trans: {}".format(elapsed * 1000000))
 
                 train_term_rand_trans = list(invalid_train_term_rand_trans)
             mlog.debug("train_term_rand_trans: {}".format(len(train_term_rand_trans)))
@@ -960,6 +1136,7 @@ class Term(object):
     @timeit
     def validate_ranking_functions(self, vloop, vs, rfs):
         _config = self._config
+        # ranks_str = '|'.join(['{}'.format(rf) for rf in (rfs[1:] if len(rfs) > 1 else rfs)])
         ranks_str = '|'.join(['{}'.format(rf) for rf in rfs])
         mlog.debug("ranks_str: {}".format(ranks_str))
         vloop_pos = vloop.vloop_pos
@@ -977,6 +1154,28 @@ class Term(object):
         mlog.debug('r: {}'.format(r))
         if r is False and cex:
             mlog.debug('cex.trans_cex: {}'.format(cex.trans_cex))
+
+        # if r is False and cex.trans_cex:
+        #     imap = cex.imap
+        #     mlog.debug('imap: {}'.format(imap))
+        #     rs, _, _ = _config.solver.get_models(cex.symb_cex, _config.n_inps, 
+        #                                          # _config.init_inp_decls, 
+        #                                          None,
+        #                                          settings.use_random_seed)
+        #     mlog.debug('n_inps: {}'.format(_config.n_inps))
+        #     mlog.debug('rs ({})'.format(len(rs)))
+            
+        #     cex_models = []
+        #     for m in rs:
+        #         dm = dict(m)
+        #         cex_model = [(v, dm[imap[v]]) for v in _config.inp_decls.names]
+        #         cex_models.append(cex_model)
+        #     mlog.debug('cex_models ({}): {}'.format(len(cex_models), cex_models))
+        #     cex_inps = _config.solver.mk_inps_from_models(cex_models, _config.inp_decls, _config.exe)
+        #     mlog.debug("cex_inps: {}".format(cex_inps))
+        #     return r, cex_inps
+        # else:
+        #     return r, None
 
         if r is False and cex and cex.trans_cex:
             n_rfs = self._infer_ranking_functions_from_trans(vs, cex.trans_cex)
@@ -1002,7 +1201,13 @@ class Term(object):
         mlog.debug('base_term_inps: {}'.format(len(base_term_inps)))
         mlog.debug('term_inps: {}'.format(len(term_inps)))
         mlog.debug('mayloop_inps: {}'.format(len(mayloop_inps)))
+            
+        # inloop_term_invs = ZConj(_config.dig.infer_from_traces(
+        #                 itraces, vloop.inloop_loc, term_inps,
+        #                 maxdeg=2))
+        # mlog.debug("inloop_term_invs: {}".format(inloop_term_invs))
 
+        # if not _config.inp_decls and not term_inps:
         if not term_inps:
             term_itraces = dict((mayloop_inp, itraces[mayloop_inp]) for mayloop_inp in mayloop_inps)
         else:
@@ -1022,7 +1227,31 @@ class Term(object):
         # itraces = _config.rand_itraces
         rand_inps = _config.gen_rand_inps()
         itraces = _config.get_traces_from_inps(rand_inps)
+        # preloop_term_invs = None
+        # while preloop_term_invs is None:
+        #     base_term_inps, term_inps, mayloop_inps = _config.cl.classify_inps(itraces)
+        #     mlog.debug("base_term_inps: {}".format(len(base_term_inps)))
+        #     mlog.debug("term_inps: {}".format(len(term_inps)))
+        #     mlog.debug("mayloop_inps: {}".format(len(mayloop_inps)))
+
+        #     preloop_term_invs = _config.dig.infer_from_traces(
+        #                             itraces, _config.preloop_loc, term_inps, maxdeg=2)
+        #     if preloop_term_invs is None:
+        #         rand_inps = gen_rand_inps(_config)
+        #         rand_itraces = _config.get_traces_from_inps(rand_inps)
+        #         old_itraces_len = len(itraces)
+        #         old_itraces_keys = set(itraces.keys())
+        #         itraces.update(rand_itraces)
+        #         new_itraces_len = len(itraces)
+        #         new_itraces_keys = set(itraces.keys())
+        #         mlog.debug("new rand inps: {}".format(new_itraces_keys.difference(old_itraces_keys)))
+        #         if new_itraces_len <= old_itraces_len:
+        #             break
+                    
+        # mlog.debug("preloop_term_invs: {}".format(preloop_term_invs))
         mlog.debug("itraces: {}".format(len(itraces)))
+        # mlog.debug("{}".format(itraces))
+        # mlog.debug("term_inps: {}".format(len(term_inps)))
 
         res = None
         for vloop in _config.vloop_info:
@@ -1034,6 +1263,30 @@ class Term(object):
             res = vloop_r
         # mlog.info('Termination result: {} ({})'.format(r, n_rfs))
         print('Termination result: {}'.format(res))
+
+        # rfs = set()
+        # r = None
+        # while True:
+        #     base_term_inps, term_inps, mayloop_inps = _config.cl.classify_inps(itraces)
+        #     term_itraces = dict((term_inp, itraces[term_inp]) for term_inp in term_inps)
+        #     candidate_rfs = self.infer_ranking_functions(vs, term_itraces)
+        #     if len(candidate_rfs) > 1:
+        #         candidate_rfs = candidate_rfs[1:]
+        #     old_rfs = rfs
+        #     rfs = old_rfs | set(candidate_rfs)
+        #     if rfs.issubset(old_rfs): # rfs is not changed
+        #         r = None
+        #         break
+        #     else:
+        #         r, cex_inps = self.validate_ranking_functions(vs, list(rfs))
+        #         if not r and cex_inps:
+        #             itraces = _config.get_traces_from_inps(cex_inps)
+        #         else: # Unknown
+        #             if not r:
+        #                 r = None
+        #             break
+
+        # mlog.info('Termination result: {} ({})'.format(r, rfs))
 
 class TNT(object):
     def __init__(self, config):

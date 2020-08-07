@@ -716,7 +716,7 @@ class NonTerm(object):
         mlog.debug("rcs: {}".format(rcs))
 
         mayloop_invs = ZConj(_config.dig.infer_from_traces(
-                                itraces, vloop.inloop_loc, mayloop_inps))
+                                itraces, vloop.inloop_loc, mayloop_inps, maxdeg=3))
         mlog.debug("mayloop_invs: {}".format(mayloop_invs))
 
         term_invs = ZConj(_config.dig.infer_from_traces(
@@ -926,12 +926,22 @@ class NonTerm(object):
     @timeit
     def prove(self):
         _config = self._config
+        rand_inps = _config.gen_rand_inps()
+        itraces = _config.get_traces_from_inps(rand_inps)
+
         res = None
         for vloop in _config.vloop_info:
-            valid_rcs, _ = self.prove_nonterm_vloop(vloop)
-            if valid_rcs:
-                res = (False, vloop.vloop_id, valid_rcs)
-                break 
+            mlog.debug('Analysing {}'.format(vloop.vloop_id))
+            base_term_inps, term_inps, mayloop_inps = vloop.cl.classify_inps(itraces)
+            mlog.debug('base_term_inps: {}'.format(len(base_term_inps)))
+            mlog.debug('term_inps: {}'.format(len(term_inps)))
+            mlog.debug('mayloop_inps: {}'.format(len(mayloop_inps)))
+            
+            if len(mayloop_inps) > 4 * (len(base_term_inps) + len(term_inps)):
+                valid_rcs, _ = self.prove_nonterm_vloop(vloop)
+                if valid_rcs:
+                    res = (False, vloop.vloop_id, valid_rcs)
+                    break
         if res is None:
             print('Non-termination result: Unknown')
         else:
