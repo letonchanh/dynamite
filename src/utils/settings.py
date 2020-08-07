@@ -8,6 +8,7 @@ use_reals = False
 use_random_seed = False
 use_dfs = False
 use_bfs = True
+all_rcs = False
 prove_term = False
 prove_nonterm = False
 max_nonterm_refinement_depth = 3

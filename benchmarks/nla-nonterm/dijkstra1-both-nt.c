@@ -22,13 +22,17 @@ int main() {
     q = 1;
     r = n;
     h = 0;
+
+    /*
     while ( q <= n ) {
       // if (!(q <= n)) break;
 
         q = 4 * q;
     }
     //q == 4^n
+    */
 
+    if (q > n) {
     while (r < 2 * p + q) {
       //__VERIFIER_assert(r < 2 * p + q);
       //__VERIFIER_assert(p*p + r*q == n*q);
@@ -39,7 +43,7 @@ int main() {
 
       //if (!(q != 1))
       //    break;
-
+      if (4 * (q / 4) == q && 2 * (p / 2) == p) {
         q = q / 4;
         h = p + q;
         p = p / 2;
@@ -47,6 +51,8 @@ int main() {
             p = p + q;
             r = r - h;
         }
+      }
+      }
     }
     //__VERIFIER_assert(h*h*h - 12*h*n + 16*n*p + 12*h*r - 16*p*r - h - 4*p == 0);
     //__VERIFIER_assert(p*p - n + r == 0);

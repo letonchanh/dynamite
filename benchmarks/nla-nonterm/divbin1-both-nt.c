@@ -33,12 +33,13 @@ int main() {
     q = 0;
     r = A;
     b = B;
-
+    /*
     while (r >= b) {
       //if (!(r >= b)) break;
       b = 2 * b;
     }
-
+    */
+    if (r < b) {
     while (A == q * b + r) {
       // __VERIFIER_assert(A == q * b + r);
         //if (!(b != B)) break;
@@ -51,6 +52,7 @@ int main() {
                 r = r - b;
             }
         }
+    }
     }
     //__VERIFIER_assert(A == q * b + r);
     return 0;

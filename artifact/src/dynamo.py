@@ -56,6 +56,10 @@ if __name__ == "__main__":
         action="store_true",
         help="use DFS in non-termination analysis")
 
+    ag("--all_rcs", "-all_rcs",
+        action="store_true",
+        help="find all possible recurrent sets")
+
     # ag("--bfs", "-bfs",
     #     action="store_true",
     #     help="use BFS in non-termination analysis")
@@ -91,6 +95,7 @@ if __name__ == "__main__":
     settings.prove_nonterm = args.nonterm
     settings.use_dfs = args.dfs
     # settings.use_bfs = args.bfs
+    settings.all_rcs = args.all_rcs
     
     if args.timeout:
         settings.timeout = int(args.timeout)

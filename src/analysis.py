@@ -671,8 +671,9 @@ class NonTerm(object):
             mlog.debug("init_transrel_rcs: {}".format(init_transrel_rcs))
 
             # Unreachable recurrent set
-            # if init_transrel_rcs.is_unsat():
-            #     return False, None, None
+            if transrel_rcs.is_unsat():
+                mlog.debug("transrel_rcs.is_unsat: True")
+                return False, None, None
 
             dg = defaultdict(list)
             def _check(rc):
@@ -919,7 +920,8 @@ class NonTerm(object):
                     continue
                 elif chk is True:
                     valid_rcs.append(rs)
-                    break
+                    if not settings.all_rcs:
+                        break
                 else:
                     for r in rs:
                         candidateRCS.append(r)
@@ -971,7 +973,7 @@ class NonTerm(object):
         for rcs, ancestors in valid_rcs:
             f = Z3.to_dnf(rcs.simplify())
             mlog.info("rcs: {}".format(rcs))
-            mlog.info("(simplified) rcs: {}".format(f))
+            mlog.info("(simplified) rcs: {}".format(" ".join(str(f).split())))
             for depth, ancestor in ancestors:
                 if ancestor is None:
                     ancestor_ = None
