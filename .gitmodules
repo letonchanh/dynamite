@@ -2,5 +2,5 @@
 	path = deps/dig
 	url = git@github.com:letonchanh/dig.git
 [submodule "deps/dynamo-instr"]
-	path = deps/dynamo-instr
+	path = deps/dynamite-instr
 	url = git@github.com:letonchanh/dynamo-instr.git

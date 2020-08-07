@@ -24,8 +24,8 @@ int main() {
     int r;
     //double a, x;
     int x;
-    int a = __VERIFIER_nondet_int();
-    x = a / 2.0;
+    int a = 2 * __VERIFIER_nondet_int();
+    x = a / 2;
     r = 0;
     
     while ( r*r - a - r + 2*x == 0 ) {

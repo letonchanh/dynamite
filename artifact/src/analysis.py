@@ -364,62 +364,118 @@ class Setup(object):
         mlog.debug("vloop init_symvars: {}".format(loop_init_symvars))
         
         assert vloop.inloop_loc in ss, vloop.inloop_loc
+        
+        # if vloop.inloop_loc in ss:
+        #     inloop_symstates = ss[vloop.inloop_loc]
+        #     inloop_ss_depths = sorted(inloop_symstates.keys())
+        #     inloop_fst_symstate = None
+        #     inloop_snd_symstate = None
+        #     while (inloop_fst_symstate is None or inloop_snd_symstate is None):
+        #         if inloop_ss_depths:
+        #             depth = inloop_ss_depths.pop()
+        #             depth_symstates = inloop_symstates[depth]
+        #             # mlog.debug("DEPTH {}".format(depth))
+        #             # mlog.debug("symstates ({}):\n{}".format(len(symstates.lst), symstates))
+        #             if len(depth_symstates.lst) >= 2:
+        #                 inloop_fst_symstate = depth_symstates.lst[0]
+        #                 inloop_snd_symstate = depth_symstates.lst[1]
+        #         else:
+        #             symstates = self._get_symstates_from_src(src, target_loc=vloop.inloop_loc,
+        #                                                      min_depth=symstates.maxdepth + 1)
+        #             ss = symstates.ss
+        #             inloop_symstates = ss[vloop.inloop_loc]
+        #             inloop_ss_depths = sorted(inloop_symstates.keys())
+            
+        #     assert inloop_fst_symstate, inloop_fst_symstate
+        #     assert inloop_snd_symstate, inloop_snd_symstate
+            
+        #     if inloop_fst_symstate and inloop_snd_symstate:
+        #         # Get loop's condition and transition relation
+        #         inloop_fst_slocal = z3.substitute(inloop_fst_symstate.slocal, vloop.transrel_pre_sst)
+        #         inloop_snd_slocal = z3.substitute(inloop_snd_symstate.slocal, vloop.transrel_post_sst)
+        #         mlog.debug("inloop_fst_slocal: {}".format(inloop_fst_slocal))
+        #         mlog.debug("inloop_snd_slocal: {}".format(inloop_snd_slocal))
+        #         # inloop_vars = Z3.get_vars(inloop_fst_symstate.slocal).union(Z3.get_vars(inloop_snd_symstate.slocal))
+        #         # inloop_inv_vars = inv_decls[vloop.inloop_loc].exprs(settings.use_reals)
+        #         # inloop_ex_vars = inloop_vars.difference(inloop_inv_vars)
+        #         # mlog.debug("inloop_ex_vars: {}".format(inloop_ex_vars))
+        #         # inloop_trans_f = z3.Exists(list(inloop_ex_vars), z3.And(inloop_fst_slocal, inloop_snd_slocal))
+        #         # loop_transrel = Z3.qe(inloop_trans_f)
+        #         # X_x, X_y -> x, y
+        #         init_sst = list(zip(loop_init_symvars.exprs(settings.use_reals),
+        #                             inp_decls.exprs(settings.use_reals)))
+        #         loop_transrel = z3.And(inloop_fst_slocal, inloop_snd_slocal)
+        #         loop_transrel = z3.substitute(loop_transrel, init_sst)
+        #         mlog.debug("loop_transrel: {}".format(loop_transrel))
+
+        #         mlog.debug("inloop_fst_symstate: pc: {}".format(inloop_fst_symstate.pc))
+        #         mlog.debug("inloop_fst_symstate: slocal: {}".format(inloop_fst_symstate.slocal))
+        #         # loop_cond = Z3.qe(z3.Exists(list(inloop_ex_vars), 
+        #         #                                   z3.And(inloop_fst_symstate.pc, inloop_fst_symstate.slocal)))
+        #         loop_cond = z3.substitute(inloop_fst_symstate.pc, init_sst)
+        #         mlog.debug("loop_cond: {}".format(loop_cond))
+        #         terms = ZSolver.get_mul_terms(loop_cond)
+        #         nonlinear_terms = list(itertools.filterfalse(lambda t: not ZSolver.is_nonlinear_mul_term(t), terms))
+        #         mlog.debug("terms: {}".format(terms))
+        #         mlog.debug("nonlinear_terms: {}".format(nonlinear_terms))
+
+        #         return Loop(inp_decls, loop_cond, loop_transrel)
 
         if vloop.inloop_loc in ss:
+            inloop_symstate = None
+            transrel_symstate = None
             inloop_symstates = ss[vloop.inloop_loc]
-            inloop_ss_depths = sorted(inloop_symstates.keys())
-            inloop_fst_symstate = None
-            inloop_snd_symstate = None
-            while (inloop_fst_symstate is None or inloop_snd_symstate is None):
-                if inloop_ss_depths:
-                    depth = inloop_ss_depths.pop()
-                    depth_symstates = inloop_symstates[depth]
-                    # mlog.debug("DEPTH {}".format(depth))
-                    # mlog.debug("symstates ({}):\n{}".format(len(symstates.lst), symstates))
-                    if len(depth_symstates.lst) >= 2:
-                        inloop_fst_symstate = depth_symstates.lst[0]
-                        inloop_snd_symstate = depth_symstates.lst[1]
+            if vloop.transrel_loc in ss:
+                transrel_symstates = ss[vloop.transrel_loc]
+            else:
+                transrel_symstates = {}
+            while (inloop_symstate is None or transrel_symstate is None):
+                inloop_ss_depths = inloop_symstates.keys()
+                transrel_ss_depths = set(transrel_symstates.keys())
+                common_depths = sorted([depth for depth in inloop_ss_depths if depth in transrel_ss_depths])
+                if common_depths:
+                    depth = common_depths.pop() # largest depth
+                    depth_inloop_symstates = inloop_symstates[depth]
+                    if depth_inloop_symstates.lst:
+                        inloop_symstate = depth_inloop_symstates.lst[0]
+                    depth_transrel_symstates = transrel_symstates[depth]
+                    if depth_transrel_symstates.lst:
+                        transrel_symstate = depth_transrel_symstates.lst[0]
                 else:
                     symstates = self._get_symstates_from_src(src, target_loc=vloop.inloop_loc,
                                                              min_depth=symstates.maxdepth + 1)
                     ss = symstates.ss
-                    inloop_symstates = ss[vloop.inloop_loc]
-                    inloop_ss_depths = sorted(inloop_symstates.keys())
+                    if vloop.inloop_loc in ss:
+                        inloop_symstates = ss[vloop.inloop_loc]
+                    else:
+                        inloop_symstates = {}
+                    
+                    if vloop.transrel_loc in ss:
+                        transrel_symstates = ss[vloop.transrel_loc]
+                    else:
+                        transrel_symstates = {}
             
-            assert inloop_fst_symstate, inloop_fst_symstate
-            assert inloop_snd_symstate, inloop_snd_symstate
-            
-            if inloop_fst_symstate and inloop_snd_symstate:
-                # Get loop's condition and transition relation
-                inloop_fst_slocal = z3.substitute(inloop_fst_symstate.slocal, vloop.transrel_pre_sst)
-                inloop_snd_slocal = z3.substitute(inloop_snd_symstate.slocal, vloop.transrel_post_sst)
-                mlog.debug("inloop_fst_slocal: {}".format(inloop_fst_slocal))
-                mlog.debug("inloop_snd_slocal: {}".format(inloop_snd_slocal))
-                # inloop_vars = Z3.get_vars(inloop_fst_symstate.slocal).union(Z3.get_vars(inloop_snd_symstate.slocal))
-                # inloop_inv_vars = inv_decls[vloop.inloop_loc].exprs(settings.use_reals)
-                # inloop_ex_vars = inloop_vars.difference(inloop_inv_vars)
-                # mlog.debug("inloop_ex_vars: {}".format(inloop_ex_vars))
-                # inloop_trans_f = z3.Exists(list(inloop_ex_vars), z3.And(inloop_fst_slocal, inloop_snd_slocal))
-                # loop_transrel = Z3.qe(inloop_trans_f)
-                # X_x, X_y -> x, y
-                init_sst = list(zip(loop_init_symvars.exprs(settings.use_reals),
-                                    inp_decls.exprs(settings.use_reals)))
-                loop_transrel = z3.And(inloop_fst_slocal, inloop_snd_slocal)
-                loop_transrel = z3.substitute(loop_transrel, init_sst)
-                mlog.debug("loop_transrel: {}".format(loop_transrel))
+            assert inloop_symstate, inloop_symstate
+            assert transrel_symstate, transrel_symstate
 
-                mlog.debug("inloop_fst_symstate: pc: {}".format(inloop_fst_symstate.pc))
-                mlog.debug("inloop_fst_symstate: slocal: {}".format(inloop_fst_symstate.slocal))
-                # loop_cond = Z3.qe(z3.Exists(list(inloop_ex_vars), 
-                #                                   z3.And(inloop_fst_symstate.pc, inloop_fst_symstate.slocal)))
-                loop_cond = z3.substitute(inloop_fst_symstate.pc, init_sst)
-                mlog.debug("loop_cond: {}".format(loop_cond))
-                terms = ZSolver.get_mul_terms(loop_cond)
-                nonlinear_terms = list(itertools.filterfalse(lambda t: not ZSolver.is_nonlinear_mul_term(t), terms))
-                mlog.debug("terms: {}".format(terms))
-                mlog.debug("nonlinear_terms: {}".format(nonlinear_terms))
+            mlog.debug("inloop_symstate: {}".format(inloop_symstate))
+            mlog.debug("transrel_symstate: {}".format(transrel_symstate))
 
-                return Loop(inp_decls, loop_cond, loop_transrel)
+            # X_x, X_y -> x, y
+            init_sst = list(zip(loop_init_symvars.exprs(settings.use_reals),
+                                inp_decls.exprs(settings.use_reals)))
+            loop_cond = z3.substitute(inloop_symstate.pc, init_sst)
+            mlog.debug("loop_cond: {}".format(loop_cond))
+
+            inloop_slocal = z3.substitute(inloop_symstate.slocal, vloop.transrel_pre_sst)
+            transrel_slocal = z3.substitute(transrel_symstate.slocal, vloop.transrel_post_sst)
+
+            loop_transrel = z3.And(inloop_slocal, transrel_slocal, transrel_symstate.pc)
+            loop_transrel = z3.substitute(loop_transrel, init_sst)
+            mlog.debug("loop_transrel: {}".format(loop_transrel))
+
+            return Loop(inp_decls, loop_cond, loop_transrel)
+
         return None
 
     def _parse_call_graph(self, msg):
@@ -863,7 +919,7 @@ class NonTerm(object):
                     continue
                 elif chk is True:
                     valid_rcs.append(rs)
-                    # break
+                    break
                 else:
                     for r in rs:
                         candidateRCS.append(r)
@@ -926,12 +982,22 @@ class NonTerm(object):
     @timeit
     def prove(self):
         _config = self._config
+        # rand_inps = _config.gen_rand_inps()
+        # itraces = _config.get_traces_from_inps(rand_inps)
+
         res = None
         for vloop in _config.vloop_info:
+            mlog.debug('Analysing {}'.format(vloop.vloop_id))
+            # base_term_inps, term_inps, mayloop_inps = vloop.cl.classify_inps(itraces)
+            # mlog.debug('base_term_inps: {}'.format(len(base_term_inps)))
+            # mlog.debug('term_inps: {}'.format(len(term_inps)))
+            # mlog.debug('mayloop_inps: {}'.format(len(mayloop_inps)))
+            
+            # if len(mayloop_inps) > 4 * (len(base_term_inps) + len(term_inps)):
             valid_rcs, _ = self.prove_nonterm_vloop(vloop)
             if valid_rcs:
                 res = (False, vloop.vloop_id, valid_rcs)
-                break 
+                break
         if res is None:
             print('Non-termination result: Unknown')
         else:

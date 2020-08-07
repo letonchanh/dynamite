@@ -34,21 +34,21 @@ int main() {
       //if (!(r != 0)) break;
 
       int c = 0, k = __VERIFIER_nondet_int();
-        while (u*u - v*v - 2*u + 2*v - 4*(A+r) + c <= k) {
+        //while (u*u - v*v - 2*u + 2*v - 4*(A+r) + c <= k) {
           //__VERIFIER_assert(4*(A+r) == u*u - v*v - 2*u + 2*v);
           //if (!(r > 0)) break;
             r = r - v;
             v = v + 2;
             c++;
-        }
+        //}
 
-        while (4*(A+r) - u*u - v*v - 2*u + 2*v + c <= k) {
+        //while (4*(A+r) - u*u - v*v - 2*u + 2*v + c <= k) {
           //__VERIFIER_assert(4*(A+r) == u*u - v*v - 2*u + 2*v);
           //if (!(r < 0))    break;
             r = r + u;
             u = u + 2;
             c++;
-        }
+        //}
     }
 
     //__VERIFIER_assert(4*A == u*u - v*v  - 2*u + 2*v);

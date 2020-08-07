@@ -421,13 +421,14 @@ class Setup(object):
 
         #         return Loop(inp_decls, loop_cond, loop_transrel)
 
-        assert vloop.transrel_loc in ss, vloop.transrel_loc
-
-        if vloop.inloop_loc in ss and vloop.transrel_loc in ss:
+        if vloop.inloop_loc in ss:
             inloop_symstate = None
             transrel_symstate = None
             inloop_symstates = ss[vloop.inloop_loc]
-            transrel_symstates = ss[vloop.transrel_loc]
+            if vloop.transrel_loc in ss:
+                transrel_symstates = ss[vloop.transrel_loc]
+            else:
+                transrel_symstates = {}
             while (inloop_symstate is None or transrel_symstate is None):
                 inloop_ss_depths = inloop_symstates.keys()
                 transrel_ss_depths = set(transrel_symstates.keys())
@@ -918,7 +919,7 @@ class NonTerm(object):
                     continue
                 elif chk is True:
                     valid_rcs.append(rs)
-                    # break
+                    break
                 else:
                     for r in rs:
                         candidateRCS.append(r)
@@ -981,22 +982,22 @@ class NonTerm(object):
     @timeit
     def prove(self):
         _config = self._config
-        rand_inps = _config.gen_rand_inps()
-        itraces = _config.get_traces_from_inps(rand_inps)
+        # rand_inps = _config.gen_rand_inps()
+        # itraces = _config.get_traces_from_inps(rand_inps)
 
         res = None
         for vloop in _config.vloop_info:
             mlog.debug('Analysing {}'.format(vloop.vloop_id))
-            base_term_inps, term_inps, mayloop_inps = vloop.cl.classify_inps(itraces)
-            mlog.debug('base_term_inps: {}'.format(len(base_term_inps)))
-            mlog.debug('term_inps: {}'.format(len(term_inps)))
-            mlog.debug('mayloop_inps: {}'.format(len(mayloop_inps)))
+            # base_term_inps, term_inps, mayloop_inps = vloop.cl.classify_inps(itraces)
+            # mlog.debug('base_term_inps: {}'.format(len(base_term_inps)))
+            # mlog.debug('term_inps: {}'.format(len(term_inps)))
+            # mlog.debug('mayloop_inps: {}'.format(len(mayloop_inps)))
             
-            if len(mayloop_inps) > 4 * (len(base_term_inps) + len(term_inps)):
-                valid_rcs, _ = self.prove_nonterm_vloop(vloop)
-                if valid_rcs:
-                    res = (False, vloop.vloop_id, valid_rcs)
-                    break
+            # if len(mayloop_inps) > 4 * (len(base_term_inps) + len(term_inps)):
+            valid_rcs, _ = self.prove_nonterm_vloop(vloop)
+            if valid_rcs:
+                res = (False, vloop.vloop_id, valid_rcs)
+                break
         if res is None:
             print('Non-termination result: Unknown')
         else:

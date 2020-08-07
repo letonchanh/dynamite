@@ -163,5 +163,26 @@ if __name__ == "__main__":
         mlog.debug('prove_process: {}'.format(prove_process.pid))
         prove_process.join(timeout=settings.timeout)
 
+        # def on_terminate(proc):
+        #     print("process {} terminated with exit code {}".format(proc, proc.returncode))
+
+        # dynamite_process = psutil.Process(pid=prove_process.pid)
+        # dynamite_children = dynamite_process.children(recursive=True)
+        # for child in dynamite_children:
+        #     print('Child pid is {}, {}'.format(child.pid, child.name()))
+        #     child.terminate()
+        # gone, alive = psutil.wait_procs(dynamite_children, timeout=1, callback=on_terminate)
+        # for p in alive:
+        #     print('{} alive'.format(p))
+        #     p.kill()
+        
+        # prove_process.terminate()
+        # if prove_process.exitcode is None:
+        #     pgrp = os.getpgid(prove_process.pid)
+        #     os.killpg(pgrp, signal.SIGINT)
+        # pgrp = os.getpgid(os.getpid())
+        # mlog.debug('pgrp: {}'.format(pgrp))
+        # os.killpg(pgrp, signal.SIGTERM)
+
     
 

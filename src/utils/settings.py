@@ -7,7 +7,7 @@ run_dig = False
 use_reals = False
 use_random_seed = False
 use_dfs = False
-use_bfs = False
+use_bfs = True
 prove_term = False
 prove_nonterm = False
 max_nonterm_refinement_depth = 3
@@ -29,7 +29,7 @@ class VTRACE:
 class CIL:
     PTR_VARS_PREFIX = 'PTR_'
 
-    CIL_TRANSFORM_DIR = DYNAMITE_DIR / "deps" / "dynamo-instr"
+    CIL_TRANSFORM_DIR = DYNAMITE_DIR / "deps" / "dynamite-instr"
     assert CIL_TRANSFORM_DIR.is_dir(), CIL_TRANSFORM_DIR
 
     CIL_EXE = CIL_TRANSFORM_DIR / "src" / "cil" / "bin" / "cilly"

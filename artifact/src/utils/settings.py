@@ -24,6 +24,7 @@ class VTRACE:
     PRELOOP_LABEL = 1
     INLOOP_LABEL = 2
     POSTLOOP_LABEL = 3
+    TRANSREL_LABEL = 4
 
 class CIL:
     PTR_VARS_PREFIX = 'PTR_'
