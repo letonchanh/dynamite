@@ -58,6 +58,12 @@ To reproduce the results in Figures 6, 7, 8, and 9, in the folder `dynamite/benc
     ```
     It took about ??? minutes for DynamiTe to run the whole benchmark on the Docker image.
     
+- To reproduce Figure 7, run
+    ```
+    make nontermination-crafted-lit
+    ```
+    The result can be found [here](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/results/nontermination-crafted-lit/nontermination-crafted-lit.out-uyq7S5j.html), whose log files are in the folder [results/nontermination-crafted-lit/out-uyq7S5j](results/nontermination-crafted-lit/out-uyq7S5j). We cannot handle the nondeterminism program `ChenCookFuhsNimkarOHearn-TACAS2014-Introduction.c`. The result of this example was wrongly reported in Figure 7 due to a bug in the symbolic execution.
+    
 - To reproduce Figure 8, run
     ```
     make nla-term
