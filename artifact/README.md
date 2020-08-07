@@ -62,7 +62,7 @@ To reproduce the results in Figures 6, 7, 8, and 9, in the folder `dynamite/benc
     ```
     make nla-term
     ```
-    It took about 150 minutes for DynamiTe to run the entire 38 benchmarks on the Docker image.
+    It took about 150 minutes for DynamiTe to run the entire 38 benchmarks on the Docker image. The result can be found [here](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/results/nla-term/nla-term.out-ZL8GkEB.html)
     
 - To reproduce Table 9, run
     ```
