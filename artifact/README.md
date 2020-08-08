@@ -38,11 +38,13 @@ You can follow the instructions in INSTALL.md to setup DynamiTe on a Debian/Ubun
 
 ## Usage
 
+1. To run DynamiTe
+
     ```
     python3 dynamo.py [options] <example.c>
     ```
 
-Command-line options
+2. Command-line options:
 
 - `--term`, `-t`: proving termination only (by the `ProveT` algorithm)
 - `--nonterm`, `-nt`: proving non-termination only (by the `ProveNT` algorithm)
