@@ -1,0 +1,269 @@
+__main__:118:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:119:INFO (<module>) - Dig's logger_level: WARNING
+__main__:120:INFO (<module>) - Timeout: 300s
+__main__:122:INFO (<module>) - 2020-08-08 17:08:08.979287: dynamo.py --timeout=300 /tools/dynamite/benchmarks/termination-crafted-lit/ChawdharyCookGulwaniSagivYang-ESOP2008-easy1.c -t
+/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:155:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_embjxa43
+analysis:163:DEBUG (__init__) - trans_cmd: /tools/dynamite/deps/dynamite-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /tools/dynamite/benchmarks/termination-crafted-lit/ChawdharyCookGulwaniSagivYang-ESOP2008-easy1.c --out=/var/tmp/Dig_embjxa43/ChawdharyCookGulwaniSagivYang-ESOP2008-easy1.c --bnd=500
+analysis:170:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_14': ['exit'], 'mainQ': ['vloop_14'], 'main': ['mainQ']})
+analysis:181:DEBUG (__init__) - postorder_vloop_ids: ['vloop_14']
+analysis:190:DEBUG (__init__) - inp_decls (<class 'data.prog.Symbs'>): I z
+analysis:191:DEBUG (__init__) - inv_decls (<class 'data.prog.DSymbs'>): {'vtrace1_14': (Symb(name='x', typ='I'), Symb(name='z', typ='I')), 'vtrace2_14': (Symb(name='x', typ='I'), Symb(name='z', typ='I')), 'vtrace3_14': (Symb(name='x', typ='I'), Symb(name='z', typ='I')), 'vtrace4_14': (Symb(name='x', typ='I'), Symb(name='z', typ='I'))}
+__main__:168:DEBUG (<module>) - prove_process: 18567
+lib:49:DEBUG (gen_rand_inps) - gen 97/100 random inps
+utils.profiling:31:DEBUG (timed) - gen_rand_inps: 176.85ms
+lib:60:DEBUG (get_traces_from_inps) - inp_decls: I z
+lib:61:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_14': (Symb(name='x', typ='I'), Symb(name='z', typ='I')), 'vtrace2_14': (Symb(name='x', typ='I'), Symb(name='z', typ='I')), 'vtrace3_14': (Symb(name='x', typ='I'), Symb(name='z', typ='I')), 'vtrace4_14': (Symb(name='x', typ='I'), Symb(name='z', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 542.42ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 293.49ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 836.58ms
+analysis:1320:DEBUG (prove) - itraces: 97
+analysis:1326:DEBUG (prove) - Analysing Termination vloop_14
+analysis:1264:DEBUG (prove_term_vloop) - classify_inps: vloop_14
+analysis:1267:DEBUG (prove_term_vloop) - itraces: 97
+lib:214:DEBUG (print_inps) - z=17: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-12: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=25: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=21: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-24: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-7: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-16: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-9: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-274: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=29: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=287: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-287: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-29: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=12: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-278: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-21: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-25: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-20: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=294: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=275: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=9: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=276: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=0: [('vtrace1_14', 1), ('vtrace2_14', 40), ('vtrace4_14', 40), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-275: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=8: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-26: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-297: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=5: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-296: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-279: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=271: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=4: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-272: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=1: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=13: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=28: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=24: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-10: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-14: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-2: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-300: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=285: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=281: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=293: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=289: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=274: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=286: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=10: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=27: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-1: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=273: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-22: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-11: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=22: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-295: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=2: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=19: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-277: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-291: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-3: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=288: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=14: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-282: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-15: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=23: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-19: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-23: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=291: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-286: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-285: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-290: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-294: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-293: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-281: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-276: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-4: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=295: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-27: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=11: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=16: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=7: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=3: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-298: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-5: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=6: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=283: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-289: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-299: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=296: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=292: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=278: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-13: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-8: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=280: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=26: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=-271: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+lib:214:DEBUG (print_inps) - z=279: [('vtrace1_14', 1), ('vtrace2_14', 20), ('vtrace4_14', 20), ('vtrace3_14', 1)]
+analysis:1269:DEBUG (prove_term_vloop) - base_term_inps: 0
+analysis:1270:DEBUG (prove_term_vloop) - term_inps: 97
+analysis:1271:DEBUG (prove_term_vloop) - mayloop_inps: 0
+analysis:1078:DEBUG (infer_ranking_functions) - vloop: vloop_14
+analysis:1079:DEBUG (infer_ranking_functions) - term_itraces: 97
+analysis:1126:DEBUG (infer_ranking_functions) - train_rand_trans: 1940
+analysis:1133:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): uk_1*x + uk_2*z + uk_0
+analysis:1134:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2]
+analysis:1158:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1940
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 279*uk_2
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 16*uk_1 + 279*uk_2
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_2 = 0, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*x
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1765
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 16*uk_1 + 279*uk_2
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 40*uk_1 + 279*uk_2
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_2 = 1, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*x + z
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1151
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 26*uk_1 + -271*uk_2
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 30*uk_1 + -271*uk_2
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_2 = -1, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*x + -1*z
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 440
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 24*uk_1 + -8*uk_2
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 38*uk_1 + -8*uk_2
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_2 = -3, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*x + -3*z
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 306
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 26*uk_1 + -8*uk_2
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 28*uk_1 + -8*uk_2
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_2 = -4, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*x + -4*z
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 288
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 34*uk_1 + -8*uk_2
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 38*uk_1 + -8*uk_2
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_2 = -5, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*x + -5*z
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 280
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 18*uk_1 + 6*uk_2
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 20*uk_1 + 6*uk_2
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_2 = 3, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*x + 3*z
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 133
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 22*uk_1 + 6*uk_2
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 24*uk_1 + 6*uk_2
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 132
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 28*uk_1 + 6*uk_2
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 32*uk_1 + 6*uk_2
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 131
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 24*uk_1 + 6*uk_2
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 28*uk_1 + 6*uk_2
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_2 = 4, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*x + 4*z
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 107
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 26*uk_1 + -5*uk_2
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 32*uk_1 + -5*uk_2
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_2 = -6, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*x + -6*z
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 96
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 18*uk_1 + 3*uk_2
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 40*uk_1 + 3*uk_2
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_2 = 6, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*x + 6*z
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 76
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 24*uk_1 + 3*uk_2
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 40*uk_1 + 3*uk_2
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_2 = 8, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*x + 8*z
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 64
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 28*uk_1 + 3*uk_2
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 40*uk_1 + 3*uk_2
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_2 = 10, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*x + 10*z
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 61
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 28*uk_1 + -4*uk_2
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 40*uk_1 + -4*uk_2
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_2 = -7, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*x + -7*z
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 57
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 34*uk_1 + -4*uk_2
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 36*uk_1 + -4*uk_2
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_2 = -9, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*x + -9*z
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 48
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 32*uk_1 + -3*uk_2
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 34*uk_1 + -3*uk_2
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_2 = -11, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*x + -11*z
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 47
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 22*uk_1 + 2*uk_2
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 30*uk_1 + 2*uk_2
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_2 = 11, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*x + 11*z
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 45
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 30*uk_1 + -1*uk_2
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 40*uk_1 + -1*uk_2
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_2 = -30, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*x + -30*z
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 33
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 38*uk_1 + -1*uk_2
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 40*uk_1 + -1*uk_2
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_2 = -38, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*x + -38*z
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 32
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 16*uk_1 + uk_2
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 30*uk_1 + uk_2
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_2 = 16, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*x + 16*z
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 27
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 32*uk_1 + uk_2
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 36*uk_1 + uk_2
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_2 = 32, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*x + 32*z
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 20
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 15*uk_1
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 20*uk_1
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_2 = 0, uk_0 = 15]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: 15 + -1*x
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 9
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 16*uk_1
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 20*uk_1
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_2 = 0, uk_0 = 16]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: 16 + -1*x
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 5
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 20*uk_1
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 28*uk_1
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_2 = 0, uk_0 = 20]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: 20 + -1*x
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 3
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 28*uk_1
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 33*uk_1
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_2 = 0, uk_0 = 28]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: 28 + -1*x
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:1201:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [-1*x, -1*x + z, -1*x + -1*z, -1*x + -3*z, -1*x + -4*z, -1*x + -5*z, -1*x + 3*z, -1*x + 4*z, -1*x + -6*z, -1*x + 6*z, -1*x + 8*z, -1*x + 10*z, -1*x + -7*z, -1*x + -9*z, -1*x + -11*z, -1*x + 11*z, -1*x + -30*z, -1*x + -38*z, -1*x + 16*z, -1*x + 32*z, 15 + -1*x, 16 + -1*x, 20 + -1*x, 28 + -1*x]
+utils.profiling:31:DEBUG (timed) - infer_ranking_functions: 48529.06ms
+analysis:1286:DEBUG (prove_term_vloop) - validate_ranking_functions: vloop_14
+analysis:1209:DEBUG (validate_ranking_functions) - ranks_str: -1*x|-1*x + z|-1*x + -1*z|-1*x + -3*z|-1*x + -4*z|-1*x + -5*z|-1*x + 3*z|-1*x + 4*z|-1*x + -6*z|-1*x + 6*z|-1*x + 8*z|-1*x + 10*z|-1*x + -7*z|-1*x + -9*z|-1*x + -11*z|-1*x + 11*z|-1*x + -30*z|-1*x + -38*z|-1*x + 16*z|-1*x + 32*z|15 + -1*x|16 + -1*x|20 + -1*x|28 + -1*x
+validate:124:DEBUG (gen_validate_file) - validate_cmd: /tools/dynamite/deps/dynamite-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /tools/dynamite/benchmarks/termination-crafted-lit/ChawdharyCookGulwaniSagivYang-ESOP2008-easy1.c --out=/var/tmp/Dig_embjxa43/vloop_14/par/validate/ChawdharyCookGulwaniSagivYang-ESOP2008-easy1.c --pos=14 --ranks="-1*x|-1*x + z|-1*x + -1*z|-1*x + -3*z|-1*x + -4*z|-1*x + -5*z|-1*x + 3*z|-1*x + 4*z|-1*x + -6*z|-1*x + 6*z|-1*x + 8*z|-1*x + 10*z|-1*x + -7*z|-1*x + -9*z|-1*x + -11*z|-1*x + 11*z|-1*x + -30*z|-1*x + -38*z|-1*x + 16*z|-1*x + 32*z|15 + -1*x|16 + -1*x|20 + -1*x|28 + -1*x"
+validate:41:DEBUG (prove_reach) - pcmd: /tools/CPAchecker-1.9-unix/scripts/cpa.sh -spec /tools/reachability.prp -predicateAnalysis -setprop counterexample.export.compressWitness=false /var/tmp/Dig_embjxa43/vloop_14/par/validate/ChawdharyCookGulwaniSagivYang-ESOP2008-easy1.c
+validate:41:DEBUG (prove_reach) - pcmd: /tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_embjxa43/vloop_14/par/uatm --witness-name witness.graphml --file /var/tmp/Dig_embjxa43/vloop_14/par/validate/ChawdharyCookGulwaniSagivYang-ESOP2008-easy1.c
+validate:41:DEBUG (prove_reach) - pcmd: /tools/ultimate/releaseScripts/default/UTaipan-linux/Ultimate.py --spec /tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_embjxa43/vloop_14/par/utp --witness-name witness.graphml --file /var/tmp/Dig_embjxa43/vloop_14/par/validate/ChawdharyCookGulwaniSagivYang-ESOP2008-easy1.c
+
+HARD TIMER: 300.000903
+

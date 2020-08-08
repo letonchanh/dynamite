@@ -1,0 +1,28 @@
+__main__:118:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:119:INFO (<module>) - Dig's logger_level: WARNING
+__main__:120:INFO (<module>) - Timeout: 300s
+__main__:122:INFO (<module>) - 2020-08-08 21:09:07.319101: dynamo.py --timeout=300 /tools/dynamite/benchmarks/termination-crafted-lit/strchr-2.c -t
+/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:155:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_vwgebp0l
+analysis:163:DEBUG (__init__) - trans_cmd: /tools/dynamite/deps/dynamite-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /tools/dynamite/benchmarks/termination-crafted-lit/strchr-2.c --out=/var/tmp/Dig_vwgebp0l/strchr-2.c --bnd=500
+analysis:170:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'build_nondet_String': ['malloc'], 'cstrchr': ['vloop_31'], 'vloop_31': ['exit'], 'mainQ': ['build_nondet_String', 'cstrchr'], 'main': ['mainQ']})
+Traceback (most recent call last):
+  File "dynamo.py", line 145, in <module>
+    config = Setup(seed, inp)
+  File "/tools/dynamite/src/analysis.py", line 175, in __init__
+    src = c_src(Path(self.trans_inp), self.tmpdir)
+  File "/tools/dynamite/deps/dig/src/helpers/src.py", line 138, in __init__
+    super().__init__(filename, tmpdir)
+  File "/tools/dynamite/deps/dig/src/helpers/src.py", line 38, in __init__
+    self.compile_test(tracefile, tmpdir / "{}.exe".format(basename.stem))
+  File "/tools/dynamite/deps/dig/src/helpers/src.py", line 155, in compile_test
+    assert not errmsg, "cmd: {} gives err:\n{}".format(cmd, errmsg)
+AssertionError: cmd: gcc /var/tmp/Dig_vwgebp0l/traces/strchr-2_mainQ.c -o /var/tmp/Dig_vwgebp0l/strchr-2_mainQ.exe gives err:
+/var/tmp/Dig_vwgebp0l/traces/strchr-2_mainQ.c:417:1: warning: 'cdecl' attribute ignored [-Wattributes]
+  417 | extern void *( __attribute__((__cdecl__)) malloc)(size_t __size ) ;
+      | ^~~~~~
+
+
+HARD TIMER: 4.342475
+

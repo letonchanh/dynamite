@@ -1,0 +1,243 @@
+__main__:118:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:119:INFO (<module>) - Dig's logger_level: WARNING
+__main__:120:INFO (<module>) - Timeout: 300s
+__main__:122:INFO (<module>) - 2020-08-08 18:41:25.894480: dynamo.py --timeout=300 /tools/dynamite/benchmarks/termination-crafted-lit/HarrisLalNoriRajamani-SAS2010-Fig1.c -t
+/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:155:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_8j0rypz8
+analysis:163:DEBUG (__init__) - trans_cmd: /tools/dynamite/deps/dynamite-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /tools/dynamite/benchmarks/termination-crafted-lit/HarrisLalNoriRajamani-SAS2010-Fig1.c --out=/var/tmp/Dig_8j0rypz8/HarrisLalNoriRajamani-SAS2010-Fig1.c --bnd=500
+analysis:170:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'f': ['vloop_23', 'vloop_27'], 'vloop_23': ['exit'], 'vloop_27': ['exit'], 'mainQ': ['f', 'f'], 'main': ['mainQ']})
+analysis:181:DEBUG (__init__) - postorder_vloop_ids: ['vloop_23', 'vloop_27']
+analysis:190:DEBUG (__init__) - inp_decls (<class 'data.prog.Symbs'>): 
+analysis:191:DEBUG (__init__) - inv_decls (<class 'data.prog.DSymbs'>): {'vtrace1_27': (Symb(name='d', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='z', typ='I')), 'vtrace2_27': (Symb(name='d', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='z', typ='I')), 'vtrace3_27': (Symb(name='d', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='z', typ='I')), 'vtrace4_27': (Symb(name='d', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='z', typ='I')), 'vtrace1_23': (Symb(name='k', typ='I'), Symb(name='z', typ='I')), 'vtrace2_23': (Symb(name='k', typ='I'), Symb(name='z', typ='I')), 'vtrace3_23': (Symb(name='k', typ='I'), Symb(name='z', typ='I')), 'vtrace4_23': (Symb(name='k', typ='I'), Symb(name='z', typ='I'))}
+__main__:168:DEBUG (<module>) - prove_process: 13635
+utils.profiling:31:DEBUG (timed) - gen_rand_inps: 0.70ms
+lib:60:DEBUG (get_traces_from_inps) - inp_decls: 
+lib:61:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_27': (Symb(name='d', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='z', typ='I')), 'vtrace2_27': (Symb(name='d', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='z', typ='I')), 'vtrace3_27': (Symb(name='d', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='z', typ='I')), 'vtrace4_27': (Symb(name='d', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='z', typ='I')), 'vtrace1_23': (Symb(name='k', typ='I'), Symb(name='z', typ='I')), 'vtrace2_23': (Symb(name='k', typ='I'), Symb(name='z', typ='I')), 'vtrace3_23': (Symb(name='k', typ='I'), Symb(name='z', typ='I')), 'vtrace4_23': (Symb(name='k', typ='I'), Symb(name='z', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 494.24ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 263.85ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 758.88ms
+analysis:1320:DEBUG (prove) - itraces: 100
+analysis:1326:DEBUG (prove) - Analysing Termination vloop_23
+analysis:1264:DEBUG (prove_term_vloop) - classify_inps: vloop_23
+analysis:1267:DEBUG (prove_term_vloop) - itraces: 100
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+lib:214:DEBUG (print_inps) - : [('vtrace1_23', 1), ('vtrace3_23', 1), ('vtrace1_27', 1), ('vtrace2_27', 1), ('vtrace4_27', 1), ('vtrace3_27', 1)]
+analysis:1269:DEBUG (prove_term_vloop) - base_term_inps: 100
+analysis:1270:DEBUG (prove_term_vloop) - term_inps: 0
+analysis:1271:DEBUG (prove_term_vloop) - mayloop_inps: 0
+analysis:1078:DEBUG (infer_ranking_functions) - vloop: vloop_23
+analysis:1079:DEBUG (infer_ranking_functions) - term_itraces: 0
+utils.profiling:31:DEBUG (timed) - infer_ranking_functions: 0.09ms
+analysis:1286:DEBUG (prove_term_vloop) - validate_ranking_functions: vloop_23
+analysis:1209:DEBUG (validate_ranking_functions) - ranks_str: 
+validate:124:DEBUG (gen_validate_file) - validate_cmd: /tools/dynamite/deps/dynamite-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /tools/dynamite/benchmarks/termination-crafted-lit/HarrisLalNoriRajamani-SAS2010-Fig1.c --out=/var/tmp/Dig_8j0rypz8/vloop_23/par/validate/HarrisLalNoriRajamani-SAS2010-Fig1.c --pos=23 --ranks=""
+validate:41:DEBUG (prove_reach) - pcmd: /tools/CPAchecker-1.9-unix/scripts/cpa.sh -spec /tools/reachability.prp -predicateAnalysis -setprop counterexample.export.compressWitness=false /var/tmp/Dig_8j0rypz8/vloop_23/par/validate/HarrisLalNoriRajamani-SAS2010-Fig1.c
+validate:41:DEBUG (prove_reach) - pcmd: /tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_8j0rypz8/vloop_23/par/uatm --witness-name witness.graphml --file /var/tmp/Dig_8j0rypz8/vloop_23/par/validate/HarrisLalNoriRajamani-SAS2010-Fig1.c
+validate:41:DEBUG (prove_reach) - pcmd: /tools/ultimate/releaseScripts/default/UTaipan-linux/Ultimate.py --spec /tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_8j0rypz8/vloop_23/par/utp --witness-name witness.graphml --file /var/tmp/Dig_8j0rypz8/vloop_23/par/validate/HarrisLalNoriRajamani-SAS2010-Fig1.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /tools/CPAchecker-1.9-unix/scripts/cpa.sh -spec /tools/reachability.prp -witnessValidation -witness /var/tmp/Dig_8j0rypz8/vloop_23/par/cpa/output/Counterexample.1.graphml /var/tmp/Dig_8j0rypz8/vloop_23/par/validate/HarrisLalNoriRajamani-SAS2010-Fig1.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /tools/reachability.prp --architecture 32bit --validate /var/tmp/Dig_8j0rypz8/vloop_23/par/uatm/witness.graphml --file /var/tmp/Dig_8j0rypz8/vloop_23/par/validate/HarrisLalNoriRajamani-SAS2010-Fig1.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /tools/ultimate/releaseScripts/default/UTaipan-linux/Ultimate.py --spec /tools/reachability.prp --architecture 32bit --validate /var/tmp/Dig_8j0rypz8/vloop_23/par/utp/witness.graphml --file /var/tmp/Dig_8j0rypz8/vloop_23/par/validate/HarrisLalNoriRajamani-SAS2010-Fig1.c
+validate:64:DEBUG (validate_witness) - v_rmsg: Running CPAchecker with default heap size (1200M). Specify a larger value with -heap if you have more RAM.
+Running CPAchecker with default stack size (1024k). Specify a larger value with -stack if needed.
+Verification result: FALSE. Property violation (unreach-call: __VERIFIER_error(); called in line 40) found by chosen configuration.
+More details about the verification run can be found in the directory "./output".
+Graphical representation included in the file "./output/Counterexample.1.html".
+
+validate:65:DEBUG (validate_witness) - v_errmsg: Language C detected and set for analysis (CPAMain.detectFrontendLanguageIfNecessary, INFO)
+
+CPAchecker 1.9 / witnessValidation (OpenJDK 64-Bit Server VM 1.8.0_265) started (CPAchecker.run, INFO)
+
+Parsing CFA from file(s) "/var/tmp/Dig_8j0rypz8/vloop_23/par/validate/HarrisLalNoriRajamani-SAS2010-Fig1.c" (CPAchecker.parse, INFO)
+
+Using Restarting Algorithm (CoreComponentsFactory.createAlgorithm, INFO)
+
+The following configuration options were specified but are not used:
+ termination.violation.witness
+ cpa.arg.compressWitness
+ cpa.automaton.treatErrorsAsTargets
+ cpa.composite.aggregateBasicBlocks
+ WitnessAutomaton.cpa.automaton.treatErrorsAsTargets
+ counterexample.export.exportAsSource
+ counterexample.export.graphml
+ counterexample.export.compressWitness
+ cpa.arg.proofWitness 
+ (CPAchecker.printConfigurationWarnings, WARNING)
+
+Starting analysis ... (CPAchecker.runAlgorithm, INFO)
+
+Loading analysis 1 from file /tools/CPAchecker-1.9-unix/config/components/violationWitnessValidation.properties ... (RestartAlgorithm.run, INFO)
+
+Mismatch of configuration options when loading from '/tools/CPAchecker-1.9-unix/config/components/violationWitnessValidation.properties': 'specification' has two values '/tools/CPAchecker-1.9-unix/config/specification/sv-comp-reachability.spc,/var/tmp/Dig_8j0rypz8/vloop_23/par/cpa/output/Counterexample.1.graphml' and ''. Using ''. (NestingAlgorithm.checkConfigs, INFO)
+
+Using predicate analysis with MathSAT5 version 5.5.4 (bd863fede57e) (Feb 21 2019 15:05:40, gmp 6.1.0, gcc 4.8.5, 64-bit, reentrant) and JFactory 1.21. (Analysis /tools/CPAchecker-1.9-unix/config/components/violationWitnessValidation.properties:PredicateCPA:PredicateCPA.<init>, INFO)
+
+Using refinement for predicate analysis with PredicateAbstractionRefinementStrategy strategy. (Analysis /tools/CPAchecker-1.9-unix/config/components/violationWitnessValidation.properties:PredicateCPA:PredicateCPARefiner.<init>, INFO)
+
+Starting analysis 1 ... (RestartAlgorithm.run, INFO)
+
+Stopping analysis ... (CPAchecker.runAlgorithm, INFO)
+
+
+validate:67:DEBUG (validate_witness) - v_res: False
+validate:290:DEBUG (mk_trans_cex) - dcex: defaultdict(<class 'dict'>, {3: {'k': 4, 'z': 1}, 4: {'z': 2}})
+validate:303:DEBUG (mk_trans_cex) - trans_cex: None
+validate:325:DEBUG (mk_var_map_from_smtlib) - vmap: defaultdict(<class 'dict'>, {'k': {3: 'f::k@3'}, 'z': {3: 'f::z@3', 4: 'f::z@4'}})
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex: None
+validate:64:DEBUG (validate_witness) - v_rmsg: Checking for ERROR reachability
+Using default analysis
+Version 6641879a
+Calling Ultimate with: /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dosgi.configuration.area=/tools/ultimate/releaseScripts/default/UAutomizer-linux/data/config -Xmx12G -Xms1G -jar /tools/ultimate/releaseScripts/default/UAutomizer-linux/plugins/org.eclipse.equinox.launcher_1.3.100.v20150511-1540.jar -data @noDefault -ultimatedata /tools/ultimate/releaseScripts/default/UAutomizer-linux/data -tc /tools/ultimate/releaseScripts/default/UAutomizer-linux/config/AutomizerReachWitnessValidation.xml -i /var/tmp/Dig_8j0rypz8/vloop_23/par/validate/HarrisLalNoriRajamani-SAS2010-Fig1.c /var/tmp/Dig_8j0rypz8/vloop_23/par/uatm/witness.graphml -s /tools/ultimate/releaseScripts/default/UAutomizer-linux/config/svcomp-Reach-32bit-Automizer_Default.epf --cacsl2boogietranslator.entry.function main --traceabstraction.compute.hoare.annotation.of.negated.interpolant.automaton,.abstraction.and.cfg false
+.........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+Execution finished normally
+Writing output log to file Ultimate.log
+Writing human readable error path to file UltimateCounterExample.errorpath
+Result:
+FALSE
+
+validate:65:DEBUG (validate_witness) - v_errmsg: 
+validate:67:DEBUG (validate_witness) - v_res: False
+validate:354:DEBUG (mk_trans_cex) - dcex: {'__cil_tmp': '2', '__cil_tmp16': '2', '__cil_tmp___0': '2', '__cil_tmp___1': '3', 'd': '1', 'dup': '1', 'k': '3', 'td': '1', 'tk': '3', 'tx': '2', 'ty': '2', 'tz': '1', 'x': '2', 'y': '2', 'z': '2'}
+validate:365:DEBUG (mk_trans_cex) - trans_cex: [(Trace(ss=('k', 'z'), vs=(3, 1)), Trace(ss=('k', 'z'), vs=(3, 2)))]
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex: [(Trace(ss=('k', 'z'), vs=(3, 1)), Trace(ss=('k', 'z'), vs=(3, 2)))]
+validate:64:DEBUG (validate_witness) - v_rmsg: Checking for ERROR reachability
+Using default analysis
+Version 6641879a
+Calling Ultimate with: /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dosgi.configuration.area=/tools/ultimate/releaseScripts/default/UTaipan-linux/data/config -Xmx12G -Xms1G -jar /tools/ultimate/releaseScripts/default/UTaipan-linux/plugins/org.eclipse.equinox.launcher_1.3.100.v20150511-1540.jar -data @noDefault -ultimatedata /tools/ultimate/releaseScripts/default/UTaipan-linux/data -tc /tools/ultimate/releaseScripts/default/UTaipan-linux/config/TaipanReachWitnessValidation.xml -i /var/tmp/Dig_8j0rypz8/vloop_23/par/validate/HarrisLalNoriRajamani-SAS2010-Fig1.c /var/tmp/Dig_8j0rypz8/vloop_23/par/utp/witness.graphml -s /tools/ultimate/releaseScripts/default/UTaipan-linux/config/svcomp-Reach-32bit-Taipan_Default.epf --cacsl2boogietranslator.entry.function main --traceabstraction.compute.hoare.annotation.of.negated.interpolant.automaton,.abstraction.and.cfg false
+.......................................................................................................................................................................................................................................................................................
+Execution finished normally
+Writing output log to file Ultimate.log
+Writing human readable error path to file UltimateCounterExample.errorpath
+Result:
+FALSE
+
+validate:65:DEBUG (validate_witness) - v_errmsg: 
+validate:67:DEBUG (validate_witness) - v_res: False
+validate:365:DEBUG (mk_trans_cex) - trans_cex: None
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex: None
+validate:254:DEBUG (prove_reach) - wrs: []
+utils.profiling:31:DEBUG (timed) - prove_reach: 21364.06ms
+analysis:1222:DEBUG (validate_ranking_functions) - r: None
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 21809.36ms
+analysis:1288:DEBUG (prove_term_vloop) - Termination result (vloop_23): None ([])
+utils.profiling:31:DEBUG (timed) - prove_term_vloop: 21815.67ms
+utils.profiling:31:DEBUG (timed) - prove: 22576.28ms
+utils.profiling:31:DEBUG (timed) - prove: 22576.51ms
+Termination result: None
+Time log:
+gen_rand_inps: 0.001s
+_get_traces_mp: 0.494s
+_merge_traces: 0.264s
+get_traces_from_inps: 0.759s
+infer_ranking_functions: 0.000s
+prove_reach: 21.364s
+validate_ranking_functions: 21.809s
+prove_term_vloop: 21.816s
+prove: 22.576s
+
+HARD TIMER: 27.203912
+

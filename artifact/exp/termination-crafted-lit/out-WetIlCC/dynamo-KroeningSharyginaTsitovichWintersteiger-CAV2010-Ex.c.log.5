@@ -1,0 +1,261 @@
+__main__:118:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:119:INFO (<module>) - Dig's logger_level: WARNING
+__main__:120:INFO (<module>) - Timeout: 300s
+__main__:122:INFO (<module>) - 2020-08-08 19:11:18.054174: dynamo.py --timeout=300 /tools/dynamite/benchmarks/termination-crafted-lit/KroeningSharyginaTsitovichWintersteiger-CAV2010-Ex.c -t
+/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:155:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_o8ddu_te
+analysis:163:DEBUG (__init__) - trans_cmd: /tools/dynamite/deps/dynamite-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /tools/dynamite/benchmarks/termination-crafted-lit/KroeningSharyginaTsitovichWintersteiger-CAV2010-Ex.c --out=/var/tmp/Dig_o8ddu_te/KroeningSharyginaTsitovichWintersteiger-CAV2010-Ex.c --bnd=500
+analysis:170:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_17': ['exit'], 'mainQ': ['vloop_17'], 'main': ['mainQ']})
+analysis:181:DEBUG (__init__) - postorder_vloop_ids: ['vloop_17']
+analysis:190:DEBUG (__init__) - inp_decls (<class 'data.prog.Symbs'>): I i
+analysis:191:DEBUG (__init__) - inv_decls (<class 'data.prog.DSymbs'>): {'vtrace1_17': (Symb(name='i', typ='I'),), 'vtrace2_17': (Symb(name='i', typ='I'),), 'vtrace3_17': (Symb(name='i', typ='I'),), 'vtrace4_17': (Symb(name='i', typ='I'),)}
+__main__:168:DEBUG (<module>) - prove_process: 16923
+lib:49:DEBUG (gen_rand_inps) - gen 100/100 random inps
+utils.profiling:31:DEBUG (timed) - gen_rand_inps: 174.84ms
+lib:60:DEBUG (get_traces_from_inps) - inp_decls: I i
+lib:61:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_17': (Symb(name='i', typ='I'),), 'vtrace2_17': (Symb(name='i', typ='I'),), 'vtrace3_17': (Symb(name='i', typ='I'),), 'vtrace4_17': (Symb(name='i', typ='I'),)}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 563.70ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 813.94ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 1378.31ms
+analysis:1320:DEBUG (prove) - itraces: 100
+analysis:1326:DEBUG (prove) - Analysing Termination vloop_17
+analysis:1264:DEBUG (prove_term_vloop) - classify_inps: vloop_17
+analysis:1267:DEBUG (prove_term_vloop) - itraces: 100
+lib:214:DEBUG (print_inps) - i=-26: [('vtrace1_17', 1), ('vtrace2_17', 265), ('vtrace4_17', 265), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=275: [('vtrace1_17', 1), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=12: [('vtrace1_17', 1), ('vtrace2_17', 228), ('vtrace4_17', 228), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-278: [('vtrace1_17', 1), ('vtrace2_17', 497), ('vtrace4_17', 497), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=288: [('vtrace1_17', 1), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=287: [('vtrace1_17', 1), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=29: [('vtrace1_17', 1), ('vtrace2_17', 211), ('vtrace4_17', 211), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-291: [('vtrace1_17', 1), ('vtrace2_17', 500), ('vtrace4_17', 500)]
+lib:214:DEBUG (print_inps) - i=296: [('vtrace1_17', 1), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=13: [('vtrace1_17', 1), ('vtrace2_17', 227), ('vtrace4_17', 227), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-16: [('vtrace1_17', 1), ('vtrace2_17', 255), ('vtrace4_17', 255), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=8: [('vtrace1_17', 1), ('vtrace2_17', 231), ('vtrace4_17', 231), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=26: [('vtrace1_17', 1), ('vtrace2_17', 214), ('vtrace4_17', 214), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=20: [('vtrace1_17', 1), ('vtrace2_17', 220), ('vtrace4_17', 220), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-8: [('vtrace1_17', 1), ('vtrace2_17', 247), ('vtrace4_17', 247), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-288: [('vtrace1_17', 1), ('vtrace2_17', 500), ('vtrace4_17', 500)]
+lib:214:DEBUG (print_inps) - i=28: [('vtrace1_17', 1), ('vtrace2_17', 212), ('vtrace4_17', 212), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-287: [('vtrace1_17', 1), ('vtrace2_17', 500), ('vtrace4_17', 500)]
+lib:214:DEBUG (print_inps) - i=9: [('vtrace1_17', 1), ('vtrace2_17', 230), ('vtrace4_17', 230), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=18: [('vtrace1_17', 1), ('vtrace2_17', 222), ('vtrace4_17', 222), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-17: [('vtrace1_17', 1), ('vtrace2_17', 256), ('vtrace4_17', 256), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-7: [('vtrace1_17', 1), ('vtrace2_17', 246), ('vtrace4_17', 246), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=21: [('vtrace1_17', 1), ('vtrace2_17', 219), ('vtrace4_17', 219), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=3: [('vtrace1_17', 1), ('vtrace2_17', 236), ('vtrace4_17', 236), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-5: [('vtrace1_17', 1), ('vtrace2_17', 244), ('vtrace4_17', 244), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-294: [('vtrace1_17', 1), ('vtrace2_17', 500), ('vtrace4_17', 500)]
+lib:214:DEBUG (print_inps) - i=-12: [('vtrace1_17', 1), ('vtrace2_17', 251), ('vtrace4_17', 251), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=6: [('vtrace1_17', 1), ('vtrace2_17', 233), ('vtrace4_17', 233), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-23: [('vtrace1_17', 1), ('vtrace2_17', 262), ('vtrace4_17', 262), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-10: [('vtrace1_17', 1), ('vtrace2_17', 249), ('vtrace4_17', 249), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-22: [('vtrace1_17', 1), ('vtrace2_17', 261), ('vtrace4_17', 261), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=280: [('vtrace1_17', 1), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-276: [('vtrace1_17', 1), ('vtrace2_17', 496), ('vtrace4_17', 496), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=289: [('vtrace1_17', 1), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-30: [('vtrace1_17', 1), ('vtrace2_17', 268), ('vtrace4_17', 268), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=297: [('vtrace1_17', 1), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=22: [('vtrace1_17', 1), ('vtrace2_17', 218), ('vtrace4_17', 218), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-296: [('vtrace1_17', 1), ('vtrace2_17', 500), ('vtrace4_17', 500)]
+lib:214:DEBUG (print_inps) - i=284: [('vtrace1_17', 1), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=282: [('vtrace1_17', 1), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-27: [('vtrace1_17', 1), ('vtrace2_17', 265), ('vtrace4_17', 265), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=27: [('vtrace1_17', 1), ('vtrace2_17', 213), ('vtrace4_17', 213), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-275: [('vtrace1_17', 1), ('vtrace2_17', 495), ('vtrace4_17', 495), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=19: [('vtrace1_17', 1), ('vtrace2_17', 221), ('vtrace4_17', 221), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-292: [('vtrace1_17', 1), ('vtrace2_17', 500), ('vtrace4_17', 500)]
+lib:214:DEBUG (print_inps) - i=292: [('vtrace1_17', 1), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=279: [('vtrace1_17', 1), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-293: [('vtrace1_17', 1), ('vtrace2_17', 500), ('vtrace4_17', 500)]
+lib:214:DEBUG (print_inps) - i=285: [('vtrace1_17', 1), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=11: [('vtrace1_17', 1), ('vtrace2_17', 229), ('vtrace4_17', 229), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-299: [('vtrace1_17', 1), ('vtrace2_17', 500), ('vtrace4_17', 500)]
+lib:214:DEBUG (print_inps) - i=-29: [('vtrace1_17', 1), ('vtrace2_17', 267), ('vtrace4_17', 267), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-14: [('vtrace1_17', 1), ('vtrace2_17', 253), ('vtrace4_17', 253), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-28: [('vtrace1_17', 1), ('vtrace2_17', 266), ('vtrace4_17', 266), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-9: [('vtrace1_17', 1), ('vtrace2_17', 248), ('vtrace4_17', 248), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=291: [('vtrace1_17', 1), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=1: [('vtrace1_17', 1), ('vtrace2_17', 238), ('vtrace4_17', 238), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-298: [('vtrace1_17', 1), ('vtrace2_17', 500), ('vtrace4_17', 500)]
+lib:214:DEBUG (print_inps) - i=14: [('vtrace1_17', 1), ('vtrace2_17', 226), ('vtrace4_17', 226), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=0: [('vtrace1_17', 1), ('vtrace2_17', 239), ('vtrace4_17', 239), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=4: [('vtrace1_17', 1), ('vtrace2_17', 235), ('vtrace4_17', 235), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-13: [('vtrace1_17', 1), ('vtrace2_17', 252), ('vtrace4_17', 252), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=16: [('vtrace1_17', 1), ('vtrace2_17', 224), ('vtrace4_17', 224), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=24: [('vtrace1_17', 1), ('vtrace2_17', 216), ('vtrace4_17', 216), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-20: [('vtrace1_17', 1), ('vtrace2_17', 259), ('vtrace4_17', 259), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-2: [('vtrace1_17', 1), ('vtrace2_17', 241), ('vtrace4_17', 241), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=299: [('vtrace1_17', 1), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-11: [('vtrace1_17', 1), ('vtrace2_17', 250), ('vtrace4_17', 250), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-4: [('vtrace1_17', 1), ('vtrace2_17', 243), ('vtrace4_17', 243), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=293: [('vtrace1_17', 1), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=281: [('vtrace1_17', 1), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-18: [('vtrace1_17', 1), ('vtrace2_17', 257), ('vtrace4_17', 257), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=15: [('vtrace1_17', 1), ('vtrace2_17', 225), ('vtrace4_17', 225), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=278: [('vtrace1_17', 1), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-19: [('vtrace1_17', 1), ('vtrace2_17', 258), ('vtrace4_17', 258), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=286: [('vtrace1_17', 1), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=2: [('vtrace1_17', 1), ('vtrace2_17', 237), ('vtrace4_17', 237), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-297: [('vtrace1_17', 1), ('vtrace2_17', 500), ('vtrace4_17', 500)]
+lib:214:DEBUG (print_inps) - i=-285: [('vtrace1_17', 1), ('vtrace2_17', 500), ('vtrace4_17', 500)]
+lib:214:DEBUG (print_inps) - i=-15: [('vtrace1_17', 1), ('vtrace2_17', 254), ('vtrace4_17', 254), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=290: [('vtrace1_17', 1), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=17: [('vtrace1_17', 1), ('vtrace2_17', 223), ('vtrace4_17', 223), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-273: [('vtrace1_17', 1), ('vtrace2_17', 493), ('vtrace4_17', 493), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-24: [('vtrace1_17', 1), ('vtrace2_17', 263), ('vtrace4_17', 263), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-21: [('vtrace1_17', 1), ('vtrace2_17', 260), ('vtrace4_17', 260), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-279: [('vtrace1_17', 1), ('vtrace2_17', 498), ('vtrace4_17', 498), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-300: [('vtrace1_17', 1), ('vtrace2_17', 500), ('vtrace4_17', 500)]
+lib:214:DEBUG (print_inps) - i=10: [('vtrace1_17', 1), ('vtrace2_17', 230), ('vtrace4_17', 230), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-3: [('vtrace1_17', 1), ('vtrace2_17', 242), ('vtrace4_17', 242), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=272: [('vtrace1_17', 1), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-1: [('vtrace1_17', 1), ('vtrace2_17', 240), ('vtrace4_17', 240), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-280: [('vtrace1_17', 1), ('vtrace2_17', 499), ('vtrace4_17', 499), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-277: [('vtrace1_17', 1), ('vtrace2_17', 496), ('vtrace4_17', 496), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=23: [('vtrace1_17', 1), ('vtrace2_17', 217), ('vtrace4_17', 217), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=298: [('vtrace1_17', 1), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-284: [('vtrace1_17', 1), ('vtrace2_17', 500), ('vtrace4_17', 500)]
+lib:214:DEBUG (print_inps) - i=295: [('vtrace1_17', 1), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-272: [('vtrace1_17', 1), ('vtrace2_17', 492), ('vtrace4_17', 492), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-274: [('vtrace1_17', 1), ('vtrace2_17', 494), ('vtrace4_17', 494), ('vtrace3_17', 1)]
+lib:214:DEBUG (print_inps) - i=-6: [('vtrace1_17', 1), ('vtrace2_17', 245), ('vtrace4_17', 245), ('vtrace3_17', 1)]
+analysis:1269:DEBUG (prove_term_vloop) - base_term_inps: 22
+analysis:1270:DEBUG (prove_term_vloop) - term_inps: 65
+analysis:1271:DEBUG (prove_term_vloop) - mayloop_inps: 13
+analysis:1078:DEBUG (infer_ranking_functions) - vloop: vloop_17
+analysis:1079:DEBUG (infer_ranking_functions) - term_itraces: 65
+analysis:1126:DEBUG (infer_ranking_functions) - train_rand_trans: 1300
+analysis:1133:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): i*uk_1 + uk_0
+analysis:1134:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1]
+analysis:1158:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1300
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 181*uk_1
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 246*uk_1
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_0 = 181]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: 181 + -1*i
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 115
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 216*uk_1
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 239*uk_1
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_0 = 216]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: 216 + -1*i
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 34
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 221*uk_1
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 252*uk_1
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_0 = 221]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: 221 + -1*i
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 24
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 236*uk_1
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 245*uk_1
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_0 = 236]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: 236 + -1*i
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 8
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 245*uk_1
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 248*uk_1
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_0 = 245]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: 245 + -1*i
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 247*uk_1
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 252*uk_1
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_0 = 247]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: 247 + -1*i
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:1201:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [181 + -1*i, 216 + -1*i, 221 + -1*i, 236 + -1*i, 245 + -1*i, 247 + -1*i]
+utils.profiling:31:DEBUG (timed) - infer_ranking_functions: 9247.04ms
+analysis:1286:DEBUG (prove_term_vloop) - validate_ranking_functions: vloop_17
+analysis:1209:DEBUG (validate_ranking_functions) - ranks_str: 181 + -1*i|216 + -1*i|221 + -1*i|236 + -1*i|245 + -1*i|247 + -1*i
+validate:124:DEBUG (gen_validate_file) - validate_cmd: /tools/dynamite/deps/dynamite-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /tools/dynamite/benchmarks/termination-crafted-lit/KroeningSharyginaTsitovichWintersteiger-CAV2010-Ex.c --out=/var/tmp/Dig_o8ddu_te/vloop_17/par/validate/KroeningSharyginaTsitovichWintersteiger-CAV2010-Ex.c --pos=17 --ranks="181 + -1*i|216 + -1*i|221 + -1*i|236 + -1*i|245 + -1*i|247 + -1*i"
+validate:41:DEBUG (prove_reach) - pcmd: /tools/CPAchecker-1.9-unix/scripts/cpa.sh -spec /tools/reachability.prp -predicateAnalysis -setprop counterexample.export.compressWitness=false /var/tmp/Dig_o8ddu_te/vloop_17/par/validate/KroeningSharyginaTsitovichWintersteiger-CAV2010-Ex.c
+validate:41:DEBUG (prove_reach) - pcmd: /tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_o8ddu_te/vloop_17/par/uatm --witness-name witness.graphml --file /var/tmp/Dig_o8ddu_te/vloop_17/par/validate/KroeningSharyginaTsitovichWintersteiger-CAV2010-Ex.c
+validate:41:DEBUG (prove_reach) - pcmd: /tools/ultimate/releaseScripts/default/UTaipan-linux/Ultimate.py --spec /tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_o8ddu_te/vloop_17/par/utp --witness-name witness.graphml --file /var/tmp/Dig_o8ddu_te/vloop_17/par/validate/KroeningSharyginaTsitovichWintersteiger-CAV2010-Ex.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /tools/CPAchecker-1.9-unix/scripts/cpa.sh -spec /tools/reachability.prp -witnessValidation -witness /var/tmp/Dig_o8ddu_te/vloop_17/par/cpa/output/Counterexample.1.graphml /var/tmp/Dig_o8ddu_te/vloop_17/par/validate/KroeningSharyginaTsitovichWintersteiger-CAV2010-Ex.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /tools/reachability.prp --architecture 32bit --validate /var/tmp/Dig_o8ddu_te/vloop_17/par/uatm/witness.graphml --file /var/tmp/Dig_o8ddu_te/vloop_17/par/validate/KroeningSharyginaTsitovichWintersteiger-CAV2010-Ex.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /tools/ultimate/releaseScripts/default/UTaipan-linux/Ultimate.py --spec /tools/reachability.prp --architecture 32bit --validate /var/tmp/Dig_o8ddu_te/vloop_17/par/utp/witness.graphml --file /var/tmp/Dig_o8ddu_te/vloop_17/par/validate/KroeningSharyginaTsitovichWintersteiger-CAV2010-Ex.c
+validate:64:DEBUG (validate_witness) - v_rmsg: Checking for ERROR reachability
+Using default analysis
+Version 6641879a
+Calling Ultimate with: /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dosgi.configuration.area=/tools/ultimate/releaseScripts/default/UAutomizer-linux/data/config -Xmx12G -Xms1G -jar /tools/ultimate/releaseScripts/default/UAutomizer-linux/plugins/org.eclipse.equinox.launcher_1.3.100.v20150511-1540.jar -data @noDefault -ultimatedata /tools/ultimate/releaseScripts/default/UAutomizer-linux/data -tc /tools/ultimate/releaseScripts/default/UAutomizer-linux/config/AutomizerReachWitnessValidation.xml -i /var/tmp/Dig_o8ddu_te/vloop_17/par/validate/KroeningSharyginaTsitovichWintersteiger-CAV2010-Ex.c /var/tmp/Dig_o8ddu_te/vloop_17/par/uatm/witness.graphml -s /tools/ultimate/releaseScripts/default/UAutomizer-linux/config/svcomp-Reach-32bit-Automizer_Default.epf --cacsl2boogietranslator.entry.function main --traceabstraction.compute.hoare.annotation.of.negated.interpolant.automaton,.abstraction.and.cfg false
+..............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+Execution finished normally
+Writing output log to file Ultimate.log
+Writing human readable error path to file UltimateCounterExample.errorpath
+Result:
+FALSE
+
+validate:65:DEBUG (validate_witness) - v_errmsg: 
+validate:67:DEBUG (validate_witness) - v_res: False
+validate:354:DEBUG (mk_trans_cex) - dcex: {'__cil_tmp': '1', '__cil_tmp10': '-28', '__cil_tmp11': '-12', '__cil_tmp12': '-13', '__cil_tmp13': '-3', '__cil_tmp14': '-4', '__cil_tmp15': '-1', '__cil_tmp16': '-2', '__cil_tmp17': '1', '__cil_tmp5': '-67', '__cil_tmp6': '-68', '__cil_tmp7': '-32', '__cil_tmp8': '-33', '__cil_tmp9': '-27', 'dup': '1', 'i': '249', 'ti': '248'}
+validate:365:DEBUG (mk_trans_cex) - trans_cex: [(Trace(ss=('i',), vs=(248,)), Trace(ss=('i',), vs=(249,)))]
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex: [(Trace(ss=('i',), vs=(248,)), Trace(ss=('i',), vs=(249,)))]
+validate:64:DEBUG (validate_witness) - v_rmsg: Checking for ERROR reachability
+Using default analysis
+Version 6641879a
+Calling Ultimate with: /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dosgi.configuration.area=/tools/ultimate/releaseScripts/default/UTaipan-linux/data/config -Xmx12G -Xms1G -jar /tools/ultimate/releaseScripts/default/UTaipan-linux/plugins/org.eclipse.equinox.launcher_1.3.100.v20150511-1540.jar -data @noDefault -ultimatedata /tools/ultimate/releaseScripts/default/UTaipan-linux/data -tc /tools/ultimate/releaseScripts/default/UTaipan-linux/config/TaipanReachWitnessValidation.xml -i /var/tmp/Dig_o8ddu_te/vloop_17/par/validate/KroeningSharyginaTsitovichWintersteiger-CAV2010-Ex.c /var/tmp/Dig_o8ddu_te/vloop_17/par/utp/witness.graphml -s /tools/ultimate/releaseScripts/default/UTaipan-linux/config/svcomp-Reach-32bit-Taipan_Default.epf --cacsl2boogietranslator.entry.function main --traceabstraction.compute.hoare.annotation.of.negated.interpolant.automaton,.abstraction.and.cfg false
+...................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+Execution finished normally
+Writing output log to file Ultimate.log
+Writing human readable error path to file UltimateCounterExample.errorpath
+Result:
+FALSE
+
+validate:65:DEBUG (validate_witness) - v_errmsg: 
+validate:67:DEBUG (validate_witness) - v_res: False
+validate:365:DEBUG (mk_trans_cex) - trans_cex: None
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex: None
+erexample.export.exportAsSource
+ counterexample.export.graphml
+ counterexample.export.compressWitness
+ cpa.arg.proofWitness 
+ (CPAchecker.printConfigurationWarnings, WARNING)
+
+Starting analysis ... (CPAchecker.runAlgorithm, INFO)
+
+Loading analysis 1 from file /tools/CPAchecker-1.9-unix/config/components/violationWitnessValidation.properties ... (RestartAlgorithm.run, INFO)
+
+Mismatch of configuration options when loading from '/tools/CPAchecker-1.9-unix/config/components/violationWitnessValidation.properties': 'specification' has two values '/tools/CPAchecker-1.9-unix/config/specification/sv-comp-reachability.spc,/var/tmp/Dig_zzfdguii/vloop_17/par/cpa/output/Counterexample.1.graphml' and ''. Using ''. (NestingAlgorithm.checkConfigs, INFO)
+
+Using predicate analysis with MathSAT5 version 5.5.4 (bd863fede57e) (Feb 21 2019 15:05:40, gmp 6.1.0, gcc 4.8.5, 64-bit, reentrant) and JFactory 1.21. (Analysis /tools/CPAchecker-1.9-unix/config/components/violationWitnessValidation.properties:PredicateCPA:PredicateCPA.<init>, INFO)
+
+Using refinement for predicate analysis with PredicateAbstractionRefinementStrategy strategy. (Analysis /tools/CPAchecker-1.9-unix/config/components/violationWitnessValidation.properties:PredicateCPA:PredicateCPARefiner.<init>, INFO)
+
+Starting analysis 1 ... (RestartAlgorithm.run, INFO)
+
+Shutdown requested (The JVM is shutting down, probably because Ctrl+C was pressed.), waiting for termination. (ForceTerminationOnShutdown$1.shutdownRequested, WARNING)
+
+Warning: Analysis 1 stopped. (The JVM is shutting down, probably because Ctrl+C was pressed.) (ShutdownNotifier.shutdownIfNecessary, WARNING)
+
+Warning: Analysis interrupted (The JVM is shutting down, probably because Ctrl+C was pressed.) (ShutdownNotifier.shutdownIfNecessary, WARNING)
+
+
+validate:67:DEBUG (validate_witness) - v_res: None
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex: None
+validate:254:DEBUG (prove_reach) - wrs: [('cpa', (False, None))]
+validate:257:DEBUG (prove_reach) - Got result firstly from cpa
+utils.profiling:31:DEBUG (timed) - prove_reach: 283668.08ms
+analysis:1222:DEBUG (validate_ranking_functions) - r: False
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 284139.58ms
+analysis:1288:DEBUG (prove_term_vloop) - Termination result (vloop_17): False ([37 + -1*i, 50 + -1*i, 246 + -1*i, 248 + -1*i, 252 + -1*i])
+utils.profiling:31:DEBUG (timed) - prove_term_vloop: 295192.29ms
+utils.profiling:31:DEBUG (timed) - prove: 296683.23ms
+utils.profiling:31:DEBUG (timed) - prove: 296683.62ms
+Termination result: None
+Time log:
+gen_rand_inps: 0.158s
+_get_traces_mp: 0.590s
+_merge_traces: 0.713s
+get_traces_from_inps: 1.304s
+infer_ranking_functions: 11.037s
+prove_reach: 283.668s
+validate_ranking_functions: 284.140s
+prove_term_vloop: 295.192s
+prove: 296.683s
+
+HARD TIMER: 300.001087
+

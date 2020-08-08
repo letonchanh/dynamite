@@ -1,0 +1,23 @@
+__main__:118:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:119:INFO (<module>) - Dig's logger_level: WARNING
+__main__:120:INFO (<module>) - Timeout: 300s
+__main__:122:INFO (<module>) - 2020-08-08 21:03:58.500500: dynamo.py --timeout=300 /tools/dynamite/benchmarks/termination-crafted-lit/cstrpbrk.c -t
+/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:155:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_exckgda6
+analysis:163:DEBUG (__init__) - trans_cmd: /tools/dynamite/deps/dynamite-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /tools/dynamite/benchmarks/termination-crafted-lit/cstrpbrk.c --out=/var/tmp/Dig_exckgda6/cstrpbrk.c --bnd=500
+analysis:170:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'build_nondet_String': ['malloc'], 'cstrpbrk': ['vloop_31'], 'vloop_34': ['exit'], 'vloop_31': ['exit', 'vloop_34'], 'mainQ': ['build_nondet_String', 'build_nondet_String', 'cstrpbrk'], 'main': ['mainQ']})
+Traceback (most recent call last):
+  File "dynamo.py", line 145, in <module>
+    config = Setup(seed, inp)
+  File "/tools/dynamite/src/analysis.py", line 175, in __init__
+    src = c_src(Path(self.trans_inp), self.tmpdir)
+  File "/tools/dynamite/deps/dig/src/helpers/src.py", line 138, in __init__
+    super().__init__(filename, tmpdir)
+  File "/tools/dynamite/deps/dig/src/helpers/src.py", line 30, in __init__
+    assert not errmsg, "'{}': {}".format(cmd, errmsg)
+AssertionError: '/tools/dynamite/deps/dig/src/ocaml/instr.native /var/tmp/Dig_exckgda6/cstrpbrk.c /var/tmp/Dig_exckgda6/symexe/cstrpbrk_mainQ.c /var/tmp/Dig_exckgda6/traces/cstrpbrk_mainQ.c mainQ': cstrpbrk.c:174: Warning: Return statement with a value in function returning void
+
+
+HARD TIMER: 4.438871
+
