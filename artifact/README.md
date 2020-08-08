@@ -103,7 +103,7 @@ The details are as follows:
     ```
     make nla-nonterm
     ```
-    It took about 60 minutes to run the entire 39 benchmark programs. The result can be found [here](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/exp/nla-nonterm/nla-nonterm.out-G0n3q9k.html) (log files in [exp/nla-nonterm/out-G0n3q9k](exp/nla-nonterm/out-_8ejxcU)). The result is better than the result reported in Figure 9, thank to an improvement in the symbolic execution. The improved symbolic execution can capture more precise transition relations of loops, that helps to successfully validate more candidate recurrent sets.
+    It took about 60 minutes to run the entire 39 benchmark programs. The result can be found [here](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/exp/nla-nonterm/nla-nonterm.out-G0n3q9k.html) (log files in [exp/nla-nonterm/out-G0n3q9k](exp/nla-nonterm/out-G0n3q9k)). The result is better than the result reported in Figure 9, thank to an improvement in the symbolic execution. The improved symbolic execution can capture more precise transition relations of loops, that helps to successfully validate more candidate recurrent sets.
     
 - To reproduce Figure 10, which is the result of running the integrated algorithm `ProveTNT` on the two benchmarks `nla-term` and `nla-nonterm`, run
     ```
