@@ -36,7 +36,21 @@ The following steps show how to build DynamiTe's Docker image via the provided D
 
 You can follow the instructions in INSTALL.md to setup DynamiTe on a Debian/Ubuntu machine. The instructions have been tested on a *Ubuntu 18.04* system and a *Debian GNU/Linux 10 (buster)* system.
 
-## Basic testing of the artifact
+## Usage
+
+    ```
+    python3 dynamo.py [options] <example.c>
+    ```
+
+Command-line options
+
+- `--term`, `-t`: proving termination only (by the `ProveT` algorithm)
+- `--nonterm`, `-nt`: proving non-termination only (by the `ProveNT` algorithm)
+- Without `--term` or `--nonterm`: enable the integrated algorithm `ProveTNT`, which automatically chooses either `ProveT` and `ProveNT` and switches to the other if failed.
+- `--dfs`, `-dfs`: use depth-first-search, instead of breath-first-search, in `ProveNT`
+- `--all_rcs`, `-all-rcs`: find and return all recurrent sets, instead of the first valid recurrent set 
+
+## Running an example
 
 # Step-by-Step Instructions
 
