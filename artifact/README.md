@@ -107,7 +107,7 @@ To reproduce the results in Figures 6, 7, 8, 9, and 10, in the folder `dynamite/
     ```
     make integrated
     ```
-    The two results are available at [`nla-term`](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/results/integrated/nla-term.integrated-6rEMxHR.html) ([log files](results/integrated/integrated-6rEMxHR)) and [`nla-nonterm`](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/results/integrated/nla-nonterm.integrated-TfpfczU.html) ([log files](results/integrated/integrated-TfpfczU)).
+    It took about 200 minutes to run the entire 2 benchmarks. The two results are available at [`nla-term`](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/results/integrated/nla-term.integrated-6rEMxHR.html) ([log files](results/integrated/integrated-6rEMxHR)) and [`nla-nonterm`](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/results/integrated/nla-nonterm.integrated-TfpfczU.html) ([log files](results/integrated/integrated-TfpfczU)).
 
 ## Browsing the Code
 
