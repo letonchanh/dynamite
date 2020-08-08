@@ -38,13 +38,13 @@ You can follow the instructions in INSTALL.md to setup DynamiTe on a Debian/Ubun
 
 ## Usage
 
-1. To run DynamiTe
+1. To run DynamiTe on an example
 
     ```
     python3 dynamo.py [options] <example.c>
     ```
 
-2. Command-line options:
+2. Command-line options
 
 - `--term`, `-t`: proving termination only (by the `ProveT` algorithm)
 - `--nonterm`, `-nt`: proving non-termination only (by the `ProveNT` algorithm)
@@ -52,7 +52,17 @@ You can follow the instructions in INSTALL.md to setup DynamiTe on a Debian/Ubun
 - `--dfs`, `-dfs`: use depth-first-search, instead of breath-first-search, in `ProveNT`
 - `--all_rcs`, `-all-rcs`: find and return all recurrent sets, instead of the first valid recurrent set 
 
-## Running an example
+3. Output
+
+- Termination algorithm: `Termination result: True` if the program terminates.
+- Non-termination algorithm: `Non-termination result: False` with recurrent sets if the program does not terminate.
+- The integrated algorithm: `TNT result:` `True` if the program terminates, `False` with the non-terminating loop's position and a recurrent set if the program does not terminate.
+- Statistics
+    - `infer_ranking_functions`: total time to infer ranking functions
+    - `validate_ranking_functions`: total time to validate ranking functions
+    - `strengthen`: total time to learn new recurrent sets
+    - `verify`: total time to validate recurrent sets
+    - `prove`: total proving time
 
 # Step-by-Step Instructions
 
