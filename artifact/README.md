@@ -62,19 +62,19 @@ To reproduce the results in Figures 6, 7, 8, 9, and 10, in the folder `dynamite/
     ```
     make nontermination-crafted-lit
     ```
-    The result can be found [here](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/results/nontermination-crafted-lit/nontermination-crafted-lit.out-uyq7S5j.html), whose log files are in the folder [results/nontermination-crafted-lit/out-uyq7S5j](results/nontermination-crafted-lit/out-uyq7S5j). We cannot handle the non-deterministic program `ChenCookFuhsNimkarOHearn-TACAS2014-Introduction.c`. The result of this example was wrongly reported in Figure 7 due to a bug in the symbolic execution.
+    The result can be found [here](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/results/nontermination-crafted-lit/nontermination-crafted-lit.out-uyq7S5j.html) (log files in [results/nontermination-crafted-lit/out-uyq7S5j](results/nontermination-crafted-lit/out-uyq7S5j)). We cannot handle the non-deterministic program `ChenCookFuhsNimkarOHearn-TACAS2014-Introduction.c`. The result of this example was wrongly reported in Figure 7 due to a bug in the symbolic execution.
     
 - To reproduce Figure 8, run
     ```
     make nla-term
     ```
-    It took about 150 minutes for DynamiTe to run the entire 38 benchmarks on the Docker image. The result can be found [here](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/results/nla-term/nla-term.out-ZL8GkEB.html), whose log files are in the folder [results/nla-term/out-ZL8GkEB](results/nla-term/out-ZL8GkEB). Note that the learned ranking functions from some examples (e.g `bresenham1`, `cohencu1`) that can be verified in Figure 8 now cannot be verified before the timeout due to the resource limitation of the Docker container.
+    It took about 150 minutes for DynamiTe to run the entire 38 benchmarks on the Docker image. The result can be found [here](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/results/nla-term/nla-term.out-ZL8GkEB.html) (log files in [results/nla-term/out-ZL8GkEB](results/nla-term/out-ZL8GkEB)). Note that the learned ranking functions from some examples (e.g `bresenham1`, `cohencu1`) that can be verified in Figure 8 now cannot be verified before the timeout due to the resource limitation of the Docker container.
     
 - To reproduce Figure 9, run
     ```
     make nla-nonterm
     ```
-    It took about 60 minutes for DynamiTe to run the entire 39 benchmarks on the Docker image. The result can be found [here](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/results/nla-nonterm/nla-nonterm.out-G0n3q9k.html), whose log files are in the folder [results/nla-nonterm/out-G0n3q9k](results/nla-nonterm/out-_8ejxcU). The result is better than the result reported in Figure 9, thank to an improvement in the symbolic execution. The improved symbolic execution can capture more precise transition relations of the loops, that helps to successfully validate more candidate recurrent sets.
+    It took about 60 minutes for DynamiTe to run the entire 39 benchmarks on the Docker image. The result can be found [here](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/results/nla-nonterm/nla-nonterm.out-G0n3q9k.html) (log files in [results/nla-nonterm/out-G0n3q9k](results/nla-nonterm/out-_8ejxcU)). The result is better than the result reported in Figure 9, thank to an improvement in the symbolic execution. The improved symbolic execution can capture more precise transition relations of loops, that helps to successfully validate more candidate recurrent sets.
     
 - To reproduce Figure 10, which is the result of running the integrated algorithm `ProveTNT` on the two benchmarks `nla-term` and `nla-nonterm`, run
     ```
