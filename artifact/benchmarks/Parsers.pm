@@ -246,7 +246,7 @@ sub dynDetailTNT {
 }
 
 sub dynDetail {
-    my ($tmpb,$logfn,$timedout,$overallt,$overallr,$nonterm) = @_;
+    my ($tmpb,$logfn,$timedout,$overallt,$overallr,$nonterm,$cmp,$iters) = @_;
     open(F,"$logfn") or warn "file $logfn - $!";
     my $d = { allt => tm2str($overallt), allr => $overallr,
               guessr => '\rUNK', validr => '\rUNK',
@@ -322,6 +322,13 @@ sub dynDetail {
                    $tmpb, $b2desc->{$tmpb}||'', $h->{rf},
                    $h->{guesst}, $h->{guessr},
                    $h->{validt}, $h->{validr});
+    if ($iters > 1) {
+        $html = sprintf("<tr><td>%-10s</td><td>%-10s</td><td>%-42s</td><td>%-8s</td><td>%10s</td><td>%-5s</td><td>%10s</td><td>%-5s</td><td>%-5s</td></tr>\n",
+                   $tmpb, $b2desc->{$tmpb}||'', $h->{rf},
+                   $h->{guesst}, $h->{guessr},
+                   $h->{validt}, $h->{validr},
+                   $cmp->{mean}, $cmp->{stddev});
+    }
     #$d->{allt}, $d->{allr});
     return ($d,$str,$html);
     #$tool, $tmpb, $b2res{$b}->{time}, $b2res{$b}->{result});

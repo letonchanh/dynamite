@@ -1,0 +1,427 @@
+__main__:118:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:119:INFO (<module>) - Dig's logger_level: WARNING
+__main__:120:INFO (<module>) - Timeout: 300s
+__main__:122:INFO (<module>) - 2020-08-08 12:17:46.983007: dynamo.py --timeout=300 /tools/dynamite/benchmarks/nontermination-crafted-lit/ChenCookFuhsNimkarOHearn-TACAS2014-Introduction.c -nt
+/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:155:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_eat7g92r
+analysis:163:DEBUG (__init__) - trans_cmd: /tools/dynamite/deps/dynamite-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /tools/dynamite/benchmarks/nontermination-crafted-lit/ChenCookFuhsNimkarOHearn-TACAS2014-Introduction.c --out=/var/tmp/Dig_eat7g92r/ChenCookFuhsNimkarOHearn-TACAS2014-Introduction.c --bnd=500
+analysis:170:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_23': ['exit'], 'mainQ': ['vloop_23'], 'main': ['mainQ']})
+analysis:181:DEBUG (__init__) - postorder_vloop_ids: ['vloop_23']
+analysis:190:DEBUG (__init__) - inp_decls (<class 'data.prog.Symbs'>): I k, I i
+analysis:191:DEBUG (__init__) - inv_decls (<class 'data.prog.DSymbs'>): {'vtrace1_23': (Symb(name='i', typ='I'),), 'vtrace2_23': (Symb(name='i', typ='I'),), 'vtrace3_23': (Symb(name='i', typ='I'),), 'vtrace4_23': (Symb(name='i', typ='I'),)}
+__main__:168:DEBUG (<module>) - prove_process: 29041
+analysis:992:DEBUG (prove) - Analysing vloop_23
+analysis:321:DEBUG (_get_stem_from_symstates) - vloop.preloop_loc: vtrace1_23
+analysis:266:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+data.symstates:369:WARNING (merge) - vtrace1_23: no symbolic states at depth 21
+data.symstates:369:WARNING (merge) - vtrace1_23: no symbolic states at depth 24
+data.symstates:369:WARNING (merge) - vtrace1_23: no symbolic states at depth 22
+data.symstates:369:WARNING (merge) - vtrace1_23: no symbolic states at depth 23
+data.symstates:369:WARNING (merge) - vtrace3_23: no symbolic states at depth 21
+data.symstates:369:WARNING (merge) - vtrace3_23: no symbolic states at depth 24
+data.symstates:369:WARNING (merge) - vtrace3_23: no symbolic states at depth 22
+data.symstates:369:WARNING (merge) - vtrace3_23: no symbolic states at depth 23
+data.symstates:369:WARNING (merge) - vtrace2_23: no symbolic states at depth 21
+data.symstates:369:WARNING (merge) - vtrace2_23: no symbolic states at depth 24
+data.symstates:369:WARNING (merge) - vtrace2_23: no symbolic states at depth 22
+data.symstates:369:WARNING (merge) - vtrace2_23: no symbolic states at depth 23
+data.symstates:369:WARNING (merge) - vtrace4_23: no symbolic states at depth 21
+data.symstates:369:WARNING (merge) - vtrace4_23: no symbolic states at depth 24
+data.symstates:369:WARNING (merge) - vtrace4_23: no symbolic states at depth 22
+data.symstates:369:WARNING (merge) - vtrace4_23: no symbolic states at depth 23
+analysis:279:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_23
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 16993.66ms
+analysis:307:DEBUG (_get_stem_from_ss) - preloop_fst_symstate: loc: vtrace1_23
+pc: -1 >= X_k
+slocal: i == -1
+analysis:310:DEBUG (_get_stem_from_ss) - mainQ init_symvars: I X_k, I X_i
+analysis:313:DEBUG (_get_stem_from_ss) - stem_cond (<class 'z3.z3.BoolRef'>): -1 >= X_k
+analysis:314:DEBUG (_get_stem_from_ss) - stem_transrel (<class 'z3.z3.BoolRef'>): i == -1
+analysis:351:DEBUG (_get_loop_from_symstates) - Create C source for vloop_23: /var/tmp/Dig_s2fflutu
+analysis:266:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+data.symstates:369:WARNING (merge) - vtrace1_23: no symbolic states at depth 22
+data.symstates:369:WARNING (merge) - vtrace1_23: no symbolic states at depth 24
+data.symstates:369:WARNING (merge) - vtrace1_23: no symbolic states at depth 21
+data.symstates:369:WARNING (merge) - vtrace1_23: no symbolic states at depth 23
+data.symstates:369:WARNING (merge) - vtrace2_23: no symbolic states at depth 22
+data.symstates:369:WARNING (merge) - vtrace2_23: no symbolic states at depth 24
+data.symstates:369:WARNING (merge) - vtrace2_23: no symbolic states at depth 21
+data.symstates:369:WARNING (merge) - vtrace2_23: no symbolic states at depth 23
+data.symstates:369:WARNING (merge) - vtrace4_23: no symbolic states at depth 22
+data.symstates:369:WARNING (merge) - vtrace4_23: no symbolic states at depth 24
+data.symstates:369:WARNING (merge) - vtrace4_23: no symbolic states at depth 21
+data.symstates:369:WARNING (merge) - vtrace4_23: no symbolic states at depth 23
+data.symstates:369:WARNING (merge) - vtrace3_23: no symbolic states at depth 22
+data.symstates:369:WARNING (merge) - vtrace3_23: no symbolic states at depth 24
+data.symstates:369:WARNING (merge) - vtrace3_23: no symbolic states at depth 21
+data.symstates:369:WARNING (merge) - vtrace3_23: no symbolic states at depth 23
+analysis:279:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_23
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 11895.34ms
+analysis:362:DEBUG (_get_loop_from_symstates) - vloop inp_decls: I i
+analysis:363:DEBUG (_get_loop_from_symstates) - vloop inv_decls: {'vtrace1_23': (Symb(name='i', typ='I'),), 'vtrace2_23': (Symb(name='i', typ='I'),), 'vtrace3_23': (Symb(name='i', typ='I'),), 'vtrace4_23': (Symb(name='i', typ='I'),)}
+analysis:364:DEBUG (_get_loop_from_symstates) - vloop init_symvars: I X_i
+analysis:461:DEBUG (_get_loop_from_symstates) - inloop_symstate: loc: vtrace2_23
+pc: 0 <= X_i
+slocal: i == X_i
+analysis:462:DEBUG (_get_loop_from_symstates) - transrel_symstate: loc: vtrace4_23
+pc: 0 <= X_i
+slocal: i == -5
+analysis:468:DEBUG (_get_loop_from_symstates) - loop_cond: 0 <= i
+analysis:475:DEBUG (_get_loop_from_symstates) - loop_transrel: And(i0 == i, i1 == -5, 0 <= i)
+utils.profiling:31:DEBUG (timed) - _get_loopinfo_from_symstates: 28983.15ms
+analysis:537:DEBUG (get_loopinfo) - stem: <utils.loop.Stem object at 0x7ff0b40a3198>
+analysis:538:DEBUG (get_loopinfo) - loop: <utils.loop.Loop object at 0x7ff0b33e4b38>
+utils.profiling:31:DEBUG (timed) - get_loopinfo: 28983.34ms
+analysis:864:DEBUG (prove_nonterm_vloop) - use_dfs: False
+analysis:865:DEBUG (prove_nonterm_vloop) - use_bfs: True
+analysis:843:DEBUG (_stat_candidate_rcs) - stat (1 total): defaultdict(<class 'int'>, {0: 1})
+analysis:936:DEBUG (prove_rcs) - PROVE_NT DEPTH 0: ZConj({0 <= i})
+analysis:643:DEBUG (verify) - loop_transrel: And(i0 == i, i1 == -5, 0 <= i)
+analysis:644:DEBUG (verify) - loop_cond: 0 <= i
+analysis:645:DEBUG (verify) - rcs: ZConj({0 <= i})
+analysis:659:DEBUG (verify) - labeled_rcs: ZConj({0 <= i:c_0})
+analysis:666:DEBUG (verify) - transrel_rcs: ZConj({And(i0 == i, i1 == -5, 0 <= i), 0 <= i0:c_0})
+analysis:671:DEBUG (verify) - init_transrel_rcs: ZConj({0 <= i0:c_0, -1 >= X_k, i == -1, And(i0 == i, i1 == -5, 0 <= i)})
+analysis:681:DEBUG (_check) - rc: 0 <= i:c_0
+analysis:686:DEBUG (_check) - rc_r: 0 <= i1
+analysis:687:DEBUG (_check) - f: ZConj({And(i0 == i, i1 == -5, 0 <= i), Not(0 <= i1), 0 <= i0:c_0})
+analysis:702:DEBUG (_check) - rs: sat
+solver:212:DEBUG (_get_unsat_core) - approx: []
+analysis:709:DEBUG (_check) - init_f: ZConj({-1 >= X_k, i == -1, Not(0 <= i1), 0 <= i0:c_0, And(i0 == i, i1 == -5, 0 <= i)})
+analysis:710:DEBUG (_check) - init_rs: False
+analysis:725:DEBUG (_check) - init_models: sat (0 models)
+lib:49:DEBUG (gen_rand_inps) - gen 108/100 random inps
+analysis:730:DEBUG (_check) - inps: Inps({Inp(ss=('k', 'i'), vs=(289, -299)), Inp(ss=('k', 'i'), vs=(-5, 28)), Inp(ss=('k', 'i'), vs=(-282, 28)), Inp(ss=('k', 'i'), vs=(1, 3)), Inp(ss=('k', 'i'), vs=(9, -275)), Inp(ss=('k', 'i'), vs=(1, 2)), Inp(ss=('k', 'i'), vs=(-293, -276)), Inp(ss=('k', 'i'), vs=(13, -294)), Inp(ss=('k', 'i'), vs=(-7, -11)), Inp(ss=('k', 'i'), vs=(287, -19)), Inp(ss=('k', 'i'), vs=(-299, 294)), Inp(ss=('k', 'i'), vs=(287, 298)), Inp(ss=('k', 'i'), vs=(13, 6)), Inp(ss=('k', 'i'), vs=(-4, 6)), Inp(ss=('k', 'i'), vs=(-285, -6)), Inp(ss=('k', 'i'), vs=(-10, 9)), Inp(ss=('k', 'i'), vs=(23, 25)), Inp(ss=('k', 'i'), vs=(16, -10)), Inp(ss=('k', 'i'), vs=(0, -296)), Inp(ss=('k', 'i'), vs=(-30, -293)), Inp(ss=('k', 'i'), vs=(298, 1)), Inp(ss=('k', 'i'), vs=(291, -13)), Inp(ss=('k', 'i'), vs=(-11, -12)), Inp(ss=('k', 'i'), vs=(2, -22)), Inp(ss=('k', 'i'), vs=(5, -6)), Inp(ss=('k', 'i'), vs=(5, 9)), Inp(ss=('k', 'i'), vs=(7, -10)), Inp(ss=('k', 'i'), vs=(-21, 289)), Inp(ss=('k', 'i'), vs=(-280, 17)), Inp(ss=('k', 'i'), vs=(1, 10)), Inp(ss=('k', 'i'), vs=(288, -4)), Inp(ss=('k', 'i'), vs=(-3, 22)), Inp(ss=('k', 'i'), vs=(8, -4)), Inp(ss=('k', 'i'), vs=(-300, -271)), Inp(ss=('k', 'i'), vs=(-11, 18)), Inp(ss=('k', 'i'), vs=(-10, 298)), Inp(ss=('k', 'i'), vs=(-12, 15)), Inp(ss=('k', 'i'), vs=(-290, -18)), Inp(ss=('k', 'i'), vs=(-292, -15)), Inp(ss=('k', 'i'), vs=(-1, -19)), Inp(ss=('k', 'i'), vs=(9, 8)), Inp(ss=('k', 'i'), vs=(-274, 288)), Inp(ss=('k', 'i'), vs=(26, -11)), Inp(ss=('k', 'i'), vs=(-276, -8)), Inp(ss=('k', 'i'), vs=(273, -10)), Inp(ss=('k', 'i'), vs=(11, -281)), Inp(ss=('k', 'i'), vs=(-15, -14)), Inp(ss=('k', 'i'), vs=(-282, -3)), Inp(ss=('k', 'i'), vs=(-271, 10)), Inp(ss=('k', 'i'), vs=(16, 11)), Inp(ss=('k', 'i'), vs=(-7, -281)), Inp(ss=('k', 'i'), vs=(-294, 297)), Inp(ss=('k', 'i'), vs=(284, 293)), Inp(ss=('k', 'i'), vs=(4, -13)), Inp(ss=('k', 'i'), vs=(-9, 21)), Inp(ss=('k', 'i'), vs=(-7, -4)), Inp(ss=('k', 'i'), vs=(-9, 7)), Inp(ss=('k', 'i'), vs=(-19, -7)), Inp(ss=('k', 'i'), vs=(13, -10)), Inp(ss=('k', 'i'), vs=(5, -275)), Inp(ss=('k', 'i'), vs=(11, -1)), Inp(ss=('k', 'i'), vs=(5, 25)), Inp(ss=('k', 'i'), vs=(278, -15)), Inp(ss=('k', 'i'), vs=(10, -6)), Inp(ss=('k', 'i'), vs=(17, -298)), Inp(ss=('k', 'i'), vs=(281, -3)), Inp(ss=('k', 'i'), vs=(-13, -18)), Inp(ss=('k', 'i'), vs=(270, -296)), Inp(ss=('k', 'i'), vs=(-298, -17)), Inp(ss=('k', 'i'), vs=(270, 16)), Inp(ss=('k', 'i'), vs=(-25, 0)), Inp(ss=('k', 'i'), vs=(-30, -9)), Inp(ss=('k', 'i'), vs=(-5, 271)), Inp(ss=('k', 'i'), vs=(10, 274)), Inp(ss=('k', 'i'), vs=(-23, 15)), Inp(ss=('k', 'i'), vs=(7, 282)), Inp(ss=('k', 'i'), vs=(19, 281)), Inp(ss=('k', 'i'), vs=(-288, 11)), Inp(ss=('k', 'i'), vs=(-1, -273)), Inp(ss=('k', 'i'), vs=(295, 2)), Inp(ss=('k', 'i'), vs=(276, 20)), Inp(ss=('k', 'i'), vs=(-1, 5)), Inp(ss=('k', 'i'), vs=(-21, 293)), Inp(ss=('k', 'i'), vs=(9, 5)), Inp(ss=('k', 'i'), vs=(-271, -292)), Inp(ss=('k', 'i'), vs=(-3, -2)), Inp(ss=('k', 'i'), vs=(-2, 278)), Inp(ss=('k', 'i'), vs=(276, -277)), Inp(ss=('k', 'i'), vs=(14, 297)), Inp(ss=('k', 'i'), vs=(-14, -299)), Inp(ss=('k', 'i'), vs=(-4, -6)), Inp(ss=('k', 'i'), vs=(-2, 0)), Inp(ss=('k', 'i'), vs=(-294, 0)), Inp(ss=('k', 'i'), vs=(9, 15)), Inp(ss=('k', 'i'), vs=(4, -11)), Inp(ss=('k', 'i'), vs=(278, 12)), Inp(ss=('k', 'i'), vs=(-19, 287)), Inp(ss=('k', 'i'), vs=(-7, -10)), Inp(ss=('k', 'i'), vs=(284, 8)), Inp(ss=('k', 'i'), vs=(8, 270)), Inp(ss=('k', 'i'), vs=(-11, -274)), Inp(ss=('k', 'i'), vs=(2, 276)), Inp(ss=('k', 'i'), vs=(-27, -4)), Inp(ss=('k', 'i'), vs=(5, -7)), Inp(ss=('k', 'i'), vs=(-278, 9)), Inp(ss=('k', 'i'), vs=(-15, -277)), Inp(ss=('k', 'i'), vs=(17, 17)), Inp(ss=('k', 'i'), vs=(295, 298))})
+analysis:739:INFO (verify) - dg: defaultdict(<class 'list'>, {})
+analysis:740:INFO (verify) - label_d: defaultdict(<class 'str'>, {0 <= i: 'c_0'})
+analysis:741:INFO (verify) - rev_label_d: {'c_0': 0 <= i}
+analysis:744:INFO (verify) - loop_cond_label: c_0
+analysis:748:INFO (verify) - mds_labels: set()
+analysis:749:INFO (verify) - mds: ZConj()
+lib:60:DEBUG (get_traces_from_inps) - inp_decls: I k, I i
+lib:61:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_23': (Symb(name='i', typ='I'),), 'vtrace2_23': (Symb(name='i', typ='I'),), 'vtrace3_23': (Symb(name='i', typ='I'),), 'vtrace4_23': (Symb(name='i', typ='I'),)}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 516.41ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 256.26ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 773.28ms
+utils.profiling:31:DEBUG (timed) - verify: 1508.16ms
+lib:214:DEBUG (print_inps) - k=-7,i=-11: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-280,i=17: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-271,i=10: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-298,i=-17: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=14,i=297: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=287,i=-19: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=1,i=10: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=16,i=11: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=270,i=16: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-14,i=-299: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-299,i=294: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=288,i=-4: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-7,i=-281: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-25,i=0: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-4,i=-6: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=287,i=298: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-3,i=22: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-294,i=297: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-30,i=-9: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-2,i=0: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-4,i=6: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-300,i=-271: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=4,i=-13: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=10,i=274: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=9,i=15: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=13,i=6: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=8,i=-4: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=284,i=293: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-5,i=271: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-294,i=0: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-285,i=-6: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-11,i=18: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-9,i=21: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-23,i=15: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=4,i=-11: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=23,i=25: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-12,i=15: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-9,i=7: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=19,i=281: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-19,i=287: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-10,i=9: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-10,i=298: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-7,i=-4: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=7,i=282: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=278,i=12: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=16,i=-10: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-290,i=-18: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-19,i=-7: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-288,i=11: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-7,i=-10: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=0,i=-296: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-292,i=-15: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=13,i=-10: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-1,i=-273: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=284,i=8: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-30,i=-293: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-1,i=-19: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=5,i=-275: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=295,i=2: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=8,i=270: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=289,i=-299: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=298,i=1: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=9,i=8: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=11,i=-1: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=276,i=20: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-11,i=-274: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-5,i=28: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=291,i=-13: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-274,i=288: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=5,i=25: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-1,i=5: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=2,i=276: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=1,i=3: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=2,i=-22: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-276,i=-8: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=10,i=-6: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=9,i=5: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=5,i=-7: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-282,i=28: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-11,i=-12: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=26,i=-11: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=278,i=-15: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-21,i=293: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-27,i=-4: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=9,i=-275: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=5,i=-6: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=273,i=-10: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=17,i=-298: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-271,i=-292: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-278,i=9: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-293,i=-276: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=7,i=-10: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-15,i=-14: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-13,i=-18: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-2,i=278: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=17,i=17: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=1,i=2: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=5,i=9: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=11,i=-281: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=281,i=-3: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-3,i=-2: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-15,i=-277: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=13,i=-294: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-21,i=289: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-282,i=-3: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=270,i=-296: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=276,i=-277: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=295,i=298: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+analysis:770:DEBUG (strengthen) - base_term_inps: 81
+analysis:771:DEBUG (strengthen) - term_inps: 27
+analysis:772:DEBUG (strengthen) - mayloop_inps: 0
+analysis:773:DEBUG (strengthen) - rcs: ZConj({0 <= i})
+lib:236:DEBUG (get_traces_by_id) - dtraces[vtrace2_23]: 0
+lib:236:DEBUG (get_traces_by_id) - dtraces[vtrace2_23]: 0
+lib:260:DEBUG (infer_from_traces) - invs: 
+analysis:777:DEBUG (strengthen) - mayloop_invs: ZConj()
+lib:236:DEBUG (get_traces_by_id) - dtraces[vtrace2_23]: 19
+lib:236:DEBUG (get_traces_by_id) - dtraces[vtrace2_23]: 8
+*** 'None', 0 locs, 0 invs (), 0 traces, 0 inps, time 0.06s, rand seed 1596889066.98, test 49 51:
+
+data.traces:207:WARNING (merge) - trace i=5 exist
+data.traces:207:WARNING (merge) - trace i=2 exist
+data.traces:207:WARNING (merge) - trace i=298 exist
+data.traces:207:WARNING (merge) - trace i=1 exist
+lib:260:DEBUG (infer_from_traces) - invs: vtrace2_23 (1 invs):
+1. -i <= -1
+analysis:781:DEBUG (strengthen) - term_invs: ZConj({i >= 1})
+utils.profiling:31:DEBUG (timed) - strengthen: 2968.15ms
+analysis:843:DEBUG (_stat_candidate_rcs) - stat (1 total): defaultdict(<class 'int'>, {1: 1})
+analysis:936:DEBUG (prove_rcs) - PROVE_NT DEPTH 1: ZConj({Not(i >= 1), 0 <= i})
+analysis:643:DEBUG (verify) - loop_transrel: And(i0 == i, i1 == -5, 0 <= i)
+analysis:644:DEBUG (verify) - loop_cond: 0 <= i
+analysis:645:DEBUG (verify) - rcs: ZConj({Not(i >= 1), 0 <= i})
+analysis:659:DEBUG (verify) - labeled_rcs: ZConj({Not(i >= 1):c_0, 0 <= i:c_1})
+analysis:666:DEBUG (verify) - transrel_rcs: ZConj({0 <= i0:c_1, And(i0 == i, i1 == -5, 0 <= i), Not(i0 >= 1):c_0})
+analysis:671:DEBUG (verify) - init_transrel_rcs: ZConj({-1 >= X_k, i == -1, And(i0 == i, i1 == -5, 0 <= i), 0 <= i0:c_1, Not(i0 >= 1):c_0})
+analysis:681:DEBUG (_check) - rc: Not(i >= 1):c_0
+analysis:686:DEBUG (_check) - rc_r: Not(i1 >= 1)
+analysis:687:DEBUG (_check) - f: ZConj({Not(i0 >= 1):c_0, 0 <= i0:c_1, And(i0 == i, i1 == -5, 0 <= i), Not(Not(i1 >= 1))})
+solver:212:DEBUG (_get_unsat_core) - approx: []
+analysis:695:DEBUG (_check) - rs: unsat
+analysis:696:DEBUG (_check) - unsat_core: []
+analysis:681:DEBUG (_check) - rc: 0 <= i:c_1
+analysis:686:DEBUG (_check) - rc_r: 0 <= i1
+analysis:687:DEBUG (_check) - f: ZConj({Not(i0 >= 1):c_0, 0 <= i0:c_1, And(i0 == i, i1 == -5, 0 <= i), Not(0 <= i1)})
+analysis:702:DEBUG (_check) - rs: sat
+solver:212:DEBUG (_get_unsat_core) - approx: []
+analysis:709:DEBUG (_check) - init_f: ZConj({-1 >= X_k, i == -1, Not(0 <= i1), 0 <= i0:c_1, Not(i0 >= 1):c_0, And(i0 == i, i1 == -5, 0 <= i)})
+analysis:710:DEBUG (_check) - init_rs: False
+analysis:725:DEBUG (_check) - init_models: sat (0 models)
+lib:49:DEBUG (gen_rand_inps) - gen 108/100 random inps
+analysis:730:DEBUG (_check) - inps: Inps({Inp(ss=('k', 'i'), vs=(-20, 290)), Inp(ss=('k', 'i'), vs=(18, -293)), Inp(ss=('k', 'i'), vs=(-3, 8)), Inp(ss=('k', 'i'), vs=(3, -10)), Inp(ss=('k', 'i'), vs=(23, -274)), Inp(ss=('k', 'i'), vs=(2, -11)), Inp(ss=('k', 'i'), vs=(-12, -271)), Inp(ss=('k', 'i'), vs=(270, -6)), Inp(ss=('k', 'i'), vs=(-16, 274)), Inp(ss=('k', 'i'), vs=(-4, 6)), Inp(ss=('k', 'i'), vs=(-12, -289)), Inp(ss=('k', 'i'), vs=(-275, -295)), Inp(ss=('k', 'i'), vs=(-28, -292)), Inp(ss=('k', 'i'), vs=(286, -29)), Inp(ss=('k', 'i'), vs=(-280, 3)), Inp(ss=('k', 'i'), vs=(-280, 277)), Inp(ss=('k', 'i'), vs=(-287, 12)), Inp(ss=('k', 'i'), vs=(13, 288)), Inp(ss=('k', 'i'), vs=(-299, 11)), Inp(ss=('k', 'i'), vs=(4, 3)), Inp(ss=('k', 'i'), vs=(-296, 8)), Inp(ss=('k', 'i'), vs=(-11, -12)), Inp(ss=('k', 'i'), vs=(-10, -287)), Inp(ss=('k', 'i'), vs=(271, 24)), Inp(ss=('k', 'i'), vs=(-6, 25)), Inp(ss=('k', 'i'), vs=(292, 11)), Inp(ss=('k', 'i'), vs=(0, -8)), Inp(ss=('k', 'i'), vs=(12, 20)), Inp(ss=('k', 'i'), vs=(-6, -11)), Inp(ss=('k', 'i'), vs=(1, 0)), Inp(ss=('k', 'i'), vs=(8, 23)), Inp(ss=('k', 'i'), vs=(11, 289)), Inp(ss=('k', 'i'), vs=(25, 0)), Inp(ss=('k', 'i'), vs=(-4, -273)), Inp(ss=('k', 'i'), vs=(14, 285)), Inp(ss=('k', 'i'), vs=(-293, 293)), Inp(ss=('k', 'i'), vs=(26, -11)), Inp(ss=('k', 'i'), vs=(-26, 9)), Inp(ss=('k', 'i'), vs=(-11, 281)), Inp(ss=('k', 'i'), vs=(27, 9)), Inp(ss=('k', 'i'), vs=(9, 293)), Inp(ss=('k', 'i'), vs=(-9, -11)), Inp(ss=('k', 'i'), vs=(13, -15)), Inp(ss=('k', 'i'), vs=(6, 298)), Inp(ss=('k', 'i'), vs=(-2, 280)), Inp(ss=('k', 'i'), vs=(-1, -2)), Inp(ss=('k', 'i'), vs=(-11, 11)), Inp(ss=('k', 'i'), vs=(1, 13)), Inp(ss=('k', 'i'), vs=(-8, 23)), Inp(ss=('k', 'i'), vs=(3, -272)), Inp(ss=('k', 'i'), vs=(-282, -280)), Inp(ss=('k', 'i'), vs=(-8, -291)), Inp(ss=('k', 'i'), vs=(-12, -7)), Inp(ss=('k', 'i'), vs=(-299, -10)), Inp(ss=('k', 'i'), vs=(299, 298)), Inp(ss=('k', 'i'), vs=(-10, 5)), Inp(ss=('k', 'i'), vs=(286, 288)), Inp(ss=('k', 'i'), vs=(-13, -2)), Inp(ss=('k', 'i'), vs=(-5, 16)), Inp(ss=('k', 'i'), vs=(275, 3)), Inp(ss=('k', 'i'), vs=(-294, 21)), Inp(ss=('k', 'i'), vs=(277, -29)), Inp(ss=('k', 'i'), vs=(17, -12)), Inp(ss=('k', 'i'), vs=(0, -25)), Inp(ss=('k', 'i'), vs=(7, 22)), Inp(ss=('k', 'i'), vs=(9, -10)), Inp(ss=('k', 'i'), vs=(296, -15)), Inp(ss=('k', 'i'), vs=(5, 14)), Inp(ss=('k', 'i'), vs=(-274, -280)), Inp(ss=('k', 'i'), vs=(6, -10)), Inp(ss=('k', 'i'), vs=(0, -14)), Inp(ss=('k', 'i'), vs=(10, 9)), Inp(ss=('k', 'i'), vs=(282, -291)), Inp(ss=('k', 'i'), vs=(-276, -2)), Inp(ss=('k', 'i'), vs=(-294, -16)), Inp(ss=('k', 'i'), vs=(-2, 277)), Inp(ss=('k', 'i'), vs=(275, 277)), Inp(ss=('k', 'i'), vs=(3, -295)), Inp(ss=('k', 'i'), vs=(-3, -2)), Inp(ss=('k', 'i'), vs=(297, -294)), Inp(ss=('k', 'i'), vs=(298, 0)), Inp(ss=('k', 'i'), vs=(-7, -2)), Inp(ss=('k', 'i'), vs=(-11, 3)), Inp(ss=('k', 'i'), vs=(14, -275)), Inp(ss=('k', 'i'), vs=(284, -283)), Inp(ss=('k', 'i'), vs=(-28, 29)), Inp(ss=('k', 'i'), vs=(19, -297)), Inp(ss=('k', 'i'), vs=(-294, 5)), Inp(ss=('k', 'i'), vs=(-5, 285)), Inp(ss=('k', 'i'), vs=(28, 4)), Inp(ss=('k', 'i'), vs=(296, 14)), Inp(ss=('k', 'i'), vs=(-26, -20)), Inp(ss=('k', 'i'), vs=(-285, 295)), Inp(ss=('k', 'i'), vs=(-5, 10)), Inp(ss=('k', 'i'), vs=(-24, -13)), Inp(ss=('k', 'i'), vs=(-272, -27)), Inp(ss=('k', 'i'), vs=(299, -26)), Inp(ss=('k', 'i'), vs=(4, -29)), Inp(ss=('k', 'i'), vs=(4, 281)), Inp(ss=('k', 'i'), vs=(6, -13)), Inp(ss=('k', 'i'), vs=(-30, -19)), Inp(ss=('k', 'i'), vs=(5, 20)), Inp(ss=('k', 'i'), vs=(-296, -11)), Inp(ss=('k', 'i'), vs=(290, 10)), Inp(ss=('k', 'i'), vs=(291, -2)), Inp(ss=('k', 'i'), vs=(-12, 10)), Inp(ss=('k', 'i'), vs=(-294, -7)), Inp(ss=('k', 'i'), vs=(-1, -12))})
+analysis:739:INFO (verify) - dg: defaultdict(<class 'list'>, {'c_0': []})
+analysis:740:INFO (verify) - label_d: defaultdict(<class 'str'>, {Not(i >= 1): 'c_0', 0 <= i: 'c_1'})
+analysis:741:INFO (verify) - rev_label_d: {'c_0': Not(i >= 1), 'c_1': 0 <= i}
+analysis:744:INFO (verify) - loop_cond_label: c_1
+analysis:748:INFO (verify) - mds_labels: set()
+analysis:749:INFO (verify) - mds: ZConj()
+lib:60:DEBUG (get_traces_from_inps) - inp_decls: I k, I i
+lib:61:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_23': (Symb(name='i', typ='I'),), 'vtrace2_23': (Symb(name='i', typ='I'),), 'vtrace3_23': (Symb(name='i', typ='I'),), 'vtrace4_23': (Symb(name='i', typ='I'),)}
+*** 'None', 1 locs, 1 invs (1 Oct), 23 traces, 0 inps, time 2.90s, rand seed 1596889066.98, test 49 51:
+vtrace2_23 (1 invs):
+1. -i <= -1
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 588.95ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 243.49ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 833.05ms
+utils.profiling:31:DEBUG (timed) - verify: 1236.19ms
+lib:214:DEBUG (print_inps) - k=-16,i=274: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-6,i=-11: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-8,i=23: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-274,i=-280: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-5,i=285: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-12,i=-289: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=8,i=23: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-282,i=-280: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=0,i=-14: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=296,i=14: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-4,i=6: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=1,i=0: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=3,i=-272: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=6,i=-10: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=28,i=4: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-275,i=-295: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=11,i=289: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-8,i=-291: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=10,i=9: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-26,i=-20: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=286,i=-29: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-4,i=-273: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-299,i=-10: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-276,i=-2: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-5,i=10: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-28,i=-292: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=25,i=0: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-12,i=-7: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=282,i=-291: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-285,i=295: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-280,i=3: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=14,i=285: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=299,i=298: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-294,i=-16: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-24,i=-13: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-287,i=12: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=26,i=-11: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=286,i=288: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=275,i=277: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=299,i=-26: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-280,i=277: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-293,i=293: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-10,i=5: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-2,i=277: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-272,i=-27: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=13,i=288: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-26,i=9: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-13,i=-2: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=3,i=-295: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=4,i=-29: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-299,i=11: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-11,i=281: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-5,i=16: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-3,i=-2: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=4,i=281: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=4,i=3: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=27,i=9: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=275,i=3: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=297,i=-294: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=6,i=-13: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-20,i=290: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-296,i=8: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=9,i=293: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-294,i=21: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=298,i=0: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-30,i=-19: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=18,i=-293: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-11,i=-12: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-9,i=-11: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=277,i=-29: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-7,i=-2: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=5,i=20: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-3,i=8: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-10,i=-287: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=13,i=-15: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=17,i=-12: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-11,i=3: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-296,i=-11: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=3,i=-10: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=271,i=24: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=6,i=298: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=0,i=-25: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=14,i=-275: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=290,i=10: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=23,i=-274: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-6,i=25: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-2,i=280: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=7,i=22: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=284,i=-283: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=291,i=-2: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=2,i=-11: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=292,i=11: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-1,i=-2: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=9,i=-10: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-28,i=29: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-12,i=10: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=270,i=-6: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=12,i=20: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=1,i=13: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=5,i=14: [('vtrace1_23', 1), ('vtrace2_23', 4), ('vtrace4_23', 4), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-294,i=5: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-1,i=-12: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-12,i=-271: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=0,i=-8: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-11,i=11: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=296,i=-15: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=19,i=-297: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+lib:214:DEBUG (print_inps) - k=-294,i=-7: [('vtrace1_23', 1), ('vtrace3_23', 1)]
+analysis:770:DEBUG (strengthen) - base_term_inps: 81
+analysis:771:DEBUG (strengthen) - term_inps: 27
+analysis:772:DEBUG (strengthen) - mayloop_inps: 0
+analysis:773:DEBUG (strengthen) - rcs: ZConj({Not(i >= 1), 0 <= i})
+lib:236:DEBUG (get_traces_by_id) - dtraces[vtrace2_23]: 0
+lib:236:DEBUG (get_traces_by_id) - dtraces[vtrace2_23]: 0
+lib:260:DEBUG (infer_from_traces) - invs: 
+analysis:777:DEBUG (strengthen) - mayloop_invs: ZConj()
+lib:236:DEBUG (get_traces_by_id) - dtraces[vtrace2_23]: 18
+lib:236:DEBUG (get_traces_by_id) - dtraces[vtrace2_23]: 7
+*** 'None', 0 locs, 0 invs (), 0 traces, 0 inps, time 0.04s, rand seed 1596889066.98, test 49 51:
+
+data.traces:207:WARNING (merge) - trace i=20 exist
+data.traces:207:WARNING (merge) - trace i=5 exist
+data.traces:207:WARNING (merge) - trace i=1 exist
+data.traces:207:WARNING (merge) - trace i=3 exist
+lib:260:DEBUG (infer_from_traces) - invs: vtrace2_23 (1 invs):
+1. -i <= 0
+analysis:781:DEBUG (strengthen) - term_invs: ZConj({i >= 0})
+utils.profiling:31:DEBUG (timed) - strengthen: 2791.68ms
+analysis:843:DEBUG (_stat_candidate_rcs) - stat (1 total): defaultdict(<class 'int'>, {2: 1})
+analysis:936:DEBUG (prove_rcs) - PROVE_NT DEPTH 2: ZConj({Not(i >= 0), Not(i >= 1), 0 <= i})
+analysis:931:DEBUG (prove_nonterm_vloop) - tCex: ZConj({i >= 1})
+analysis:931:DEBUG (prove_nonterm_vloop) - tCex: ZConj({i >= 0})
+utils.profiling:31:DEBUG (timed) - prove_nonterm_vloop: 37729.81ms
+utils.profiling:31:DEBUG (timed) - prove: 37730.21ms
+utils.profiling:31:DEBUG (timed) - prove: 37730.74ms
+*** 'None', 1 locs, 1 invs (1 Oct), 21 traces, 0 inps, time 2.74s, rand seed 1596889066.98, test 49 51:
+vtrace2_23 (1 invs):
+1. -i <= 0
+Non-termination result: Unknown
+Time log:
+_get_symstates_from_src: 28.889s
+_get_loopinfo_from_symstates: 28.983s
+get_loopinfo: 28.983s
+_get_traces_mp: 1.105s
+_merge_traces: 0.500s
+get_traces_from_inps: 1.606s
+verify: 2.744s
+strengthen: 5.760s
+prove_nonterm_vloop: 37.730s
+prove: 37.730s
+
+HARD TIMER: 42.165037
+

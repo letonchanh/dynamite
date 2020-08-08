@@ -81,7 +81,7 @@ foreach my $tool (@tools) {
             my ($d,$dstr,$html) = Parsers::dynDetail($tmpb,$logfn.".1",
                                               ($tm >= 900 ? 1 : 0),
                                              $tm, $compare->{$tmpb}->{$tool}->{result},
-                                             ($benchdir =~ /nonterm/ ? 1 : 0),$ITERS);
+                                             ($benchdir =~ /nonterm/ ? 1 : 0),$compare->{$tmpb}->{dynamo},$ITERS);
             push @dynDetail, $dstr;
             push @dynHtml, $html;
             $compare->{$tmpb}->{dynamo}->{rf} = "";
@@ -181,7 +181,11 @@ if($PROVETNT == 1) {
     print for @dynDetail;
     print for @dynHtml;
     open my $HTML, ">", "$benchdir.$outdir.html" or die $!;
-    print $HTML "<html><head><style> table { width:100\%; } table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { padding: 15px; text-align: center; } tr:nth-child(even) { background-color: \#eee; } tr:nth-child(odd) { background-color: \#fff; } </style></head><body><h2>Experimental Results of DynamiTe on the benchmark $benchdir</h2><table style=\"border: 1pt solid black;\"><tr><th rowspan=\"2\">Benchmark</th><th rowspan=\"2\">Desc.</th><th>DynamiTe</th><th colspan=\"2\">Learning</th><th colspan=\"2\">Validation</th></tr><tr><th>$infer</th><th>Time</th><th>Res</th><th>Time</th><th>Res</th></tr>\n";
+    if ($ITERS == 1) {
+        print $HTML "<html><head><style> table { width:100\%; } table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { padding: 15px; text-align: center; } tr:nth-child(even) { background-color: \#eee; } tr:nth-child(odd) { background-color: \#fff; } </style></head><body><h2>Experimental Results of DynamiTe on the benchmark $benchdir</h2><table style=\"border: 1pt solid black;\"><tr><th rowspan=\"2\">Benchmark</th><th rowspan=\"2\">Desc.</th><th>DynamiTe</th><th colspan=\"2\">Learning</th><th colspan=\"2\">Validation</th></tr><tr><th>$infer</th><th>Time</th><th>Res</th><th>Time</th><th>Res</th></tr>\n";
+    } else {
+        print $HTML "<html><head><style> table { width:100\%; } table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { padding: 15px; text-align: center; } tr:nth-child(even) { background-color: \#eee; } tr:nth-child(odd) { background-color: \#fff; } </style></head><body><h2>Experimental Results of DynamiTe on the benchmark $benchdir</h2><table style=\"border: 1pt solid black;\"><tr><th rowspan=\"2\">Benchmark</th><th rowspan=\"2\">Desc.</th><th>DynamiTe</th><th colspan=\"2\">Learning</th><th colspan=\"2\">Validation</th><th colspan=\"2\">Total</th></tr><tr><th>$infer</th><th>Time</th><th>Res</th><th>Time</th><th>Res</th><th>Time</th><th>d$ITERS</th></tr>\n";
+    }
     print $HTML @dynHtml;
     print $HTML "</body></html>";
     close $HTML;
