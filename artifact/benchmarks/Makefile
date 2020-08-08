@@ -2,6 +2,7 @@
 
 ## These can be configured
 ITERATIONS=1
+LITITERS=5
 
 ALL="termination-crafted-lit nontermination-crafted-lit nla-term nla-nonterm integrated"
 
@@ -9,17 +10,17 @@ all: ${ALL}
 
 termination-crafted-lit:
 #	./run --hardtimeout=1 --iters=${ITERATIONS} termination-crafted-lit run dynamo CookSeeZuleger-TACAS2013-Fig8b.c 
-	./run --hardtimeout=1 --iters=${ITERATIONS} termination-crafted-lit run dynamo
-	./harvest --iters=${ITERATIONS} nocsvs termination-crafted-lit/`cat /tmp/dynamite.outdir`
+	./run --hardtimeout=1 --iters=${LITITERS} termination-crafted-lit run dynamo
+	./harvest --iters=${LITITERS} nocsvs termination-crafted-lit/`cat /tmp/dynamite.outdir`
 	@echo "==> All logs saved to: termination-crafted-lit/`cat /tmp/dynamite.outdir`"
 #	@echo "==> TEX Output:  compare.tex comparent.tex comparesummary.tex naming.tex"
-	@echo "==> Can re-harvest with:    ./harvest --iters=${ITERATIONS} nocsvs termination-crafted-lit/`cat /tmp/dynamite.outdir`"
+	@echo "==> Can re-harvest with:    ./harvest --iters=${LITITERS} nocsvs termination-crafted-lit/`cat /tmp/dynamite.outdir`"
 
 nontermination-crafted-lit:
-	./run --hardtimeout=1 --iters=${ITERATIONS} nontermination-crafted-lit run dynamo
+	./run --hardtimeout=1 --iters=${LITITERS} nontermination-crafted-lit run dynamo
 	@echo "==> All logs saved to: nontermination-crafted-lit/`cat /tmp/dynamite.outdir`"
-	./harvest --iters=${ITERATIONS} nocsvs nontermination-crafted-lit/`cat /tmp/dynamite.outdir`
-	@echo "==> Can re-harvest with:    ./harvest --iters=${ITERATIONS} nocsvs nontermination-crafted-lit/`cat /tmp/dynamite.outdir`"
+	./harvest --iters=${LITITERS} nocsvs nontermination-crafted-lit/`cat /tmp/dynamite.outdir`
+	@echo "==> Can re-harvest with:    ./harvest --iters=${LITITERS} nocsvs nontermination-crafted-lit/`cat /tmp/dynamite.outdir`"
 
 nla-term:
 	./run --hardtimeout=1 --iters=${ITERATIONS} nla-term run dynamo # egcd-both-t.c
