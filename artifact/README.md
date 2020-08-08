@@ -85,7 +85,7 @@ The details are as follows:
     ```
     make termination-crafted-lit
     ```
-    It took about 75 minutes to run the entire 61 benchmark programs 5 times. The result can be found [here](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/exp/termination-crafted-lit/termination-crafted-lit.out-udP0tHK.html), whose log files are in the folder [exp/termination-crafted-lit/out-udP0tHK](exp/termination-crafted-lit/out-udP0tHK). Some inferred ranking functions that can be verified in Figure 6 now cannot be verified before the timeout due to the resource limitation of the Docker container.
+    It took about 400 minutes to run the entire 61 benchmark programs 5 times. The result can be found [here](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/exp/termination-crafted-lit/termination-crafted-lit.out-udP0tHK.html), whose log files are in the folder [exp/termination-crafted-lit/out-udP0tHK](exp/termination-crafted-lit/out-udP0tHK). Some inferred ranking functions that can be verified in Figure 6 now cannot be verified before the timeout due to the resource limitation of the Docker container.
     
 - To reproduce Figure 7, run
     ```
