@@ -73,7 +73,7 @@ The folder `benchmarks` contains 4 benchmarks:
 - [`nontermination-crafted-lit`](benchmarks/nontermination-crafted-lit): non-terminating linear programs in the SV-COMP's `termination-crafted-lit` benchmark used in Figure 7.
 - [`nla-term`](benchmarks/nla-term): terminating non-linear programs used in Figure 8.
 - [`nla-nonterm`](benchmarks/nla-nonterm): non-terminating non-linear programs used in Figure 9.
-- Both `nla-term` and `nla-nonterm` are used in Figure 10.
+- Both [`nla-term`](benchmarks/nla-term) and [`nla-nonterm`](benchmarks/nla-nonterm) are used in Figure 10.
 
 ## Reproducing the Results
 
