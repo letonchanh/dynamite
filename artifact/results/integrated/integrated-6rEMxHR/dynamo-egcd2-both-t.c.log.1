@@ -1,0 +1,966 @@
+__main__:118:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:119:INFO (<module>) - Dig's logger_level: WARNING
+__main__:120:INFO (<module>) - Timeout: 300s
+__main__:122:INFO (<module>) - 2020-08-07 23:15:00.296076: dynamo.py --timeout=300 /tools/dynamite/benchmarks/nla-term/egcd2-both-t.c
+/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:155:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_6eqpgin7
+analysis:163:DEBUG (__init__) - trans_cmd: /tools/dynamite/deps/dynamite-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /tools/dynamite/benchmarks/nla-term/egcd2-both-t.c --out=/var/tmp/Dig_6eqpgin7/egcd2-both-t.c --bnd=500
+analysis:170:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_32': ['exit'], 'vloop_26': ['exit', 'vloop_32'], 'mainQ': ['vloop_26'], 'main': ['mainQ']})
+analysis:181:DEBUG (__init__) - postorder_vloop_ids: ['vloop_32', 'vloop_26']
+analysis:190:DEBUG (__init__) - inp_decls (<class 'data.prog.Symbs'>): I x, I y
+analysis:191:DEBUG (__init__) - inv_decls (<class 'data.prog.DSymbs'>): {'vtrace1_26': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='s', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I'), Symb(name='temp', typ='I')), 'vtrace2_26': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='s', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I'), Symb(name='temp', typ='I')), 'vtrace3_26': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='s', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I'), Symb(name='temp', typ='I')), 'vtrace4_26': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='s', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I'), Symb(name='temp', typ='I')), 'vtrace1_32': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='b', typ='I'), Symb(name='q', typ='I'), Symb(name='s', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace2_32': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='b', typ='I'), Symb(name='q', typ='I'), Symb(name='s', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace3_32': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='b', typ='I'), Symb(name='q', typ='I'), Symb(name='s', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace4_32': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='b', typ='I'), Symb(name='q', typ='I'), Symb(name='s', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I'))}
+__main__:168:DEBUG (<module>) - prove_process: 20359
+lib:49:DEBUG (gen_rand_inps) - gen 103/100 random inps
+utils.profiling:31:DEBUG (timed) - gen_rand_inps: 128.44ms
+lib:60:DEBUG (get_traces_from_inps) - inp_decls: I x, I y
+lib:61:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_26': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='s', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I'), Symb(name='temp', typ='I')), 'vtrace2_26': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='s', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I'), Symb(name='temp', typ='I')), 'vtrace3_26': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='s', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I'), Symb(name='temp', typ='I')), 'vtrace4_26': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='s', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I'), Symb(name='temp', typ='I')), 'vtrace1_32': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='b', typ='I'), Symb(name='q', typ='I'), Symb(name='s', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace2_32': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='b', typ='I'), Symb(name='q', typ='I'), Symb(name='s', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace3_32': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='b', typ='I'), Symb(name='q', typ='I'), Symb(name='s', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace4_32': (Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='b', typ='I'), Symb(name='q', typ='I'), Symb(name='s', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 159.91ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 125.40ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 285.96ms
+analysis:1372:DEBUG (prove) - Analysing vloop_32
+analysis:1374:DEBUG (prove) - base_term_inps: 0
+analysis:1375:DEBUG (prove) - term_inps: 95
+analysis:1376:DEBUG (prove) - mayloop_inps: 0
+analysis:1400:DEBUG (prove) - Proving Termination: vloop_32
+analysis:1264:DEBUG (prove_term_vloop) - classify_inps: vloop_32
+analysis:1267:DEBUG (prove_term_vloop) - itraces: 95
+lib:214:DEBUG (print_inps) - x=14,y=16: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace1_32', 3), ('vtrace3_32', 3), ('vtrace4_26', 3), ('vtrace2_32', 8), ('vtrace4_32', 8), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=5,y=270: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace1_32', 2), ('vtrace3_32', 2), ('vtrace4_26', 2), ('vtrace2_32', 54), ('vtrace4_32', 54), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=4,y=299: [('vtrace1_26', 1), ('vtrace2_26', 4), ('vtrace1_32', 4), ('vtrace3_32', 4), ('vtrace4_26', 4), ('vtrace2_32', 78), ('vtrace4_32', 78), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=27,y=14: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace1_32', 3), ('vtrace2_32', 15), ('vtrace4_32', 15), ('vtrace3_32', 3), ('vtrace4_26', 3), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=14,y=17: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace1_32', 5), ('vtrace3_32', 5), ('vtrace4_26', 5), ('vtrace2_32', 8), ('vtrace4_32', 8), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=281,y=277: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace1_32', 3), ('vtrace2_32', 74), ('vtrace4_32', 74), ('vtrace3_32', 3), ('vtrace4_26', 3), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=2,y=13: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace1_32', 3), ('vtrace3_32', 3), ('vtrace4_26', 3), ('vtrace2_32', 8), ('vtrace4_32', 8), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=14,y=3: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace1_32', 3), ('vtrace2_32', 7), ('vtrace4_32', 7), ('vtrace3_32', 3), ('vtrace4_26', 3), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=10,y=22: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace1_32', 3), ('vtrace3_32', 3), ('vtrace4_26', 3), ('vtrace2_32', 7), ('vtrace4_32', 7), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=27,y=293: [('vtrace1_26', 1), ('vtrace2_26', 6), ('vtrace1_32', 6), ('vtrace3_32', 6), ('vtrace4_26', 6), ('vtrace2_32', 20), ('vtrace4_32', 20), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=285,y=10: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace1_32', 2), ('vtrace2_32', 30), ('vtrace4_32', 30), ('vtrace3_32', 2), ('vtrace4_26', 2), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=4,y=8: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace1_32', 2), ('vtrace3_32', 2), ('vtrace4_26', 2), ('vtrace2_32', 2), ('vtrace4_32', 2), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=286,y=22: [('vtrace1_26', 1), ('vtrace2_26', 1), ('vtrace1_32', 1), ('vtrace2_32', 13), ('vtrace4_32', 13), ('vtrace3_32', 1), ('vtrace4_26', 1), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=28,y=284: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace1_32', 3), ('vtrace3_32', 3), ('vtrace4_26', 3), ('vtrace2_32', 17), ('vtrace4_32', 17), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=17,y=273: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace1_32', 3), ('vtrace3_32', 3), ('vtrace4_26', 3), ('vtrace2_32', 33), ('vtrace4_32', 33), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=10,y=285: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace1_32', 3), ('vtrace3_32', 3), ('vtrace4_26', 3), ('vtrace2_32', 30), ('vtrace4_32', 30), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=7,y=295: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace1_32', 3), ('vtrace3_32', 3), ('vtrace4_26', 3), ('vtrace2_32', 49), ('vtrace4_32', 49), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=23,y=3: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace1_32', 3), ('vtrace2_32', 10), ('vtrace4_32', 10), ('vtrace3_32', 3), ('vtrace4_26', 3), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=8,y=286: [('vtrace1_26', 1), ('vtrace2_26', 4), ('vtrace1_32', 4), ('vtrace3_32', 4), ('vtrace4_26', 4), ('vtrace2_32', 39), ('vtrace4_32', 39), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=276,y=13: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace1_32', 3), ('vtrace2_32', 28), ('vtrace4_32', 28), ('vtrace3_32', 3), ('vtrace4_26', 3), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=4,y=1: [('vtrace1_26', 1), ('vtrace2_26', 1), ('vtrace1_32', 1), ('vtrace2_32', 4), ('vtrace4_32', 4), ('vtrace3_32', 1), ('vtrace4_26', 1), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=6,y=7: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace1_32', 3), ('vtrace3_32', 3), ('vtrace4_26', 3), ('vtrace2_32', 7), ('vtrace4_32', 7), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=297,y=23: [('vtrace1_26', 1), ('vtrace2_26', 4), ('vtrace1_32', 4), ('vtrace2_32', 25), ('vtrace4_32', 25), ('vtrace3_32', 4), ('vtrace4_26', 4), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=295,y=284: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace1_32', 5), ('vtrace2_32', 33), ('vtrace4_32', 33), ('vtrace3_32', 5), ('vtrace4_26', 5), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=285,y=11: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace1_32', 3), ('vtrace2_32', 36), ('vtrace4_32', 36), ('vtrace3_32', 3), ('vtrace4_26', 3), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=12,y=8: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace1_32', 2), ('vtrace2_32', 3), ('vtrace4_32', 3), ('vtrace3_32', 2), ('vtrace4_26', 2), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=278,y=26: [('vtrace1_26', 1), ('vtrace2_26', 4), ('vtrace1_32', 4), ('vtrace2_32', 17), ('vtrace4_32', 17), ('vtrace3_32', 4), ('vtrace4_26', 4), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=286,y=13: [('vtrace1_26', 1), ('vtrace2_26', 1), ('vtrace1_32', 1), ('vtrace2_32', 22), ('vtrace4_32', 22), ('vtrace3_32', 1), ('vtrace4_26', 1), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=14,y=21: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace1_32', 3), ('vtrace3_32', 3), ('vtrace4_26', 3), ('vtrace2_32', 3), ('vtrace4_32', 3), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=3,y=284: [('vtrace1_26', 1), ('vtrace2_26', 4), ('vtrace1_32', 4), ('vtrace3_32', 4), ('vtrace4_26', 4), ('vtrace2_32', 97), ('vtrace4_32', 97), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=277,y=9: [('vtrace1_26', 1), ('vtrace2_26', 4), ('vtrace1_32', 4), ('vtrace2_32', 36), ('vtrace4_32', 36), ('vtrace3_32', 4), ('vtrace4_26', 4), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=13,y=25: [('vtrace1_26', 1), ('vtrace2_26', 4), ('vtrace1_32', 4), ('vtrace3_32', 4), ('vtrace4_26', 4), ('vtrace2_32', 14), ('vtrace4_32', 14), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=2,y=294: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace1_32', 2), ('vtrace3_32', 2), ('vtrace4_26', 2), ('vtrace2_32', 147), ('vtrace4_32', 147), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=276,y=15: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace1_32', 3), ('vtrace2_32', 22), ('vtrace4_32', 22), ('vtrace3_32', 3), ('vtrace4_26', 3), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=3,y=22: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace1_32', 3), ('vtrace3_32', 3), ('vtrace4_26', 3), ('vtrace2_32', 10), ('vtrace4_32', 10), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=29,y=272: [('vtrace1_26', 1), ('vtrace2_26', 7), ('vtrace1_32', 7), ('vtrace3_32', 7), ('vtrace4_26', 7), ('vtrace2_32', 17), ('vtrace4_32', 17), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=287,y=286: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace1_32', 2), ('vtrace2_32', 287), ('vtrace4_32', 287), ('vtrace3_32', 2), ('vtrace4_26', 2), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=281,y=290: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace1_32', 5), ('vtrace3_32', 5), ('vtrace4_26', 5), ('vtrace2_32', 38), ('vtrace4_32', 38), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=291,y=285: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace1_32', 3), ('vtrace2_32', 50), ('vtrace4_32', 50), ('vtrace3_32', 3), ('vtrace4_26', 3), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=10,y=5: [('vtrace1_26', 1), ('vtrace2_26', 1), ('vtrace1_32', 1), ('vtrace2_32', 2), ('vtrace4_32', 2), ('vtrace3_32', 1), ('vtrace4_26', 1), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=6,y=25: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace1_32', 3), ('vtrace3_32', 3), ('vtrace4_26', 3), ('vtrace2_32', 10), ('vtrace4_32', 10), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=11,y=275: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace1_32', 2), ('vtrace3_32', 2), ('vtrace4_26', 2), ('vtrace2_32', 25), ('vtrace4_32', 25), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=13,y=9: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace1_32', 3), ('vtrace2_32', 7), ('vtrace4_32', 7), ('vtrace3_32', 3), ('vtrace4_26', 3), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=4,y=286: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace1_32', 3), ('vtrace3_32', 3), ('vtrace4_26', 3), ('vtrace2_32', 73), ('vtrace4_32', 73), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=10,y=291: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace1_32', 3), ('vtrace3_32', 3), ('vtrace4_26', 3), ('vtrace2_32', 39), ('vtrace4_32', 39), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=4,y=294: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace1_32', 3), ('vtrace3_32', 3), ('vtrace4_26', 3), ('vtrace2_32', 75), ('vtrace4_32', 75), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=18,y=14: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace1_32', 3), ('vtrace2_32', 6), ('vtrace4_32', 6), ('vtrace3_32', 3), ('vtrace4_26', 3), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=7,y=3: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace1_32', 2), ('vtrace2_32', 5), ('vtrace4_32', 5), ('vtrace3_32', 2), ('vtrace4_26', 2), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=281,y=19: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace1_32', 5), ('vtrace2_32', 22), ('vtrace4_32', 22), ('vtrace3_32', 5), ('vtrace4_26', 5), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=293,y=5: [('vtrace1_26', 1), ('vtrace2_26', 4), ('vtrace1_32', 4), ('vtrace2_32', 62), ('vtrace4_32', 62), ('vtrace3_32', 4), ('vtrace4_26', 4), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=3,y=3: [('vtrace1_26', 1), ('vtrace2_26', 1), ('vtrace1_32', 1), ('vtrace2_32', 1), ('vtrace4_32', 1), ('vtrace3_32', 1), ('vtrace4_26', 1), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=280,y=294: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace1_32', 3), ('vtrace3_32', 3), ('vtrace4_26', 3), ('vtrace2_32', 21), ('vtrace4_32', 21), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=5,y=20: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace1_32', 2), ('vtrace3_32', 2), ('vtrace4_26', 2), ('vtrace2_32', 4), ('vtrace4_32', 4), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=10,y=290: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace1_32', 2), ('vtrace3_32', 2), ('vtrace4_26', 2), ('vtrace2_32', 29), ('vtrace4_32', 29), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=297,y=280: [('vtrace1_26', 1), ('vtrace2_26', 4), ('vtrace1_32', 4), ('vtrace2_32', 27), ('vtrace4_32', 27), ('vtrace3_32', 4), ('vtrace4_26', 4), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=15,y=279: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace1_32', 5), ('vtrace3_32', 5), ('vtrace4_26', 5), ('vtrace2_32', 22), ('vtrace4_32', 22), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=22,y=17: [('vtrace1_26', 1), ('vtrace2_26', 4), ('vtrace1_32', 4), ('vtrace2_32', 8), ('vtrace4_32', 8), ('vtrace3_32', 4), ('vtrace4_26', 4), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=1,y=4: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace1_32', 2), ('vtrace3_32', 2), ('vtrace4_26', 2), ('vtrace2_32', 4), ('vtrace4_32', 4), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=282,y=7: [('vtrace1_26', 1), ('vtrace2_26', 3), ('vtrace1_32', 3), ('vtrace2_32', 45), ('vtrace4_32', 45), ('vtrace3_32', 3), ('vtrace4_26', 3), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=270,y=284: [('vtrace1_26', 1), ('vtrace2_26', 5), ('vtrace1_32', 5), ('vtrace3_32', 5), ('vtrace4_26', 5), ('vtrace2_32', 25), ('vtrace4_32', 25), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=279,y=6: [('vtrace1_26', 1), ('vtrace2_26', 2), ('vtrace1_32', 2), ('vtrace2_32', 48), ('vtrace4_32', 48), ('vtrace3_32', 2), ('vtrace4_26', 2), ('vtrace3_26', 1)]
+lib:214:DEBUG (print_inps) - x=271,y=21: [('vtrace1_26', 1), ('vtravalidate:46:DEBUG (prove_reach) - res: None
+validate:46:DEBUG (prove_reach) - res: None
+validate:254:DEBUG (prove_reach) - wrs: []
+utils.profiling:31:DEBUG (timed) - prove_reach: 278044.83ms
+analysis:1222:DEBUG (validate_ranking_functions) - r: None
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 278193.08ms
+analysis:1288:DEBUG (prove_term_vloop) - Termination result (vloop_19): None ([b, a])
+utils.profiling:31:DEBUG (timed) - prove_term_vloop: 300327.98ms
+analysis:1410:DEBUG (prove) - Proving Non-Termination: vloop_19
+analysis:321:DEBUG (_get_stem_from_symstates) - vloop.preloop_loc: vtrace1_19
+analysis:266:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+data.symstates:369:WARNING (merge) - vtrace1_19: no symbolic states at depth 21
+data.symstates:369:WARNING (merge) - vtrace1_19: no symbolic states at depth 24
+data.symstates:369:WARNING (merge) - vtrace1_19: no symbolic states at depth 23
+data.symstates:369:WARNING (merge) - vtrace1_19: no symbolic states at depth 22
+data.symstates:369:WARNING (merge) - vtrace2_19: no symbolic states at depth 24
+data.symstates:369:WARNING (merge) - vtrace3_19: no symbolic states at depth 24
+data.symstates:369:WARNING (merge) - vtrace3_19: no symbolic states at depth 23
+analysis:279:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_19
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 4611.05ms
+analysis:307:DEBUG (_get_stem_from_ss) - preloop_fst_symstate: loc: vtrace1_19
+pc: And(1 <= X_x, 1 <= X_y)
+slocal: And(a == X_x,
+    b == X_y,
+    1 == p,
+    0 == q,
+    0 == r,
+    1 == s,
+    x == X_x,
+    y == X_y)
+analysis:310:DEBUG (_get_stem_from_ss) - mainQ init_symvars: I X_x, I X_y
+analysis:313:DEBUG (_get_stem_from_ss) - stem_cond (<class 'z3.z3.BoolRef'>): And(1 <= X_x, 1 <= X_y)
+analysis:314:DEBUG (_get_stem_from_ss) - stem_transrel (<class 'z3.z3.BoolRef'>): And(a == X_x,
+    b == X_y,
+    1 == p,
+    0 == q,
+    0 == r,
+    1 == s,
+    x == X_x,
+    y == X_y)
+analysis:351:DEBUG (_get_loop_from_symstates) - Create C source for vloop_19: /var/tmp/Dig_tvib_41w
+analysis:266:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+data.symstates:369:WARNING (merge) - vtrace1_19: no symbolic states at depth 21
+data.symstates:369:WARNING (merge) - vtrace1_19: no symbolic states at depth 24
+data.symstates:369:WARNING (merge) - vtrace1_19: no symbolic states at depth 22
+data.symstates:369:WARNING (merge) - vtrace1_19: no symbolic states at depth 23
+data.symstates:369:WARNING (merge) - vtrace2_19: no symbolic states at depth 24
+data.symstates:369:WARNING (merge) - vtrace3_19: no symbolic states at depth 24
+data.symstates:369:WARNING (merge) - vtrace3_19: no symbolic states at depth 23
+analysis:279:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_19
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 4615.97ms
+analysis:362:DEBUG (_get_loop_from_symstates) - vloop inp_decls: I a, I b, I p, I q, I r, I s, I x, I y
+analysis:363:DEBUG (_get_loop_from_symstates) - vloop inv_decls: {'vtrace1_19': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='s', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I')), 'vtrace2_19': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='s', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I')), 'vtrace3_19': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='s', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I')), 'vtrace4_19': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='s', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'))}
+analysis:364:DEBUG (_get_loop_from_symstates) - vloop init_symvars: I X_a, I X_b, I X_p, I X_q, I X_r, I X_s, I X_x, I X_y
+analysis:266:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 24
+data.symstates:369:WARNING (merge) - vtrace1_19: no symbolic states at depth 27
+data.symstates:369:WARNING (merge) - vtrace1_19: no symbolic states at depth 26
+data.symstates:369:WARNING (merge) - vtrace1_19: no symbolic states at depth 29
+data.symstates:369:WARNING (merge) - vtrace1_19: no symbolic states at depth 28
+data.symstates:369:WARNING (merge) - vtrace2_19: no symbolic states at depth 27
+data.symstates:369:WARNING (merge) - vtrace2_19: no symbolic states at depth 26
+data.symstates:369:WARNING (merge) - vtrace2_19: no symbolic states at depth 28
+data.symstates:369:WARNING (merge) - vtrace3_19: no symbolic states at depth 27
+data.symstates:369:WARNING (merge) - vtrace3_19: no symbolic states at depth 26
+data.symstates:369:WARNING (merge) - vtrace3_19: no symbolic states at depth 29
+data.symstates:369:WARNING (merge) - vtrace4_19: no symbolic states at depth 27
+data.symstates:369:WARNING (merge) - vtrace4_19: no symbolic states at depth 29
+data.symstates:369:WARNING (merge) - vtrace4_19: no symbolic states at depth 28
+analysis:279:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_19
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 5858.41ms
+analysis:266:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 29
+data.symstates:369:WARNING (merge) - vtrace1_19: no symbolic states at depth 31
+data.symstates:369:WARNING (merge) - vtrace1_19: no symbolic states at depth 32
+data.symstates:369:WARNING (merge) - vtrace1_19: no symbolic states at depth 34
+data.symstates:369:WARNING (merge) - vtrace1_19: no symbolic states at depth 33
+data.symstates:369:WARNING (merge) - vtrace2_19: no symbolic states at depth 31
+data.symstates:369:WARNING (merge) - vtrace2_19: no symbolic states at depth 32
+data.symstates:369:WARNING (merge) - vtrace2_19: no symbolic states at depth 34
+data.symstates:369:WARNING (merge) - vtrace2_19: no symbolic states at depth 33
+data.symstates:369:WARNING (merge) - vtrace4_19: no symbolic states at depth 31
+data.symstates:369:WARNING (merge) - vtrace4_19: no symbolic states at depth 34
+data.symstates:369:WARNING (merge) - vtrace4_19: no symbolic states at depth 33
+data.symstates:369:WARNING (merge) - vtrace3_19: no symbolic states at depth 31
+data.symstates:369:WARNING (merge) - vtrace3_19: no symbolic states at depth 32
+data.symstates:369:WARNING (merge) - vtrace3_19: no symbolic states at depth 33
+analysis:279:DEBUG (_get_symstates_from_src) - target_loc: vtrace2_19
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 9674.34ms
+analysis:461:DEBUG (_get_loop_from_symstates) - inloop_symstate: loc: vtrace2_19
+pc: Not(0 == X_p*X_x + -1*X_q*X_x + X_r*X_y + -1*X_s*X_y)
+slocal: And(a == X_a,
+    b == X_b,
+    p == X_p,
+    q == X_q,
+    r == X_r,
+    s == X_s,
+    x == X_x,
+    y == X_y)
+analysis:462:DEBUG (_get_loop_from_symstates) - transrel_symstate: loc: vtrace4_19
+pc: And(1 <= X_a + -1*X_b,
+    Not(0 == X_p*X_x + -1*X_q*X_x + X_r*X_y + -1*X_s*X_y))
+slocal: And(a == X_a + -1*X_b,
+    b == X_b,
+    p == X_p + -1*X_q,
+    q == X_q,
+    r == X_r + -1*X_s,
+    s == X_s,
+    x == X_x,
+    y == X_y)
+analysis:468:DEBUG (_get_loop_from_symstates) - loop_cond: Not(0 == p*x + -1*q*x + r*y + -1*s*y)
+analysis:475:DEBUG (_get_loop_from_symstates) - loop_transrel: And(And(a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q,
+        r0 == r,
+        s0 == s,
+        x0 == x,
+        y0 == y),
+    And(a1 == a + -1*b,
+        b1 == b,
+        p1 == p + -1*q,
+        q1 == q,
+        r1 == r + -1*s,
+        s1 == s,
+        x1 == x,
+        y1 == y),
+    And(1 <= a + -1*b,
+        Not(0 == p*x + -1*q*x + r*y + -1*s*y)))
+utils.profiling:31:DEBUG (timed) - _get_loopinfo_from_symstates: 24834.90ms
+analysis:537:DEBUG (get_loopinfo) - stem: <utils.loop.Stem object at 0x7f708875ff28>
+analysis:538:DEBUG (get_loopinfo) - loop: <utils.loop.Loop object at 0x7f78e1d39320>
+utils.profiling:31:DEBUG (timed) - get_loopinfo: 24835.09ms
+analysis:864:DEBUG (prove_nonterm_vloop) - use_dfs: False
+analysis:865:DEBUG (prove_nonterm_vloop) - use_bfs: True
+analysis:843:DEBUG (_stat_candidate_rcs) - stat (1 total): defaultdict(<class 'int'>, {0: 1})
+analysis:936:DEBUG (prove_rcs) - PROVE_NT DEPTH 0: ZConj({Not(0 == p*x + -1*q*x + r*y + -1*s*y)})
+analysis:643:DEBUG (verify) - loop_transrel: And(And(a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q,
+        r0 == r,
+        s0 == s,
+        x0 == x,
+        y0 == y),
+    And(a1 == a + -1*b,
+        b1 == b,
+        p1 == p + -1*q,
+        q1 == q,
+        r1 == r + -1*s,
+        s1 == s,
+        x1 == x,
+        y1 == y),
+    And(1 <= a + -1*b,
+        Not(0 == p*x + -1*q*x + r*y + -1*s*y)))
+analysis:644:DEBUG (verify) - loop_cond: Not(0 == p*x + -1*q*x + r*y + -1*s*y)
+analysis:645:DEBUG (verify) - rcs: ZConj({Not(0 == p*x + -1*q*x + r*y + -1*s*y)})
+analysis:659:DEBUG (verify) - labeled_rcs: ZConj({Not(0 == p*x + -1*q*x + r*y + -1*s*y):c_0})
+analysis:666:DEBUG (verify) - transrel_rcs: ZConj({And(And(a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q,
+        r0 == r,
+        s0 == s,
+        x0 == x,
+        y0 == y),
+    And(a1 == a + -1*b,
+        b1 == b,
+        p1 == p + -1*q,
+        q1 == q,
+        r1 == r + -1*s,
+        s1 == s,
+        x1 == x,
+        y1 == y),
+    And(1 <= a + -1*b,
+        Not(0 == p*x + -1*q*x + r*y + -1*s*y))), Not(0 == p0*x0 + -1*q0*x0 + r0*y0 + -1*s0*y0):c_0})
+analysis:671:DEBUG (verify) - init_transrel_rcs: ZConj({And(1 <= X_x, 1 <= X_y), Not(0 == p0*x0 + -1*q0*x0 + r0*y0 + -1*s0*y0):c_0, And(And(a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q,
+        r0 == r,
+        s0 == s,
+        x0 == x,
+        y0 == y),
+    And(a1 == a + -1*b,
+        b1 == b,
+        p1 == p + -1*q,
+        q1 == q,
+        r1 == r + -1*s,
+        s1 == s,
+        x1 == x,
+        y1 == y),
+    And(1 <= a + -1*b,
+        Not(0 == p*x + -1*q*x + r*y + -1*s*y))), And(a == X_x,
+    b == X_y,
+    1 == p,
+    0 == q,
+    0 == r,
+    1 == s,
+    x == X_x,
+    y == X_y)})
+analysis:681:DEBUG (_check) - rc: Not(0 == p*x + -1*q*x + r*y + -1*s*y):c_0
+analysis:686:DEBUG (_check) - rc_r: Not(0 == p1*x1 + -1*q1*x1 + r1*y1 + -1*s1*y1)
+analysis:687:DEBUG (_check) - f: ZConj({Not(Not(0 == p1*x1 + -1*q1*x1 + r1*y1 + -1*s1*y1)), And(And(a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q,
+        r0 == r,
+        s0 == s,
+        x0 == x,
+        y0 == y),
+    And(a1 == a + -1*b,
+        b1 == b,
+        p1 == p + -1*q,
+        q1 == q,
+        r1 == r + -1*s,
+        s1 == s,
+        x1 == x,
+        y1 == y),
+    And(1 <= a + -1*b,
+        Not(0 == p*x + -1*q*x + r*y + -1*s*y))), Not(0 == p0*x0 + -1*q0*x0 + r0*y0 + -1*s0*y0):c_0})
+analysis:702:DEBUG (_check) - rs: sat
+analysis:709:DEBUG (_check) - init_f: ZConj({Not(Not(0 == p1*x1 + -1*q1*x1 + r1*y1 + -1*s1*y1)), And(a == X_x,
+    b == X_y,
+    1 == p,
+    0 == q,
+    0 == r,
+    1 == s,
+    x == X_x,
+    y == X_y), And(1 <= X_x, 1 <= X_y), Not(0 == p0*x0 + -1*q0*x0 + r0*y0 + -1*s0*y0):c_0, And(And(a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q,
+        r0 == r,
+        s0 == s,
+        x0 == x,
+        y0 == y),
+    And(a1 == a + -1*b,
+        b1 == b,
+        p1 == p + -1*q,
+        q1 == q,
+        r1 == r + -1*s,
+        s1 == s,
+        x1 == x,
+        y1 == y),
+    And(1 <= a + -1*b,
+        Not(0 == p*x + -1*q*x + r*y + -1*s*y)))})
+analysis:710:DEBUG (_check) - init_rs: [[('X_y', 2), ('X_x', 4), ('s1', 1), ('r1', -1), ('q1', 0), ('p1', 1), ('b1', 2), ('a1', 2), ('y0', 2), ('x0', 4), ('s0', 1), ('r0', 0), ('q0', 0), ('p0', 1), ('b0', 2), ('a0', 4), ('x', 4), ('s', 1), ('r', 0), ('q', 0), ('p', 1), ('b', 2), ('a', 4), ('x1', 4), ('y1', 2), ('y', 2)], [('X_y', 3), ('X_x', 6), ('s1', 1), ('r1', -1), ('q1', 0), ('p1', 1), ('b1', 3), ('a1', 3), ('y0', 3), ('x0', 6), ('s0', 1), ('r0', 0), ('q0', 0), ('p0', 1), ('b0', 3), ('a0', 6), ('x', 6), ('s', 1), ('r', 0), ('q', 0), ('p', 1), ('b', 3), ('a', 6), ('x1', 6), ('y1', 3), ('y', 3)], [('X_y', 4), ('X_x', 8), ('s1', 1), ('r1', -1), ('q1', 0), ('p1', 1), ('b1', 4), ('a1', 4), ('y0', 4), ('x0', 8), ('s0', 1), ('r0', 0), ('q0', 0), ('p0', 1), ('b0', 4), ('a0', 8), ('x', 8), ('s', 1), ('r', 0), ('q', 0), ('p', 1), ('b', 4), ('a', 8), ('x1', 8), ('y1', 4), ('y', 4)], [('X_y', 1), ('X_x', 2), ('s1', 1), ('r1', -1), ('q1', 0), ('p1', 1), ('b1', 1), ('a1', 1), ('y0', 1), ('x0', 2), ('s0', 1), ('r0', 0), ('q0', 0), ('p0', 1), ('b0', 1), ('a0', 2), ('x', 2), ('s', 1), ('r', 0), ('q', 0), ('p', 1), ('b', 1), ('a', 2), ('x1', 2), ('y1', 1), ('y', 1)], [('X_y', 5), ('X_x', 10), ('s1', 1), ('r1', -1), ('q1', 0), ('p1', 1), ('b1', 5), ('a1', 5), ('y0', 5), ('x0', 10), ('s0', 1), ('r0', 0), ('q0', 0), ('p0', 1), ('b0', 5), ('a0', 10), ('x', 10), ('s', 1), ('r', 0), ('q', 0), ('p', 1), ('b', 5), ('a', 10), ('x1', 10), ('y1', 5), ('y', 5)], [('X_y', 6), ('X_x', 12), ('s1', 1), ('r1', -1), ('q1', 0), ('p1', 1), ('b1', 6), ('a1', 6), ('y0', 6), ('x0', 12), ('s0', 1), ('r0', 0), ('q0', 0), ('p0', 1), ('b0', 6), ('a0', 12), ('x', 12), ('s', 1), ('r', 0), ('q', 0), ('p', 1), ('b', 6), ('a', 12), ('x1', 12), ('y1', 6), ('y', 6)], [('X_y', 7), ('X_x', 14), ('s1', 1), ('r1', -1), ('q1', 0), ('p1', 1), ('b1', 7), ('a1', 7), ('y0', 7), ('x0', 14), ('s0', 1), ('r0', 0), ('q0', 0), ('p0', 1), ('b0', 7), ('a0', 14), ('x', 14), ('s', 1), ('r', 0), ('q', 0), ('p', 1), ('b', 7), ('a', 14), ('x1', 14), ('y1', 7), ('y', 7)], [('X_y', 8), ('X_x', 16), ('s1', 1), ('r1', -1), ('q1', 0), ('p1', 1), ('b1', 8), ('a1', 8), ('y0', 8), ('x0', 16), ('s0', 1), ('r0', 0), ('q0', 0), ('p0', 1), ('b0', 8), ('a0', 16), ('x', 16), ('s', 1), ('r', 0), ('q', 0), ('p', 1), ('b', 8), ('a', 16), ('x1', 16), ('y1', 8), ('y', 8)], [('X_y', 9), ('X_x', 18), ('s1', 1), ('r1', -1), ('q1', 0), ('p1', 1), ('b1', 9), ('a1', 9), ('y0', 9), ('x0', 18), ('s0', 1), ('r0', 0), ('q0', 0), ('p0', 1), ('b0', 9), ('a0', 18), ('x', 18), ('s', 1), ('r', 0), ('q', 0), ('p', 1), ('b', 9), ('a', 18), ('x1', 18), ('y1', 9), ('y', 9)], [('X_y', 10), ('X_x', 20), ('s1', 1), ('r1', -1), ('q1', 0), ('p1', 1), ('b1', 10), ('a1', 10), ('y0', 10), ('x0', 20), ('s0', 1), ('r0', 0), ('q0', 0), ('p0', 1), ('b0', 10), ('a0', 20), ('x', 20), ('s', 1), ('r', 0), ('q', 0), ('p', 1), ('b', 10), ('a', 20), ('x1', 20), ('y1', 10), ('y', 10)], [('X_y', 11), ('X_x', 22), ('s1', 1), ('r1', -1), ('q1', 0), ('p1', 1), ('b1', 11), ('a1', 11), ('y0', 11), ('x0', 22), ('s0', 1), ('r0', 0), ('q0', 0), ('p0', 1), ('b0', 11), ('a0', 22), ('x', 22), ('s', 1), ('r', 0), ('q', 0), ('p', 1), ('b', 11), ('a', 22), ('x1', 22), ('y1', 11), ('y', 11)]]
+analysis:725:DEBUG (_check) - init_models: sat (11 models)
+analysis:730:DEBUG (_check) - inps: Inps({Inp(ss=('x', 'y'), vs=(16, 8)), Inp(ss=('x', 'y'), vs=(8, 4)), Inp(ss=('x', 'y'), vs=(10, 5)), Inp(ss=('x', 'y'), vs=(22, 11)), Inp(ss=('x', 'y'), vs=(18, 9)), Inp(ss=('x', 'y'), vs=(4, 2)), Inp(ss=('x', 'y'), vs=(14, 7)), Inp(ss=('x', 'y'), vs=(12, 6)), Inp(ss=('x', 'y'), vs=(6, 3)), Inp(ss=('x', 'y'), vs=(2, 1)), Inp(ss=('x', 'y'), vs=(20, 10))})
+analysis:739:INFO (verify) - dg: defaultdict(<class 'list'>, {})
+analysis:740:INFO (verify) - label_d: defaultdict(<class 'str'>, {Not(0 == p*x + -1*q*x + r*y + -1*s*y): 'c_0'})
+analysis:741:INFO (verify) - rev_label_d: {'c_0': Not(0 == p*x + -1*q*x + r*y + -1*s*y)}
+analysis:744:INFO (verify) - loop_cond_label: c_0
+analysis:748:INFO (verify) - mds_labels: set()
+analysis:749:INFO (verify) - mds: ZConj()
+lib:60:DEBUG (get_traces_from_inps) - inp_decls: I x, I y
+lib:61:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_19': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='s', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I')), 'vtrace2_19': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='s', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I')), 'vtrace3_19': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='s', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I')), 'vtrace4_19': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='s', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 58.62ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 49.77ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 108.96ms
+utils.profiling:31:DEBUG (timed) - verify: 1384.40ms
+lib:214:DEBUG (print_inps) - x=16,y=8: [('vtrace1_19', 1), ('vtrace2_19', 1), ('vtrace4_19', 1), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=8,y=4: [('vtrace1_19', 1), ('vtrace2_19', 1), ('vtrace4_19', 1), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=10,y=5: [('vtrace1_19', 1), ('vtrace2_19', 1), ('vtrace4_19', 1), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=22,y=11: [('vtrace1_19', 1), ('vtrace2_19', 1), ('vtrace4_19', 1), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=18,y=9: [('vtrace1_19', 1), ('vtrace2_19', 1), ('vtrace4_19', 1), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=4,y=2: [('vtrace1_19', 1), ('vtrace2_19', 1), ('vtrace4_19', 1), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=14,y=7: [('vtrace1_19', 1), ('vtrace2_19', 1), ('vtrace4_19', 1), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=12,y=6: [('vtrace1_19', 1), ('vtrace2_19', 1), ('vtrace4_19', 1), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=6,y=3: [('vtrace1_19', 1), ('vtrace2_19', 1), ('vtrace4_19', 1), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=2,y=1: [('vtrace1_19', 1), ('vtrace2_19', 1), ('vtrace4_19', 1), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=20,y=10: [('vtrace1_19', 1), ('vtrace2_19', 1), ('vtrace4_19', 1), ('vtrace3_19', 1)]
+analysis:770:DEBUG (strengthen) - base_term_inps: 0
+analysis:771:DEBUG (strengthen) - term_inps: 11
+analysis:772:DEBUG (strengthen) - mayloop_inps: 0
+analysis:773:DEBUG (strengthen) - rcs: ZConj({Not(0 == p*x + -1*q*x + r*y + -1*s*y)})
+lib:236:DEBUG (get_traces_by_id) - dtraces[vtrace2_19]: 0
+lib:236:DEBUG (get_traces_by_id) - dtraces[vtrace2_19]: 0
+lib:260:DEBUG (infer_from_traces) - invs: 
+analysis:777:DEBUG (strengthen) - mayloop_invs: ZConj()
+lib:236:DEBUG (get_traces_by_id) - dtraces[vtrace2_19]: 8
+lib:236:DEBUG (get_traces_by_id) - dtraces[vtrace2_19]: 3
+*** 'None', 0 locs, 0 invs (), 0 traces, 0 inps, time 0.01s, rand seed 1596841800.29, test 89 3:
+
+lib:260:DEBUG (infer_from_traces) - invs: vtrace2_19 (86 invs):
+1. s <= 1
+2. s - y <= 0
+3. s - x <= -1
+4. r <= 0
+5. r - y <= -1
+6. r - x <= -2
+7. r - s <= -1
+8. r + s <= 1
+9. q <= 0
+10. q - y <= -1
+11. q - x <= -2
+12. q - s <= -1
+13. q - r <= 0
+14. q + s <= 1
+15. q + r <= 0
+16. p <= 1
+17. p - y <= 0
+18. p - x <= -1
+19. p - s <= 0
+20. p - r <= 1
+21. p - q <= 1
+22. p + s <= 2
+23. p + r <= 1
+24. p + q <= 1
+25. b - y <= 0
+26. b - x <= -1
+27. b - s <= 10
+28. b - p <= 10
+29. a - x <= 0
+30. -y <= -1
+31. -x <= -2
+32. -x - y <= -3
+33. -x + y <= -1
+34. -s <= -1
+35. -s - y <= -2
+36. -s - x <= -3
+37. -s + y <= 10
+38. -r <= 0
+39. -r - y <= -1
+40. -r - x <= -2
+41. -r - s <= -1
+42. -r + s <= 1
+43. -q <= 0
+44. -q - y <= -1
+45. -q - x <= -2
+46. -q - s <= -1
+47. -q - r <= 0
+48. -q + s <= 1
+49. -q + r <= 0
+50. -p <= -1
+51. -p - y <= -2
+52. -p - x <= -3
+53. -p - s <= -2
+54. -p - r <= -1
+55. -p - q <= -1
+56. -p + y <= 10
+57. -p + s <= 0
+58. -p + r <= -1
+59. -p + q <= -1
+60. -b <= -1
+61. -b - y <= -2
+62. -b - x <= -3
+63. -b - s <= -2
+64. -b - r <= -1
+65. -b - q <= -1
+66. -b - p <= -2
+67. -b + y <= 0
+68. -b + s <= 0
+69. -b + r <= -1
+70. -b + q <= -1
+71. -b + p <= 0
+72. -a <= -2
+73. -a - y <= -3
+74. -a - x <= -4
+75. -a - s <= -3
+76. -a - r <= -2
+77. -a - q <= -2
+78. -a - p <= -3
+79. -a - b <= -3
+80. -a + y <= -1
+81. -a + x <= 0
+82. -a + s <= -1
+83. -a + r <= -2
+84. -a + q <= -2
+85. -a + p <= -1
+86. -a + b <= -1
+analysis:781:DEBUG (strengthen) - term_invs: ZConj({1 >= -1*r + s, 0 >= a + -1*x, -1*b + -1*r <= -1, -1*b + -1*x <= -3, 0 >= -1*b + s, r + -1*y <= -1, -1*b + -1*p <= -2, 0 >= s + -1*y, 10 >= -1*p + y, r >= 0, -1*q + -1*x <= -2, -1*s + -1*x <= -3, b >= 1, 0 >= -1*b + p, a >= 2, -1*r + -1*x <= -2, -1*x + y <= -1, s + -1*x <= -1, -1*q + -1*s <= -1, 0 >= -1*a + x, y >= 1, 1 >= p + -1*r, 2 >= p + s, 0 >= -1*b + y, -1*p + -1*s <= -2, -1*r + -1*s <= -1, -1*b + -1*y <= -2, 1 >= p + r, -1*a + -1*r <= -2, -1*a + -1*x <= -4, x >= 2, 0 >= -1*q + -1*r, q + -1*x <= -2, -1*a + b <= -1, -1*x + -1*y <= -3, 1 >= -1*q + s, 0 >= -1*q + r, -1*s + -1*y <= -2, q >= 0, -1*p + -1*r <= -1, -1*b + -1*q <= -1, -1*p + -1*x <= -3, -1*a + p <= -1, 1 >= r + s, s >= 1, -1*b + r <= -1, 10 >= b + -1*s, 0 >= p + -1*s, -1*a + -1*s <= -3, p >= 1, p + -1*x <= -1, 0 >= q + -1*r, q + -1*s <= -1, r + -1*x <= -2, 1 >= q + s, 0 >= q + r, -1*b + q <= -1, 1 >= s, b + -1*x <= -1, 0 >= q, 1 >= p + q, -1*a + -1*p <= -3, -1*a + s <= -1, -1*q + -1*y <= -1, r + -1*s <= -1, 1 >= p + -1*q, -1*r + -1*y <= -1, -1*p + -1*y <= -2, 10 >= b + -1*p, -1*a + y <= -1, -1*a + -1*q <= -2, 0 >= -1*p + s, -1*a + r <= -2, 0 >= r, -1*p + -1*q <= -1, 0 >= b + -1*y, -1*p + r <= -1, -1*a + -1*b <= -3, -1*a + -1*y <= -3, 1 >= p, 0 >= p + -1*y, -1*a + q <= -2, q + -1*y <= -1, -1*b + -1*s <= -2, -1*p + q <= -1, 10 >= -1*s + y})
+utils.profiling:31:DEBUG (timed) - strengthen: 871.63ms
+analysis:843:DEBUG (_stat_candidate_rcs) - stat (86 total): defaultdict(<class 'int'>, {1: 86})
+analysis:936:DEBUG (prove_rcs) - PROVE_NT DEPTH 1: ZConj({Not(0 == p*x + -1*q*x + r*y + -1*s*y), Not(1 >= -1*r + s)})
+analysis:643:DEBUG (verify) - loop_transrel: And(And(a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q,
+        r0 == r,
+        s0 == s,
+        x0 == x,
+        y0 == y),
+    And(a1 == a + -1*b,
+        b1 == b,
+        p1 == p + -1*q,
+        q1 == q,
+        r1 == r + -1*s,
+        s1 == s,
+        x1 == x,
+        y1 == y),
+    And(1 <= a + -1*b,
+        Not(0 == p*x + -1*q*x + r*y + -1*s*y)))
+analysis:644:DEBUG (verify) - loop_cond: Not(0 == p*x + -1*q*x + r*y + -1*s*y)
+analysis:645:DEBUG (verify) - rcs: ZConj({Not(0 == p*x + -1*q*x + r*y + -1*s*y), Not(1 >= -1*r + s)})
+analysis:659:DEBUG (verify) - labeled_rcs: ZConj({Not(1 >= -1*r + s):c_1, Not(0 == p*x + -1*q*x + r*y + -1*s*y):c_0})
+analysis:666:DEBUG (verify) - transrel_rcs: ZConj({Not(1 >= -1*r0 + s0):c_1, And(And(a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q,
+        r0 == r,
+        s0 == s,
+        x0 == x,
+        y0 == y),
+    And(a1 == a + -1*b,
+        b1 == b,
+        p1 == p + -1*q,
+        q1 == q,
+        r1 == r + -1*s,
+        s1 == s,
+        x1 == x,
+        y1 == y),
+    And(1 <= a + -1*b,
+        Not(0 == p*x + -1*q*x + r*y + -1*s*y))), Not(0 == p0*x0 + -1*q0*x0 + r0*y0 + -1*s0*y0):c_0})
+analysis:671:DEBUG (verify) - init_transrel_rcs: ZConj({Not(1 >= -1*r0 + s0):c_1, And(a == X_x,
+    b == X_y,
+    1 == p,
+    0 == q,
+    0 == r,
+    1 == s,
+    x == X_x,
+    y == X_y), And(1 <= X_x, 1 <= X_y), And(And(a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q,
+        r0 == r,
+        s0 == s,
+        x0 == x,
+        y0 == y),
+    And(a1 == a + -1*b,
+        b1 == b,
+        p1 == p + -1*q,
+        q1 == q,
+        r1 == r + -1*s,
+        s1 == s,
+        x1 == x,
+        y1 == y),
+    And(1 <= a + -1*b,
+        Not(0 == p*x + -1*q*x + r*y + -1*s*y))), Not(0 == p0*x0 + -1*q0*x0 + r0*y0 + -1*s0*y0):c_0})
+analysis:681:DEBUG (_check) - rc: Not(0 == p*x + -1*q*x + r*y + -1*s*y):c_0
+analysis:686:DEBUG (_check) - rc_r: Not(0 == p1*x1 + -1*q1*x1 + r1*y1 + -1*s1*y1)
+analysis:687:DEBUG (_check) - f: ZConj({Not(Not(0 == p1*x1 + -1*q1*x1 + r1*y1 + -1*s1*y1)), And(And(a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q,
+        r0 == r,
+        s0 == s,
+        x0 == x,
+        y0 == y),
+    And(a1 == a + -1*b,
+        b1 == b,
+        p1 == p + -1*q,
+        q1 == q,
+        r1 == r + -1*s,
+        s1 == s,
+        x1 == x,
+        y1 == y),
+    And(1 <= a + -1*b,
+        Not(0 == p*x + -1*q*x + r*y + -1*s*y))), Not(0 == p0*x0 + -1*q0*x0 + r0*y0 + -1*s0*y0):c_0, Not(1 >= -1*r0 + s0):c_1})
+*** 'None', 1 locs, 86 invs (86 Oct), 11 traces, 0 inps, time 0.74s, rand seed 1596841800.29, test 89 3:
+vtrace2_19 (86 invs):
+1. s <= 1
+2. s - y <= 0
+3. s - x <= -1
+4. r <= 0
+5. r - y <= -1
+6. r - x <= -2
+7. r - s <= -1
+8. r + s <= 1
+9. q <= 0
+10. q - y <= -1
+11. q - x <= -2
+12. q - s <= -1
+13. q - r <= 0
+14. q + s <= 1
+15. q + r <= 0
+16. p <= 1
+17. p - y <= 0
+18. p - x <= -1
+19. p - s <= 0
+20. p - r <= 1
+21. p - q <= 1
+22. p + s <= 2
+23. p + r <= 1
+24. p + q <= 1
+25. b - y <= 0
+26. b - x <= -1
+27. b - s <= 10
+28. b - p <= 10
+29. a - x <= 0
+30. -y <= -1
+31. -x <= -2
+32. -x - y <= -3
+33. -x + y <= -1
+34. -s <= -1
+35. -s - y <= -2
+36. -s - x <= -3
+37. -s + y <= 10
+38. -r <= 0
+39. -r - y <= -1
+40. -r - x <= -2
+41. -r - s <= -1
+42. -r + s <= 1
+43. -q <= 0
+44. -q - y <= -1
+45. -q - x <= -2
+46. -q - s <= -1
+47. -q - r <= 0
+48. -q + s <= 1
+49. -q + r <= 0
+50. -p <= -1
+51. -p - y <= -2
+52. -p - x <= -3
+53. -p - s <= -2
+54. -p - r <= -1
+55. -p - q <= -1
+56. -p + y <= 10
+57. -p + s <= 0
+58. -p + r <= -1
+59. -p + q <= -1
+60. -b <= -1
+61. -b - y <= -2
+62. -b - x <= -3
+63. -b - s <= -2
+64. -b - r <= -1
+65. -b - q <= -1
+66. -b - p <= -2
+67. -b + y <= 0
+68. -b + s <= 0
+69. -b + r <= -1
+70. -b + q <= -1
+71. -b + p <= 0
+72. -a <= -2
+73. -a - y <= -3
+74. -a - x <= -4
+75. -a - s <= -3
+76. -a - r <= -2
+77. -a - q <= -2
+78. -a - p <= -3
+79. -a - b <= -3
+80. -a + y <= -1
+81. -a + x <= 0
+82. -a + s <= -1
+83. -a + r <= -2
+84. -a + q <= -2
+85. -a + p <= -1
+86. -a + b <= -1
+analysis:702:DEBUG (_check) - rs: sat
+solver:212:DEBUG (_get_unsat_core) - approx: [('c_1', Not(1 >= -1*r0 + s0))]
+analysis:709:DEBUG (_check) - init_f: ZConj({Not(Not(0 == p1*x1 + -1*q1*x1 + r1*y1 + -1*s1*y1)), Not(1 >= -1*r0 + s0):c_1, And(a == X_x,
+    b == X_y,
+    1 == p,
+    0 == q,
+    0 == r,
+    1 == s,
+    x == X_x,
+    y == X_y), Not(0 == p0*x0 + -1*q0*x0 + r0*y0 + -1*s0*y0):c_0, And(1 <= X_x, 1 <= X_y), And(And(a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q,
+        r0 == r,
+        s0 == s,
+        x0 == x,
+        y0 == y),
+    And(a1 == a + -1*b,
+        b1 == b,
+        p1 == p + -1*q,
+        q1 == q,
+        r1 == r + -1*s,
+        s1 == s,
+        x1 == x,
+        y1 == y),
+    And(1 <= a + -1*b,
+        Not(0 == p*x + -1*q*x + r*y + -1*s*y)))})
+analysis:710:DEBUG (_check) - init_rs: False
+analysis:725:DEBUG (_check) - init_models: sat (0 models)
+lib:49:DEBUG (gen_rand_inps) - gen 102/100 random inps
+analysis:730:DEBUG (_check) - inps: Inps({Inp(ss=('x', 'y'), vs=(13, 284)), Inp(ss=('x', 'y'), vs=(276, 17)), Inp(ss=('x', 'y'), vs=(13, 3)), Inp(ss=('x', 'y'), vs=(278, 3)), Inp(ss=('x', 'y'), vs=(6, 277)), Inp(ss=('x', 'y'), vs=(15, 24)), Inp(ss=('x', 'y'), vs=(288, 26)), Inp(ss=('x', 'y'), vs=(12, 297)), Inp(ss=('x', 'y'), vs=(21, 28)), Inp(ss=('x', 'y'), vs=(0, 290)), Inp(ss=('x', 'y'), vs=(19, 18)), Inp(ss=('x', 'y'), vs=(21, 16)), Inp(ss=('x', 'y'), vs=(27, 12)), Inp(ss=('x', 'y'), vs=(287, 25)), Inp(ss=('x', 'y'), vs=(14, 6)), Inp(ss=('x', 'y'), vs=(24, 274)), Inp(ss=('x', 'y'), vs=(13, 7)), Inp(ss=('x', 'y'), vs=(285, 13)), Inp(ss=('x', 'y'), vs=(5, 0)), Inp(ss=('x', 'y'), vs=(9, 22)), Inp(ss=('x', 'y'), vs=(2, 5)), Inp(ss=('x', 'y'), vs=(271, 289)), Inp(ss=('x', 'y'), vs=(0, 11)), Inp(ss=('x', 'y'), vs=(272, 9)), Inp(ss=('x', 'y'), vs=(7, 8)), Inp(ss=('x', 'y'), vs=(270, 3)), Inp(ss=('x', 'y'), vs=(5, 274)), Inp(ss=('x', 'y'), vs=(5, 283)), Inp(ss=('x', 'y'), vs=(279, 6)), Inp(ss=('x', 'y'), vs=(11, 282)), Inp(ss=('x', 'y'), vs=(2, 28)), Inp(ss=('x', 'y'), vs=(275, 2)), Inp(ss=('x', 'y'), vs=(12, 4)), Inp(ss=('x', 'y'), vs=(22, 13)), Inp(ss=('x', 'y'), vs=(15, 3)), Inp(ss=('x', 'y'), vs=(8, 25)), Inp(ss=('x', 'y'), vs=(12, 272)), Inp(ss=('x', 'y'), vs=(11, 281)), Inp(ss=('x', 'y'), vs=(283, 280)), Inp(ss=('x', 'y'), vs=(14, 23)), Inp(ss=('x', 'y'), vs=(13, 291)), Inp(ss=('x', 'y'), vs=(0, 1)), Inp(ss=('x', 'y'), vs=(299, 298)), Inp(ss=('x', 'y'), vs=(12, 286)), Inp(ss=('x', 'y'), vs=(291, 282)), Inp(ss=('x', 'y'), vs=(294, 274)), Inp(ss=('x', 'y'), vs=(292, 291)), Inp(ss=('x', 'y'), vs=(13, 9)), Inp(ss=('x', 'y'), vs=(16, 23)), Inp(ss=('x', 'y'), vs=(4, 9)), Inp(ss=('x', 'y'), vs=(298, 11)), Inp(ss=('x', 'y'), vs=(13, 27)), Inp(ss=('x', 'y'), vs=(7, 24)), Inp(ss=('x', 'y'), vs=(10, 7)), Inp(ss=('x', 'y'), vs=(285, 296)), Inp(ss=('x', 'y'), vs=(4, 11)), Inp(ss=('x', 'y'), vs=(278, 7)), Inp(ss=('x', 'y'), vs=(293, 287)), Inp(ss=('x', 'y'), vs=(279, 23)), Inp(ss=('x', 'y'), vs=(273, 2)), Inp(ss=('x', 'y'), vs=(12, 274)), Inp(ss=('x', 'y'), vs=(17, 284)), Inp(ss=('x', 'y'), vs=(0, 5)), Inp(ss=('x', 'y'), vs=(272, 24)), Inp(ss=('x', 'y'), vs=(8, 275)), Inp(ss=('x', 'y'), vs=(292, 275)), Inp(ss=('x', 'y'), vs=(9, 282)), Inp(ss=('x', 'y'), vs=(6, 292)), Inp(ss=('x', 'y'), vs=(1, 280)), Inp(ss=('x', 'y'), vs=(7, 299)), Inp(ss=('x', 'y'), vs=(13, 19)), Inp(ss=('x', 'y'), vs=(5, 24)), Inp(ss=('x', 'y'), vs=(292, 272)), Inp(ss=('x', 'y'), vs=(295, 289)), Inp(ss=('x', 'y'), vs=(288, 293)), Inp(ss=('x', 'y'), vs=(293, 0)), Inp(ss=('x', 'y'), vs=(9, 14)), Inp(ss=('x', 'y'), vs=(27, 283)), Inp(ss=('x', 'y'), vs=(271, 271)), Inp(ss=('x', 'y'), vs=(270, 29)), Inp(ss=('x', 'y'), vs=(271, 7)), Inp(ss=('x', 'y'), vs=(17, 12)), Inp(ss=('x', 'y'), vs=(12, 299)), Inp(ss=('x', 'y'), vs=(281, 12)), Inp(ss=('x', 'y'), vs=(13, 13)), Inp(ss=('x', 'y'), vs=(10, 295)), Inp(ss=('x', 'y'), vs=(13, 12)), Inp(ss=('x', 'y'), vs=(298, 26)), Inp(ss=('x', 'y'), vs=(278, 9)), Inp(ss=('x', 'y'), vs=(292, 12)), Inp(ss=('x', 'y'), vs=(6, 16)), Inp(ss=('x', 'y'), vs=(14, 8)), Inp(ss=('x', 'y'), vs=(0, 297)), Inp(ss=('x', 'y'), vs=(25, 290)), Inp(ss=('x', 'y'), vs=(24, 293)), Inp(ss=('x', 'y'), vs=(13, 294)), Inp(ss=('x', 'y'), vs=(290, 0)), Inp(ss=('x', 'y'), vs=(19, 3)), Inp(ss=('x', 'y'), vs=(271, 0)), Inp(ss=('x', 'y'), vs=(280, 12)), Inp(ss=('x', 'y'), vs=(12, 19)), Inp(ss=('x', 'y'), vs=(284, 8))})
+analysis:681:DEBUG (_check) - rc: Not(1 >= -1*r + s):c_1
+analysis:686:DEBUG (_check) - rc_r: Not(1 >= -1*r1 + s1)
+analysis:687:DEBUG (_check) - f: ZConj({Not(Not(1 >= -1*r1 + s1)), And(And(a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q,
+        r0 == r,
+        s0 == s,
+        x0 == x,
+        y0 == y),
+    And(a1 == a + -1*b,
+        b1 == b,
+        p1 == p + -1*q,
+        q1 == q,
+        r1 == r + -1*s,
+        s1 == s,
+        x1 == x,
+        y1 == y),
+    And(1 <= a + -1*b,
+        Not(0 == p*x + -1*q*x + r*y + -1*s*y))), Not(1 >= -1*r0 + s0):c_1, Not(0 == p0*x0 + -1*q0*x0 + r0*y0 + -1*s0*y0):c_0})
+analysis:702:DEBUG (_check) - rs: sat
+solver:212:DEBUG (_get_unsat_core) - approx: []
+analysis:709:DEBUG (_check) - init_f: ZConj({Not(0 == p0*x0 + -1*q0*x0 + r0*y0 + -1*s0*y0):c_0, And(a == X_x,
+    b == X_y,
+    1 == p,
+    0 == q,
+    0 == r,
+    1 == s,
+    x == X_x,
+    y == X_y), Not(Not(1 >= -1*r1 + s1)), Not(1 >= -1*r0 + s0):c_1, And(1 <= X_x, 1 <= X_y), And(And(a0 == a,
+        b0 == b,
+        p0 == p,
+        q0 == q,
+        r0 == r,
+        s0 == s,
+        x0 == x,
+        y0 == y),
+    And(a1 == a + -1*b,
+        b1 == b,
+        p1 == p + -1*q,
+        q1 == q,
+        r1 == r + -1*s,
+        s1 == s,
+        x1 == x,
+        y1 == y),
+    And(1 <= a + -1*b,
+        Not(0 == p*x + -1*q*x + r*y + -1*s*y)))})
+analysis:710:DEBUG (_check) - init_rs: False
+analysis:725:DEBUG (_check) - init_models: sat (0 models)
+lib:49:DEBUG (gen_rand_inps) - gen 102/100 random inps
+analysis:730:DEBUG (_check) - inps: Inps({Inp(ss=('x', 'y'), vs=(291, 5)), Inp(ss=('x', 'y'), vs=(271, 14)), Inp(ss=('x', 'y'), vs=(279, 279)), Inp(ss=('x', 'y'), vs=(9, 19)), Inp(ss=('x', 'y'), vs=(278, 12)), Inp(ss=('x', 'y'), vs=(287, 5)), Inp(ss=('x', 'y'), vs=(291, 289)), Inp(ss=('x', 'y'), vs=(9, 12)), Inp(ss=('x', 'y'), vs=(0, 284)), Inp(ss=('x', 'y'), vs=(28, 13)), Inp(ss=('x', 'y'), vs=(283, 1)), Inp(ss=('x', 'y'), vs=(277, 278)), Inp(ss=('x', 'y'), vs=(21, 10)), Inp(ss=('x', 'y'), vs=(25, 1)), Inp(ss=('x', 'y'), vs=(275, 9)), Inp(ss=('x', 'y'), vs=(11, 271)), Inp(ss=('x', 'y'), vs=(13, 282)), Inp(ss=('x', 'y'), vs=(6, 7)), Inp(ss=('x', 'y'), vs=(272, 0)), Inp(ss=('x', 'y'), vs=(287, 9)), Inp(ss=('x', 'y'), vs=(288, 2)), Inp(ss=('x', 'y'), vs=(299, 272)), Inp(ss=('x', 'y'), vs=(274, 270)), Inp(ss=('x', 'y'), vs=(5, 1)), Inp(ss=('x', 'y'), vs=(1, 14)), Inp(ss=('x', 'y'), vs=(292, 287)), Inp(ss=('x', 'y'), vs=(29, 21)), Inp(ss=('x', 'y'), vs=(13, 2)), Inp(ss=('x', 'y'), vs=(29, 20)), Inp(ss=('x', 'y'), vs=(23, 295)), Inp(ss=('x', 'y'), vs=(12, 277)), Inp(ss=('x', 'y'), vs=(295, 290)), Inp(ss=('x', 'y'), vs=(14, 29)), Inp(ss=('x', 'y'), vs=(9, 18)), Inp(ss=('x', 'y'), vs=(12, 272)), Inp(ss=('x', 'y'), vs=(12, 282)), Inp(ss=('x', 'y'), vs=(13, 291)), Inp(ss=('x', 'y'), vs=(5, 278)), Inp(ss=('x', 'y'), vs=(10, 10)), Inp(ss=('x', 'y'), vs=(299, 6)), Inp(ss=('x', 'y'), vs=(8, 270)), Inp(ss=('x', 'y'), vs=(288, 5)), Inp(ss=('x', 'y'), vs=(16, 11)), Inp(ss=('x', 'y'), vs=(283, 11)), Inp(ss=('x', 'y'), vs=(10, 278)), Inp(ss=('x', 'y'), vs=(1, 26)), Inp(ss=('x', 'y'), vs=(5, 271)), Inp(ss=('x', 'y'), vs=(276, 23)), Inp(ss=('x', 'y'), vs=(294, 6)), Inp(ss=('x', 'y'), vs=(6, 9)), Inp(ss=('x', 'y'), vs=(11, 280)), Inp(ss=('x', 'y'), vs=(296, 7)), Inp(ss=('x', 'y'), vs=(291, 29)), Inp(ss=('x', 'y'), vs=(5, 20)), Inp(ss=('x', 'y'), vs=(20, 270)), Inp(ss=('x', 'y'), vs=(13, 0)), Inp(ss=('x', 'y'), vs=(1, 21)), Inp(ss=('x', 'y'), vs=(273, 271)), Inp(ss=('x', 'y'), vs=(15, 4)), Inp(ss=('x', 'y'), vs=(2, 10)), Inp(ss=('x', 'y'), vs=(7, 296)), Inp(ss=('x', 'y'), vs=(4, 286)), Inp(ss=('x', 'y'), vs=(3, 8)), Inp(ss=('x', 'y'), vs=(12, 28)), Inp(ss=('x', 'y'), vs=(284, 277)), Inp(ss=('x', 'y'), vs=(11, 279)), Inp(ss=('x', 'y'), vs=(273, 288)), Inp(ss=('x', 'y'), vs=(8, 271)), Inp(ss=('x', 'y'), vs=(13, 297)), Inp(ss=('x', 'y'), vs=(299, 28)), Inp(ss=('x', 'y'), vs=(28, 295)), Inp(ss=('x', 'y'), vs=(278, 19)), Inp(ss=('x', 'y'), vs=(12, 295)), Inp(ss=('x', 'y'), vs=(12, 21)), Inp(ss=('x', 'y'), vs=(12, 12)), Inp(ss=('x', 'y'), vs=(0, 289)), Inp(ss=('x', 'y'), vs=(273, 8)), Inp(ss=('x', 'y'), vs=(20, 1)), Inp(ss=('x', 'y'), vs=(289, 14)), Inp(ss=('x', 'y'), vs=(20, 8)), Inp(ss=('x', 'y'), vs=(26, 27)), Inp(ss=('x', 'y'), vs=(14, 26)), Inp(ss=('x', 'y'), vs=(16, 6)), Inp(ss=('x', 'y'), vs=(6, 14)), Inp(ss=('x', 'y'), vs=(295, 297)), Inp(ss=('x', 'y'), vs=(0, 0)), Inp(ss=('x', 'y'), vs=(276, 289)), Inp(ss=('x', 'y'), vs=(27, 290)), Inp(ss=('x', 'y'), vs=(10, 285)), Inp(ss=('x', 'y'), vs=(1, 11)), Inp(ss=('x', 'y'), vs=(8, 13)), Inp(ss=('x', 'y'), vs=(6, 284)), Inp(ss=('x', 'y'), vs=(14, 8)), Inp(ss=('x', 'y'), vs=(279, 8)), Inp(ss=('x', 'y'), vs=(284, 297)), Inp(ss=('x', 'y'), vs=(29, 4)), Inp(ss=('x', 'y'), vs=(270, 1)), Inp(ss=('x', 'y'), vs=(9, 290)), Inp(ss=('x', 'y'), vs=(299, 8)), Inp(ss=('x', 'y'), vs=(5, 6)), Inp(ss=('x', 'y'), vs=(272, 17)), Inp(ss=('x', 'y'), vs=(13, 20))})
+analysis:739:INFO (verify) - dg: defaultdict(<class 'list'>, {})
+analysis:740:INFO (verify) - label_d: defaultdict(<class 'str'>, {Not(0 == p*x + -1*q*x + r*y + -1*s*y): 'c_0', Not(1 >= -1*r + s): 'c_1'})
+analysis:741:INFO (verify) - rev_label_d: {'c_0': Not(0 == p*x + -1*q*x + r*y + -1*s*y), 'c_1': Not(1 >= -1*r + s)}
+analysis:744:INFO (verify) - loop_cond_label: c_0
+analysis:748:INFO (verify) - mds_labels: set()
+analysis:749:INFO (verify) - mds: ZConj()
+lib:60:DEBUG (get_traces_from_inps) - inp_decls: I x, I y
+lib:61:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_19': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='s', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I')), 'vtrace2_19': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='s', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I')), 'vtrace3_19': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='s', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I')), 'vtrace4_19': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='s', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 172.92ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 137.15ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 310.56ms
+lib:60:DEBUG (get_traces_from_inps) - inp_decls: I x, I y
+lib:61:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_19': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='s', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I')), 'vtrace2_19': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='s', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I')), 'vtrace3_19': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='s', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I')), 'vtrace4_19': (Symb(name='a', typ='I'), Symb(name='b', typ='I'), Symb(name='p', typ='I'), Symb(name='q', typ='I'), Symb(name='r', typ='I'), Symb(name='s', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 172.46ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 195.05ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 368.10ms
+utils.profiling:31:DEBUG (timed) - verify: 1223.77ms
+lib:214:DEBUG (print_inps) - x=13,y=3: [('vtrace1_19', 1), ('vtrace2_19', 6), ('vtrace4_19', 6), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=0,y=11: []
+lib:214:DEBUG (print_inps) - x=299,y=298: [('vtrace1_19', 1), ('vtrace2_19', 298), ('vtrace4_19', 298), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=0,y=5: []
+lib:214:DEBUG (print_inps) - x=12,y=299: [('vtrace1_19', 1), ('vtrace2_19', 35), ('vtrace4_19', 35), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=278,y=3: [('vtrace1_19', 1), ('vtrace2_19', 94), ('vtrace4_19', 94), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=272,y=9: [('vtrace1_19', 1), ('vtrace2_19', 35), ('vtrace4_19', 35), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=12,y=286: [('vtrace1_19', 1), ('vtrace2_19', 28), ('vtrace4_19', 28), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=272,y=24: [('vtrace1_19', 1), ('vtrace2_19', 13), ('vtrace4_19', 13), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=281,y=12: [('vtrace1_19', 1), ('vtrace2_19', 28), ('vtrace4_19', 28), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=6,y=277: [('vtrace1_19', 1), ('vtrace2_19', 51), ('vtrace4_19', 51), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=7,y=8: [('vtrace1_19', 1), ('vtrace2_19', 7), ('vtrace4_19', 7), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=291,y=282: [('vtrace1_19', 1), ('vtrace2_19', 34), ('vtrace4_19', 34), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=8,y=275: [('vtrace1_19', 1), ('vtrace2_19', 38), ('vtrace4_19', 38), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=13,y=13: [('vtrace1_19', 1), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=15,y=24: [('vtrace1_19', 1), ('vtrace2_19', 4), ('vtrace4_19', 4), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=270,y=3: [('vtrace1_19', 1), ('vtrace2_19', 89), ('vtrace4_19', 89), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=294,y=274: [('vtrace1_19', 1), ('vtrace2_19', 19), ('vtrace4_19', 19), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=292,y=275: [('vtrace1_19', 1), ('vtrace2_19', 24), ('vtrace4_19', 24), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=10,y=295: [('vtrace1_19', 1), ('vtrace2_19', 30), ('vtrace4_19', 30), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=12,y=297: [('vtrace1_19', 1), ('vtrace2_19', 27), ('vtrace4_19', 27), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=5,y=283: [('vtrace1_19', 1), ('vtrace2_19', 59), ('vtrace4_19', 59), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=13,y=9: [('vtrace1_19', 1), ('vtrace2_19', 6), ('vtrace4_19', 6), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=6,y=292: [('vtrace1_19', 1), ('vtrace2_19', 50), ('vtrace4_19', 50), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=298,y=26: [('vtrace1_19', 1), ('vtrace2_19', 18), ('vtrace4_19', 18), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=288,y=26: [('vtrace1_19', 1), ('vtrace2_19', 23), ('vtrace4_19', 23), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=5,y=274: [('vtrace1_19', 1), ('vtrace2_19', 58), ('vtrace4_19', 58), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=292,y=291: [('vtrace1_19', 1), ('vtrace2_19', 291), ('vtrace4_19', 291), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=9,y=282: [('vtrace1_19', 1), ('vtrace2_19', 33), ('vtrace4_19', 33), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=13,y=12: [('vtrace1_19', 1), ('vtrace2_19', 12), ('vtrace4_19', 12), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=0,y=290: []
+lib:214:DEBUG (print_inps) - x=11,y=282: [('vtrace1_19', 1), ('vtrace2_19', 30), ('vtrace4_19', 30), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=4,y=9: [('vtrace1_19', 1), ('vtrace2_19', 5), ('vtrace4_19', 5), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=7,y=299: [('vtrace1_19', 1), ('vtrace2_19', 46), ('vtrace4_19', 46), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=292,y=12: [('vtrace1_19', 1), ('vtrace2_19', 26), ('vtrace4_19', 26), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=21,y=28: [('vtrace1_19', 1), ('vtrace2_19', 3), ('vtrace4_19', 3), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=279,y=6: [('vtrace1_19', 1), ('vtrace2_19', 47), ('vtrace4_19', 47), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=16,y=23: [('vtrace1_19', 1), ('vtrace2_19', 7), ('vtrace4_19', 7), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=1,y=280: [('vtrace1_19', 1), ('vtrace2_19', 279), ('vtrace4_19', 279), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=278,y=9: [('vtrace1_19', 1), ('vtrace2_19', 38), ('vtrace4_19', 38), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=19,y=18: [('vtrace1_19', 1), ('vtrace2_19', 18), ('vtrace4_19', 18), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=2,y=28: [('vtrace1_19', 1), ('vtrace2_19', 13), ('vtrace4_19', 13), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=298,y=11: [('vtrace1_19', 1), ('vtrace2_19', 37), ('vtrace4_19', 37), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=13,y=19: [('vtrace1_19', 1), ('vtrace2_19', 8), ('vtrace4_19', 8), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=6,y=16: [('vtrace1_19', 1), ('vtrace2_19', 4), ('vtrace4_19', 4), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=21,y=16: [('vtrace1_19', 1), ('vtrace2_19', 8), ('vtrace4_19', 8), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=275,y=2: [('vtrace1_19', 1), ('vtrace2_19', 138), ('vtrace4_19', 138), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=13,y=27: [('vtrace1_19', 1), ('vtrace2_19', 14), ('vtrace4_19', 14), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=5,y=24: [('vtrace1_19', 1), ('vtrace2_19', 8), ('vtrace4_19', 8), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=14,y=8: [('vtrace1_19', 1), ('vtrace2_19', 4), ('vtrace4_19', 4), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=27,y=12: [('vtrace1_19', 1), ('vtrace2_19', 5), ('vtrace4_19', 5), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=12,y=4: [('vtrace1_19', 1), ('vtrace2_19', 2), ('vtrace4_19', 2), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=7,y=24: [('vtrace1_19', 1), ('vtrace2_19', 7), ('vtrace4_19', 7), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=292,y=272: [('vtrace1_19', 1), ('vtrace2_19', 17), ('vtrace4_19', 17), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=0,y=297: []
+lib:214:DEBUG (print_inps) - x=287,y=25: [('vtrace1_19', 1), ('vtrace2_19', 24), ('vtrace4_19', 24), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=22,y=13: [('vtrace1_19', 1), ('vtrace2_19', 7), ('vtrace4_19', 7), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=10,y=7: [('vtrace1_19', 1), ('vtrace2_19', 5), ('vtrace4_19', 5), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=295,y=289: [('vtrace1_19', 1), ('vtrace2_19', 54), ('vtrace4_19', 54), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=25,y=290: [('vtrace1_19', 1), ('vtrace2_19', 14), ('vtrace4_19', 14), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=14,y=6: [('vtrace1_19', 1), ('vtrace2_19', 4), ('vtrace4_19', 4), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=15,y=3: [('vtrace1_19', 1), ('vtrace2_19', 4), ('vtrace4_19', 4), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=285,y=296: [('vtrace1_19', 1), ('vtrace2_19', 36), ('vtrace4_19', 36), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=288,y=293: [('vtrace1_19', 1), ('vtrace2_19', 61), ('vtrace4_19', 61), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=24,y=293: [('vtrace1_19', 1), ('vtrace2_19', 20), ('vtrace4_19', 20), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=24,y=274: [('vtrace1_19', 1), ('vtrace2_19', 16), ('vtrace4_19', 16), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=8,y=25: [('vtrace1_19', 1), ('vtrace2_19', 10), ('vtrace4_19', 10), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=4,y=11: [('vtrace1_19', 1), ('vtrace2_19', 5), ('vtrace4_19', 5), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=293,y=0: []
+lib:214:DEBUG (print_inps) - x=13,y=294: [('vtrace1_19', 1), ('vtrace2_19', 27), ('vtrace4_19', 27), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=13,y=7: [('vtrace1_19', 1), ('vtrace2_19', 7), ('vtrace4_19', 7), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=12,y=272: [('vtrace1_19', 1), ('vtrace2_19', 24), ('vtrace4_19', 24), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=278,y=7: [('vtrace1_19', 1), ('vtrace2_19', 43), ('vtrace4_19', 43), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=9,y=14: [('vtrace1_19', 1), ('vtrace2_19', 6), ('vtrace4_19', 6), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=290,y=0: []
+lib:214:DEBUG (print_inps) - x=285,y=13: [('vtrace1_19', 1), ('vtrace2_19', 33), ('vtrace4_19', 33), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=11,y=281: [('vtrace1_19', 1), ('vtrace2_19', 31), ('vtrace4_19', 31), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=293,y=287: [('vtrace1_19', 1), ('vtrace2_19', 53), ('vtrace4_19', 53), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=27,y=283: [('vtrace1_19', 1), ('vtrace2_19', 24), ('vtrace4_19', 24), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=19,y=3: [('vtrace1_19', 1), ('vtrace2_19', 8), ('vtrace4_19', 8), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=5,y=0: []
+lib:214:DEBUG (print_inps) - x=283,y=280: [('vtrace1_19', 1), ('vtrace2_19', 96), ('vtrace4_19', 96), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=279,y=23: [('vtrace1_19', 1), ('vtrace2_19', 21), ('vtrace4_19', 21), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=271,y=271: [('vtrace1_19', 1), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=271,y=0: []
+lib:214:DEBUG (print_inps) - x=9,y=22: [('vtrace1_19', 1), ('vtrace2_19', 7), ('vtrace4_19', 7), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=14,y=23: [('vtrace1_19', 1), ('vtrace2_19', 7), ('vtrace4_19', 7), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=273,y=2: [('vtrace1_19', 1), ('vtrace2_19', 137), ('vtrace4_19', 137), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=270,y=29: [('vtrace1_19', 1), ('vtrace2_19', 17), ('vtrace4_19', 17), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=280,y=12: [('vtrace1_19', 1), ('vtrace2_19', 25), ('vtrace4_19', 25), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=13,y=284: [('vtrace1_19', 1), ('vtrace2_19', 28), ('vtrace4_19', 28), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=2,y=5: [('vtrace1_19', 1), ('vtrace2_19', 3), ('vtrace4_19', 3), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=13,y=291: [('vtrace1_19', 1), ('vtrace2_19', 27), ('vtrace4_19', 27), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=12,y=274: [('vtrace1_19', 1), ('vtrace2_19', 27), ('vtrace4_19', 27), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=271,y=7: [('vtrace1_19', 1), ('vtrace2_19', 42), ('vtrace4_19', 42), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=12,y=19: [('vtrace1_19', 1), ('vtrace2_19', 6), ('vtrace4_19', 6), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=276,y=17: [('vtrace1_19', 1), ('vtrace2_19', 23), ('vtrace4_19', 23), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=271,y=289: [('vtrace1_19', 1), ('vtrace2_19', 33), ('vtrace4_19', 33), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=0,y=1: []
+lib:214:DEBUG (print_inps) - x=17,y=284: [('vtrace1_19', 1), ('vtrace2_19', 22), ('vtrace4_19', 22), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=17,y=12: [('vtrace1_19', 1), ('vtrace2_19', 6), ('vtrace4_19', 6), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=284,y=8: [('vtrace1_19', 1), ('vtrace2_19', 36), ('vtrace4_19', 36), ('vtrace3_19', 1)]
+analysis:770:DEBUG (strengthen) - base_term_inps: 2
+analysis:771:DEBUG (strengthen) - term_inps: 91
+analysis:772:DEBUG (strengthen) - mayloop_inps: 0
+analysis:773:DEBUG (strengthen) - rcs: ZConj({Not(0 == p*x + -1*q*x + r*y + -1*s*y), Not(1 >= -1*r + s)})
+lib:236:DEBUG (get_traces_by_id) - dtraces[vtrace2_19]: 0
+lib:236:DEBUG (get_traces_by_id) - dtraces[vtrace2_19]: 0
+lib:260:DEBUG (infer_from_traces) - invs: 
+analysis:777:DEBUG (strengthen) - mayloop_invs: ZConj()
+lib:236:DEBUG (get_traces_by_id) - dtraces[vtrace2_19]: 200
+lib:236:DEBUG (get_traces_by_id) - dtraces[vtrace2_19]: 200
+*** 'None', 0 locs, 0 invs (), 0 traces, 0 inps, time 0.01s, rand seed 1596841800.29, test 89 3:
+
+lib:260:DEBUG (infer_from_traces) - invs: vtrace2_19 (37 invs):
+1. s - x <= 0
+2. r <= 0
+3. r - x <= -1
+4. r - s <= -1
+5. q <= 0
+6. q - y <= -2
+7. q - s <= -1
+8. q + r <= 0
+9. p - y <= -1
+10. b - y <= 0
+11. a - x <= 0
+12. -y <= -2
+13. -x <= -1
+14. -s <= -1
+15. -s - y <= -3
+16. -s - x <= -2
+17. -r - x <= -1
+18. -q - y <= -2
+19. -p <= -1
+20. -p - y <= -3
+21. -p - x <= -2
+22. -p - s <= -2
+23. -p + r <= -1
+24. -p + q <= -1
+25. -b <= -1
+26. -b - y <= -4
+27. -b - x <= -7
+28. -b - s <= -2
+29. -b + q <= -2
+30. -a <= -1
+31. -a - y <= -4
+32. -a - x <= -2
+33. -a - s <= -2
+34. -a - p <= -2
+35. -a - b <= -3
+36. -a + r <= -1
+37. -a + q <= -2
+analysis:781:DEBUG (strengthen) - term_invs: ZConj({x >= 1, -1*a + -1*s <= -2, p >= 1, r + -1*x <= -1, q + -1*s <= -1, -1*a + r <= -1, 0 >= a + -1*x, 0 >= r, 0 >= q + r, p + -1*y <= -1, a >= 1, -1*b + -1*x <= -7, -1*p + -1*s <= -2, -1*a + -1*x <= -2, 0 >= q, -1*b + q <= -2, 0 >= b + -1*y, -1*b + -1*y <= -4, -1*p + r <= -1, -1*s + -1*x <= -2, 0 >= s + -1*x, -1*a + -1*p <= -2, -1*a + -1*b <= -3, -1*a + q <= -2, -1*a + -1*y <= -4, y >= 2, -1*q + -1*y <= -2, -1*s + -1*y <= -3, r + -1*s <= -1, -1*p + -1*x <= -2, -1*r + -1*x <= -1, b >= 1, q + -1*y <= -2, -1*b + -1*s <= -2, -1*p + q <= -1, s >= 1, -1*p + -1*y <= -3})
+utils.profiling:31:DEBUG (timed) - strengthen: 4344.93ms
+lib:214:DEBUG (print_inps) - x=279,y=279: [('vtrace1_19', 1), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=274,y=270: [('vtrace1_19', 1), ('vtrace2_19', 69), ('vtrace4_19', 69), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=16,y=11: [('vtrace1_19', 1), ('vtrace2_19', 7), ('vtrace4_19', 7), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=3,y=8: [('vtrace1_19', 1), ('vtrace2_19', 4), ('vtrace4_19', 4), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=16,y=6: [('vtrace1_19', 1), ('vtrace2_19', 4), ('vtrace4_19', 4), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=9,y=19: [('vtrace1_19', 1), ('vtrace2_19', 10), ('vtrace4_19', 10), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=5,y=1: [('vtrace1_19', 1), ('vtrace2_19', 4), ('vtrace4_19', 4), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=283,y=11: [('vtrace1_19', 1), ('vtrace2_19', 30), ('vtrace4_19', 30), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=12,y=28: [('vtrace1_19', 1), ('vtrace2_19', 4), ('vtrace4_19', 4), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=6,y=14: [('vtrace1_19', 1), ('vtrace2_19', 4), ('vtrace4_19', 4), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=287,y=5: [('vtrace1_19', 1), ('vtrace2_19', 60), ('vtrace4_19', 60), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=292,y=287: [('vtrace1_19', 1), ('vtrace2_19', 61), ('vtrace4_19', 61), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=1,y=26: [('vtrace1_19', 1), ('vtrace2_19', 25), ('vtrace4_19', 25), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=11,y=279: [('vtrace1_19', 1), ('vtrace2_19', 30), ('vtrace4_19', 30), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=0,y=0: []
+lib:214:DEBUG (print_inps) - x=278,y=12: [('vtrace1_19', 1), ('vtrace2_19', 28), ('vtrace4_19', 28), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=1,y=14: [('vtrace1_19', 1), ('vtrace2_19', 13), ('vtrace4_19', 13), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=10,y=278: [('vtrace1_19', 1), ('vtrace2_19', 31), ('vtrace4_19', 31), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=284,y=277: [('vtrace1_19', 1), ('vtrace2_19', 44), ('vtrace4_19', 44), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=295,y=297: [('vtrace1_19', 1), ('vtrace2_19', 149), ('vtrace4_19', 149), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=9,y=12: [('vtrace1_19', 1), ('vtrace2_19', 3), ('vtrace4_19', 3), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=13,y=2: [('vtrace1_19', 1), ('vtrace2_19', 7), ('vtrace4_19', 7), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=276,y=23: [('vtrace1_19', 1), ('vtrace2_19', 11), ('vtrace4_19', 11), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=8,y=271: [('vtrace1_19', 1), ('vtrace2_19', 40), ('vtrace4_19', 40), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=27,y=290: [('vtrace1_19', 1), ('vtrace2_19', 19), ('vtrace4_19', 19), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=291,y=289: [('vtrace1_19', 1), ('vtrace2_19', 146), ('vtrace4_19', 146), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=29,y=21: [('vtrace1_19', 1), ('vtrace2_19', 7), ('vtrace4_19', 7), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=5,y=271: [('vtrace1_19', 1), ('vtrace2_19', 58), ('vtrace4_19', 58), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=273,y=288: [('vtrace1_19', 1), ('vtrace2_19', 23), ('vtrace4_19', 23), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=276,y=289: [('vtrace1_19', 1), ('vtrace2_19', 28), ('vtrace4_19', 28), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=0,y=284: []
+lib:214:DEBUG (print_inps) - x=29,y=20: [('vtrace1_19', 1), ('vtrace2_19', 8), ('vtrace4_19', 8), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=294,y=6: [('vtrace1_19', 1), ('vtrace2_19', 48), ('vtrace4_19', 48), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=13,y=297: [('vtrace1_19', 1), ('vtrace2_19', 29), ('vtrace4_19', 29), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=10,y=285: [('vtrace1_19', 1), ('vtrace2_19', 29), ('vtrace4_19', 29), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=28,y=13: [('vtrace1_19', 1), ('vtrace2_19', 9), ('vtrace4_19', 9), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=23,y=295: [('vtrace1_19', 1), ('vtrace2_19', 20), ('vtrace4_19', 20), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=6,y=9: [('vtrace1_19', 1), ('vtrace2_19', 2), ('vtrace4_19', 2), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=299,y=28: [('vtrace1_19', 1), ('vtrace2_19', 21), ('vtrace4_19', 21), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=1,y=11: [('vtrace1_19', 1), ('vtrace2_19', 10), ('vtrace4_19', 10), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=283,y=1: [('vtrace1_19', 1), ('vtrace2_19', 282), ('vtrace4_19', 282), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=12,y=277: [('vtrace1_19', 1), ('vtrace2_19', 34), ('vtrace4_19', 34), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=11,y=280: [('vtrace1_19', 1), ('vtrace2_19', 31), ('vtrace4_19', 31), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=28,y=295: [('vtrace1_19', 1), ('vtrace2_19', 19), ('vtrace4_19', 19), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=8,y=13: [('vtrace1_19', 1), ('vtrace2_19', 5), ('vtrace4_19', 5), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=21,y=10: [('vtrace1_19', 1), ('vtrace2_19', 11), ('vtrace4_19', 11), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=14,y=29: [('vtrace1_19', 1), ('vtrace2_19', 15), ('vtrace4_19', 15), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=291,y=29: [('vtrace1_19', 1), ('vtrace2_19', 38), ('vtrace4_19', 38), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=12,y=295: [('vtrace1_19', 1), ('vtrace2_19', 29), ('vtrace4_19', 29), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=14,y=8: [('vtrace1_19', 1), ('vtrace2_19', 4), ('vtrace4_19', 4), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=277,y=278: [('vtrace1_19', 1), ('vtrace2_19', 277), ('vtrace4_19', 277), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=295,y=290: [('vtrace1_19', 1), ('vtrace2_19', 58), ('vtrace4_19', 58), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=296,y=7: [('vtrace1_19', 1), ('vtrace2_19', 46), ('vtrace4_19', 46), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=278,y=19: [('vtrace1_19', 1), ('vtrace2_19', 20), ('vtrace4_19', 20), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=6,y=284: [('vtrace1_19', 1), ('vtrace2_19', 49), ('vtrace4_19', 49), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=25,y=1: [('vtrace1_19', 1), ('vtrace2_19', 24), ('vtrace4_19', 24), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=9,y=18: [('vtrace1_19', 1), ('vtrace2_19', 1), ('vtrace4_19', 1), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=5,y=20: [('vtrace1_19', 1), ('vtrace2_19', 3), ('vtrace4_19', 3), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=12,y=21: [('vtrace1_19', 1), ('vtrace2_19', 4), ('vtrace4_19', 4), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=279,y=8: [('vtrace1_19', 1), ('vtrace2_19', 41), ('vtrace4_19', 41), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=275,y=9: [('vtrace1_19', 1), ('vtrace2_19', 35), ('vtrace4_19', 35), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=12,y=272: [('vtrace1_19', 1), ('vtrace2_19', 24), ('vtrace4_19', 24), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=20,y=270: [('vtrace1_19', 1), ('vtrace2_19', 14), ('vtrace4_19', 14), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=12,y=12: [('vtrace1_19', 1), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=284,y=297: [('vtrace1_19', 1), ('vtrace2_19', 29), ('vtrace4_19', 29), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=11,y=271: [('vtrace1_19', 1), ('vtrace2_19', 29), ('vtrace4_19', 29), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=12,y=282: [('vtrace1_19', 1), ('vtrace2_19', 24), ('vtrace4_19', 24), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=13,y=0: []
+lib:214:DEBUG (print_inps) - x=0,y=289: []
+lib:214:DEBUG (print_inps) - x=29,y=4: [('vtrace1_19', 1), ('vtrace2_19', 10), ('vtrace4_19', 10), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=272,y=0: []
+lib:214:DEBUG (print_inps) - x=10,y=10: [('vtrace1_19', 1), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=15,y=4: [('vtrace1_19', 1), ('vtrace2_19', 6), ('vtrace4_19', 6), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=289,y=14: [('vtrace1_19', 1), ('vtrace2_19', 26), ('vtrace4_19', 26), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=299,y=8: [('vtrace1_19', 1), ('vtrace2_19', 41), ('vtrace4_19', 41), ('vtrace3_19', 1)]
+lib:214:DEBUG (print_inps) - x=13,y=282: [('vtrace1_19', 1), ('vtrace2_19', 27), ('vtrace4_19', 27), ('vtrace3_19', 1)]
+
+HARD TIMER: 300.000364
+

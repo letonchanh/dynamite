@@ -1,0 +1,286 @@
+__main__:118:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:119:INFO (<module>) - Dig's logger_level: WARNING
+__main__:120:INFO (<module>) - Timeout: 300s
+__main__:122:INFO (<module>) - 2020-08-07 23:30:20.699369: dynamo.py --timeout=300 /tools/dynamite/benchmarks/nla-term/geo1-both-t.c
+/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:155:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_wds38giv
+analysis:163:DEBUG (__init__) - trans_cmd: /tools/dynamite/deps/dynamite-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /tools/dynamite/benchmarks/nla-term/geo1-both-t.c --out=/var/tmp/Dig_wds38giv/geo1-both-t.c --bnd=500
+analysis:170:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_18': ['exit'], 'mainQ': ['vloop_18'], 'main': ['mainQ']})
+analysis:181:DEBUG (__init__) - postorder_vloop_ids: ['vloop_18']
+analysis:190:DEBUG (__init__) - inp_decls (<class 'data.prog.Symbs'>): I z, I k
+analysis:191:DEBUG (__init__) - inv_decls (<class 'data.prog.DSymbs'>): {'vtrace1_18': (Symb(name='z', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace2_18': (Symb(name='z', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace3_18': (Symb(name='z', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace4_18': (Symb(name='z', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I'))}
+__main__:168:DEBUG (<module>) - prove_process: 23831
+lib:49:DEBUG (gen_rand_inps) - gen 107/100 random inps
+utils.profiling:31:DEBUG (timed) - gen_rand_inps: 334.64ms
+lib:60:DEBUG (get_traces_from_inps) - inp_decls: I z, I k
+lib:61:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_18': (Symb(name='z', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace2_18': (Symb(name='z', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace3_18': (Symb(name='z', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I')), 'vtrace4_18': (Symb(name='z', typ='I'), Symb(name='k', typ='I'), Symb(name='x', typ='I'), Symb(name='y', typ='I'), Symb(name='c', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 329.77ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 188.40ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 518.83ms
+analysis:1372:DEBUG (prove) - Analysing vloop_18
+analysis:1374:DEBUG (prove) - base_term_inps: 59
+analysis:1375:DEBUG (prove) - term_inps: 48
+analysis:1376:DEBUG (prove) - mayloop_inps: 0
+analysis:1400:DEBUG (prove) - Proving Termination: vloop_18
+analysis:1264:DEBUG (prove_term_vloop) - classify_inps: vloop_18
+analysis:1267:DEBUG (prove_term_vloop) - itraces: 48
+lib:214:DEBUG (print_inps) - z=-273,k=5: [('vtrace1_18', 1), ('vtrace2_18', 4), ('vtrace4_18', 4), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=-13,k=21: [('vtrace1_18', 1), ('vtrace2_18', 20), ('vtrace4_18', 20), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=12,k=7: [('vtrace1_18', 1), ('vtrace2_18', 6), ('vtrace4_18', 6), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=-13,k=285: [('vtrace1_18', 1), ('vtrace2_18', 284), ('vtrace4_18', 284), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=13,k=285: [('vtrace1_18', 1), ('vtrace2_18', 284), ('vtrace4_18', 284), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=-279,k=13: [('vtrace1_18', 1), ('vtrace2_18', 12), ('vtrace4_18', 12), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=13,k=12: [('vtrace1_18', 1), ('vtrace2_18', 11), ('vtrace4_18', 11), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=-3,k=13: [('vtrace1_18', 1), ('vtrace2_18', 12), ('vtrace4_18', 12), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=-1,k=273: [('vtrace1_18', 1), ('vtrace2_18', 272), ('vtrace4_18', 272), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=-3,k=29: [('vtrace1_18', 1), ('vtrace2_18', 28), ('vtrace4_18', 28), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=-297,k=11: [('vtrace1_18', 1), ('vtrace2_18', 10), ('vtrace4_18', 10), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=280,k=13: [('vtrace1_18', 1), ('vtrace2_18', 12), ('vtrace4_18', 12), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=15,k=293: [('vtrace1_18', 1), ('vtrace2_18', 292), ('vtrace4_18', 292), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=276,k=10: [('vtrace1_18', 1), ('vtrace2_18', 9), ('vtrace4_18', 9), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=-276,k=280: [('vtrace1_18', 1), ('vtrace2_18', 279), ('vtrace4_18', 279), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=11,k=7: [('vtrace1_18', 1), ('vtrace2_18', 6), ('vtrace4_18', 6), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=287,k=2: [('vtrace1_18', 1), ('vtrace2_18', 1), ('vtrace4_18', 1), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=-13,k=9: [('vtrace1_18', 1), ('vtrace2_18', 8), ('vtrace4_18', 8), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=-282,k=295: [('vtrace1_18', 1), ('vtrace2_18', 294), ('vtrace4_18', 294), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=-292,k=19: [('vtrace1_18', 1), ('vtrace2_18', 18), ('vtrace4_18', 18), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=289,k=8: [('vtrace1_18', 1), ('vtrace2_18', 7), ('vtrace4_18', 7), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=-9,k=16: [('vtrace1_18', 1), ('vtrace2_18', 15), ('vtrace4_18', 15), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=22,k=23: [('vtrace1_18', 1), ('vtrace2_18', 22), ('vtrace4_18', 22), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=271,k=293: [('vtrace1_18', 1), ('vtrace2_18', 292), ('vtrace4_18', 292), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=-28,k=4: [('vtrace1_18', 1), ('vtrace2_18', 3), ('vtrace4_18', 3), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=291,k=9: [('vtrace1_18', 1), ('vtrace2_18', 8), ('vtrace4_18', 8), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=-15,k=5: [('vtrace1_18', 1), ('vtrace2_18', 4), ('vtrace4_18', 4), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=-272,k=4: [('vtrace1_18', 1), ('vtrace2_18', 3), ('vtrace4_18', 3), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=-28,k=12: [('vtrace1_18', 1), ('vtrace2_18', 11), ('vtrace4_18', 11), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=1,k=290: [('vtrace1_18', 1), ('vtrace2_18', 289), ('vtrace4_18', 289), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=2,k=8: [('vtrace1_18', 1), ('vtrace2_18', 7), ('vtrace4_18', 7), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=5,k=7: [('vtrace1_18', 1), ('vtrace2_18', 6), ('vtrace4_18', 6), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=0,k=274: [('vtrace1_18', 1), ('vtrace2_18', 273), ('vtrace4_18', 273), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=275,k=296: [('vtrace1_18', 1), ('vtrace2_18', 295), ('vtrace4_18', 295), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=292,k=9: [('vtrace1_18', 1), ('vtrace2_18', 8), ('vtrace4_18', 8), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=-282,k=23: [('vtrace1_18', 1), ('vtrace2_18', 22), ('vtrace4_18', 22), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=12,k=282: [('vtrace1_18', 1), ('vtrace2_18', 281), ('vtrace4_18', 281), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=13,k=14: [('vtrace1_18', 1), ('vtrace2_18', 13), ('vtrace4_18', 13), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=-12,k=278: [('vtrace1_18', 1), ('vtrace2_18', 277), ('vtrace4_18', 277), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=-25,k=297: [('vtrace1_18', 1), ('vtrace2_18', 296), ('vtrace4_18', 296), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=9,k=292: [('vtrace1_18', 1), ('vtrace2_18', 291), ('vtrace4_18', 291), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=4,k=2: [('vtrace1_18', 1), ('vtrace2_18', 1), ('vtrace4_18', 1), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=-12,k=19: [('vtrace1_18', 1), ('vtrace2_18', 18), ('vtrace4_18', 18), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=-279,k=273: [('vtrace1_18', 1), ('vtrace2_18', 272), ('vtrace4_18', 272), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=-7,k=287: [('vtrace1_18', 1), ('vtrace2_18', 286), ('vtrace4_18', 286), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=10,k=2: [('vtrace1_18', 1), ('vtrace2_18', 1), ('vtrace4_18', 1), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=289,k=297: [('vtrace1_18', 1), ('vtrace2_18', 296), ('vtrace4_18', 296), ('vtrace3_18', 1)]
+lib:214:DEBUG (print_inps) - z=-24,k=290: [('vtrace1_18', 1), ('vtrace2_18', 289), ('vtrace4_18', 289), ('vtrace3_18', 1)]
+analysis:1269:DEBUG (prove_term_vloop) - base_term_inps: 0
+analysis:1270:DEBUG (prove_term_vloop) - term_inps: 48
+analysis:1271:DEBUG (prove_term_vloop) - mayloop_inps: 0
+analysis:1078:DEBUG (infer_ranking_functions) - vloop: vloop_18
+analysis:1079:DEBUG (infer_ranking_functions) - term_itraces: 48
+analysis:1126:DEBUG (infer_ranking_functions) - train_rand_trans: 855
+analysis:1133:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): k*uk_2 + c*uk_5 + uk_3*x + uk_4*y + uk_1*z + uk_0
+analysis:1134:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3, uk_4, uk_5]
+analysis:1158:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 855
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + -24*uk_1 + 290*uk_2 + -1030792151*uk_3 + 188*uk_5
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + -24*uk_1 + 290*uk_2 + -1030792151*uk_3 + 210*uk_5
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_5 = -1,
+ uk_4 = 0,
+ uk_3 = -1,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*c + -1*x
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 650
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + -24*uk_1 + 290*uk_2 + 553*uk_3 + -13824*uk_4 + 3*uk_5
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + -24*uk_1 + 290*uk_2 + -1030792151*uk_3 + 186*uk_5
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_5 = 0,
+ uk_4 = -1,
+ uk_3 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*y
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 498
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 +
+289*uk_1 +
+297*uk_2 +
+1135041737*uk_3 +
+474505761*uk_4 +
+73*uk_5
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 +
+289*uk_1 +
+297*uk_2 +
+-1945331052*uk_3 +
+-1909594495*uk_4 +
+212*uk_5
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0, uk_5 = 0, uk_4 = 1, uk_3 = 0, uk_2 = 0, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: y
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 349
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 +
+289*uk_1 +
+297*uk_2 +
+1135041737*uk_3 +
+474505761*uk_4 +
+73*uk_5
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 +
+289*uk_1 +
+297*uk_2 +
+-247860439*uk_3 +
+1630637601*uk_4 +
+169*uk_5
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0, uk_5 = 0, uk_4 = 0, uk_3 = 1, uk_2 = 0, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: x
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 285
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 +
+289*uk_1 +
+297*uk_2 +
+1135041737*uk_3 +
+474505761*uk_4 +
+73*uk_5
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 +
+289*uk_1 +
+297*uk_2 +
+1960471965*uk_3 +
+1975210145*uk_4 +
+221*uk_5
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_5 = 0,
+ uk_4 = -1,
+ uk_3 = 1,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: x + -1*y
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 280
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 10*uk_1 + 2*uk_2 + uk_3 + 10*uk_4 + uk_5
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 10*uk_1 + 2*uk_2 + 11*uk_3 + 100*uk_4 + 2*uk_5
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_5 = 1,
+ uk_4 = 0,
+ uk_3 = -1,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: c + -1*x
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 220
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + -7*uk_1 + 287*uk_2 + 43*uk_3 + -343*uk_4 + 3*uk_5
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 +
+-7*uk_1 +
+287*uk_2 +
+790145083*uk_3 +
+-2026193367*uk_4 +
+83*uk_5
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0,
+ uk_5 = -1,
+ uk_4 = 0,
+ uk_3 = 0,
+ uk_2 = 1,
+ uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: k + -1*c
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:1201:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [-1*c + -1*x, -1*y, y, x, x + -1*y, c + -1*x, k + -1*c]
+utils.profiling:31:DEBUG (timed) - infer_ranking_functions: 281989.26ms
+analysis:1286:DEBUG (prove_term_vloop) - validate_ranking_functions: vloop_18
+analysis:1209:DEBUG (validate_ranking_functions) - ranks_str: -1*c + -1*x|-1*y|y|x|x + -1*y|c + -1*x|k + -1*c
+validate:124:DEBUG (gen_validate_file) - validate_cmd: /tools/dynamite/deps/dynamite-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /tools/dynamite/benchmarks/nla-term/geo1-both-t.c --out=/var/tmp/Dig_wds38giv/vloop_18/par/validate/geo1-both-t.c --pos=18 --ranks="-1*c + -1*x|-1*y|y|x|x + -1*y|c + -1*x|k + -1*c"
+validate:41:DEBUG (prove_reach) - pcmd: /tools/CPAchecker-1.9-unix/scripts/cpa.sh -spec /tools/reachability.prp -predicateAnalysis -setprop counterexample.export.compressWitness=false /var/tmp/Dig_wds38giv/vloop_18/par/validate/geo1-both-t.c
+validate:41:DEBUG (prove_reach) - pcmd: /tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_wds38giv/vloop_18/par/uatm --witness-name witness.graphml --file /var/tmp/Dig_wds38giv/vloop_18/par/validate/geo1-both-t.c
+validate:41:DEBUG (prove_reach) - pcmd: /tools/ultimate/releaseScripts/default/UTaipan-linux/Ultimate.py --spec /tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_wds38giv/vloop_18/par/utp --witness-name witness.graphml --file /var/tmp/Dig_wds38giv/vloop_18/par/validate/geo1-both-t.c
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_ldr9qg9e/symexe/fermat1-both-t_mainQ.c.mainQ_43.straces'
+data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_ldr9qg9e/symexe/fermat1-both-t_mainQ.c.mainQ_44.straces'
+data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_ldr9qg9e/symexe/fermat1-both-t_mainQ.c.mainQ_40.straces'
+data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_ldr9qg9e/symexe/fermat1-both-t_mainQ.c.mainQ_42.straces'
+data.symstates:63:ERROR (parse) - Cannot obtain symstates from '/var/tmp/Dig_ldr9qg9e/symexe/fermat1-both-t_mainQ.c.mainQ_41.straces'
+data.symstates:317:WARNING (compute) - cannot obtain symbolic states, unreachable locs?
+analysis:279:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_46
+analysis:266:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 44
+data.symstates:369:WARNING (merge) - vtrace1_33: no symbolic states at depth 46
+data.symstates:369:WARNING (merge) - vtrace1_33: no symbolic states at depth 47
+data.symstates:369:WARNING (merge) - vtrace1_33: no symbolic states at depth 49
+data.symstates:369:WARNING (merge) - vtrace1_33: no symbolic states at depth 48
+data.symstates:369:WARNING (merge) - vtrace2_33: no symbolic states at depth 46
+data.symstates:369:WARNING (merge) - vtrace2_33: no symbolic states at depth 47
+data.symstates:369:WARNING (merge) - vtrace2_33: no symbolic states at depth 49
+data.symstates:369:WARNING (merge) - vtrace2_33: no symbolic states at depth 48
+data.symstates:369:WARNING (merge) - vtrace1_38: no symbolic states at depth 46
+data.symstates:369:WARNING (merge) - vtrace1_38: no symbolic states at depth 47
+data.symstates:369:WARNING (merge) - vtrace1_38: no symbolic states at depth 49
+data.symstates:369:WARNING (merge) - vtrace1_38: no symbolic states at depth 48
+data.symstates:369:WARNING (merge) - vtrace3_38: no symbolic states at depth 46
+data.symstates:369:WARNING (merge) - vtrace3_38: no symbolic states at depth 47
+data.symstates:369:WARNING (merge) - vtrace3_38: no symbolic states at depth 48
+data.symstates:369:WARNING (merge) - vtrace2_38: no symbolic states at depth 47
+data.symstates:369:WARNING (merge) - vtrace2_38: no symbolic states at depth 49
+data.symstates:369:WARNING (merge) - vtrace2_38: no symbolic states at depth 48
+data.symstates:369:WARNING (merge) - vtrace4_38: no symbolic states at depth 46
+data.symstates:369:WARNING (merge) - vtrace4_38: no symbolic states at depth 49
+data.symstates:369:WARNING (merge) - vtrace4_38: no symbolic states at depth 48
+data.symstates:369:WARNING (merge) - vtrace3_33: no symbolic states at depth 46
+data.symstates:369:WARNING (merge) - vtrace3_33: no symbolic states at depth 47
+data.symstates:369:WARNING (merge) - vtrace3_33: no symbolic states at depth 49
+data.symstates:369:WARNING (merge) - vtrace3_33: no symbolic states at depth 48
+analysis:279:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_46
+analysis:266:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 49
+data.symstates:369:WARNING (merge) - vtrace1_33: no symbolic states at depth 51
+data.symstates:369:WARNING (merge) - vtrace1_33: no symbolic states at depth 54
+data.symstates:369:WARNING (merge) - vtrace1_33: no symbolic states at depth 52
+data.symstates:369:WARNING (merge) - vtrace1_33: no symbolic states at depth 53
+data.symstates:369:WARNING (merge) - vtrace2_33: no symbolic states at depth 51
+data.symstates:369:WARNING (merge) - vtrace2_33: no symbolic states at depth 54
+data.symstates:369:WARNING (merge) - vtrace2_33: no symbolic states at depth 52
+data.symstates:369:WARNING (merge) - vtrace2_33: no symbolic states at depth 53
+data.symstates:369:WARNING (merge) - vtrace1_38: no symbolic states at depth 51
+data.symstates:369:WARNING (merge) - vtrace1_38: no symbolic states at depth 54
+data.symstates:369:WARNING (merge) - vtrace1_38: no symbolic states at depth 52
+data.symstates:369:WARNING (merge) - vtrace1_38: no symbolic states at depth 53
+data.symstates:369:WARNING (merge) - vtrace3_38: no symbolic states at depth 51
+data.symstates:369:WARNING (merge) - vtrace3_38: no symbolic states at depth 54
+data.symstates:369:WARNING (merge) - vtrace3_38: no symbolic states at depth 52
+data.symstates:369:WARNING (merge) - vtrace2_38: no symbolic states at depth 51
+data.symstates:369:WARNING (merge) - vtrace2_38: no symbolic states at depth 52
+data.symstates:369:WARNING (merge) - vtrace2_38: no symbolic states at depth 53
+data.symstates:369:WARNING (merge) - vtrace4_38: no symbolic states at depth 54
+data.symstates:369:WARNING (merge) - vtrace4_38: no symbolic states at depth 52
+data.symstates:369:WARNING (merge) - vtrace4_38: no symbolic states at depth 53
+data.symstates:369:WARNING (merge) - vtrace3_33: no symbolic states at depth 51
+data.symstates:369:WARNING (merge) - vtrace3_33: no symbolic states at depth 54
+data.symstates:369:WARNING (merge) - vtrace3_33: no symbolic states at depth 52
+data.symstates:369:WARNING (merge) - vtrace3_33: no symbolic states at depth 53
+data.symstates:369:WARNING (merge) - vtrace1_46: no symbolic states at depth 54
+data.symstates:369:WARNING (merge) - vtrace1_46: no symbolic states at depth 52
+data.symstates:369:WARNING (merge) - vtrace1_46: no symbolic states at depth 53
+data.symstates:369:WARNING (merge) - vtrace3_46: no symbolic states at depth 54
+analysis:279:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_46
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 135466.09ms
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 235778.15ms
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 239821.38ms
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 281191.96ms
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 291002.91ms
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 300836.82ms
+utils.profiling:31:DEBUG (timed) - _get_symstates_from_src: 306978.58ms
+analysis:307:DEBUG (_get_stem_from_ss) - preloop_fst_symstate: loc: vtrace1_46
+pc: And(1 == X_A%2,
+    -1 >= (-1 + X_R)**2 + -1*X_A,
+    0 >= (1 + 2*X_R)**2 + -4*X_R**2 + -4*X_R + -1*X_kk,
+    -3 <= (1 + 2*X_R)**2 + -4*X_R**2 + -4*X_R)
+slocal: And(A == X_A,
+    u == 1 + 2*X_R,
+    1 == v,
+    r == X_R**2 + -1*X_A,
+    0 == c,
+    k == -5)
+analysis:310:DEBUG (_get_stem_from_ss) - mainQ init_symvars: I X_A, I X_R, I X_kk, I X_k
+analysis:313:DEBUG (_get_stem_from_ss) - stem_cond (<class 'z3.z3.BoolRef'>): And(1 == X_A%2,
+    -1 >= (-1 + X_R)**2 + -1*X_A,
+    0 >= (1 + 2*X_R)**2 + -4*X_R**2 + -4*X_R + -1*X_kk,
+    -3 <= (1 + 2*X_R)**2 + -4*X_R**2 + -4*X_R)
+analysis:314:DEBUG (_get_stem_from_ss) - stem_transrel (<class 'z3.z3.BoolRef'>): And(A == X_A,
+    u == 1 + 2*X_R,
+    1 == v,
+    r == X_R**2 + -1*X_A,
+    0 == c,
+    k == -5)
+analysis:351:DEBUG (_get_loop_from_symstates) - Create C source for vloop_46: /var/tmp/Dig_fh8n_23v
+analysis:266:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 54
+
+HARD TIMER: 300.000329
+

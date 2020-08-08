@@ -43,7 +43,9 @@ my $now = time();
 my $fn = strftime('%Y%m%d%H%M%S', gmtime($now));
 
 my @integrated;
+my @integratedHtml;
 my @integratedC;
+my @integratedCHtml;
 my @dynDetail;
 my @dynHtml;
 my @skips;
@@ -65,12 +67,14 @@ foreach my $tool (@tools) {
           my $expectedTNT = '???';
           $expectedTNT = 'T' if $benchdir =~ /-term/;
           $expectedTNT = 'NT' if $benchdir =~ /-nonterm/;
-          my ($d,$dstr,$dstrC) = Parsers::dynDetailTNT($tmpb,$logfn.".1",
+          my ($d,$dstr,$dstrC,$html,$htmlC) = Parsers::dynDetailTNT($tmpb,$logfn.".1",
                                                 ($tm >= 900 ? 1 : 0),
                                                 $tm, $compare->{$tmpb}->{$tool}->{result},
                                                 $expectedTNT,$ITERS);
           push @integrated, $dstr;
           push @integratedC, $dstrC;
+          push @integratedHtml, $html;
+          push @integratedCHtml, $htmlC;
       # Step 3: Otherwise, if it is dynamo (ProveT or ProveNT)
       } elsif ($tool eq 'dynamo') {
             #die "can't get time at all: $b and $b2res{$tmpb}->{time}\n" unless $b2res{$b}->{time} > 0;

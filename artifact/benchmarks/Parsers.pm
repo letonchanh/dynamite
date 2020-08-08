@@ -157,21 +157,27 @@ sub dynDetailTNT {
     my $d = { allt => tm2str($overallt), allr => $overallr,
               guessr => '\rUNK', validr => '\rUNK', conclusion => '\rUNK',
               guesst => '--', validt => tm2str(-1), rf => '', switches => 0 };
+    my $h = { allt => tm2str($overallt), allr => $overallr,
+              guessr => 'UNK', validr => 'UNK', conclusion => 'UNK',
+              guesst => '-', validt => '-', rf => '', switches => 0 };
     my $TNTs;
     while(<F>) {
         if (/postorder\_vloop\_ids: \[([^\]]*)\]$/) {
             # 'vloop\_25', 'vloop\_32'
             my @lids = split ',', $1;
             $d->{loops} = 1+$#lids;
+            $h->{loops} = 1+$#lids;
         }
         # count switches
         if (/Proving Termination: vloop_(\d+)$/) {
             my $loopid = $1;
             $d->{switches} += 1 if defined $TNTs->{$loopid}->{NT}; # == 1;
+            $h->{switches} += 1 if defined $TNTs->{$loopid}->{NT}; # == 1;
             $TNTs->{$loopid}->{T} = 1;
         } elsif (/Proving Non-Termination: vloop_(\d+)$/) {
             my $loopid = $1;
             $d->{switches} += 1 if defined $TNTs->{$loopid}->{T}; # == 1;
+            $h->{switches} += 1 if defined $TNTs->{$loopid}->{T}; # == 1;
             $TNTs->{$loopid}->{NT} = 1;
             #analysis:1171:DEBUG (prove) - Proving Termination: vloop\_32
             #analysis:1179:DEBUG (prove) - Proving Non-Termination: vloop\_32
@@ -188,13 +194,34 @@ sub dynDetailTNT {
         $d->{rsQ} = '\gRS'    if /\(simplified\) rcs: (.*)$/;
         $d->{guesst} = tm2str($1) if /infer_ranking_functions: ((\d)*\.\d+)s/;
         $d->{guesst} = tm2str(($1/1000)) if /^strengthen: ((\d)*\.\d+)ms/;
+
+        $h->{conclusion} = 'T' if /TNT result: True/;
+        $h->{conclusion} = 'NT' if /TNT result: False/;
+        $h->{conclusion} = 'NT' if /TNT result: \(False/;
+        $h->{rf} = $1 if /TNT result: \(False, \('vloop_\d+', \[([^\]]*)\]/; #  ZConj({-6 <= 6*n + -1*z}), [])]))/
+
+        $h->{rf} .= $1 if /ranking_function_list: \[([^\]]+)\]/;
+        $h->{rfQ} = 'rf.'    if /ranking_function_list: \[([^\]]+)\]/;
+        $h->{rf} .= toTex($1) if /\(simplified\) rcs: (.*)$/;
+        $h->{rsQ} = 'rcr.'    if /\(simplified\) rcs: (.*)$/;
+        $h->{guesst} = tm2str($1) if /infer_ranking_functions: ((\d)*\.\d+)s/;
+        $h->{guesst} = tm2str(($1/1000)) if /^strengthen: ((\d)*\.\d+)ms/;
     }
-    $overallt = '\rTO' if $overallt == 400.0;
+    $overallt = '\rTO' if $overallt == 300.0;
+    my $overalltHtml = $overallt;
+    $overalltHtml = 'TO' if $overallt == '\rTO';
     $d->{switches} = '--' unless $d->{switches} > 0;
+    $h->{switches} = '--' unless $h->{switches} > 0;
     my $str = sprintf("\\texttt{%-10s} & %-5s & %-3s & \$%-42s\$ & %-8s  \\\\ \n", # & %-5s & %10s & %-5s & %10s
                       $tmpb,
                       $expectedTNT, $d->{conclusion},
                       $d->{rf}, $overallt);
+
+    my $strHtml = sprintf("<tr><td>%-10s</td><td>%-5s</td><td>%-3s</td><td>%-42s</td><td>%-8s</td></tr>\n", # & %-5s & %10s & %-5s & %10s
+                      $tmpb,
+                      $expectedTNT, $h->{conclusion},
+                      $h->{rf}, $overalltHtml);
+                    
     my $strconcise = sprintf("\\texttt{%-10s} & %s & %-2s & %-4s & %2s & %-8s & %6s \\\\ \n",
                              $tmpb,
                              $d->{loops},
@@ -204,7 +231,18 @@ sub dynDetailTNT {
                              $d->{switches},
                              $d->{conclusion},
                              $overallt);
-    return ($d,$str,$strconcise);
+
+    my $strconciseHtml = sprintf("<tr><td>%-10s</td><td>%s</td><td>%-2s</td><td>%-4s</td><td>%2s</td><td>%-8s</td><td>%6s</td></tr>\n",
+                             $tmpb,
+                             $h->{loops},
+                             $expectedTNT,
+                             $h->{rfQ}||$h->{rsQ}||'-',
+                             #$d->{guesst},
+                             $h->{switches},
+                             $h->{conclusion},
+                             $overalltHtml);
+
+    return ($d,$str,$strconcise,$strHtml,$strconciseHtml);
 }
 
 sub dynDetail {

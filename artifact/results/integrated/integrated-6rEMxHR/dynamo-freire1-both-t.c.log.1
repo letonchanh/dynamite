@@ -1,0 +1,277 @@
+__main__:118:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:119:INFO (<module>) - Dig's logger_level: WARNING
+__main__:120:INFO (<module>) - Timeout: 300s
+__main__:122:INFO (<module>) - 2020-08-07 23:30:00.284266: dynamo.py --timeout=300 /tools/dynamite/benchmarks/nla-term/freire1-both-t.c
+/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:155:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_0g5ay0gh
+analysis:163:DEBUG (__init__) - trans_cmd: /tools/dynamite/deps/dynamite-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /tools/dynamite/benchmarks/nla-term/freire1-both-t.c --out=/var/tmp/Dig_0g5ay0gh/freire1-both-t.c --bnd=500
+analysis:170:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_32': ['exit'], 'mainQ': ['vloop_32'], 'main': ['mainQ']})
+analysis:181:DEBUG (__init__) - postorder_vloop_ids: ['vloop_32']
+analysis:190:DEBUG (__init__) - inp_decls (<class 'data.prog.Symbs'>): I a, I k
+analysis:191:DEBUG (__init__) - inv_decls (<class 'data.prog.DSymbs'>): {'vtrace1_32': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace2_32': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace3_32': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace4_32': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I'))}
+__main__:168:DEBUG (<module>) - prove_process: 23041
+lib:49:DEBUG (gen_rand_inps) - gen 108/100 random inps
+utils.profiling:31:DEBUG (timed) - gen_rand_inps: 105.90ms
+lib:60:DEBUG (get_traces_from_inps) - inp_decls: I a, I k
+lib:61:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_32': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace2_32': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace3_32': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I')), 'vtrace4_32': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I'), Symb(name='c', typ='I'), Symb(name='k', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 129.48ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 347.47ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 477.53ms
+analysis:1372:DEBUG (prove) - Analysing vloop_32
+analysis:1374:DEBUG (prove) - base_term_inps: 54
+analysis:1375:DEBUG (prove) - term_inps: 0
+analysis:1376:DEBUG (prove) - mayloop_inps: 54
+analysis:1400:DEBUG (prove) - Proving Termination: vloop_32
+analysis:1264:DEBUG (prove_term_vloop) - classify_inps: vloop_32
+analysis:1267:DEBUG (prove_term_vloop) - itraces: 54
+lib:214:DEBUG (print_inps) - a=0,k=8: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=-277,k=5: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=275,k=14: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=-5,k=275: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=6,k=22: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=-9,k=292: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=11,k=278: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=8,k=8: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=287,k=15: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=-19,k=28: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=5,k=3: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=-15,k=6: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=-13,k=14: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=296,k=299: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=-292,k=26: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=22,k=8: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=15,k=10: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=4,k=290: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=16,k=19: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=273,k=2: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=-3,k=289: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=-6,k=3: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=-3,k=275: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=275,k=5: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=289,k=281: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=-10,k=273: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=-286,k=281: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=-14,k=0: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=-3,k=11: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=4,k=4: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=-8,k=13: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=-278,k=288: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=-1,k=27: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=-2,k=274: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=-4,k=14: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=-2,k=12: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=1,k=3: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=7,k=22: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=-287,k=27: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=16,k=298: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=-1,k=13: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=-287,k=3: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=27,k=2: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=-13,k=23: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=19,k=292: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=280,k=296: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=-290,k=4: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=11,k=289: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=275,k=0: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=278,k=2: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=14,k=22: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=-276,k=286: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=2,k=282: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+lib:214:DEBUG (print_inps) - a=-299,k=4: [('vtrace1_32', 1), ('vtrace2_32', 500), ('vtrace4_32', 500)]
+analysis:1269:DEBUG (prove_term_vloop) - base_term_inps: 0
+analysis:1270:DEBUG (prove_term_vloop) - term_inps: 0
+analysis:1271:DEBUG (prove_term_vloop) - mayloop_inps: 54
+analysis:1078:DEBUG (infer_ranking_functions) - vloop: vloop_32
+analysis:1079:DEBUG (infer_ranking_functions) - term_itraces: 54
+analysis:1126:DEBUG (infer_ranking_functions) - train_rand_trans: 1080
+analysis:1133:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): r*uk_1 + a*uk_3 + c*uk_4 + k*uk_5 + uk_2*x + uk_0
+analysis:1134:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3, uk_4, uk_5]
+analysis:1158:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1080
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 137*uk_1 + -9465*uk_2 + -299*uk_3 + 4*uk_5
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 223*uk_1 + -24902*uk_2 + -299*uk_3 + 4*uk_5
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1,
+ uk_5 = 0,
+ uk_4 = 0,
+ uk_3 = -1,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*r + -1*a
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 904
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 226*uk_1 + -25424*uk_2 + 2*uk_3 + 282*uk_5
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 368*uk_1 + -67527*uk_2 + 2*uk_3 + 282*uk_5
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1,
+ uk_5 = 1,
+ uk_4 = 0,
+ uk_3 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*r + k
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 648
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 323*uk_1 + -52002*uk_2 + 2*uk_3 + 282*uk_5
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 368*uk_1 + -67527*uk_2 + 2*uk_3 + 282*uk_5
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1,
+ uk_5 = 2,
+ uk_4 = 0,
+ uk_3 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*r + 2*k
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 558
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 135*uk_1 + -9038*uk_2 + 14*uk_3 + 22*uk_5
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 283*uk_1 + -39896*uk_2 + 14*uk_3 + 22*uk_5
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1,
+ uk_5 = 7,
+ uk_4 = 0,
+ uk_3 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*r + 7*k
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 460
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 329*uk_1 + -53949*uk_2 + 14*uk_3 + 22*uk_5
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 470*uk_1 + -110208*uk_2 + 14*uk_3 + 22*uk_5
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1,
+ uk_5 = 15,
+ uk_4 = 0,
+ uk_3 = 0,
+ uk_2 = 0,
+ uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*r + 15*k
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 318
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 461*uk_1 + -106023*uk_2 + 14*uk_3 + 22*uk_5
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 470*uk_1 + -110208*uk_2 + 14*uk_3 + 22*uk_5
+------------------------------------------------------------------------
+/tools/SageMath/local/lib/python3.7/site-packages/cysignals/signals.cpython-37m-x86_64-linux-gnu.so(+0x8828)[0x7f302155b828]
+/tools/SageMath/local/lib/python3.7/site-packages/cysignals/signals.cpython-37m-x86_64-linux-gnu.so(+0x88c9)[0x7f302155b8c9]
+/tools/SageMath/local/lib/python3.7/site-packages/cysignals/signals.cpython-37m-x86_64-linux-gnu.so(+0xc26b)[0x7f302155f26b]
+/lib/x86_64-linux-gnu/libpthread.so.0(+0x128a0)[0x7f3028d1b8a0]
+/tools/z3/build/libz3.so(+0xde4b8)[0x7f30222994b8]
+/tools/z3/build/libz3.so(+0x6d29c0)[0x7f302288d9c0]
+/tools/z3/build/libz3.so(+0x6d3ee2)[0x7f302288eee2]
+/tools/z3/build/libz3.so(+0x6d42a8)[0x7f302288f2a8]
+/tools/z3/build/libz3.so(+0x6d4aa5)[0x7f302288faa5]
+/tools/z3/build/libz3.so(+0x248257)[0x7f3022403257]
+/tools/z3/build/libz3.so(+0xc3fbc1)[0x7f3022dfabc1]
+/tools/z3/build/libz3.so(+0xc2febd)[0x7f3022deaebd]
+/tools/z3/build/libz3.so(+0x24e43b)[0x7f302240943b]
+/tools/z3/build/libz3.so(+0x254e6c)[0x7f302240fe6c]
+/tools/z3/build/libz3.so(+0x21ee2e)[0x7f30223d9e2e]
+/tools/z3/build/libz3.so(+0x229f37)[0x7f30223e4f37]
+/tools/z3/build/libz3.so(+0x22cf6f)[0x7f30223e7f6f]
+/tools/z3/build/libz3.so(Z3_optimize_check+0x283)[0x7f30223715d3]
+/tools/SageMath/local/lib/libffi.so.6(ffi_call_unix64+0x4c)[0x7f3025279a72]
+/tools/SageMath/local/lib/libffi.so.6(ffi_call+0x141)[0x7f30252792e1]
+/tools/SageMath/local/lib/python3.7/lib-dynload/_ctypes.cpython-37m-x86_64-linux-gnu.so(_ctypes_callproc+0x475)[0x7f302548d8d5]
+/tools/SageMath/local/lib/python3.7/lib-dynload/_ctypes.cpython-37m-x86_64-linux-gnu.so(+0x93f2)[0x7f30254853f2]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyObject_FastCallKeywords+0xd7)[0x7f30291f71b7]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(+0x6c4c3)[0x7f30291cc4c3]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyEval_EvalFrameDefault+0x6d18)[0x7f30291d35b8]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyEval_EvalCodeWithName+0x92d)[0x7f30292c252d]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyFunction_FastCallKeywords+0x89)[0x7f30291f6b09]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(+0x6c515)[0x7f30291cc515]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyEval_EvalFrameDefault+0x4347)[0x7f30291d0be7]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyEval_EvalCodeWithName+0x92d)[0x7f30292c252d]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyFunction_FastCallKeywords+0x89)[0x7f30291f6b09]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(+0x6c515)[0x7f30291cc515]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyEval_EvalFrameDefault+0x1cb4)[0x7f30291ce554]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(+0x6b26b)[0x7f30291cb26b]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(+0x6c515)[0x7f30291cc515]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyEval_EvalFrameDefault+0x1cb4)[0x7f30291ce554]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyEval_EvalCodeWithName+0x92d)[0x7f30292c252d]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyFunction_FastCallKeywords+0x89)[0x7f30291f6b09]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(+0x6c515)[0x7f30291cc515]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyEval_EvalFrameDefault+0x1cb4)[0x7f30291ce554]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyEval_EvalCodeWithName+0x92d)[0x7f30292c252d]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyFunction_FastCallDict+0x1c7)[0x7f30291f6977]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyEval_EvalFrameDefault+0x4e5f)[0x7f30291d16ff]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyEval_EvalCodeWithName+0x92d)[0x7f30292c252d]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyFunction_FastCallKeywords+0x89)[0x7f30291f6b09]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(+0x6c515)[0x7f30291cc515]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyEval_EvalFrameDefault+0x1cb4)[0x7f30291ce554]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyEval_EvalCodeWithName+0x92d)[0x7f30292c252d]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyFunction_FastCallDict+0x1c7)[0x7f30291f6977]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyEval_EvalFrameDefault+0x4e5f)[0x7f30291d16ff]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyEval_EvalCodeWithName+0x92d)[0x7f30292c252d]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyFunction_FastCallKeywords+0x89)[0x7f30291f6b09]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(+0x6c515)[0x7f30291cc515]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyEval_EvalFrameDefault+0x1cb4)[0x7f30291ce554]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyEval_EvalCodeWithName+0x92d)[0x7f30292c252d]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyFunction_FastCallKeywords+0x89)[0x7f30291f6b09]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(+0x6c515)[0x7f30291cc515]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyEval_EvalFrameDefault+0x1cb4)[0x7f30291ce554]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(+0x6b26b)[0x7f30291cb26b]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyFunction_FastCallDict+0x2c8)[0x7f30291f6a78]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyEval_EvalFrameDefault+0x4e5f)[0x7f30291d16ff]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyEval_EvalCodeWithName+0x92d)[0x7f30292c252d]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyFunction_FastCallDict+0x1c7)[0x7f30291f6977]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyEval_EvalFrameDefault+0x4e5f)[0x7f30291d16ff]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(+0x6b26b)[0x7f30291cb26b]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(+0x6c515)[0x7f30291cc515]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyEval_EvalFrameDefault+0x1cb4)[0x7f30291ce554]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(+0x6b26b)[0x7f30291cb26b]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(+0x6c515)[0x7f30291cc515]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyEval_EvalFrameDefault+0x1cb4)[0x7f30291ce554]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(+0x6b26b)[0x7f30291cb26b]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(+0x6c515)[0x7f30291cc515]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyEval_EvalFrameDefault+0x1cb4)[0x7f30291ce554]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(+0x6b26b)[0x7f30291cb26b]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyFunction_FastCallDict+0x2c8)[0x7f30291f6a78]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyObject_Call_Prepend+0xcd)[0x7f30291f7b1d]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(+0xf3cf6)[0x7f3029253cf6]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(+0xebb05)[0x7f302924bb05]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyObject_FastCallKeywords+0xd7)[0x7f30291f71b7]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(+0x6c4c3)[0x7f30291cc4c3]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyEval_EvalFrameDefault+0x4347)[0x7f30291d0be7]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(+0x6b26b)[0x7f30291cb26b]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(+0x6c515)[0x7f30291cc515]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyEval_EvalFrameDefault+0x6d18)[0x7f30291d35b8]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(+0x6b26b)[0x7f30291cb26b]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(+0x6c515)[0x7f30291cc515]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyEval_EvalFrameDefault+0x6d18)[0x7f30291d35b8]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(+0x6b26b)[0x7f30291cb26b]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(+0x6c515)[0x7f30291cc515]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyEval_EvalFrameDefault+0x1cb4)[0x7f30291ce554]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_PyEval_EvalCodeWithName+0x92d)[0x7f30292c252d]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(PyEval_EvalCodeEx+0x3e)[0x7f30292c27ae]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(PyEval_EvalCode+0x1b)[0x7f30292c27db]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(PyRun_FileExFlags+0xb1)[0x7f30292f4cf1]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(PyRun_SimpleFileExFlags+0xeb)[0x7f30292f4e7b]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(+0x1b49ff)[0x7f30293149ff]
+/tools/SageMath/local/lib/libpython3.7m.so.1.0(_Py_UnixMain+0x39)[0x7f3029314c39]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xe7)[0x7f3028194b97]
+python3(_start+0x2a)[0x40070a]
+------------------------------------------------------------------------
+Attaching gdb to process id 23041.
+Cannot find gdb installed
+GDB is not installed.
+Install gdb for enhanced tracebacks.
+------------------------------------------------------------------------
+Unhandled SIGSEGV: A segmentation fault occurred.
+This probably occurred because a *compiled* module has a bug
+in it and is not properly wrapped with sig_on(), sig_off().
+Python will now terminate.
+------------------------------------------------------------------------
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 data.symstates:369:WARNING (merge) - vtrace1_33: no symbolic states at depth 36
+data.symstates:369:WARNING (merge) - vtrace1_33: no symbolic states at depth 37
+data.symstates:369:WARNING (merge) - vtrace1_33: no symbolic states at depth 38
+data.symstates:369:WARNING (merge) - vtrace1_33: no symbolic states at depth 39
+data.symstates:369:WARNING (merge) - vtrace2_33: no symbolic states at depth 36
+data.symstates:369:WARNING (merge) - vtrace2_33: no symbolic states at depth 37
+data.symstates:369:WARNING (merge) - vtrace2_33: no symbolic states at depth 38
+data.symstates:369:WARNING (merge) - vtrace2_33: no symbolic states at depth 39
+data.symstates:369:WARNING (merge) - vtrace1_38: no symbolic states at depth 36
+data.symstates:369:WARNING (merge) - vtrace1_38: no symbolic states at depth 37
+data.symstates:369:WARNING (merge) - vtrace1_38: no symbolic states at depth 38
+data.symstates:369:WARNING (merge) - vtrace1_38: no symbolic states at depth 39
+data.symstates:369:WARNING (merge) - vtrace3_33: no symbolic states at depth 36
+data.symstates:369:WARNING (merge) - vtrace3_33: no symbolic states at depth 37
+data.symstates:369:WARNING (merge) - vtrace3_33: no symbolic states at depth 38
+data.symstates:369:WARNING (merge) - vtrace3_33: no symbolic states at depth 39
+data.symstates:369:WARNING (merge) - vtrace3_38: no symbolic states at depth 38
+data.symstates:369:WARNING (merge) - vtrace3_38: no symbolic states at depth 39
+data.symstates:369:WARNING (merge) - vtrace2_38: no symbolic states at depth 39
+analysis:279:DEBUG (_get_symstates_from_src) - target_loc: vtrace1_46
+analysis:266:DEBUG (_get_symstates_from_src) - SymStatesC.maxdepth: 39
+
+HARD TIMER: 20.38352
+

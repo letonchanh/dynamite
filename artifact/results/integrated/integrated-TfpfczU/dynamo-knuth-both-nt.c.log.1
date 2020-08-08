@@ -1,0 +1,28 @@
+__main__:118:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:119:INFO (<module>) - Dig's logger_level: WARNING
+__main__:120:INFO (<module>) - Timeout: 300s
+__main__:122:INFO (<module>) - 2020-08-08 01:04:12.113376: dynamo.py --timeout=300 /tools/dynamite/benchmarks/nla-nonterm/knuth-both-nt.c
+/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:155:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_rf8r05k6
+analysis:163:DEBUG (__init__) - trans_cmd: /tools/dynamite/deps/dynamite-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /tools/dynamite/benchmarks/nla-nonterm/knuth-both-nt.c --out=/var/tmp/Dig_rf8r05k6/knuth-both-nt.c --bnd=500
+analysis:170:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_28': ['exit'], 'mainQ': ['sqrt', 'vloop_28'], 'main': ['mainQ']})
+Traceback (most recent call last):
+  File "dynamo.py", line 145, in <module>
+    config = Setup(seed, inp)
+  File "/tools/dynamite/src/analysis.py", line 175, in __init__
+    src = c_src(Path(self.trans_inp), self.tmpdir)
+  File "/tools/dynamite/deps/dig/src/helpers/src.py", line 138, in __init__
+    super().__init__(filename, tmpdir)
+  File "/tools/dynamite/deps/dig/src/helpers/src.py", line 38, in __init__
+    self.compile_test(tracefile, tmpdir / "{}.exe".format(basename.stem))
+  File "/tools/dynamite/deps/dig/src/helpers/src.py", line 155, in compile_test
+    assert not errmsg, "cmd: {} gives err:\n{}".format(cmd, errmsg)
+AssertionError: cmd: gcc /var/tmp/Dig_rf8r05k6/traces/knuth-both-nt_mainQ.c -o /var/tmp/Dig_rf8r05k6/knuth-both-nt_mainQ.exe gives err:
+/tmp/cczRSEbB.o: In function `mainQ':
+knuth-both-nt_mainQ.c:(.text+0x58f): undefined reference to `sqrt'
+collect2: error: ld returned 1 exit status
+
+
+HARD TIMER: 4.763526
+

@@ -44,6 +44,8 @@ my $fn = strftime('%Y%m%d%H%M%S', gmtime($now));
 
 my @integrated;
 my @integratedC;
+my @integratedHtml;
+my @integratedCHtml;
 my @dynDetail;
 my @dynHtml;
 my @skips;
@@ -65,12 +67,14 @@ foreach my $tool (@tools) {
           my $expectedTNT = '???';
           $expectedTNT = 'T' if $benchdir =~ /-term/;
           $expectedTNT = 'NT' if $benchdir =~ /-nonterm/;
-          my ($d,$dstr,$dstrC) = Parsers::dynDetailTNT($tmpb,$logfn.".1",
+          my ($d,$dstr,$dstrC,$dstrHtml,$dstrCHtml) = Parsers::dynDetailTNT($tmpb,$logfn.".1",
                                                 ($tm >= 900 ? 1 : 0),
                                                 $tm, $compare->{$tmpb}->{$tool}->{result},
                                                 $expectedTNT,$ITERS);
           push @integrated, $dstr;
           push @integratedC, $dstrC;
+          push @integratedHtml, $dstrHtml;
+          push @integratedCHtml, $dstrCHtml;
       # Step 3: Otherwise, if it is dynamo (ProveT or ProveNT)
       } elsif ($tool eq 'dynamo') {
             #die "can't get time at all: $b and $b2res{$tmpb}->{time}\n" unless $b2res{$b}->{time} > 0;
@@ -160,6 +164,12 @@ if($PROVETNT == 1) {
     print for @integrated;
     print "\n\n========= DETAILED RESULTS OF DYNAMITE (concise) ============\n";
     print for @integratedC;
+    open my $HTML, ">", "$benchdir.$outdir.html" or die $!;
+    print $HTML "<html><head><style> table { width:100\%; } table, th, td { border: 1px solid black; border-collapse: collapse; } th, td { padding: 15px; text-align: center; } tr:nth-child(even) { background-color: \#eee; } tr:nth-child(odd) { background-color: \#fff; } </style></head><body><h2>Experimental Results of DynamiTe on the benchmark $benchdir</h2><table style=\"border: 1pt solid black;\"><tr><th rowspan=\"2\">Benchmark</th><th rowspan=\"2\">\#L</th><th rowspan=\"2\">Exp.</th><th colspan=\"4\">DynamiTe</th></tr><tr><th>Out</th><th>\#Sw.</th><th>Res</th><th>Time</th></tr>\n";
+    print $HTML @integratedCHtml;
+    print $HTML "</body></html>";
+    close $HTML;
+    print "Experimental Results of DynamiTe on the benchmark $benchdir was written to $benchdir.$outdir.html";
 } else {
     my $infer = "";
     if ($benchdir =~ /nonterm/) {

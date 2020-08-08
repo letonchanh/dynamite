@@ -1,0 +1,201 @@
+__main__:118:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:119:INFO (<module>) - Dig's logger_level: WARNING
+__main__:120:INFO (<module>) - Timeout: 300s
+__main__:122:INFO (<module>) - 2020-08-08 00:56:35.578516: dynamo.py --timeout=300 /tools/dynamite/benchmarks/nla-nonterm/freire1-both-nt.c
+/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:155:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig__kixqtqq
+analysis:163:DEBUG (__init__) - trans_cmd: /tools/dynamite/deps/dynamite-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /tools/dynamite/benchmarks/nla-nonterm/freire1-both-nt.c --out=/var/tmp/Dig__kixqtqq/freire1-both-nt.c --bnd=500
+analysis:170:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_31': ['exit'], 'mainQ': ['vloop_31'], 'main': ['mainQ']})
+analysis:181:DEBUG (__init__) - postorder_vloop_ids: ['vloop_31']
+analysis:190:DEBUG (__init__) - inp_decls (<class 'data.prog.Symbs'>): I a
+analysis:191:DEBUG (__init__) - inv_decls (<class 'data.prog.DSymbs'>): {'vtrace1_31': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I')), 'vtrace2_31': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I')), 'vtrace3_31': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I')), 'vtrace4_31': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I'))}
+__main__:168:DEBUG (<module>) - prove_process: 14199
+lib:49:DEBUG (gen_rand_inps) - gen 96/100 random inps
+utils.profiling:31:DEBUG (timed) - gen_rand_inps: 149.31ms
+lib:60:DEBUG (get_traces_from_inps) - inp_decls: I a
+lib:61:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_31': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I')), 'vtrace2_31': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I')), 'vtrace3_31': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I')), 'vtrace4_31': (Symb(name='r', typ='I'), Symb(name='x', typ='I'), Symb(name='a', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 566.63ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 960.07ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 1527.39ms
+analysis:1372:DEBUG (prove) - Analysing vloop_31
+analysis:1374:DEBUG (prove) - base_term_inps: 48
+analysis:1375:DEBUG (prove) - term_inps: 0
+analysis:1376:DEBUG (prove) - mayloop_inps: 48
+analysis:1400:DEBUG (prove) - Proving Termination: vloop_31
+analysis:1264:DEBUG (prove_term_vloop) - classify_inps: vloop_31
+analysis:1267:DEBUG (prove_term_vloop) - itraces: 48
+lib:214:DEBUG (print_inps) - a=22: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=-274: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=298: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=274: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=12: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=-26: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=-276: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=6: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=2: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=-4: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=18: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=14: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=16: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=278: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=-22: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=4: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=282: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=-2: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=-296: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=-298: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=-20: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=-16: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=26: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=-14: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=-24: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=-294: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=-12: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=292: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=280: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=-282: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=290: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=270: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=20: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=-30: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=10: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=272: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=24: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=294: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=286: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=-280: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=8: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=-28: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=0: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=-8: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=-18: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=-300: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=-6: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+lib:214:DEBUG (print_inps) - a=-292: [('vtrace1_31', 1), ('vtrace2_31', 500), ('vtrace4_31', 500)]
+analysis:1269:DEBUG (prove_term_vloop) - base_term_inps: 0
+analysis:1270:DEBUG (prove_term_vloop) - term_inps: 0
+analysis:1271:DEBUG (prove_term_vloop) - mayloop_inps: 48
+analysis:1078:DEBUG (infer_ranking_functions) - vloop: vloop_31
+analysis:1079:DEBUG (infer_ranking_functions) - term_itraces: 48
+analysis:1126:DEBUG (infer_ranking_functions) - train_rand_trans: 960
+analysis:1133:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): r*uk_1 + a*uk_3 + uk_2*x + uk_0
+analysis:1134:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3]
+analysis:1158:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 960
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 104*uk_1 + -5502*uk_2 + -292*uk_3
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 441*uk_1 + -97166*uk_2 + -292*uk_3
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 959
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 47*uk_1 + -1227*uk_2 + -292*uk_3
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 160*uk_1 + -12866*uk_2 + -292*uk_3
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_3 = -1, uk_2 = 0, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*r + -1*a
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 809
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 441*uk_1 + -97166*uk_2 + -292*uk_3
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 449*uk_1 + -100722*uk_2 + -292*uk_3
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_3 = -2, uk_2 = 0, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*r + -2*a
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 763
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 283*uk_1 + -39906*uk_2 + -6*uk_3
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 358*uk_1 + -63906*uk_2 + -6*uk_3
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 762
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 294*uk_1 + -43074*uk_2 + -6*uk_3
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 358*uk_1 + -63906*uk_2 + -6*uk_3
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_3 = -49, uk_2 = 0, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*r + -49*a
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 525
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 358*uk_1 + -63906*uk_2 + -6*uk_3
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 492*uk_1 + -120789*uk_2 + -6*uk_3
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: None
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 524
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 402*uk_1 + -80605*uk_2 + -8*uk_3
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 454*uk_1 + -102835*uk_2 + -8*uk_3
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_3 = -51, uk_2 = 0, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*r + -51*a
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 523
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 454*uk_1 + -102835*uk_2 + -8*uk_3
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 464*uk_1 + -107420*uk_2 + -8*uk_3
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_3 = -57, uk_2 = 0, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*r + -57*a
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 520
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 392*uk_1 + -76636*uk_2
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 430*uk_1 + -92235*uk_2
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 196, uk_3 = 0, uk_2 = 1, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: 196*r + x
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 188
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 430*uk_1 + -92235*uk_2
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 463*uk_1 + -106953*uk_2
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 215, uk_3 = 0, uk_2 = 1, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: 215*r + x
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 166
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 25*uk_1 + -300*uk_2
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 334*uk_1 + -55611*uk_2
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 12, uk_3 = 0, uk_2 = 1, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: 12*r + x
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 119
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 463*uk_1 + -106953*uk_2
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 476*uk_1 + -113050*uk_2
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 231, uk_3 = 0, uk_2 = 1, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: 231*r + x
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 110
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 40*uk_1 + -776*uk_2 + 8*uk_3
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 293*uk_1 + -42774*uk_2 + 8*uk_3
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_3 = 5, uk_2 = 0, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*r + 5*a
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 31
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 68*uk_1 + -2274*uk_2 + 8*uk_3
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 274*uk_1 + -37397*uk_2 + 8*uk_3
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_3 = 9, uk_2 = 0, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*r + 9*a
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 11
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 163*uk_1 + -13198*uk_2 + 10*uk_3
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 169*uk_1 + -14191*uk_2 + 10*uk_3
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_3 = 17, uk_2 = 0, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*r + 17*a
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 10
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 148*uk_1 + -10879*uk_2 + -2*uk_3
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 170*uk_1 + -14366*uk_2 + -2*uk_3
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 139, uk_3 = 0, uk_2 = 1, uk_0 = 2]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: 2 + 139*r + x
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 2
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 75*uk_1 + -2774*uk_2 + 2*uk_3
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 125*uk_1 + -7749*uk_2 + 2*uk_3
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 37, uk_3 = 0, uk_2 = 1, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: 37*r + x
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1
+analysis:1164:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 470*uk_1 + -110204*uk_2 + 22*uk_3
+analysis:1165:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 473*uk_1 + -111617*uk_2 + 22*uk_3
+analysis:1167:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_3 = 22, uk_2 = 0, uk_0 = 0]
+analysis:1171:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*r + 22*a
+analysis:1200:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:1201:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [-1*r + -1*a, -1*r + -2*a, -1*r + -49*a, -1*r + -51*a, -1*r + -57*a, 196*r + x, 215*r + x, 12*r + x, 231*r + x, -1*r + 5*a, -1*r + 9*a, -1*r + 17*a, 2 + 139*r + x, 37*r + x, -1*r + 22*a]
+utils.profiling:31:DEBUG (timed) - infer_ranking_functions: 41821.90ms
+analysis:1286:DEBUG (prove_term_vloop) - validate_ranking_functions: vloop_31
+analysis:1209:DEBUG (validate_ranking_functions) - ranks_str: -1*r + -1*a|-1*r + -2*a|-1*r + -49*a|-1*r + -51*a|-1*r + -57*a|196*r + x|215*r + x|12*r + x|231*r + x|-1*r + 5*a|-1*r + 9*a|-1*r + 17*a|2 + 139*r + x|37*r + x|-1*r + 22*a
+validate:124:DEBUG (gen_validate_file) - validate_cmd: /tools/dynamite/deps/dynamite-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /tools/dynamite/benchmarks/nla-nonterm/freire1-both-nt.c --out=/var/tmp/Dig__kixqtqq/vloop_31/par/validate/freire1-both-nt.c --pos=31 --ranks="-1*r + -1*a|-1*r + -2*a|-1*r + -49*a|-1*r + -51*a|-1*r + -57*a|196*r + x|215*r + x|12*r + x|231*r + x|-1*r + 5*a|-1*r + 9*a|-1*r + 17*a|2 + 139*r + x|37*r + x|-1*r + 22*a"
+validate:41:DEBUG (prove_reach) - pcmd: /tools/CPAchecker-1.9-unix/scripts/cpa.sh -spec /tools/reachability.prp -predicateAnalysis -setprop counterexample.export.compressWitness=false /var/tmp/Dig__kixqtqq/vloop_31/par/validate/freire1-both-nt.c
+validate:41:DEBUG (prove_reach) - pcmd: /tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig__kixqtqq/vloop_31/par/uatm --witness-name witness.graphml --file /var/tmp/Dig__kixqtqq/vloop_31/par/validate/freire1-both-nt.c
+validate:41:DEBUG (prove_reach) - pcmd: /tools/ultimate/releaseScripts/default/UTaipan-linux/Ultimate.py --spec /tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig__kixqtqq/vloop_31/par/utp --witness-name witness.graphml --file /var/tmp/Dig__kixqtqq/vloop_31/par/validate/freire1-both-nt.c
+validate:46:DEBUG (prove_reach) - res: False
+validate:61:DEBUG (validate_witness) - vcmd: /tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /tools/reachability.prp --architecture 32bit --validate /var/tmp/Dig__kixqtqq/vloop_31/par/uatm/witness.graphml --file /var/tmp/Dig__kixqtqq/vloop_31/par/validate/freire1-both-nt.c
+validate:64:DEBUG (validate_witness) - v_rmsg: Checking for ERROR reachability
+Using default analysis
+Version 6641879a
+Calling Ultimate with: /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dosgi.configuration.area=/tools/ultimate/releaseScripts/default/UAutomizer-linux/data/config -Xmx12G -Xms1G -jar /tools/ultimate/releaseScripts/default/UAutomizer-linux/plugins/org.eclipse.equinox.launcher_1.3.100.v20150511-1540.jar -data @noDefault -ultimatedata /tools/ultimate/releaseScripts/default/UAutomizer-linux/data -tc /tools/ultimate/releaseScripts/default/UAutomizer-linux/config/AutomizerReachWitnessValidation.xml -i /var/tmp/Dig__kixqtqq/vloop_31/par/validate/freire1-both-nt.c /var/tmp/Dig__kixqtqq/vloop_31/par/uatm/witness.graphml -s /tools/ultimate/releaseScripts/default/UAutomizer-linux/config/svcomp-Reach-32bit-Automizer_Default.epf --cacsl2boogietranslator.entry.function main --traceabstraction.compute.hoare.annotation.of.negated.interpolant.automaton,.abstraction.and.cfg false
+.........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+Execution finished normally
+Writing output log to file Ultimate.log
+Writing human readable error path to file UltimateCounterExample.errorpath
+Result:
+FALSE
+
+validate:65:DEBUG (validate_witness) - v_errmsg: 
+validate:67:DEBUG (validate_witness) - v_res: False
+validate:354:DEBUG (mk_trans_cex) - dcex: {'__cil_tmp': '0', '__cil_tmp10': '-2', '__cil_tmp11': '-1', '__cil_tmp12': '-2', '__cil_tmp13': '-1', '__cil_tmp14': '-2', '__cil_tmp15': '-1', '__cil_tmp16': '-2', '__cil_tmp17': '-1', '__cil_tmp18': '-2', '__cil_tmp19': '196', '__cil_tmp20': '391', '__cil_tmp21': '215', '__cil_tmp22': '429', '__cil_tmp23': '12', '__cil_tmp24': '23', '__cil_tmp25': '231', '__cil_tmp26': '461', '__cil_tmp27': '-1', '__cil_tmp28': '-2', '__cil_tmp29': '-1', '__cil_tmp30': '-2', '__cil_tmp31': '-1', '__cil_tmp32': '-2', '__cil_tmp33': '141', '__cil_tmp34': '279', '__cil_tmp35': '37', '__cil_tmp36': '73', '__cil_tmp37': '-1', '__cil_tmp38': '-2', '__cil_tmp39': '-1', '__cil_tmp9': '-1', 'a': '0', 'dup': '1', 'r': '2', 'ta': '0', 'tr': '1', 'tx': '0', 'x': '-1'}
+validate:365:DEBUG (mk_trans_cex) - trans_cex: [(Trace(ss=('r', 'x', 'a'), vs=(1, 0, 0)), Trace(ss=('r', 'x', 'a'), vs=(2, -1, 0)))]
+validate:49:DEBUG (prove_reach) - validate_witness: DONE
+validate:50:DEBUG (prove_reach) - cex: [(Trace(ss=('r', 'x', 'a'), vs=(1, 0, 0)), Trace(ss=('r', 'x', 'a'), vs=(2, -1, 0)))]
+
+HARD TIMER: 300.000203
+
