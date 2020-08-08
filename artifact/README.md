@@ -59,14 +59,15 @@ You can follow the instructions in INSTALL.md to setup DynamiTe on a Debian/Ubun
 ## Benchmarks
 
 The folder `dynamite/benchmarks` contains 4 benchmarks:
-- `termination-crafted-lit`: terminating linear programs in the SV-COMP's `termination-crafted-lit` benchmark, which was used in Figure 6.
-- `nontermination-crafted-lit`: non-terminating linear programs in the SV-COMP's `termination-crafted-lit` benchmark, which was used in Figure 7.
+- `termination-crafted-lit`: terminating linear programs in the SV-COMP's `termination-crafted-lit` benchmark used in Figure 6.
+- `nontermination-crafted-lit`: non-terminating linear programs in the SV-COMP's `termination-crafted-lit` benchmark used in Figure 7.
 - `nla-term`: terminating non-linear programs used in Figure 8.
 - `nla-nonterm`: non-terminating non-linear programs used in Figure 9.
+- Both `nla-term` and `nla-nonterm` are used in Figure 10.
 
 ## Reproducing the Results
 
-To reproduce the results in Figures 6, 7, 8, 9, and 10, in the folder `dynamite/benchmarks`, run `make BENCH_NAME` where `BENCH_NAME` is the name of the corresponding benchmark to a figure, `integrated` for Figure 10. The default timeout is **300s** for each benchmark program. The details are as follows:
+To reproduce the results in Figures 6, 7, 8, 9, and 10, in the folder `dynamite/benchmarks`, run `make BENCH_NAME` where `BENCH_NAME` is the name of the corresponding benchmark to a figure, `integrated` for Figure 10. The default timeout is **300s** for each benchmark program. The result tables in HTML will be automatically generated, which can be viewed from the command line via `lynx`. The details are as follows:
 
 - To reproduce Figure 6, run
     ```
