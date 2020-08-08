@@ -77,37 +77,39 @@ The folder `dynamite/benchmarks` contains 4 benchmarks:
 
 ## Reproducing the Results
 
-To reproduce the results in Figures 6, 7, 8, 9, and 10, in the folder `dynamite/benchmarks`, run `make BENCH_NAME` where `BENCH_NAME` is the name of the corresponding benchmark to a figure, `integrated` for Figure 10. The following results were collected from runs on a Docker image. The default timeout is **300s** for each benchmark program. The result tables in HTML will be automatically generated, which can be viewed from the command line using `lynx`. The details are as follows:
+To reproduce the results in Figures 6, 7, 8, 9, and 10, in the folder `benchmarks`, run `make BENCH_NAME` where `BENCH_NAME` is the name of the corresponding benchmark to a figure, `integrated` for Figure 10. The default timeout is **300s** for each benchmark program. After a run, a result table in HTML (`BENCH_NAME.out-XXXXXXX.html`) will be automatically generated in the folder `benchmarks`, which can be viewed from the command line using `lynx`. The following experimental results (in the folder `exp`) were collected from runs on a Docker image. 
+
+The details are as follows:
 
 - To reproduce Figure 6, run
     ```
     make termination-crafted-lit
     ```
-    It took about 75 minutes to run the entire 61 benchmark programs 5 times. The result can be found [here](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/results/termination-crafted-lit/termination-crafted-lit.out-udP0tHK.html), whose log files are in the folder [results/termination-crafted-lit/out-udP0tHK](results/termination-crafted-lit/out-udP0tHK). Some inferred ranking functions that can be verified in Figure 6 now cannot be verified before the timeout due to the resource limitation of the Docker container.
+    It took about 75 minutes to run the entire 61 benchmark programs 5 times. The result can be found [here](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/exp/termination-crafted-lit/termination-crafted-lit.out-udP0tHK.html), whose log files are in the folder [exp/termination-crafted-lit/out-udP0tHK](exp/termination-crafted-lit/out-udP0tHK). Some inferred ranking functions that can be verified in Figure 6 now cannot be verified before the timeout due to the resource limitation of the Docker container.
     
 - To reproduce Figure 7, run
     ```
     make nontermination-crafted-lit
     ```
-    It took about 30 minutes for 5 runs. The result can be found [here](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/results/nontermination-crafted-lit/nontermination-crafted-lit.out-1xdwZWJ.html) (log files in [results/nontermination-crafted-lit/out-1xdwZWJ](results/nontermination-crafted-lit/out-1xdwZWJ)). We cannot handle the non-deterministic program `ChenCookFuhsNimkarOHearn-TACAS2014-Introduction.c`. The result of this example was wrongly reported in Figure 7 due to a bug in the symbolic execution.
+    It took about 30 minutes for 5 runs. The result can be found [here](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/exp/nontermination-crafted-lit/nontermination-crafted-lit.out-1xdwZWJ.html) (log files in [exp/nontermination-crafted-lit/out-1xdwZWJ](exp/nontermination-crafted-lit/out-1xdwZWJ)). We cannot handle the non-deterministic program `ChenCookFuhsNimkarOHearn-TACAS2014-Introduction.c`. The result of this example was wrongly reported in Figure 7 due to a bug in the symbolic execution.
     
 - To reproduce Figure 8, run
     ```
     make nla-term
     ```
-    It took about 150 minutes to run the entire 38 benchmark programs. The result can be found [here](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/results/nla-term/nla-term.out-ZL8GkEB.html) (log files in [results/nla-term/out-ZL8GkEB](results/nla-term/out-ZL8GkEB)). Note that the learned ranking functions from some examples (e.g `bresenham1`, `cohencu1`) that can be verified in Figure 8 now cannot be verified before the timeout due to the resource limitation of the Docker container.
+    It took about 150 minutes to run the entire 38 benchmark programs. The result can be found [here](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/exp/nla-term/nla-term.out-ZL8GkEB.html) (log files in [exp/nla-term/out-ZL8GkEB](exp/nla-term/out-ZL8GkEB)). Note that the learned ranking functions from some examples (e.g `bresenham1`, `cohencu1`) that can be verified in Figure 8 now cannot be verified before the timeout due to the resource limitation of the Docker container.
     
 - To reproduce Figure 9, run
     ```
     make nla-nonterm
     ```
-    It took about 60 minutes to run the entire 39 benchmark programs. The result can be found [here](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/results/nla-nonterm/nla-nonterm.out-G0n3q9k.html) (log files in [results/nla-nonterm/out-G0n3q9k](results/nla-nonterm/out-_8ejxcU)). The result is better than the result reported in Figure 9, thank to an improvement in the symbolic execution. The improved symbolic execution can capture more precise transition relations of loops, that helps to successfully validate more candidate recurrent sets.
+    It took about 60 minutes to run the entire 39 benchmark programs. The result can be found [here](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/exp/nla-nonterm/nla-nonterm.out-G0n3q9k.html) (log files in [exp/nla-nonterm/out-G0n3q9k](exp/nla-nonterm/out-_8ejxcU)). The result is better than the result reported in Figure 9, thank to an improvement in the symbolic execution. The improved symbolic execution can capture more precise transition relations of loops, that helps to successfully validate more candidate recurrent sets.
     
 - To reproduce Figure 10, which is the result of running the integrated algorithm `ProveTNT` on the two benchmarks `nla-term` and `nla-nonterm`, run
     ```
     make integrated
     ```
-    It took about 200 minutes to run the entire 2 benchmarks. The two results are available at [`nla-term`](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/results/integrated/nla-term.integrated-6rEMxHR.html) ([log files](results/integrated/integrated-6rEMxHR)) and [`nla-nonterm`](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/results/integrated/nla-nonterm.integrated-TfpfczU.html) ([log files](results/integrated/integrated-TfpfczU)).
+    It took about 200 minutes to run the entire 2 benchmarks. The two results are available at [`nla-term`](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/exp/integrated/nla-term.integrated-6rEMxHR.html) ([log files](exp/integrated/integrated-6rEMxHR)) and [`nla-nonterm`](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/exp/integrated/nla-nonterm.integrated-TfpfczU.html) ([log files](exp/integrated/integrated-TfpfczU)).
     
 - Run
     ```
