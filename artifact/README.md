@@ -77,7 +77,7 @@ The folder `benchmarks` contains 4 benchmarks:
 
 ## Reproducing the Results
 
-To reproduce the results in Figures 6, 7, 8, 9, and 10, in the folder `benchmarks`, run `make BENCH_NAME` where `BENCH_NAME` is the name of the corresponding benchmark to a figure, `integrated` for Figure 10. The default timeout is **300s** for each benchmark program. After a run, a result table in HTML (`BENCH_NAME.out-XXXXXXX.html`) will be automatically generated in the folder `benchmarks`, which can be viewed from the command line using `lynx`. The following experimental results (in the folder `exp`) were collected from runs on a Docker image. 
+To reproduce the results in Figures 6, 7, 8, 9, and 10, in the folder `benchmarks`, run `make BENCH_NAME` where `BENCH_NAME` is the name of the corresponding benchmark to a figure, `integrated` for Figure 10. The default timeout is **300s** for each benchmark program. After a run, a result table in HTML (`BENCH_NAME.out-XXXXXXX.html`) will be automatically generated in the folder `benchmarks`, which can be viewed from the Docker container's command line using `lynx`. You can also copy the file to your host machine (from the host's command line, run `docker cp container_id:/tools/dynamite/benchmarks/BENCH_NAME.out-XXXXXXX.html .`) and open it in your favorite browser. The following experimental results (in the folder `exp`) were collected from runs on a Docker image. 
 
 The details are as follows:
 
@@ -85,7 +85,7 @@ The details are as follows:
     ```
     make termination-crafted-lit
     ```
-    It took about 75 minutes to run the entire 61 benchmark programs 5 times. The result can be found [here](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/exp/termination-crafted-lit/termination-crafted-lit.out-udP0tHK.html), whose log files are in the folder [exp/termination-crafted-lit/out-udP0tHK](exp/termination-crafted-lit/out-udP0tHK). Some inferred ranking functions that can be verified in Figure 6 now cannot be verified before the timeout due to the resource limitation of the Docker container.
+    It took about 400 minutes to run the entire 61 benchmark programs 5 times. The result can be found [here](https://htmlpreview.github.io/?https://github.com/letonchanh/dynamite/blob/master/artifact/exp/termination-crafted-lit/termination-crafted-lit.out-udP0tHK.html), whose log files are in the folder [exp/termination-crafted-lit/out-udP0tHK](exp/termination-crafted-lit/out-udP0tHK). Some inferred ranking functions that can be verified in Figure 6 now cannot be verified before the timeout due to the resource limitation of the Docker container.
     
 - To reproduce Figure 7, run
     ```
