@@ -68,11 +68,11 @@ You can follow the instructions in INSTALL.md to setup DynamiTe on a Debian/Ubun
 
 ## Benchmarks
 
-The folder `dynamite/benchmarks` contains 4 benchmarks:
-- `termination-crafted-lit`: terminating linear programs in the SV-COMP's `termination-crafted-lit` benchmark used in Figure 6.
-- `nontermination-crafted-lit`: non-terminating linear programs in the SV-COMP's `termination-crafted-lit` benchmark used in Figure 7.
-- `nla-term`: terminating non-linear programs used in Figure 8.
-- `nla-nonterm`: non-terminating non-linear programs used in Figure 9.
+The folder `benchmarks` contains 4 benchmarks:
+- [`termination-crafted-lit`](benchmarks/termination-crafted-lit): terminating linear programs in the SV-COMP's `termination-crafted-lit` benchmark used in Figure 6.
+- [`nontermination-crafted-lit`](benchmarks/nontermination-crafted-lit): non-terminating linear programs in the SV-COMP's `termination-crafted-lit` benchmark used in Figure 7.
+- [`nla-term`](benchmarks/nla-term): terminating non-linear programs used in Figure 8.
+- [`nla-nonterm`](benchmarks/nla-nonterm): non-terminating non-linear programs used in Figure 9.
 - Both `nla-term` and `nla-nonterm` are used in Figure 10.
 
 ## Reproducing the Results
