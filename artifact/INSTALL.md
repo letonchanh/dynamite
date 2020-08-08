@@ -37,6 +37,8 @@
     export PATH=$SAGE_ROOT/local/bin:$PATH
     export PYTHONPATH=$SAGE_ROOT/local/lib/python3.7/site-packages:$PYTHONPATH
     export LD_LIBRARY_PATH=$SAGE_ROOT/local/lib:$LD_LIBRARY_PATH
+    
+    ln -s $SAGE_ROOT/local/bin/python3 $SAGE_ROOT/local/bin/python3.6
     ```
  
 2. Z3 4.8.7
