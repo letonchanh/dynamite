@@ -18,7 +18,7 @@ The DynamiTe project is open source and hosted at https://github.com/letonchanh/
 
 ### Option 1: Using Docker
 
-The following steps show how to build DynamiTe's Docker image via the provided Dockerfile and run it
+The following steps show how to build DynamiTe's Docker image via the provided `Dockerfile` and run it.
 
 0. Install Docker
 
