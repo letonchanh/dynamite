@@ -4,11 +4,17 @@ DynamiTe is an analysis system for searching termination and non-termination pro
 
 # Getting Started
 
-The DynamiTe project is open source and hosted at https://github.com/letonchanh/dynamite. The artifact for the paper "DynamiTe: Dynamic Termination and Non-termination Proofs" is available to download at ???.
+The DynamiTe project is open source and hosted at https://github.com/letonchanh/dynamite. The artifact for the paper "DynamiTe: Dynamic Termination and Non-termination Proofs" is available to download at https://github.com/letonchanh/dynamite/raw/master/artifact/dynamite.zip.
 
 ## Setup instructions
 
-We provide two different ways to setup and run DynamiTe. For the kick-the-tires phase, we recommend the easiest **Option 1 (Using Docker)** for you to quickly setup the tool and try it on some simple examples. Because DynamiTe takes advantage of multicore systems (e.g., our evaluation in the paper uses a 20-core machine), we suggest **Option 2 (Installing on native Debian/Ubuntu)** to fully reproduce our results.
+- Download and unzip the artifact into a folder `artifact`
+    ```
+    wget https://github.com/letonchanh/dynamite/raw/master/artifact/dynamite.zip
+    unzip dynamite.zip
+    ```
+
+- We provide two different ways to setup and run DynamiTe. For the kick-the-tires phase, we recommend the easiest **Option 1 (Using Docker)** for you to quickly setup the tool and try it on some simple examples. Because DynamiTe takes advantage of multicore systems (e.g., our evaluation in the paper uses a 20-core machine), we suggest **Option 2 (Installing on native Debian/Ubuntu)** to fully reproduce our results.
 
 ### Option 1: Using Docker
 
