@@ -4,13 +4,13 @@ DynamiTe is an analysis system for searching termination and non-termination pro
 
 # Getting Started
 
-The DynamiTe project is open source and hosted at https://github.com/letonchanh/dynamite. The artifact for the paper "DynamiTe: Dynamic Termination and Non-termination Proofs" is available to download at https://github.com/letonchanh/dynamite/raw/master/artifact/dynamite.zip.
+The DynamiTe project is open source and hosted at https://github.com/letonchanh/dynamite. The artifact for the paper "DynamiTe: Dynamic Termination and Non-termination Proofs" is available to download at https://github.com/letonchanh/dynamite/raw/master/releases/oopsla.zip.
 
 ## Setup instructions
 
 - Download and unzip the artifact into a folder `artifact`
     ```
-    wget https://github.com/letonchanh/dynamite/raw/master/artifact/dynamite.zip
+    wget https://github.com/letonchanh/dynamite/raw/master/releases/oopsla.zip
     unzip dynamite.zip
     ```
 
