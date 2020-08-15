@@ -64,7 +64,7 @@
     
 3. PySMT and other SMT provers (CVC4, Yices)
     ```
-    cp $TOOLSDIR/dynamite/deps/pysmt $TOOLSDIR/pysmt
+    cp -r $TOOLSDIR/dynamite/deps/pysmt $TOOLSDIR/pysmt
     cd $TOOLSDIR/pysmt
     pip3 install wheel
     python3 install.py --confirm-agreement --cvc4
