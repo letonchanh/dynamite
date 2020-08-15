@@ -2,11 +2,14 @@
 
 ## Download the artifact
 
+- We recommend to install DynamiTe and the below dependencies in the same folder (e.g `~/tools`) and use an environment variable (e.g `TOOLSDIR`) to refer to it.
+
    ```
    wget https://github.com/letonchanh/dynamite/raw/master/releases/oopsla.zip
    unzip dynamite.zip
    mkdir ~/tools
-   mv artifact ~/tools/dynamite
+   export TOOLSDIR=~/tools
+   mv artifact $TOOLSDIR/dynamite
    ```
 
 ## Setup Prerequisite Packages
@@ -30,11 +33,6 @@
     ```
 
 ## Setup Dependencies
-    
-- We recommend to install the following dependencies in the same folder (e.g `/tools`) and use an environment variable (e.g `TOOLSDIR`) to refer to it.
-    ```
-    export TOOLSDIR=/tools
-    ```
 
 1. SageMath 9.0
     ```
