@@ -162,3 +162,10 @@
     sudo cpan install YAML::Tiny
     sudo cpan install Statistics::Basic
     ```
+
+## Set DynamiTe's environment variables
+
+   ```
+   export DYNAMITE_HOME=$TOOLSDIR/dynamite
+   export DYNAMITE_DEPS=$TOOLSDIR
+   ```
