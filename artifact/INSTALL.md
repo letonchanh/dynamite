@@ -5,11 +5,13 @@
 - We recommend to install DynamiTe and the below dependencies in the same folder (e.g `~/tools`) and use an environment variable (e.g `TOOLSDIR`) to refer to it.
 
    ```
-   wget https://github.com/letonchanh/dynamite/raw/master/releases/oopsla.zip
-   unzip dynamite.zip
    mkdir ~/tools
    export TOOLSDIR=~/tools
-   mv artifact $TOOLSDIR/dynamite
+   
+   cd $TOOLSDIR
+   wget https://github.com/letonchanh/dynamite/raw/master/releases/oopsla.zip
+   unzip oopsla.zip
+   mv artifact dynamite
    ```
 
 ## Setup Prerequisite Packages
