@@ -131,9 +131,10 @@
     
 8. OCaml 4.05.0 and prerequisite libraries via Opam
     ```
-    curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh | sh /dev/stdin
     opam init -y
+    eval `opam config env`
     opam switch -y 4.05.0
+    eval `opam config env`
     opam install -y oasis cil camlp4
     ```
     
@@ -156,8 +157,8 @@
     ```
     pip3 install lark-parser
     
-    cpan install local::lib
-    cpan install Time::Out
-    cpan install YAML::Tiny
-    cpan install Statistics::Basic
+    sudo cpan install local::lib
+    sudo cpan install Time::Out
+    sudo cpan install YAML::Tiny
+    sudo cpan install Statistics::Basic
     ```
