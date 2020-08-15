@@ -1,5 +1,14 @@
 # Instructions to setup Dynamite on Debian/Ubuntu
 
+## Download the artifact
+
+   ```
+   wget https://github.com/letonchanh/dynamite/raw/master/releases/oopsla.zip
+   unzip dynamite.zip
+   mkdir ~/tools
+   mv artifact ~/tools/dynamite
+   ```
+
 ## Setup Prerequisite Packages
 
 1. Install Java JDK 8 and its build systems
