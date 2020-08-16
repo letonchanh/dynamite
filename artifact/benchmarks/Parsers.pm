@@ -22,8 +22,11 @@ sub find_benchmarks {
         my $fn = $_;
         next unless $fn =~ m/\.c$/; 
         next if $fn =~ /~$/;
-        $b2expect{$fn} = 'true'  if $fn =~ /-t\.c/;
-        $b2expect{$fn} = 'false' if $fn =~ /-nt\.c/;
+        if ($fn =~ /-nt\.c/ or $benchdir =~ /nonterm/) {
+            $b2expect{$fn} = 'false';
+        } else {
+            $b2expect{$fn} = 'true';
+        }
         if ($#{$bnames} > -1) {
             next unless $fn ~~ @{$bnames};
         }
@@ -245,8 +248,8 @@ sub dynDetailTNT {
     return ($d,$str,$strconcise,$strHtml,$strconciseHtml);
 }
 
-sub dynDetail {
-    my ($tmpb,$logfn,$timedout,$overallt,$overallr,$nonterm,$cmp,$iters) = @_;
+sub dynDetailOne {
+    my ($logfn,$overallt,$overallr) = @_;
     open(F,"$logfn") or warn "file $logfn - $!";
     my $d = { allt => tm2str($overallt), allr => $overallr,
               guessr => '\rUNK', validr => '\rUNK',
@@ -305,6 +308,25 @@ sub dynDetail {
             $h->{$_} = 'ERROR' for qw/guesst guessr validt validr allt allr/;
         }
     }
+    return ($d,$h);
+}
+
+sub dynDetail {
+    my ($tmpb,$logfn,$timedout,$overallt,$overallr,$nonterm,$cmp,$iters) = @_;
+
+    # my ($d,$h) = dynDetailOne($logfn.".1",$overallt,$overallr);
+
+    my $d = { allt => tm2str($overallt), allr => $overallr,
+              guessr => '\rUNK', validr => '\rUNK',
+              guesst => tm2str(-1), validt => tm2str(-1) };
+    my $h = { allt => tm2str($overallt), allr => $overallr,
+              guessr => 'UNK', validr => 'UNK',
+              guesst => '-', validt => '-' };
+    for my $i (1..$iters) {
+        ($d,$h) = dynDetailOne($logfn.".".$i,$overallt,$overallr);
+        last if $h->{validr} eq 'TRUE';
+    }
+    
     if($timedout and $d->{validt} > 0) {
         # decide when it timed out
         if ($d->{validt} > 800) { $d->{validt} = '\rTO'; $h->{validt} = 'TO'; }
