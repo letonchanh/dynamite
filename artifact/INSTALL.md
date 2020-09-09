@@ -1,5 +1,19 @@
 # Instructions to setup Dynamite on Debian/Ubuntu
 
+## Download the artifact
+
+- We recommend to install DynamiTe and the below dependencies in the same folder (e.g `~/tools`) and use an environment variable (e.g `TOOLSDIR`) to refer to it.
+
+   ```
+   mkdir ~/tools
+   export TOOLSDIR=~/tools
+   
+   cd $TOOLSDIR
+   wget https://github.com/letonchanh/dynamite/raw/master/releases/oopsla.zip
+   unzip oopsla.zip
+   mv artifact dynamite
+   ```
+
 ## Setup Prerequisite Packages
 
 1. Install Java JDK 8 and its build systems
@@ -21,11 +35,6 @@
     ```
 
 ## Setup Dependencies
-    
-- We recommend to install the following dependencies in the same folder (e.g `/tools`) and use an environment variable (e.g `TOOLSDIR`) to refer to it.
-    ```
-    export TOOLSDIR=/tools
-    ```
 
 1. SageMath 9.0
     ```
@@ -57,7 +66,7 @@
     
 3. PySMT and other SMT provers (CVC4, Yices)
     ```
-    cp $TOOLSDIR/dynamite/deps/pysmt $TOOLSDIR/pysmt
+    cp -r $TOOLSDIR/dynamite/deps/pysmt $TOOLSDIR/pysmt
     cd $TOOLSDIR/pysmt
     pip3 install wheel
     python3 install.py --confirm-agreement --cvc4
@@ -122,9 +131,10 @@
     
 8. OCaml 4.05.0 and prerequisite libraries via Opam
     ```
-    curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh | sh /dev/stdin
     opam init -y
+    eval `opam config env`
     opam switch -y 4.05.0
+    eval `opam config env`
     opam install -y oasis cil camlp4
     ```
     
@@ -147,8 +157,15 @@
     ```
     pip3 install lark-parser
     
-    cpan install local::lib
-    cpan install Time::Out
-    cpan install YAML::Tiny
-    cpan install Statistics::Basic
+    sudo cpan install local::lib
+    sudo cpan install Time::Out
+    sudo cpan install YAML::Tiny
+    sudo cpan install Statistics::Basic
     ```
+
+## Set DynamiTe's environment variables
+
+   ```
+   export DYNAMITE_HOME=$TOOLSDIR/dynamite
+   export DYNAMITE_DEPS=$TOOLSDIR
+   ```

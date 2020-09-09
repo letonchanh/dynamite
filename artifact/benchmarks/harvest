@@ -78,7 +78,7 @@ foreach my $tool (@tools) {
       # Step 3: Otherwise, if it is dynamo (ProveT or ProveNT)
       } elsif ($tool eq 'dynamo') {
             #die "can't get time at all: $b and $b2res{$tmpb}->{time}\n" unless $b2res{$b}->{time} > 0;
-            my ($d,$dstr,$html) = Parsers::dynDetail($tmpb,$logfn.".1",
+            my ($d,$dstr,$html) = Parsers::dynDetail($tmpb,$logfn,#$logfn.".1",
                                               ($tm >= 900 ? 1 : 0),
                                              $tm, $compare->{$tmpb}->{$tool}->{result},
                                              ($benchdir =~ /nonterm/ ? 1 : 0),$compare->{$tmpb}->{dynamo},$ITERS);
