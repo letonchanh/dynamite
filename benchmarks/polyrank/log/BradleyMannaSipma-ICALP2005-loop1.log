@@ -1,0 +1,307 @@
+__main__:113:INFO (<module>) - Dynamite's logger_level: DEBUG
+__main__:114:INFO (<module>) - Dig's logger_level: WARNING
+__main__:115:INFO (<module>) - Timeout: 300s
+__main__:117:INFO (<module>) - 2020-07-12 16:29:23.534709: dynamo.py ../tests/bradley/BradleyMannaSipma-ICALP2005-loop1.c -t
+/home/exp/tools/SageMath/local/lib/python3.7/site-packages/pyximport/pyximport.py:51: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+analysis:155:DEBUG (__init__) - Create C source for mainQ: /var/tmp/Dig_f2s3kcr6
+analysis:163:DEBUG (__init__) - trans_cmd: /home/exp/tools/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dotransform /home/exp/tools/dynamo/tests/bradley/BradleyMannaSipma-ICALP2005-loop1.c --out=/var/tmp/Dig_f2s3kcr6/BradleyMannaSipma-ICALP2005-loop1.c --bnd=500
+analysis:170:DEBUG (__init__) - cg: defaultdict(<class 'list'>, {'vloop_20': ['exit'], 'mainQ': ['vloop_20'], 'main': ['mainQ']})
+analysis:181:DEBUG (__init__) - postorder_vloop_ids: ['vloop_20']
+analysis:190:DEBUG (__init__) - inp_decls (<class 'data.prog.Symbs'>): I i, I j, I an, I bn
+analysis:191:DEBUG (__init__) - inv_decls (<class 'data.prog.DSymbs'>): {'vtrace1_20': (Symb(name='i', typ='I'), Symb(name='j', typ='I'), Symb(name='an', typ='I'), Symb(name='bn', typ='I')), 'vtrace2_20': (Symb(name='i', typ='I'), Symb(name='j', typ='I'), Symb(name='an', typ='I'), Symb(name='bn', typ='I')), 'vtrace3_20': (Symb(name='i', typ='I'), Symb(name='j', typ='I'), Symb(name='an', typ='I'), Symb(name='bn', typ='I'))}
+__main__:163:DEBUG (<module>) - prove_process: 30444
+lib:49:DEBUG (gen_rand_inps) - gen 1296/100 random inps
+lib:30:DEBUG (_sample_inps) - reduced inps: 240
+utils.profiling:31:DEBUG (timed) - gen_rand_inps: 1445.74ms
+lib:60:DEBUG (get_traces_from_inps) - inp_decls: I i, I j, I an, I bn
+lib:61:DEBUG (get_traces_from_inps) - inv_decls: {'vtrace1_20': (Symb(name='i', typ='I'), Symb(name='j', typ='I'), Symb(name='an', typ='I'), Symb(name='bn', typ='I')), 'vtrace2_20': (Symb(name='i', typ='I'), Symb(name='j', typ='I'), Symb(name='an', typ='I'), Symb(name='bn', typ='I')), 'vtrace3_20': (Symb(name='i', typ='I'), Symb(name='j', typ='I'), Symb(name='an', typ='I'), Symb(name='bn', typ='I'))}
+utils.profiling:31:DEBUG (timed) - _get_traces_mp: 0.70ms
+utils.profiling:31:DEBUG (timed) - _merge_traces: 328.61ms
+utils.profiling:31:DEBUG (timed) - get_traces_from_inps: 330.02ms
+analysis:1240:DEBUG (prove) - itraces: 240
+analysis:1246:DEBUG (prove) - Analysing Termination vloop_20
+analysis:1184:DEBUG (prove_term_vloop) - classify_inps: vloop_20
+analysis:1187:DEBUG (prove_term_vloop) - itraces: 240
+lib:214:DEBUG (print_inps) - i=281,j=-281,an=282,bn=-284: [('vtrace1_20', 1), ('vtrace2_20', 2), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-15,j=20,an=8,bn=-13: [('vtrace1_20', 1), ('vtrace2_20', 24), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=14,j=271,an=-1,bn=270: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=11,j=-12,an=3,bn=-4: [('vtrace1_20', 1), ('vtrace2_20', 9), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=18,j=-9,an=7,bn=6: [('vtrace1_20', 1), ('vtrace2_20', 16), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=275,j=0,an=-282,bn=-17: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-6,j=274,an=-5,bn=-4: [('vtrace1_20', 1), ('vtrace2_20', 2), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-3,j=11,an=271,bn=-9: [('vtrace1_20', 1), ('vtrace2_20', 275), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-284,j=2,an=-4,bn=295: [('vtrace1_20', 1), ('vtrace2_20', 500)]
+lib:214:DEBUG (print_inps) - i=1,j=28,an=-2,bn=15: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-24,j=3,an=-15,bn=-15: [('vtrace1_20', 1), ('vtrace2_20', 10), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-290,j=-3,an=13,bn=2: [('vtrace1_20', 1), ('vtrace2_20', 310), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-282,j=12,an=-13,bn=-283: [('vtrace1_20', 1), ('vtrace2_20', 270), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-29,j=-15,an=3,bn=-12: [('vtrace1_20', 1), ('vtrace2_20', 37), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-273,j=287,an=-281,bn=3: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-13,j=-293,an=8,bn=0: [('vtrace1_20', 1), ('vtrace2_20', 316), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-273,j=10,an=-2,bn=-8: [('vtrace1_20', 1), ('vtrace2_20', 272), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-275,j=-5,an=18,bn=-6: [('vtrace1_20', 1), ('vtrace2_20', 294), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=11,j=3,an=-7,bn=12: [('vtrace1_20', 1), ('vtrace2_20', 10), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-294,j=-3,an=293,bn=270: [('vtrace1_20', 1), ('vtrace2_20', 500)]
+lib:214:DEBUG (print_inps) - i=292,j=-7,an=-10,bn=-278: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-6,j=4,an=278,bn=-15: [('vtrace1_20', 1), ('vtrace2_20', 285), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-289,j=270,an=-1,bn=-6: [('vtrace1_20', 1), ('vtrace2_20', 289), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=277,j=-10,an=-290,bn=16: [('vtrace1_20', 1), ('vtrace2_20', 27), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-14,j=-10,an=-9,bn=-7: [('vtrace1_20', 1), ('vtrace2_20', 10), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=299,j=9,an=5,bn=-15: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-290,j=-24,an=-11,bn=-297: [('vtrace1_20', 1), ('vtrace2_20', 280), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=292,j=297,an=279,bn=8: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-287,j=-14,an=281,bn=-298: [('vtrace1_20', 1), ('vtrace2_20', 500)]
+lib:214:DEBUG (print_inps) - i=-1,j=291,an=-3,bn=-276: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=14,j=-1,an=-6,bn=-14: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=274,j=22,an=4,bn=-14: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=7,j=2,an=-11,bn=-3: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-278,j=-8,an=-8,bn=290: [('vtrace1_20', 1), ('vtrace2_20', 500)]
+lib:214:DEBUG (print_inps) - i=6,j=16,an=-12,bn=276: [('vtrace1_20', 1), ('vtrace2_20', 261), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=281,j=-271,an=10,bn=-5: [('vtrace1_20', 1), ('vtrace2_20', 267), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-4,j=-273,an=-11,bn=1: [('vtrace1_20', 1), ('vtrace2_20', 275), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-6,j=1,an=-3,bn=9: [('vtrace1_20', 1), ('vtrace2_20', 13), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=293,j=-15,an=-5,bn=-292: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=290,j=281,an=5,bn=5: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-12,j=28,an=-11,bn=-27: [('vtrace1_20', 1), ('vtrace2_20', 2), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-25,j=-12,an=-283,bn=10: [('vtrace1_20', 1), ('vtrace2_20', 23), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=3,j=-16,an=1,bn=2: [('vtrace1_20', 1), ('vtrace2_20', 19), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-11,j=-29,an=-9,bn=275: [('vtrace1_20', 1), ('vtrace2_20', 308), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=292,j=285,an=276,bn=283: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=7,j=6,an=22,bn=-300: [('vtrace1_20', 1), ('vtrace2_20', 16), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-4,j=26,an=-10,bn=272: [('vtrace1_20', 1), ('vtrace2_20', 247), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=8,j=-8,an=-8,bn=11: [('vtrace1_20', 1), ('vtrace2_20', 20), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-272,j=288,an=-7,bn=-30: [('vtrace1_20', 1), ('vtrace2_20', 266), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=15,j=-27,an=2,bn=12: [('vtrace1_20', 1), ('vtrace2_20', 40), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-21,j=2,an=-9,bn=12: [('vtrace1_20', 1), ('vtrace2_20', 24), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-28,j=1,an=5,bn=287: [('vtrace1_20', 1), ('vtrace2_20', 321), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-9,j=-13,an=-286,bn=279: [('vtrace1_20', 1), ('vtrace2_20', 293), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-3,j=9,an=-282,bn=-11: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-5,j=0,an=-6,bn=-5: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=18,j=-286,an=-10,bn=-17: [('vtrace1_20', 1), ('vtrace2_20', 270), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-20,j=274,an=292,bn=14: [('vtrace1_20', 1), ('vtrace2_20', 313), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-17,j=4,an=3,bn=274: [('vtrace1_20', 1), ('vtrace2_20', 292), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-276,j=9,an=9,bn=-282: [('vtrace1_20', 1), ('vtrace2_20', 286), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=11,j=286,an=282,bn=-7: [('vtrace1_20', 1), ('vtrace2_20', 272), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=271,j=-15,an=6,bn=-299: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-1,j=-3,an=-7,bn=2: [('vtrace1_20', 1), ('vtrace2_20', 6), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-12,j=4,an=-5,bn=-20: [('vtrace1_20', 1), ('vtrace2_20', 8), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=16,j=-20,an=9,bn=-11: [('vtrace1_20', 1), ('vtrace2_20', 10), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=29,j=-15,an=-24,bn=5: [('vtrace1_20', 1), ('vtrace2_20', 21), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=10,j=-285,an=-7,bn=29: [('vtrace1_20', 1), ('vtrace2_20', 315), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=273,j=-12,an=4,bn=-296: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=13,j=10,an=-10,bn=14: [('vtrace1_20', 1), ('vtrace2_20', 5), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=8,j=-20,an=25,bn=-276: [('vtrace1_20', 1), ('vtrace2_20', 18), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=287,j=5,an=-5,bn=6: [('vtrace1_20', 1), ('vtrace2_20', 2), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-23,j=-22,an=-8,bn=297: [('vtrace1_20', 1), ('vtrace2_20', 336), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-25,j=282,an=281,bn=29: [('vtrace1_20', 1), ('vtrace2_20', 307), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=3,j=-11,an=-6,bn=-288: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=271,j=-299,an=280,bn=-2: [('vtrace1_20', 1), ('vtrace2_20', 308), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-300,j=-8,an=0,bn=279: [('vtrace1_20', 1), ('vtrace2_20', 500)]
+lib:214:DEBUG (print_inps) - i=5,j=5,an=-14,bn=-275: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=10,j=284,an=-288,bn=20: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-11,j=-275,an=-277,bn=287: [('vtrace1_20', 1), ('vtrace2_20', 500)]
+lib:214:DEBUG (print_inps) - i=3,j=-1,an=-6,bn=-15: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=15,j=-30,an=-27,bn=14: [('vtrace1_20', 1), ('vtrace2_20', 45), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=29,j=10,an=3,bn=-16: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=293,j=-7,an=-19,bn=-297: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-12,j=20,an=-11,bn=11: [('vtrace1_20', 1), ('vtrace2_20', 2), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=5,j=-288,an=-7,bn=-12: [('vtrace1_20', 1), ('vtrace2_20', 277), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-279,j=2,an=-294,bn=-275: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=281,j=-3,an=286,bn=-10: [('vtrace1_20', 1), ('vtrace2_20', 6), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-20,j=14,an=-12,bn=-275: [('vtrace1_20', 1), ('vtrace2_20', 9), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=26,j=289,an=-8,bn=26: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-280,j=-6,an=5,bn=-295: [('vtrace1_20', 1), ('vtrace2_20', 286), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=2,j=11,an=-16,bn=12: [('vtrace1_20', 1), ('vtrace2_20', 2), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=0,j=-279,an=-283,bn=26: [('vtrace1_20', 1), ('vtrace2_20', 306), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-27,j=-18,an=-5,bn=5: [('vtrace1_20', 1), ('vtrace2_20', 47), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-1,j=5,an=26,bn=295: [('vtrace1_20', 1), ('vtrace2_20', 319), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=18,j=-27,an=289,bn=-7: [('vtrace1_20', 1), ('vtrace2_20', 293), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=5,j=9,an=-9,bn=-285: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=21,j=-3,an=6,bn=299: [('vtrace1_20', 1), ('vtrace2_20', 303), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-2,j=3,an=-300,bn=291: [('vtrace1_20', 1), ('vtrace2_20', 289), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=6,j=7,an=-282,bn=8: [('vtrace1_20', 1), ('vtrace2_20', 2), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=270,j=-14,an=276,bn=1: [('vtrace1_20', 1), ('vtrace2_20', 23), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=20,j=-19,an=-30,bn=293: [('vtrace1_20', 1), ('vtrace2_20', 313), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=4,j=12,an=-273,bn=-13: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-8,j=13,an=6,bn=6: [('vtrace1_20', 1), ('vtrace2_20', 15), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=17,j=-276,an=-288,bn=-17: [('vtrace1_20', 1), ('vtrace2_20', 260), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-292,j=290,an=-13,bn=9: [('vtrace1_20', 1), ('vtrace2_20', 280), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=4,j=7,an=287,bn=-13: [('vtrace1_20', 1), ('vtrace2_20', 284), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-297,j=-298,an=2,bn=7: [('vtrace1_20', 1), ('vtrace2_20', 500)]
+lib:214:DEBUG (print_inps) - i=2,j=-19,an=12,bn=-28: [('vtrace1_20', 1), ('vtrace2_20', 11), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-288,j=-25,an=7,bn=-27: [('vtrace1_20', 1), ('vtrace2_20', 296), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=18,j=0,an=-299,bn=13: [('vtrace1_20', 1), ('vtrace2_20', 14), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=2,j=290,an=13,bn=277: [('vtrace1_20', 1), ('vtrace2_20', 12), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=18,j=5,an=-282,bn=-21: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-280,j=-292,an=279,bn=271: [('vtrace1_20', 1), ('vtrace2_20', 500)]
+lib:214:DEBUG (print_inps) - i=24,j=-290,an=11,bn=18: [('vtrace1_20', 1), ('vtrace2_20', 309), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=295,j=287,an=22,bn=-290: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=280,j=-2,an=-277,bn=-11: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=27,j=-284,an=274,bn=295: [('vtrace1_20', 1), ('vtrace2_20', 500)]
+lib:214:DEBUG (print_inps) - i=18,j=-4,an=-292,bn=-10: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=12,j=-5,an=-288,bn=-13: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-10,j=-5,an=288,bn=-11: [('vtrace1_20', 1), ('vtrace2_20', 299), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=299,j=13,an=-13,bn=5: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=278,j=-2,an=0,bn=-7: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=25,j=26,an=6,bn=14: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=2,j=5,an=27,bn=-9: [('vtrace1_20', 1), ('vtrace2_20', 26), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-8,j=18,an=-13,bn=24: [('vtrace1_20', 1), ('vtrace2_20', 7), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=3,j=289,an=-23,bn=-282: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=273,j=-14,an=3,bn=14: [('vtrace1_20', 1), ('vtrace2_20', 29), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=3,j=278,an=-300,bn=-277: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-12,j=-292,an=-5,bn=275: [('vtrace1_20', 1), ('vtrace2_20', 500)]
+lib:214:DEBUG (print_inps) - i=6,j=28,an=282,bn=291: [('vtrace1_20', 1), ('vtrace2_20', 500)]
+lib:214:DEBUG (print_inps) - i=-272,j=-288,an=-12,bn=-287: [('vtrace1_20', 1), ('vtrace2_20', 263), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-282,j=10,an=-3,bn=4: [('vtrace1_20', 1), ('vtrace2_20', 280), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=270,j=-285,an=290,bn=13: [('vtrace1_20', 1), ('vtrace2_20', 320), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=29,j=-22,an=8,bn=-284: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-282,j=10,an=7,bn=271: [('vtrace1_20', 1), ('vtrace2_20', 500)]
+lib:214:DEBUG (print_inps) - i=282,j=-2,an=291,bn=7: [('vtrace1_20', 1), ('vtrace2_20', 20), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=5,j=-279,an=9,bn=285: [('vtrace1_20', 1), ('vtrace2_20', 500)]
+lib:214:DEBUG (print_inps) - i=2,j=-9,an=-296,bn=-25: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-276,j=-275,an=11,bn=3: [('vtrace1_20', 1), ('vtrace2_20', 500)]
+lib:214:DEBUG (print_inps) - i=286,j=27,an=276,bn=5: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-14,j=-298,an=16,bn=-9: [('vtrace1_20', 1), ('vtrace2_20', 321), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-4,j=286,an=-18,bn=-6: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-2,j=13,an=27,bn=10: [('vtrace1_20', 1), ('vtrace2_20', 30), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-295,j=-300,an=-12,bn=9: [('vtrace1_20', 1), ('vtrace2_20', 500)]
+lib:214:DEBUG (print_inps) - i=-272,j=-15,an=-293,bn=-272: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-286,j=3,an=-7,bn=12: [('vtrace1_20', 1), ('vtrace2_20', 290), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-14,j=276,an=-1,bn=-5: [('vtrace1_20', 1), ('vtrace2_20', 14), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=270,j=-274,an=-11,bn=-278: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=3,j=-20,an=278,bn=-18: [('vtrace1_20', 1), ('vtrace2_20', 279), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=293,j=-1,an=-13,bn=-24: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=0,j=0,an=8,bn=-15: [('vtrace1_20', 1), ('vtrace2_20', 9), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-3,j=-8,an=6,bn=19: [('vtrace1_20', 1), ('vtrace2_20', 38), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=10,j=-25,an=-1,bn=-4: [('vtrace1_20', 1), ('vtrace2_20', 22), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-13,j=-18,an=-6,bn=-6: [('vtrace1_20', 1), ('vtrace2_20', 21), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=20,j=-3,an=14,bn=293: [('vtrace1_20', 1), ('vtrace2_20', 297), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-12,j=291,an=294,bn=-287: [('vtrace1_20', 1), ('vtrace2_20', 307), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=288,j=-15,an=294,bn=-300: [('vtrace1_20', 1), ('vtrace2_20', 7), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=278,j=-298,an=-14,bn=-19: [('vtrace1_20', 1), ('vtrace2_20', 280), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=294,j=-30,an=29,bn=293: [('vtrace1_20', 1), ('vtrace2_20', 324), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=285,j=12,an=-272,bn=29: [('vtrace1_20', 1), ('vtrace2_20', 18), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-2,j=-7,an=9,bn=284: [('vtrace1_20', 1), ('vtrace2_20', 304), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-288,j=270,an=8,bn=-23: [('vtrace1_20', 1), ('vtrace2_20', 297), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=276,j=-1,an=18,bn=-6: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=279,j=12,an=287,bn=-1: [('vtrace1_20', 1), ('vtrace2_20', 9), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=12,j=9,an=24,bn=9: [('vtrace1_20', 1), ('vtrace2_20', 14), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-6,j=10,an=-288,bn=10: [('vtrace1_20', 1), ('vtrace2_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=10,j=279,an=-17,bn=-18: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=5,j=291,an=13,bn=-289: [('vtrace1_20', 1), ('vtrace2_20', 9), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-5,j=284,an=-300,bn=-293: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=4,j=271,an=4,bn=-292: [('vtrace1_20', 1), ('vtrace2_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=289,j=-9,an=-3,bn=10: [('vtrace1_20', 1), ('vtrace2_20', 20), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-295,j=10,an=18,bn=-8: [('vtrace1_20', 1), ('vtrace2_20', 314), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=27,j=10,an=-6,bn=-277: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-24,j=-12,an=-277,bn=-11: [('vtrace1_20', 1), ('vtrace2_20', 2), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=29,j=-3,an=-286,bn=-13: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=273,j=-299,an=-288,bn=-7: [('vtrace1_20', 1), ('vtrace2_20', 293), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=276,j=-282,an=-4,bn=-3: [('vtrace1_20', 1), ('vtrace2_20', 280), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=18,j=7,an=21,bn=272: [('vtrace1_20', 1), ('vtrace2_20', 270), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=29,j=-289,an=-278,bn=-287: [('vtrace1_20', 1), ('vtrace2_20', 3), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=275,j=280,an=277,bn=-2: [('vtrace1_20', 1), ('vtrace2_20', 3), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=6,j=4,an=1,bn=-1: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=288,j=-276,an=4,bn=5: [('vtrace1_20', 1), ('vtrace2_20', 282), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=13,j=5,an=29,bn=-10: [('vtrace1_20', 1), ('vtrace2_20', 17), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=275,j=-6,an=-27,bn=-2: [('vtrace1_20', 1), ('vtrace2_20', 5), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=0,j=25,an=270,bn=285: [('vtrace1_20', 1), ('vtrace2_20', 500)]
+lib:214:DEBUG (print_inps) - i=8,j=275,an=7,bn=287: [('vtrace1_20', 1), ('vtrace2_20', 13), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-18,j=18,an=21,bn=21: [('vtrace1_20', 1), ('vtrace2_20', 44), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-10,j=-25,an=12,bn=-14: [('vtrace1_20', 1), ('vtrace2_20', 35), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=298,j=-23,an=4,bn=14: [('vtrace1_20', 1), ('vtrace2_20', 38), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-290,j=-4,an=-293,bn=-10: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=9,j=285,an=10,bn=0: [('vtrace1_20', 1), ('vtrace2_20', 2), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=278,j=-3,an=-4,bn=23: [('vtrace1_20', 1), ('vtrace2_20', 27), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=19,j=275,an=278,bn=12: [('vtrace1_20', 1), ('vtrace2_20', 260), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=276,j=7,an=-290,bn=-281: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=19,j=9,an=285,bn=298: [('vtrace1_20', 1), ('vtrace2_20', 500)]
+lib:214:DEBUG (print_inps) - i=-272,j=-299,an=-7,bn=271: [('vtrace1_20', 1), ('vtrace2_20', 500)]
+lib:214:DEBUG (print_inps) - i=16,j=25,an=28,bn=-12: [('vtrace1_20', 1), ('vtrace2_20', 13), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=2,j=277,an=-3,bn=-21: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=275,j=-292,an=7,bn=-20: [('vtrace1_20', 1), ('vtrace2_20', 273), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=295,j=-290,an=-12,bn=273: [('vtrace1_20', 1), ('vtrace2_20', 500)]
+lib:214:DEBUG (print_inps) - i=283,j=-272,an=-15,bn=-2: [('vtrace1_20', 1), ('vtrace2_20', 271), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=6,j=-30,an=-3,bn=-4: [('vtrace1_20', 1), ('vtrace2_20', 27), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=297,j=-4,an=11,bn=-4: [('vtrace1_20', 1), ('vtrace2_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=279,j=-285,an=-283,bn=285: [('vtrace1_20', 1), ('vtrace2_20', 500)]
+lib:214:DEBUG (print_inps) - i=279,j=12,an=-288,bn=5: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=11,j=-12,an=4,bn=-285: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=7,j=-29,an=281,bn=21: [('vtrace1_20', 1), ('vtrace2_20', 326), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=13,j=6,an=-291,bn=-20: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=6,j=-273,an=-8,bn=-16: [('vtrace1_20', 1), ('vtrace2_20', 258), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-2,j=276,an=291,bn=-3: [('vtrace1_20', 1), ('vtrace2_20', 294), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-1,j=276,an=-7,bn=12: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-26,j=-2,an=-1,bn=-296: [('vtrace1_20', 1), ('vtrace2_20', 26), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=295,j=-276,an=1,bn=298: [('vtrace1_20', 1), ('vtrace2_20', 500)]
+lib:214:DEBUG (print_inps) - i=18,j=-272,an=2,bn=4: [('vtrace1_20', 1), ('vtrace2_20', 277), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=6,j=-14,an=9,bn=-3: [('vtrace1_20', 1), ('vtrace2_20', 16), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=5,j=280,an=-5,bn=9: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-22,j=-275,an=5,bn=-5: [('vtrace1_20', 1), ('vtrace2_20', 299), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-277,j=-6,an=-11,bn=18: [('vtrace1_20', 1), ('vtrace2_20', 292), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-1,j=272,an=282,bn=-5: [('vtrace1_20', 1), ('vtrace2_20', 284), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-8,j=-1,an=27,bn=6: [('vtrace1_20', 1), ('vtrace2_20', 44), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=1,j=290,an=-14,bn=6: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-14,j=-17,an=292,bn=281: [('vtrace1_20', 1), ('vtrace2_20', 500)]
+lib:214:DEBUG (print_inps) - i=-22,j=-293,an=-283,bn=7: [('vtrace1_20', 1), ('vtrace2_20', 301), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-2,j=-5,an=-30,bn=-278: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=287,j=4,an=12,bn=278: [('vtrace1_20', 1), ('vtrace2_20', 275), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-13,j=15,an=-24,bn=10: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=21,j=5,an=286,bn=-279: [('vtrace1_20', 1), ('vtrace2_20', 266), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=16,j=18,an=29,bn=-16: [('vtrace1_20', 1), ('vtrace2_20', 14), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-23,j=8,an=-272,bn=-299: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=276,j=292,an=5,bn=-3: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=0,j=0,an=6,bn=274: [('vtrace1_20', 1), ('vtrace2_20', 282), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-288,j=296,an=-282,bn=-25: [('vtrace1_20', 1), ('vtrace2_20', 7), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-294,j=3,an=4,bn=276: [('vtrace1_20', 1), ('vtrace2_20', 500)]
+lib:214:DEBUG (print_inps) - i=0,j=289,an=21,bn=-15: [('vtrace1_20', 1), ('vtrace2_20', 22), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-10,j=2,an=9,bn=-280: [('vtrace1_20', 1), ('vtrace2_20', 20), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-300,j=-2,an=293,bn=9: [('vtrace1_20', 1), ('vtrace2_20', 500)]
+lib:214:DEBUG (print_inps) - i=-280,j=282,an=13,bn=-15: [('vtrace1_20', 1), ('vtrace2_20', 294), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-27,j=-2,an=-7,bn=20: [('vtrace1_20', 1), ('vtrace2_20', 44), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=18,j=-280,an=-9,bn=-5: [('vtrace1_20', 1), ('vtrace2_20', 276), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-9,j=283,an=7,bn=-287: [('vtrace1_20', 1), ('vtrace2_20', 17), ('vtrace3_20', 1)]
+lib:214:DEBUG (print_inps) - i=-9,j=294,an=-15,bn=4: [('vtrace1_20', 1), ('vtrace3_20', 1)]
+analysis:1189:DEBUG (prove_term_vloop) - base_term_inps: 65
+analysis:1190:DEBUG (prove_term_vloop) - term_inps: 151
+analysis:1191:DEBUG (prove_term_vloop) - mayloop_inps: 24
+analysis:1001:DEBUG (infer_ranking_functions) - vloop: vloop_20
+analysis:1002:DEBUG (infer_ranking_functions) - term_itraces: 151
+analysis:1049:DEBUG (infer_ranking_functions) - train_rand_trans: 1793
+analysis:1056:DEBUG (_infer_ranking_functions_from_trans) - rnk_template (<class 'sage.symbolic.expression.Expression'>): i*uk_1 + j*uk_2 + an*uk_3 + bn*uk_4 + uk_0
+analysis:1057:DEBUG (_infer_ranking_functions_from_trans) - uks: [uk_0, uk_1, uk_2, uk_3, uk_4]
+analysis:1081:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 1793
+analysis:1087:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 283*uk_1 + 12*uk_2 + 287*uk_3 + -1*uk_4
+analysis:1088:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 286*uk_1 + 12*uk_2 + 287*uk_3 + -1*uk_4
+analysis:1090:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = -1, uk_4 = 0, uk_3 = 1, uk_2 = 0, uk_0 = 0]
+analysis:1094:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*i + an
+analysis:1123:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 744
+analysis:1087:DEBUG (_infer_ranking_functions_from_trans) - t1: uk_0 + 11*uk_1 + 8*uk_2 + -7*uk_3 + 12*uk_4
+analysis:1088:DEBUG (_infer_ranking_functions_from_trans) - t2: uk_0 + 11*uk_1 + 11*uk_2 + -7*uk_3 + 12*uk_4
+analysis:1090:DEBUG (_infer_ranking_functions_from_trans) - model: [uk_1 = 0, uk_4 = 1, uk_3 = 0, uk_2 = -1, uk_0 = 0]
+analysis:1094:DEBUG (_infer_ranking_functions_from_trans) - rf: -1*j + bn
+analysis:1123:DEBUG (_infer_ranking_functions_from_trans) - train_term_rand_trans: 0
+analysis:1124:DEBUG (_infer_ranking_functions_from_trans) - ranking_function_list: [-1*i + an, -1*j + bn]
+utils.profiling:31:DEBUG (timed) - infer_ranking_functions: 12851.22ms
+analysis:1206:DEBUG (prove_term_vloop) - validate_ranking_functions: vloop_20
+analysis:1132:DEBUG (validate_ranking_functions) - ranks_str: -1*i + an|-1*j + bn
+validate:124:DEBUG (gen_validate_file) - validate_cmd: /home/exp/tools/dynamo/deps/dynamo-instr/src/cil/bin/cilly --save-temps -D HAPPY_MOOD --dovalidate /home/exp/tools/dynamo/tests/bradley/BradleyMannaSipma-ICALP2005-loop1.c --out=/var/tmp/Dig_f2s3kcr6/vloop_20/uatm/validate/BradleyMannaSipma-ICALP2005-loop1.c --pos=20 --ranks="-1*i + an|-1*j + bn"
+validate:41:DEBUG (prove_reach) - pcmd: /home/exp/tools/ultimate/releaseScripts/default/UAutomizer-linux/Ultimate.py --spec /home/exp/tools/reachability.prp --architecture 32bit --witness-dir /var/tmp/Dig_f2s3kcr6/vloop_20/uatm --witness-name witness.graphml --file /var/tmp/Dig_f2s3kcr6/vloop_20/uatm/validate/BradleyMannaSipma-ICALP2005-loop1.c
+validate:46:DEBUG (prove_reach) - res: True
+analysis:1145:DEBUG (validate_ranking_functions) - r: True
+utils.profiling:31:DEBUG (timed) - validate_ranking_functions: 6755.99ms
+analysis:1208:DEBUG (prove_term_vloop) - Termination result (vloop_20): True ([-1*i + an, -1*j + bn])
+utils.profiling:31:DEBUG (timed) - prove_term_vloop: 19621.75ms
+utils.profiling:31:DEBUG (timed) - prove: 21410.35ms
+utils.profiling:31:DEBUG (timed) - prove: 21410.80ms
+Termination result: True
+Time log:
+gen_rand_inps: 1.446s
+_get_traces_mp: 0.001s
+_merge_traces: 0.329s
+get_traces_from_inps: 0.330s
+infer_ranking_functions: 12.851s
+validate_ranking_functions: 6.756s
+prove_term_vloop: 19.622s
+prove: 21.410s
