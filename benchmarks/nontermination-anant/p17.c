@@ -15,7 +15,7 @@ int main() {
     while (x <= y - 1) {
       y = z * z;
       x = y;
-      x = y + 1;
+      y = y + 1;
     }
   }
   return 0;
