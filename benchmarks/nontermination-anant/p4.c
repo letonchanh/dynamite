@@ -18,6 +18,7 @@ int main() {
 	z = z + 1;
       } else {
 	return 0;
+      }
     } else {
       z = z - 1;
     }
