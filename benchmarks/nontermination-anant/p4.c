@@ -16,45 +16,44 @@ int main() {
     if (x >= 0) {
       if (w <= -5) {
 	z = z + 1;
-      }
+      } else {
+	return 0;
     } else {
       z = z - 1;
     }
 
-    if (x < 0 || w <= -5) {
-      /*
-      if (__VERIFIER_nondet_int() > 0) {
-	if (! (x < 0)) { return; }
-	z = z - 1;
-	return;
-      }
-      */
-      while (x >= w) {
-	/*
-	if (__VERIFIER_nondet_int() > 0) {
-	  if (! (x < 0)) { return; }
-	  z = z - 1;
-	  return;
-	}
-	*/
-	/*
-	  if (z <= 8) {
-	  ;
-	  } else {
-	  ;
-	  }
-	*/
-	x = z * z;
-	w = w - 1;
-      }
-      /*
-      if (__VERIFIER_nondet_int() > 0) {
-	if (! (x < 0)) { return; }
-	z = z - 1;
-	return;
-      }
-      */
+    /*
+    if (__VERIFIER_nondet_int() > 0) {
+      if (! (x < 0)) { return; }
+      z = z - 1;
+      return;
     }
+    */
+    while (x >= w) {
+      /*
+      if (__VERIFIER_nondet_int() > 0) {
+	if (! (x < 0)) { return; }
+	z = z - 1;
+	return;
+      }
+      */
+      /*
+      if (z <= 8) {
+	;
+      } else {
+	;
+      }
+      */
+      x = z * z;
+      w = w - 1;
+    }
+    /*
+    if (__VERIFIER_nondet_int() > 0) {
+      if (! (x < 0)) { return; }
+      z = z - 1;
+      return;
+    }
+    */
   }
   
   return 0;
