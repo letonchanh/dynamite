@@ -9,11 +9,12 @@ int main() {
   y = __VERIFIER_nondet_int();
   z = __VERIFIER_nondet_int();
 
-  if (x <= y - 1) {
-    while (x <= y - 1) {
-      y = z * z;
-      x = y;
-      y = y + 1;
+  if (y >= 1) {
+    if (z >= 1) {
+      while (x >= 0) {
+	x = y * z - 1;
+	y = y + 1;
+      }
     }
   }
   return 0;
