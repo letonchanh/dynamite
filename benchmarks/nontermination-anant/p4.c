@@ -29,11 +29,13 @@ int main() {
     }
     */
     while (x >= w) {
+      /*
       if (__VERIFIER_nondet_int() > 0) {
 	if (! (x < 0)) { break; }
 	z = z - 1;
 	break;
       }
+      */
       /*
       if (z <= 8) {
 	;
