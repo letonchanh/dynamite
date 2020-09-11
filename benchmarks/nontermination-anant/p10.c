@@ -10,21 +10,20 @@ int main() {
   x = __VERIFIER_nondet_int();
   y = __VERIFIER_nondet_int();
   z = __VERIFIER_nondet_int();
-
-  if (z >= 4) {
-    z = z + 1;
-
-    if (x >= 0) {
-      z = z + 1;
-    } else {
-      z = z - 1;
-    }
-
-    if (y >= 2) {
-      while (x >= 0) {
-	a = z * z;
-	b = y * z;
-	x = a - b;
+  
+  if (x >= 1) {
+    if (b < 0) {
+      if (a >= 0) {
+	while (x >= y && z < 42) {
+	  if (__VERIFIER_nondet_int() > 0) {
+	    x = 1;
+	    y = 15;
+	  } else {
+	    x = __VERIFIER_nondet_int();
+	    z = a * b;
+	    a = a + 1;
+	  }
+	}
       }
     }
   }

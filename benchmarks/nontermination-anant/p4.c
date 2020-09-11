@@ -16,8 +16,6 @@ int main() {
     if (x >= 0) {
       if (w <= -5) {
 	z = z + 1;
-      } else {
-	return 0;
       }
     } else {
       z = z - 1;
