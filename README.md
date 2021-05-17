@@ -1,4 +1,4 @@
-# Dynamo
+# Dynamite
 
 ## Installation
 
